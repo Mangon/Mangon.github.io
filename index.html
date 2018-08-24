@@ -54,7 +54,7 @@
     <aside id="aside" class="aside">
     <div id="aside-mask" class="aside-mask"></div>
     <div id="aside-inner" class="aside-inner">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://mangon.github.io"></form>
 
         
         
@@ -95,23 +95,42 @@
         <div id="content" class="content">
     <article class="article" itemscope itemprop="blogPost">
     
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2018/08/24/使用Hexo发布个人博客到Github-Pages/">使用Hexo发布个人博客到Github Pages</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="/2018/08/24/使用Hexo发布个人博客到Github-Pages/">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-08-24T05:11:29.000Z" itemprop="datePublished">2018-08-24</time>
+</a>
+
+            
+
+        </div>
+    </header>
+    
     <section class="article-body markdown-body">
         
-        <h2 id="使用Hexo发布个人博客到Github-Pages"><a href="#使用Hexo发布个人博客到Github-Pages" class="headerlink" title="使用Hexo发布个人博客到Github Pages"></a>使用Hexo发布个人博客到Github Pages</h2><p><a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
+        <p><a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
 <ol>
 <li>安装前提</li>
 </ol>
 <p>安装 Hexo 相当简单。然而在安装前，您必须检查电脑中是否已安装下列应用程序：</p>
-<p><a href="nodejs.org">Node.js</a><br><a href="git-scm.com">Git</a></p>
+<p><a href="nodejs.org">Node.js</a><br><a href="git-scm.com">Git</a>  </p>
 <ol start="2">
-<li>安装Hexo</li>
+<li>安装Hexo-cli</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
 <ol start="3">
 <li>在github中创建仓库</li>
 </ol>
-<p>仓库需要以<code>.github.io</code>结尾<br><a href="https://pages.github.com/images/user-repo@2x.png" target="_blank" rel="noopener">create-repo</a></p>
-<ol start="4">
+<p>仓库需要以<code>.github.io</code>结尾<br><a href="../static/imgs/create-repo.png">create-repo</a></p>
+<ol>
 <li>建站</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init &lt;folder&gt;</span><br><span class="line">$ cd &lt;folder&gt;</span><br><span class="line">$ npm install</span><br><span class="line">$ npm install hexo-deployer-git --save</span><br><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
@@ -127,7 +146,7 @@
 <ol start="7">
 <li>完成</li>
 </ol>
-<p>访问 https://<username>.github.io 即可</username></p>
+<p>访问 <a href="https://username.github.io" target="_blank" rel="noopener">https://username.github.io</a> 即可</p>
 
         
     </section>
@@ -619,44 +638,6 @@ Shell排序：
 <h1 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h1><p>静态网站和博客生成框架<br><a href="https://hexo.bootcss.com/" target="_blank" rel="noopener">https://hexo.bootcss.com/</a>  </p>
 <h1 id="PostCSS"><a href="#PostCSS" class="headerlink" title="PostCSS"></a>PostCSS</h1><p>用 JavaScript 工具和插件转换 CSS 代码的工具<br><a href="https://www.postcss.com.cn/" target="_blank" rel="noopener">https://www.postcss.com.cn/</a>  </p>
 <h1 id="font-awesome"><a href="#font-awesome" class="headerlink" title="font-awesome"></a>font-awesome</h1><p>Font Awesome 字体为您提供可缩放矢量图标,它可以被定制大小、颜色、阴影以及任何可以用CSS的样式。<br><a href="http://www.fontawesome.com.cn/" target="_blank" rel="noopener">http://www.fontawesome.com.cn/</a>  </p>
-
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2018/07/01/hello-world/">Hello World</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="/2018/07/01/hello-world/">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-07-01T00:55:29.000Z" itemprop="datePublished">2018-07-01</time>
-</a>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
         
     </section>
