@@ -787,9 +787,15 @@ body {
   background-color: #f6f8fa;
 }
 .markdown-body img {
-  max-width: 100%;
   box-sizing: content-box;
   background-color: #fff;
+  width: 80%;
+  max-width: 100%;
+  box-shadow: 0 8px 16px #999;
+  vertical-align: middle;
+  border: 0;
+  border-radius: 4px;
+  margin: 10px 25px;
 }
 .markdown-body img[align=right] {
   padding-left: 20px;
