@@ -22,13 +22,13 @@
   -o-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-.nav-item {
+.nav-inner .nav-item {
   list-style: none;
 }
-.nav-item.active {
+.nav-inner .nav-item:nth-child(2) {
   background-color: #676767;
 }
-.nav-item.active .nav-link:after {
+.nav-inner .nav-item:nth-child(2) .nav-link:after {
   display: block;
 }
 .nav-link {
