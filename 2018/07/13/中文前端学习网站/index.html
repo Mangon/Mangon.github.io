@@ -164,6 +164,9 @@ JavascriptJavaScript一种直译式脚本语言，是一种动态类型、弱类
             $('#open-panel, #aside-mask').on('click', function() {
                 nodes.aside.toggleClass('panel-show');
             });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
             $('#nav-tag').on('click', function(event) {
                 event.preventDefault();console.log(nodes.navTags.attr('class'))
                 nodes.navTags.toggleClass('tag-show');console.log(nodes.navTags.attr('class'))

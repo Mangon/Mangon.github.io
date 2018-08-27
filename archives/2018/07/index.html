@@ -161,6 +161,9 @@
             $('#open-panel, #aside-mask').on('click', function() {
                 nodes.aside.toggleClass('panel-show');
             });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
             $('#nav-tag').on('click', function(event) {
                 event.preventDefault();console.log(nodes.navTags.attr('class'))
                 nodes.navTags.toggleClass('tag-show');console.log(nodes.navTags.attr('class'))
