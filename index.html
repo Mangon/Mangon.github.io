@@ -93,6 +93,44 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2018/08/30/css-calc-函数/">CSS calc()函数</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="/2018/08/30/css-calc-函数/">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-08-30T12:30:10.000Z" itemprop="datePublished">2018-08-30</time>
+</a>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>CSS函数之一，可以在CSS中执行计算操作<br>使用 calc() 函数计算 &lt;div> 元素的宽度，实现div距离左右边界各50px:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#div1</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="built_in">calc</span>(100% - 100px);</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid black;</span><br><span class="line">    <span class="attribute">background-color</span>: yellow;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">5px</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="定义与用法"><a href="#定义与用法" class="headerlink" title="定义与用法"></a>定义与用法</h2><p>calc() 函数用于动态计算长度值，CSS3支持。</p>
+<ul>
+<li>需要注意的是，运算符前后都需要保留一个空格，例如：<code>width: calc(100% - 10px)；</code>  </li>
+<li>任何长度值都可以使用calc()函数进行计算；  </li>
+<li>calc()函数支持 “+”, “-“, “*”, “/“ 运算；  </li>
+<li>calc()函数使用标准的数学运算优先级规则；  </li>
+</ul>
+
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2018/08/24/使用Hexo发布个人博客到GithubPages/">使用Hexo发布个人博客到Github Pages</a>
         </h1>
         
