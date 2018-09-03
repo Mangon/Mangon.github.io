@@ -116,7 +116,26 @@
     
     <section class="article-body markdown-body">
         
-        <p>jQuery 是一个高效、精简并且功能丰富的 JavaScript 工具库。它提供的 API 易于使用且兼容众多浏览器，这让诸如 HTML 文档遍历和操作、事件处理、动画和 Ajax 操作更加简单。</p>
+        <p>jQuery 是一个高效、精简并且功能丰富的 JavaScript 工具库。它提供的 API 易于使用且兼容众多浏览器，这让诸如 HTML 文档遍历和操作、事件处理、动画和 Ajax 操作更加简单。  </p>
+<p>jQuery 使用 $ 符号作为 jQuery 的简写。如果你使用其它框架也使用 $ 符号作为简写，有可能导致脚本停止运行。为了防止这种情况，你可以使用jQuery noConflict()方法释放对 $ 标识符的控制并返回对 jQuery 的引用。  </p>
+<h2 id="jQuery-核心函数"><a href="#jQuery-核心函数" class="headerlink" title="jQuery 核心函数"></a>jQuery 核心函数</h2><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>jQuery()</td>
+<td>接受一个字符串，其中包含了用于匹配元素集合的 CSS 选择器。</td>
+</tr>
+<tr>
+<td>jQuery.noConflict()</td>
+<td>运行这个函数将变量 $ 的控制权让渡给第一个实现它的那个库。</td>
+</tr>
+</tbody>
+</table>
 <h2 id="jQuery-选择器"><a href="#jQuery-选择器" class="headerlink" title="jQuery 选择器"></a>jQuery 选择器</h2><p>jQuery 使用 CSS 选择器来选取 HTML 元素。<br>jQuery 使用 XPath 表达式来选择带有给定属性的元素。<br>jQuery CSS 选择器可用于改变 HTML 元素的 CSS 属性。  </p>
 <table>
 <thead>
@@ -500,7 +519,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="jQuery-效果函数"><a href="#jQuery-效果函数" class="headerlink" title="jQuery 效果函数"></a>jQuery 效果函数</h2><p>将CSS动画效果封装成Javascript函数  </p>
+<h2 id="jQuery-效果函数"><a href="#jQuery-效果函数" class="headerlink" title="jQuery 效果函数"></a>jQuery 效果函数</h2><p>将CSS动画效果封装成Javascript函数。  </p>
 <table>
 <thead>
 <tr>
@@ -707,7 +726,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="jQuery-文档操作"><a href="#jQuery-文档操作" class="headerlink" title="jQuery 文档操作"></a>jQuery 文档操作</h2><p>对HTML元素进行操作  </p>
+<h2 id="jQuery-文档操作"><a href="#jQuery-文档操作" class="headerlink" title="jQuery 文档操作"></a>jQuery 文档操作</h2><p>对HTML元素进行操作。  </p>
 <table>
 <thead>
 <tr>
@@ -716,10 +735,6 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>addClass()</td>
-<td>向匹配的元素添加指定的类名。</td>
-</tr>
 <tr>
 <td>after()</td>
 <td>在匹配的元素之后插入内容。</td>
@@ -753,10 +768,6 @@
 <td>删除匹配的元素集合中所有的子节点。</td>
 </tr>
 <tr>
-<td>hasClass()</td>
-<td>检查匹配的元素是否拥有指定的类。</td>
-</tr>
-<tr>
 <td>html()</td>
 <td>设置或返回匹配的元素集合中的 HTML 内容。</td>
 </tr>
@@ -781,14 +792,6 @@
 <td>移除所有匹配的元素。</td>
 </tr>
 <tr>
-<td>removeAttr()</td>
-<td>从所有匹配的元素中移除指定的属性。</td>
-</tr>
-<tr>
-<td>removeClass()</td>
-<td>从所有匹配的元素中删除全部或者指定的类。</td>
-</tr>
-<tr>
 <td>replaceAll()</td>
 <td>用匹配的元素替换所有匹配到的元素。</td>
 </tr>
@@ -801,16 +804,8 @@
 <td>设置或返回匹配元素的内容。</td>
 </tr>
 <tr>
-<td>toggleClass()</td>
-<td>从匹配的元素中添加或删除一个类。</td>
-</tr>
-<tr>
 <td>unwrap()</td>
 <td>移除并替换指定元素的父元素。</td>
-</tr>
-<tr>
-<td>val()</td>
-<td>设置或返回匹配元素的值。</td>
 </tr>
 <tr>
 <td>wrap()</td>
@@ -823,6 +818,143 @@
 <tr>
 <td>wrapinner()</td>
 <td>将每一个匹配的元素的子内容用指定的内容或元素包裹起来。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="jQuery-属性操作"><a href="#jQuery-属性操作" class="headerlink" title="jQuery 属性操作"></a>jQuery 属性操作</h2><p>下面列出的这些方法获得或设置元素的 DOM 属性。  </p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>addClass()</td>
+<td>向匹配的元素添加指定的类名。</td>
+</tr>
+<tr>
+<td>attr()</td>
+<td>设置或返回匹配元素的属性和值。</td>
+</tr>
+<tr>
+<td>hasClass()</td>
+<td>检查匹配的元素是否拥有指定的类。</td>
+</tr>
+<tr>
+<td>html()</td>
+<td>设置或返回匹配的元素集合中的 HTML 内容。</td>
+</tr>
+<tr>
+<td>removeAttr()</td>
+<td>从所有匹配的元素中移除指定的属性。</td>
+</tr>
+<tr>
+<td>removeClass()</td>
+<td>从所有匹配的元素中删除全部或者指定的类。</td>
+</tr>
+<tr>
+<td>toggleClass()</td>
+<td>从匹配的元素中添加或删除一个类。</td>
+</tr>
+<tr>
+<td>val()</td>
+<td>设置或返回匹配元素的值。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="jQuery-CSS-操作函数"><a href="#jQuery-CSS-操作函数" class="headerlink" title="jQuery CSS 操作函数"></a>jQuery CSS 操作函数</h2><p>下面列出的这些方法设置或返回元素的 CSS 相关属性。  </p>
+<table>
+<thead>
+<tr>
+<th>CSS 属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>css()</td>
+<td>设置或返回匹配元素的样式属性。</td>
+</tr>
+<tr>
+<td>height()</td>
+<td>设置或返回匹配元素的高度。</td>
+</tr>
+<tr>
+<td>offset()</td>
+<td>返回第一个匹配元素相对于文档的位置。</td>
+</tr>
+<tr>
+<td>offsetParent()</td>
+<td>返回最近的定位祖先元素。</td>
+</tr>
+<tr>
+<td>position()</td>
+<td>返回第一个匹配元素相对于父元素的位置。</td>
+</tr>
+<tr>
+<td>scrollLeft()</td>
+<td>设置或返回匹配元素相对滚动条左侧的偏移。</td>
+</tr>
+<tr>
+<td>scrollTop()</td>
+<td>设置或返回匹配元素相对滚动条顶部的偏移。</td>
+</tr>
+<tr>
+<td>width()</td>
+<td>设置或返回匹配元素的宽度。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="jQuery-数据操作函数"><a href="#jQuery-数据操作函数" class="headerlink" title="jQuery 数据操作函数"></a>jQuery 数据操作函数</h2><p>这些方法允许我们将指定的 DOM 元素与任意数据相关联。  </p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.clearQueue()</td>
+<td>从队列中删除所有未运行的项目。</td>
+</tr>
+<tr>
+<td>.data()</td>
+<td>存储与匹配元素相关的任意数据。</td>
+</tr>
+<tr>
+<td>jQuery.data()</td>
+<td>存储与指定元素相关的任意数据。</td>
+</tr>
+<tr>
+<td>.dequeue()</td>
+<td>从队列最前端移除一个队列函数，并执行它。</td>
+</tr>
+<tr>
+<td>jQuery.dequeue()</td>
+<td>从队列最前端移除一个队列函数，并执行它。</td>
+</tr>
+<tr>
+<td>jQuery.hasData()</td>
+<td>存储与匹配元素相关的任意数据。</td>
+</tr>
+<tr>
+<td>.queue()</td>
+<td>显示或操作匹配元素所执行函数的队列。</td>
+</tr>
+<tr>
+<td>jQuery.queue()</td>
+<td>显示或操作匹配元素所执行函数的队列。</td>
+</tr>
+<tr>
+<td>.removeData()</td>
+<td>移除之前存放的数据。</td>
+</tr>
+<tr>
+<td>jQuery.removeData()</td>
+<td>移除之前存放的数据。</td>
 </tr>
 </tbody>
 </table>
