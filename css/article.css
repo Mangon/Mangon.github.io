@@ -68,6 +68,7 @@
   text-decoration: none;
 }
 .toc {
+  margin-top: 60px;
   padding: 20px;
   line-height: 20px;
   list-style-type: none;

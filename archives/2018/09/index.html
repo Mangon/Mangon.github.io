@@ -49,9 +49,15 @@
     <aside id="aside" class="aside">
     <div id="aside-mask" class="aside-mask"></div>
     <div id="aside-inner" class="aside-inner">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://mangon.github.io"></form>
-
-        
+        <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://mangon.github.io"></form> -->
+        <div class="top-search-box" id="top-search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="local-search-input" name="q" results="0" placeholder="搜索" class="st-search-input st-default-search-input form-control"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
         
 
         
@@ -98,6 +104,24 @@
     <a href="/archives/2018" class="archive-year">2018</a>
     </div>
     <ol class="archives">
+    
+
+    <li class="archive-section-item">
+        <article class="archive-article archive-type-post">
+    <div class="archive-article-inner">
+        <header class="archive-article-header">
+            <a href="/2018/09/04/Hexo-添加站内搜索功能/">Hexo 添加站内搜索功能</a>
+            (<a class="article-date" href="/2018/09/04/Hexo-添加站内搜索功能/">
+    
+    <time datetime="2018-09-04T09:28:50.000Z" itemprop="datePublished">9/4</time>
+</a>
+)
+        </header>
+    </div>
+</article>
+    </li>
+
+    
     
 
     <li class="archive-section-item">
@@ -175,6 +199,7 @@
 
 
 </div>
+        <article id="article-search-result" class="article-search-result content"></article>
         <footer class="footer">
     Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
 </footer>
@@ -210,6 +235,16 @@
             
         });
     </script>
-
+    
+        <script type="text/javascript" src="/js/search.js"></script>
+        <script type="text/javascript">
+                var search_path = "search.xml";
+                if (search_path.length == 0) {
+                    search_path = "search.xml";
+                }
+                var path = "/" + search_path;
+                searchFunc(path, 'local-search-input', 'article-search-result');
+        </script>
+    
 </body>
 </html>
