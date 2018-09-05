@@ -1,3 +1,6 @@
+.archives-wrap {
+  flex-grow: 1;
+}
 .archive-year {
   color: #333;
   font-size: 2em;

@@ -123,6 +123,7 @@
   .author-meta {
     position: none;
     position: static;
+    padding-top: 60px;
     -webkit-transform: none;
     -ms-transform: none;
     -o-transform: none;

@@ -21,6 +21,8 @@
   -webkit-animation: fade-in-down 0.6s 0.6s both;
   -moz-animation: fade-in-down 0.6s 0.6s both;
   animation: fade-in-down 0.6s 0.6s both;
+  display: flex;
+  flex-direction: column;
 }
 .clearfix:after {
   content: "\200B";

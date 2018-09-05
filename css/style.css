@@ -1021,6 +1021,8 @@ body {
   -webkit-animation: fade-in-down 0.6s 0.6s both;
   -moz-animation: fade-in-down 0.6s 0.6s both;
   animation: fade-in-down 0.6s 0.6s both;
+  display: flex;
+  flex-direction: column;
 }
 .clearfix:after {
   content: "\200B";
@@ -1490,6 +1492,7 @@ body {
   .author-meta {
     position: none;
     position: static;
+    padding-top: 60px;
     -webkit-transform: none;
     -ms-transform: none;
     -o-transform: none;
@@ -1784,6 +1787,9 @@ body {
     padding: 4px 12px;
     font-size: 13px;
   }
+}
+.archives-wrap {
+  flex-grow: 1;
 }
 .archive-year {
   color: #333;
