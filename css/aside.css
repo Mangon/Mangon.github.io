@@ -194,6 +194,7 @@
   background-repeat: no-repeat;
   background-position: center;
   background-color: initial;
+  cursor: pointer;
 }
 .top-search-box .search-btn {
   left: 3px;

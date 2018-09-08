@@ -998,6 +998,12 @@ body {
   background-color: transparent;
   border-radius: 0;
 }
+* {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 .app {
   height: 100%;
 }
@@ -1563,6 +1569,7 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-color: initial;
+  cursor: pointer;
 }
 .top-search-box .search-btn {
   left: 3px;
