@@ -186,7 +186,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">test.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> node = <span class="built_in">window</span>.eval(txt.value)</span><br><span class="line">  <span class="built_in">window</span>.alert(node)</span><br><span class="line">&#125;, <span class="literal">false</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// txt中的代码如下</span></span><br><span class="line">&lt;img src=<span class="string">'null'</span> onerror=<span class="string">'alert(123)'</span> /&gt;</span><br></pre></td></tr></table></figure>
 <h2 id="XSS危害"><a href="#XSS危害" class="headerlink" title="XSS危害"></a>XSS危害</h2><ol>
 <li>通过document.cookie盗取cookie</li>
-<li>使用js或css破坏页面正常的结构与样式</li>
+<li>使用Js或CSS破坏页面正常的结构与样式</li>
 <li>流量劫持（通过访问某段具有window.location.href定位到其他页面）</li>
 <li>Dos攻击：利用合理的客户端请求来占用过多的服务器资源，从而使合法用户无法得到服务器响应。</li>
 <li>利用iframe、frame、XMLHttpRequest或上述Flash等方式，以（被攻击）用户的身份执行一些管理动作，或执行一些一般的如发微博、加好友、发私信等操作。</li>
