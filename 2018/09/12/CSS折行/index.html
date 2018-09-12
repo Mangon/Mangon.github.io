@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+
+    
+
+    
+
+    <title>CSS折行 | Gblog</title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.0.0" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="与CSS折行有关的样式有三个white-space，word-wrap，word-break。
+CSS white-space 属性white-space 属性设置如何处理元素内的空白。  
+
+
+
+值
+描述
+
+
+
+
+normal
+默认。空白会被浏览器忽略。
+
+
+pre
+空白会被浏览器保留。其行为方式类似 HTML 中的  标签。
+
+
+nowrap
+文本不会换行，文本会在在同一行上继续，直到遇到  标签为止。
+
+
+pre-wrap
+保留空白符序列，但是正常地进行换行。
+
+
+pre-line
+合并空" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <div class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/">主页</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/archives">归档</a>
+        </li>
+        
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://mangon.github.io"></form> -->
+        <div class="top-search-box" id="top-search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="local-search-input" name="q" results="0" placeholder="搜索" class="st-search-input st-default-search-input form-control"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS-white-space-属性"><span class="toc-number">1.</span> <span class="toc-text">CSS white-space 属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3-word-wrap-属性"><span class="toc-number">2.</span> <span class="toc-text">CSS3 word-wrap 属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3-word-break-属性"><span class="toc-number">3.</span> <span class="toc-text">CSS3 word-break 属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用设置"><span class="toc-number">4.</span> <span class="toc-text">常用设置</span></a></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            CSS折行
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="/2018/09/12/CSS折行/">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-12T10:46:39.000Z" itemprop="datePublished">2018-09-12</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/CSS/">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>与CSS折行有关的样式有三个<code>white-space</code>，<code>word-wrap</code>，<code>word-break</code>。</p>
+<h2 id="CSS-white-space-属性"><a href="#CSS-white-space-属性" class="headerlink" title="CSS white-space 属性"></a>CSS white-space 属性</h2><p>white-space 属性设置如何处理元素内的空白。  </p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>normal</td>
+<td>默认。空白会被浏览器忽略。</td>
+</tr>
+<tr>
+<td>pre</td>
+<td>空白会被浏览器保留。其行为方式类似 HTML 中的 <pre> 标签。</pre></td>
+</tr>
+<tr>
+<td>nowrap</td>
+<td>文本不会换行，文本会在在同一行上继续，直到遇到 <br> 标签为止。</td>
+</tr>
+<tr>
+<td>pre-wrap</td>
+<td>保留空白符序列，但是正常地进行换行。</td>
+</tr>
+<tr>
+<td>pre-line</td>
+<td>合并空白符序列，但是保留换行符。</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>规定应该从父元素继承 white-space 属性的值。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="CSS3-word-wrap-属性"><a href="#CSS3-word-wrap-属性" class="headerlink" title="CSS3 word-wrap 属性"></a>CSS3 word-wrap 属性</h2><p>word-wrap 属性允许长单词或 URL 地址换行到下一行。  </p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>normal</td>
+<td>只在允许的断字点换行（浏览器保持默认处理）。</td>
+</tr>
+<tr>
+<td>break-word</td>
+<td>在长单词或 URL 地址内部进行换行。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="CSS3-word-break-属性"><a href="#CSS3-word-break-属性" class="headerlink" title="CSS3 word-break 属性"></a>CSS3 word-break 属性</h2><p>word-break 属性规定自动换行的处理方法。  </p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>normal</td>
+<td>使用浏览器默认的换行规则。</td>
+</tr>
+<tr>
+<td>break-all</td>
+<td>允许在单词内换行。</td>
+</tr>
+<tr>
+<td>keep-all</td>
+<td>只能在半角空格或连字符处换行。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="常用设置"><a href="#常用设置" class="headerlink" title="常用设置"></a>常用设置</h2><p>不折行，可以左右滑动：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">white-space</span>: <span class="selector-tag">nowrap</span>;</span><br><span class="line"><span class="selector-tag">overflow-x</span>: <span class="selector-tag">scroll</span>;</span><br></pre></td></tr></table></figure></p>
+<p>每行长度固定，到长度即折行：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">white-space</span>: <span class="selector-tag">normal</span>;</span><br><span class="line"><span class="selector-tag">word-wrap</span>: <span class="selector-tag">break-word</span>;</span><br><span class="line"><span class="selector-tag">word-break</span>: <span class="selector-tag">break-all</span>;</span><br></pre></td></tr></table></figure></p>
+<p>每行长度固定，到长度即折行，但标点字符不在首位：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">white-space</span>: <span class="selector-tag">normal</span>;</span><br><span class="line"><span class="selector-tag">word-wrap</span>: <span class="selector-tag">break-word</span>;</span><br><span class="line"><span class="selector-tag">word-break</span>: <span class="selector-tag">normal</span>;</span><br></pre></td></tr></table></figure></p>
+
+        
+    </section>
+</article>
+
+
+
+</div>
+        <article id="article-search-result" class="article-search-result content"></article>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+</footer>
+
+
+    </div>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    
+    <script type="text/javascript" src="/js/scrollspy.min.js"></script>
+    
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');console.log(nodes.navTags.attr('class'))
+            })/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+
+            
+            $(document.body).scrollspy({target: '#aside-inner'});
+            
+        });
+    </script>
+    
+        <script type="text/javascript" src="/js/search.js"></script>
+        <script type="text/javascript" src="/js/common.js"></script>
+        <script type="text/javascript">
+                var search_path = "search.xml";
+                if (search_path.length == 0) {
+                    search_path = "search.xml";
+                }
+                var path = "/" + search_path;
+                searchFunc(path, 'local-search-input', 'article-search-result');
+        </script>
+    
+</body>
+</html>
