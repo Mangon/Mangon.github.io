@@ -99,6 +99,89 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2018/09/11/CSS截断样式/">CSS截断样式</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="/2018/09/11/CSS截断样式/">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-11T11:46:53.000Z" itemprop="datePublished">2018-09-11</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/CSS/">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>有时，我们需要对某段文字进行截断处理，多余的字符显示…</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"words"</span>&gt;</span>For a long time it seemed to me that life was about to begin , real life. But, there was always some obsacle in the way, something to be gotten through first, some unfinnished business, time still to be served or a debt to be paid. Then life would begin.<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="单行"><a href="#单行" class="headerlink" title="单行"></a>单行</h2><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.words</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;  <span class="comment">/*超过部分不显示*/</span></span><br><span class="line">    <span class="attribute">text-overflow</span>: ellipsis;  <span class="comment">/*超过部分用点点表示*/</span></span><br><span class="line">    <span class="attribute">white-space</span>: nowrap; <span class="comment">/*不换行*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p><div class="words1">For a long time it seemed to me that life was about to begin , real life. But, there was always some obsacle in the way, something to be gotten through first, some unfinnished business, time still to be served or a debt to be paid. Then life would begin.</div></p>
+<style type="text/css">
+.words1 {
+    width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+</style>
+
+
+<h2 id="多行"><a href="#多行" class="headerlink" title="多行"></a>多行</h2><h3 id="webkit-代码"><a href="#webkit-代码" class="headerlink" title="-webkit 代码"></a>-webkit 代码</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webkit</span></span><br><span class="line"><span class="selector-class">.words</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">    <span class="attribute">overflow </span>: hidden;</span><br><span class="line">    <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">    <span class="attribute">display</span>: -webkit-box;</span><br><span class="line">    <span class="attribute">-webkit-line-clamp</span>: <span class="number">2</span>; <span class="comment">/*规定超过两行的部分截断*/</span></span><br><span class="line">    <span class="attribute">-webkit-box-orient</span>: vertical;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="webkit-效果"><a href="#webkit-效果" class="headerlink" title="-webkit 效果"></a>-webkit 效果</h3><p><div class="words2">For a long time it seemed to me that life was about to begin , real life. But, there was always some obsacle in the way, something to be gotten through first, some unfinnished business, time still to be served or a debt to be paid. Then life would begin.</div></p>
+<style type="text/css">
+.words2 {
+    width: 400px;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+</style>
+
+<h3 id="兼容代码"><a href="#兼容代码" class="headerlink" title="兼容代码"></a>兼容代码</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 兼容其它内核 padding需要根据实际情况计算</span><br><span class="line"><span class="selector-class">.words</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">1.4em</span>;</span><br><span class="line">    <span class="comment">/* 高度=2倍的行高 */</span></span><br><span class="line">    <span class="attribute">height</span>: <span class="number">2.8em</span>;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.words</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">"..."</span>;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">35px</span> <span class="number">1px</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="兼容代码效果"><a href="#兼容代码效果" class="headerlink" title="兼容代码效果"></a>兼容代码效果</h3><p><div class="words3">For a long time it seemed to me that life was about to begin , real life. But, there was always some obsacle in the way, something to be gotten through first, some unfinnished business, time still to be served or a debt to be paid. Then life would begin.</div></p>
+<style type="text/css">
+.words3 {
+    width: 400px;
+    position: relative;
+    line-height: 1.4em;
+    height: 2.8em;
+    overflow: hidden;
+}
+.words3::after {
+    content: "...";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0 35px 1px 0;
+}
+</style>
+
+
+
+<h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><p>也有一些通过js实现的截断插件，例如 <a href="https://github.com/FrDH/jQuery.dotdotdot" target="_blank" rel="noopener">jQuery.dotdotdot</a>，<a href="https://github.com/josephschmitt/Clamp.js" target="_blank" rel="noopener">Clamp.js</a></p>
+
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2018/09/10/CSRF攻击/">CSRF攻击</a>
         </h1>
         
@@ -287,140 +370,6 @@
 <p>子组件要把数据返回给父组件，比如需要传递一个名字为item1，值为value2的数据，<br>就需要父组件传递一个函数setData给子组件，子组件通过传入参数{item1: value2}调用函数setData将数据返回给父组件的函数，父组件的函数setDateMethod接受实参来改变父组件中的state等值。  </p>
 <h2 id="全局传递数据"><a href="#全局传递数据" class="headerlink" title="全局传递数据"></a>全局传递数据</h2><p>因为数据只能在父子之间传递，当父子关系嵌套很深的时候，不同组件之间传递数据十分不便。这时可以使用EventEmitter时间传递来实现组件之间的数据传递。使用事件模型，组件之间无论是父子关系还是非父子关系都可以直接沟通，从而解决了组件间层层回调传递的问题，但是频繁地使用事件实现组件间沟通会使整个程序的数据流向越来越乱，因此，组件间的沟通还是要尽量遵循单向数据流机制。  </p>
 
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2018/09/05/修改光标的样式/">修改光标的样式</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="/2018/09/05/修改光标的样式/">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-09-05T12:00:34.000Z" itemprop="datePublished">2018-09-05</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/CSS/">CSS</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>某些情况下我们需要修改默认的光标样式，比如当我们为一个元素添加了点击事件之后，这个元素就会表现的像一个按钮。为了更好的用户体验，我们可以将光标样式由默认的箭头样式改为指针样式。这样，当用户划过此元素时，就会意识到这是一个可点击的元素。</p>
-<p>可以通过修改cursor属性来改变元素的光标样式。</p>
-<h2 id="CSS-cursor-属性"><a href="#CSS-cursor-属性" class="headerlink" title="CSS cursor 属性"></a>CSS cursor 属性</h2><p>cursor 属性规定要显示的光标的类型（形状）。  </p>
-<p>该属性定义了鼠标指针放在一个元素边界范围内时所用的光标形状。  </p>
-<h2 id="可能的值"><a href="#可能的值" class="headerlink" title="可能的值"></a>可能的值</h2><table>
-<thead>
-<tr>
-<th>值</th>
-<th>描述</th>
-<th>样式</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>url</td>
-<td>需使用的自定义光标的 URL。<br><font color="red">注意：</font>请在此列表的末端始终定义一种普通的光标，以防没有由 URL 定义的可用光标。</td>
-<td><div style="cursor:url('/static/imgs/create-repo.png');height:25px"></div></td>
-</tr>
-<tr>
-<td>default</td>
-<td>默认光标（通常是一个箭头）</td>
-<td><div style="cursor:default;height:25px"></div></td>
-</tr>
-<tr>
-<td>auto</td>
-<td>默认。浏览器设置的光标。</td>
-<td><div style="cursor:auto;height:25px"></div></td>
-</tr>
-<tr>
-<td>crosshair</td>
-<td>光标呈现为十字线。</td>
-<td><div style="cursor:crosshair;height:25px"></div></td>
-</tr>
-<tr>
-<td>pointer</td>
-<td>光标呈现为指示链接的指针（一只手）</td>
-<td><div style="cursor:pointer;height:25px"></div></td>
-</tr>
-<tr>
-<td>move</td>
-<td>此光标指示某对象可被移动。</td>
-<td><div style="cursor:move;height:25px"></div></td>
-</tr>
-<tr>
-<td>e-resize</td>
-<td>此光标指示矩形框的边缘可被向右（东）移动。</td>
-<td><div style="cursor:e-resize;height:25px"></div></td>
-</tr>
-<tr>
-<td>ne-resize</td>
-<td>此光标指示矩形框的边缘可被向上及向右移动（北/东）。</td>
-<td><div style="cursor:ne-resize;height:25px"></div></td>
-</tr>
-<tr>
-<td>nw-resize</td>
-<td>此光标指示矩形框的边缘可被向上及向左移动（北/西）。</td>
-<td><div style="cursor:nw-resize;height:25px"></div></td>
-</tr>
-<tr>
-<td>n-resize</td>
-<td>此光标指示矩形框的边缘可被向上（北）移动。</td>
-<td><div style="cursor:n-resize;height:25px"></div></td>
-</tr>
-<tr>
-<td>se-resize</td>
-<td>此光标指示矩形框的边缘可被向下及向右移动（南/东）。</td>
-<td><div style="cursor:se-resize;height:25px"></div></td>
-</tr>
-<tr>
-<td>sw-resize</td>
-<td>此光标指示矩形框的边缘可被向下及向左移动（南/西）。</td>
-<td><div style="cursor:sw-resize;height:25px"></div></td>
-</tr>
-<tr>
-<td>s-resize</td>
-<td>此光标指示矩形框的边缘可被向下移动（南）。</td>
-<td><div style="cursor:s-resize;height:25px"></div></td>
-</tr>
-<tr>
-<td>w-resize</td>
-<td>此光标指示矩形框的边缘可被向左移动（西）。</td>
-<td><div style="cursor:w-resize;height:25px"></div></td>
-</tr>
-<tr>
-<td>text</td>
-<td>此光标指示文本。</td>
-<td><div style="cursor:text;height:25px"></div></td>
-</tr>
-<tr>
-<td>wait</td>
-<td>此光标指示程序正忙（通常是一只表或沙漏）。</td>
-<td><div style="cursor:wait;height:25px"></div></td>
-</tr>
-<tr>
-<td>help</td>
-<td>此光标指示可用的帮助（通常是一个问号或一个气球）。</td>
-<td><div style="cursor:help;height:25px"></div></td>
-</tr>
-</tbody>
-</table>
-<div style="cursor:pointer;"></div>
         
     </section>
 </article>
