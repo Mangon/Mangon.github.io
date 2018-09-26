@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+
+    
+
+    
+
+    <title>列表拖拽排序sortablejs | Gblog</title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.0.0" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="简单的拖拽交换实现列表拖拽排序，最简单的方法就是将想要拖拽的元素设置为dragable=“true”，然后利用drag事件处理元素位置变换。  
+拖拽的时候主要有以下几个事件  
+
+ondragstart 事件：当拖拽元素开始被拖拽的时候触发的事件，此事件作用在被拖曳元素上  
+ondragenter 事件：当拖曳元素进入目标元素的时候触发的事件，此事件作用在目标元素上  
+ondragover 事件：拖拽元素在目标元素上移动的时候触发的事件，此事件作用在目标元素上  
+ondrop 事件：被拖" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <div class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/">主页</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/archives">归档</a>
+        </li>
+        
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://mangon.github.io"></form> -->
+        <div class="top-search-box" id="top-search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="local-search-input" name="q" results="0" placeholder="搜索" class="st-search-input st-default-search-input form-control"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简单的拖拽交换"><span class="toc-number">1.</span> <span class="toc-text">简单的拖拽交换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sortable用法"><span class="toc-number">2.</span> <span class="toc-text">Sortable用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sortable在React中的用法示例"><span class="toc-number">3.</span> <span class="toc-text">Sortable在React中的用法示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其它版本的Sortable"><span class="toc-number">4.</span> <span class="toc-text">其它版本的Sortable</span></a></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            列表拖拽排序sortablejs
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="/2018/09/26/列表拖拽排序sortablejs/">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-26T12:47:08.000Z" itemprop="datePublished">2018-09-26</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Javascript/">Javascript</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="简单的拖拽交换"><a href="#简单的拖拽交换" class="headerlink" title="简单的拖拽交换"></a>简单的拖拽交换</h2><p>实现列表拖拽排序，最简单的方法就是将想要拖拽的元素设置为dragable=“true”，然后利用drag事件处理元素位置变换。  </p>
+<p>拖拽的时候主要有以下几个事件  </p>
+<ul>
+<li>ondragstart 事件：当拖拽元素开始被拖拽的时候触发的事件，此事件作用在被拖曳元素上  </li>
+<li>ondragenter 事件：当拖曳元素进入目标元素的时候触发的事件，此事件作用在目标元素上  </li>
+<li>ondragover 事件：拖拽元素在目标元素上移动的时候触发的事件，此事件作用在目标元素上  </li>
+<li>ondrop 事件：被拖拽的元素在目标元素上同时鼠标放开触发的事件，此事件作用在目标元素上  </li>
+<li>ondragend 事件：当拖拽完成后触发的事件，此事件作用在被拖曳元素上  </li>
+</ul>
+<p>实现一个最简单的拖拽交换顺序，可以通过以下步骤来实现</p>
+<ol>
+<li>ondragstart 记录初始拖拽元素</li>
+<li>ondragover e.preventDefault() 阻止ondragover可能导致ondrop无法触发</li>
+<li>ondrop 记录目标元素，并交换初始元素与目标元素</li>
+</ol>
+<h2 id="Sortable用法"><a href="#Sortable用法" class="headerlink" title="Sortable用法"></a>Sortable用法</h2><p>实现更顺滑的拖拽排序可以通过<a href="https://github.com/RubaXa/Sortable" target="_blank" rel="noopener">Sortable</a> 来实现。Sortable采用的是MIT协议，不依赖任何其它的库，使用原生html5 DnD来实现，并且只有1500行。<br>查看<a href="http://rubaxa.github.io/Sortable/" target="_blank" rel="noopener">Demo</a>  </p>
+<p>用法：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Sortable.create(<span class="built_in">document</span>.getElementById(<span class="string">'foo'</span>), &#123;</span><br><span class="line">    animation: <span class="number">150</span>, <span class="comment">//动画参数</span></span><br><span class="line">    onAdd: <span class="function"><span class="keyword">function</span> (<span class="params">evt</span>)</span>&#123;   <span class="comment">//拖拽端时候添加新的节点时触发该事件</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'onAdd.foo:'</span>, [evt.item, evt.from]); </span><br><span class="line">    &#125;,</span><br><span class="line">    onUpdate: <span class="function"><span class="keyword">function</span> (<span class="params">evt</span>)</span>&#123;  <span class="comment">//拖拽更新节点位置时触发该事件</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'onUpdate.foo:'</span>, [evt.item, evt.from]);  </span><br><span class="line">    &#125;,</span><br><span class="line">    onRemove: <span class="function"><span class="keyword">function</span> (<span class="params">evt</span>)</span>&#123;   <span class="comment">//删除拖拽节点时触发该事件</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'onRemove.foo:'</span>, [evt.item, evt.from]); </span><br><span class="line">    &#125;,</span><br><span class="line">    onStart:<span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;  <span class="comment">//开始拖拽触发该事件</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'onStart.foo:'</span>, [evt.item, evt.from]);</span><br><span class="line">    &#125;,</span><br><span class="line">    onSort:<span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;  <span class="comment">//发生排序时触发该事件</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'onSort.foo:'</span>, [evt.item, evt.from]);</span><br><span class="line">    &#125;,</span><br><span class="line">    onEnd: <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123; <span class="comment">//拖拽完毕之后触发该事件</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'onEnd.foo:'</span>, [evt.item, evt.from]); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="Sortable在React中的用法示例"><a href="#Sortable在React中的用法示例" class="headerlink" title="Sortable在React中的用法示例"></a>Sortable在React中的用法示例</h2><p>React中的示例：<br><figure class="highlight javascript"><figcaption><span>react</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Sortable.create(<span class="built_in">document</span>.getElementsByClassName(<span class="string">'ul-container'</span>)[<span class="number">0</span>], &#123;</span><br><span class="line">    animation: <span class="number">150</span>,</span><br><span class="line">    onSort: <span class="function"><span class="params">evt</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> newOrderItem = <span class="keyword">this</span>.state.orderItem;</span><br><span class="line">        <span class="keyword">let</span> dragedItem = newOrderItem.splice(evt.oldIndex, <span class="number">1</span>)[<span class="number">0</span>];</span><br><span class="line">        newOrderItem.splice(evt.newIndex, <span class="number">0</span>, dragedItem);</span><br><span class="line">        <span class="keyword">this</span>.setState(&#123; <span class="attr">orderItem</span>: newOrderItem &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>通常，还需要将拖拽的item的样式设置为不可见<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ul</span> <span class="selector-tag">li</span> &#123;</span><br><span class="line">    <span class="attribute">cursor</span>: move;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.sortable-ghost</span> &#123;</span><br><span class="line">    <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="其它版本的Sortable"><a href="#其它版本的Sortable" class="headerlink" title="其它版本的Sortable"></a>其它版本的Sortable</h2><p>Sortable由于只采用了原生的HTML5来实现拖拽，所以可以被轻松地移植到几乎所有的框架中，例如<a href="https://github.com/SortableJS/Vue.Draggable" target="_blank" rel="noopener">Vue版本的Sortable</a>，<a href="https://github.com/SortableJS/angular-sortablejs" target="_blank" rel="noopener">Angular2版本的Sortable</a>.</p>
+
+        
+    </section>
+</article>
+
+
+
+</div>
+        <article id="article-search-result" class="article-search-result content"></article>
+        <footer class="footer">
+</footer>
+
+
+    </div>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    
+    <script type="text/javascript" src="/js/scrollspy.min.js"></script>
+    
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');console.log(nodes.navTags.attr('class'))
+            })/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+
+            
+            $(document.body).scrollspy({target: '#aside-inner'});
+            
+        });
+    </script>
+    
+        <script type="text/javascript" src="/js/search.js"></script>
+        <script type="text/javascript" src="/js/common.js"></script>
+        <script type="text/javascript">
+                var search_path = "search.xml";
+                if (search_path.length == 0) {
+                    search_path = "search.xml";
+                }
+                var path = "/" + search_path;
+                searchFunc(path, 'local-search-input', 'article-search-result');
+        </script>
+    
+</body>
+</html>
