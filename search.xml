@@ -56,7 +56,7 @@
       
         <tags>
             
-            <tag> Javascript </tag>
+            <tag> javascript </tag>
             
         </tags>
       
@@ -86,7 +86,7 @@
       
         <tags>
             
-            <tag> 安全 </tag>
+            <tag> security </tag>
             
         </tags>
       
@@ -101,7 +101,7 @@
       
         <tags>
             
-            <tag> hexo </tag>
+            <tag> Hexo </tag>
             
         </tags>
       
@@ -161,7 +161,7 @@
       
         <tags>
             
-            <tag> 安全 </tag>
+            <tag> security </tag>
             
         </tags>
       
@@ -176,7 +176,7 @@
       
         <tags>
             
-            <tag> 安全 </tag>
+            <tag> security </tag>
             
         </tags>
       
@@ -311,7 +311,7 @@
       
         <tags>
             
-            <tag> 算法 </tag>
+            <tag> algorithm </tag>
             
         </tags>
       
@@ -355,7 +355,7 @@
       
       <categories>
           
-          <category> Hexo </category>
+          <category> Others </category>
           
       </categories>
       
@@ -376,10 +376,16 @@
       
       <categories>
           
-          <category> Basic </category>
+          <category> Others </category>
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> learn </tag>
+            
+        </tags>
       
     </entry>
     
@@ -391,10 +397,16 @@
       
       <categories>
           
-          <category> Basic </category>
+          <category> Others </category>
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> learn </tag>
+            
+        </tags>
       
     </entry>
     
