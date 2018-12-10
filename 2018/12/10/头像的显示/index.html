@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+
+    
+
+    
+
+    <title>头像的显示 | Gblog</title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.0.0" />
+    
+    
+    <meta name="description" content="在项目中遇到了显示头像的需求，包括两个部分，一个是头像的上传。另一个是头像的显示。
+头像的上传头像的上传和普通的图片上传几乎没有不同，但通常需要对上传的图片进行限制，例如限制图片格式为png,jpg，图片大小的限制，图片像素的限制等。
+图片格式的限制限制为图片格式[‘jpg’, ‘jpeg’, ‘png’, ‘bmp’]，如果头像允许显示动态图，也可以允许gif，不过考虑到大小，一般不允许。最好给予用户提示文案，限定一种最友好的图片格式，例如png。
+图片大小的限制头像一般不允许过大的图片，因为" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <div class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/">主页</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/archives">目录</a>
+        </li>
+        
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://mangon.github.io"></form> -->
+        <div class="top-search-box" id="top-search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="local-search-input" name="q" results="0" placeholder="搜索" class="st-search-input st-default-search-input form-control"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#头像的上传"><span class="toc-number">1.</span> <span class="toc-text">头像的上传</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#图片格式的限制"><span class="toc-number">1.1.</span> <span class="toc-text">图片格式的限制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#图片大小的限制"><span class="toc-number">1.2.</span> <span class="toc-text">图片大小的限制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#图片像素的限制"><span class="toc-number">1.3.</span> <span class="toc-text">图片像素的限制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#头像的显示"><span class="toc-number">2.</span> <span class="toc-text">头像的显示</span></a></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            头像的显示
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="/2018/12/10/头像的显示/">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-12-10T10:37:19.000Z" itemprop="datePublished">2018-12-10</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/css/">css</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>在项目中遇到了显示头像的需求，包括两个部分，一个是头像的上传。另一个是头像的显示。</p>
+<h2 id="头像的上传"><a href="#头像的上传" class="headerlink" title="头像的上传"></a>头像的上传</h2><p>头像的上传和普通的图片上传几乎没有不同，但通常需要对上传的图片进行限制，例如限制图片格式为png,jpg，图片大小的限制，图片像素的限制等。</p>
+<h3 id="图片格式的限制"><a href="#图片格式的限制" class="headerlink" title="图片格式的限制"></a>图片格式的限制</h3><p>限制为图片格式[‘jpg’, ‘jpeg’, ‘png’, ‘bmp’]，如果头像允许显示动态图，也可以允许gif，不过考虑到大小，一般不允许。最好给予用户提示文案，限定一种最友好的图片格式，例如png。</p>
+<h3 id="图片大小的限制"><a href="#图片大小的限制" class="headerlink" title="图片大小的限制"></a>图片大小的限制</h3><p>头像一般不允许过大的图片，因为引用的页面可能比较多，所以一般限制在百k的级别。例如120k。</p>
+<h3 id="图片像素的限制"><a href="#图片像素的限制" class="headerlink" title="图片像素的限制"></a>图片像素的限制</h3><p>头像一般为正方形，所以最好有文案提示用户上传正方形的图片，而且给予限定范围，例如“尺寸需小于256px*256px”，同时给出最佳的头像显示像素，采用此种像素，在大部分情况下既不压缩也不拉伸。由于大部分情况下用户不会上传完全正方形的图片，所以在一定的宽高比例内，也应该允许上传。</p>
+<h2 id="头像的显示"><a href="#头像的显示" class="headerlink" title="头像的显示"></a>头像的显示</h2><p>未完待续。。。</p>
+
+        
+    </section>
+</article>
+
+
+
+</div>
+        <article id="article-search-result" class="article-search-result content"></article>
+        <footer class="footer">
+</footer>
+
+
+    </div>
+
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    
+    <script type="text/javascript" src="/js/scrollspy.min.js"></script>
+    
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');console.log(nodes.navTags.attr('class'))
+            })/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+
+            
+            $(document.body).scrollspy({target: '#aside-inner'});
+            
+        });
+    </script>
+    
+        <script type="text/javascript" src="/js/search.js"></script>
+        <script type="text/javascript" src="/js/common.js"></script>
+        <script type="text/javascript">
+                var search_path = "search.xml";
+                if (search_path.length == 0) {
+                    search_path = "search.xml";
+                }
+                var path = "/" + search_path;
+                searchFunc(path, 'local-search-input', 'article-search-result');
+        </script>
+    
+</body>
+</html>

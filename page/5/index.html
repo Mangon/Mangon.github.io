@@ -99,6 +99,46 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2018/09/07/页面禁止选中复制/">页面禁止选中复制</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="/2018/09/07/页面禁止选中复制/">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-07T15:12:46.000Z" itemprop="datePublished">2018-09-07</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/CSS/">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>有时，为了防止用户随意的获取页面内的内容，我们需要禁止用户选中和拷贝，下面介绍两种禁止的方法  </p>
+<h2 id="javascript"><a href="#javascript" class="headerlink" title="javascript"></a>javascript</h2><p>可以在需要禁止的元素内监听选中和拷贝的事件，当用户如此操作时予以禁止。  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 禁止右键菜单</span></span><br><span class="line"><span class="built_in">document</span>.oncontextmenu = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;;</span><br><span class="line"><span class="comment">// 禁止文字选择</span></span><br><span class="line"><span class="built_in">document</span>.onselectstart = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;;</span><br><span class="line"><span class="comment">// 禁止复制</span></span><br><span class="line"><span class="built_in">document</span>.oncopy = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;;</span><br><span class="line"><span class="comment">// 禁止剪切</span></span><br><span class="line"><span class="built_in">document</span>.oncut = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;;</span><br><span class="line"><span class="comment">// 禁止粘贴</span></span><br><span class="line"><span class="built_in">document</span>.onpaste = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><p>在支持use-select属性的浏览器中，设置user-select: none来禁止选中行为。<br>Opera12.5中支持私有的标签属性 unselectable=”on”来实现相同的行为  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">* &#123; </span><br><span class="line">    <span class="attribute">-webkit-user-select</span>: none;</span><br><span class="line">       <span class="attribute">-moz-user-select</span>: none;</span><br><span class="line">        <span class="attribute">-ms-user-select</span>: none;</span><br><span class="line">            <span class="attribute">user-select</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="如何破解"><a href="#如何破解" class="headerlink" title="如何破解"></a>如何破解</h2><p>如上所述，如果想要可以选中复制，可以在开发者工具F12中勾选<code>禁止Javascript</code> 并将想要复制的内容的<code>element.style</code><br>改为<code>user-select:none</code>即可。当然，其实什么样的内容都可以在开发者工具的Element中复制得到。</p>
+
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2018/09/06/React父子组件数据传递/">React父子组件数据传递</a>
         </h1>
         
@@ -376,316 +416,6 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">searchFunc</span>(<span class="params">path, searchId, contentId</span>) </span>&#123;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        url: path,</span><br><span class="line">        dataType: <span class="string">'xml'</span>,</span><br><span class="line">        success: <span class="function"><span class="keyword">function</span> (<span class="params">xmlResponse</span>) </span>&#123;</span><br><span class="line">            <span class="comment">// get the contents from search data</span></span><br><span class="line">            <span class="keyword">var</span> datas = $(<span class="string">'entry'</span>, xmlResponse).map(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> &#123;</span><br><span class="line">                    title: $(<span class="string">'title'</span>, <span class="keyword">this</span>).text(),</span><br><span class="line">                    content: $(<span class="string">'content'</span>, <span class="keyword">this</span>).text(),</span><br><span class="line">                    url: $(<span class="string">'url'</span>, <span class="keyword">this</span>).text()</span><br><span class="line">                &#125;;</span><br><span class="line">            &#125;).get();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> $input = <span class="built_in">document</span>.getElementById(searchId);</span><br><span class="line">            <span class="keyword">if</span> (!$input) &#123;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">var</span> $resultContent = <span class="built_in">document</span>.getElementById(contentId);</span><br><span class="line">            <span class="keyword">if</span> (!$(<span class="string">'#local-search-input'</span>).length) &#123;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            $(<span class="string">'#top-search-box'</span>).on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> ($(e.target).hasClass(<span class="string">'reset-search-btn'</span>)) &#123;</span><br><span class="line">                    $($input).trigger(<span class="string">'input'</span>);</span><br><span class="line">                    $(<span class="string">'#top-search-box'</span>).removeClass(<span class="string">'top-search-box-focus'</span>);</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                $(<span class="keyword">this</span>).addClass(<span class="string">'top-search-box-focus'</span>);</span><br><span class="line">                $input.focus();</span><br><span class="line">            &#125;);</span><br><span class="line">            $(<span class="string">'.reset-search-btn'</span>).on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">                $(<span class="string">'#content'</span>).css(&#123;</span><br><span class="line">                    display: <span class="string">'block'</span></span><br><span class="line">                &#125;);</span><br><span class="line">                $($resultContent).css(&#123;</span><br><span class="line">                    display: <span class="string">'none'</span></span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;);</span><br><span class="line">            $($input).on(<span class="string">'blur'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                $(<span class="keyword">this</span>).val() || $(<span class="string">'#top-search-box'</span>).removeClass(<span class="string">'top-search-box-focus'</span>);</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> flag = <span class="literal">true</span>;</span><br><span class="line">            $input.addEventListener(<span class="string">'compositionstart'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                flag = <span class="literal">false</span>;</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">            $input.addEventListener(<span class="string">'compositionend'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                flag = <span class="literal">true</span>;</span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="comment">//阻止回车刷新页面</span></span><br><span class="line">            $input.addEventListener(<span class="string">'keydown'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">var</span> e = e || event;</span><br><span class="line">                <span class="keyword">if</span> (e.keyCode === <span class="number">13</span>) &#123;</span><br><span class="line">                    e.returnValue = <span class="literal">false</span>;</span><br><span class="line">                    e.preventDefault();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line"></span><br><span class="line">            $input.addEventListener(<span class="string">'input'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">var</span> $<span class="keyword">this</span> = <span class="keyword">this</span>;</span><br><span class="line">                setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                    <span class="keyword">if</span> (!flag) &#123;</span><br><span class="line">                        <span class="keyword">return</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">var</span> str = <span class="string">'&lt;ul class="search-result-list"&gt;'</span>;</span><br><span class="line">                    <span class="keyword">var</span> keywords = $<span class="keyword">this</span>.value.trim().toLowerCase().split(<span class="regexp">/\s+/</span>);</span><br><span class="line">                    $resultContent.innerHTML = <span class="string">''</span>;</span><br><span class="line">                    <span class="keyword">if</span> ($<span class="keyword">this</span>.value.trim().length &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">                        $(<span class="string">'#content'</span>).css(&#123;</span><br><span class="line">                            display: <span class="string">'block'</span></span><br><span class="line">                        &#125;);</span><br><span class="line">                        $($resultContent).css(&#123;</span><br><span class="line">                            display: <span class="string">'none'</span></span><br><span class="line">                        &#125;);</span><br><span class="line">                        <span class="keyword">return</span>;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        $(<span class="string">'#content'</span>).css(&#123;</span><br><span class="line">                            display: <span class="string">'none'</span></span><br><span class="line">                        &#125;);</span><br><span class="line">                        $($resultContent).css(&#123;</span><br><span class="line">                            display: <span class="string">'block'</span></span><br><span class="line">                        &#125;);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">var</span> matchCount = <span class="number">0</span>;</span><br><span class="line">                    datas.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">                        <span class="keyword">var</span> isMatch = <span class="literal">true</span>;</span><br><span class="line">                        <span class="keyword">if</span> (!data.title || data.title.trim() === <span class="string">''</span>) &#123;</span><br><span class="line">                            <span class="comment">// data.title = 'Untitled';</span></span><br><span class="line">                            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">var</span> data_title = data.title.trim().toLowerCase();</span><br><span class="line">                        <span class="keyword">var</span> data_content = data.content.trim().replace(<span class="regexp">/&lt;[^&gt;]+&gt;/g</span>, <span class="string">""</span>).toLowerCase();</span><br><span class="line">                        <span class="keyword">var</span> data_url = data.url;</span><br><span class="line">                        <span class="keyword">var</span> index_title = <span class="number">-1</span>;</span><br><span class="line">                        <span class="keyword">var</span> index_content = <span class="number">-1</span>;</span><br><span class="line">                        <span class="keyword">var</span> first_occur = <span class="number">-1</span>;</span><br><span class="line">                        <span class="comment">// only match artiles with not empty contents</span></span><br><span class="line">                        <span class="keyword">if</span> (data_content !== <span class="string">''</span>) &#123;</span><br><span class="line">                            keywords.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">keyword, i</span>) </span>&#123;</span><br><span class="line">                                index_title = data_title.indexOf(keyword);</span><br><span class="line">                                index_content = data_content.indexOf(keyword);</span><br><span class="line"></span><br><span class="line">                                <span class="keyword">if</span> (index_title &lt; <span class="number">0</span> &amp;&amp; index_content &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                                    isMatch = <span class="literal">false</span>;</span><br><span class="line">                                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                                    <span class="keyword">if</span> (index_content &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                                        index_content = <span class="number">0</span>;</span><br><span class="line">                                    &#125;</span><br><span class="line">                                    <span class="keyword">if</span> (i === <span class="number">0</span>) &#123;</span><br><span class="line">                                        first_occur = index_content;</span><br><span class="line">                                    &#125;</span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125;);</span><br><span class="line">                        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                            isMatch = <span class="literal">false</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">if</span> (isMatch) &#123;</span><br><span class="line">                            matchCount++;</span><br><span class="line">                            str += <span class="string">'&lt;li&gt;&lt;h3&gt;&lt;a target = "_blank" href="'</span> + data_url + <span class="string">'" class="search-result-title"&gt;'</span> + data_title + <span class="string">'&lt;/a&gt;&lt;/h3&gt;'</span>;</span><br><span class="line">                            <span class="keyword">var</span> content = data.content.trim().replace(<span class="regexp">/&lt;[^&gt;]+&gt;/g</span>, <span class="string">''</span>);</span><br><span class="line">                            <span class="keyword">if</span> (first_occur &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                                <span class="comment">// cut out 100 characters</span></span><br><span class="line">                                <span class="keyword">var</span> start = first_occur - <span class="number">20</span>;</span><br><span class="line">                                <span class="keyword">var</span> end = first_occur + <span class="number">80</span>;</span><br><span class="line"></span><br><span class="line">                                <span class="keyword">if</span> (start &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                                    start = <span class="number">0</span>;</span><br><span class="line">                                &#125;</span><br><span class="line"></span><br><span class="line">                                <span class="keyword">if</span> (start === <span class="number">0</span>) &#123;</span><br><span class="line">                                    end = <span class="number">100</span>;</span><br><span class="line">                                &#125;</span><br><span class="line"></span><br><span class="line">                                <span class="keyword">if</span> (end &gt; content.length) &#123;</span><br><span class="line">                                    end = content.length;</span><br><span class="line">                                &#125;</span><br><span class="line"></span><br><span class="line">                                <span class="keyword">var</span> match_content = content.substr(start, end);</span><br><span class="line"></span><br><span class="line">                                <span class="comment">// highlight all keywords</span></span><br><span class="line">                                keywords.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">keyword</span>) </span>&#123;</span><br><span class="line">                                    <span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(keyword, <span class="string">'gi'</span>);</span><br><span class="line">                                    match_content = match_content.replace(reg, <span class="function"><span class="keyword">function</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">                                        <span class="keyword">return</span> <span class="string">'&lt;em class="search-keyword"&gt;'</span> + str + <span class="string">'&lt;/em&gt;'</span>;</span><br><span class="line">                                    &#125;)</span><br><span class="line">                                &#125;);</span><br><span class="line"></span><br><span class="line">                                str += <span class="string">'&lt;p class="search-result"&gt;'</span> + match_content + <span class="string">'...&lt;/p&gt;'</span>;</span><br><span class="line">                            &#125;</span><br><span class="line">                            str += <span class="string">'&lt;/li&gt;'</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;);</span><br><span class="line">                    str += <span class="string">'&lt;/ul&gt;'</span>;</span><br><span class="line">                    <span class="keyword">var</span> title = matchCount ? <span class="string">'&lt;h1&gt;找到&lt;em&gt;'</span> + keywords + <span class="string">'&lt;/em&gt;相关内容'</span> + matchCount + <span class="string">'个&lt;/h1&gt;'</span> : <span class="string">'&lt;h1 class="empty-title"&gt;没有找到&lt;em&gt;'</span> + keywords + <span class="string">'&lt;/em&gt;相关内容&lt;/h1&gt;'</span>;</span><br><span class="line">                    str = title + str;</span><br><span class="line">                    $(<span class="string">'#article-main-content'</span>).css(&#123;</span><br><span class="line">                        display: <span class="string">'none'</span></span><br><span class="line">                    &#125;);</span><br><span class="line"></span><br><span class="line">                    $($resultContent).css(&#123;</span><br><span class="line">                        display: <span class="string">'block'</span></span><br><span class="line">                    &#125;);</span><br><span class="line">                    $resultContent.innerHTML = str;</span><br><span class="line">                &#125;, <span class="number">0</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h3 id="将搜索功能添加如页面"><a href="#将搜索功能添加如页面" class="headerlink" title="将搜索功能添加如页面"></a>将搜索功能添加如页面</h3><p>将如下代码添加到合适的地方,一般为layout.ejs 最下方  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (config.search) &#123; %&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot; src=&quot;/js/search.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">        var search_path = &quot;&lt;%= config.search.path %&gt;&quot;;</span><br><span class="line">            if (search_path.length == 0) &#123;</span><br><span class="line">            search_path = &quot;search.xml&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        var path = &quot;&lt;%= config.root %&gt;&quot; + search_path;</span><br><span class="line">        searchFunc(path, &apos;local-search-input&apos;, &apos;article-search-result&apos;);</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2018/09/03/CSS选择器参考手册/">CSS选择器参考手册</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="/2018/09/03/CSS选择器参考手册/">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-09-03T11:32:59.000Z" itemprop="datePublished">2018-09-03</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/CSS/">CSS</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <table>
-<thead>
-<tr>
-<th style="text-align:left">选择器</th>
-<th style="text-align:left">例子</th>
-<th style="text-align:left">例子描述</th>
-<th style="text-align:left">CSS</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">.class</td>
-<td style="text-align:left">.intro</td>
-<td style="text-align:left">选择 class=”intro” 的所有元素。</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:left">#id</td>
-<td style="text-align:left">#firstname</td>
-<td style="text-align:left">选择 id=”firstname” 的所有元素。</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:left">*</td>
-<td style="text-align:left">*</td>
-<td style="text-align:left">选择所有元素。</td>
-<td style="text-align:left">2</td>
-</tr>
-<tr>
-<td style="text-align:left">element</td>
-<td style="text-align:left">p</td>
-<td style="text-align:left">选择所有 &lt;p> 元素。</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:left">element,element</td>
-<td style="text-align:left">div,p</td>
-<td style="text-align:left">选择所有 &lt;div> 元素和所有 &lt;p> 元素。</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:left">element element</td>
-<td style="text-align:left">div p</td>
-<td style="text-align:left">选择 &lt;div> 元素内部的所有 &lt;p> 元素。</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:left">element>element</td>
-<td style="text-align:left">div>p</td>
-<td style="text-align:left">选择父元素为 &lt;div> 元素的所有 &lt;p> 元素。</td>
-<td style="text-align:left">2</td>
-</tr>
-<tr>
-<td style="text-align:left">element+element</td>
-<td style="text-align:left">div+p</td>
-<td style="text-align:left">选择紧接在 &lt;div> 元素之后的所有 &lt;p> 元素。</td>
-<td style="text-align:left">2</td>
-</tr>
-<tr>
-<td style="text-align:left">[attribute]</td>
-<td style="text-align:left">[target]</td>
-<td style="text-align:left">选择带有 target 属性所有元素。</td>
-<td style="text-align:left">2</td>
-</tr>
-<tr>
-<td style="text-align:left">[attribute=value]</td>
-<td style="text-align:left">[target=_blank]</td>
-<td style="text-align:left">选择 target=”_blank” 的所有元素。</td>
-<td style="text-align:left">2</td>
-</tr>
-<tr>
-<td style="text-align:left">[attribute~=value]</td>
-<td style="text-align:left">[title~=flower]</td>
-<td style="text-align:left">选择 title 属性包含单词 “flower” 的所有元素。</td>
-<td style="text-align:left">2</td>
-</tr>
-<tr>
-<td style="text-align:left">[attribute&#124;=value]</td>
-<td style="text-align:left">[lang&#124;=en]</td>
-<td style="text-align:left">选择 lang 属性值以 “en” 开头的所有元素。</td>
-<td style="text-align:left">2</td>
-</tr>
-<tr>
-<td style="text-align:left">:link</td>
-<td style="text-align:left">a:link</td>
-<td style="text-align:left">选择所有未被访问的链接。</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:left">:visited</td>
-<td style="text-align:left">a:visited</td>
-<td style="text-align:left">选择所有已被访问的链接。</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:left">:active</td>
-<td style="text-align:left">a:active</td>
-<td style="text-align:left">选择活动链接。</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:left">:hover</td>
-<td style="text-align:left">a:hover</td>
-<td style="text-align:left">选择鼠标指针位于其上的链接。</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:left">:focus</td>
-<td style="text-align:left">input:focus</td>
-<td style="text-align:left">选择获得焦点的 input 元素。</td>
-<td style="text-align:left">2</td>
-</tr>
-<tr>
-<td style="text-align:left">:first-letter</td>
-<td style="text-align:left">p:first-letter</td>
-<td style="text-align:left">选择每个 &lt;p> 元素的首字母。</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:left">:first-line</td>
-<td style="text-align:left">p:first-line</td>
-<td style="text-align:left">选择每个 &lt;p> 元素的首行。</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:left">:first-child</td>
-<td style="text-align:left">p:first-child</td>
-<td style="text-align:left">选择属于父元素的第一个子元素的每个 &lt;p> 元素。</td>
-<td style="text-align:left">2</td>
-</tr>
-<tr>
-<td style="text-align:left">:before</td>
-<td style="text-align:left">p:before</td>
-<td style="text-align:left">在每个 &lt;p> 元素的内容之前插入内容。</td>
-<td style="text-align:left">2</td>
-</tr>
-<tr>
-<td style="text-align:left">:after</td>
-<td style="text-align:left">p:after</td>
-<td style="text-align:left">在每个 &lt;p> 元素的内容之后插入内容。</td>
-<td style="text-align:left">2</td>
-</tr>
-<tr>
-<td style="text-align:left">:lang(language)</td>
-<td style="text-align:left">p:lang(it)</td>
-<td style="text-align:left">选择带有以 “it” 开头的 lang 属性值的每个 &lt;p> 元素。</td>
-<td style="text-align:left">2</td>
-</tr>
-<tr>
-<td style="text-align:left">element1~element2</td>
-<td style="text-align:left">p~ul</td>
-<td style="text-align:left">选择前面有 &lt;p> 元素的每个 &lt;ul> 元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">[attribute^=value]</td>
-<td style="text-align:left">a[src^=”https”]</td>
-<td style="text-align:left">选择其 src 属性值以 “https” 开头的每个 &lt;a> 元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">[attribute$=value]</td>
-<td style="text-align:left">a[src$=”.pdf”]</td>
-<td style="text-align:left">选择其 src 属性以 “.pdf” 结尾的所有 &lt;a> 元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">[attribute*=value]</td>
-<td style="text-align:left">a[src*=”abc”]</td>
-<td style="text-align:left">选择其 src 属性中包含 “abc” 子串的每个 &lt;a> 元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:first-of-type</td>
-<td style="text-align:left">p:first-of-type</td>
-<td style="text-align:left">选择属于其父元素的首个 &lt;p> 元素的每个 &lt;p> 元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:last-of-type</td>
-<td style="text-align:left">p:last-of-type</td>
-<td style="text-align:left">选择属于其父元素的最后 &lt;p> 元素的每个 &lt;p> 元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:only-of-type</td>
-<td style="text-align:left">p:only-of-type</td>
-<td style="text-align:left">选择属于其父元素唯一的 &lt;p> 元素的每个 &lt;p> 元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:only-child</td>
-<td style="text-align:left">p:only-child</td>
-<td style="text-align:left">选择属于其父元素的唯一子元素的每个 &lt;p> 元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:nth-child(n)</td>
-<td style="text-align:left">p:nth-child(2)</td>
-<td style="text-align:left">选择属于其父元素的第二个子元素的每个 &lt;p> 元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:nth-last-child(n)</td>
-<td style="text-align:left">p:nth-last-child(2)</td>
-<td style="text-align:left">同上，从最后一个子元素开始计数。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:nth-of-type(n)</td>
-<td style="text-align:left">p:nth-of-type(2)</td>
-<td style="text-align:left">选择属于其父元素第二个 &lt;p> 元素的每个 &lt;p> 元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:nth-last-of-type(n)</td>
-<td style="text-align:left">p:nth-last-of-type(2)</td>
-<td style="text-align:left">同上，但是从最后一个子元素开始计数。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:last-child</td>
-<td style="text-align:left">p:last-child</td>
-<td style="text-align:left">选择属于其父元素最后一个子元素每个 &lt;p> 元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:root</td>
-<td style="text-align:left">:root</td>
-<td style="text-align:left">选择文档的根元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:empty</td>
-<td style="text-align:left">p:empty</td>
-<td style="text-align:left">选择没有子元素的每个 &lt;p> 元素（包括文本节点）。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:target</td>
-<td style="text-align:left">#news:target</td>
-<td style="text-align:left">选择当前活动的 #news 元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:enabled</td>
-<td style="text-align:left">input:enabled</td>
-<td style="text-align:left">选择每个启用的 &lt;input> 元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:disabled</td>
-<td style="text-align:left">input:disabled</td>
-<td style="text-align:left">选择每个禁用的 &lt;input> 元素</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:checked</td>
-<td style="text-align:left">input:checked</td>
-<td style="text-align:left">选择每个被选中的 &lt;input> 元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:not(selector)</td>
-<td style="text-align:left">:not(p)</td>
-<td style="text-align:left">选择非 &lt;p> 元素的每个元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">::selection</td>
-<td style="text-align:left">::selection</td>
-<td style="text-align:left">选择被用户选取的元素部分。</td>
-<td style="text-align:left">3</td>
-</tr>
-</tbody>
-</table>
-
         
     </section>
 </article>
