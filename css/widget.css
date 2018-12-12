@@ -1,16 +1,3 @@
-.widget-wrap {
-  padding: 15px;
-}
-.widget-title {
-  font-size: 1em;
-  font-weight: normal;
-}
-.widget a {
-  color: rgba(51, 51, 51, 0.8);
-}
-.widget a:hover {
-  color: #333;
-}
-.widget ul {
-  list-style-type: none;
-}
+/* build time:Wed Dec 12 2018 14:32:46 GMT+0800 (CST)*/
+.widget-wrap{padding:15px}.widget-title{font-size:1em;font-weight:400}.widget a{color:rgba(51,51,51,.8)}.widget a:hover{color:#333}.widget ul{list-style-type:none}
+/* rebuild by neat */

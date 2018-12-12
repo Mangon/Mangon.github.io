@@ -1,18 +1,3 @@
-.footer {
-  margin-left: 380px;
-  height: 40px;
-  line-height: 40px;
-  color: #999;
-  text-align: center;
-  font-size: 13px;
-}
-.footer a {
-  color: #999;
-  text-decoration: underline;
-}
-@media screen and (max-width: 960px) {
-  .footer {
-    margin-left: 0;
-    padding-bottom: 44px;
-  }
-}
+/* build time:Wed Dec 12 2018 14:32:46 GMT+0800 (CST)*/
+.footer{margin-left:380px;height:40px;line-height:40px;color:#999;text-align:center;font-size:13px}.footer a{color:#999;text-decoration:underline}@media screen and (max-width:960px){.footer{margin-left:0;padding-bottom:44px}}
+/* rebuild by neat */
