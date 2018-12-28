@@ -88,12 +88,73 @@
             
         </div>
         
+        <div id="coffee-content"></div>
     </div>
 </aside>
 
 </header>
 
         <div id="content" class="content">
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2018/12/14/面向对象编程-函数式编程/">面向对象编程&amp;函数式编程</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="/2018/12/14/面向对象编程-函数式编程/">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-12-14T08:06:59.000Z" itemprop="datePublished">2018-12-14</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/algorithm/">algorithm</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h2><p>函数式编程（英语：Functional programming）或称函数程序设计，又称泛函编程，是一种编程范型，它将电脑运算视为数学上的函数计算，并且避免使用程序状态以及易变对象。函数编程语言最重要的基础是λ演算（lambda calculus）。而且λ演算的函数可以接受函数当作输入（引数）和输出（传出值）。</p>
+<p>函数式编程优点：  </p>
+<ol>
+<li>没有并发编程的问题，是多线程安全的</li>
+<li>函数式编程的表达方式更加符合人类日常生活中的语法，代码可读性更强，实现同样的功能函数式编程所需要的代码比面向对象编程要少很多，代码更加简洁明晰</li>
+</ol>
+<p>函数式编程缺点：  </p>
+<ol>
+<li>所有的变量在程序运行期间都是一直存在的，资源利用率低</li>
+<li>大型项目中工程化不足，使得代码易读性降低</li>
+</ol>
+<h2 id="面向对象编程"><a href="#面向对象编程" class="headerlink" title="面向对象编程"></a>面向对象编程</h2><p>面向对象程序设计（英语：Object-oriented programming，缩写：OOP）是种具有对象概念的程序编程范型，同时也是一种程序开发的方法。它可能包含数据、属性、代码与方法。对象则指的是类的实例。它将对象作为程序的基本单元，将程序和数据封装其中，以提高软件的重用性、灵活性和扩展性，对象里的程序可以访问及经常修改对象相关连的数据。在面向对象程序编程里，计算机程序会被设计成彼此相关的对象。</p>
+<p>面向对象编程优点：  </p>
+<ol>
+<li>灵活，可维护，易拓展，在大型项目设计中广为应用</li>
+<li>由于继承、封装、多态的特性，自然设计出高内聚、低耦合的系统结构，使得系统更灵活、更容易扩展，而且成本较低。</li>
+<li>23种设计模式广泛应用</li>
+</ol>
+<p>面向对象编程缺点：  </p>
+<ol>
+<li>在多线程并发编程中，多个线程同时操作数据的时候可能会导致数据修改的不确定性。</li>
+<li>为了写可重用的代码而产生了很多无用的代码，导致代码膨胀</li>
+<li>为了面向对象而面向对象，使得代码易读性降低</li>
+<li>代码的运行效率比起面向过程要低很多</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>函数式编程和面向对象编程各有利弊，一个语法更加自由，一个健壮性更好，作为编程者应该对两种编程方式都有所了解，不管是哪种方式，只要能够很好的解决当前的问题就是正确的方式。对于编程者来说，编程范式并没有重要到一定要遵循的地步，重要的是解决问题的思想。</p>
+
+        
+    </section>
+</article>
+
+
     <article class="article" itemscope itemprop="blogPost">
     
     <header class="article-header">
@@ -146,7 +207,7 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css">    <span class="selector-tag">img</span><span class="selector-class">.avator-example-1</span> &#123;</span></span><br><span class="line"><span class="undefined">        height: 120px;</span></span><br><span class="line"><span class="undefined">        width: 120px;</span></span><br><span class="line"><span class="undefined">        border-radius: 50%;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"avator-example-1"</span> <span class="attr">src</span>=<span class="string">"/static/imgs/avator/400_400.jpg"</span>&gt;</span><span class="tag">&lt;/<span class="name">img</span>&gt;</span><span class="comment">&lt;!-- 图一 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"avator-example-1"</span> <span class="attr">src</span>=<span class="string">"/static/imgs/avator/800_400.jpg"</span>&gt;</span><span class="tag">&lt;/<span class="name">img</span>&gt;</span><span class="comment">&lt;!-- 图二 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"avator-example-1"</span> <span class="attr">src</span>=<span class="string">"/static/imgs/avator/120_60.jpg"</span>&gt;</span><span class="tag">&lt;/<span class="name">img</span>&gt;</span><span class="comment">&lt;!-- 图三 --&gt;</span></span><br></pre></td></tr></table></figure>
 <h3 id="用div标签的background-image来显示"><a href="#用div标签的background-image来显示" class="headerlink" title="用div标签的background-image来显示"></a>用div标签的background-image来显示</h3><p>设置区域的 <code>background-image</code> 为用户上传的图片然后设置 <code>background-size</code> 属性即可，例如设置 <code>background-size: 120px 120px;</code> 则会在相应的方向上压缩或拉伸，如下图三。如果设置 <code>background-size: auto 120px;</code> 则图像的高度会占满空间，宽度会取120px，如下图二。这和设置成 <code>background-size: cover;</code> 的效果是相同的，如下图四，五。注意，因为此处举例的图片为宽度大于高度，所以设置 <code>background-size: auto 120px;</code> 会呈现圆形，如果高度大于宽度，则应当设置 <code>backgounrd-size: 120px auto;</code> 。</p>
 <p>效果图：  </p>
-<div><style type="text/css">div.avator-example-2,div.avator-example-3,div.avator-example-4,div.avator-example-5,div.avator-example-6 {height: 120px;width: 120px;margin: 10px 25px;border-radius: 50%;background-color: #fff;background-size: 120px 120px;background-repeat: no-repeat;background-image: url(/static/imgs/avator/800_400.jpg);}div.avator-example-2 {background-image: url(/static/imgs/avator/400_400.jpg);}div.avator-example-3 {background-size: auto 120px;}div.avator-example-5,div.avator-example-6 {background-size: cover;}div.avator-example-6 {background-image:url(/static/imgs/avator/120_60.jpg);}</style></div><div style="display:flex;"><div class="avator-example-2"></div><div class="avator-example-3"></div><div class="avator-example-4"></div><div class="avator-example-5"></div><div class="avator-example-6"></div></div>
+<div><style type="text/css">div.avator-example-2,div.avator-example-3,div.avator-example-4,div.avator-example-5,div.avator-example-6 {height: 120px;width: 120px;margin: 10px 25px;border-radius: 50%;background-color: #fff;background-size: 120px 120px;background-repeat: no-repeat;background-image: url(/static/imgs/avator/800_400.jpg);}div.avator-example-2 {background-image: url(/static/imgs/avator/400_400.jpg);}div.avator-example-3 {background-size: auto 120px;}div.avator-example-5,div.avator-example-6 {background-size: cover;}div.avator-example-6 {background-image:url(/static/imgs/avator/120_60.jpg);}</style></div><div style="display:flex; flex-wrap: wrap;"><div class="avator-example-2"></div><div class="avator-example-3"></div><div class="avator-example-4"></div><div class="avator-example-5"></div><div class="avator-example-6"></div></div>
 
 <p>代码：  </p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-2</span>,</span></span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-3</span>,</span></span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-4</span>,</span></span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-5</span> &#123;</span></span><br><span class="line"><span class="undefined">        height: 120px;</span></span><br><span class="line"><span class="undefined">        width: 120px;</span></span><br><span class="line"><span class="undefined">        border-radius: 50%;</span></span><br><span class="line"><span class="css">        <span class="selector-tag">background-color</span>: <span class="selector-id">#fff</span>;</span></span><br><span class="line"><span class="undefined">        background-size: 120px 120px;</span></span><br><span class="line"><span class="undefined">        background-repeat: no-repeat;</span></span><br><span class="line"><span class="undefined">        background-image: url(/static/imgs/avator/800_400.jpg);</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-2</span> &#123;</span></span><br><span class="line"><span class="undefined">        background-image: url(/static/imgs/avator/400_400.jpg);</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-3</span> &#123;</span></span><br><span class="line"><span class="undefined">        background-size: auto 120px;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-5</span>,</span></span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-6</span> &#123;</span></span><br><span class="line"><span class="undefined">        background-size: cover;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-6</span> &#123;</span></span><br><span class="line"><span class="undefined">        background-image: url(/static/imgs/avator/120_60.jpg);</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"avator-example-2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="comment">&lt;!-- 图一 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"avator-example-3"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="comment">&lt;!-- 图二 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"avator-example-4"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="comment">&lt;!-- 图三 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"avator-example-5"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="comment">&lt;!-- 图四 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"avator-example-6"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="comment">&lt;!-- 图五 --&gt;</span></span><br></pre></td></tr></table></figure>
@@ -448,70 +509,6 @@
 <p><img src="/static/imgs/spring/spring1.png" alt="spring boot project生成进度"></p>
 <p>运行结束后，项目就会显示在STS的explorer中了</p>
 <h2 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h2>
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2018/11/29/CSS-postion的四种值/">CSS postion的四种值</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="/2018/11/29/CSS-postion的四种值/">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-11-29T11:29:20.000Z" itemprop="datePublished">2018-11-29</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/CSS/">CSS</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="position四个属性"><a href="#position四个属性" class="headerlink" title="position四个属性"></a>position四个属性</h2><table>
-<thead>
-<tr>
-<th>值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>absolute</td>
-<td>生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。<br>此元素的位置可通过 “left”、”top”、”right” 以及 “bottom” 属性来规定。</td>
-</tr>
-<tr>
-<td>relative</td>
-<td>生成相对定位的元素，相对于其正常位置进行定位。</td>
-</tr>
-<tr>
-<td>fixed</td>
-<td>生成绝对定位的元素，相对于浏览器窗口进行定位。<br>元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。</td>
-</tr>
-<tr>
-<td>static</td>
-<td>默认值。static 元素会忽略任何 top、bottom、left、right 和z-index 声明</td>
-</tr>
-<tr>
-<td>inherit</td>
-<td>规定应该从父元素继承 position 属性的值。</td>
-</tr>
-</tbody>
-</table>
-
         
     </section>
 </article>

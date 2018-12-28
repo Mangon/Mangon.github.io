@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+
+    
+
+    
+
+    <title>面向对象编程&amp;函数式编程 | Gblog</title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.0.0" />
+    
+    
+    <meta name="description" content="函数式编程函数式编程（英语：Functional programming）或称函数程序设计，又称泛函编程，是一种编程范型，它将电脑运算视为数学上的函数计算，并且避免使用程序状态以及易变对象。函数编程语言最重要的基础是λ演算（lambda calculus）。而且λ演算的函数可以接受函数当作输入（引数）和输出（传出值）。
+函数式编程优点：  
+
+没有并发编程的问题，是多线程安全的
+函数式编程的表达方式更加符合人类日常生活中的语法，代码可读性更强，实现同样的功能函数式编程所需要的代码比面向对象编程要" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <div class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/">主页</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/archives">目录</a>
+        </li>
+        
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://mangon.github.io"></form> -->
+        <div class="top-search-box" id="top-search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="local-search-input" name="q" results="0" placeholder="搜索" class="st-search-input st-default-search-input form-control"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#函数式编程"><span class="toc-number">1.</span> <span class="toc-text">函数式编程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#面向对象编程"><span class="toc-number">2.</span> <span class="toc-text">面向对象编程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            面向对象编程&amp;函数式编程
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="/2018/12/14/面向对象编程-函数式编程/">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-12-14T08:06:59.000Z" itemprop="datePublished">2018-12-14</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/algorithm/">algorithm</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h2><p>函数式编程（英语：Functional programming）或称函数程序设计，又称泛函编程，是一种编程范型，它将电脑运算视为数学上的函数计算，并且避免使用程序状态以及易变对象。函数编程语言最重要的基础是λ演算（lambda calculus）。而且λ演算的函数可以接受函数当作输入（引数）和输出（传出值）。</p>
+<p>函数式编程优点：  </p>
+<ol>
+<li>没有并发编程的问题，是多线程安全的</li>
+<li>函数式编程的表达方式更加符合人类日常生活中的语法，代码可读性更强，实现同样的功能函数式编程所需要的代码比面向对象编程要少很多，代码更加简洁明晰</li>
+</ol>
+<p>函数式编程缺点：  </p>
+<ol>
+<li>所有的变量在程序运行期间都是一直存在的，资源利用率低</li>
+<li>大型项目中工程化不足，使得代码易读性降低</li>
+</ol>
+<h2 id="面向对象编程"><a href="#面向对象编程" class="headerlink" title="面向对象编程"></a>面向对象编程</h2><p>面向对象程序设计（英语：Object-oriented programming，缩写：OOP）是种具有对象概念的程序编程范型，同时也是一种程序开发的方法。它可能包含数据、属性、代码与方法。对象则指的是类的实例。它将对象作为程序的基本单元，将程序和数据封装其中，以提高软件的重用性、灵活性和扩展性，对象里的程序可以访问及经常修改对象相关连的数据。在面向对象程序编程里，计算机程序会被设计成彼此相关的对象。</p>
+<p>面向对象编程优点：  </p>
+<ol>
+<li>灵活，可维护，易拓展，在大型项目设计中广为应用</li>
+<li>由于继承、封装、多态的特性，自然设计出高内聚、低耦合的系统结构，使得系统更灵活、更容易扩展，而且成本较低。</li>
+<li>23种设计模式广泛应用</li>
+</ol>
+<p>面向对象编程缺点：  </p>
+<ol>
+<li>在多线程并发编程中，多个线程同时操作数据的时候可能会导致数据修改的不确定性。</li>
+<li>为了写可重用的代码而产生了很多无用的代码，导致代码膨胀</li>
+<li>为了面向对象而面向对象，使得代码易读性降低</li>
+<li>代码的运行效率比起面向过程要低很多</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>函数式编程和面向对象编程各有利弊，一个语法更加自由，一个健壮性更好，作为编程者应该对两种编程方式都有所了解，不管是哪种方式，只要能够很好的解决当前的问题就是正确的方式。对于编程者来说，编程范式并没有重要到一定要遵循的地步，重要的是解决问题的思想。</p>
+
+        
+    </section>
+</article>
+
+
+
+</div>
+        <article id="article-search-result" class="article-search-result content"></article>
+        <footer class="footer">
+</footer>
+
+
+    </div>
+
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    
+    <script type="text/javascript" src="/js/scrollspy.min.js"></script>
+    
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');console.log(nodes.navTags.attr('class'))
+            })/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+
+            
+            $(document.body).scrollspy({target: '#aside-inner'});
+            
+        });
+    </script>
+    
+        <script type="text/javascript" src="/js/search.js"></script>
+        <script type="text/javascript" src="/js/common.js"></script>
+        <script type="text/javascript">
+                var search_path = "search.xml";
+                if (search_path.length == 0) {
+                    search_path = "search.xml";
+                }
+                var path = "/" + search_path;
+                searchFunc(path, 'local-search-input', 'article-search-result');
+        </script>
+    
+</body>
+</html>
