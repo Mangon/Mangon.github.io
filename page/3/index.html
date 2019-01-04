@@ -100,80 +100,6 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/2018/10/12/Vue组件间通信/">Vue2组件间通信</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="/2018/10/12/Vue组件间通信/">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-10-12T06:44:35.000Z" itemprop="datePublished">2018-10-12</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/Vue/">Vue</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>本篇主要讲述Vue2中组件间通信。目前 <a href="https://github.com/vuejs/vue" target="_blank" rel="noopener">Vue</a> 最新版本为<a href="https://www.npmjs.com/package/vue" target="_blank" rel="noopener"><img src="https://img.shields.io/npm/v/vue.svg" alt="Version" style="width:auto !important;margin:auto;margin-left: 5px;"></a>。</p>
-<h2 id="props与自定义事件"><a href="#props与自定义事件" class="headerlink" title="props与自定义事件"></a>props与自定义事件</h2><p>这是Vue推荐使用的通信方法</p>
-<h3 id="Vue中通过props属性可以实现父组件向子组件的参数传递。"><a href="#Vue中通过props属性可以实现父组件向子组件的参数传递。" class="headerlink" title="Vue中通过props属性可以实现父组件向子组件的参数传递。"></a>Vue中通过props属性可以实现父组件向子组件的参数传递。</h3><p>所有的 prop 都使得其父子之间形成了一个 <em>单向下行绑定</em> ：父级 prop 的更新会向下流动到子组件中，但是反过来则不行。这样会防止从子组件意外改变父级组件的状态，从而导致你的应用的数据流向难以理解。每次父级组件发生更新时，子组件中所有的 prop 都将会刷新为最新的值。</p>
-<p>在子组件中定义props属性<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'blog-post'</span>, &#123;</span><br><span class="line">  <span class="comment">// 在 JavaScript 中是 camelCase 的</span></span><br><span class="line">  props: [<span class="string">'postTitle'</span>],</span><br><span class="line">  template: <span class="string">'&lt;h3&gt;&#123;&#123; postTitle &#125;&#125;&lt;/h3&gt;'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<p>在父组件中传入对应的props属性<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 在 HTML 中是 kebab-case 的 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">blog-post</span> <span class="attr">post-title</span>=<span class="string">"hello!"</span>&gt;</span><span class="tag">&lt;/<span class="name">blog-post</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>在 JavaScript 中对象和数组是通过引用传入的，所以对于一个数组或对象类型的 prop 来说，在子组件中改变这个对象或数组本身将会影响到父组件的状态。  </p>
-</blockquote>
-<h3 id="Vue中通过自定义事件可以实现子组件向父组件的参数传递。"><a href="#Vue中通过自定义事件可以实现子组件向父组件的参数传递。" class="headerlink" title="Vue中通过自定义事件可以实现子组件向父组件的参数传递。"></a>Vue中通过自定义事件可以实现子组件向父组件的参数传递。</h3><p>在子组件中触发事件<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$emit(<span class="string">'myEvent'</span>, data)</span><br></pre></td></tr></table></figure></p>
-<p>在父组件中接受事件并进行处理<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">my-component</span> <span class="attr">v-on:my-event</span>=<span class="string">"doSomething"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-component</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="provide与inject"><a href="#provide与inject" class="headerlink" title="provide与inject"></a>provide与inject</h2><p>2.2.0+ 新增  </p>
-<p>这对选项需要一起使用，以允许一个祖先组件向其所有子孙后代组件注入一个依赖，不论组件层次有多深，并在起上下游关系成立的时间里始终生效。祖先组件中通过provide来提供变量，然后在子孙后代组件中通过inject来注入变量。不论子孙后代有多深，只要调用了inject那么就可以注入provide中的数据。而不是局限于只能从当前父组件的prop属性来获取数据，只要在祖先组件的生命周期内，子孙后代组件都可以调用。  </p>
-<blockquote>
-<p>provide 和 inject 绑定并不是可响应的。这是刻意为之的。然而，如果你传入了一个可监听的对象，那么其对象的属性还是可响应的。</p>
-</blockquote>
-<blockquote>
-<p>provide 和 inject 主要为高阶插件/组件库提供用例。并不推荐直接用于应用程序代码中。</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'child'</span>, &#123;</span><br><span class="line">    inject: [<span class="string">'somedata'</span>], <span class="comment">//得到父组件传递过来的数据</span></span><br><span class="line">    data() &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            mymessage: <span class="keyword">this</span>.somedata</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    template:<span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;input type="tet" v-model="mymessage"&gt; </span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">        `</span></span><br><span class="line">&#125;)</span><br><span class="line">Vue.component(<span class="string">'parent'</span>, &#123;</span><br><span class="line">    provide:&#123;</span><br><span class="line">        somedata: <span class="string">'test'</span> <span class="comment">//提供给子组件的数据</span></span><br><span class="line">    &#125;,</span><br><span class="line">    template:<span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;p&gt;this is parent compoent!&lt;/p&gt;</span></span><br><span class="line"><span class="string">            &lt;child&gt;&lt;/child&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="props与-sync"><a href="#props与-sync" class="headerlink" title="props与.sync"></a>props与.sync</h2><p>2.3.0+ 新增</p>
-<p>.sync 是一个自定义事件修饰符，可以实现对props的“双向绑定”<br>实际上sync只是props&amp;自定义事件的一个语法糖  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">text-document</span> <span class="attr">v-bind:title.sync</span>=<span class="string">"doc.title"</span>&gt;</span><span class="tag">&lt;/<span class="name">text-document</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>实际上是以下写法的一个缩写  </p>
-<p>父组件<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">text-document</span></span></span><br><span class="line"><span class="tag">  <span class="attr">v-bind:title</span>=<span class="string">"doc.title"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">v-on:update:title</span>=<span class="string">"doc.title = $event"</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">text-document</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>子组件<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$emit(<span class="string">'update:title'</span>, newTitle)</span><br></pre></td></tr></table></figure></p>
-<h2 id="v-model"><a href="#v-model" class="headerlink" title="v-model"></a>v-model</h2><p>一个组件上的 <code>v-model</code> 默认会利用名为 value 的 prop 和名为 input 的事件<br>所以可以在父组件中使用  <code>v-model=&quot;message&quot;</code> 然后在子组件中通过 <code>$emit(&#39;input&#39;, newMessage)</code> 来改变父组件上v-model绑定的值message。<br>但是像单选框、复选框等类型的输入控件可能会将 <code>value</code> 特性用于不同的目的。  </p>
-<h2 id="parent与-children-refs"><a href="#parent与-children-refs" class="headerlink" title="$parent与$children/$refs"></a>$parent与$children/$refs</h2><p>不推荐使用  </p>
-<p>在子组件中可以直接通过 <code>this.$parent.$data</code> 来访问和修改父组件的值，<br>在父组件中也可以通过 <code>this.$children[0].$data</code> 来访问和修改子组件的值<br>也可以在引用子组件时通过添加ref来使得父组件中可以通过 <code>this.$refs.child.$data</code> 来访问和修改子组件的值  </p>
-<h2 id="attr与-listener"><a href="#attr与-listener" class="headerlink" title="$attr与$listener"></a>$attr与$listener</h2><p>2.4.0+新增  </p>
-<p>$attr与$listener实现了一种跨父子的参数传递方法  </p>
-<p>$attr包含了父作用域中不作为 prop 被识别 (且获取) 的特性绑定 (class 和 style 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 v-bind=”$attrs” 传入内部组件。  </p>
-<p>$listener包含了父作用域中的 (不含 .native 修饰器的) v-on 事件监听器。它可以通过 v-on=”$listeners” 传入内部组件</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'C'</span>, &#123;</span><br><span class="line">    template:<span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;input type="text"</span></span><br><span class="line"><span class="string">                v-model="$attrs.messagec"</span></span><br><span class="line"><span class="string">                @input="passCData($attrs.messagec)"&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;`</span>,</span><br><span class="line"></span><br><span class="line">    methods: &#123;</span><br><span class="line">        passCData(val)&#123;</span><br><span class="line">            <span class="comment">//触发父组件A中的事件</span></span><br><span class="line">            <span class="keyword">this</span>.$emit(<span class="string">'getCData'</span>, val)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">Vue.component(<span class="string">'B'</span>, &#123;</span><br><span class="line">    data()&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            mymessage: <span class="keyword">this</span>.message</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    template:<span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;input type="text" v-model="mymessage" @input="passData(mymessage)"&gt; </span></span><br><span class="line"><span class="string">            &lt;!-- C组件中能直接触发getCData的原因在于 B组件调用C组件时 使用 v-on 绑定了$listeners 属性 --&gt;</span></span><br><span class="line"><span class="string">            &lt;!-- 通过v-bind 绑定$attrs属性，C组件可以直接获取到A组件中传递下来的props（除了B组件中props声明的） --&gt;</span></span><br><span class="line"><span class="string">            &lt;C v-bind="$attrs" v-on="$listeners"&gt;&lt;/C&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span>,</span><br><span class="line">    props:[<span class="string">'message'</span>], <span class="comment">//得到父组件传递过来的数据</span></span><br><span class="line">    methods:&#123;</span><br><span class="line">        passData(val)&#123;</span><br><span class="line">            <span class="comment">//触发父组件中的事件</span></span><br><span class="line">            <span class="keyword">this</span>.$emit(<span class="string">'getChildData'</span>,val)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">Vue.component(<span class="string">'A'</span>, &#123;</span><br><span class="line">    data()&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            message:<span class="string">'hello b'</span>, <span class="comment">//传递给子组件的数据</span></span><br><span class="line">            messagec:<span class="string">'hello c'</span> <span class="comment">//传递给c组件的数据</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    template:<span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;p&gt;this is parent compoent!&lt;/p&gt;</span></span><br><span class="line"><span class="string">            &lt;B :message="message" @getChildData="getChildData"</span></span><br><span class="line"><span class="string">                v-bind="$attrs" v-on="$listeners" &gt;&lt;/B&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span>,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        <span class="comment">//执行子组件触发的事件</span></span><br><span class="line">        getChildData(val)&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'这是来自B组件的数据'</span>)</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">//执行C组件触发的事件</span></span><br><span class="line">        getCData(val)&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"这是来自C组件的数据："</span> + val)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="中央事件总栈-emit-on"><a href="#中央事件总栈-emit-on" class="headerlink" title="中央事件总栈 $emit $on"></a>中央事件总栈 $emit $on</h2><p>为了实现非父子间的通信，我们可以通过通过使用一个空的Vue实例作为中央事件总线来处理所有的事件，通过Vue自带的$emit $on来进行组件间通信。  </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> bus = <span class="keyword">new</span> Vue()</span><br><span class="line">Vue.prototype.bus = bus</span><br></pre></td></tr></table></figure>
-<p>甚至可以用app.js中的Vue实例来处理  </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* app.js*/</span></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  router,</span><br><span class="line">  template: <span class="string">'&lt;App/&gt;'</span>,</span><br><span class="line">  components: &#123; App &#125;,</span><br><span class="line">  beforeCreate () &#123;</span><br><span class="line">    Vue.prototype.bus = <span class="keyword">this</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>这样在组件中我们就可以通过以下方式处理  </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.bus.$emit(<span class="string">'some-event'</span>, data)</span><br><span class="line"><span class="keyword">this</span>.bus.$on(<span class="string">'some-event'</span>, ()=&gt;&#123;&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="vuex"><a href="#vuex" class="headerlink" title="vuex"></a>vuex</h2><p><a href="https://github.com/vuejs/vuex" target="_blank" rel="noopener">vuex</a></p>
-
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
             <a href="/2018/09/28/清除网站中的无效链接/">清除网站中的无效链接</a>
         </h1>
         
@@ -423,6 +349,61 @@
         <p>有些时候，尤其在文档型的网站中，页面链接经常变化调整。通常的做法即搜索网站中的所有相应页面进行url替换，但是即使这样做了，还是有一定风险，用户可能已经收藏了链接，在用户点击收藏链接跳转的时候，会发现页面不存在。这时，我们可以通过设置404页面来引导用户跳转到其它的可能符合用户期望的页面（比如主页）。同样的，如果其它网站引用了该失效链接，同时不希望此网站的引用失效（或者没有修改此网站的权限），就只能在落地页网站做一下兼容，在跳转的时候重新定向一下，具体代码如下：  </p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">!<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> path = location.pathname + location.hash;</span><br><span class="line">    <span class="keyword">var</span> urlMap = &#123;</span><br><span class="line">        <span class="string">'xxx'</span>: <span class="string">'xxxx'</span>,</span><br><span class="line">        <span class="string">'xxx/media#live-player'</span>: <span class="string">'xxx/media_live-player/'</span></span><br><span class="line">    &#125;;</span><br><span class="line">    urlMap[path] &amp;&amp; location.replace(urlMap[path]);</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
 <p>这是一种治标不治本的改动，最好的改动还是移除失效的链接。  </p>
+
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2018/09/18/CSS长度单位/">CSS长度单位</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="/2018/09/18/CSS长度单位/">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-18T12:15:59.000Z" itemprop="datePublished">2018-09-18</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/CSS/">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>下面将会讲解一下CSS中常用到的几个长度单位。包含px、em、rem、vh、vw、rpx。</p>
+<h2 id="px"><a href="#px" class="headerlink" title="px"></a>px</h2><p>px(Pixel)像素。相对长度单位。1px等于计算机屏幕上的一个点像素的宽度。px是相对于显示器屏幕分辨率而言的。  </p>
+<h2 id="em"><a href="#em" class="headerlink" title="em"></a>em</h2><p>em是相对长度单位。相对于当前对象内文本的字体尺寸。如当前行内文本的字体尺寸未被人为设置，则相当于浏览器的默认字体尺寸。  </p>
+<p>em特点  </p>
+<ol>
+<li>em的值并不是固定的</li>
+<li>em会继承父级元素的字体大小</li>
+</ol>
+<p>注意：任意浏览器的默认字体高都是16px。所有未经调整的浏览器都符合: 1em = 16px。那么12px = 0.75em，10px = 0.625em。<br>如果使用em作为当前项目的单位，为了简化font-size的换算，需要在CSS中的body选择器中声明font-size=62.5%，这就使em值变为 16px * 62.5% = 10px，这样12px = 1.2em，10px=1em，也就是说只需要将你的原来的px数值除以10，然后换上em作为单位就行了。  </p>
+<h2 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h2><p>rem(Font size of the root element)是CSS3新增的一个相对单位，指相对于根元素（即html元素）的字体大小的单位。  </p>
+<p>rem特点  </p>
+<ol>
+<li>可以做到只修改根元素就成比例地调整所有字体大小</li>
+<li>避免px em混用导致的字体复数计算</li>
+</ol>
+<p>如果使用rem作为当前项目的单位，可以设置<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>那么<code>10px</code>就可以表示为<code>.1rem</code></p>
+<h2 id="vh-vw"><a href="#vh-vw" class="headerlink" title="vh/vw"></a>vh/vw</h2><p>vh(Viewport height)相对于视口的高度。视口被均分为100单位的vh，通过vh可以在不知道视口高度的情况下设置一个相对视口的高度。同理，vw指相对于视口的宽度。</p>
+<p>用法<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.banner</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100vh</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100vw</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="rpx"><a href="#rpx" class="headerlink" title="rpx"></a>rpx</h2><p>rpx(Relative pixcel) 相对像素。只有在小程序中采用的长度计算值。以屏幕宽度恒为750rpx来计算。以iPhone6来讲，屏幕宽度为375px，所以在iPhone6中，375px = 750rpx，也就是1rpx = 0.5px。</p>
+<h2 id="一些坑"><a href="#一些坑" class="headerlink" title="一些坑"></a>一些坑</h2><p>PC chrome有12px最小字号限制，若使用10px会造成pc调试困难带来不必要的麻烦，所以可以设置字号为12px，然后通过 <code>transform: scale(.8)</code> 来达到同样的效果。  </p>
 
         
     </section>
