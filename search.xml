@@ -3,6 +3,21 @@
   
     
     <entry>
+      <title>在线绘图小工具</title>
+      <link href="/2019/01/04/%E5%9C%A8%E7%BA%BF%E7%BB%98%E5%9B%BE%E5%B0%8F%E5%B7%A5%E5%85%B7/"/>
+      <url>/2019/01/04/%E5%9C%A8%E7%BA%BF%E7%BB%98%E5%9B%BE%E5%B0%8F%E5%B7%A5%E5%85%B7/</url>
+      <content type="html"><![CDATA[<section><br>    <div class="paint-area"><br>        <canvas></canvas><br>    </div><br>    <script type="text/javascript" src="/static/js/painter.js"></script><br></section>]]></content>
+      
+      
+        <tags>
+            
+            <tag> tools </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>&lt;a&gt;的用法</title>
       <link href="/2019/01/03/a-%E7%9A%84%E7%94%A8%E6%B3%95/"/>
       <url>/2019/01/03/a-%E7%9A%84%E7%94%A8%E6%B3%95/</url>

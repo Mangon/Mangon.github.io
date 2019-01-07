@@ -7,10 +7,12 @@
 
     
 
-    <title>Archives: 2019 | Gblog</title>
+    <title>在线绘图小工具 | Gblog</title>
     <meta name="author" content="Mangon" />
     <meta name="version" content="1.0.0" />
     
+    
+    <meta name="description" content="                    " />
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
@@ -38,7 +40,7 @@
         
         
         
-        <li class="nav-item active">
+        <li class="nav-item">
             <a class="nav-link" href="/archives">目录</a>
         </li>
         
@@ -58,6 +60,8 @@
         <button type="reset" class="reset-search-btn"></button>
     </form>
 </div>        
+        
+        
         
 
         
@@ -94,54 +98,38 @@
 
 </header>
 
-        <div id="content" class="content">
-
+        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
     
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            在线绘图小工具
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="/2019/01/04/在线绘图小工具/">
     
+    <i class="icon-calendar"></i>
     
-    
-    <section class="archives-wrap">
-    <div class="archive-year-wrap">
-    <a href="/archives/2019" class="archive-year">2019</a>
-    </div>
-    <ol class="archives">
-    
-
-    <li class="archive-section-item">
-        <article class="archive-article archive-type-tools">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a href="/2019/01/04/在线绘图小工具/">在线绘图小工具</a>
-            (<a class="article-date" href="/2019/01/04/在线绘图小工具/">
-    
-    <time datetime="2019-01-04T10:49:24.000Z" itemprop="datePublished">1/4</time>
+    <time datetime="2019-01-04T10:49:24.000Z" itemprop="datePublished">2019-01-04</time>
 </a>
-)
-        </header>
-    </div>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/tools/">tools</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <section><br>    <div class="paint-area"><br>        <canvas></canvas><br>    </div><br>    <script type="text/javascript" src="/static/js/painter.js"></script><br></section>
+        
+    </section>
 </article>
-    </li>
-
-    
-    
-
-    <li class="archive-section-item">
-        <article class="archive-article archive-type-article">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a href="/2019/01/03/a-的用法/">&lt;a&gt;的用法</a>
-            (<a class="article-date" href="/2019/01/03/a-的用法/">
-    
-    <time datetime="2019-01-03T12:16:31.000Z" itemprop="datePublished">1/3</time>
-</a>
-)
-        </header>
-    </div>
-</article>
-    </li>
-
-
-</ol></section>
 
 
 
@@ -154,6 +142,8 @@
     </div>
 
     <script type="text/javascript" src="/js/jquery.min.js"></script>
+    
+    <script type="text/javascript" src="/js/scrollspy.min.js"></script>
     
     <script type="text/javascript">
         $(function() {
@@ -178,6 +168,8 @@
                 nodes.navTags.removeClass('tag-show');
             });*/
 
+            
+            $(document.body).scrollspy({target: '#aside-inner'});
             
         });
     </script>

@@ -100,6 +100,140 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2018/09/05/修改光标的样式/">修改光标的样式</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="/2018/09/05/修改光标的样式/">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-05T12:00:34.000Z" itemprop="datePublished">2018-09-05</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/CSS/">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>某些情况下我们需要修改默认的光标样式，比如当我们为一个元素添加了点击事件之后，这个元素就会表现的像一个按钮。为了更好的用户体验，我们可以将光标样式由默认的箭头样式改为指针样式。这样，当用户划过此元素时，就会意识到这是一个可点击的元素。</p>
+<p>可以通过修改cursor属性来改变元素的光标样式。</p>
+<h2 id="CSS-cursor-属性"><a href="#CSS-cursor-属性" class="headerlink" title="CSS cursor 属性"></a>CSS cursor 属性</h2><p>cursor 属性规定要显示的光标的类型（形状）。  </p>
+<p>该属性定义了鼠标指针放在一个元素边界范围内时所用的光标形状。  </p>
+<h2 id="可能的值"><a href="#可能的值" class="headerlink" title="可能的值"></a>可能的值</h2><table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+<th>样式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>url</td>
+<td>需使用的自定义光标的 URL。<br><font color="red">注意：</font>请在此列表的末端始终定义一种普通的光标，以防没有由 URL 定义的可用光标。</td>
+<td><div style="cursor:url('/static/imgs/create-repo.png');height:25px"></div></td>
+</tr>
+<tr>
+<td>default</td>
+<td>默认光标（通常是一个箭头）</td>
+<td><div style="cursor:default;height:25px"></div></td>
+</tr>
+<tr>
+<td>auto</td>
+<td>默认。浏览器设置的光标。</td>
+<td><div style="cursor:auto;height:25px"></div></td>
+</tr>
+<tr>
+<td>crosshair</td>
+<td>光标呈现为十字线。</td>
+<td><div style="cursor:crosshair;height:25px"></div></td>
+</tr>
+<tr>
+<td>pointer</td>
+<td>光标呈现为指示链接的指针（一只手）</td>
+<td><div style="cursor:pointer;height:25px"></div></td>
+</tr>
+<tr>
+<td>move</td>
+<td>此光标指示某对象可被移动。</td>
+<td><div style="cursor:move;height:25px"></div></td>
+</tr>
+<tr>
+<td>e-resize</td>
+<td>此光标指示矩形框的边缘可被向右（东）移动。</td>
+<td><div style="cursor:e-resize;height:25px"></div></td>
+</tr>
+<tr>
+<td>ne-resize</td>
+<td>此光标指示矩形框的边缘可被向上及向右移动（北/东）。</td>
+<td><div style="cursor:ne-resize;height:25px"></div></td>
+</tr>
+<tr>
+<td>nw-resize</td>
+<td>此光标指示矩形框的边缘可被向上及向左移动（北/西）。</td>
+<td><div style="cursor:nw-resize;height:25px"></div></td>
+</tr>
+<tr>
+<td>n-resize</td>
+<td>此光标指示矩形框的边缘可被向上（北）移动。</td>
+<td><div style="cursor:n-resize;height:25px"></div></td>
+</tr>
+<tr>
+<td>se-resize</td>
+<td>此光标指示矩形框的边缘可被向下及向右移动（南/东）。</td>
+<td><div style="cursor:se-resize;height:25px"></div></td>
+</tr>
+<tr>
+<td>sw-resize</td>
+<td>此光标指示矩形框的边缘可被向下及向左移动（南/西）。</td>
+<td><div style="cursor:sw-resize;height:25px"></div></td>
+</tr>
+<tr>
+<td>s-resize</td>
+<td>此光标指示矩形框的边缘可被向下移动（南）。</td>
+<td><div style="cursor:s-resize;height:25px"></div></td>
+</tr>
+<tr>
+<td>w-resize</td>
+<td>此光标指示矩形框的边缘可被向左移动（西）。</td>
+<td><div style="cursor:w-resize;height:25px"></div></td>
+</tr>
+<tr>
+<td>text</td>
+<td>此光标指示文本。</td>
+<td><div style="cursor:text;height:25px"></div></td>
+</tr>
+<tr>
+<td>wait</td>
+<td>此光标指示程序正忙（通常是一只表或沙漏）。</td>
+<td><div style="cursor:wait;height:25px"></div></td>
+</tr>
+<tr>
+<td>help</td>
+<td>此光标指示可用的帮助（通常是一个问号或一个气球）。</td>
+<td><div style="cursor:help;height:25px"></div></td>
+</tr>
+</tbody>
+</table>
+<div style="cursor:pointer;"></div>
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2018/09/05/改变placeholder的颜色/">改变placeholder的颜色</a>
         </h1>
         
@@ -1464,120 +1598,6 @@
 </tr>
 </tbody>
 </table>
-
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2018/09/02/Visual-Studio-Code-常用快捷键/">Visual Studio Code 常用快捷键</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="/2018/09/02/Visual-Studio-Code-常用快捷键/">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-09-02T15:14:07.000Z" itemprop="datePublished">2018-09-02</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/VScode/">VScode</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>以下的Ctrl键指的是Windows系统下的Ctrl键，在Mac上对应Command键。  </p>
-<h2 id="主命令框"><a href="#主命令框" class="headerlink" title="主命令框"></a>主命令框</h2><p>F1 或 Ctrl+Shift+P: 打开命令面板。在打开的输入框内，可以输入任何命令，例如：  </p>
-<ol>
-<li>按一下 Backspace 会进入到 Ctrl+P 模式</li>
-<li>在 Ctrl+P 下输入 &gt; 可以进入 Ctrl+Shift+P 模式</li>
-</ol>
-<p>在 Ctrl+P 窗口下还可以:</p>
-<ol>
-<li>直接输入文件名，跳转到文件</li>
-<li>? 列出当前可执行的动作</li>
-<li>! 显示 Errors或 Warnings，也可以 Ctrl+Shift+M</li>
-<li>: 跳转到行数，也可以 Ctrl+G 直接进入</li>
-<li>@ 跳转到 symbol（搜索变量或者函数），也可以 Ctrl+Shift+O 直接进入</li>
-<li>@ 根据分类跳转 symbol，查找属性或函数，也可以 Ctrl+Shift+O 后输入:进入</li>
-<li># 根据名字查找 symbol，也可以 Ctrl+T</li>
-</ol>
-<h2 id="编辑器与窗口管理"><a href="#编辑器与窗口管理" class="headerlink" title="编辑器与窗口管理"></a>编辑器与窗口管理</h2><ol>
-<li>打开一个新窗口： Ctrl+Shift+N</li>
-<li>关闭窗口： Ctrl+Shift+W</li>
-<li>同时打开多个编辑器（查看多个文件）</li>
-<li>新建文件 Ctrl+N</li>
-<li>文件之间切换 Ctrl+Tab</li>
-<li>切出一个新的编辑器（最多 3 个） Ctrl+\，也可以按住 Ctrl 鼠标点击 Explorer 里的文件名</li>
-<li>左中右 3 个编辑器的快捷键 Ctrl+1 Ctrl+2 Ctrl+3</li>
-<li>3 个编辑器之间循环切换 Ctrl+</li>
-<li>编辑器换位置， Ctrl+k然后按 Left或 Right</li>
-</ol>
-<h2 id="代码格式调整"><a href="#代码格式调整" class="headerlink" title="代码格式调整"></a>代码格式调整</h2><ol>
-<li>代码行缩进 Ctrl+[ 、 Ctrl+]</li>
-<li>Ctrl+C 、 Ctrl+V 复制或剪切当前行/当前选中内容</li>
-<li>代码格式化： Shift+Alt+F，或 Ctrl+Shift+P 后输入 format code</li>
-<li>上下移动一行： Alt+Up 或 Alt+Down</li>
-<li>向上向下复制一行： Shift+Alt+Up 或 Shift+Alt+Down</li>
-<li>在当前行下边插入一行 Ctrl+Enter</li>
-<li>在当前行上方插入一行 Ctrl+Shift+Enter</li>
-</ol>
-<h2 id="光标相关"><a href="#光标相关" class="headerlink" title="光标相关"></a>光标相关</h2><ol>
-<li>移动到行首： Home</li>
-<li>移动到行尾： End</li>
-<li>移动到文件结尾： Ctrl+End</li>
-<li>移动到文件开头： Ctrl+Home</li>
-<li>移动到定义处： F12</li>
-<li>定义处缩略图：只看一眼而不跳转过去 Alt+F12</li>
-<li>移动到后半个括号： Ctrl+Shift+]</li>
-<li>选择从光标到行尾： Shift+End</li>
-<li>选择从行首到光标处： Shift+Home</li>
-<li>删除光标右侧的所有字： Ctrl+Delete</li>
-<li>扩展/缩小选取范围： Shift+Alt+Left 和 Shift+Alt+Right</li>
-<li>多行编辑(列编辑)：Alt+Shift+鼠标左键，Ctrl+Alt+Down/Up</li>
-<li>同时选中所有匹配： Ctrl+Shift+L</li>
-<li>Ctrl+D 下一个匹配的也被选中 (在 sublime 中是删除当前行，后面自定义快键键中，设置与 Ctrl+Shift+K 互换了)</li>
-<li>回退上一个光标操作： Ctrl+U</li>
-</ol>
-<h2 id="修改代码格式"><a href="#修改代码格式" class="headerlink" title="修改代码格式"></a>修改代码格式</h2><ol>
-<li>找到所有的引用： Shift+F12</li>
-<li>同时修改本文件中所有匹配的： Ctrl+F12</li>
-<li>重命名：比如要修改一个方法名，可以选中后按 F2，输入新的名字，回车，会发现所有的文件都修改了</li>
-<li>跳转到下一个 Error 或 Warning：当有多个错误时可以按 F8 逐个跳转</li>
-<li>查看 diff： 在 explorer 里选择文件右键 Set file to compare，然后需要对比的文件上右键选择 Compare with file_name_you_chose</li>
-</ol>
-<h2 id="查找替换"><a href="#查找替换" class="headerlink" title="查找替换"></a>查找替换</h2><ol>
-<li>查找 Ctrl+F</li>
-<li>查找替换 Ctrl+H</li>
-<li>整个文件夹中查找 Ctrl+Shift+F</li>
-</ol>
-<h2 id="显示相关"><a href="#显示相关" class="headerlink" title="显示相关"></a>显示相关</h2><ol>
-<li>全屏：F11</li>
-<li>zoomIn/zoomOut：Ctrl +/-</li>
-<li>侧边栏显/隐：Ctrl+B</li>
-<li>显示资源管理器 Ctrl+Shift+E</li>
-<li>显示搜索 Ctrl+Shift+F</li>
-<li>显示 Git Ctrl+Shift+G</li>
-<li>显示 Debug Ctrl+Shift+D</li>
-<li>显示 Output Ctrl+Shift+U</li>
-</ol>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>自动保存：<br>    File -&gt; AutoSave ，或者 Ctrl+Shift+P，输入 auto<br>修改默认快捷键：  </p>
-<ol>
-<li>打开默认键盘快捷方式设置：File -&gt; Preferences -&gt; Keyboard Shortcuts，或者：Alt+F -&gt; p -&gt; k  </li>
-<li>修改 keybindings.json：  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Place your key bindings in this file to overwrite the defaults</span></span><br><span class="line">[</span><br><span class="line">    <span class="comment">// ctrl+space 被切换输入法快捷键占用</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"key"</span>: <span class="string">"ctrl+alt+space"</span>,</span><br><span class="line">        <span class="string">"command"</span>: <span class="string">"editor.action.triggerSuggest"</span>,</span><br><span class="line">        <span class="string">"when"</span>: <span class="string">"editorTextFocus"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// ctrl+d 删除一行</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"key"</span>: <span class="string">"ctrl+d"</span>,</span><br><span class="line">        <span class="string">"command"</span>: <span class="string">"editor.action.deleteLines"</span>,</span><br><span class="line">        <span class="string">"when"</span>: <span class="string">"editorTextFocus"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 与删除一行的快捷键互换</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"key"</span>: <span class="string">"ctrl+shift+k"</span>,</span><br><span class="line">        <span class="string">"command"</span>: <span class="string">"editor.action.addSelectionToNextFindMatch"</span>,</span><br><span class="line">        <span class="string">"when"</span>: <span class="string">"editorFocus"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// ctrl+shift+/多行注释</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"key"</span>:<span class="string">"ctrl+shift+/"</span>,</span><br><span class="line">        <span class="string">"command"</span>: <span class="string">"editor.action.blockComment"</span>,</span><br><span class="line">        <span class="string">"when"</span>: <span class="string">"editorTextFocus"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 定制与 sublime 相同的大小写转换快捷键，需安装 TextTransform 插件</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"key"</span>: <span class="string">"ctrl+k ctrl+u"</span>,</span><br><span class="line">        <span class="string">"command"</span>: <span class="string">"uppercase"</span>,</span><br><span class="line">        <span class="string">"when"</span>: <span class="string">"editorTextFocus"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"key"</span>: <span class="string">"ctrl+k ctrl+l"</span>,</span><br><span class="line">        <span class="string">"command"</span>: <span class="string">"lowercase"</span>,</span><br><span class="line">        <span class="string">"when"</span>: <span class="string">"editorTextFocus"</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure></li>
-</ol>
 
         
     </section>
