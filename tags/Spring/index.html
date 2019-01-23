@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+
+    
+
+    
+
+    <title>Tag: Spring | Gblog</title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.0.0" />
+    
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <div class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/">主页</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/archives">目录</a>
+        </li>
+        
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://mangon.github.io"></form> -->
+        <div class="top-search-box" id="top-search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="local-search-input" name="q" results="0" placeholder="搜索" class="st-search-input st-default-search-input form-control"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+
+        
+        <div class="author-meta">
+            
+            <div class="author-avatar">
+                <a href="/">
+                    <img src="/images/avatar.jpg" title="Mangon">
+                </a>
+            </div>
+            
+            <div class="author-name">Mangon</div>
+            <div class="author-work">Front-End Software Engineer</div>
+            <div class="author-location">
+                <i class="icon-location vm"></i>
+                <span class="vm">Beijing, China</span>
+            </div>
+            
+            <div class="author-thread-wrap">
+                <div class="author-threads clearfix">
+                    
+                    <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
+                    
+                    
+                    
+                </div>
+            </div>
+            
+        </div>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content">
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2018/11/30/Spring-boot-实战/">Spring boot 实战</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="/2018/11/30/Spring-boot-实战/">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-11-30T03:52:05.000Z" itemprop="datePublished">2018-11-30</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Spring/">Spring</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>很久没有做后端程序的开发，有些生疏了，想要在过年前复习一下Spring框架开发应用后台程序。目前最流行的Java后端应用框架应该就是Spring boot了，网上下了两本书，权且按照书上的流程复习一下整个Spring目前的生态，也自己动手做一个库存管理系统。  </p>
+<p>目前的打算就是后端采用Spring Boot2搭建服务，服务器Tomcat9.0.12，持久化JPA，安全认证Spring Secuirty，数据库MySql。前端的话就用Vue全家桶，UI采用ElementUI。  </p>
+<p>整个应用的架构是这样的：  </p>
+<p>(假装这里有uml图)</p>
+<p>下面开始应用的搭建：  </p>
+<p>首先，你要有一台pc，最好是Mac OS，里面应该已经安装了以下的东西</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>explain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>STS 3.9.6</td>
+<td>Java集成开发环境（IDE)</td>
+</tr>
+<tr>
+<td>vscode</td>
+<td>Javascript集成开发环境（IDE）</td>
+</tr>
+<tr>
+<td>JDK</td>
+<td>Java开发者工具/Java运行时环境</td>
+</tr>
+<tr>
+<td>maven</td>
+<td>Java编译打包工具</td>
+</tr>
+<tr>
+<td>git</td>
+<td>代码管理工具</td>
+</tr>
+<tr>
+<td>node</td>
+<td>Js开发运行环境</td>
+</tr>
+<tr>
+<td>npm</td>
+<td>Node package manager Js包管理工具</td>
+</tr>
+<tr>
+<td>webpack</td>
+<td>前端工程编译打包工具</td>
+</tr>
+</tbody>
+</table>
+<h2 id="搭建Spring-Boot-环境"><a href="#搭建Spring-Boot-环境" class="headerlink" title="搭建Spring Boot 环境"></a>搭建Spring Boot 环境</h2><p>首先你需要搭建一个初始的项目架构，大概是下面这个样子  </p>
+<p>├──src            // 源代码路径<br>│    ├──main      // 主要代码<br>│    │   ├──java  // java代码<br>│    │   └──resources<br>│    │       ├──static                 // 静态资源<br>│    │       ├──templates              // 模板<br>│    │       └──application.properties // 应用配置<br>│    └──test      // 测试相关代码<br>├──target         // 编译后代码<br>├──mvnw           // 类linux系统打包程序<br>├──mvnw.cmd       // windows系统打包程序<br>└──pom.xml        // 项目maven配置</p>
+<p>这里提供了两种方式  </p>
+<h3 id="安装Spring-Boot-CLI-Spring-Boot-command-line-interface"><a href="#安装Spring-Boot-CLI-Spring-Boot-command-line-interface" class="headerlink" title="安装Spring Boot CLI(Spring Boot command-line interface)"></a>安装Spring Boot CLI(Spring Boot command-line interface)</h3><p>Spring Boot CLI有好几种安装方式。  </p>
+<ul>
+<li>用下载的分发包进行安装。</li>
+<li>用Groovy Environment Manager进行安装。</li>
+<li>通过OS X Homebrew进行安装。</li>
+<li>使用MacPorts进行安装。</li>
+</ul>
+<p>这里我采用homebrew安装，Homebrew是OS X的包管理器，用于安装多种不同应用程序和工具。安装Homebrew的命令行如下：  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure>
+<p>要用Homebrew来安装Spring Boot CLI，你需要引入Pivotal的tap：  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew tap pivotal/tap</span><br></pre></td></tr></table></figure>
+<p>然后安装springboot</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install springboot</span><br></pre></td></tr></table></figure>
+<p>运行到这里我的pc报了一个错：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Error: Xcode alone is not sufficient on High Sierra.</span><br><span class="line">Install the Command Line Tools:</span><br><span class="line">  xcode-select --install</span><br></pre></td></tr></table></figure>
+<p>似乎homebrew需要xcode-select，所以又执行了<code>xcode-select --install</code>，执行过后错误消失。  </p>
+<p>运行<code>spring --version</code> 可以在terminal看到  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Spring CLI v2.1.0.RELEASE</span><br></pre></td></tr></table></figure>
+<p>至此Spring Boot CLI安装成功，你可以运行以下命令行来初始化一个spring boot project</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring init -d web,jpa,security --build gradle -p war myapp</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-d</td>
+<td>dependency 依赖</td>
+</tr>
+<tr>
+<td>- -build</td>
+<td>编译工具 gradle/maven</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>package打包形式 jar/war</td>
+</tr>
+<tr>
+<td>-x</td>
+<td>解压到当前目录</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>查看有哪些可选项</td>
+</tr>
+</tbody>
+</table>
+<h3 id="在STS里创建Spring-Boot项目"><a href="#在STS里创建Spring-Boot项目" class="headerlink" title="在STS里创建Spring Boot项目"></a>在STS里创建Spring Boot项目</h3><ol>
+<li>在File菜单里选中New &gt; Spring Starter Project菜单项</li>
+<li>填写表单，包括项目名等，点击next</li>
+<li>选择spring boot版本以及依赖，点击next</li>
+<li>确认Spring Initializr请求地址，点击Finish</li>
+<li>在Progress窗口可以看到生成进度</li>
+</ol>
+<p><img src="/static/imgs/spring/spring1.png" alt="spring boot project生成进度"></p>
+<p>运行结束后，项目就会显示在STS的explorer中了</p>
+<h2 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h2>
+        
+    </section>
+</article>
+
+
+
+
+
+</div>
+        <article id="article-search-result" class="article-search-result content"></article>
+        <footer class="footer">
+</footer>
+
+
+    </div>
+
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');console.log(nodes.navTags.attr('class'))
+            })/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+
+            
+        });
+    </script>
+    
+        <script type="text/javascript" src="/js/search.js"></script>
+        <script type="text/javascript" src="/js/common.js"></script>
+        <script type="text/javascript">
+                var search_path = "search.xml";
+                if (search_path.length == 0) {
+                    search_path = "search.xml";
+                }
+                var path = "/" + search_path;
+                searchFunc(path, 'local-search-input', 'article-search-result');
+        </script>
+    
+</body>
+</html>
