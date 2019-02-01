@@ -100,6 +100,67 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2018/09/17/DDOS攻击/">DDOS攻击</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="/2018/09/17/DDOS攻击/">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-17T11:42:50.000Z" itemprop="datePublished">2018-09-17</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/security/">security</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>分布式拒绝服务(DDoS:Distributed Denial of Service)攻击指借助于客户/服务器技术，将多个计算机联合起来作为攻击平台，对一个或多个目标发动DoS攻击，从而成倍地提高拒绝服务攻击威力的一种攻击方式。</p>
+<h2 id="攻击方式"><a href="#攻击方式" class="headerlink" title="攻击方式"></a>攻击方式</h2><p>DDoS攻击通过大量的请求占用网络资源，以达到瘫痪网络的目的。 这种攻击方式大致可分为以下几种：</p>
+<ul>
+<li>通过使网络过载来干扰甚至阻断正常的网络通讯；</li>
+<li>通过向服务器提交大量请求，使服务器超负荷；</li>
+<li>阻断某一用户访问服务器；</li>
+<li>阻断某服务与特定系统或个人的通讯。</li>
+</ul>
+<p>下面列举一些常见的DDos/Dos攻击方式：  </p>
+<h3 id="SYN-flood"><a href="#SYN-flood" class="headerlink" title="SYN flood"></a>SYN flood</h3><p>该攻击以多个随机的源主机地址向意图主机发送SYN包，而在收到意图主机的SYN ACK后并不回应，这么，意图主机就为这些源主机树立了很多的衔接行列，而且因为没有收到ACK一直维护着这些行列，形成了资源的很多耗费而不能向正常请求供给服务。</p>
+<h3 id="ACK-flood"><a href="#ACK-flood" class="headerlink" title="ACK flood"></a>ACK flood</h3><p>ACK Flood攻击是在TCP连接建立之后，所有的数据传输TCP报文都是带有ACK标志位的，主机在接收到一个带有ACK标志位的数据包的时候，需要检查该数据包所表示的连接四元组是否存在，如果存在则检查该数据包所表示的状态是否合法，然后再向应用层传递该数据包。如果在检查中发现该数据包不合法，例如该数据包所指向的目的端口在本机并未开放，则主机操作系统协议栈会回应RST包告诉对方此端口不存在。</p>
+<h3 id="UDP-flood"><a href="#UDP-flood" class="headerlink" title="UDP flood"></a>UDP flood</h3><p>如今在Internet上UDP（用户数据包协议）的应用比较广泛，很多提供WWW和Mail等服务设备通常是使用Unix的服务器，它们默认打开一些被黑客恶意利用的UDP服务。如echo服务会显示接收到的每一个数据包，而原本作为测试功能的chargen服务会在收到每一个数据包时随机反馈一些字符。UDP flood攻击就是利用这两个简单的TCP/IP服务的漏洞进行恶意攻击，通过伪造与某一主机的Chargen服务之间的一次的UDP连接，回复地址指向开着Echo服务的一台主机，通过将Chargen和Echo服务互指，来回传送毫无用处且占满带宽的垃圾数据，在两台主机之间生成足够多的无用数据流，这一拒绝服务攻击飞快地导致网络可用带宽耗尽。</p>
+<h3 id="Ping-of-Death"><a href="#Ping-of-Death" class="headerlink" title="Ping of Death"></a>Ping of Death</h3><p>ICMP(Internet Control Message Protocol，Internet控制信息协议)在Internet上用于错误处理和传递控制信息。最普通的ping程序就是这个功能。而在TCP/IP的RFC文档中对包的最大尺寸都有严格限制规定，许多操作系统的TCP/IP协议栈都规定ICMP包大小为64KB，且在对包的标题头进行读取之后，要根据该标题头里包含的信息来为有效载荷生成缓冲区。”Ping of Death”就是故意产生畸形的测试Ping（Packet Internet Groper）包，声称自己的尺寸超过ICMP上限，也就是加载的尺寸超过64KB上限，使未采取保护措施的网络系统出现内存分配错误，导致TCP/IP协议栈崩溃，最终接收方宕机。</p>
+<h3 id="Teardrop"><a href="#Teardrop" class="headerlink" title="Teardrop"></a>Teardrop</h3><p>Teardrop攻击利用在TCP/IP协议栈实现中信任IP碎片中的包的标题头所包含的信息来实现自己的攻击。IP分段含有指示该分段所包含的是原包的哪一段的信息，某些TCP/IP协议栈（例如NT在servicepack4以前）在收到含有重叠偏移的伪造分段时将崩溃。</p>
+<h3 id="Smurf"><a href="#Smurf" class="headerlink" title="Smurf"></a>Smurf</h3><p>该攻击向一个子网的广播地址发一个带有特定请求(如ICMP回应请求)的包，并且将源地址伪装成想要攻击的主机地址。子网上所有主机都回应广播包请求而向被攻击主机发包，使该主机受到攻击。</p>
+<h3 id="IP-Spoofing"><a href="#IP-Spoofing" class="headerlink" title="IP Spoofing"></a>IP Spoofing</h3><p>IP欺骗攻击是一种黑客通过向服务端发送虚假的包以欺骗服务器的做法。具体说，就是将包中的源IP地址设置为不存在或不合法的值。服务器一旦接受到该包便会返回接受请求包，但实际上这个包永远返回不到来源处的计算机。这种做法使服务器必需开启自己的监听端口不断等待，也就浪费了系统各方面的资源。</p>
+<h3 id="Land-Attack"><a href="#Land-Attack" class="headerlink" title="Land Attack"></a>Land Attack</h3><p>在Land攻击中，黑客利用一个特别打造的SYN包–它的原地址和目标地址都被设置成某一个服务器地址进行攻击。此举将导致接受服务器向它自己的地址发送SYN-ACK消息，结果这个地址又发回ACK消息并创建一个空连接，每一个这样的连接都将保留直到超时，在Land攻击下，许多UNIX将崩溃，NT变得极其缓慢（大约持续五分钟）。</p>
+<h3 id="ICMP-flood"><a href="#ICMP-flood" class="headerlink" title="ICMP flood"></a>ICMP flood</h3><p>ICMP flood是通过向未良好设置的路由器发送广播信息占用系统资源的做法。</p>
+<h3 id="Application-level-flood"><a href="#Application-level-flood" class="headerlink" title="Application level flood"></a>Application level flood</h3><p>与前面叙说的攻击方式不同，Application level flood主要是针对应用软件层的，也就是高于OSI的。它同样是以大量消耗系统资源为目的，通过向IIS这样的网络服务程序提出无节制的资源申请来迫害正常的网络服务。</p>
+<h2 id="防御措施"><a href="#防御措施" class="headerlink" title="防御措施"></a>防御措施</h2><p>可参考措施如下：  </p>
+<ol>
+<li>采用高性能的网络设备引<br>首先要保证网络设备不能成为瓶颈，因此选择路由器、交换机、硬件防火墙等设备的时候要尽量选用知名度高、 口碑好的产品。 再就是假如和网络提供商有特殊关系或协议的话就更好了，当大量攻击发生的时候请他们在网络接点处做一下流量限制来对抗某些种类的DDOS 攻击是非常有效的。</li>
+<li>尽量避免 NAT 的使用<br>无论是路由器还是硬件防护墙设备要尽量避免采用网络地址转换 NAT 的使用， 因为采用此技术会较大降低网络通信能力，其实原因很简单，因为 NAT 需要对地址来回转换，转换过程中需要对网络包的校验和进行计算，因此浪费了很多 CPU 的时间，但有些时候必须使用 NAT，那就没有好办法了。</li>
+<li>充足的网络带宽保证<br>网络带宽直接决定了能抗受攻击的能力， 假若仅仅有 10M 带宽的话， 无论采取什么措施都很难对抗当今的 SYNFlood 攻击， 至少要选择 100M 的共享带宽，最好的当然是挂在1000M 的主干上了。但需要注意的是，主机上的网卡是 1000M 的并不意味着它的网络带宽就是千兆的， 若把它接在 100M 的交换机上， 它的实际带宽不会超过 100M， 再就是接在 100M的带宽上也不等于就有了百兆的带宽， 因为网络服务商很可能会在交换机上限制实际带宽为10M，这点一定要搞清楚。</li>
+<li>升级主机服务器硬件<br>在有网络带宽保证的前提下，请尽量提升硬件配置，要有效对抗每秒 10 万个 SYN 攻击包，服务器的配置至少应该为：P4 2.4G/DDR512M/SCSI-HD，起关键作用的主要是 CPU 和内存， 内存一定要选择 DDR 的高速内存， 硬盘要尽量选择SCSI 的，别只贪 IDE 价格不贵量还足的便宜，否则会付出高昂的性能代价，再就是网卡一定要选用 3COM 或 Intel 等名牌的，若是 Realtek 的还是用在自己的 PC 上吧。</li>
+<li>把网站做成静态页面<br>大量事实证明，把网站尽可能做成静态页面，不仅能大大提高抗攻击能力，而且还给黑客入侵带来不少麻烦，至少到为止关于 HTML 的溢出还没出现，新浪、搜狐、网易等门户网站主要都是静态页面， 若你非需要动态脚本调用， 那就把它弄到另外一台单独主机去，免的遭受攻击时连累主服务器， 当然， 适当放一些不做数据库调用脚本还是可以的， 此外，最好在需要调用数据库的脚本中拒绝使用代理的访问， 因为经验表明使用代理访问你网站的80%属于恶意行为。</li>
+</ol>
+
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2018/09/15/Hexo也能构建SPA/">Hexo也能构建SPA</a>
         </h1>
         
@@ -415,57 +476,10 @@
 </article>
 
 
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2018/09/10/CSRF攻击/">CSRF攻击</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="/2018/09/10/CSRF攻击/">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-09-10T11:18:43.000Z" itemprop="datePublished">2018-09-10</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/security/">security</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>CSRF（Cross-site request forgery）跨站请求伪造，也被称为“One Click Attack”或者Session Riding，通常缩写为CSRF或者XSRF，是一种通过伪造用户请求破坏网站的攻击方式。  </p>
-<h2 id="CSRF攻击原理"><a href="#CSRF攻击原理" class="headerlink" title="CSRF攻击原理"></a>CSRF攻击原理</h2><p>当你访问 xxx.com 黑客页面的时候，页面上放了一个按钮或者一个表单，URL/action 为 <a href="">http://you.com/delete-myself</a> ,<br>这样引导或迫使甚至伪造用户触发按钮或表单。在浏览器发出 GET 或 POST 请求的时候，它会带上 you.com 的 cookie，如果网站 you.com 没有做 CSRF 防御措施，那么这次请求在 you.com 看来会是完全合法的，这样就会对 you.com 的数据产生破坏。</p>
-<h2 id="CSRF防范"><a href="#CSRF防范" class="headerlink" title="CSRF防范"></a>CSRF防范</h2><p>对于用户：<br>通过在浏览其它站点前登出站点或者在浏览器会话结束后清理浏览器的cookie。</p>
-<p>对于网站拥有者：  </p>
-<h3 id="验证-HTTP-Referer-字段"><a href="#验证-HTTP-Referer-字段" class="headerlink" title="验证 HTTP Referer 字段"></a>验证 HTTP Referer 字段</h3><p>根据 HTTP 协议，在 HTTP 头中有一个字段叫 Referer，它记录了该 HTTP 请求的来源地址。在通常情况下，访问一个安全受限页面的请求来自于同一个网站，比如需要访问 <a href="">http://bank.example/withdraw?account=bob&amp;amount=1000000&amp;for=Mallory</a> ，用户必须先登陆 bank.example，然后通过点击页面上的按钮来触发转账事件。这时，该转帐请求的 Referer 值就会是转账按钮所在的页面的 URL，通常是以 bank.example 域名开头的地址。而如果黑客要对银行网站实施 CSRF 攻击，他只能在他自己的网站构造请求，当用户通过黑客的网站发送请求到银行时，该请求的 Referer 是指向黑客自己的网站。因此，要防御 CSRF 攻击，银行网站只需要对于每一个转账请求验证其 Referer 值，如果是以 bank.example 开头的域名，则说明该请求是来自银行网站自己的请求，是合法的。如果 Referer 是其他网站的话，则有可能是黑客的 CSRF 攻击，拒绝该请求。  </p>
-<p>这种方法的显而易见的好处就是简单易行，网站的普通开发人员不需要操心 CSRF 的漏洞，只需要在最后给所有安全敏感的请求统一增加一个拦截器来检查 Referer 的值就可以。特别是对于当前现有的系统，不需要改变当前系统的任何已有代码和逻辑，没有风险，非常便捷。  </p>
-<p>然而，这种方法并非万无一失。Referer 的值是由浏览器提供的，虽然 HTTP 协议上有明确的要求，但是每个浏览器对于 Referer 的具体实现可能有差别，并不能保证浏览器自身没有安全漏洞。使用验证 Referer 值的方法，就是把安全性都依赖于第三方（即浏览器）来保障，从理论上来讲，这样并不安全。事实上，对于某些浏览器，比如 IE6 或 FF2，目前已经有一些方法可以篡改 Referer 值。如果 bank.example 网站支持 IE6 浏览器，黑客完全可以把用户浏览器的 Referer 值设为以 bank.example 域名开头的地址，这样就可以通过验证，从而进行 CSRF 攻击。  </p>
-<p>即便是使用最新的浏览器，黑客无法篡改 Referer 值，这种方法仍然有问题。因为 Referer 值会记录下用户的访问来源，有些用户认为这样会侵犯到他们自己的隐私权，特别是有些组织担心 Referer 值会把组织内网中的某些信息泄露到外网中。因此，用户自己可以设置浏览器使其在发送请求时不再提供 Referer。当他们正常访问银行网站时，网站会因为请求没有 Referer 值而认为是 CSRF 攻击，拒绝合法用户的访问。  </p>
-<h3 id="在请求地址中添加-token-并验证"><a href="#在请求地址中添加-token-并验证" class="headerlink" title="在请求地址中添加 token 并验证"></a>在请求地址中添加 token 并验证</h3><p>CSRF 攻击之所以能够成功，是因为黑客可以完全伪造用户的请求，该请求中所有的用户验证信息都是存在于 cookie 中，因此黑客可以在不知道这些验证信息的情况下直接利用用户自己的 cookie 来通过安全验证。要抵御 CSRF，关键在于在请求中放入黑客所不能伪造的信息，并且该信息不存在于 cookie 之中。可以在 HTTP 请求中以参数的形式加入一个随机产生的 token，并在服务器端建立一个拦截器来验证这个 token，如果请求中没有 token 或者 token 内容不正确，则认为可能是 CSRF 攻击而拒绝该请求。  </p>
-<p>这种方法要比检查 Referer 要安全一些，token 可以在用户登陆后产生并放于 session 之中，然后在每次请求时把 token 从 session 中拿出，与请求中的 token 进行比对，但这种方法的难点在于如何把 token 以参数的形式加入请求。对于 GET 请求，token 将附在请求地址之后，这样 URL 就变成 <a href="">http://url?csrftoken=tokenvalue</a> 。 而对于 POST 请求来说，要在 form 的最后加上 <code>&lt;input type=”hidden” name=”csrftoken” value=”tokenvalue”/&gt;</code>，这样就把 token 以参数的形式加入请求了。但是，在一个网站中，可以接受请求的地方非常多，要对于每一个请求都加上 token 是很麻烦的，并且很容易漏掉，通常使用的方法就是在每次页面加载时，使用 javascript 遍历整个 dom 树，对于 dom 中所有的 a 和 form 标签后加入 token。这样可以解决大部分的请求，但是对于在页面加载之后动态生成的 html 代码，这种方法就没有作用，还需要程序员在编码时手动添加 token。  </p>
-<p>该方法还有一个缺点是难以保证 token 本身的安全。特别是在一些论坛之类支持用户自己发表内容的网站，黑客可以在上面发布自己个人网站的地址。由于系统也会在这个地址后面加上 token，黑客可以在自己的网站上得到这个 token，并马上就可以发动 CSRF 攻击。为了避免这一点，系统可以在添加 token 的时候增加一个判断，如果这个链接是链到自己本站的，就在后面添加 token，如果是通向外网则不加。不过，即使这个 csrftoken 不以参数的形式附加在请求之中，黑客的网站也同样可以通过 Referer 来得到这个 token 值以发动 CSRF 攻击。这也是一些用户喜欢手动关闭浏览器 Referer 功能的原因。  </p>
-<h3 id="在-HTTP-头中自定义属性并验证"><a href="#在-HTTP-头中自定义属性并验证" class="headerlink" title="在 HTTP 头中自定义属性并验证"></a>在 HTTP 头中自定义属性并验证</h3><p>这种方法也是使用 token 并进行验证，和上一种方法不同的是，这里并不是把 token 以参数的形式置于 HTTP 请求之中，而是把它放到 HTTP 头中自定义的属性里。通过 XMLHttpRequest 这个类，可以一次性给所有该类请求加上 csrftoken 这个 HTTP 头属性，并把 token 值放入其中。这样解决了上种方法在请求中加入 token 的不便，同时，通过 XMLHttpRequest 请求的地址不会被记录到浏览器的地址栏，也不用担心 token 会透过 Referer 泄露到其他网站中去。  </p>
-<p>然而这种方法的局限性非常大。XMLHttpRequest 请求通常用于 Ajax 方法中对于页面局部的异步刷新，并非所有的请求都适合用这个类来发起，而且通过该类请求得到的页面不能被浏览器所记录下，从而进行前进，后退，刷新，收藏等操作，给用户带来不便。另外，对于没有进行 CSRF 防护的遗留系统来说，要采用这种方法来进行防护，要把所有请求都改为 XMLHttpRequest 请求，这样几乎是要重写整个网站，这代价无疑是不能接受的。  </p>
-
-        
-    </section>
-</article>
-
-
 
 
 <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
 </nav>
 
 
@@ -475,7 +489,7 @@
     
         <div class="license">
             <p>版权声明：
-                <a target="_blank" rel="license noopener noreferrer" src="https://creativecommons.org/licenses/by-nd/4.0/deed.zh">创作共用-署名-禁止演绎</a>
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0国际(CC BY-NC-SA 4.0)</a>
             </p>
         </div>
     
