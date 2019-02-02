@@ -1,51 +1,49 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8" />
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
 
     
 
     
-
-    <title>XSS攻击 | Gblog</title>
-    <meta name="author" content="Mangon" />
-    <meta name="version" content="1.0.0" />
+    <title>
+        XSS攻击 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon">
+    <meta name="version" content="1.0.0">
     
     
-    <meta name="description" content="XSS, 即为（Cross Site Scripting）, 中文名为跨站脚本, 是发生在目标用户的浏览器层面上的攻击方式，当渲染DOM树的过程成发生了不在预期内执行的JS代码时，就发生了XSS攻击。  
-XSS攻击方式反射型 XSS反射型XSS，也叫非持久型XSS，是指发生请求时，XSS代码出现在请求URL中，作为参数提交到服务器，服务器解析并响应。响应结果中包含XSS代码，最后浏览器解析并执行。  
-从概念上可以看出，反射型XSS代码是首先出现在URL中的，然后需要服务端解析，最后需要浏览器" />
+        <meta name="description" content="XSS, 即为（Cross Site Scripting）, 中文名为跨站脚本, 是发生在目标用户的浏览器层面上的攻击方式，当渲染DOM树的过程成发生了不在预期内执行的JS代码时，就发生了XSS攻击。  XSS攻击方式反射型 XSS反射型XSS，也叫非持久型XSS，是指发生请求时，XSS代码出现在请求URL中，作为参数提交到服务器，服务器解析并响应。响应结果中包含XSS代码，最后浏览器解析并执行。  从概念上可以看出，反射型XSS代码是首先出现在URL中的，然后需要服务端解析，最后需要...">
     
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     
     
-    <link rel="icon" href="/images/favicon.ico">
+        <link rel="icon" href="/images/favicon.ico">
     
 
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
-    <div class="app">
+    <main class="app">
         <header class="header clearfix">
     <div id="nav" class="nav">
     <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
     <nav class="nav-inner">
-
         
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/">主页</a>
+                </li>
+            
         
-        <li class="nav-item">
-            <a class="nav-link" href="/">主页</a>
-        </li>
-        
-        
-        
-        <li class="nav-item">
-            <a class="nav-link" href="/archives">目录</a>
-        </li>
-        
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/archives">目录</a>
+                </li>
+            
         
     </nav>
 </div>
@@ -57,17 +55,16 @@ XSS攻击方式反射型 XSS反射型XSS，也叫非持久型XSS，是指发生�
         <div class="top-search-box" id="top-search-box">
     <form>
         <div class="search-btn"></div>
-        <input autocomplete="off" type="text" id="local-search-input" name="q" results="0" placeholder="搜索" class="st-search-input st-default-search-input form-control"
-        />
+        <input autocomplete="off" type="text" id="local-search-input" name="q" results="0" placeholder="搜索" class="st-search-input st-default-search-input form-control">
         <button type="reset" class="reset-search-btn"></button>
     </form>
 </div>        
         
-        
+            
         
 
         
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#XSS攻击方式"><span class="toc-number">1.</span> <span class="toc-text">XSS攻击方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#反射型-XSS"><span class="toc-number">1.1.</span> <span class="toc-text">反射型 XSS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存储型-XSS"><span class="toc-number">1.2.</span> <span class="toc-text">存储型 XSS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM-XSS"><span class="toc-number">1.3.</span> <span class="toc-text">DOM XSS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XSS危害"><span class="toc-number">2.</span> <span class="toc-text">XSS危害</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XSS防御"><span class="toc-number">3.</span> <span class="toc-text">XSS防御</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#对cookie的保护"><span class="toc-number">3.1.</span> <span class="toc-text">对cookie的保护</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对用户输入数据的处理"><span class="toc-number">3.2.</span> <span class="toc-text">对用户输入数据的处理</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#XSS攻击方式"><span class="toc-number">1.</span> <span class="toc-text">XSS攻击方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#反射型-XSS"><span class="toc-number">1.1.</span> <span class="toc-text">反射型 XSS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存储型-XSS"><span class="toc-number">1.2.</span> <span class="toc-text">存储型 XSS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM-XSS"><span class="toc-number">1.3.</span> <span class="toc-text">DOM XSS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XSS危害"><span class="toc-number">2.</span> <span class="toc-text">XSS危害</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XSS防御"><span class="toc-number">3.</span> <span class="toc-text">XSS防御</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#对cookie的保护"><span class="toc-number">3.1.</span> <span class="toc-text">对cookie的保护</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对用户输入数据的处理"><span class="toc-number">3.2.</span> <span class="toc-text">对用户输入数据的处理</span></a></li></ol></li></ol>
         
         <div id="coffee-content"></div>
     </div>
@@ -75,7 +72,7 @@ XSS攻击方式反射型 XSS反射型XSS，也叫非持久型XSS，是指发生�
 
 </header>
 
-        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content"><article class="article" itemscope="" itemprop="blogPost">
     
     <header class="article-header">
         
@@ -153,19 +150,17 @@ XSS攻击方式反射型 XSS反射型XSS，也叫非持久型XSS，是指发生�
     
         <div class="license">
             <p>版权声明：
-                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0国际(CC BY-NC-SA 4.0)</a>
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
             </p>
         </div>
     
 </footer>
 
 
-    </div>
+    </main>
 
     <script type="text/javascript" src="/js/jquery.min.js"></script>
-    
-    <script type="text/javascript" src="/js/scrollspy.min.js"></script>
-    
+    <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
         $(function() {
             var nodes = {
@@ -181,29 +176,32 @@ XSS攻击方式反射型 XSS反射型XSS，也叫非持久型XSS，是指发生�
                 nodes.aside.toggleClass('panel-show');
             });
             $('#nav-tag').on('click', function(event) {
-                event.preventDefault();console.log(nodes.navTags.attr('class'))
-                nodes.navTags.toggleClass('tag-show');console.log(nodes.navTags.attr('class'))
-            })/*.hover(function() {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
                 nodes.navTags.addClass('tag-show');
             }, function() {
                 nodes.navTags.removeClass('tag-show');
             });*/
-
-            
-            $(document.body).scrollspy({target: '#aside-inner'});
-            
         });
     </script>
     
         <script type="text/javascript" src="/js/search.js"></script>
-        <script type="text/javascript" src="/js/common.js"></script>
         <script type="text/javascript">
-                var search_path = "search.xml";
-                if (search_path.length == 0) {
-                    search_path = "search.xml";
-                }
-                var path = "/" + search_path;
-                searchFunc(path, 'local-search-input', 'article-search-result');
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/" + search_path;
+            searchFunc(path, 'local-search-input', 'article-search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
         </script>
     
 </body>

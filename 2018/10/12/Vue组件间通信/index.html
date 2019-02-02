@@ -1,52 +1,49 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8" />
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
 
     
 
     
-
-    <title>Vue2组件间通信 | Gblog</title>
-    <meta name="author" content="Mangon" />
-    <meta name="version" content="1.0.0" />
+    <title>
+        Vue2组件间通信 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon">
+    <meta name="version" content="1.0.0">
     
     
-    <meta name="description" content="本篇主要讲述Vue2中组件间通信。目前 Vue 最新版本为。
-props与自定义事件这是Vue推荐使用的通信方法
-Vue中通过props属性可以实现父组件向子组件的参数传递。所有的 prop 都使得其父子之间形成了一个 单向下行绑定 ：父级 prop 的更新会向下流动到子组件中，但是反过来则不行。这样会防止从子组件意外改变父级组件的状态，从而导致你的应用的数据流向难以理解。每次父级组件发生更新时，子组件中所有的 prop 都将会刷新为最新的值。
-在子组件中定义props属性12345Vue.co" />
+        <meta name="description" content="本篇主要讲述Vue2中组件间通信。目前 Vue 最新版本为。props与自定义事件这是Vue推荐使用的通信方法Vue中通过props属性可以实现父组件向子组件的参数传递。所有的 prop 都使得其父子之间形成了一个 单向下行绑定 ：父级 prop 的更新会向下流动到子组件中，但是反过来则不行。这样会防止从子组件意外改变父级组件的状态，从而导致你的应用的数据流向难以理解。每次父级组件发生更新时，子组件中所有的 prop 都将会刷新为最新的值。在子组件中定义props属性12345Vue...">
     
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     
     
-    <link rel="icon" href="/images/favicon.ico">
+        <link rel="icon" href="/images/favicon.ico">
     
 
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
-    <div class="app">
+    <main class="app">
         <header class="header clearfix">
     <div id="nav" class="nav">
     <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
     <nav class="nav-inner">
-
         
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/">主页</a>
+                </li>
+            
         
-        <li class="nav-item">
-            <a class="nav-link" href="/">主页</a>
-        </li>
-        
-        
-        
-        <li class="nav-item">
-            <a class="nav-link" href="/archives">目录</a>
-        </li>
-        
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/archives">目录</a>
+                </li>
+            
         
     </nav>
 </div>
@@ -58,17 +55,16 @@ Vue中通过props属性可以实现父组件向子组件的参数传递。所有
         <div class="top-search-box" id="top-search-box">
     <form>
         <div class="search-btn"></div>
-        <input autocomplete="off" type="text" id="local-search-input" name="q" results="0" placeholder="搜索" class="st-search-input st-default-search-input form-control"
-        />
+        <input autocomplete="off" type="text" id="local-search-input" name="q" results="0" placeholder="搜索" class="st-search-input st-default-search-input form-control">
         <button type="reset" class="reset-search-btn"></button>
     </form>
 </div>        
         
-        
+            
         
 
         
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#props与自定义事件"><span class="toc-number">1.</span> <span class="toc-text">props与自定义事件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue中通过props属性可以实现父组件向子组件的参数传递。"><span class="toc-number">1.1.</span> <span class="toc-text">Vue中通过props属性可以实现父组件向子组件的参数传递。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue中通过自定义事件可以实现子组件向父组件的参数传递。"><span class="toc-number">1.2.</span> <span class="toc-text">Vue中通过自定义事件可以实现子组件向父组件的参数传递。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#provide与inject"><span class="toc-number">2.</span> <span class="toc-text">provide与inject</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#props与-sync"><span class="toc-number">3.</span> <span class="toc-text">props与.sync</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#v-model"><span class="toc-number">4.</span> <span class="toc-text">v-model</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#parent与-children-refs"><span class="toc-number">5.</span> <span class="toc-text">$parent与$children/$refs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#attr与-listener"><span class="toc-number">6.</span> <span class="toc-text">$attr与$listener</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#中央事件总栈-emit-on"><span class="toc-number">7.</span> <span class="toc-text">中央事件总栈 $emit $on</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vuex"><span class="toc-number">8.</span> <span class="toc-text">vuex</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#props与自定义事件"><span class="toc-number">1.</span> <span class="toc-text">props与自定义事件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue中通过props属性可以实现父组件向子组件的参数传递。"><span class="toc-number">1.1.</span> <span class="toc-text">Vue中通过props属性可以实现父组件向子组件的参数传递。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue中通过自定义事件可以实现子组件向父组件的参数传递。"><span class="toc-number">1.2.</span> <span class="toc-text">Vue中通过自定义事件可以实现子组件向父组件的参数传递。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#provide与inject"><span class="toc-number">2.</span> <span class="toc-text">provide与inject</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#props与-sync"><span class="toc-number">3.</span> <span class="toc-text">props与.sync</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#v-model"><span class="toc-number">4.</span> <span class="toc-text">v-model</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#parent与-children-refs"><span class="toc-number">5.</span> <span class="toc-text">$parent与$children/$refs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#attr与-listener"><span class="toc-number">6.</span> <span class="toc-text">$attr与$listener</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#中央事件总栈-emit-on"><span class="toc-number">7.</span> <span class="toc-text">中央事件总栈 $emit $on</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vuex"><span class="toc-number">8.</span> <span class="toc-text">vuex</span></a></li></ol>
         
         <div id="coffee-content"></div>
     </div>
@@ -76,7 +72,7 @@ Vue中通过props属性可以实现父组件向子组件的参数传递。所有
 
 </header>
 
-        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content"><article class="article" itemscope="" itemprop="blogPost">
     
     <header class="article-header">
         
@@ -157,19 +153,17 @@ Vue中通过props属性可以实现父组件向子组件的参数传递。所有
     
         <div class="license">
             <p>版权声明：
-                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0国际(CC BY-NC-SA 4.0)</a>
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
             </p>
         </div>
     
 </footer>
 
 
-    </div>
+    </main>
 
     <script type="text/javascript" src="/js/jquery.min.js"></script>
-    
-    <script type="text/javascript" src="/js/scrollspy.min.js"></script>
-    
+    <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
         $(function() {
             var nodes = {
@@ -185,29 +179,32 @@ Vue中通过props属性可以实现父组件向子组件的参数传递。所有
                 nodes.aside.toggleClass('panel-show');
             });
             $('#nav-tag').on('click', function(event) {
-                event.preventDefault();console.log(nodes.navTags.attr('class'))
-                nodes.navTags.toggleClass('tag-show');console.log(nodes.navTags.attr('class'))
-            })/*.hover(function() {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
                 nodes.navTags.addClass('tag-show');
             }, function() {
                 nodes.navTags.removeClass('tag-show');
             });*/
-
-            
-            $(document.body).scrollspy({target: '#aside-inner'});
-            
         });
     </script>
     
         <script type="text/javascript" src="/js/search.js"></script>
-        <script type="text/javascript" src="/js/common.js"></script>
         <script type="text/javascript">
-                var search_path = "search.xml";
-                if (search_path.length == 0) {
-                    search_path = "search.xml";
-                }
-                var path = "/" + search_path;
-                searchFunc(path, 'local-search-input', 'article-search-result');
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/" + search_path;
+            searchFunc(path, 'local-search-input', 'article-search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
         </script>
     
 </body>

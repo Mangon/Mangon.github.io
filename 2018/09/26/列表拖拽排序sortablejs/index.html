@@ -1,55 +1,49 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8" />
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
 
     
 
     
-
-    <title>列表拖拽排序sortablejs | Gblog</title>
-    <meta name="author" content="Mangon" />
-    <meta name="version" content="1.0.0" />
+    <title>
+        列表拖拽排序sortablejs | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon">
+    <meta name="version" content="1.0.0">
     
     
-    <meta name="description" content="简单的拖拽交换实现列表拖拽排序，最简单的方法就是将想要拖拽的元素设置为dragable=“true”，然后利用drag事件处理元素位置变换。  
-拖拽的时候主要有以下几个事件  
-
-ondragstart 事件：当拖拽元素开始被拖拽的时候触发的事件，此事件作用在被拖曳元素上  
-ondragenter 事件：当拖曳元素进入目标元素的时候触发的事件，此事件作用在目标元素上  
-ondragover 事件：拖拽元素在目标元素上移动的时候触发的事件，此事件作用在目标元素上  
-ondrop 事件：被拖" />
+        <meta name="description" content="简单的拖拽交换实现列表拖拽排序，最简单的方法就是将想要拖拽的元素设置为dragable=“true”，然后利用drag事件处理元素位置变换。  拖拽的时候主要有以下几个事件  ondragstart 事件：当拖拽元素开始被拖拽的时候触发的事件，此事件作用在被拖曳元素上  ondragenter 事件：当拖曳元素进入目标元素的时候触发的事件，此事件作用在目标元素上  ondragover 事件：拖拽元素在目标元素上移动的时候触发的事件，此事件作用在目标元素上  ondrop 事件...">
     
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     
     
-    <link rel="icon" href="/images/favicon.ico">
+        <link rel="icon" href="/images/favicon.ico">
     
 
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
-    <div class="app">
+    <main class="app">
         <header class="header clearfix">
     <div id="nav" class="nav">
     <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
     <nav class="nav-inner">
-
         
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/">主页</a>
+                </li>
+            
         
-        <li class="nav-item">
-            <a class="nav-link" href="/">主页</a>
-        </li>
-        
-        
-        
-        <li class="nav-item">
-            <a class="nav-link" href="/archives">目录</a>
-        </li>
-        
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/archives">目录</a>
+                </li>
+            
         
     </nav>
 </div>
@@ -61,17 +55,16 @@ ondrop 事件：被拖" />
         <div class="top-search-box" id="top-search-box">
     <form>
         <div class="search-btn"></div>
-        <input autocomplete="off" type="text" id="local-search-input" name="q" results="0" placeholder="搜索" class="st-search-input st-default-search-input form-control"
-        />
+        <input autocomplete="off" type="text" id="local-search-input" name="q" results="0" placeholder="搜索" class="st-search-input st-default-search-input form-control">
         <button type="reset" class="reset-search-btn"></button>
     </form>
 </div>        
         
-        
+            
         
 
         
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简单的拖拽交换"><span class="toc-number">1.</span> <span class="toc-text">简单的拖拽交换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sortable用法"><span class="toc-number">2.</span> <span class="toc-text">Sortable用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sortable在React中的用法示例"><span class="toc-number">3.</span> <span class="toc-text">Sortable在React中的用法示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其它版本的Sortable"><span class="toc-number">4.</span> <span class="toc-text">其它版本的Sortable</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简单的拖拽交换"><span class="toc-number">1.</span> <span class="toc-text">简单的拖拽交换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sortable用法"><span class="toc-number">2.</span> <span class="toc-text">Sortable用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sortable在React中的用法示例"><span class="toc-number">3.</span> <span class="toc-text">Sortable在React中的用法示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其它版本的Sortable"><span class="toc-number">4.</span> <span class="toc-text">其它版本的Sortable</span></a></li></ol>
         
         <div id="coffee-content"></div>
     </div>
@@ -79,7 +72,7 @@ ondrop 事件：被拖" />
 
 </header>
 
-        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content"><article class="article" itemscope="" itemprop="blogPost">
     
     <header class="article-header">
         
@@ -141,19 +134,17 @@ ondrop 事件：被拖" />
     
         <div class="license">
             <p>版权声明：
-                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0国际(CC BY-NC-SA 4.0)</a>
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
             </p>
         </div>
     
 </footer>
 
 
-    </div>
+    </main>
 
     <script type="text/javascript" src="/js/jquery.min.js"></script>
-    
-    <script type="text/javascript" src="/js/scrollspy.min.js"></script>
-    
+    <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
         $(function() {
             var nodes = {
@@ -169,29 +160,32 @@ ondrop 事件：被拖" />
                 nodes.aside.toggleClass('panel-show');
             });
             $('#nav-tag').on('click', function(event) {
-                event.preventDefault();console.log(nodes.navTags.attr('class'))
-                nodes.navTags.toggleClass('tag-show');console.log(nodes.navTags.attr('class'))
-            })/*.hover(function() {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
                 nodes.navTags.addClass('tag-show');
             }, function() {
                 nodes.navTags.removeClass('tag-show');
             });*/
-
-            
-            $(document.body).scrollspy({target: '#aside-inner'});
-            
         });
     </script>
     
         <script type="text/javascript" src="/js/search.js"></script>
-        <script type="text/javascript" src="/js/common.js"></script>
         <script type="text/javascript">
-                var search_path = "search.xml";
-                if (search_path.length == 0) {
-                    search_path = "search.xml";
-                }
-                var path = "/" + search_path;
-                searchFunc(path, 'local-search-input', 'article-search-result');
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/" + search_path;
+            searchFunc(path, 'local-search-input', 'article-search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
         </script>
     
 </body>

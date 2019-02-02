@@ -1,52 +1,49 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8" />
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
 
     
 
     
-
-    <title>浅谈viewport | Gblog</title>
-    <meta name="author" content="Mangon" />
-    <meta name="version" content="1.0.0" />
+    <title>
+        浅谈viewport | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon">
+    <meta name="version" content="1.0.0">
     
     
-    <meta name="description" content="viewport来源通常为了使得网页能够成为响应式的，我们需要在head内声名有关viewport的meta。它长这样  
-1&amp;lt;meta name=&#34;viewport&#34; content=&#34;width=device-width,initial-scale=1,user-scalable=no&#34;/&amp;gt;
-viewport的设计是由于pc互联网向移动互联网的过渡。在过去，多数文档被设计用来在pc上进行阅读，而pc的设备通常比较宽，同样的网页不进行任何改变放到移动端的话，内容就会变得无法辨认。
-" />
+        <meta name="description" content="viewport来源通常为了使得网页能够成为响应式的，我们需要在head内声名有关viewport的meta。它长这样  1&amp;lt;meta name=&#34;viewport&#34; content=&#34;width=device-width,initial-scale=1,user-scalable=no&#34;/&amp;gt;viewport的设计是由于pc互联网向移动互联网的过渡。在过去，多数文档被设计用来在pc上进行阅读，而pc的设备通常比较宽，同样的网页不进行任何改变放到移动端的话，内容就会变得无法辨...">
     
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     
     
-    <link rel="icon" href="/images/favicon.ico">
+        <link rel="icon" href="/images/favicon.ico">
     
 
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
-    <div class="app">
+    <main class="app">
         <header class="header clearfix">
     <div id="nav" class="nav">
     <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
     <nav class="nav-inner">
-
         
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/">主页</a>
+                </li>
+            
         
-        <li class="nav-item">
-            <a class="nav-link" href="/">主页</a>
-        </li>
-        
-        
-        
-        <li class="nav-item">
-            <a class="nav-link" href="/archives">目录</a>
-        </li>
-        
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/archives">目录</a>
+                </li>
+            
         
     </nav>
 </div>
@@ -58,17 +55,16 @@ viewport的设计是由于pc互联网向移动互联网的过渡。在过去，�
         <div class="top-search-box" id="top-search-box">
     <form>
         <div class="search-btn"></div>
-        <input autocomplete="off" type="text" id="local-search-input" name="q" results="0" placeholder="搜索" class="st-search-input st-default-search-input form-control"
-        />
+        <input autocomplete="off" type="text" id="local-search-input" name="q" results="0" placeholder="搜索" class="st-search-input st-default-search-input form-control">
         <button type="reset" class="reset-search-btn"></button>
     </form>
 </div>        
         
-        
+            
         
 
         
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#viewport来源"><span class="toc-number">1.</span> <span class="toc-text">viewport来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#viewport取值"><span class="toc-number">2.</span> <span class="toc-text">viewport取值</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#viewport来源"><span class="toc-number">1.</span> <span class="toc-text">viewport来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#viewport取值"><span class="toc-number">2.</span> <span class="toc-text">viewport取值</span></a></li></ol>
         
         <div id="coffee-content"></div>
     </div>
@@ -76,7 +72,7 @@ viewport的设计是由于pc互联网向移动互联网的过渡。在过去，�
 
 </header>
 
-        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content"><article class="article" itemscope="" itemprop="blogPost">
     
     <header class="article-header">
         
@@ -194,19 +190,17 @@ viewport的设计是由于pc互联网向移动互联网的过渡。在过去，�
     
         <div class="license">
             <p>版权声明：
-                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0国际(CC BY-NC-SA 4.0)</a>
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
             </p>
         </div>
     
 </footer>
 
 
-    </div>
+    </main>
 
     <script type="text/javascript" src="/js/jquery.min.js"></script>
-    
-    <script type="text/javascript" src="/js/scrollspy.min.js"></script>
-    
+    <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
         $(function() {
             var nodes = {
@@ -222,29 +216,32 @@ viewport的设计是由于pc互联网向移动互联网的过渡。在过去，�
                 nodes.aside.toggleClass('panel-show');
             });
             $('#nav-tag').on('click', function(event) {
-                event.preventDefault();console.log(nodes.navTags.attr('class'))
-                nodes.navTags.toggleClass('tag-show');console.log(nodes.navTags.attr('class'))
-            })/*.hover(function() {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
                 nodes.navTags.addClass('tag-show');
             }, function() {
                 nodes.navTags.removeClass('tag-show');
             });*/
-
-            
-            $(document.body).scrollspy({target: '#aside-inner'});
-            
         });
     </script>
     
         <script type="text/javascript" src="/js/search.js"></script>
-        <script type="text/javascript" src="/js/common.js"></script>
         <script type="text/javascript">
-                var search_path = "search.xml";
-                if (search_path.length == 0) {
-                    search_path = "search.xml";
-                }
-                var path = "/" + search_path;
-                searchFunc(path, 'local-search-input', 'article-search-result');
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/" + search_path;
+            searchFunc(path, 'local-search-input', 'article-search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
         </script>
     
 </body>

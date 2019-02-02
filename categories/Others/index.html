@@ -6,42 +6,42 @@
     
 
     
-
-    <title>Category: Others | Gblog</title>
+    <title>
+        Category: Others | 
+        Gblog
+    </title>
     <meta name="author" content="Mangon" />
     <meta name="version" content="1.0.0" />
     
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
-
     
     
-    <link rel="icon" href="/images/favicon.ico">
+        <link rel="icon" href="/images/favicon.ico">
     
 
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
-    <div class="app">
+    <main class="app">
         <header class="header clearfix">
     <div id="nav" class="nav">
     <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
     <nav class="nav-inner">
-
         
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/">主页</a>
+                </li>
+            
         
-        <li class="nav-item">
-            <a class="nav-link" href="/">主页</a>
-        </li>
-        
-        
-        
-        <li class="nav-item">
-            <a class="nav-link" href="/archives">目录</a>
-        </li>
-        
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/archives">目录</a>
+                </li>
+            
         
     </nav>
 </div>
@@ -53,40 +53,39 @@
         <div class="top-search-box" id="top-search-box">
     <form>
         <div class="search-btn"></div>
-        <input autocomplete="off" type="text" id="local-search-input" name="q" results="0" placeholder="搜索" class="st-search-input st-default-search-input form-control"
-        />
+        <input autocomplete="off" type="text" id="local-search-input" name="q" results="0" placeholder="搜索" class="st-search-input st-default-search-input form-control">
         <button type="reset" class="reset-search-btn"></button>
     </form>
 </div>        
         
 
         
-        <div class="author-meta">
-            
-            <div class="author-avatar">
-                <a href="/">
-                    <img src="/images/avatar.jpg" title="Mangon">
-                </a>
-            </div>
-            
-            <div class="author-name">Mangon</div>
-            <div class="author-work">Front-End Software Engineer</div>
-            <div class="author-location">
-                <i class="icon-location vm"></i>
-                <span class="vm">Beijing, China</span>
-            </div>
-            
-            <div class="author-thread-wrap">
-                <div class="author-threads clearfix">
-                    
-                    <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
-                    
-                    
-                    
+            <div class="author-meta">
+                
+                <div class="author-avatar">
+                    <a href="/">
+                        <img src="/images/avatar.jpg" title="Mangon">
+                    </a>
                 </div>
+                
+                <div class="author-name">Mangon</div>
+                <div class="author-work">Front-End Software Engineer</div>
+                <div class="author-location">
+                    <i class="icon-location vm"></i>
+                    <span class="vm">Beijing, China</span>
+                </div>
+                
+                <div class="author-thread-wrap">
+                    <div class="author-threads clearfix">
+                        
+                        <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
+                        
+                        
+                        
+                    </div>
+                </div>
+                
             </div>
-            
-        </div>
         
         <div id="coffee-content"></div>
     </div>
@@ -94,8 +93,8 @@
 
 </header>
 
-        <div id="content" class="content">
-    <article class="article" itemscope itemprop="blogPost">
+        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+    <article class="article" itemscope="" itemprop="blogPost">
     
     <header class="article-header">
         
@@ -364,7 +363,7 @@ join(separator)：将数组的元素组起一个字符串，以separator为分�
 <li>构建DOM树（根据html代码自顶向下进行构建），并且在同时构建渲染树</li>
 <li>遇到js文件加载执行，将阻塞DOM树的构建；遇到CSS文件，将阻塞渲染树的构建<br>（script标签中的defer属性：构建DOM树的过程和js文件的加载异步（并行）进行，但是js文件执行需要在DOM树构建完成之后 script标签中的async属性：构建DOM树、渲染树的过程和js文件的加载和执行异步（并行）进行）</li>
 </ol>
-<p>综上所述，script标签最好放在标签的前面，因为放在所有body中的标签后面就不会出现网页加载时出现空白的情况，可以持续的给用户提供视觉反馈，同时在有些情况下，会降低错误的发生。<br>而CSS标签应该放在<head></head>标签之间，因为如果放在标签的前面，那么当DOM树构建完成了，渲染树才构建，那么当渲染树构建完成，浏览器不得不再重新渲染整个页面，这样造成了资源的浪费。效率也不高。如果放在<head></head>之间，浏览器边构建边渲染，效率要高的多。</p>
+<p>综上所述，script标签最好放在标签的前面，因为放在所有body中的标签后面就不会出现网页加载时出现空白的情况，可以持续的给用户提供视觉反馈，同时在有些情况下，会降低错误的发生。<br>而CSS标签应该放在<head><meta name="generator" content="Hexo 3.8.0"></head>标签之间，因为如果放在标签的前面，那么当DOM树构建完成了，渲染树才构建，那么当渲染树构建完成，浏览器不得不再重新渲染整个页面，这样造成了资源的浪费。效率也不高。如果放在<head><meta name="generator" content="Hexo 3.8.0"></head>之间，浏览器边构建边渲染，效率要高的多。</p>
 <h2 id="如何做前后端分离"><a href="#如何做前后端分离" class="headerlink" title="如何做前后端分离"></a>如何做前后端分离</h2><p><a href="https://segmentfault.com/a/1190000009329474?_ea=2038402" target="_blank" rel="noopener">https://segmentfault.com/a/1190000009329474?_ea=2038402</a></p>
 <h2 id="POST-GET区别"><a href="#POST-GET区别" class="headerlink" title="POST GET区别"></a>POST GET区别</h2><h1 id="中级（初级编程题及深入基础知识）"><a href="#中级（初级编程题及深入基础知识）" class="headerlink" title="中级（初级编程题及深入基础知识）"></a>中级（初级编程题及深入基础知识）</h1><h2 id="面向对象编程的23种设计模式"><a href="#面向对象编程的23种设计模式" class="headerlink" title="面向对象编程的23种设计模式"></a>面向对象编程的23种设计模式</h2><p><a href="http://www.runoob.com/design-pattern/design-pattern-tutorial.html" target="_blank" rel="noopener">http://www.runoob.com/design-pattern/design-pattern-tutorial.html</a></p>
 <p>创建型模式(Creational Patterns):  </p>
@@ -566,7 +565,7 @@ a:visited { color: green; }
 </article>
 
 
-    <article class="article" itemscope itemprop="blogPost">
+    <article class="article" itemscope="" itemprop="blogPost">
     
     <header class="article-header">
         
@@ -653,17 +652,17 @@ a:visited { color: green; }
     
         <div class="license">
             <p>版权声明：
-                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0国际(CC BY-NC-SA 4.0)</a>
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
             </p>
         </div>
     
 </footer>
 
 
-    </div>
+    </main>
 
     <script type="text/javascript" src="/js/jquery.min.js"></script>
-    
+    <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
         $(function() {
             var nodes = {
@@ -679,28 +678,28 @@ a:visited { color: green; }
                 nodes.aside.toggleClass('panel-show');
             });
             $('#nav-tag').on('click', function(event) {
-                event.preventDefault();console.log(nodes.navTags.attr('class'))
-                nodes.navTags.toggleClass('tag-show');console.log(nodes.navTags.attr('class'))
-            })/*.hover(function() {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
                 nodes.navTags.addClass('tag-show');
             }, function() {
                 nodes.navTags.removeClass('tag-show');
             });*/
-
-            
         });
     </script>
     
         <script type="text/javascript" src="/js/search.js"></script>
-        <script type="text/javascript" src="/js/common.js"></script>
         <script type="text/javascript">
-                var search_path = "search.xml";
-                if (search_path.length == 0) {
-                    search_path = "search.xml";
-                }
-                var path = "/" + search_path;
-                searchFunc(path, 'local-search-input', 'article-search-result');
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/" + search_path;
+            searchFunc(path, 'local-search-input', 'article-search-result');
         </script>
+    
     
 </body>
 </html>

@@ -1,50 +1,49 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8" />
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
 
     
 
     
-
-    <title>CSRF攻击 | Gblog</title>
-    <meta name="author" content="Mangon" />
-    <meta name="version" content="1.0.0" />
+    <title>
+        CSRF攻击 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon">
+    <meta name="version" content="1.0.0">
     
     
-    <meta name="description" content="CSRF（Cross-site request forgery）跨站请求伪造，也被称为“One Click Attack”或者Session Riding，通常缩写为CSRF或者XSRF，是一种通过伪造用户请求破坏网站的攻击方式。  
-CSRF攻击原理当你访问 xxx.com 黑客页面的时候，页面上放了一个按钮或者一个表单，URL/action 为 http://you.com/delete-myself ,这样引导或迫使甚至伪造用户触发按钮或表单。在浏览器发出 GET 或 POST 请求的时候" />
+        <meta name="description" content="CSRF（Cross-site request forgery）跨站请求伪造，也被称为“One Click Attack”或者Session Riding，通常缩写为CSRF或者XSRF，是一种通过伪造用户请求破坏网站的攻击方式。  CSRF攻击原理当你访问 xxx.com 黑客页面的时候，页面上放了一个按钮或者一个表单，URL/action 为 http://you.com/delete-myself ,这样引导或迫使甚至伪造用户触发按钮或表单。在浏览器发出 GET 或 POST 请求...">
     
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     
     
-    <link rel="icon" href="/images/favicon.ico">
+        <link rel="icon" href="/images/favicon.ico">
     
 
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
-    <div class="app">
+    <main class="app">
         <header class="header clearfix">
     <div id="nav" class="nav">
     <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
     <nav class="nav-inner">
-
         
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/">主页</a>
+                </li>
+            
         
-        <li class="nav-item">
-            <a class="nav-link" href="/">主页</a>
-        </li>
-        
-        
-        
-        <li class="nav-item">
-            <a class="nav-link" href="/archives">目录</a>
-        </li>
-        
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/archives">目录</a>
+                </li>
+            
         
     </nav>
 </div>
@@ -56,17 +55,16 @@ CSRF攻击原理当你访问 xxx.com 黑客页面的时候，页面上放了一�
         <div class="top-search-box" id="top-search-box">
     <form>
         <div class="search-btn"></div>
-        <input autocomplete="off" type="text" id="local-search-input" name="q" results="0" placeholder="搜索" class="st-search-input st-default-search-input form-control"
-        />
+        <input autocomplete="off" type="text" id="local-search-input" name="q" results="0" placeholder="搜索" class="st-search-input st-default-search-input form-control">
         <button type="reset" class="reset-search-btn"></button>
     </form>
 </div>        
         
-        
+            
         
 
         
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSRF攻击原理"><span class="toc-number">1.</span> <span class="toc-text">CSRF攻击原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSRF防范"><span class="toc-number">2.</span> <span class="toc-text">CSRF防范</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#验证-HTTP-Referer-字段"><span class="toc-number">2.1.</span> <span class="toc-text">验证 HTTP Referer 字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在请求地址中添加-token-并验证"><span class="toc-number">2.2.</span> <span class="toc-text">在请求地址中添加 token 并验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在-HTTP-头中自定义属性并验证"><span class="toc-number">2.3.</span> <span class="toc-text">在 HTTP 头中自定义属性并验证</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSRF攻击原理"><span class="toc-number">1.</span> <span class="toc-text">CSRF攻击原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSRF防范"><span class="toc-number">2.</span> <span class="toc-text">CSRF防范</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#验证-HTTP-Referer-字段"><span class="toc-number">2.1.</span> <span class="toc-text">验证 HTTP Referer 字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在请求地址中添加-token-并验证"><span class="toc-number">2.2.</span> <span class="toc-text">在请求地址中添加 token 并验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在-HTTP-头中自定义属性并验证"><span class="toc-number">2.3.</span> <span class="toc-text">在 HTTP 头中自定义属性并验证</span></a></li></ol></li></ol>
         
         <div id="coffee-content"></div>
     </div>
@@ -74,7 +72,7 @@ CSRF攻击原理当你访问 xxx.com 黑客页面的时候，页面上放了一�
 
 </header>
 
-        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content"><article class="article" itemscope="" itemprop="blogPost">
     
     <header class="article-header">
         
@@ -128,19 +126,17 @@ CSRF攻击原理当你访问 xxx.com 黑客页面的时候，页面上放了一�
     
         <div class="license">
             <p>版权声明：
-                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0国际(CC BY-NC-SA 4.0)</a>
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
             </p>
         </div>
     
 </footer>
 
 
-    </div>
+    </main>
 
     <script type="text/javascript" src="/js/jquery.min.js"></script>
-    
-    <script type="text/javascript" src="/js/scrollspy.min.js"></script>
-    
+    <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
         $(function() {
             var nodes = {
@@ -156,29 +152,32 @@ CSRF攻击原理当你访问 xxx.com 黑客页面的时候，页面上放了一�
                 nodes.aside.toggleClass('panel-show');
             });
             $('#nav-tag').on('click', function(event) {
-                event.preventDefault();console.log(nodes.navTags.attr('class'))
-                nodes.navTags.toggleClass('tag-show');console.log(nodes.navTags.attr('class'))
-            })/*.hover(function() {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
                 nodes.navTags.addClass('tag-show');
             }, function() {
                 nodes.navTags.removeClass('tag-show');
             });*/
-
-            
-            $(document.body).scrollspy({target: '#aside-inner'});
-            
         });
     </script>
     
         <script type="text/javascript" src="/js/search.js"></script>
-        <script type="text/javascript" src="/js/common.js"></script>
         <script type="text/javascript">
-                var search_path = "search.xml";
-                if (search_path.length == 0) {
-                    search_path = "search.xml";
-                }
-                var path = "/" + search_path;
-                searchFunc(path, 'local-search-input', 'article-search-result');
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/" + search_path;
+            searchFunc(path, 'local-search-input', 'article-search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
         </script>
     
 </body>

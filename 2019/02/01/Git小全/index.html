@@ -1,50 +1,49 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8" />
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
 
     
 
     
-
-    <title>Git小全 | Gblog</title>
-    <meta name="author" content="Mangon" />
-    <meta name="version" content="1.0.0" />
+    <title>
+        Git小全 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon">
+    <meta name="version" content="1.0.0">
     
     
-    <meta name="description" content="什么是 GitGit 是一个免费的开源分布式版本控制系统。它被设计用来高效的控制各种各样的工程项目。Git最初在2005年由 Linus 花费了两周时间用C语言开发而成，并被用来管理 Linux kernel 的源码。Git很容易学习，所占用空间极小而且效率很高。它比同类型的版本控制工具比如Subversion(SVN)，CVS， ClearCase要更加功能强大。  
-什么是版本控制简单来说就是项目的历史，项目的代码从无到有，从少到多是有个过程的。在写代码的过程中我们免不了会遇到想知道项目发展" />
+        <meta name="description" content="什么是 GitGit 是一个免费的开源分布式版本控制系统。它被设计用来高效的控制各种各样的工程项目。Git最初在2005年由 Linus 花费了两周时间用C语言开发而成，并被用来管理 Linux kernel 的源码。Git很容易学习，所占用空间极小而且效率很高。它比同类型的版本控制工具比如Subversion(SVN)，CVS， ClearCase要更加功能强大。  什么是版本控制简单来说就是项目的历史，项目的代码从无到有，从少到多是有个过程的。在写代码的过程中我们免不了会遇到想知道项...">
     
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     
     
-    <link rel="icon" href="/images/favicon.ico">
+        <link rel="icon" href="/images/favicon.ico">
     
 
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
-    <div class="app">
+    <main class="app">
         <header class="header clearfix">
     <div id="nav" class="nav">
     <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
     <nav class="nav-inner">
-
         
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/">主页</a>
+                </li>
+            
         
-        <li class="nav-item">
-            <a class="nav-link" href="/">主页</a>
-        </li>
-        
-        
-        
-        <li class="nav-item">
-            <a class="nav-link" href="/archives">目录</a>
-        </li>
-        
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/archives">目录</a>
+                </li>
+            
         
     </nav>
 </div>
@@ -56,17 +55,16 @@
         <div class="top-search-box" id="top-search-box">
     <form>
         <div class="search-btn"></div>
-        <input autocomplete="off" type="text" id="local-search-input" name="q" results="0" placeholder="搜索" class="st-search-input st-default-search-input form-control"
-        />
+        <input autocomplete="off" type="text" id="local-search-input" name="q" results="0" placeholder="搜索" class="st-search-input st-default-search-input form-control">
         <button type="reset" class="reset-search-btn"></button>
     </form>
 </div>        
         
-        
+            
         
 
         
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是-Git"><span class="toc-number">1.</span> <span class="toc-text">什么是 Git</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是版本控制"><span class="toc-number">1.1.</span> <span class="toc-text">什么是版本控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git-的特色"><span class="toc-number">1.2.</span> <span class="toc-text">Git 的特色</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何安装-Git"><span class="toc-number">2.</span> <span class="toc-text">如何安装 Git</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#在Linux上安装Git"><span class="toc-number">2.1.</span> <span class="toc-text">在Linux上安装Git</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在Mac-OS-X上安装Git"><span class="toc-number">2.2.</span> <span class="toc-text">在Mac OS X上安装Git</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在Windows上安装Git"><span class="toc-number">2.3.</span> <span class="toc-text">在Windows上安装Git</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-常用命令"><span class="toc-number">3.</span> <span class="toc-text">Git 常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#git-stash-save-lt-msg"><span class="toc-number">3.1.</span> <span class="toc-text">git stash save [&lt;msg&gt;]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-stash-apply-lt-stash"><span class="toc-number">3.2.</span> <span class="toc-text">git stash apply [&lt;stash&gt;]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-stash-pop"><span class="toc-number">3.3.</span> <span class="toc-text">git stash pop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-stash-list"><span class="toc-number">3.4.</span> <span class="toc-text">git stash list</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-stash-show-lt-stash"><span class="toc-number">3.5.</span> <span class="toc-text">git stash show [&lt;stash&gt;]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-stash-drop-lt-stash"><span class="toc-number">3.6.</span> <span class="toc-text">git stash drop [&lt;stash&gt;]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-stash-clear"><span class="toc-number">3.7.</span> <span class="toc-text">git stash clear</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-stash-branch-lt-branshname-lt-stash"><span class="toc-number">3.8.</span> <span class="toc-text">git stash branch &lt;branshname&gt; [&lt;stash&gt;]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-status"><span class="toc-number">3.9.</span> <span class="toc-text">git status</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-diff"><span class="toc-number">3.10.</span> <span class="toc-text">git diff</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-diff-1"><span class="toc-number">3.11.</span> <span class="toc-text">git diff </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-add-lt-file-or-dir…"><span class="toc-number">3.12.</span> <span class="toc-text">git add &lt;file.. or dir…&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-add-u"><span class="toc-number">3.13.</span> <span class="toc-text">git add -u</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-rm-lt-file-s-…"><span class="toc-number">3.14.</span> <span class="toc-text">git rm &lt;file(s)…&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-mv-lt-file-s-…"><span class="toc-number">3.15.</span> <span class="toc-text">git mv &lt;file(s)…&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-commit-a-m-‘msg’"><span class="toc-number">3.16.</span> <span class="toc-text">git commit -a [-m ‘msg’]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-checkout-lt-file-s-…-or-dir…"><span class="toc-number">3.17.</span> <span class="toc-text">git checkout &lt;file(s)… or dir…&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-reset-–hard"><span class="toc-number">3.18.</span> <span class="toc-text">git reset –hard</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-checkout-b"><span class="toc-number">3.19.</span> <span class="toc-text">git checkout -b </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-merge"><span class="toc-number">3.20.</span> <span class="toc-text">git merge </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-rebase-lt-upstream"><span class="toc-number">3.21.</span> <span class="toc-text">git rebase &lt;upstream&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-cherry-pick-lt-commit"><span class="toc-number">3.22.</span> <span class="toc-text">git cherry-pick &lt;commit&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-revert-lt-commit"><span class="toc-number">3.23.</span> <span class="toc-text">git revert &lt;commit&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-clone-lt-repository"><span class="toc-number">3.24.</span> <span class="toc-text">git clone &lt;repository&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-pull-lt-remote-lt-refspec"><span class="toc-number">3.25.</span> <span class="toc-text">git pull &lt;remote&gt; &lt;refspec&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-reset-–hard-lt-remote-lt-branch"><span class="toc-number">3.26.</span> <span class="toc-text">git reset –hard &lt;remote&gt;|&lt;branch&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-clean"><span class="toc-number">3.27.</span> <span class="toc-text">git clean</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-reset-HEAD-lt-file-s-…"><span class="toc-number">3.28.</span> <span class="toc-text">git reset HEAD &lt;file(s)…&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-reset-–soft-HEAD"><span class="toc-number">3.29.</span> <span class="toc-text">git reset –soft HEAD^</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-diff-–cached-lt-commit"><span class="toc-number">3.30.</span> <span class="toc-text">git diff –cached [&lt;commit&gt;]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-commit-m-‘msg’"><span class="toc-number">3.31.</span> <span class="toc-text">git commit [-m ‘msg’]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-commit-–amend"><span class="toc-number">3.32.</span> <span class="toc-text">git commit –amend</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-log"><span class="toc-number">3.33.</span> <span class="toc-text">git log</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-diff-lt-commit-lt-commit"><span class="toc-number">3.34.</span> <span class="toc-text">git diff &lt;commit&gt; &lt;commit&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-branch"><span class="toc-number">3.35.</span> <span class="toc-text">git branch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-branch-d-lt-branch"><span class="toc-number">3.36.</span> <span class="toc-text">git branch -d &lt;branch&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-branch-–track-lt-new-lt-remote-branch"><span class="toc-number">3.37.</span> <span class="toc-text">git branch –track &lt;new&gt; &lt;remote/branch&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-fetch-lt-remote-lt-refspec"><span class="toc-number">3.38.</span> <span class="toc-text">git fetch &lt;remote&gt; &lt;refspec&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-push"><span class="toc-number">3.39.</span> <span class="toc-text">git push</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-push-lt-remote-lt-branch"><span class="toc-number">3.40.</span> <span class="toc-text">git push &lt;remote&gt; &lt;branch&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-push-lt-remote-lt-branch-lt-branch"><span class="toc-number">3.41.</span> <span class="toc-text">git push &lt;remote&gt; &lt;branch&gt;:&lt;branch&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-branch-r"><span class="toc-number">3.42.</span> <span class="toc-text">git branch -r</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-push-lt-remote-lt-branch-1"><span class="toc-number">3.43.</span> <span class="toc-text">git push &lt;remote&gt;:&lt;branch&gt;</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是-Git"><span class="toc-number">1.</span> <span class="toc-text">什么是 Git</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是版本控制"><span class="toc-number">1.1.</span> <span class="toc-text">什么是版本控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git-的特色"><span class="toc-number">1.2.</span> <span class="toc-text">Git 的特色</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何安装-Git"><span class="toc-number">2.</span> <span class="toc-text">如何安装 Git</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#在Linux上安装Git"><span class="toc-number">2.1.</span> <span class="toc-text">在Linux上安装Git</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在Mac-OS-X上安装Git"><span class="toc-number">2.2.</span> <span class="toc-text">在Mac OS X上安装Git</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在Windows上安装Git"><span class="toc-number">2.3.</span> <span class="toc-text">在Windows上安装Git</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-常用命令"><span class="toc-number">3.</span> <span class="toc-text">Git 常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#git-stash-save-lt-msg"><span class="toc-number">3.1.</span> <span class="toc-text">git stash save [&lt;msg&gt;]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-stash-apply-lt-stash"><span class="toc-number">3.2.</span> <span class="toc-text">git stash apply [&lt;stash&gt;]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-stash-pop"><span class="toc-number">3.3.</span> <span class="toc-text">git stash pop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-stash-list"><span class="toc-number">3.4.</span> <span class="toc-text">git stash list</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-stash-show-lt-stash"><span class="toc-number">3.5.</span> <span class="toc-text">git stash show [&lt;stash&gt;]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-stash-drop-lt-stash"><span class="toc-number">3.6.</span> <span class="toc-text">git stash drop [&lt;stash&gt;]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-stash-clear"><span class="toc-number">3.7.</span> <span class="toc-text">git stash clear</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-stash-branch-lt-branshname-lt-stash"><span class="toc-number">3.8.</span> <span class="toc-text">git stash branch &lt;branshname&gt; [&lt;stash&gt;]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-status"><span class="toc-number">3.9.</span> <span class="toc-text">git status</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-diff"><span class="toc-number">3.10.</span> <span class="toc-text">git diff</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-diff-1"><span class="toc-number">3.11.</span> <span class="toc-text">git diff </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-add-lt-file-or-dir…"><span class="toc-number">3.12.</span> <span class="toc-text">git add &lt;file.. or dir…&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-add-u"><span class="toc-number">3.13.</span> <span class="toc-text">git add -u</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-rm-lt-file-s-…"><span class="toc-number">3.14.</span> <span class="toc-text">git rm &lt;file(s)…&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-mv-lt-file-s-…"><span class="toc-number">3.15.</span> <span class="toc-text">git mv &lt;file(s)…&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-commit-a-m-‘msg’"><span class="toc-number">3.16.</span> <span class="toc-text">git commit -a [-m ‘msg’]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-checkout-lt-file-s-…-or-dir…"><span class="toc-number">3.17.</span> <span class="toc-text">git checkout &lt;file(s)… or dir…&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-reset-hard"><span class="toc-number">3.18.</span> <span class="toc-text">git reset - -hard</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-checkout-b"><span class="toc-number">3.19.</span> <span class="toc-text">git checkout -b </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-merge"><span class="toc-number">3.20.</span> <span class="toc-text">git merge </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-rebase-lt-upstream"><span class="toc-number">3.21.</span> <span class="toc-text">git rebase &lt;upstream&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-cherry-pick-lt-commit"><span class="toc-number">3.22.</span> <span class="toc-text">git cherry-pick &lt;commit&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-revert-lt-commit"><span class="toc-number">3.23.</span> <span class="toc-text">git revert &lt;commit&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-clone-lt-repository"><span class="toc-number">3.24.</span> <span class="toc-text">git clone &lt;repository&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-pull-lt-remote-lt-refspec"><span class="toc-number">3.25.</span> <span class="toc-text">git pull &lt;remote&gt; &lt;refspec&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-reset-hard-lt-remote-lt-branch"><span class="toc-number">3.26.</span> <span class="toc-text">git reset - -hard &lt;remote&gt;|&lt;branch&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-clean"><span class="toc-number">3.27.</span> <span class="toc-text">git clean</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-reset-HEAD-lt-file-s-…"><span class="toc-number">3.28.</span> <span class="toc-text">git reset HEAD &lt;file(s)…&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-reset-soft-HEAD"><span class="toc-number">3.29.</span> <span class="toc-text">git reset - -soft HEAD^</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-diff-cached-lt-commit"><span class="toc-number">3.30.</span> <span class="toc-text">git diff - -cached [&lt;commit&gt;]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-commit-m-‘msg’"><span class="toc-number">3.31.</span> <span class="toc-text">git commit [-m ‘msg’]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-commit-amend"><span class="toc-number">3.32.</span> <span class="toc-text">git commit - -amend</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-log"><span class="toc-number">3.33.</span> <span class="toc-text">git log</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-diff-lt-commit-lt-commit"><span class="toc-number">3.34.</span> <span class="toc-text">git diff &lt;commit&gt; &lt;commit&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-branch"><span class="toc-number">3.35.</span> <span class="toc-text">git branch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-branch-d-lt-branch"><span class="toc-number">3.36.</span> <span class="toc-text">git branch -d &lt;branch&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-branch-track-lt-new-lt-remote-branch"><span class="toc-number">3.37.</span> <span class="toc-text">git branch - -track &lt;new&gt; &lt;remote/branch&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-fetch-lt-remote-lt-refspec"><span class="toc-number">3.38.</span> <span class="toc-text">git fetch &lt;remote&gt; &lt;refspec&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-push"><span class="toc-number">3.39.</span> <span class="toc-text">git push</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-push-lt-remote-lt-branch"><span class="toc-number">3.40.</span> <span class="toc-text">git push &lt;remote&gt; &lt;branch&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-push-lt-remote-lt-branch-lt-branch"><span class="toc-number">3.41.</span> <span class="toc-text">git push &lt;remote&gt; &lt;branch&gt;:&lt;branch&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-branch-r"><span class="toc-number">3.42.</span> <span class="toc-text">git branch -r</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-push-lt-remote-lt-branch-1"><span class="toc-number">3.43.</span> <span class="toc-text">git push &lt;remote&gt;:&lt;branch&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-config-lt-options"><span class="toc-number">3.44.</span> <span class="toc-text">git config [&lt;options&gt;]</span></a></li></ol></li></ol>
         
         <div id="coffee-content"></div>
     </div>
@@ -74,7 +72,7 @@
 
 </header>
 
-        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content"><article class="article" itemscope="" itemprop="blogPost">
     
     <header class="article-header">
         
@@ -191,7 +189,7 @@
 <li>从暂存区删除已在工作区删除的文件</li>
 </ol>
 <h3 id="git-checkout-lt-file-s-…-or-dir…"><a href="#git-checkout-lt-file-s-…-or-dir…" class="headerlink" title="git checkout &lt;file(s)… or dir…>"></a>git checkout &lt;file(s)… or dir…></h3><p>所属区域： 从 <code>暂存区</code> 到 <code>工作区</code><br>更新工作区文件或文件夹，<strong>不会</strong>切换分支。  </p>
-<h3 id="git-reset-–hard"><a href="#git-reset-–hard" class="headerlink" title="git reset –hard"></a>git reset –hard</h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>工作区</code><br>恢复工作区和暂存区到上次提交的状态，<br>警告： 所有工作区修改都会被丢弃。使用这条命令来解决合并错误，如果你想从头开始的话传入 ORIG_HEAD 来撤销该次提交以来的所有改动。  </p>
+<h3 id="git-reset-hard"><a href="#git-reset-hard" class="headerlink" title="git reset - -hard"></a>git reset - -hard</h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>工作区</code><br>恢复工作区和暂存区到上次提交的状态，<br>警告： 所有工作区修改都会被丢弃。使用这条命令来解决合并错误，如果你想从头开始的话传入 ORIG_HEAD 来撤销该次提交以来的所有改动。  </p>
 <h3 id="git-checkout-b"><a href="#git-checkout-b" class="headerlink" title="git checkout -b "></a>git checkout -b <name of="" new="" branch\=""></name></h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>工作区</code><br>切换分支，更改工作区和暂存区为branch分支的内容，之后HEAD指向branch分支。  </p>
 <h3 id="git-merge"><a href="#git-merge" class="headerlink" title="git merge "></a>git merge <commit or="" branch\=""></commit></h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>工作区</code><br>从branch name分支合并到当前分支，使用‑‑no-commit可以保持在(已经合并)但未提交状态。  </p>
 <h3 id="git-rebase-lt-upstream"><a href="#git-rebase-lt-upstream" class="headerlink" title="git rebase &lt;upstream>"></a>git rebase &lt;upstream></h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>工作区</code><br>变基：回滚从【当前提交和upstream分支分开处】开始直到当前提交的所有提交，将这些提交一一应用到upstream分支，结果作为upstream的新提交。</p>
@@ -199,13 +197,13 @@
 <h3 id="git-revert-lt-commit"><a href="#git-revert-lt-commit" class="headerlink" title="git revert &lt;commit>"></a>git revert &lt;commit></h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>工作区</code><br>回滚commit指定的提交，这需要当前工作区是干净的，即相比于 HEAD 提交没有修改。  </p>
 <h3 id="git-clone-lt-repository"><a href="#git-clone-lt-repository" class="headerlink" title="git clone &lt;repository>"></a>git clone &lt;repository></h3><p>所属区域： 从 <code>上游版本库</code> 到 <code>工作区</code><br>下载repository指定的版本库，并在工作区迁出master分支的HEAD版本。  </p>
 <h3 id="git-pull-lt-remote-lt-refspec"><a href="#git-pull-lt-remote-lt-refspec" class="headerlink" title="git pull &lt;remote> &lt;refspec>"></a>git pull &lt;remote> &lt;refspec></h3><p>所属区域： 从 <code>上游版本库</code> 到 <code>工作区</code><br>从远程版本库取得修改到当前分支。 一般来说, git pull 相当于 git fetch 然后做 git merge FETCH_HEAD。  </p>
-<h3 id="git-reset-–hard-lt-remote-lt-branch"><a href="#git-reset-–hard-lt-remote-lt-branch" class="headerlink" title="git reset –hard &lt;remote>|&lt;branch>"></a>git reset –hard &lt;remote>|&lt;branch></h3><p>所属区域： 从 <code>上游版本库</code> 到 <code>工作区</code><br>重置本地版本库，让它与远程版本一致；用 reset ‑‑hard origin/master 来丢弃所有的本地改动；用这个来处理失败的合并，直接从远程开始。  </p>
+<h3 id="git-reset-hard-lt-remote-lt-branch"><a href="#git-reset-hard-lt-remote-lt-branch" class="headerlink" title="git reset - -hard &lt;remote>|&lt;branch>"></a>git reset - -hard &lt;remote>|&lt;branch></h3><p>所属区域： 从 <code>上游版本库</code> 到 <code>工作区</code><br>重置本地版本库，让它与远程版本一致；用 reset ‑‑hard origin/master 来丢弃所有的本地改动；用这个来处理失败的合并，直接从远程开始。  </p>
 <h3 id="git-clean"><a href="#git-clean" class="headerlink" title="git clean"></a>git clean</h3><p>所属区域： 从 <code>工作区</code> 到 <code>工作区</code><br>从当前文件夹开始递归清理不受版本管理的内容。  </p>
 <h3 id="git-reset-HEAD-lt-file-s-…"><a href="#git-reset-HEAD-lt-file-s-…" class="headerlink" title="git reset HEAD &lt;file(s)…>"></a>git reset HEAD &lt;file(s)…></h3><p>所属区域： 从 <code>暂存区</code> 到 <code>暂存区</code><br>从下次提交中移除指定文件。重置暂存区记录但是不处理工作区(即: 文件改动被保留但不会被提交)，同时报告没有被更新的文件。  </p>
-<h3 id="git-reset-–soft-HEAD"><a href="#git-reset-–soft-HEAD" class="headerlink" title="git reset –soft HEAD^"></a>git reset –soft HEAD^</h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>暂存区</code><br>恢复上一次提交，保留暂存区的改动。  </p>
-<h3 id="git-diff-–cached-lt-commit"><a href="#git-diff-–cached-lt-commit" class="headerlink" title="git diff –cached [&lt;commit>]"></a>git diff –cached [&lt;commit>]</h3><p>所属区域： 在 <code>暂存区</code> 与 <code>本地版本库</code> 之间<br>查看已经暂存的内容和上次提交的区别，也可指定某一提交。  </p>
+<h3 id="git-reset-soft-HEAD"><a href="#git-reset-soft-HEAD" class="headerlink" title="git reset - -soft HEAD^"></a>git reset - -soft HEAD^</h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>暂存区</code><br>恢复上一次提交，保留暂存区的改动。  </p>
+<h3 id="git-diff-cached-lt-commit"><a href="#git-diff-cached-lt-commit" class="headerlink" title="git diff - -cached [&lt;commit>]"></a>git diff - -cached [&lt;commit>]</h3><p>所属区域： 在 <code>暂存区</code> 与 <code>本地版本库</code> 之间<br>查看已经暂存的内容和上次提交的区别，也可指定某一提交。  </p>
 <h3 id="git-commit-m-‘msg’"><a href="#git-commit-m-‘msg’" class="headerlink" title="git commit [-m ‘msg’]"></a>git commit [-m ‘msg’]</h3><p>所属区域： 从 <code>暂存区</code> 到 <code>本地版本库</code><br>暂存区中的当前内容连同提交信息储存为新提交。  </p>
-<h3 id="git-commit-–amend"><a href="#git-commit-–amend" class="headerlink" title="git commit –amend"></a>git commit –amend</h3><p>所属区域： 从 <code>暂存区</code> 到 <code>本地版本库</code><br>用当前暂存区的内容修改最近一次的提交，也可以拿来修改提交信息。  </p>
+<h3 id="git-commit-amend"><a href="#git-commit-amend" class="headerlink" title="git commit - -amend"></a>git commit - -amend</h3><p>所属区域： 从 <code>暂存区</code> 到 <code>本地版本库</code><br>用当前暂存区的内容修改最近一次的提交，也可以拿来修改提交信息。  </p>
 <h3 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h3><p>所属区域： <code>本地版本库</code><br>显示最近的提交，新的在上边。  </p>
 <table>
 <thead>
@@ -244,13 +242,49 @@
 <h3 id="git-diff-lt-commit-lt-commit"><a href="#git-diff-lt-commit-lt-commit" class="headerlink" title="git diff &lt;commit> &lt;commit>"></a>git diff &lt;commit> &lt;commit></h3><p>所属区域： <code>本地版本库</code><br>显示两个提交之间的不同。  </p>
 <h3 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h3><p>所属区域： <code>本地版本库</code><br>显示所有（本地）存在的分支。参数 -r 显示远程追踪分支，参数 -a 显示全部。  </p>
 <h3 id="git-branch-d-lt-branch"><a href="#git-branch-d-lt-branch" class="headerlink" title="git branch -d &lt;branch>"></a>git branch -d &lt;branch></h3><p>所属区域： <code>本地版本库</code><br>删除某个分支，使用—D来强制删除。  </p>
-<h3 id="git-branch-–track-lt-new-lt-remote-branch"><a href="#git-branch-–track-lt-new-lt-remote-branch" class="headerlink" title="git branch –track &lt;new> &lt;remote/branch>"></a>git branch –track &lt;new> &lt;remote/branch></h3><p>所属区域： 从 <code>上游版本库</code> 到 <code>本地版本库</code><br>添加一个本地分支来跟踪某个远程分支。  </p>
+<h3 id="git-branch-track-lt-new-lt-remote-branch"><a href="#git-branch-track-lt-new-lt-remote-branch" class="headerlink" title="git branch - -track &lt;new> &lt;remote/branch>"></a>git branch - -track &lt;new> &lt;remote/branch></h3><p>所属区域： 从 <code>上游版本库</code> 到 <code>本地版本库</code><br>添加一个本地分支来跟踪某个远程分支。  </p>
 <h3 id="git-fetch-lt-remote-lt-refspec"><a href="#git-fetch-lt-remote-lt-refspec" class="headerlink" title="git fetch &lt;remote> &lt;refspec>"></a>git fetch &lt;remote> &lt;refspec></h3><p>所属区域： 从 <code>上游版本库</code> 到 <code>本地版本库</code><br>从远端版本库下载对象和引用(即版本信息)。  </p>
 <h3 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>上游版本库</code><br>从本地提交推送分支改变到远程，分支为所有推送过的分支。  </p>
 <h3 id="git-push-lt-remote-lt-branch"><a href="#git-push-lt-remote-lt-branch" class="headerlink" title="git push &lt;remote> &lt;branch>"></a>git push &lt;remote> &lt;branch></h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>上游版本库</code><br>向远端版本库推送新的(已存在的)分支。  </p>
 <h3 id="git-push-lt-remote-lt-branch-lt-branch"><a href="#git-push-lt-remote-lt-branch-lt-branch" class="headerlink" title="git push &lt;remote> &lt;branch>:&lt;branch>"></a>git push &lt;remote> &lt;branch>:&lt;branch></h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>上游版本库</code><br>向远端版本库推送分支，但是从不同的（本地）分支名。  </p>
 <h3 id="git-branch-r"><a href="#git-branch-r" class="headerlink" title="git branch -r"></a>git branch -r</h3><p>所属区域： <code>上游版本库</code><br>显示远程端分支。  </p>
 <h3 id="git-push-lt-remote-lt-branch-1"><a href="#git-push-lt-remote-lt-branch-1" class="headerlink" title="git push &lt;remote>:&lt;branch>"></a>git push &lt;remote>:&lt;branch></h3><p>所属区域： <code>上游版本库</code><br>删除一个远程分支，通过向远程分支推送空内容。  </p>
+<h3 id="git-config-lt-options"><a href="#git-config-lt-options" class="headerlink" title="git config [&lt;options>]"></a>git config [&lt;options>]</h3><p>Git 配置相关信息</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>- -global</td>
+<td>使用全局配置文件</td>
+</tr>
+<tr>
+<td>- -system</td>
+<td>使用系统配置文件</td>
+</tr>
+<tr>
+<td>- -local</td>
+<td>使用版本库配置文件</td>
+</tr>
+<tr>
+<td>-f, - -file &lt;file></td>
+<td>使用给定路径的配置文件</td>
+</tr>
+<tr>
+<td>- -get</td>
+<td>获取Git配置的值</td>
+</tr>
+<tr>
+<td>-l, - -list</td>
+<td>列出所有的配置</td>
+</tr>
+</tbody>
+</table>
+<p>可以通过 <code>git config alias.&lt;command alias&gt; &lt;command&gt;</code> 设置别名  </p>
 
         
     </section>
@@ -264,19 +298,17 @@
     
         <div class="license">
             <p>版权声明：
-                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0国际(CC BY-NC-SA 4.0)</a>
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
             </p>
         </div>
     
 </footer>
 
 
-    </div>
+    </main>
 
     <script type="text/javascript" src="/js/jquery.min.js"></script>
-    
-    <script type="text/javascript" src="/js/scrollspy.min.js"></script>
-    
+    <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
         $(function() {
             var nodes = {
@@ -292,29 +324,32 @@
                 nodes.aside.toggleClass('panel-show');
             });
             $('#nav-tag').on('click', function(event) {
-                event.preventDefault();console.log(nodes.navTags.attr('class'))
-                nodes.navTags.toggleClass('tag-show');console.log(nodes.navTags.attr('class'))
-            })/*.hover(function() {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
                 nodes.navTags.addClass('tag-show');
             }, function() {
                 nodes.navTags.removeClass('tag-show');
             });*/
-
-            
-            $(document.body).scrollspy({target: '#aside-inner'});
-            
         });
     </script>
     
         <script type="text/javascript" src="/js/search.js"></script>
-        <script type="text/javascript" src="/js/common.js"></script>
         <script type="text/javascript">
-                var search_path = "search.xml";
-                if (search_path.length == 0) {
-                    search_path = "search.xml";
-                }
-                var path = "/" + search_path;
-                searchFunc(path, 'local-search-input', 'article-search-result');
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/" + search_path;
+            searchFunc(path, 'local-search-input', 'article-search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
         </script>
     
 </body>
