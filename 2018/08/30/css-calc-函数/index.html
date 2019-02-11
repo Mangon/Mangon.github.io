@@ -7,7 +7,7 @@
 
     
     <title>
-        CSS calc()函数 | 
+        CSS calc 函数 | 
         Gblog
     </title>
     <meta name="author" content="Mangon">
@@ -64,7 +64,7 @@
         
 
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#定义与用法"><span class="toc-number">1.</span> <span class="toc-text">定义与用法</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#定义与用法"><span class="toc-number">1.</span> <span class="toc-text">定义与用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在LESS中"><span class="toc-number">2.</span> <span class="toc-text">在LESS中</span></a></li></ol>
         
         <div id="coffee-content"></div>
     </div>
@@ -77,7 +77,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            CSS calc()函数
+            CSS calc 函数
         </h1>
         
         <div class="article-meta clearfix">
@@ -109,7 +109,9 @@
 <li>calc()函数支持 “+”, “-“, “*”, “/“ 运算；  </li>
 <li>calc()函数使用标准的数学运算优先级规则；  </li>
 </ul>
-
+<h2 id="在LESS中"><a href="#在LESS中" class="headerlink" title="在LESS中"></a>在LESS中</h2><p>在LESS中 <code>calc(100% - 40px)</code> 等带单位混合运算会被LESS解析忽略单位，全部按照百分比计算，此例中的计算被LESS编译成 <code>calc(60%)</code>。  </p>
+<p>解决方案：<br>结合LESS使用特点，将计算放到LESS中解决。如上例 <code>calc(100% - 40px)</code>在LESS中可写为 <code>calc(~&quot;100% - 40px&quot;)</code>  </p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@height:</span> <span class="number">40px</span>;</span><br><span class="line"><span class="variable">@borderHeight:</span> <span class="number">1px</span>;</span><br><span class="line"><span class="variable">@marginHeight:</span> <span class="number">10px</span>;</span><br><span class="line"><span class="attribute">margin-bottom</span>: calc(<span class="string">~"@&#123;height&#125;"</span> );</span><br><span class="line"><span class="attribute">margin-bottom</span>: calc(<span class="string">~"@&#123;height&#125; + @&#123;borderHeight&#125; * 3 + @&#123;marginHeight&#125; * 2"</span> );</span><br></pre></td></tr></table></figure>
         
     </section>
 </article>
