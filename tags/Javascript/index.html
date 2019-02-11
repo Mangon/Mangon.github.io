@@ -7,7 +7,7 @@
 
     
     <title>
-        Tag: Javascript | 
+        Tag: javascript | 
         Gblog
     </title>
     <meta name="author" content="Mangon">
@@ -113,7 +113,7 @@
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/Javascript/">Javascript</a>
+    <a class="article-tag-link" href="/tags/javascript/">javascript</a>
 </div>
 
 
@@ -153,7 +153,7 @@
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/Javascript/">Javascript</a>
+    <a class="article-tag-link" href="/tags/javascript/">javascript</a>
 </div>
 
 
@@ -194,6 +194,43 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2018/09/25/失效链接替换方案/">失效链接替换方案</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="/2018/09/25/失效链接替换方案/">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-25T08:05:17.000Z" itemprop="datePublished">2018-09-25</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/javascript/">javascript</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>有些时候，尤其在文档型的网站中，页面链接经常变化调整。通常的做法即搜索网站中的所有相应页面进行url替换，但是即使这样做了，还是有一定风险，用户可能已经收藏了链接，在用户点击收藏链接跳转的时候，会发现页面不存在。这时，我们可以通过设置404页面来引导用户跳转到其它的可能符合用户期望的页面（比如主页）。同样的，如果其它网站引用了该失效链接，同时不希望此网站的引用失效（或者没有修改此网站的权限），就只能在落地页网站做一下兼容，在跳转的时候重新定向一下，具体代码如下：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">!<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> path = location.pathname + location.hash;</span><br><span class="line">    <span class="keyword">var</span> urlMap = &#123;</span><br><span class="line">        <span class="string">'xxx'</span>: <span class="string">'xxxx'</span>,</span><br><span class="line">        <span class="string">'xxx/media#live-player'</span>: <span class="string">'xxx/media_live-player/'</span></span><br><span class="line">    &#125;;</span><br><span class="line">    urlMap[path] &amp;&amp; location.replace(urlMap[path]);</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
+<p>这是一种治标不治本的改动，最好的改动还是移除失效的链接。  </p>
+
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope="" itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2018/08/31/debounce-throttle/">debounce &amp; throttle</a>
         </h1>
         
@@ -208,7 +245,7 @@
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/Javascript/">Javascript</a>
+    <a class="article-tag-link" href="/tags/javascript/">javascript</a>
 </div>
 
 
