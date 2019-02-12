@@ -230,7 +230,9 @@ flex:弹性布局
 <h2 id="js-作用域"><a href="#js-作用域" class="headerlink" title="js 作用域"></a>js 作用域</h2><p>javascript只有两种作用域 全局作用域 函数作用域，ES6中新增了块级作用域</p>
 <p>函数执行时所在的作用域，是定义时的作用域，而不是调用时所在的作用域。</p>
 <h2 id="js-变量提升"><a href="#js-变量提升" class="headerlink" title="js 变量提升"></a>js 变量提升</h2><p>var命令声明的变量，不管在什么位置，变量声明都会被提升到函数体的头部。</p>
-<h2 id="js-中对-this的理解"><a href="#js-中对-this的理解" class="headerlink" title="js 中对 this的理解"></a>js 中对 this的理解</h2><h2 id="js原型链"><a href="#js原型链" class="headerlink" title="js原型链"></a>js原型链</h2><h2 id="call-和-apply区别"><a href="#call-和-apply区别" class="headerlink" title="call 和 apply区别"></a>call 和 apply区别</h2><pre><code>call 方法调用一个对象的一个方法，以另一个对象替换当前对象
+<h2 id="js-中对-this的理解"><a href="#js-中对-this的理解" class="headerlink" title="js 中对 this的理解"></a>js 中对 this的理解</h2><h2 id="js原型链"><a href="#js原型链" class="headerlink" title="js原型链"></a>js原型链</h2><h2 id="为什么使用delete操作符删除对象时需要遍历属性中的属性，依次删除？"><a href="#为什么使用delete操作符删除对象时需要遍历属性中的属性，依次删除？" class="headerlink" title="为什么使用delete操作符删除对象时需要遍历属性中的属性，依次删除？"></a>为什么使用delete操作符删除对象时需要遍历属性中的属性，依次删除？</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;<span class="attr">p</span>:&#123;<span class="attr">x</span>:<span class="number">1</span>&#125;&#125;;</span><br><span class="line">b=a.p;</span><br><span class="line"><span class="keyword">delete</span> a.p;</span><br></pre></td></tr></table></figure>
+<p> 执行这段代码后b.x的值依然是1。由于已经删除的属性的引用依然存在，因此在Javascript的某些实现中，可能因为这种不严谨的代码而造成内存泄漏。所以在销毁对象的时候，要遍历属性中的属性，依次删除。  </p>
+<h2 id="call-和-apply区别"><a href="#call-和-apply区别" class="headerlink" title="call 和 apply区别"></a>call 和 apply区别</h2><pre><code>call 方法调用一个对象的一个方法，以另一个对象替换当前对象
 对于apply和call两者在作用上是相同的，但两者在参数上有区别的。
 对于第一个参数意义都一样，但对第二个参数：
 apply传入的是一个参数数组，也就是将多个参数组合成为一个数组传入，而call则为call的参数传入（从第二个参数开始）。

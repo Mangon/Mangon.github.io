@@ -7,12 +7,14 @@
 
     
     <title>
-        Tag: vue | 
+        读Vue源码所能想到的面试问题 | 
         Gblog
     </title>
     <meta name="author" content="Mangon">
     <meta name="version" content="1.0.0">
     
+    
+        <meta name="description" content="指令v-if v-show有什么不同？v-if 和 v-show都是Vue中的指令而且都可以用来控制模板的渲染。  v-if 是“真正”的条件渲染，因为它会确保在切换过程中条件块内的事件监听器和子组件适当地被销毁和重建。  v-if 也是惰性的：如果在初始渲染时条件为假，则什么也不做——直到条件第一次变为真时，才会开始渲染条件块。  相比之下，v-show 就简单得多——不管初始条件是什么，元素总是会被渲染，并且只是简单地基于 CSS 进行切换。  一般来说，v-if 有更高的切换...">
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
@@ -58,34 +60,11 @@
     </form>
 </div>        
         
+            
+        
 
         
-            <div class="author-meta">
-                
-                <div class="author-avatar">
-                    <a href="/">
-                        <img src="/images/avatar.jpg" title="Mangon">
-                    </a>
-                </div>
-                
-                <div class="author-name">Mangon</div>
-                <div class="author-work">Front-End Software Engineer</div>
-                <div class="author-location">
-                    <i class="icon-location vm"></i>
-                    <span class="vm">Beijing, China</span>
-                </div>
-                
-                <div class="author-thread-wrap">
-                    <div class="author-threads clearfix">
-                        
-                        <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
-                        
-                        
-                        
-                    </div>
-                </div>
-                
-            </div>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#指令v-if-v-show有什么不同？"><span class="toc-number">1.</span> <span class="toc-text">指令v-if v-show有什么不同？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何判断一个对象是否是Vue实例"><span class="toc-number">2.</span> <span class="toc-text">如何判断一个对象是否是Vue实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#写出-normalizeProps-方法"><span class="toc-number">3.</span> <span class="toc-text">写出 normalizeProps 方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vm-options-parent和-vm-parent-有什么不同？"><span class="toc-number">4.</span> <span class="toc-text">vm.$options.parent和 vm.$parent 有什么不同？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue源码中大量用到了-Object-create-null-，Object-create-null-和-new-Object-及对象直接量-有什么不同？"><span class="toc-number">5.</span> <span class="toc-text">vue源码中大量用到了 Object.create(null)，Object.create(null) 和 new Object() 及对象直接量{}有什么不同？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#未完待续。。。"><span class="toc-number">6.</span> <span class="toc-text">未完待续。。。</span></a></li></ol>
         
         <div id="coffee-content"></div>
     </div>
@@ -93,13 +72,12 @@
 
 </header>
 
-        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
-    <article class="article" itemscope="" itemprop="blogPost">
+        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content"><article class="article" itemscope="" itemprop="blogPost">
     
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/2019/02/12/读Vue源码所能想到的面试问题/">读Vue源码所能想到的面试问题</a>
+            读Vue源码所能想到的面试问题
         </h1>
         
         <div class="article-meta clearfix">
@@ -147,8 +125,6 @@
 
 
 
-
-
 </div>
         <article id="article-search-result" class="article-search-result content"></article>
         <footer class="footer">
@@ -204,79 +180,10 @@
         </script>
     
     
-</body>
-</html>
-class="keyword">return</span> &#123;</span><br><span class="line">            mymessage: <span class="keyword">this</span>.message</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    template:<span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;input type="text" v-model="mymessage" @input="passData(mymessage)"&gt; </span></span><br><span class="line"><span class="string">            &lt;!-- C组件中能直接触发getCData的原因在于 B组件调用C组件时 使用 v-on 绑定了$listeners 属性 --&gt;</span></span><br><span class="line"><span class="string">            &lt;!-- 通过v-bind 绑定$attrs属性，C组件可以直接获取到A组件中传递下来的props（除了B组件中props声明的） --&gt;</span></span><br><span class="line"><span class="string">            &lt;C v-bind="$attrs" v-on="$listeners"&gt;&lt;/C&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span>,</span><br><span class="line">    props:[<span class="string">'message'</span>], <span class="comment">//得到父组件传递过来的数据</span></span><br><span class="line">    methods:&#123;</span><br><span class="line">        passData(val)&#123;</span><br><span class="line">            <span class="comment">//触发父组件中的事件</span></span><br><span class="line">            <span class="keyword">this</span>.$emit(<span class="string">'getChildData'</span>,val)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">Vue.component(<span class="string">'A'</span>, &#123;</span><br><span class="line">    data()&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            message:<span class="string">'hello b'</span>, <span class="comment">//传递给子组件的数据</span></span><br><span class="line">            messagec:<span class="string">'hello c'</span> <span class="comment">//传递给c组件的数据</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    template:<span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;p&gt;this is parent compoent!&lt;/p&gt;</span></span><br><span class="line"><span class="string">            &lt;B :message="message" @getChildData="getChildData"</span></span><br><span class="line"><span class="string">                v-bind="$attrs" v-on="$listeners" &gt;&lt;/B&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span>,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        <span class="comment">//执行子组件触发的事件</span></span><br><span class="line">        getChildData(val)&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'这是来自B组件的数据'</span>)</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">//执行C组件触发的事件</span></span><br><span class="line">        getCData(val)&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"这是来自C组件的数据："</span> + val)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="中央事件总栈-emit-on"><a href="#中央事件总栈-emit-on" class="headerlink" title="中央事件总栈 $emit $on"></a>中央事件总栈 $emit $on</h2><p>为了实现非父子间的通信，我们可以通过通过使用一个空的Vue实例作为中央事件总线来处理所有的事件，通过Vue自带的$emit $on来进行组件间通信。  </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> bus = <span class="keyword">new</span> Vue()</span><br><span class="line">Vue.prototype.bus = bus</span><br></pre></td></tr></table></figure>
-<p>甚至可以用app.js中的Vue实例来处理  </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* app.js*/</span></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  router,</span><br><span class="line">  template: <span class="string">'&lt;App/&gt;'</span>,</span><br><span class="line">  components: &#123; App &#125;,</span><br><span class="line">  beforeCreate () &#123;</span><br><span class="line">    Vue.prototype.bus = <span class="keyword">this</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>这样在组件中我们就可以通过以下方式处理  </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.bus.$emit(<span class="string">'some-event'</span>, data)</span><br><span class="line"><span class="keyword">this</span>.bus.$on(<span class="string">'some-event'</span>, ()=&gt;&#123;&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="vuex"><a href="#vuex" class="headerlink" title="vuex"></a>vuex</h2><p><a href="https://github.com/vuejs/vuex" target="_blank" rel="noopener">vuex</a></p>
-
-        
-    </section>
-</article>
-
-
-
-
-
-</div>
-        <article id="article-search-result" class="article-search-result content"></article>
-        <footer class="footer">
-    
-        <div class="license">
-            <p>版权声明：
-                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
-            </p>
-        </div>
-    
-</footer>
-
-
-    </main>
-
-    <script type="text/javascript" src="/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/common.js"></script>
-    <script type="text/javascript">
-        $(function() {
-            var nodes = {
-                nav: $('#nav'),
-                aside: $('#aside'),
-                navTags: $('#nav-tags')
-            };
-
-            $('#open-panel, #aside-mask').on('click', function() {
-                nodes.aside.toggleClass('panel-show');
-            });
-            $('.toc-link').on('click', function() {
-                nodes.aside.toggleClass('panel-show');
-            });
-            $('#nav-tag').on('click', function(event) {
-                event.preventDefault();
-                // console.log(nodes.navTags.attr('class'))
-                nodes.navTags.toggleClass('tag-show');
-                // console.log(nodes.navTags.attr('class'))
-            });/*.hover(function() {
-                nodes.navTags.addClass('tag-show');
-            }, function() {
-                nodes.navTags.removeClass('tag-show');
-            });*/
-        });
-    </script>
-    
-        <script type="text/javascript" src="/js/search.js"></script>
+        <script type="text/javascript" src="/js/scrollspy.min.js"></script>
         <script type="text/javascript">
-            var search_path = "search.xml";
-            if (search_path.length == 0) {
-                search_path = "search.xml";
-            }
-            var path = "/" + search_path;
-            searchFunc(path, 'local-search-input', 'article-search-result');
+        $('#content').scrollspy({target: '#aside-inner'});
         </script>
-    
     
 </body>
 </html>
