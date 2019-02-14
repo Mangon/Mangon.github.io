@@ -362,6 +362,13 @@
 </tbody>
 </table>
 <p>可以通过 <code>git config alias.&lt;command alias&gt; &lt;command&gt;</code> 设置别名  </p>
+<h2 id="其它注意事项"><a href="#其它注意事项" class="headerlink" title="其它注意事项"></a>其它注意事项</h2><p>平常我会使用 SourceTree 来省却自己手打git命令的烦恼，但有时在提交到 Github 的时候，会在 Github 的 commit history 里看到如下一句  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mangon authored and Xiang committed 16 minutes ago</span><br></pre></td></tr></table></figure>
+<p>其实在SourceTree 的提交历史中也能看到类似如下信息  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">fix: fix desc error</span><br><span class="line">提交：</span><br><span class="line">1bcf9d0d3c9df73e52b38a71402d4b3943698287 [1bcf9d0]</span><br><span class="line">父级：</span><br><span class="line">371e1e0379</span><br><span class="line">作者：</span><br><span class="line">Mangon &lt;*************@***.com&gt;</span><br><span class="line">日期：</span><br><span class="line">2019年2月14日 GMT+8 下午1:57:33</span><br><span class="line">提交者：</span><br><span class="line">Xiang &lt;**********@*****.com&gt;</span><br><span class="line">提交日期：</span><br><span class="line">2019年2月14日 GMT+8 下午2:06:47</span><br><span class="line">标签：</span><br><span class="line">HEAD -&gt; develop origin/develop</span><br></pre></td></tr></table></figure>
+<p>显然是作者与提交者不一致导致的。经查阅，Git中一个commit有作者和提交者的差别。作者（author）指的是实际作出修改的人，提交者(committer)指的是最后将此工作成果提交到仓库的人。所以，当你为某个项目发布补丁，然后某个核心成员将你的补丁并入项目时，你就是作者，而那个核心成员就是提交者。  </p>
+<p>在SourceTree中，可以在提交时 commit message 输入框左上方改变自己的 Author 属性，在当前项目窗口的右上角设置里选择高级，然后修改用户信息“全名”及“电子邮件地址”来改变 committer 属性。  </p>
+<p>将两者改为一致的自己想要用的Github账户名就可以保证在Github提交历史中显示正确的名字。  </p>
 
         
     </section>
