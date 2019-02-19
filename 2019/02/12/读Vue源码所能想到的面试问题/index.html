@@ -136,7 +136,10 @@
 </ol>
 </li>
 </ol>
-<p>可以使用全局方法 <code>Vue.set(object, key, value)</code> 方法向嵌套对象添加响应式属性/直接设置一个数组的值，或者使用实例方法 <code>vm.$set(object, key, value)</code>。修改数组的长度可以通过 <code>vm.items.splice(newLength)</code> 实现。  </p>
+<p>可以使用全局方法 <code>Vue.set(target, key, value)</code> 方法向嵌套对象添加响应式属性/直接设置一个数组的值，或者使用实例方法 <code>vm.$set(target, key, value)</code>。  </p>
+<p>可以使用全局方法 <code>Vue.delete(target, key)</code> 方法向嵌套对象删除响应式属性/删除数组元素，或者使用实例方法 <code>vm.$delete(target, key)</code>。  </p>
+<p>修改数组的长度可以通过 <code>vm.items.splice(newLength)</code> 实现。  </p>
+<p>注意 <code>Vue.set(target, key, value)</code> 或  <code>Vue.delete(target, key)</code> 并不能为根数据对象添加/删除属性也不能为 Vue 实例添加/删除属性。  </p>
 <h2 id="未完待续。。。"><a href="#未完待续。。。" class="headerlink" title="未完待续。。。"></a>未完待续。。。</h2>
         
     </section>
