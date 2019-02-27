@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+
+    
+
+    
+    <title>
+        集成Karma&amp;Jasmine进行单元测试 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon">
+    <meta name="version" content="1.0.0">
+    
+    
+        <meta name="description" content="什么是 KarmaKarma 是一款JavaScript测试运行容器，它允许Javascript开发者在各种浏览器中运行自己的测试程序。它也可以集成 Istanbul 进行测试覆盖率的统计。通常我们需要结合测试框架及断言库来使用 Karma。  以下是 Karma 支持的测试框架：  JasmineMochaQUnit更多 Karma 支持的测试框架可以在 该页面 找到。以下是 Karma 支持的浏览器：  Chrome and Chrome CanaryFirefo...">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    
+        <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://mangon.github.io"></form> -->
+        <div class="top-search-box" id="top-search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="local-search-input" name="q" results="0" placeholder="搜索" class="st-search-input st-default-search-input form-control">
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是-Karma"><span class="toc-number">1.</span> <span class="toc-text">什么是 Karma</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是-Jasmine"><span class="toc-number">2.</span> <span class="toc-text">什么是 Jasmine</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-Karma-及其插件"><span class="toc-number">3.</span> <span class="toc-text">安装 Karma 及其插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行-Karma-命令"><span class="toc-number">4.</span> <span class="toc-text">运行 Karma 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建-karma-配置文件"><span class="toc-number">4.1.</span> <span class="toc-text">创建 karma 配置文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#未完待续。。。"><span class="toc-number">5.</span> <span class="toc-text">未完待续。。。</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content"><article class="article" itemscope="" itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            集成Karma&amp;Jasmine进行单元测试
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="/2019/02/26/集成Karma-Jasmine进行单元测试/">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-02-26T07:58:18.000Z" itemprop="datePublished">2019-02-26</time>
+</a>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="什么是-Karma"><a href="#什么是-Karma" class="headerlink" title="什么是 Karma"></a>什么是 Karma</h2><p><a href="https://github.com/karma-runner/karma" target="_blank" rel="noopener">Karma</a> 是一款JavaScript测试运行容器，它允许Javascript开发者在各种浏览器中运行自己的测试程序。它也可以集成 Istanbul 进行测试覆盖率的统计。通常我们需要结合测试框架及断言库来使用 Karma。  </p>
+<p>以下是 Karma 支持的测试框架：  </p>
+<ul>
+<li>Jasmine</li>
+<li>Mocha</li>
+<li>QUnit</li>
+</ul>
+<p>更多 Karma 支持的测试框架可以在 <a href="https://www.npmjs.com/search?q=keywords:karma-adapter" target="_blank" rel="noopener">该页面</a> 找到。</p>
+<p>以下是 Karma 支持的浏览器：  </p>
+<ul>
+<li>Chrome and Chrome Canary</li>
+<li>Firefox</li>
+<li>Safari</li>
+<li>PhantomJS</li>
+<li>JSDOM</li>
+<li>Opera</li>
+<li>Internet Explorer</li>
+<li>SauceLabs</li>
+<li>BrowserStack</li>
+</ul>
+<p>更多 Karma 支持的浏览器可以在 <a href="https://www.npmjs.com/search?q=keywords:karma-launcher" target="_blank" rel="noopener">该页面</a> 找到。</p>
+<h2 id="什么是-Jasmine"><a href="#什么是-Jasmine" class="headerlink" title="什么是 Jasmine"></a>什么是 Jasmine</h2><p><a href="">Jasmine</a> 是一款知名的 BDD（Beharior-driven Development） Javscript测试框架。它不需要依赖浏览器，DOM或者其它测试框架。因此它可以适配网站、 Nodejs 项目或者任何 Javascript 可以运行的地方。  </p>
+<h2 id="安装-Karma-及其插件"><a href="#安装-Karma-及其插件" class="headerlink" title="安装 Karma 及其插件"></a>安装 Karma 及其插件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 安装 Karma:</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm install karma --save-dev</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装 karma-cli:（可以全局运行karma命令）</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm install -g karma-cli</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装项目所需插件:</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm install karma-jasmine karma-chrome-launcher jasmine-core --save-dev</span></span><br></pre></td></tr></table></figure>
+<h2 id="运行-Karma-命令"><a href="#运行-Karma-命令" class="headerlink" title="运行 Karma 命令"></a>运行 Karma 命令</h2><p>karma 支持三个命令  </p>
+<p>start [<configfile>] [<options>] 启动 Karma 持续执行，也可以执行单次的测试，然后直接收集测试结果<br>init [<configfile>] 初始化配置文件<br>run [<options>] [ – <clientargs>] 触发测试运行  </clientargs></options></configfile></options></configfile></p>
+<h3 id="创建-karma-配置文件"><a href="#创建-karma-配置文件" class="headerlink" title="创建 karma 配置文件"></a>创建 karma 配置文件</h3><p>配置文件可以通过 <code>karma init</code> 命令生成：<br>执行 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">karma init my.conf.js</span><br></pre></td></tr></table></figure>
+<h2 id="未完待续。。。"><a href="#未完待续。。。" class="headerlink" title="未完待续。。。"></a>未完待续。。。</h2>
+        
+    </section>
+</article>
+
+
+
+</div>
+        <article id="article-search-result" class="article-search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明：
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/" + search_path;
+            searchFunc(path, 'local-search-input', 'article-search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        </script>
+    
+</body>
+</html>

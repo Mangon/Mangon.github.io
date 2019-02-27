@@ -99,6 +99,60 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2018/09/12/querySelectorAll一个小坑/">querySelectorAll一个小坑</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="/2018/09/12/querySelectorAll一个小坑/">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-12T08:44:45.000Z" itemprop="datePublished">2018-09-12</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/bug/">bug</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>首先查看一下querySelectorAll的文档：  </p>
+<h2 id="querySelectorAll"><a href="#querySelectorAll" class="headerlink" title="querySelectorAll"></a>querySelectorAll</h2><p>返回与指定的选择器组匹配的文档中的元素列表 (使用深度优先的先序遍历文档的节点)。返回的对象是 <code>NodeList</code> 。  </p>
+<p>用法：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> elementList = <span class="built_in">document</span>.querySelectorAll(selectors);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>elementList 是一个静态的 NodeList 类型的对象.</li>
+<li>selectors 是一个由逗号连接的包含一个或多个CSS选择器的字符串.</li>
+<li>如果 selectors参数中包含 <code>CSS伪元素</code>,则返回一个空的elementList.</li>
+<li>如果指定的选择器不合法,则抛出一个<code>SYNTAX_ERR</code> 异常.</li>
+</ul>
+<h2 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h2><p>如下一个element  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"123"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"test"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>document.getElementById(‘123’)可以正常获取到该元素<br>document.querySelectorAll(‘#123’)则报错  </p>
+<p>我们看下Zepto中选择器的实现</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// `$.zepto.qsa` is Zepto's css selector implementation which</span></span><br><span class="line"><span class="comment">// uses `document.querySelectorAll` and optimizes for some special cases, like `#id`.</span></span><br><span class="line"><span class="comment">// This method can be overridden in plugins.</span></span><br><span class="line">zepto.qsa = <span class="function"><span class="keyword">function</span>(<span class="params">element, selector</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> found,</span><br><span class="line">      maybeID = selector[<span class="number">0</span>] == <span class="string">'#'</span>,</span><br><span class="line">      maybeClass = !maybeID &amp;&amp; selector[<span class="number">0</span>] == <span class="string">'.'</span>,</span><br><span class="line">      nameOnly = maybeID || maybeClass ? selector.slice(<span class="number">1</span>) : selector, <span class="comment">// Ensure that a 1 char tag name still gets checked</span></span><br><span class="line">      isSimple = <span class="regexp">/^[\w-]*$/</span>.test(nameOnly)</span><br><span class="line">  <span class="keyword">return</span> (element.getElementById &amp;&amp; isSimple &amp;&amp; maybeID) ? <span class="comment">// Safari DocumentFragment doesn't have getElementById</span></span><br><span class="line">    ( (found = element.getElementById(nameOnly)) ? [found] : [] ) :</span><br><span class="line">    (element.nodeType !== <span class="number">1</span> &amp;&amp; element.nodeType !== <span class="number">9</span> &amp;&amp; element.nodeType !== <span class="number">11</span>) ? [] :</span><br><span class="line">    slice.call(</span><br><span class="line">      isSimple &amp;&amp; !maybeID &amp;&amp; element.getElementsByClassName ? <span class="comment">// DocumentFragment doesn't have getElementsByClassName/TagName</span></span><br><span class="line">        maybeClass ? element.getElementsByClassName(nameOnly) : <span class="comment">// If it's simple, it could be a class</span></span><br><span class="line">        element.getElementsByTagName(selector) : <span class="comment">// Or a tag</span></span><br><span class="line">        element.querySelectorAll(selector) <span class="comment">// Or it's not simple, and we need to query all</span></span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同样的，zepto中的选择器用的就是querySelectorAll，但是对于简单情况，又可能使用getElementById/getElementsByClassName/getElementsByTagName，<br>所以对于上面的元素，$(‘#123’)可以获取到元素， $(‘#123 .test’)却会报错，$(‘#123’).find(‘.sddd’)可以正常获取到。<br>对于如下这种元素使用$(‘#1.2.3-标题’)也会报错<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"1.2.3-标题"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>报错信息：  </p>
+<blockquote>
+<p><em>VM238:1 Uncaught DOMException: Failed to execute ‘querySelectorAll’ on ‘Document’: ‘#123’ is not a valid selector</em>.</p>
+</blockquote>
+
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope="" itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2018/09/11/CSS截断样式/">css截断样式</a>
         </h1>
         
@@ -329,46 +383,6 @@
 <h2 id="css"><a href="#css" class="headerlink" title="css"></a>css</h2><p>在支持use-select属性的浏览器中，设置user-select: none来禁止选中行为。<br>Opera12.5中支持私有的标签属性 unselectable=”on”来实现相同的行为  </p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">* &#123; </span><br><span class="line">    <span class="attribute">-webkit-user-select</span>: none;</span><br><span class="line">       <span class="attribute">-moz-user-select</span>: none;</span><br><span class="line">        <span class="attribute">-ms-user-select</span>: none;</span><br><span class="line">            <span class="attribute">user-select</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="如何破解"><a href="#如何破解" class="headerlink" title="如何破解"></a>如何破解</h2><p>如上所述，如果想要可以选中复制，可以在开发者工具F12中勾选<code>禁止Javascript</code> 并将想要复制的内容的<code>element.style</code><br>改为<code>user-select:none</code>即可。当然，其实什么样的内容都可以在开发者工具的Element中复制得到。</p>
-
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope="" itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2018/09/06/React父子组件数据传递/">React父子组件数据传递</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="/2018/09/06/React父子组件数据传递/">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-09-06T11:55:58.000Z" itemprop="datePublished">2018-09-06</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/React/">React</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>本篇主要讲述<a href="https://github.com/facebook/react" target="_blank" rel="noopener">React</a>中的 props state 以及 父子组件之间的数据传递。  </p>
-<h2 id="props-amp-state"><a href="#props-amp-state" class="headerlink" title="props &amp; state"></a>props &amp; state</h2><p>对于一个组件来说，props属性是只读的，像一个透明包裹一样，子组件可以看到包裹里的东西，却不能直接改变props的值。props来自他的父组件。而state属性则好像是自己的背包一样，可以随意通过setState修改，而且是永远跟随着自己的，不用担心丢失。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChildComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">        <span class="keyword">super</span>(props);</span><br><span class="line">        <span class="keyword">this</span>.state = &#123;</span><br><span class="line">            item: <span class="string">''</span></span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    sendToFather(data)&#123;</span><br><span class="line">        <span class="keyword">this</span>.props.setData(data);</span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            &lt;div className=<span class="string">"main"</span>&gt;</span><br><span class="line">                &lt;div onClick=&#123;()=&gt;&#123;<span class="keyword">this</span>.sendToFather(&#123;<span class="attr">item1</span>: value2&#125;)&#125;&#125;&gt;&#123;<span class="keyword">this</span>.props.item&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">                &lt;div&gt;&#123;this.state.item&#125;&lt;/</span>div&gt;</span><br><span class="line">            &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        )</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">class FatherComponent extends Component &#123;</span></span><br><span class="line"><span class="regexp">    constructor(props) &#123;</span></span><br><span class="line"><span class="regexp">        super(props);</span></span><br><span class="line"><span class="regexp">        this.state = &#123;</span></span><br><span class="line"><span class="regexp">            item: 'value1',</span></span><br><span class="line"><span class="regexp">            item1: ''</span></span><br><span class="line"><span class="regexp">            ...</span></span><br><span class="line"><span class="regexp">        &#125;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">    setDateMethod(value)&#123;</span></span><br><span class="line"><span class="regexp">        this.setState(value)</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">    render() &#123;</span></span><br><span class="line"><span class="regexp">        return (</span></span><br><span class="line"><span class="regexp">            &lt;ChildComponent setData=&#123;(this.setDateMethod).bind(this))&#125; item=&#123;this.state.item&#125;&gt;&lt;/</span>ChildComponent&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="数据传递"><a href="#数据传递" class="headerlink" title="数据传递"></a>数据传递</h2><p>父组件需要向自组件传递数据的时候，比如需要传递一个名字为item，值为value1的数据，<br>只需要引用子组件的时候为其添加一个名字为item的属性，然后将值赋予它，那么在子组件中就可以通过props.item获取到传递进来的值。  </p>
-<p>子组件要把数据返回给父组件，比如需要传递一个名字为item1，值为value2的数据，<br>就需要父组件传递一个函数setData给子组件，子组件通过传入参数{item1: value2}调用函数setData将数据返回给父组件的函数，父组件的函数setDateMethod接受实参来改变父组件中的state等值。  </p>
-<h2 id="全局传递数据"><a href="#全局传递数据" class="headerlink" title="全局传递数据"></a>全局传递数据</h2><p>因为数据只能在父子之间传递，当父子关系嵌套很深的时候，不同组件之间传递数据十分不便。这时可以使用EventEmitter时间传递来实现组件之间的数据传递。使用事件模型，组件之间无论是父子关系还是非父子关系都可以直接沟通，从而解决了组件间层层回调传递的问题，但是频繁地使用事件实现组件间沟通会使整个程序的数据流向越来越乱，因此，组件间的沟通还是要尽量遵循单向数据流机制。  </p>
 
         
     </section>
