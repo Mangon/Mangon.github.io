@@ -1,3 +1,3 @@
-// build time:Wed Mar 06 2019 10:37:10 GMT+0800 (CST)
+// build time:Thu Mar 07 2019 11:16:40 GMT+0800 (CST)
 document.oncontextmenu=function(){return false};document.onselectstart=function(){return false};document.oncopy=function(){return false};document.oncut=function(){return false};document.onpaste=function(){return false};
 //rebuild by neat 
