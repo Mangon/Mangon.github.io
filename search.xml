@@ -3,6 +3,21 @@
   
     
     <entry>
+      <title>little tips</title>
+      <link href="/2019/04/18/little-tips/"/>
+      <url>/2019/04/18/little-tips/</url>
+      <content type="html"><![CDATA[<h2 id="little-tips"><a href="#little-tips" class="headerlink" title="little tips"></a>little tips</h2><ol><li>在eclipse中设置 Windows-&gt;Preferences-&gt;General-&gt;Appearance-&gt;Color and Fonts-&gt;Basic-&gt;Text Font-&gt;Edit-&gt;脚本(R) 选择 <code>中欧字符</code> 后中文字体的显示能够更好看些。  </li></ol>]]></content>
+      
+      
+        <tags>
+            
+            <tag> Eclipse </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>读Vue源码所能想到的面试问题</title>
       <link href="/2019/02/12/%E8%AF%BBVue%E6%BA%90%E7%A0%81%E6%89%80%E8%83%BD%E6%83%B3%E5%88%B0%E7%9A%84%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/"/>
       <url>/2019/02/12/%E8%AF%BBVue%E6%BA%90%E7%A0%81%E6%89%80%E8%83%BD%E6%83%B3%E5%88%B0%E7%9A%84%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/</url>
