@@ -3,6 +3,21 @@
   
     
     <entry>
+      <title>redis支持的数据类型</title>
+      <link href="/2019/05/06/redis%E6%94%AF%E6%8C%81%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"/>
+      <url>/2019/05/06/redis%E6%94%AF%E6%8C%81%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
+      <content type="html"><![CDATA[<p>以下列举 <a href="https://redis.io/topics/data-types-intro" target="_blank" rel="noopener">redis支持的数据类型</a> （截止2019-05-06 redis最新为5.0.4版本）  </p><h2 id="二进制安全的字符串（Binary-safe-strings）"><a href="#二进制安全的字符串（Binary-safe-strings）" class="headerlink" title="二进制安全的字符串（Binary-safe strings）"></a>二进制安全的字符串（Binary-safe strings）</h2><p>如字面意思。</p><h2 id="列表（Lists）"><a href="#列表（Lists）" class="headerlink" title="列表（Lists）"></a>列表（Lists）</h2><p>按照插入顺序排序的字符串元素的集合。基本上就是是链表（linked lists）。</p><h2 id="集合（Sets）"><a href="#集合（Sets）" class="headerlink" title="集合（Sets）"></a>集合（Sets）</h2><p>不重复且无序的的字符串元素集合。</p><h2 id="有序集合（Sorted-sets）"><a href="#有序集合（Sorted-sets）" class="headerlink" title="有序集合（Sorted sets）"></a>有序集合（Sorted sets）</h2><p>和集合（Sets）类似但是每个字符串元素都和一个浮动的被称为评分（score）的数字值相关联。 元素值总是根据评分的值来排序,所以不像集合（Sets）那样，有序集合可以检索到一系列的数据。（例如你可以请求：给我前十个或者最后十个元素）。</p><h2 id="散列（Hashes）"><a href="#散列（Hashes）" class="headerlink" title="散列（Hashes）"></a>散列（Hashes）</h2><p>由字段(field)和与之关联的值(value)组成的映射。字段(field)与值(value)都是字符串。与Ruby或Python的hashes相似。</p><h2 id="位数组（Bit-arrays）（bitmaps）"><a href="#位数组（Bit-arrays）（bitmaps）" class="headerlink" title="位数组（Bit arrays）（bitmaps）"></a>位数组（Bit arrays）（bitmaps）</h2><p>可以使用特殊命令行来像一个由位（bit）组成的数组(array)一样的控制字符串值：你可以设置并且清除个别的位(bit)，计算所有设置成1的位(bits)，找到第一个设置或未设置的位(bit)，诸如此类。</p><h2 id="超对数日志（HyperLogLogs）"><a href="#超对数日志（HyperLogLogs）" class="headerlink" title="超对数日志（HyperLogLogs）"></a>超对数日志（HyperLogLogs）</h2><p>这是一个用来估算集合（set）基数(cardinality)的数据结构。</p><h2 id="流（Streams）"><a href="#流（Streams）" class="headerlink" title="流（Streams）"></a>流（Streams）</h2><p>只追加提供抽象日志数据类型的类似映射项的集合。</p>]]></content>
+      
+      
+        <tags>
+            
+            <tag> redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>little tips</title>
       <link href="/2019/04/18/little-tips/"/>
       <url>/2019/04/18/little-tips/</url>
