@@ -228,3 +228,73 @@
     
 </body>
 </html>
+span><br><span class="line">  beforeCreate () &#123;</span><br><span class="line">    Vue.prototype.bus = <span class="keyword">this</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>这样在组件中我们就可以通过以下方式处理  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.bus.$emit(<span class="string">'some-event'</span>, data)</span><br><span class="line"><span class="keyword">this</span>.bus.$on(<span class="string">'some-event'</span>, ()=&gt;&#123;&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="vuex"><a href="#vuex" class="headerlink" title="vuex"></a>vuex</h2><p><a href="https://github.com/vuejs/vuex" target="_blank" rel="noopener">vuex</a></p>
+
+        
+    </section>
+</article>
+
+
+
+
+
+</div>
+        <article id="article-search-result" class="article-search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明：
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/" + search_path;
+            searchFunc(path, 'local-search-input', 'article-search-result');
+        </script>
+    
+    
+</body>
+</html>
