@@ -122,7 +122,7 @@
     
     <section class="article-body markdown-body">
         
-        <h2 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h2><p>MongoDB 是一个基于分布式文件存储的数据库。由 C++ 语言编写。旨在为 WEB 应用提供可扩展的高性能数据存储解决方案。<br>MongoDB 将数据存储为一个文档，数据结构由键值(key=&gt;value)对组成。MongoDB 文档类似于 JSON 对象。字段值可以包含其他文档，数组及文档数组。<br>你可以在mongodb官网下载该安装包，地址为：<a href="https://www.mongodb.com/download-center#community" target="_blank" rel="noopener">https://www.mongodb.com/download-center#community</a>。<br>MongoDB可视化工具有<a href="https://robomongo.org/" target="_blank" rel="noopener">Robomongo</a>等。<br>MongoDB的文档写的很好可惜没有中文版的，英语不错的同学可以直接访问 <a href="https://docs.mongodb.com/" target="_blank" rel="noopener">MongoDB文档官网</a>  </p>
+        <h2 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h2><p>MongoDB 是一个基于分布式文件存储的数据库。由 C++ 语言编写。旨在为 WEB 应用提供可扩展的高性能数据存储解决方案。<br>MongoDB 将数据存储为一个文档，数据结构由键值(key=&gt;value)对组成。MongoDB 文档类似于 JSON 对象。字段值可以包含其他文档，数组及文档数组。<br>你可以在mongodb官网下载该安装包，地址为：<a href="https://www.mongodb.com/download-center#community" target="_blank" rel="noopener">https://www.mongodb.com/download-center#community</a>。<br>MongoDB可视化工具有 <a href="https://robomongo.org/" target="_blank" rel="noopener">Robomongo</a> 等。<br>MongoDB的文档写的很好可惜没有中文版的，英语不错的同学可以直接访问 <a href="https://docs.mongodb.com/" target="_blank" rel="noopener">MongoDB文档官网</a>  </p>
 <h2 id="MongoDB-命令"><a href="#MongoDB-命令" class="headerlink" title="MongoDB 命令"></a>MongoDB 命令</h2><p>Windows系统下的命令如下，其他系统类似：</p>
 <ol>
 <li>运行Mongo服务器</li>
@@ -186,7 +186,7 @@
 <tr>
 <td>primary key</td>
 <td>primary key</td>
-<td>主键，MongoDB自动将_id字段设置为主键</td>
+<td>主键，MongoDB自动将 _id 域设置为主键</td>
 </tr>
 </tbody>
 </table>
@@ -341,7 +341,7 @@
 <td>JavaScript (with scope)</td>
 <td>15</td>
 <td>“javascriptWithScope”</td>
-<td></td>
+<td>-</td>
 </tr>
 <tr>
 <td>32-bit integer</td>
@@ -371,12 +371,13 @@
 <td>Min key</td>
 <td>-1</td>
 <td>“minKey”</td>
-<td></td>
+<td>-</td>
 </tr>
 <tr>
 <td>Max key</td>
 <td>127</td>
 <td>“maxKey”</td>
+<td>-</td>
 </tr>
 </tbody>
 </table>
@@ -534,11 +535,243 @@
 </tr>
 </tbody>
 </table>
-<h4 id="查询文档"><a href="#查询文档" class="headerlink" title="查询文档"></a>查询文档</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.COLLECTION_NAME.find(&lt;query&gt;, &lt;projection&gt;)</span><br><span class="line">db.collection.findOne(...)</span><br></pre></td></tr></table></figure>
+<h4 id="查询文档"><a href="#查询文档" class="headerlink" title="查询文档"></a>查询文档</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.COLLECTION_NAME.find(&lt;query&gt;, &lt;projection&gt;)</span><br><span class="line">db.COLLECTION_NAME.findOne(...)</span><br></pre></td></tr></table></figure>
 <ul>
 <li><strong>query</strong> : 查询的条件。</li>
 <li><strong>projection</strong> : 可选，表明文档中需要返回的符合query过滤器的域，忽略此参数时返回所有的域</li>
 </ul>
+<h3 id="索引-Index-相关"><a href="#索引-Index-相关" class="headerlink" title="索引(Index)相关"></a>索引(Index)相关</h3><p>MongoDB 索引使用 B-tree 数据结构。MongoDB 会在集合创建时建立唯一索引 <code>_id</code> 且不能删除。MongoDB可以创建复合索引。</p>
+<h4 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.COLLECTION_NAME.createIndex( &lt;keys&gt;, &lt;options&gt; )</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>keys</strong> 健值对文档，指定索引的字段和排序方式</li>
+<li><strong>options</strong> 可选参数，指定有关索引的其它选项</li>
+</ul>
+<p>options可以是如下参数：  </p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>background</td>
+<td>boolean</td>
+<td>可选，指定是否在后台创建索引，默认false</td>
+</tr>
+<tr>
+<td>unique</td>
+<td>boolean</td>
+<td>可选，指定是否是唯一索引，默认false</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>可选，指定索引名。不提供的话，MongoDB会将索引名和排序方式连接来生成索引名</td>
+</tr>
+<tr>
+<td>partialFilterExpression</td>
+<td>document</td>
+<td>可选，若提供则仅对符合过滤表达式的文档建立索引</td>
+</tr>
+<tr>
+<td>sparse</td>
+<td>boolean</td>
+<td>可选，若提供则仅针对提供的field进行索引，这样的话索引占用空间会更小，但对非指定的field进行排序会有影响，默认false</td>
+</tr>
+<tr>
+<td>expireAfterSeconds</td>
+<td>integer</td>
+<td>可选，提供一个秒为单位的数字来控制索引的存在时间</td>
+</tr>
+<tr>
+<td>storageEngine</td>
+<td>document</td>
+<td>可选</td>
+</tr>
+<tr>
+<td>collation</td>
+<td>document</td>
+<td>可选，表明索引的排序规则</td>
+</tr>
+</tbody>
+</table>
+<h4 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.COLLECTION_NAME.dropIndex(&lt;index name&gt;)</span><br><span class="line">db.COLLECTION_NAME.dropIndexes() // 删除所有索引</span><br></pre></td></tr></table></figure>
+<h4 id="查看索引"><a href="#查看索引" class="headerlink" title="查看索引"></a>查看索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.COLLECTION_NAME.getIndexes()</span><br></pre></td></tr></table></figure>
+<h3 id="其它常用"><a href="#其它常用" class="headerlink" title="其它常用"></a>其它常用</h3><h4 id="聚合"><a href="#聚合" class="headerlink" title="聚合"></a>聚合</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.COLLECTION_NAME.aggregate(pipeline, options)</span><br></pre></td></tr></table></figure>
+<p>用于通过管道计算集合/视图数据的聚合结果。  </p>
+<ul>
+<li><strong>pipeline</strong> 可以取 聚合管道步骤 的操作符</li>
+<li><strong>options</strong> 可选参数，指定有关聚合的其它选项</li>
+</ul>
+<h4 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.COLLECTION_NAME.find(&lt;query&gt;).pretty()</span><br></pre></td></tr></table></figure>
+<h4 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.COLLECTION_NAME.find(&lt;query&gt;).sort(&#123;&lt;field&gt;: &lt;positive integer&gt;&#125;)</span><br></pre></td></tr></table></figure>
+<p>将结果根据field进行排序，并使用 1 和 -1 来指定排序的方式，其中 1 为升序排列，而 -1 是用于降序排列。  </p>
+<h4 id="限制返回条数"><a href="#限制返回条数" class="headerlink" title="限制返回条数"></a>限制返回条数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.COLLECTION_NAME.find(&lt;query&gt;).limit(&lt;positive integer&gt;)</span><br></pre></td></tr></table></figure>
+<p>限制返回n条数据</p>
+<h4 id="跳过固定条数数据"><a href="#跳过固定条数数据" class="headerlink" title="跳过固定条数数据"></a>跳过固定条数数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.COLLECTION_NAME.find(&lt;query&gt;).skip(&lt;positive integer&gt;)</span><br></pre></td></tr></table></figure>
+<p>跳过固定n条数数据</p>
+<h3 id="MongoDB-操作符"><a href="#MongoDB-操作符" class="headerlink" title="MongoDB 操作符"></a>MongoDB 操作符</h3><p>MongoDB 操作符分为</p>
+<ul>
+<li>查询与预测操作符</li>
+<li>更新操作符</li>
+<li>聚合管道步骤</li>
+<li>聚合管道操作符</li>
+<li>查询修饰符</li>
+</ul>
+<p>以下列举常用的一些操作符</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>描述</th>
+<th>语法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$eq</code></td>
+<td>比较</td>
+<td>equal 值相等</td>
+<td><code>{ &lt;field&gt;: { $eq: &lt;value&gt; } }</code></td>
+</tr>
+<tr>
+<td><code>$gt</code></td>
+<td>比较</td>
+<td>greater than 值大于</td>
+<td><code>{ &lt;field&gt;: {$gt: &lt;value&gt;} }</code></td>
+</tr>
+<tr>
+<td><code>$gte</code></td>
+<td>比较</td>
+<td>greater than equal 值大于等于</td>
+<td><code>{ &lt;field&gt;: {$gte: &lt;value&gt;} }</code></td>
+</tr>
+<tr>
+<td><code>$in</code></td>
+<td>比较</td>
+<td>值存在于</td>
+<td><code>{ &lt;field&gt;: { $in: [&lt;value1&gt;, &lt;value2&gt;, ... &lt;valueN&gt; ] } }</code></td>
+</tr>
+<tr>
+<td><code>$lt</code></td>
+<td>比较</td>
+<td>less than 值小于</td>
+<td><code>{ &lt;field&gt;: {$lt: &lt;value&gt;} }</code></td>
+</tr>
+<tr>
+<td><code>$lte</code></td>
+<td>比较</td>
+<td>less than equal 值小于等于</td>
+<td><code>{ &lt;field&gt;: { $lte: &lt;value&gt;} }</code></td>
+</tr>
+<tr>
+<td><code>$ne</code></td>
+<td>比较</td>
+<td>not equal 值不等于</td>
+<td><code>{ &lt;field&gt;: {$ne: &lt;value&gt;} }</code></td>
+</tr>
+<tr>
+<td><code>$nin</code></td>
+<td>比较</td>
+<td>not in 值不存在于</td>
+<td><code>{ &lt;field&gt;: { $nin: [ &lt;value1&gt;, &lt;value2&gt; ... &lt;valueN&gt; ]} }</code></td>
+</tr>
+<tr>
+<td><code>$and</code></td>
+<td>逻辑</td>
+<td>与，跟表达式数组，表达式之间是与关系</td>
+<td><code>{ $and: [ { &lt;expression1&gt; }, { &lt;expression2&gt; } , ... , { &lt;expressionN&gt; } ] }</code></td>
+</tr>
+<tr>
+<td><code>$not</code></td>
+<td>逻辑</td>
+<td>非，跟操作符表达式</td>
+<td><code>{ &lt;field&gt;: { $not: { &lt;operator-expression&gt; } } }</code></td>
+</tr>
+<tr>
+<td><code>$nor</code></td>
+<td>逻辑</td>
+<td>异或，跟表达式数组，表达式之间是异或关系</td>
+<td>{ <code>$nor: [ { &lt;expression1&gt; }, { &lt;expression2&gt; }, ...  { &lt;expressionN&gt; } ] }</code></td>
+</tr>
+<tr>
+<td><code>$or</code></td>
+<td>逻辑</td>
+<td>或，跟表达式数组，表达式之间是或关系</td>
+<td><code>{ $or: [ { &lt;expression1&gt; }, { &lt;expression2&gt; }, ... , { &lt;expressionN&gt; } ] }</code></td>
+</tr>
+<tr>
+<td><code>$exists</code></td>
+<td>元素</td>
+<td>表示field是否存在</td>
+<td><code>{ &lt;field&gt;: { $exists: &lt;boolean&gt; } }</code></td>
+</tr>
+<tr>
+<td><code>$type</code></td>
+<td>元素</td>
+<td>表示field需要符合列出的BSON类型，<code>&lt;BSON type&gt;</code>可以是 <a href="#BSON-Types">BSON Types</a> 的别名或者数字</td>
+<td><code>{ &lt;field&gt;: { $type: &lt;BSON type&gt; } }</code> <br> <code>{ &lt;field&gt;: { $type: [ &lt;BSON type1&gt; , &lt;BSON type2&gt;, ... ] } }</code></td>
+</tr>
+<tr>
+<td><code>$where</code></td>
+<td>评估</td>
+<td><code>$where</code> 查询操作符只对最顶层的document生效，会执行javascript但不走索引，所以尽量先使用其它操作符对数据进行过滤</td>
+<td><code>{$where: function() {&lt;code&gt; return true;}}</code></td>
+</tr>
+<tr>
+<td><code>$all</code></td>
+<td>数组</td>
+<td>field应当是数组，过滤出包含所有给定数组中值的field</td>
+<td><code>{ &lt;field&gt;: { $all: [ &lt;value1&gt; , &lt;value2&gt; ... ] } }</code></td>
+</tr>
+<tr>
+<td><code>$elemMath</code></td>
+<td>数组</td>
+<td>field应当是数组，过滤出至少有一个元素符合所有给定表达式的field</td>
+<td><code>{ &lt;field&gt;: { $elemMatch: { &lt;query1&gt;, &lt;query2&gt;, ... } } }</code></td>
+</tr>
+<tr>
+<td><code>$size</code></td>
+<td>数组</td>
+<td>field应当是数组，过滤出所有元素数量符合size的field</td>
+<td><code>{ &lt;field&gt;: { $size: &lt;positive integer&gt; } }</code></td>
+</tr>
+<tr>
+<td><code>$comment</code></td>
+<td>评论</td>
+<td>为查询添加注释</td>
+<td><code>{ &lt;query&gt;, $comment: &lt;comment&gt; }</code></td>
+</tr>
+<tr>
+<td><code>$sort</code></td>
+<td>聚合</td>
+<td>排序，根据给定的field和排序规则对结果进行排序，<code>&lt;sort order&gt;</code>有两种取值，1代表asc，-1代表desc</td>
+<td><code>{ $sort: { &lt;field1&gt;: &lt;sort order&gt;, &lt;field2&gt;: &lt;sort order&gt; ... } }</code></td>
+</tr>
+<tr>
+<td><code>$limit</code></td>
+<td>聚合</td>
+<td>限制取前n个数据</td>
+<td><code>{ $limit: &lt;positive integer&gt; }</code></td>
+</tr>
+<tr>
+<td><code>$skip</code></td>
+<td>聚合</td>
+<td>跳过n个数据</td>
+<td><code>{ $skip: &lt;positive integer&gt; }</code></td>
+</tr>
+<tr>
+<td><code>$group</code></td>
+<td>聚合</td>
+<td>分组，通过特定表达式与输出将文档分成不同的group</td>
+<td><code>{ $group: { _id: &lt;expression&gt;, &lt;field1&gt;: { &lt;accumulator1&gt; : &lt;expression1&gt; }, ... } }</code></td>
+</tr>
+</tbody>
+</table>
 
         
     </section>
