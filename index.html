@@ -600,6 +600,7 @@
 </table>
 <h4 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.COLLECTION_NAME.dropIndex(&lt;index name&gt;)</span><br><span class="line">db.COLLECTION_NAME.dropIndexes() // 删除所有索引</span><br></pre></td></tr></table></figure>
 <h4 id="查看索引"><a href="#查看索引" class="headerlink" title="查看索引"></a>查看索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.COLLECTION_NAME.getIndexes()</span><br></pre></td></tr></table></figure>
+<h4 id="强制使用指定索引"><a href="#强制使用指定索引" class="headerlink" title="强制使用指定索引"></a>强制使用指定索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.COLLECTION_NAME.find(&lt;query&gt;).hint(&lt;string or document&gt;)</span><br><span class="line">db.COLLECTION_NAME.find( &#123; $query: &#123;&#125;, $hint: &lt;string or document&gt; &#125; )</span><br></pre></td></tr></table></figure>
 <h3 id="其它常用"><a href="#其它常用" class="headerlink" title="其它常用"></a>其它常用</h3><h4 id="聚合"><a href="#聚合" class="headerlink" title="聚合"></a>聚合</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.COLLECTION_NAME.aggregate(pipeline, options)</span><br></pre></td></tr></table></figure>
 <p>用于通过管道计算集合/视图数据的聚合结果。  </p>
 <ul>
@@ -613,6 +614,7 @@
 <p>限制返回n条数据</p>
 <h4 id="跳过固定条数数据"><a href="#跳过固定条数数据" class="headerlink" title="跳过固定条数数据"></a>跳过固定条数数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.COLLECTION_NAME.find(&lt;query&gt;).skip(&lt;positive integer&gt;)</span><br></pre></td></tr></table></figure>
 <p>跳过固定n条数数据</p>
+<h4 id="查看执行计划"><a href="#查看执行计划" class="headerlink" title="查看执行计划"></a>查看执行计划</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">db.COLLECTION_NAME.find(&lt;query&gt;).explain()</span><br><span class="line">db.COLLECTION_NAME.find( &#123; $query: &#123;&#125;, $explain: 1 &#125; )</span><br><span class="line">db.COLLECTION_NAME.explain().find(&lt;query&gt;)</span><br></pre></td></tr></table></figure>
 <h3 id="MongoDB-操作符"><a href="#MongoDB-操作符" class="headerlink" title="MongoDB 操作符"></a>MongoDB 操作符</h3><p>MongoDB 操作符分为</p>
 <ul>
 <li>查询与预测操作符</li>
