@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+
+    
+
+    
+    <title>
+        Tag: regexp | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon">
+    <meta name="version" content="1.0.0">
+    
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    
+        <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://mangon.github.io"></form> -->
+        <div class="top-search-box" id="top-search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="local-search-input" name="q" results="0" placeholder="搜索" class="st-search-input st-default-search-input form-control">
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+
+        
+            <div class="author-meta">
+                
+                <div class="author-avatar">
+                    <a href="/">
+                        <img src="/images/avatar.jpg" title="Mangon">
+                    </a>
+                </div>
+                
+                <div class="author-name">Mangon</div>
+                <div class="author-work">Front-End Software Engineer</div>
+                <div class="author-location">
+                    <i class="icon-location vm"></i>
+                    <span class="vm">Beijing, China</span>
+                </div>
+                
+                <div class="author-thread-wrap">
+                    <div class="author-threads clearfix">
+                        
+                        <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
+                        
+                        
+                        
+                    </div>
+                </div>
+                
+            </div>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+    <article class="article" itemscope="" itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/08/14/js常用校验规则/">js常用校验规则</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="/2019/08/14/js常用校验规则/">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-08-14T06:02:01.000Z" itemprop="datePublished">2019-08-14</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/regexp/">regexp</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>以下列举些常用js校验规则  </p>
+<h2 id="用户名"><a href="#用户名" class="headerlink" title="用户名"></a>用户名</h2><p>用户名的初衷一般是用户在应用中的唯一标志以及默认昵称，采用用户名不会明显地暴露用户在真实世界的个人隐私，同时因为用户名代表了用户在此应用中的唯一身份，应该易于记忆，而且能够体现出用户对自己身份的认同和特殊性（个性化）。<br>用户名允许的字符（包括种类和数量）太多会带来很多问题，也不利于管理，允许的字符太少不利于表达出用户的个性化  </p>
+<p>百度账号以前允许的字符就很宽泛，允许单个汉字，甚至允许emoji字符，这充分给了用户表达自己个性的自由，但在不同的设备/应用上可能会有不同的表现，同时有些地方需要对用户名模糊处理（比如隐藏中间几个字符），百度账号难以处理。<br>目前百度的用户名规则为  </p>
+<ul>
+<li>不超过7个汉字或14个英文</li>
+<li>仅支持中英文、数字和下划线</li>
+<li>不能为纯数字</li>
+</ul>
+<p>腾讯的QQ号是随机数字，十分利于管理，但是因为是随机生成并分发给用户的，对于用户而言没有逻辑上的联想记忆，容易被用户忘记。<br>淘宝用户名被称为会员名，微信用户名被称为微信号，这两者账号是处理的比较好的，一般都是允许大小写字母，汉字，数字和_-#@等比较温和的特殊字符。比较不同的是淘宝以前注册时直接填写的是用户名，没有昵称概念，最近才提示要用户设置昵称。而微信注册时填写的就是昵称，用户名是随机生成的类似于 <code>wxid_oz2w2vxxxxxxxx</code> 的字符串，用户自己可以修改一次，改成易于记忆的用户名。  </p>
+<p>当然现在很多账号弱化了用户名的概念，直接使用 <strong>电话号码/邮箱地址</strong> 作为用户名，例如美团(美团注册甚至不用https)，我个人觉得这是及其不合理的。  </p>
+<ul>
+<li>首先用户名也具有默认昵称的作用，会在应用的某些位置进行展示，甚至会被其它用户看到，采用电话号码/邮箱地址会暴露用户的个人隐私。</li>
+<li>其次，电话号码并不能用来标志用户的唯一身份。我们都知道用户可能会经常变换电话号码，有些电话号码本身具有价值，用户甚至将电话号码作为财产的一部分进行赠予，但应用的账号并不一定需要同时转移所有权，而且如果用户的电话号码长时间未使用是有可能被电信运营商再次放入号池并售卖给其它个人的。这时如果电话号码新的用户登陆了原用户的账号就造成了严重的隐私泄漏事件。</li>
+<li>最后，电话号码/邮箱地址是需要验证的，验证的操作其实需要用户主动去触发，但是在注册时，我们只能称之为游客，一个游客不应该有验证电话的权限（这正是短信轰炸的根源之一），发短信虽然成本很低，但不是没有成本，可能会有恶意游客利用这个功能。</li>
+<li>最最后，如果一个游客没有邮箱没有电话就不能注册为你的用户了吗？虽然大部分情况下，绑定电话/邮箱的用户会是优质用户（说明用户愿意告知你他的部分隐私来提升你的应用账号安全性），但强制用户绑定手机号码/邮箱地址这显然不合理。  </li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isValidUsername</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="密码"><a href="#密码" class="headerlink" title="密码"></a>密码</h2><p>不同的网站通常有自己的密码规则<br>例如百度的密码规则如下：  </p>
+<ul>
+<li>长度为8-14个字符</li>
+<li>支持数字大小写字母和标点符号</li>
+<li>不允许有空格</li>
+<li>必须有数字、大写字母、小写字母、标点符号中至少两种</li>
+</ul>
+<p>实测</p>
+<ul>
+<li>汉字也是可以的，而且不受字符种类至少两种的限制  </li>
+<li>对标点符号的容忍十分宽限，单引号双引号斜线反斜线都可以</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isValidPassword</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="邮箱"><a href="#邮箱" class="headerlink" title="邮箱"></a>邮箱</h2><p>邮箱通常是 字母数字小数点下划线@域名</p>
+<h2 id="电话号码"><a href="#电话号码" class="headerlink" title="电话号码"></a>电话号码</h2><p>分为移动电话和固定电话<br>移动电话类似固定前三位数字选择，总共11位数字<br>中国需要加上区号 +86 其它国家地区有不同区号</p>
+<h2 id="url地址"><a href="#url地址" class="headerlink" title="url地址"></a>url地址</h2><h2 id="居民身份证"><a href="#居民身份证" class="headerlink" title="居民身份证"></a>居民身份证</h2><h2 id="IPv4地址"><a href="#IPv4地址" class="headerlink" title="IPv4地址"></a>IPv4地址</h2><h2 id="国内常用账号注册地址"><a href="#国内常用账号注册地址" class="headerlink" title="国内常用账号注册地址"></a>国内常用账号注册地址</h2><p><a href="https://passport.baidu.com/v2/?reg" target="_blank" rel="noopener">百度</a><br><a href="https://reg.taobao.com/member/reg/  fill_mobile.htm" target="_blank" rel="noopener">淘宝</a><br><a href="https://ssl.zc.qq.com/v3/index-chs.html" target="_blank" rel="noopener">QQ</a><br><a href="https://reg.jd.com/p/regPage" target="_blank" rel="noopener">京东</a><br><a href="http://passport.meituan.com/account/unitivesignup" target="_blank" rel="noopener">美团</a><br><a href="https://cn.account.xiaomi.com/pass/register" target="_blank" rel="noopener">小米</a><br><a href="https://login.dangdang.com/Register.aspx" target="_blank" rel="noopener">当当</a><br><a href="https://id1.cloud.huawei.com/CAS/portal/userRegister/regbyphone.html" target="_blank" rel="noopener">华为</a><br><a href="https://weibo.com/signup/signup.php" target="_blank" rel="noopener">新浪微博</a></p>
+
+        
+    </section>
+</article>
+
+
+
+
+
+</div>
+        <article id="article-search-result" class="article-search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明：
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/" + search_path;
+            searchFunc(path, 'local-search-input', 'article-search-result');
+        </script>
+    
+    
+</body>
+</html>
