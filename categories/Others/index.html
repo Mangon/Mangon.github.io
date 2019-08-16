@@ -104,6 +104,964 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2019/06/19/little-tips/">little tips</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-06-19T08:08:39.000Z" itemprop="datePublished">2019-06-19</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/learn/">learn</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="在eclipse中设置字体"><a href="#在eclipse中设置字体" class="headerlink" title="在eclipse中设置字体"></a>在eclipse中设置字体</h2><p>在eclipse中设置 Windows-&gt;Preferences-&gt;General-&gt;Appearance-&gt;Color and Fonts-&gt;Basic-&gt;Text Font-&gt;Edit-&gt;脚本(R) 选择 <code>中欧字符</code> 后中文字体的显示能够更好看些。  </p>
+<h2 id="处理-nginx-php-遇到后端返回413错误"><a href="#处理-nginx-php-遇到后端返回413错误" class="headerlink" title="处理 nginx + php 遇到后端返回413错误"></a>处理 nginx + php 遇到后端返回413错误</h2><p>php 默认上传文件大小限制为 2M，如果超出 2M 你需要修改 php 配置文件 php.ini 里面的参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">post_max_size = 128M ## （表单提交的最大限制，此项不是限制上传单个文件的大小，而是针对整个表单提交的数据进行限制）</span><br><span class="line">upload_max_filesize = 128M ## （上传的单个文件的最大限制）</span><br></pre></td></tr></table></figure>
+<p>需要保证 post_max_size &gt;= upload_max_filesize ，也就是前者不小于后者。修改之后一定要重启 php-fpm (service php-fpm restart)。</p>
+<p>除了修改 php 配置，你也需要修改nginx配置文件 nginx.conf<br>打开 nginx 配置文件 nginx.conf，找到 http{} 段，在其中添加一行配置：<br>client_max_body_size 128m; 其中 128m 可以根据需要上传文件大小自行设定。<br>修改之后一定要重新载入 nginx （service nginx reload）。</p>
+<h2 id="导入-导出-csv文件到mysql"><a href="#导入-导出-csv文件到mysql" class="headerlink" title="导入/导出 csv文件到mysql"></a>导入/导出 csv文件到mysql</h2><h3 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h3><p>需要表存在且字段与csv文件中的相同</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">LOAD</span> <span class="keyword">DATA</span> <span class="keyword">LOCAL</span> <span class="keyword">INFILE</span> <span class="string">'$&#123;csv文件路径&#125;'</span></span><br><span class="line"><span class="keyword">INTO</span> <span class="keyword">TABLE</span> $&#123;数据库表名&#125;</span><br><span class="line"><span class="built_in">CHARACTER</span> <span class="keyword">SET</span>  utf8</span><br><span class="line"><span class="keyword">FIELDS</span></span><br><span class="line">    <span class="keyword">TERMINATED</span> <span class="keyword">BY</span> <span class="string">','</span></span><br><span class="line">    <span class="keyword">ENCLOSED</span> <span class="keyword">BY</span> <span class="string">'"'</span></span><br><span class="line"><span class="keyword">LINES</span></span><br><span class="line">    <span class="keyword">TERMINATED</span> <span class="keyword">BY</span> <span class="string">'\n'</span></span><br><span class="line"><span class="keyword">IGNORE</span> <span class="number">1</span> <span class="keyword">ROWS</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">LOCK</span> <span class="keyword">TABLES</span> $&#123;数据库表名&#125; <span class="keyword">read</span>;</span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> $&#123;数据库表名&#125; <span class="keyword">INTO</span> <span class="keyword">OUTFILE</span> <span class="string">'$&#123;csv文件路径&#125;'</span> </span><br><span class="line"><span class="keyword">FIELDS</span></span><br><span class="line">    <span class="keyword">TERMINATED</span> <span class="keyword">BY</span> <span class="string">','</span></span><br><span class="line">    <span class="keyword">OPTIONALLY</span> <span class="keyword">ENCLOSED</span> <span class="keyword">BY</span> <span class="string">'"'</span></span><br><span class="line"><span class="keyword">LINES</span></span><br><span class="line">    <span class="keyword">TERMINATED</span> <span class="keyword">BY</span> <span class="string">'\n'</span>;</span><br><span class="line"><span class="keyword">UNLOCK</span> <span class="keyword">TABLES</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="导出csv文件到mysql报错"><a href="#导出csv文件到mysql报错" class="headerlink" title="导出csv文件到mysql报错"></a>导出csv文件到mysql报错</h2><h3 id="Error-1148"><a href="#Error-1148" class="headerlink" title="Error 1148"></a>Error 1148</h3><p>如果在执行语句时报错 <code>Error 1148 MySQL The used command is not allowed with this MySQL version</code> 可能是因为MySQL的安全策略阻止读取本地文件，可以通过以下方法解决：</p>
+<ol>
+<li>Use –local-infile=1 argument on the mysql commandline:</li>
+</ol>
+<p>When you start MySQL on the terminal, include –local-infile=1 argument, Something like this:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql <span class="comment">--local-infile=1 -uroot -p</span></span><br><span class="line"></span><br><span class="line">mysql&gt;LOAD DATA LOCAL INFILE '/tmp/foo.txt' INTO TABLE foo </span><br><span class="line">COLUMNS TERMINATED BY '\t';</span><br></pre></td></tr></table></figure>
+<p>Then the command is permitted:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Query OK, 3 rows affected (0.00 sec)</span><br><span class="line">Records: 3  Deleted: 0  Skipped: 0  Warnings: 0</span><br></pre></td></tr></table></figure>
+<ol>
+<li>Or send the parameter into the mysql daemon:</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld --local-infile=1</span><br></pre></td></tr></table></figure>
+<ol>
+<li>Or set it in the my.cnf file (This is a security risk):</li>
+</ol>
+<p>Find your mysql my.cnf file and edit it as root.</p>
+<p>Add the local-infile line under the mysqld and mysql designators:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">local-infile </span><br><span class="line"></span><br><span class="line">[mysql]</span><br><span class="line">local-infile</span><br></pre></td></tr></table></figure>
+<p>Save the file, restart mysql. Try it again.</p>
+<ol>
+<li>The main reason why we are using the LOCAL keyword is explained in the MySQL manual. On the other hand, you do not need the FILE privilege to load local files. So if you in fact do have file access to the server then try to skip using the word “LOCAL” in SQL query, and instead copy the file to the server and the directory mysql/data/[tablename].</li>
+</ol>
+<h3 id="Error-1290"><a href="#Error-1290" class="headerlink" title="Error 1290"></a>Error 1290</h3><p>如果在执行语句时报错 <code>[Error Code] 1290 - The MySQL server is running with the --secure-file-priv option</code> 说明参数secure-file-priv 可能有问题</p>
+<p>执行以下语句<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">VARIABLES</span> <span class="keyword">LIKE</span> <span class="string">"secure_file_priv"</span>;</span><br></pre></td></tr></table></figure></p>
+<p>可以看到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">　　secure_file_prive=null   -- 限制mysqld 不允许导入导出</span><br><span class="line">　　secure_file_priv=/tmp/   -- 限制mysqld的导入导出只能发生在/tmp/目录下</span><br><span class="line">　　secure_file_priv=&apos;&apos;     -- 不对mysqld 的导入/导出做限制</span><br></pre></td></tr></table></figure>
+<p>可以在 my.ini（windows） 或 /etc/my.cnf(linux) 文件中的[mysqld]节点添加secure_file_priv=’’，然后重启mysql服务</p>
+<h2 id="启动mysql报错error-11"><a href="#启动mysql报错error-11" class="headerlink" title="启动mysql报错error: 11"></a>启动mysql报错error: 11</h2><p>如果在启动mysql时遇到了 <code>[ERROR] InnoDB: Unable to lock ./ibdata1, error: 11</code><br>说明 ibdata1 文件被其他的进程占用 或者 磁盘空间目录不足，有以下解决方案：</p>
+<ol>
+<li>查看磁盘空间情况</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br></pre></td></tr></table></figure>
+<ol>
+<li>查看系统 mysql 相关进程</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -eaf | grep mysql</span><br><span class="line">kill -9 78806</span><br></pre></td></tr></table></figure>
+<p>如果语句执行正常但是返回 <code>0 row(s) affected</code> ，查看一下csv中的字段是否是否与表中的字段一致，区分大小写；查看一下csv文件的分隔符的设置是否正确。</p>
+<h2 id="处理-mongoose-中-bson-MODULE-NOT-FOUND-相关报错"><a href="#处理-mongoose-中-bson-MODULE-NOT-FOUND-相关报错" class="headerlink" title="处理 mongoose 中 bson MODULE_NOT_FOUND 相关报错"></a>处理 mongoose 中 bson MODULE_NOT_FOUND 相关报错</h2><p>node.js 在使用 mongoose时报错 <code>[Error: Cannot find module &#39;../build/Release/bson&#39;] code: &#39;MODULE_NOT_FOUND&#39;</code>  </p>
+<p>参见 <a href="https://github.com/Automattic/mongoose/issues/3436" target="_blank" rel="noopener">https://github.com/Automattic/mongoose/issues/3436</a> </p>
+<p>应该是mongoose版本问题，理论上升级到最新版本可以解决，也可以按照以下步骤解决  </p>
+<ol>
+<li><p>更改 bson 引用<br>找到 module mongodb ..node_modules\mongodb\node_modules\bson\ext\index.js<br>改变bson引用的路径</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bson = <span class="built_in">require</span>(<span class="string">'../build/Release/bson'</span>);</span><br></pre></td></tr></table></figure>
+<p>改为</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bson = <span class="built_in">require</span>(<span class="string">'../browser_build/bson'</span>);</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bson = require(&apos;bson&apos;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更改mongoose版本<br>将原有的mongoose升级为 <code>&quot;mongoose &quot;: &quot;~3.8.23&quot;</code>  </p>
+</li>
+</ol>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope="" itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/02/01/Git小全/">Git小全</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-02-01T07:14:46.000Z" itemprop="datePublished">2019-02-01</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/git/">git</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="什么是-Git"><a href="#什么是-Git" class="headerlink" title="什么是 Git"></a>什么是 Git</h2><p><a href="https://github.com/git/git" target="_blank" rel="noopener">Git</a> 是一个免费的开源分布式版本控制系统。它被设计用来高效的控制各种各样的工程项目。<br>Git最初在2005年由 <a href="https://github.com/torvalds" target="_blank" rel="noopener">Linus</a> 花费了两周时间用C语言开发而成，并被用来管理 <a href="https://github.com/torvalds/linux" target="_blank" rel="noopener">Linux kernel</a> 的源码。<br>Git很容易学习，所占用空间极小而且效率很高。它比同类型的版本控制工具比如Subversion(SVN)，CVS， ClearCase要更加功能强大。  </p>
+<h3 id="什么是版本控制"><a href="#什么是版本控制" class="headerlink" title="什么是版本控制"></a>什么是版本控制</h3><p>简单来说就是项目的历史，项目的代码从无到有，从少到多是有个过程的。在写代码的过程中我们免不了会遇到想知道项目发展过程中的许多事情，比如  </p>
+<ol>
+<li><p>谁提交了多少次代码，提交了多少行代码，谁对这个项目的贡献最大  </p>
+</li>
+<li><p>某行代码是何时由谁合并到项目中的，为什么他要这样写  </p>
+</li>
+<li><p>想要回滚当前项目到过去的某个时间段  </p>
+</li>
+<li><p>两个不同的人都修改了代码，如何能够快速的将两个人的代码diff并合并到项目中去  </p>
+</li>
+<li><p>想要维护两套代码分别开发不同的功能  </p>
+</li>
+<li><p>在每次提交代码时想要做一些验证，比如保证代码格式  </p>
+</li>
+</ol>
+<p>版本控制系统就是来控制这些事情的工具。Git也可以做到这些。  </p>
+<h3 id="Git-的特色"><a href="#Git-的特色" class="headerlink" title="Git 的特色"></a>Git 的特色</h3><p>Git与其它的版本控制系统有什么不同呢？最大的不同（除了开源）在于Git采用了分布式的版本控制。<br>在Git之前，版本控制系统都是集中式的，集中式版本控制系统的特色是最基本的版本库是存放在中央服务器的，在开发功能的时候，所有开发者都需要从中央服务器获取代码的最新版本，然后在本地加入自己的功能，最后再将代码合并到中央服务器中，合并的过程中，如果有别人在你之前合入了代码而你的代码和他的有冲突，你就要先处理这些冲突，然后合并入中央服务器。  </p>
+<p><img src="/static/imgs/git/集中式版本控制系统.jpeg" alt="集中式版本控制系统">  </p>
+<p>集中式版本控制系统是可以工作的，但在某些方面也有自己的不足，比如如果中央服务器出现了问题，所有人都必须等待中央服务器可用。由于地理因素，某些开发者可能互相之间需要同步代码，而不希望和中央服务器同步（比如由于和中央服务器之间的带宽较小）。再比如开发者想要并行开发多个功能，但不想每次都需要同服务器同步获取最新代码。<br>分布式版本控制系统很好的解决了以上问题。在分布式版本控制系统中，每个版本库都是独立的。换句话说，每个版本库都可以作为“中央服务器”。这样，在开发的时候，任何两个开发者之间都可以互相推送自己的修改，而且由于记录的都是修改的操作，所以在自己本地创建“新版本库”（实际上通常是分支）来开发新功能的代价很小。  </p>
+<p><img src="/static/imgs/git/分布式版本控制系统.jpeg" alt="分布式版本控制系统">  </p>
+<p>当然，实际上，采用分布式版本控制系统的项目通常也有一个版本库充当“中央服务器”的角色，而这个版本库标记这产品的正式的代码变更，每个开发者从“中央服务器”同步最新的代码相当于获取大家都认可的项目最新的代码。</p>
+<h2 id="如何安装-Git"><a href="#如何安装-Git" class="headerlink" title="如何安装 Git"></a>如何安装 Git</h2><p>下面列举了在Linux/MacOS/Windows中安装Git的方法：  </p>
+<h3 id="在Linux上安装Git"><a href="#在Linux上安装Git" class="headerlink" title="在Linux上安装Git"></a>在Linux上安装Git</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install git</span><br></pre></td></tr></table></figure>
+<h3 id="在Mac-OS-X上安装Git"><a href="#在Mac-OS-X上安装Git" class="headerlink" title="在Mac OS X上安装Git"></a>在Mac OS X上安装Git</h3><p>安装homebrew，然后通过homebrew安装Git，具体方法请参考 <a href="http://brew.sh/" target="_blank" rel="noopener">homebrew</a> 的文档。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install</span><br></pre></td></tr></table></figure>
+<h3 id="在Windows上安装Git"><a href="#在Windows上安装Git" class="headerlink" title="在Windows上安装Git"></a>在Windows上安装Git</h3><p>从Git官网直接 <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">下载安装程序</a> ，然后双击安装即可。  </p>
+<h2 id="Git-常用命令"><a href="#Git-常用命令" class="headerlink" title="Git 常用命令"></a>Git 常用命令</h2><p>首先我们来了解下Git中的各个区域的含义  </p>
+<table>
+<thead>
+<tr>
+<th>区域</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>stash 存档库</td>
+<td>当你去修改别的东西的时候，隐藏（临时保存）当前的修改</td>
+</tr>
+<tr>
+<td>workspace 工作区</td>
+<td>本地检出</td>
+</tr>
+<tr>
+<td>index 暂存区（索引）</td>
+<td>索引（暂存区）保存了一份工作(树)的快照，作为下次提交的内容</td>
+</tr>
+<tr>
+<td>local repository 本地版本库</td>
+<td>.git 文件夹保存版本库需要的全部信息(Git 版本库的骨架)，一般包括分支 <strong>master</strong>, <strong>feature-x</strong>, <strong>bugfix-y</strong></td>
+</tr>
+<tr>
+<td>upstream repository 上游版本库</td>
+<td>在网络（局域或因特网）上共享给其他开发者的版本库，一般叫”origin”. 一般包括分支<strong>master</strong>, <strong>shared-feature-x</strong>, <strong>release-y</strong></td>
+</tr>
+</tbody>
+</table>
+<p>一个Git命令由 <code>git</code>开始，然后加上命令名，例如 <code>config</code>，然后加上参数，例如<code>--global user.name &quot;your name&quot;</code>，中间由空格连接。一个Git命令通常在一个区域或者两个区域之间进行了某些操作。  </p>
+<p>Git提供了很多的命令，可以自由的实现版本控制的几乎所有的要求，然而在日常工作中，最常用的几乎只有那么几个，你只需要打印出来贴在办公桌上即可，这里提供了一个 <a href="/static/docs/github-git-cheat-sheet.pdf" target="_blank" ref="noopener noreferrer">Git 命令小抄</a> 。  </p>
+<p>如果你不想手打Git命令，也有很好的界面化工具 <a href="https://www.sourcetreeapp.com/" target="_blank" rel="noopener">Sourcetree</a> 支持。  </p>
+<p>如果想要更全面的了解Git，可以查看 <a href="https://git-scm.com/book/zh/v2" target="_blank" rel="noopener">《Pro Git》</a> ，这本书由 Scott Chacon &amp; Ben Straub 编写，由Apress发布，遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution Non Commercial Share Alike 3.0 license</a>。  </p>
+<p>下面列出一些常用的Git命令：  </p>
+<h3 id="git-stash-save-lt-msg"><a href="#git-stash-save-lt-msg" class="headerlink" title="git stash save [&lt;msg>]"></a>git stash save [&lt;msg>]</h3><p>所属区域： 从 <code>工作区</code> 到 <code>存档区</code><br>保存当前修改到新的存档库，并且执行<code>git reset ‑‑hard</code>来回滚。 msg是可选的用来描述存档。想快速建立存档，可以省略掉<code>save</code>和<code>msg</code>。</p>
+<h3 id="git-stash-apply-lt-stash"><a href="#git-stash-apply-lt-stash" class="headerlink" title="git stash apply [&lt;stash>]"></a>git stash apply [&lt;stash>]</h3><p>所属区域： 从 <code>存档区</code> 到 <code>工作区</code><br>从某个存档中将改变应用到工作区，默认是最近的存档。</p>
+<h3 id="git-stash-pop"><a href="#git-stash-pop" class="headerlink" title="git stash pop"></a>git stash pop</h3><p>所属区域： 从 <code>存档区</code> 到 <code>工作区</code><br>应用最后一个（或指定的）存档中的改动，然后从存档库丢弃它。</p>
+<h3 id="git-stash-list"><a href="#git-stash-list" class="headerlink" title="git stash list"></a>git stash list</h3><p>所属区域： <code>存档区</code><br>显示当前你有的所有存档。  </p>
+<h3 id="git-stash-show-lt-stash"><a href="#git-stash-show-lt-stash" class="headerlink" title="git stash show [&lt;stash>]"></a>git stash show [&lt;stash>]</h3><p>所属区域： <code>存档区</code><br>显示存档中记录的改动，对比存档生成时的原来状态；不指定stash则显示最后一个。</p>
+<h3 id="git-stash-drop-lt-stash"><a href="#git-stash-drop-lt-stash" class="headerlink" title="git stash drop [&lt;stash>]"></a>git stash drop [&lt;stash>]</h3><p>所属区域： <code>存档区</code><br>从存储区中删除单个存档；不指定stash则删除最后一个。  </p>
+<h3 id="git-stash-clear"><a href="#git-stash-clear" class="headerlink" title="git stash clear"></a>git stash clear</h3><p>所属区域： <code>存档区</code><br>清空存档库。注意相关存档会被清理，此操作<strong>不能被恢复</strong>。  </p>
+<h3 id="git-stash-branch-lt-branshname-lt-stash"><a href="#git-stash-branch-lt-branshname-lt-stash" class="headerlink" title="git stash branch &lt;branshname> [&lt;stash>]"></a>git stash branch &lt;branshname> [&lt;stash>]</h3><p>所属区域： 从 <code>存档区</code> 到 <code>本地版本库</code><br>新建并检出一个新分支branchname, 分支开始于存档建立时的源提交，应用存档的变化作为新的工作区和暂存区。如果成功并且stash是以 stash@{revision}方式给出的，则从存档库删除它。未给出则使用最后一个存档。这在当前分支运行 stash save 导致冲突时很好用，因为存档应用于它生成时的提交一定不会有冲突发生。  </p>
+<h3 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h3><p>所属区域： 在 <code>工作区</code> 与 <code>暂存区</code> 之间<br>显示状态变化，包括  </p>
+<ol>
+<li>暂存区与当前的 HEAD 提交之间(即将提交的)的状态变化</li>
+<li>工作区与暂存区(下次不会提交)的状态变化</li>
+<li>未曾被git追踪(没有历史记录)的状态变化</li>
+</ol>
+<h3 id="git-diff"><a href="#git-diff" class="headerlink" title="git diff"></a>git diff</h3><p>所属区域： 在 <code>工作区</code> 与 <code>暂存区</code> 之间<br>显示未添加到暂存区的不同。  </p>
+<h3 id="git-diff-1"><a href="#git-diff-1" class="headerlink" title="git diff "></a>git diff <commit or="" branch\=""></commit></h3><p>所属区域： 在 <code>工作区</code> 与 <code>本地版本库</code> 之间<br>查看工作区与某一提交之间的不同。你也可以使用 HEAD 来对比上一提交，或是用分支名来和分支比较。  </p>
+<h3 id="git-add-lt-file-or-dir…"><a href="#git-add-lt-file-or-dir…" class="headerlink" title="git add &lt;file.. or dir…>"></a>git add &lt;file.. or dir…></h3><p>所属区域： 从 <code>工作区</code> 到 <code>暂存区</code><br>添加当前的新内容或是修改的文件到暂存区，作为下次提交的(部分)内容。用 <code>add --interactive</code> 来交互式操作。  </p>
+<h3 id="git-add-u"><a href="#git-add-u" class="headerlink" title="git add -u"></a>git add -u</h3><p>所属区域： 从 <code>工作区</code> 到 <code>暂存区</code><br>添加当前修改(<strong>不包括新文件</strong>)到暂存区, 这与 <code>git commit -a</code> 准备提交内容的方式一致。  </p>
+<h3 id="git-rm-lt-file-s-…"><a href="#git-rm-lt-file-s-…" class="headerlink" title="git rm &lt;file(s)…>"></a>git rm &lt;file(s)…></h3><p>所属区域： 从 <code>工作区</code> 到 <code>暂存区</code><br>从工作区和暂存区删除某个文件。  </p>
+<h3 id="git-mv-lt-file-s-…"><a href="#git-mv-lt-file-s-…" class="headerlink" title="git mv &lt;file(s)…>"></a>git mv &lt;file(s)…></h3><p>所属区域： 从 <code>工作区</code> 到 <code>暂存区</code><br>从工作区和暂存区移动文件。  </p>
+<h3 id="git-commit-a-m-‘msg’"><a href="#git-commit-a-m-‘msg’" class="headerlink" title="git commit -a [-m ‘msg’]"></a>git commit -a [-m ‘msg’]</h3><p>所属区域： 从 <code>工作区</code> 到 <code>本地版本库</code><br>提交上次提交之后的所有修改，  </p>
+<ol>
+<li>未追踪的除外(即：所有暂存区有记录的文件)；</li>
+<li>从暂存区删除已在工作区删除的文件</li>
+</ol>
+<h3 id="git-checkout-lt-file-s-…-or-dir…"><a href="#git-checkout-lt-file-s-…-or-dir…" class="headerlink" title="git checkout &lt;file(s)… or dir…>"></a>git checkout &lt;file(s)… or dir…></h3><p>所属区域： 从 <code>暂存区</code> 到 <code>工作区</code><br>更新工作区文件或文件夹，<strong>不会</strong>切换分支。  </p>
+<h3 id="git-reset-hard"><a href="#git-reset-hard" class="headerlink" title="git reset - -hard"></a>git reset - -hard</h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>工作区</code><br>恢复工作区和暂存区到上次提交的状态，<br>警告： 所有工作区修改都会被丢弃。使用这条命令来解决合并错误，如果你想从头开始的话传入 ORIG_HEAD 来撤销该次提交以来的所有改动。  </p>
+<h3 id="git-checkout-b"><a href="#git-checkout-b" class="headerlink" title="git checkout -b "></a>git checkout -b <name of="" new="" branch\=""></name></h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>工作区</code><br>切换分支，更改工作区和暂存区为branch分支的内容，之后HEAD指向branch分支。  </p>
+<h3 id="git-merge"><a href="#git-merge" class="headerlink" title="git merge "></a>git merge <commit or="" branch\=""></commit></h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>工作区</code><br>从branch name分支合并到当前分支，使用‑‑no-commit可以保持在(已经合并)但未提交状态。  </p>
+<h3 id="git-rebase-lt-upstream"><a href="#git-rebase-lt-upstream" class="headerlink" title="git rebase &lt;upstream>"></a>git rebase &lt;upstream></h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>工作区</code><br>变基：回滚从【当前提交和upstream分支分开处】开始直到当前提交的所有提交，将这些提交一一应用到upstream分支，结果作为upstream的新提交。</p>
+<h3 id="git-cherry-pick-lt-commit"><a href="#git-cherry-pick-lt-commit" class="headerlink" title="git cherry-pick &lt;commit>"></a>git cherry-pick &lt;commit></h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>工作区</code><br>把某个提交移动到当前分支来。  </p>
+<h3 id="git-revert-lt-commit"><a href="#git-revert-lt-commit" class="headerlink" title="git revert &lt;commit>"></a>git revert &lt;commit></h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>工作区</code><br>回滚commit指定的提交，这需要当前工作区是干净的，即相比于 HEAD 提交没有修改。  </p>
+<h3 id="git-clone-lt-repository"><a href="#git-clone-lt-repository" class="headerlink" title="git clone &lt;repository>"></a>git clone &lt;repository></h3><p>所属区域： 从 <code>上游版本库</code> 到 <code>工作区</code><br>下载repository指定的版本库，并在工作区迁出master分支的HEAD版本。  </p>
+<h3 id="git-pull-lt-remote-lt-refspec"><a href="#git-pull-lt-remote-lt-refspec" class="headerlink" title="git pull &lt;remote> &lt;refspec>"></a>git pull &lt;remote> &lt;refspec></h3><p>所属区域： 从 <code>上游版本库</code> 到 <code>工作区</code><br>从远程版本库取得修改到当前分支。 一般来说, git pull 相当于 git fetch 然后做 git merge FETCH_HEAD。  </p>
+<h3 id="git-reset-hard-lt-remote-lt-branch"><a href="#git-reset-hard-lt-remote-lt-branch" class="headerlink" title="git reset - -hard &lt;remote>|&lt;branch>"></a>git reset - -hard &lt;remote>|&lt;branch></h3><p>所属区域： 从 <code>上游版本库</code> 到 <code>工作区</code><br>重置本地版本库，让它与远程版本一致；用 reset ‑‑hard origin/master 来丢弃所有的本地改动；用这个来处理失败的合并，直接从远程开始。  </p>
+<h3 id="git-clean"><a href="#git-clean" class="headerlink" title="git clean"></a>git clean</h3><p>所属区域： 从 <code>工作区</code> 到 <code>工作区</code><br>从当前文件夹开始递归清理不受版本管理的内容。  </p>
+<h3 id="git-reset-HEAD-lt-file-s-…"><a href="#git-reset-HEAD-lt-file-s-…" class="headerlink" title="git reset HEAD &lt;file(s)…>"></a>git reset HEAD &lt;file(s)…></h3><p>所属区域： 从 <code>暂存区</code> 到 <code>暂存区</code><br>从下次提交中移除指定文件。重置暂存区记录但是不处理工作区(即: 文件改动被保留但不会被提交)，同时报告没有被更新的文件。  </p>
+<h3 id="git-reset-soft-HEAD"><a href="#git-reset-soft-HEAD" class="headerlink" title="git reset - -soft HEAD^"></a>git reset - -soft HEAD^</h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>暂存区</code><br>恢复上一次提交，保留暂存区的改动。  </p>
+<h3 id="git-diff-cached-lt-commit"><a href="#git-diff-cached-lt-commit" class="headerlink" title="git diff - -cached [&lt;commit>]"></a>git diff - -cached [&lt;commit>]</h3><p>所属区域： 在 <code>暂存区</code> 与 <code>本地版本库</code> 之间<br>查看已经暂存的内容和上次提交的区别，也可指定某一提交。  </p>
+<h3 id="git-commit-m-‘msg’"><a href="#git-commit-m-‘msg’" class="headerlink" title="git commit [-m ‘msg’]"></a>git commit [-m ‘msg’]</h3><p>所属区域： 从 <code>暂存区</code> 到 <code>本地版本库</code><br>暂存区中的当前内容连同提交信息储存为新提交。  </p>
+<h3 id="git-commit-amend"><a href="#git-commit-amend" class="headerlink" title="git commit - -amend"></a>git commit - -amend</h3><p>所属区域： 从 <code>暂存区</code> 到 <code>本地版本库</code><br>用当前暂存区的内容修改最近一次的提交，也可以拿来修改提交信息。  </p>
+<h3 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h3><p>所属区域： <code>本地版本库</code><br>显示最近的提交，新的在上边。  </p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>‑‑decorate</td>
+<td>显示分支和tag名字到对应的提交</td>
+</tr>
+<tr>
+<td>‑‑stat</td>
+<td>显示状态 (文件修改, 添加, 删除)</td>
+</tr>
+<tr>
+<td>‑‑author=author</td>
+<td>只显示某个作者</td>
+</tr>
+<tr>
+<td>‑‑after=”MMM DD YYYY”</td>
+<td>如(“Jun 20 2008”) 只显示某个日期之后的提交</td>
+</tr>
+<tr>
+<td>‑‑before=”MMM DD YYYY”</td>
+<td>只显示某个日期之前的提交</td>
+</tr>
+<tr>
+<td>‑‑merge</td>
+<td>只与当前合并冲突有关的提交</td>
+</tr>
+</tbody>
+</table>
+<h3 id="git-diff-lt-commit-lt-commit"><a href="#git-diff-lt-commit-lt-commit" class="headerlink" title="git diff &lt;commit> &lt;commit>"></a>git diff &lt;commit> &lt;commit></h3><p>所属区域： <code>本地版本库</code><br>显示两个提交之间的不同。  </p>
+<h3 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h3><p>所属区域： <code>本地版本库</code><br>显示所有（本地）存在的分支。参数 -r 显示远程追踪分支，参数 -a 显示全部。  </p>
+<h3 id="git-branch-d-lt-branch"><a href="#git-branch-d-lt-branch" class="headerlink" title="git branch -d &lt;branch>"></a>git branch -d &lt;branch></h3><p>所属区域： <code>本地版本库</code><br>删除某个分支，使用—D来强制删除。  </p>
+<h3 id="git-branch-track-lt-new-lt-remote-branch"><a href="#git-branch-track-lt-new-lt-remote-branch" class="headerlink" title="git branch - -track &lt;new> &lt;remote/branch>"></a>git branch - -track &lt;new> &lt;remote/branch></h3><p>所属区域： 从 <code>上游版本库</code> 到 <code>本地版本库</code><br>添加一个本地分支来跟踪某个远程分支。  </p>
+<h3 id="git-fetch-lt-remote-lt-refspec"><a href="#git-fetch-lt-remote-lt-refspec" class="headerlink" title="git fetch &lt;remote> &lt;refspec>"></a>git fetch &lt;remote> &lt;refspec></h3><p>所属区域： 从 <code>上游版本库</code> 到 <code>本地版本库</code><br>从远端版本库下载对象和引用(即版本信息)。  </p>
+<h3 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>上游版本库</code><br>从本地提交推送分支改变到远程，分支为所有推送过的分支。  </p>
+<h3 id="git-push-lt-remote-lt-branch"><a href="#git-push-lt-remote-lt-branch" class="headerlink" title="git push &lt;remote> &lt;branch>"></a>git push &lt;remote> &lt;branch></h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>上游版本库</code><br>向远端版本库推送新的(已存在的)分支。  </p>
+<h3 id="git-push-lt-remote-lt-branch-lt-branch"><a href="#git-push-lt-remote-lt-branch-lt-branch" class="headerlink" title="git push &lt;remote> &lt;branch>:&lt;branch>"></a>git push &lt;remote> &lt;branch>:&lt;branch></h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>上游版本库</code><br>向远端版本库推送分支，但是从不同的（本地）分支名。  </p>
+<h3 id="git-branch-r"><a href="#git-branch-r" class="headerlink" title="git branch -r"></a>git branch -r</h3><p>所属区域： <code>上游版本库</code><br>显示远程端分支。  </p>
+<h3 id="git-push-lt-remote-lt-branch-1"><a href="#git-push-lt-remote-lt-branch-1" class="headerlink" title="git push &lt;remote>:&lt;branch>"></a>git push &lt;remote>:&lt;branch></h3><p>所属区域： <code>上游版本库</code><br>删除一个远程分支，通过向远程分支推送空内容。  </p>
+<h3 id="git-config-lt-options"><a href="#git-config-lt-options" class="headerlink" title="git config [&lt;options>]"></a>git config [&lt;options>]</h3><p>Git 配置相关信息</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>- -global</td>
+<td>使用全局配置文件</td>
+</tr>
+<tr>
+<td>- -system</td>
+<td>使用系统配置文件</td>
+</tr>
+<tr>
+<td>- -local</td>
+<td>使用版本库配置文件</td>
+</tr>
+<tr>
+<td>-f, - -file &lt;file></td>
+<td>使用给定路径的配置文件</td>
+</tr>
+<tr>
+<td>- -get</td>
+<td>获取Git配置的值</td>
+</tr>
+<tr>
+<td>-l, - -list</td>
+<td>列出所有的配置</td>
+</tr>
+</tbody>
+</table>
+<p>可以通过 <code>git config alias.&lt;command alias&gt; &lt;command&gt;</code> 设置别名  </p>
+<h2 id="其它注意事项"><a href="#其它注意事项" class="headerlink" title="其它注意事项"></a>其它注意事项</h2><p>平常我会使用 SourceTree 来省却自己手打git命令的烦恼，但有时在提交到 Github 的时候，会在 Github 的 commit history 里看到如下一句  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mangon authored and Xiang committed 16 minutes ago</span><br></pre></td></tr></table></figure>
+<p>其实在SourceTree 的提交历史中也能看到类似如下信息  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">fix: fix desc error</span><br><span class="line">提交：</span><br><span class="line">1bcf9d0d3c9df73e52b38a71402d4b3943698287 [1bcf9d0]</span><br><span class="line">父级：</span><br><span class="line">371e1e0379</span><br><span class="line">作者：</span><br><span class="line">Mangon &lt;*************@***.com&gt;</span><br><span class="line">日期：</span><br><span class="line">2019年2月14日 GMT+8 下午1:57:33</span><br><span class="line">提交者：</span><br><span class="line">Xiang &lt;**********@*****.com&gt;</span><br><span class="line">提交日期：</span><br><span class="line">2019年2月14日 GMT+8 下午2:06:47</span><br><span class="line">标签：</span><br><span class="line">HEAD -&gt; develop origin/develop</span><br></pre></td></tr></table></figure>
+<p>显然是作者与提交者不一致导致的。经查阅，Git中一个commit有作者和提交者的差别。作者（author）指的是实际作出修改的人，提交者(committer)指的是最后将此工作成果提交到仓库的人。所以，当你为某个项目发布补丁，然后某个核心成员将你的补丁并入项目时，你就是作者，而那个核心成员就是提交者。  </p>
+<p>在SourceTree中，可以在提交时 commit message 输入框左上方改变自己的 Author 属性，在当前项目窗口的右上角设置里选择高级，然后修改用户信息“全名”及“电子邮件地址”来改变 committer 属性。  </p>
+<p>将两者改为一致的自己想要用的Github账户名就可以保证在Github提交历史中显示正确的名字。  </p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope="" itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/01/04/在线绘图小工具/">在线绘图小工具</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-01-04T10:49:24.000Z" itemprop="datePublished">2019-01-04</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/tools/">tools</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <section><br>    <div class="paint-area"><br>        <p>移动端无法使用</p><br>        <canvas></canvas><br>    </div><br>    <script type="text/javascript" src="/static/js/painter.js"></script><br></section>
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope="" itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2018/11/30/Mac-下Eclipse快捷键/">Mac下Eclipse快捷键</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-11-30T10:29:17.000Z" itemprop="datePublished">2018-11-30</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/eclipse/">eclipse</a>, <a class="article-tag-link" href="/tags/learn/">learn</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="快捷操作"><a href="#快捷操作" class="headerlink" title="快捷操作"></a>快捷操作</h2><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>快捷键</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>全选</td>
+<td>command A</td>
+</tr>
+<tr>
+<td>复制</td>
+<td>command C</td>
+</tr>
+<tr>
+<td>粘贴</td>
+<td>command V</td>
+</tr>
+<tr>
+<td>查找</td>
+<td>command F</td>
+</tr>
+<tr>
+<td>回退</td>
+<td>command Z</td>
+</tr>
+<tr>
+<td>剪切</td>
+<td>command X</td>
+</tr>
+<tr>
+<td>退出</td>
+<td>command Q</td>
+</tr>
+<tr>
+<td>删除当前行</td>
+<td>command D</td>
+</tr>
+<tr>
+<td>放大字体</td>
+<td>command +</td>
+</tr>
+<tr>
+<td>缩小字体</td>
+<td>command -</td>
+</tr>
+<tr>
+<td>注释/反注释</td>
+<td>command /</td>
+</tr>
+<tr>
+<td>打开preference</td>
+<td>command ,</td>
+</tr>
+<tr>
+<td>代码补全提示</td>
+<td>option /</td>
+</tr>
+<tr>
+<td>最大化/还原</td>
+<td>control M</td>
+</tr>
+<tr>
+<td>格式化代码</td>
+<td>command shift F</td>
+</tr>
+<tr>
+<td>自动导入包</td>
+<td>command shift O</td>
+</tr>
+</tbody>
+</table>
+<h2 id="便利设置"><a href="#便利设置" class="headerlink" title="便利设置"></a>便利设置</h2><p>Preference -&gt; General -&gt; Editors -&gt; Text Editors</p>
+<p><input type="checkbox" checked> Show line numbers<br><input type="checkbox" checked> Show white space charactors</p>
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope="" itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2018/09/28/清除网站中的无效链接/">清除网站中的无效链接</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-28T08:32:55.000Z" itemprop="datePublished">2018-09-28</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/SEO/">SEO</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>网站上有大量的无效链接（返回404或域名不存在）会使网站的总体质量下降，所以清除网站中的无效链接也是提升网站质量，优化用户体验的一种方法。  </p>
+<p>通常而言，链接有链接向外部的也有在网站内部跳转的链接，链接向外部的网站尽量希望链接到一些稳定的网站，有些地址是很容易被移除的，比如链接到文章或评论的，链接到个人网站的，链接到下载页的。时常注意一些大的域名变动，比如有些产品可能已经下线或更换地址，如果自己的网站中有引用，也需要同步的改变。链接到内部的网站时可以做一次引用记录，当记录的链接修改时同步修改所有的地方。  </p>
+<p>同时介绍一个可以查看页面内链接情况的 Chrome extension  </p>
+<p><a href="https://github.com/ocodia/Check-My-Links" target="_blank" rel="noopener">Check-My-Links</a>  </p>
+<div class="check-my-links"><style>.check-my-links img {width:auto;}</style><img src="/static/imgs/check_my_links.png" alt="Check-My-Links"></div>
+
+<ul>
+<li>Valid links: 通过的链接</li>
+<li>Valid redirecting links: 通过的链接</li>
+<li>Warnings: 警告</li>
+<li>invalid links: 503/404 或其它无效链接</li>
+</ul>
+<p>Check-My-Links 会将当前页面中所有的http/https链接的background改为与上面四种情况对应的颜色。值得注意的是，有时候一些可用的链接可能由于某种原因而被标注为 Invalid links ，所以在 Invalid links 里的链接最好被重新手工测试一下。Warnings 的链接会被在console中显示出来，什么样的链接会被标为warning是可配置的，一般链接的href为空或“#”或者没有href或者表示为hashtag形式却无法在落地页找到时可以标注为warning。可用的链接可以被cache起来，这样就不用相同的链接也发多次请求验证其正确性。如果不想要验证链接的正确性，比如一些退出账户（log out）的链接，可以在链接上加上属性 <code>rel=&quot;nofollow&quot;</code> 来让Check-My-Links跳过对他的验证。具体配置可以在 Check-My-Links 的 <a href="chrome-extension://ojkcdipcgfaekbeaelaapakgnjflfglf/options.html" target="_blank" rel="noopener">配置页</a> 查看。有一个问题是当请求返回状态是302，然后跳转到一个下载时，此链接会一直在Queue中，这算是一个bug吧。</p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope="" itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2018/09/27/Charles使用说明/">Charles使用说明</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-27T06:34:26.000Z" itemprop="datePublished">2018-09-27</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/charles/">charles</a>, <a class="article-tag-link" href="/tags/proxy/">proxy</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>在前端开发过程中我们常常要用到代理工具来处理一些诸如改变请求参数，代理请求地址，以及抓包的问题。目前最流行的代理工具有两种 <a href="https://www.telerik.com/fiddler" target="_blank" rel="noopener">Fiddler</a> &amp; <a href="https://www.charlesproxy.com/" target="_blank" rel="noopener">Charles</a>。Fiddler是免费的，一直以来只提供了Windows版本，2016年10月之后也提供了Mac OSX版本，不过需要安装跨平台方案Mono。Charles是付费的，20$/license，不过Charles是java swing编写的，网上可以找到很多破解的方案，这里不再赘述。Charles的好处在于功能齐全，界面简单，提供了几乎所有可以用到的代理功能，在MacOS下十分好用，2018年3月之后甚至提供了IOS的版本。下面主要来讲一下Charles的使用。</p>
+<h2 id="Charles是什么"><a href="#Charles是什么" class="headerlink" title="Charles是什么"></a>Charles是什么</h2><p>Charles是一个提供了HTTP代理/HTTP监控/反向代理的工具，通过这个工具，开发者可以查看本机与网络之间的所有HTTP以及SSL/HTTPS通信，包括请求与返回以及HTTP头部信息（包含cookie和缓存信息）。</p>
+<div><style type="text/css">img {box-shadow:none !important;</style><img src="/static/imgs/charles-macosx.png" alt="charles-macosx"></div>
+
+<h2 id="Charles主要功能"><a href="#Charles主要功能" class="headerlink" title="Charles主要功能"></a>Charles主要功能</h2><p>Charles主要功能如下：  </p>
+<ol>
+<li>记录了本机与网络之间的所有通信流量</li>
+<li>展示了所有的请求，返回数据，cookie和头部信息的内容</li>
+<li>支持SSL和HTTPS</li>
+<li>模拟慢网速环境</li>
+<li>下载静态资源</li>
+<li>请求高度可配置</li>
+</ol>
+<h2 id="Charles-安装"><a href="#Charles-安装" class="headerlink" title="Charles 安装"></a>Charles 安装</h2><p>点击<a href="https://www.charlesproxy.com/download/" target="_blank" rel="noopener">这里</a>可以跳转到下载页面。<br>截止北京时间2018年9月27日16:09 最新的版本为4.2.7  </p>
+<p>Charles提供了以下版本</p>
+<ul>
+<li><p>Windows</p>
+<blockquote>
+<p>Windows 64 bit (msi, 64.7 MB)<br>Windows 32 bit (msi, 63.9 MB)</p>
+</blockquote>
+</li>
+<li><p>macOS</p>
+<blockquote>
+<p>macOS (dmg, 58 MB) (兼容 macOS 10.7 - 10.13)</p>
+</blockquote>
+</li>
+<li><p>Linux</p>
+<blockquote>
+<p>Linux 64 bit (tar.gz, 56.1 MB)<br>Linux 32 bit (tar.gz, 55.6 MB)</p>
+</blockquote>
+</li>
+</ul>
+<p>Firefox浏览器下还提供了一个add-on来支持Charles.</p>
+<h2 id="Charles配置"><a href="#Charles配置" class="headerlink" title="Charles配置"></a>Charles配置</h2><p>在Windows及 MacOS系统中，只要赋予权限Charles会自动将自己配置为代理服务器，不过还有一些比较通用的设置，以MacOS为例  </p>
+<ul>
+<li>打开 Charles &gt; Preference &gt; Startup ，关掉Start throttling，Check for updates。  </li>
+<li>点击 Proxy &gt; Mac OS X Proxy 启用系统代理。  </li>
+</ul>
+<p>在IOS中需要自己在wifi配置中手动设置。配置步骤如下：  </p>
+<ol>
+<li>打开 设置 &gt; Wifi ，找到自己连接的网络然后打开</li>
+<li>滑动到 HTTP代理设置，选择 手动 ，输入运行Charles server的IP与端口号（通常是8888）。</li>
+</ol>
+<h2 id="Charles-用法"><a href="#Charles-用法" class="headerlink" title="Charles 用法"></a>Charles 用法</h2><p>以Charles 3.9.1为例，Charles的常用功能如下：  </p>
+<h3 id="查看请求内容（抓包）"><a href="#查看请求内容（抓包）" class="headerlink" title="查看请求内容（抓包）"></a>查看请求内容（抓包）</h3><p>首先点击 File &gt; New 或者 菜单栏的New Session创建一个session，然后点击 Proxy &gt; Start Recording 开始记录请求。 在浏览器中发送请求，就可以在Charles中查看请求的相关信息。Charles支持以结构化（Structure）或者序列（Sequence）的方式展示请求，结构化展示会把同地址端口的请求汇总，序列化则会按照请求顺序展示请求。<br>可以在Proxy &gt; Recording Setting设置记录的相关信息  </p>
+<p>支持：</p>
+<ol>
+<li>限制请求数量与大小</li>
+<li>仅记录固定地址列表</li>
+<li>记录时排除某些地址</li>
+</ol>
+<p>记录的信息是存储在内存中的，所以如果不需要记录的请求最好能够过滤掉，记录的数据过多时Charles也会提醒并关闭记录。记录的数据可以通过 File &gt; Export 导出，也可以通过 File &gt; Save as 保存为Charles可识别的.chls文件。</p>
+<h3 id="代理请求"><a href="#代理请求" class="headerlink" title="代理请求"></a>代理请求</h3><p>打开 Tools &gt; Map Remote/Map Local &gt; Enable Map Remote/Enable Map Local ，点击 Add 可以添加新的代理映射<br>代理的作用是将请求的地址转向一个新的网络地址/本地地址，有些情况下可以用到  </p>
+<ol>
+<li>在生产环境测试时发现了问题，可以将请求的资源映射到本地资源，然后通过修改本地的代码预览修改后的效果。</li>
+<li>可以配置生产环境，测试环境，开发环境的地址，通过在 Map remote 中切换环境地址来切换环境而不用修改访问的地址。</li>
+<li>某些已发布的客户端请求的地址时固定的，可以通过 Map remote 来修改请求的地址。</li>
+</ol>
+<h3 id="查看HTTPS"><a href="#查看HTTPS" class="headerlink" title="查看HTTPS"></a>查看HTTPS</h3><p>通常情况下HTTPS请求是加密并无法被查看的，但是通过替换正常证书为Charles颁发的证书可以做到查看HTTPS请求。<br>打开 Proxy &gt; Proxy Settings &gt; SSL &gt; Enable SSL proxying ，点击Add添加地址，通常端口号为443(HTTPS的端口号)。<br>然后打开网址，以Chrome为例，需要点击 高级 &gt; 允许 来访问地址，这时就可以在Charles中查看HTTPS请求内容。<br>通过将Charles证书添加到“受信任的证书”可以避免浏览器的不信任阻塞。<br>如何将Charles证书添加到“受信任的证书”的方法根据操作系统及浏览器的不同而不同。<br>Windows/IE</p>
+<blockquote>
+<p>Help &gt; SSL Proxying &gt; Install Charles Root Certificate &gt; Install Certificate</p>
+</blockquote>
+<p>MacOS</p>
+<blockquote>
+<p>Help &gt; SSL Proxying &gt; Install Charles Root Certificate 打开钥匙串，搜索 Charles Proxy，双击打开，然后将 信任 &gt; 使用此证书时 下拉框选择为“始终信任”<br>根据官网文档，如上步骤操作就行了，实际上因为Charles certficate 采用的SHA1加密算法，仍旧会被Chrome提示不安全，Safari不再提示不安全</p>
+</blockquote>
+<h3 id="截流"><a href="#截流" class="headerlink" title="截流"></a>截流</h3><p>打开 Proxy &gt; Throttle Settings &gt; Enable Throttling ，可以模仿弱网环境下的请求。  </p>
+<p>支持：  </p>
+<ol>
+<li>对指定host截流</li>
+<li>限制上传下载带宽，利用率，往返延迟，最大传输单元（MTU）</li>
+</ol>
+<h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><p>Charles还提供了其它的一些功能：  </p>
+<ol>
+<li>请求内容的结构化展示</li>
+<li>请求的断点与内容修改/重写</li>
+<li>反向代理，将请求向本机的资源转发到远端的 web server 上</li>
+<li>TCP/UDP 端口转发</li>
+<li>IP访问控制</li>
+<li>外部 HTTP/HTTPS/SOCKS 代理服务器连接</li>
+<li>Charles web化管理</li>
+<li>SSL连接</li>
+<li>no cache连接，包括特定地址的 no cache 连接</li>
+<li>block cookie连接，包括特定地址的 block cookie 连接</li>
+<li>DNS欺骗</li>
+<li>发布Gist</li>
+</ol>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope="" itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2018/09/15/Hexo也能构建SPA/">Hexo也能构建SPA</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-15T08:45:26.000Z" itemprop="datePublished">2018-09-15</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Hexo/">Hexo</a>, <a class="article-tag-link" href="/tags/spa/">spa</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="SPA"><a href="#SPA" class="headerlink" title="SPA"></a>SPA</h2><p>单页Web应用（single page web application，SPA），就是只有一张Web页面的应用，是加载单个HTML页面并在用户与应用程序交互时动态更新该页面的Web应用程序。<br>单页面应用的好处是不必使得用户在加载新页面时感觉到闪烁刷新的效果，有更好的用户体验。当然，单页面应用也有其问题，例如首屏渲染问题以及SEO问题，但如果构建的是类似于应用型的web页面的话，SPA的好处是远远大于其弊端的。  </p>
+<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><p><a href="https://github.com/hexojs/hexo" target="_blank" rel="noopener">Hexo</a> 是一个静态页面生成框架，一般用来其来搭建博客或者文档型的网站。  </p>
+<h2 id="Hexo-gt-SPA"><a href="#Hexo-gt-SPA" class="headerlink" title="Hexo =&gt; SPA"></a>Hexo =&gt; SPA</h2><p>如何在Hexo的基础上转换为SPA呢？基本的思路就是，监管所有的点击跳转链接，阻止默认行为采用ajax调用的方式获取文档然后替换当前页面。为了使替换时的影响较小，当前文档中数据没有变化的元素就不用替换了，只替换变化的部分。例如，一个采用Hexo的文档型的网站，一般而言包括三个部分header，nav，以及article，header及nav部分是不用变的，只需要替换article部分即可。需要注意的事，在替换后需要注意article内部的事件，需要重新绑定一遍，同时也需要处理nav部分的一些事件，比如focus的变化及样式上的变化，以及其它的一些变化，比如页面title的变化。这样当用户点击左侧nav时，只有article内部内容的替换，看起来就像一个应用一样。但这样修改还有两个问题，一是当用户点击后退时，浏览器不能很好的处理，我们希望记录每一次用户的点击跳转，当用户点击后退时能够回到上一次点击时的页面，另外一个问题是地址栏的没有变化，我们希望每一次用户点击跳转时地址栏也显示相应页面的URL。这时就需要用到History API了.  </p>
+<p>History 对象包含用户（在浏览器窗口中）访问过的 URL。<br>History 对象是 window 对象的一部分，可通过 window.history 属性对其进行访问。  </p>
+<p>属性<br>History.length 只读<br>History.scrollRestoration<br>允许Web应用程序在历史导航上显式地设置默认滚动恢复行为。此属性可以是自动的（auto）或者手动的（manual）。<br>History.state 只读<br>返回一个表示历史堆栈顶部的状态的值。这是一种可以不必等待popstate 事件而查看状态而的方式。  </p>
+<p>方法<br>History.back()<br>前往上一页, 用户可点击浏览器左上角的返回按钮模拟此方法. 等价于 history.go(-1).<br>History.forward()<br>在浏览器历史记录里前往下一页，用户可点击浏览器左上角的前进按钮模拟此方法. 等价于 history.go(1).<br>History.go()<br>通过当前页面的相对位置从浏览器历史记录( 会话记录 )加载页面。<br>History.pushState()<br>按指定的名称和URL（如果提供该参数）将数据push进会话历史栈，数据被DOM进行不透明处理；你可以指定任何可以被序列化的javascript对象。<br>History.replaceState()<br>按指定的数据，名称和URL(如果提供该参数)，更新历史栈上最新的入口。这个数据被DOM 进行了不透明处理。  </p>
+<p>这里我们需要用到History.pushState()<br>这个方法接收三个参数，第一个state，记录页面状态，第二个title，并不是页面title，感觉没有什么用，第三个是页面URL。在页面变化时执行History.pushState()把将要跳转的页面记录到history中，地址栏中的地址就会同时改变。同时，需要在window.onpopstate中监听后退事件，在后退时也通过ajax方法获取article内容。如果想要减少请求，还可以将ajax获取到的文档缓存下来，当用户点击新URL时再去获取，如果用户点击的是一个已经访问过的URL时，从本地获取。  </p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>让我们总结一下，我们需要改变的是如下几个部分(代码中引入了jQuery)：  </p>
+<ol>
+<li>阻止点击链接的默认行为  </li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e.preventDefault();</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>ajax获取文档内容  </li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// href 跳转url</span></span><br><span class="line">$.ajax(&#123;</span><br><span class="line">    url: href,</span><br><span class="line">    dataType: <span class="string">'html'</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> article = $(res).find(<span class="string">'#article'</span>).html();</span><br><span class="line">        $(<span class="string">'#article'</span>).html(article);</span><br><span class="line">    &#125;,</span><br><span class="line">    error: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">window</span>.location.href = href;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>成功替换文章内容之后需要重新绑定文章内部的事件，同时对一些样式（例如选中的样式）进行改变。<br>ajax失败则直接通过改变url的方式刷新页面。  </p>
+<ol start="3">
+<li>页面title变化  </li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">doc.title = $(res).filter(<span class="string">'title'</span>).html();</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>window.history.pushState() <ol>
+<li>页面url变化</li>
+<li>记录跳转页面信息到历史记录中，当用户点击后退时能够正确响应 </li>
+</ol>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">win.history.pushState(href, <span class="string">''</span>, href);</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>window.onpopstate() 处理用户点击后退/前进时的逻辑</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">window</span>).on(<span class="string">'popstate'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (e.state) &#123;</span><br><span class="line">        <span class="keyword">var</span> href = e.state ? e.state : win.location.href;</span><br><span class="line">        <span class="keyword">this</span>.getArticle(href, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">// ...</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>如上代码中，getArticle封装了获取文章的action，加入callback是考虑到获取文章内容之后如果url中包含锚点，页面应该滑动到锚点所在处。  </p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope="" itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2018/09/04/Hexo-添加站内搜索功能/">Hexo 添加站内搜索功能</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-04T09:28:50.000Z" itemprop="datePublished">2018-09-04</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/Hexo/">Hexo</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>搜索功能的实现最主要是生成一份关键字到站内链接的索引，当用户输入关键字后能够根据索引展示相应的链接。<br>通常，搜索引擎公司（例如Google，百度）会有自己的爬虫，当你将自己的网站地址提交给他们后，他们会用爬虫定期分析你的网站结构，然后生成索引文件并加入自己的索引库中。这样当终端用户输入和你的网站匹配的关键词后，你的网站内的链接就会在结果中显示出来。<br>站内搜索一般就不需要爬虫了，因为，其实最重要的是索引文件，只要你的网站更新的时候同时更新索引文件即可。  </p>
+<h2 id="插入Google搜索框"><a href="#插入Google搜索框" class="headerlink" title="插入Google搜索框"></a>插入Google搜索框</h2><p>你可以利用Hexo函数search_form直接插入Google搜索框。  </p>
+<p>search_form<br>插入 Google 搜索框。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%- search_form(options) %&gt;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>class</td>
+<td>表单的 class name</td>
+<td>search-form</td>
+</tr>
+<tr>
+<td>text</td>
+<td>搜索提示文字</td>
+<td>Search</td>
+</tr>
+<tr>
+<td>button</td>
+<td>显示搜索按钮。此参数可为布尔值（boolean）或字符串，<br>当设定是字符串的时候，即为搜索按钮的文字。</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<h2 id="自定义站内搜索"><a href="#自定义站内搜索" class="headerlink" title="自定义站内搜索"></a>自定义站内搜索</h2><p>你也可以利用Hexo插件实现自己的站内搜索的功能。  </p>
+<h3 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h3><p>这个插件的本质是生成了一个搜索索引文件。<br>插件： <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener">hexo-generator-search</a><br>通过以下命令安装：  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-generator-search --save</span><br></pre></td></tr></table></figure>
+<h3 id="修改hexo配置"><a href="#修改hexo配置" class="headerlink" title="修改hexo配置"></a>修改hexo配置</h3><p>在_config.yml中添加站内搜索配置项：  </p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">search:</span></span><br><span class="line"><span class="attr">  path:</span> <span class="string">search.xml</span></span><br><span class="line">  <span class="comment"># 如只想索引文章，可设置为post</span></span><br><span class="line"><span class="attr">  field:</span> <span class="string">all</span></span><br></pre></td></tr></table></figure>
+<h3 id="实现搜索框视图"><a href="#实现搜索框视图" class="headerlink" title="实现搜索框视图"></a>实现搜索框视图</h3><p>结构文件<br>search.ejs<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"search-box"</span> <span class="attr">id</span>=<span class="string">"search-box"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"search-btn"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">autocomplete</span>=<span class="string">"off"</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"search-input"</span> <span class="attr">name</span>=<span class="string">"q"</span> <span class="attr">results</span>=<span class="string">"0"</span> <span class="attr">placeholder</span>=<span class="string">"搜索"</span></span></span><br><span class="line"><span class="tag">        /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"reset"</span> <span class="attr">class</span>=<span class="string">"reset-search-btn"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 上面是搜索框，下面是结果域 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">article</span> <span class="attr">id</span>=<span class="string">"search-result"</span> <span class="attr">class</span>=<span class="string">"search-result content"</span>&gt;</span><span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>样式文件<br>search.css<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line">// 搜索框</span><br><span class="line"><span class="selector-class">.search-box</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">40px</span>;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">13px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">40px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">36px</span>;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">1</span>;</span><br><span class="line">    <span class="attribute">outline</span>: none;</span><br><span class="line">    <span class="attribute">transition</span>: width <span class="number">0.1s</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-box-focus</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">164px</span>;</span><br><span class="line">    <span class="attribute">padding-left</span>: <span class="number">38px</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#f0f1f2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-box-focus</span> <span class="selector-id">#search-input</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-box</span>  <span class="selector-tag">form</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-box</span> <span class="selector-class">.search-btn</span>,</span><br><span class="line"><span class="selector-class">.reset-search-btn</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">30px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">30px</span>;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">3px</span>;</span><br><span class="line">    <span class="attribute">border</span>: none;</span><br><span class="line">    <span class="attribute">outline</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">background-size</span>: <span class="number">30px</span> <span class="number">30px</span>;</span><br><span class="line">    <span class="attribute">background-repeat</span>: no-repeat;</span><br><span class="line">    <span class="attribute">background-position</span>: center;</span><br><span class="line">    <span class="attribute">background-color</span>: initial;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-box</span> <span class="selector-class">.search-btn</span> &#123;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">3px</span>;</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">url</span>(../images/header_search.png);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.reset-search-btn</span> &#123;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">3px</span>;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">url</span>(../images/header_close.png);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-box-focus</span> <span class="selector-class">.reset-search-btn</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#search-input</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">    <span class="attribute">width</span>: <span class="built_in">calc</span>(100% - 36px);</span><br><span class="line">    <span class="attribute">border</span>: none;</span><br><span class="line">    <span class="attribute">font</span>: inherit;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">1</span>;</span><br><span class="line">    <span class="attribute">outline</span>: none;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">8px</span> <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">background</span>: transparent;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#search-input</span><span class="selector-pseudo">::-webkit-input-placeholder</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#999</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-result</span> <span class="selector-tag">ul</span>, <span class="selector-class">.search-result</span> <span class="selector-tag">li</span> &#123;</span><br><span class="line">    <span class="attribute">list-style</span>: none;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-result</span> <span class="selector-tag">li</span> &#123;</span><br><span class="line">    <span class="attribute">padding-top</span>: <span class="number">30px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-result</span> <span class="selector-tag">li</span> <span class="selector-class">.search-result</span> &#123;</span><br><span class="line">    <span class="attribute">overflow </span>: hidden;</span><br><span class="line">    <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">    <span class="attribute">display</span>: -webkit-box;</span><br><span class="line">    <span class="attribute">-webkit-line-clamp</span>: <span class="number">3</span>;</span><br><span class="line">    <span class="attribute">-webkit-box-orient</span>: vertical;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-result</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-result</span> <span class="selector-tag">h1</span> &#123;</span><br><span class="line">    <span class="attribute">padding-bottom</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">margin-bottom</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#333</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-result</span> <span class="selector-tag">em</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#38f</span>;</span><br><span class="line">    <span class="attribute">-webkit-text-emphasis</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-result</span> <span class="selector-tag">h1</span> <span class="selector-tag">em</span> &#123;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span> <span class="number">5px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-result</span> <span class="selector-tag">h1</span><span class="selector-class">.empty-title</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#999</span>;</span><br><span class="line">    <span class="attribute">border-bottom</span>: none;</span><br><span class="line">    <span class="attribute">padding-top</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="实现站内搜索逻辑"><a href="#实现站内搜索逻辑" class="headerlink" title="实现站内搜索逻辑"></a>实现站内搜索逻辑</h3><p>search.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">searchFunc</span>(<span class="params">path, searchId, contentId</span>) </span>&#123;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        url: path,</span><br><span class="line">        dataType: <span class="string">'xml'</span>,</span><br><span class="line">        success: <span class="function"><span class="keyword">function</span> (<span class="params">xmlResponse</span>) </span>&#123;</span><br><span class="line">            <span class="comment">// get the contents from search data</span></span><br><span class="line">            <span class="keyword">var</span> datas = $(<span class="string">'entry'</span>, xmlResponse).map(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> &#123;</span><br><span class="line">                    title: $(<span class="string">'title'</span>, <span class="keyword">this</span>).text(),</span><br><span class="line">                    content: $(<span class="string">'content'</span>, <span class="keyword">this</span>).text(),</span><br><span class="line">                    url: $(<span class="string">'url'</span>, <span class="keyword">this</span>).text()</span><br><span class="line">                &#125;;</span><br><span class="line">            &#125;).get();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> $searchBox = $(<span class="string">'#'</span> + searchId);</span><br><span class="line">            <span class="keyword">if</span> (!($searchBox &amp;&amp; $searchBox.length == <span class="number">1</span>)) &#123;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">var</span> $resultContent = $(<span class="string">'#'</span> + contentId);</span><br><span class="line">            <span class="keyword">if</span> (!($resultContent &amp;&amp; $resultContent.length == <span class="number">1</span> )) &#123;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> $input = $searchBox.find(<span class="string">'#search-input'</span>);</span><br><span class="line">            <span class="keyword">var</span> $searchBtn = $searchBox.find(<span class="string">'.search-btn'</span>);</span><br><span class="line">            <span class="keyword">var</span> $resetBtn = $searchBox.find(<span class="string">'.reset-search-btn'</span>);</span><br><span class="line"></span><br><span class="line">            $searchBtn.on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">                $searchBox.addClass(<span class="string">'search-box-focus'</span>);</span><br><span class="line">                $input[<span class="number">0</span>].focus();</span><br><span class="line">            &#125;);</span><br><span class="line">            $resetBtn.on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">                $(<span class="string">'#content'</span>).css(&#123;</span><br><span class="line">                    display: <span class="string">'block'</span></span><br><span class="line">                &#125;);</span><br><span class="line">                $resultContent.css(&#123;</span><br><span class="line">                    display: <span class="string">'none'</span></span><br><span class="line">                &#125;);</span><br><span class="line">                $input[<span class="number">0</span>].focus();</span><br><span class="line">            &#125;);</span><br><span class="line">            $input.on(<span class="string">'blur'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                ($(<span class="keyword">this</span>).val() === <span class="string">''</span>) &amp;&amp; $searchBox.removeClass(<span class="string">'search-box-focus'</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="keyword">var</span> flag = <span class="literal">true</span>;</span><br><span class="line">            $input.on(<span class="string">'compositionstart'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                flag = <span class="literal">false</span>;</span><br><span class="line">            &#125;);</span><br><span class="line">            $input.on(<span class="string">'compositionend'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                flag = <span class="literal">true</span>;</span><br><span class="line">            &#125;);</span><br><span class="line">            $input.on(<span class="string">'keydown'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">var</span> e = e || event;</span><br><span class="line">                <span class="keyword">if</span> (e.keyCode === <span class="number">13</span>) &#123;</span><br><span class="line">                    e.returnValue = <span class="literal">false</span>;</span><br><span class="line">                    e.preventDefault();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">            $input.on(<span class="string">'input'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">var</span> $<span class="keyword">this</span> = <span class="keyword">this</span>;</span><br><span class="line">                setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                    <span class="keyword">if</span> (!flag) &#123;</span><br><span class="line">                        <span class="keyword">return</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">var</span> str = <span class="string">'&lt;ul class="search-result-list"&gt;'</span>;</span><br><span class="line">                    <span class="keyword">var</span> keywords = $<span class="keyword">this</span>.value.trim().toLowerCase().split(<span class="regexp">/\s+/</span>);</span><br><span class="line">                    $resultContent[<span class="number">0</span>].innerHTML = <span class="string">''</span>;</span><br><span class="line">                    <span class="keyword">if</span> ($<span class="keyword">this</span>.value.trim().length &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">                        $(<span class="string">'#content'</span>).css(&#123;</span><br><span class="line">                            display: <span class="string">'block'</span></span><br><span class="line">                        &#125;);</span><br><span class="line">                        $resultContent.css(&#123;</span><br><span class="line">                            display: <span class="string">'none'</span></span><br><span class="line">                        &#125;);</span><br><span class="line">                        <span class="keyword">return</span>;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        $(<span class="string">'#content'</span>).css(&#123;</span><br><span class="line">                            display: <span class="string">'none'</span></span><br><span class="line">                        &#125;);</span><br><span class="line">                        $resultContent.css(&#123;</span><br><span class="line">                            display: <span class="string">'block'</span></span><br><span class="line">                        &#125;);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">var</span> matchCount = <span class="number">0</span>;</span><br><span class="line">                    datas.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">                        <span class="keyword">var</span> isMatch = <span class="literal">true</span>;</span><br><span class="line">                        <span class="keyword">if</span> (!data.title || data.title.trim() === <span class="string">''</span>) &#123;</span><br><span class="line">                            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">var</span> data_title = data.title.trim().toLowerCase();</span><br><span class="line">                        <span class="keyword">var</span> data_content = data.content.trim().replace(<span class="regexp">/&lt;[^&gt;]+&gt;/g</span>, <span class="string">""</span>).toLowerCase();</span><br><span class="line">                        <span class="keyword">var</span> data_url = data.url;</span><br><span class="line">                        <span class="keyword">var</span> index_title = <span class="number">-1</span>;</span><br><span class="line">                        <span class="keyword">var</span> index_content = <span class="number">-1</span>;</span><br><span class="line">                        <span class="keyword">var</span> first_occur = <span class="number">-1</span>;</span><br><span class="line">                        <span class="comment">// only match artiles with not empty contents</span></span><br><span class="line">                        <span class="keyword">if</span> (data_content !== <span class="string">''</span>) &#123;</span><br><span class="line">                            keywords.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">keyword, i</span>) </span>&#123;</span><br><span class="line">                                index_title = data_title.indexOf(keyword);</span><br><span class="line">                                index_content = data_content.indexOf(keyword);</span><br><span class="line"></span><br><span class="line">                                <span class="keyword">if</span> (index_title &lt; <span class="number">0</span> &amp;&amp; index_content &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                                    isMatch = <span class="literal">false</span>;</span><br><span class="line">                                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                                    <span class="keyword">if</span> (index_content &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                                        index_content = <span class="number">0</span>;</span><br><span class="line">                                    &#125;</span><br><span class="line">                                    <span class="keyword">if</span> (i === <span class="number">0</span>) &#123;</span><br><span class="line">                                        first_occur = index_content;</span><br><span class="line">                                    &#125;</span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125;);</span><br><span class="line">                        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                            isMatch = <span class="literal">false</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">if</span> (isMatch) &#123;</span><br><span class="line">                            matchCount++;</span><br><span class="line">                            str += <span class="string">'&lt;li&gt;&lt;h3&gt;&lt;a target = "_blank" href="'</span> + data_url + <span class="string">'" class="search-result-title"&gt;'</span> + data_title + <span class="string">'&lt;/a&gt;&lt;/h3&gt;'</span>;</span><br><span class="line">                            <span class="keyword">var</span> content = data.content.trim().replace(<span class="regexp">/&lt;[^&gt;]+&gt;/g</span>, <span class="string">''</span>);</span><br><span class="line">                            <span class="keyword">if</span> (first_occur &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                                <span class="comment">// cut out 100 characters</span></span><br><span class="line">                                <span class="keyword">var</span> start = first_occur - <span class="number">20</span>;</span><br><span class="line">                                <span class="keyword">var</span> end = first_occur + <span class="number">80</span>;</span><br><span class="line"></span><br><span class="line">                                <span class="keyword">if</span> (start &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                                    start = <span class="number">0</span>;</span><br><span class="line">                                &#125;</span><br><span class="line"></span><br><span class="line">                                <span class="keyword">if</span> (start === <span class="number">0</span>) &#123;</span><br><span class="line">                                    end = <span class="number">100</span>;</span><br><span class="line">                                &#125;</span><br><span class="line"></span><br><span class="line">                                <span class="keyword">if</span> (end &gt; content.length) &#123;</span><br><span class="line">                                    end = content.length;</span><br><span class="line">                                &#125;</span><br><span class="line"></span><br><span class="line">                                <span class="keyword">var</span> match_content = content.substr(start, end);</span><br><span class="line"></span><br><span class="line">                                <span class="comment">// highlight all keywords</span></span><br><span class="line">                                keywords.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">keyword</span>) </span>&#123;</span><br><span class="line">                                    <span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(keyword, <span class="string">'gi'</span>);</span><br><span class="line">                                    match_content = match_content.replace(reg, <span class="function"><span class="keyword">function</span> (<span class="params">str</span>) </span>&#123;</span><br><span class="line">                                        <span class="keyword">return</span> <span class="string">'&lt;em class="search-keyword"&gt;'</span> + str + <span class="string">'&lt;/em&gt;'</span>;</span><br><span class="line">                                    &#125;)</span><br><span class="line">                                &#125;);</span><br><span class="line"></span><br><span class="line">                                str += <span class="string">'&lt;p class="search-result"&gt;'</span> + match_content + <span class="string">'...&lt;/p&gt;'</span>;</span><br><span class="line">                            &#125;</span><br><span class="line">                            str += <span class="string">'&lt;/li&gt;'</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;);</span><br><span class="line">                    $input.attr(<span class="string">'results'</span>, matchCount);</span><br><span class="line">                    str += <span class="string">'&lt;/ul&gt;'</span>;</span><br><span class="line">                    <span class="keyword">var</span> title = matchCount ? <span class="string">'&lt;h1&gt;找到&lt;em&gt;'</span> + $<span class="keyword">this</span>.value.trim() + <span class="string">'&lt;/em&gt;相关内容'</span> + matchCount + <span class="string">'个&lt;/h1&gt;'</span> : <span class="string">'&lt;h1 class="empty-title"&gt;没有找到&lt;em&gt;'</span> + $<span class="keyword">this</span>.value.trim() + <span class="string">'&lt;/em&gt;相关内容&lt;/h1&gt;'</span>;</span><br><span class="line">                    str = title + str;</span><br><span class="line">                    $(<span class="string">'#content'</span>).css(&#123;</span><br><span class="line">                        display: <span class="string">'none'</span></span><br><span class="line">                    &#125;);</span><br><span class="line"></span><br><span class="line">                    $resultContent.css(&#123;</span><br><span class="line">                        display: <span class="string">'block'</span></span><br><span class="line">                    &#125;);</span><br><span class="line">                    $resultContent[<span class="number">0</span>].innerHTML = str;</span><br><span class="line">                &#125;, <span class="number">0</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="将搜索功能添加如页面"><a href="#将搜索功能添加如页面" class="headerlink" title="将搜索功能添加如页面"></a>将搜索功能添加如页面</h3><p>将如下代码添加到合适的地方,一般为layout.ejs 最下方  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (config.search) &#123; %&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot; src=&quot;/js/search.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">        var search_path = &quot;&lt;%= config.search.path %&gt;&quot;;</span><br><span class="line">            if (search_path.length == 0) &#123;</span><br><span class="line">            search_path = &quot;search.xml&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        var path = &quot;&lt;%= config.root %&gt;&quot; + search_path;</span><br><span class="line">        searchFunc(path, &apos;search-box&apos;, &apos;search-result&apos;);</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope="" itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2018/09/02/Visual-Studio-Code-常用快捷键/">Visual Studio Code 常用快捷键</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-02T15:14:07.000Z" itemprop="datePublished">2018-09-02</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/VScode/">VScode</a>, <a class="article-tag-link" href="/tags/learn/">learn</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>以下的Ctrl键指的是Windows系统下的Ctrl键，在Mac上对应Command键。  </p>
+<h2 id="主命令框"><a href="#主命令框" class="headerlink" title="主命令框"></a>主命令框</h2><p>F1 或 Ctrl+Shift+P: 打开命令面板。在打开的输入框内，可以输入任何命令，例如：  </p>
+<ol>
+<li>按一下 Backspace 会进入到 Ctrl+P 模式</li>
+<li>在 Ctrl+P 下输入 &gt; 可以进入 Ctrl+Shift+P 模式</li>
+</ol>
+<p>在 Ctrl+P 窗口下还可以:</p>
+<ol>
+<li>直接输入文件名，跳转到文件</li>
+<li>? 列出当前可执行的动作</li>
+<li>! 显示 Errors或 Warnings，也可以 Ctrl+Shift+M</li>
+<li>: 跳转到行数，也可以 Ctrl+G 直接进入</li>
+<li>@ 跳转到 symbol（搜索变量或者函数），也可以 Ctrl+Shift+O 直接进入</li>
+<li>@ 根据分类跳转 symbol，查找属性或函数，也可以 Ctrl+Shift+O 后输入:进入</li>
+<li># 根据名字查找 symbol，也可以 Ctrl+T</li>
+</ol>
+<h2 id="编辑器与窗口管理"><a href="#编辑器与窗口管理" class="headerlink" title="编辑器与窗口管理"></a>编辑器与窗口管理</h2><ol>
+<li>打开一个新窗口： Ctrl+Shift+N</li>
+<li>关闭窗口： Ctrl+Shift+W</li>
+<li>同时打开多个编辑器（查看多个文件）</li>
+<li>新建文件 Ctrl+N</li>
+<li>文件之间切换 Ctrl+Tab</li>
+<li>切出一个新的编辑器（最多 3 个） Ctrl+\，也可以按住 Ctrl 鼠标点击 Explorer 里的文件名</li>
+<li>左中右 3 个编辑器的快捷键 Ctrl+1 Ctrl+2 Ctrl+3</li>
+<li>3 个编辑器之间循环切换 Ctrl+</li>
+<li>编辑器换位置， Ctrl+k然后按 Left或 Right</li>
+</ol>
+<h2 id="代码格式调整"><a href="#代码格式调整" class="headerlink" title="代码格式调整"></a>代码格式调整</h2><ol>
+<li>代码行缩进 Ctrl+[ 、 Ctrl+]</li>
+<li>Ctrl+C 、 Ctrl+V 复制或剪切当前行/当前选中内容</li>
+<li>代码格式化： Shift+Alt+F，或 Ctrl+Shift+P 后输入 format code</li>
+<li>上下移动一行： Alt+Up 或 Alt+Down</li>
+<li>向上向下复制一行： Shift+Alt+Up 或 Shift+Alt+Down</li>
+<li>在当前行下边插入一行 Ctrl+Enter</li>
+<li>在当前行上方插入一行 Ctrl+Shift+Enter</li>
+</ol>
+<h2 id="光标相关"><a href="#光标相关" class="headerlink" title="光标相关"></a>光标相关</h2><ol>
+<li>移动到行首： Home</li>
+<li>移动到行尾： End</li>
+<li>移动到文件结尾： Ctrl+End</li>
+<li>移动到文件开头： Ctrl+Home</li>
+<li>移动到定义处： F12</li>
+<li>定义处缩略图：只看一眼而不跳转过去 Alt+F12</li>
+<li>移动到后半个括号： Ctrl+Shift+]</li>
+<li>选择从光标到行尾： Shift+End</li>
+<li>选择从行首到光标处： Shift+Home</li>
+<li>删除光标右侧的所有字： Ctrl+Delete</li>
+<li>扩展/缩小选取范围： Shift+Alt+Left 和 Shift+Alt+Right</li>
+<li>多行编辑(列编辑)：Alt+Shift+鼠标左键，Ctrl+Alt+Down/Up</li>
+<li>同时选中所有匹配： Ctrl+Shift+L</li>
+<li>Ctrl+D 下一个匹配的也被选中 (在 sublime 中是删除当前行，后面自定义快键键中，设置与 Ctrl+Shift+K 互换了)</li>
+<li>回退上一个光标操作： Ctrl+U</li>
+</ol>
+<h2 id="修改代码格式"><a href="#修改代码格式" class="headerlink" title="修改代码格式"></a>修改代码格式</h2><ol>
+<li>找到所有的引用： Shift+F12</li>
+<li>同时修改本文件中所有匹配的： Ctrl+F12</li>
+<li>重命名：比如要修改一个方法名，可以选中后按 F2，输入新的名字，回车，会发现所有的文件都修改了</li>
+<li>跳转到下一个 Error 或 Warning：当有多个错误时可以按 F8 逐个跳转</li>
+<li>查看 diff： 在 explorer 里选择文件右键 Set file to compare，然后需要对比的文件上右键选择 Compare with file_name_you_chose</li>
+</ol>
+<h2 id="查找替换"><a href="#查找替换" class="headerlink" title="查找替换"></a>查找替换</h2><ol>
+<li>查找 Ctrl+F</li>
+<li>查找替换 Ctrl+H</li>
+<li>整个文件夹中查找 Ctrl+Shift+F</li>
+</ol>
+<h2 id="显示相关"><a href="#显示相关" class="headerlink" title="显示相关"></a>显示相关</h2><ol>
+<li>全屏：F11</li>
+<li>zoomIn/zoomOut：Ctrl +/-</li>
+<li>侧边栏显/隐：Ctrl+B</li>
+<li>显示资源管理器 Ctrl+Shift+E</li>
+<li>显示搜索 Ctrl+Shift+F</li>
+<li>显示 Git Ctrl+Shift+G</li>
+<li>显示 Debug Ctrl+Shift+D</li>
+<li>显示 Output Ctrl+Shift+U</li>
+</ol>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>自动保存：<br>    File -&gt; AutoSave ，或者 Ctrl+Shift+P，输入 auto<br>修改默认快捷键：  </p>
+<ol>
+<li>打开默认键盘快捷方式设置：File -&gt; Preferences -&gt; Keyboard Shortcuts，或者：Alt+F -&gt; p -&gt; k  </li>
+<li>修改 keybindings.json：  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Place your key bindings in this file to overwrite the defaults</span></span><br><span class="line">[</span><br><span class="line">    <span class="comment">// ctrl+space 被切换输入法快捷键占用</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"key"</span>: <span class="string">"ctrl+alt+space"</span>,</span><br><span class="line">        <span class="string">"command"</span>: <span class="string">"editor.action.triggerSuggest"</span>,</span><br><span class="line">        <span class="string">"when"</span>: <span class="string">"editorTextFocus"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// ctrl+d 删除一行</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"key"</span>: <span class="string">"ctrl+d"</span>,</span><br><span class="line">        <span class="string">"command"</span>: <span class="string">"editor.action.deleteLines"</span>,</span><br><span class="line">        <span class="string">"when"</span>: <span class="string">"editorTextFocus"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 与删除一行的快捷键互换</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"key"</span>: <span class="string">"ctrl+shift+k"</span>,</span><br><span class="line">        <span class="string">"command"</span>: <span class="string">"editor.action.addSelectionToNextFindMatch"</span>,</span><br><span class="line">        <span class="string">"when"</span>: <span class="string">"editorFocus"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// ctrl+shift+/多行注释</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"key"</span>:<span class="string">"ctrl+shift+/"</span>,</span><br><span class="line">        <span class="string">"command"</span>: <span class="string">"editor.action.blockComment"</span>,</span><br><span class="line">        <span class="string">"when"</span>: <span class="string">"editorTextFocus"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 定制与 sublime 相同的大小写转换快捷键，需安装 TextTransform 插件</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"key"</span>: <span class="string">"ctrl+k ctrl+u"</span>,</span><br><span class="line">        <span class="string">"command"</span>: <span class="string">"uppercase"</span>,</span><br><span class="line">        <span class="string">"when"</span>: <span class="string">"editorTextFocus"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"key"</span>: <span class="string">"ctrl+k ctrl+l"</span>,</span><br><span class="line">        <span class="string">"command"</span>: <span class="string">"lowercase"</span>,</span><br><span class="line">        <span class="string">"when"</span>: <span class="string">"editorTextFocus"</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope="" itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2018/08/24/使用Hexo发布个人博客到GithubPages/">使用Hexo发布个人博客到Github Pages</a>
         </h1>
         
