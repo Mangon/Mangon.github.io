@@ -11,7 +11,9 @@
         Gblog
     </title>
     <meta name="author" content="Mangon">
-    <meta name="version" content="1.0.0">
+    <meta name="version" content="1.0.1">
+    
+        <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础">
     
     
         <meta name="description" content="搜索功能的实现最主要是生成一份关键字到站内链接的索引，当用户输入关键字后能够根据索引展示相应的链接。通常，搜索引擎公司（例如Google，百度）会有自己的爬虫，当你将自己的网站地址提交给他们后，他们会用爬虫定期分析你的网站结构，然后生成索引文件并加入自己的索引库中。这样当终端用户输入和你的网站匹配的关键词后，你的网站内的链接就会在结果中显示出来。站内搜索一般就不需要爬虫了，因为，其实最重要的是索引文件，只要你的网站更新的时候同时更新索引文件即可。  插入Google搜索框你可以利用Hex...">
@@ -24,6 +26,7 @@
     
 
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/jquery.modal.min.css">
 </head>
 <body>
 
@@ -81,17 +84,17 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2018/09/04/Hexo-添加站内搜索功能/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2018-09-04T09:28:50.000Z" itemprop="datePublished">2018-09-04</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/Hexo/">Hexo</a>
+    <a class="article-tag-link" href="/tags/hexo/">hexo</a>
 </div>
 
 
@@ -143,6 +146,14 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (config.search) &#123; %&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot; src=&quot;/js/search.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">        var search_path = &quot;&lt;%= config.search.path %&gt;&quot;;</span><br><span class="line">            if (search_path.length == 0) &#123;</span><br><span class="line">            search_path = &quot;search.xml&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        var path = &quot;&lt;%= config.root %&gt;&quot; + search_path;</span><br><span class="line">        searchFunc(path, &apos;search-box&apos;, &apos;search-result&apos;);</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -162,7 +173,13 @@
 
     </main>
 
+    
+    <div id="appreciate-modal" class="modal">
+    <img class="appreciate-image" src="/images/my-alipay.jpg">
+</div>
+    
     <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
         $(function() {

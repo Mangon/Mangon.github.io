@@ -11,7 +11,9 @@
         Gblog
     </title>
     <meta name="author" content="Mangon">
-    <meta name="version" content="1.0.0">
+    <meta name="version" content="1.0.1">
+    
+        <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础">
     
     
         <meta name="description" content="本篇主要讲述React中的 props state 以及 父子组件之间的数据传递。  props &amp;amp; state对于一个组件来说，props属性是只读的，像一个透明包裹一样，子组件可以看到包裹里的东西，却不能直接改变props的值。props来自他的父组件。而state属性则好像是自己的背包一样，可以随意通过setState修改，而且是永远跟随着自己的，不用担心丢失。12345678910111213141516171819202122232425262728293031323...">
@@ -24,6 +26,7 @@
     
 
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/jquery.modal.min.css">
 </head>
 <body>
 
@@ -81,17 +84,17 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2018/09/06/React父子组件数据传递/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2018-09-06T11:55:58.000Z" itemprop="datePublished">2018-09-06</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/React/">React</a>
+    <a class="article-tag-link" href="/tags/react/">react</a>
 </div>
 
 
@@ -109,6 +112,14 @@
 
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -128,7 +139,13 @@
 
     </main>
 
+    
+    <div id="appreciate-modal" class="modal">
+    <img class="appreciate-image" src="/images/my-alipay.jpg">
+</div>
+    
     <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
         $(function() {

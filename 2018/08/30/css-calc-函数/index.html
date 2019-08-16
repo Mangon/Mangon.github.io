@@ -11,7 +11,9 @@
         Gblog
     </title>
     <meta name="author" content="Mangon">
-    <meta name="version" content="1.0.0">
+    <meta name="version" content="1.0.1">
+    
+        <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础">
     
     
         <meta name="description" content="CSS函数之一，可以在CSS中执行计算操作使用 calc() 函数计算 &amp;lt;div&gt; 元素的宽度，实现div距离左右边界各50px:123456789#div1 &amp;#123;    position: absolute;    left: 50px;    width: calc(100% - 100px);    border: 1px solid black;    background-color: yellow;    padding: 5px;    text-align:...">
@@ -24,6 +26,7 @@
     
 
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/jquery.modal.min.css">
 </head>
 <body>
 
@@ -81,12 +84,12 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2018/08/30/css-calc-函数/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2018-08-30T12:30:10.000Z" itemprop="datePublished">2018-08-30</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
@@ -114,6 +117,14 @@
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@height:</span> <span class="number">40px</span>;</span><br><span class="line"><span class="variable">@borderHeight:</span> <span class="number">1px</span>;</span><br><span class="line"><span class="variable">@marginHeight:</span> <span class="number">10px</span>;</span><br><span class="line"><span class="attribute">margin-bottom</span>: calc(<span class="string">~"@&#123;height&#125;"</span> );</span><br><span class="line"><span class="attribute">margin-bottom</span>: calc(<span class="string">~"@&#123;height&#125; + @&#123;borderHeight&#125; * 3 + @&#123;marginHeight&#125; * 2"</span> );</span><br></pre></td></tr></table></figure>
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -133,7 +144,13 @@
 
     </main>
 
+    
+    <div id="appreciate-modal" class="modal">
+    <img class="appreciate-image" src="/images/my-alipay.jpg">
+</div>
+    
     <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
         $(function() {

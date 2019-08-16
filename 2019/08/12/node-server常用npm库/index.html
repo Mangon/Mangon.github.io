@@ -11,7 +11,9 @@
         Gblog
     </title>
     <meta name="author" content="Mangon">
-    <meta name="version" content="1.0.0">
+    <meta name="version" content="1.0.1">
+    
+        <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础">
     
     
         <meta name="description" content="以下列举一些 node server 常用npm库：  express: nodejs server web框架koa: nodejs server web框架 采用es6 async调用方式mongoose: MongoDB 对象建模库  connect-mongo: MongoDB 会话存储库(连接池)，支持Express  co: 基于es6的generator及yield用同步的形式编写异步代码  dotenv: 从.env文件自动加载环境变量  nodemon: ...">
@@ -24,6 +26,7 @@
     
 
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/jquery.modal.min.css">
 </head>
 <body>
 
@@ -106,12 +109,12 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2019/08/12/node-server常用npm库/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2019-08-12T07:04:09.000Z" itemprop="datePublished">2019-08-12</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
@@ -154,6 +157,14 @@
 
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -173,7 +184,13 @@
 
     </main>
 
+    
+    <div id="appreciate-modal" class="modal">
+    <img class="appreciate-image" src="/images/my-alipay.jpg">
+</div>
+    
     <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
         $(function() {

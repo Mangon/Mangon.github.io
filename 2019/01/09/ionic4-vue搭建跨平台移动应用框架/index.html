@@ -11,7 +11,9 @@
         Gblog
     </title>
     <meta name="author" content="Mangon">
-    <meta name="version" content="1.0.0">
+    <meta name="version" content="1.0.1">
+    
+        <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础">
     
     
         <meta name="description" content="ionic4及vue介绍ionic是一款混合移动应用开发框架，可以用来构建跨平台（Android &amp;amp; iOS）的移动应用程序，而且还可以基于Sass和AngularJS进行构建，是目前跨平台移动应用开发的一个翘楚。这个框架的目的是从web的角度开发手机应用，基于PhoneGap的编译平台，可以实现编译成各个平台的应用程序。Vue.js是一个MVVM驱动的 web 界面的渐进式框架，学习简单并且十分灵活。ionic3之前一般默认和Angular“绑定”在了一起，从ionic4开始，I...">
@@ -24,6 +26,7 @@
     
 
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/jquery.modal.min.css">
 </head>
 <body>
 
@@ -81,14 +84,19 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2019/01/09/ionic4-vue搭建跨平台移动应用框架/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2019-01-09T07:09:36.000Z" itemprop="datePublished">2019-01-09</time>
-</a>
+</span>
 
             
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/vue/">vue</a>
+</div>
+
 
         </div>
     </header>
@@ -169,6 +177,14 @@
 
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -188,7 +204,13 @@
 
     </main>
 
+    
+    <div id="appreciate-modal" class="modal">
+    <img class="appreciate-image" src="/images/my-alipay.jpg">
+</div>
+    
     <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
         $(function() {

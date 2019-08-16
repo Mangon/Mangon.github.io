@@ -11,7 +11,9 @@
         Gblog
     </title>
     <meta name="author" content="Mangon">
-    <meta name="version" content="1.0.0">
+    <meta name="version" content="1.0.1">
+    
+        <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础">
     
     
         <meta name="description" content="在B端项目中，经常遇到报表类的需求。即一个表单，然后查询出多种数据，最后导出为excel文件。这里就需要遇到文件下载类的开发。通常，有以下几种方式：  打开一个文件地址前端传递表单参数，后端生成文件，然后返回静态文件地址，然后前端可以在空白页面打开这个地址，文件就会被下载。  下载文件流前端传递表单参数，后端生成文件，然后返回文件流，最后前端将文件流保存。  1234567891011121314151617181920212223242526272829303132// TODO:...">
@@ -24,6 +26,7 @@
     
 
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/jquery.modal.min.css">
 </head>
 <body>
 
@@ -81,12 +84,12 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2018/11/26/下载csv文件/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2018-11-26T11:07:31.000Z" itemprop="datePublished">2018-11-26</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
@@ -109,6 +112,14 @@
 
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -128,7 +139,13 @@
 
     </main>
 
+    
+    <div id="appreciate-modal" class="modal">
+    <img class="appreciate-image" src="/images/my-alipay.jpg">
+</div>
+    
     <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
         $(function() {

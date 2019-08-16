@@ -11,7 +11,9 @@
         Gblog
     </title>
     <meta name="author" content="Mangon">
-    <meta name="version" content="1.0.0">
+    <meta name="version" content="1.0.1">
+    
+        <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础">
     
     
         <meta name="description" content="MongoDBMongoDB 是一个基于分布式文件存储的数据库，截止当前日期（2019-08-05） 最新版本是 MongoDB 4.0。MongoDB由 C++ 语言编写，旨在为 WEB 应用提供可扩展的高性能数据存储解决方案。MongoDB 将数据存储为一个文档，数据结构由键值对(key=&amp;gt;value)组成。 MongoDB 文档类型似于 JSON 对象。字段值可以包含其他文档，数组及文档数组等。你可以在 MongoDB 官网 下载安装包。MongoDB可视化工具有 Robomo...">
@@ -24,6 +26,7 @@
     
 
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/jquery.modal.min.css">
 </head>
 <body>
 
@@ -81,17 +84,17 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2019/08/05/MongoDB-cheatsheet/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2019-08-05T06:04:31.000Z" itemprop="datePublished">2019-08-05</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/MongoDB/">MongoDB</a>
+    <a class="article-tag-link" href="/tags/database/">database</a>, <a class="article-tag-link" href="/tags/mongodb/">mongodb</a>
 </div>
 
 
@@ -760,6 +763,14 @@
 
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -779,7 +790,13 @@
 
     </main>
 
+    
+    <div id="appreciate-modal" class="modal">
+    <img class="appreciate-image" src="/images/my-alipay.jpg">
+</div>
+    
     <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
         $(function() {

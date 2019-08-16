@@ -11,7 +11,9 @@
         Gblog
     </title>
     <meta name="author" content="Mangon">
-    <meta name="version" content="1.0.0">
+    <meta name="version" content="1.0.1">
+    
+        <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础">
     
     
         <meta name="description" content="            移动端无法使用                ">
@@ -24,6 +26,7 @@
     
 
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/jquery.modal.min.css">
 </head>
 <body>
 
@@ -106,12 +109,12 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2019/01/04/在线绘图小工具/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2019-01-04T10:49:24.000Z" itemprop="datePublished">2019-01-04</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
@@ -128,6 +131,14 @@
         <section><br>    <div class="paint-area"><br>        <p>移动端无法使用</p><br>        <canvas></canvas><br>    </div><br>    <script type="text/javascript" src="/static/js/painter.js"></script><br></section>
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -147,7 +158,13 @@
 
     </main>
 
+    
+    <div id="appreciate-modal" class="modal">
+    <img class="appreciate-image" src="/images/my-alipay.jpg">
+</div>
+    
     <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
         $(function() {

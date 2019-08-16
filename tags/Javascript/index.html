@@ -11,8 +11,12 @@
         Gblog
     </title>
     <meta name="author" content="Mangon">
-    <meta name="version" content="1.0.0">
+    <meta name="version" content="1.0.1">
     
+        <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础">
+    
+    
+        <meta name="description" content="Mangon&#39;s Technology Blog">
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
@@ -22,6 +26,7 @@
     
 
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/jquery.modal.min.css">
 </head>
 <body>
 
@@ -103,12 +108,12 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2018/11/26/下载csv文件/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2018-11-26T11:07:31.000Z" itemprop="datePublished">2018-11-26</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
@@ -131,6 +136,14 @@
 
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -143,12 +156,12 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2018/09/26/列表拖拽排序sortablejs/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2018-09-26T12:47:08.000Z" itemprop="datePublished">2018-09-26</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
@@ -186,6 +199,14 @@
 
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -198,12 +219,12 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2018/09/25/失效链接替换方案/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2018-09-25T08:05:17.000Z" itemprop="datePublished">2018-09-25</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
@@ -223,6 +244,14 @@
 
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -235,17 +264,17 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2018/08/31/debounce-throttle/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2018-08-31T13:40:48.000Z" itemprop="datePublished">2018-08-31</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/javascript/">javascript</a>
+    <a class="article-tag-link" href="/tags/interview/">interview</a>, <a class="article-tag-link" href="/tags/javascript/">javascript</a>, <a class="article-tag-link" href="/tags/underscore/">underscore</a>
 </div>
 
 
@@ -282,6 +311,14 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Returns a function, that, when invoked, will only be triggered at most once</span></span><br><span class="line"> <span class="comment">// during a given window of time. Normally, the throttled function will run</span></span><br><span class="line"> <span class="comment">// as much as it can, without ever going more than once per `wait` duration;</span></span><br><span class="line"> <span class="comment">// but if you'd like to disable the execution on the leading edge, pass</span></span><br><span class="line"> <span class="comment">// `&#123;leading: false&#125;`. To disable execution on the trailing edge, ditto.</span></span><br><span class="line"> _.throttle = <span class="function"><span class="keyword">function</span>(<span class="params">func, wait, options</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">var</span> timeout, context, args, result;</span><br><span class="line">   <span class="keyword">var</span> previous = <span class="number">0</span>;</span><br><span class="line">   <span class="keyword">if</span> (!options) options = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">var</span> later = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">     previous = options.leading === <span class="literal">false</span> ? <span class="number">0</span> : _.now();</span><br><span class="line">     timeout = <span class="literal">null</span>;</span><br><span class="line">     result = func.apply(context, args);</span><br><span class="line">     <span class="keyword">if</span> (!timeout) context = args = <span class="literal">null</span>;</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">var</span> throttled = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">     <span class="keyword">var</span> now = _.now();</span><br><span class="line">     <span class="keyword">if</span> (!previous &amp;&amp; options.leading === <span class="literal">false</span>) previous = now;</span><br><span class="line">     <span class="keyword">var</span> remaining = wait - (now - previous);</span><br><span class="line">     context = <span class="keyword">this</span>;</span><br><span class="line">     args = <span class="built_in">arguments</span>;</span><br><span class="line">     <span class="keyword">if</span> (remaining &lt;= <span class="number">0</span> || remaining &gt; wait) &#123;</span><br><span class="line">       <span class="keyword">if</span> (timeout) &#123;</span><br><span class="line">         clearTimeout(timeout);</span><br><span class="line">         timeout = <span class="literal">null</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       previous = now;</span><br><span class="line">       result = func.apply(context, args);</span><br><span class="line">       <span class="keyword">if</span> (!timeout) context = args = <span class="literal">null</span>;</span><br><span class="line">     &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!timeout &amp;&amp; options.trailing !== <span class="literal">false</span>) &#123;</span><br><span class="line">       timeout = setTimeout(later, remaining);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> result;</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   throttled.cancel = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">     clearTimeout(timeout);</span><br><span class="line">     previous = <span class="number">0</span>;</span><br><span class="line">     timeout = context = args = <span class="literal">null</span>;</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> throttled;</span><br><span class="line"> &#125;;</span><br></pre></td></tr></table></figure>
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -303,7 +340,13 @@
 
     </main>
 
+    
+    <div id="appreciate-modal" class="modal">
+    <img class="appreciate-image" src="/images/my-alipay.jpg">
+</div>
+    
     <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
         $(function() {

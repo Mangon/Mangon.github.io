@@ -11,7 +11,9 @@
         Gblog
     </title>
     <meta name="author" content="Mangon">
-    <meta name="version" content="1.0.0">
+    <meta name="version" content="1.0.1">
+    
+        <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础">
     
     
         <meta name="description" content="viewport来源通常为了使得网页能够成为响应式的，我们需要在head内声名有关viewport的meta。它长这样  1&amp;lt;meta name=&#34;viewport&#34; content=&#34;width=device-width,initial-scale=1,user-scalable=no&#34;/&amp;gt;viewport的设计是由于pc互联网向移动互联网的过渡。在过去，多数文档被设计用来在pc上进行阅读，而pc的设备通常比较宽，同样的网页不进行任何改变放到移动端的话，内容就会变得无法辨...">
@@ -24,6 +26,7 @@
     
 
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/jquery.modal.min.css">
 </head>
 <body>
 
@@ -81,12 +84,12 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2019/01/21/浅谈viewport/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2019-01-21T11:53:30.000Z" itemprop="datePublished">2019-01-21</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
@@ -180,6 +183,14 @@
 
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -199,7 +210,13 @@
 
     </main>
 
+    
+    <div id="appreciate-modal" class="modal">
+    <img class="appreciate-image" src="/images/my-alipay.jpg">
+</div>
+    
     <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
         $(function() {

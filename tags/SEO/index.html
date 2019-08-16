@@ -7,12 +7,16 @@
 
     
     <title>
-        Tag: SEO | 
+        Tag: seo | 
         Gblog
     </title>
     <meta name="author" content="Mangon">
-    <meta name="version" content="1.0.0">
+    <meta name="version" content="1.0.1">
     
+        <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础">
+    
+    
+        <meta name="description" content="Mangon&#39;s Technology Blog">
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
@@ -22,6 +26,7 @@
     
 
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/jquery.modal.min.css">
 </head>
 <body>
 
@@ -103,17 +108,17 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2018/09/28/清除网站中的无效链接/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2018-09-28T08:32:55.000Z" itemprop="datePublished">2018-09-28</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/SEO/">SEO</a>
+    <a class="article-tag-link" href="/tags/seo/">seo</a>
 </div>
 
 
@@ -138,6 +143,14 @@
 
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -159,7 +172,13 @@
 
     </main>
 
+    
+    <div id="appreciate-modal" class="modal">
+    <img class="appreciate-image" src="/images/my-alipay.jpg">
+</div>
+    
     <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
         $(function() {

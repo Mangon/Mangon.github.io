@@ -11,7 +11,9 @@
         Gblog
     </title>
     <meta name="author" content="Mangon">
-    <meta name="version" content="1.0.0">
+    <meta name="version" content="1.0.1">
+    
+        <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础">
     
     
         <meta name="description" content="jQuery 是一个高效、精简并且功能丰富的 JavaScript 工具库。它提供的 API 易于使用且兼容众多浏览器，这让诸如 HTML 文档遍历和操作、事件处理、动画和 Ajax 操作更加简单。  jQuery 使用 $ 符号作为 jQuery 的简写。如果你使用其它框架也使用 $ 符号作为简写，有可能导致脚本停止运行。为了防止这种情况，你可以使用jQuery noConflict()方法释放对 $ 标识符的控制并返回对 jQuery 的引用。  jQuery 核心函数函数...">
@@ -24,6 +26,7 @@
     
 
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/jquery.modal.min.css">
 </head>
 <body>
 
@@ -81,17 +84,17 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2018/09/03/jQuery-常用方法/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2018-09-03T11:30:44.000Z" itemprop="datePublished">2018-09-03</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/jQuery/">jQuery</a>
+    <a class="article-tag-link" href="/tags/jquery/">jquery</a>
 </div>
 
 
@@ -1021,6 +1024,14 @@
 
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -1040,7 +1051,13 @@
 
     </main>
 
+    
+    <div id="appreciate-modal" class="modal">
+    <img class="appreciate-image" src="/images/my-alipay.jpg">
+</div>
+    
     <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
         $(function() {

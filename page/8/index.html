@@ -11,8 +11,12 @@
         Gblog
     </title>
     <meta name="author" content="Mangon">
-    <meta name="version" content="1.0.0">
+    <meta name="version" content="1.0.1">
     
+        <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础">
+    
+    
+        <meta name="description" content="Mangon&#39;s Technology Blog">
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
@@ -22,6 +26,7 @@
     
 
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/jquery.modal.min.css">
 </head>
 <body>
 
@@ -103,17 +108,17 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2018/09/04/Hexo-添加站内搜索功能/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2018-09-04T09:28:50.000Z" itemprop="datePublished">2018-09-04</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/Hexo/">Hexo</a>
+    <a class="article-tag-link" href="/tags/hexo/">hexo</a>
 </div>
 
 
@@ -165,6 +170,14 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (config.search) &#123; %&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot; src=&quot;/js/search.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">        var search_path = &quot;&lt;%= config.search.path %&gt;&quot;;</span><br><span class="line">            if (search_path.length == 0) &#123;</span><br><span class="line">            search_path = &quot;search.xml&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        var path = &quot;&lt;%= config.root %&gt;&quot; + search_path;</span><br><span class="line">        searchFunc(path, &apos;search-box&apos;, &apos;search-result&apos;);</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -177,12 +190,12 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2018/09/03/CSS选择器参考手册/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2018-09-03T11:32:59.000Z" itemprop="datePublished">2018-09-03</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
@@ -475,6 +488,14 @@
 
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -487,17 +508,17 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2018/09/03/jQuery-常用方法/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2018-09-03T11:30:44.000Z" itemprop="datePublished">2018-09-03</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/jQuery/">jQuery</a>
+    <a class="article-tag-link" href="/tags/jquery/">jquery</a>
 </div>
 
 
@@ -1427,6 +1448,14 @@
 
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -1439,17 +1468,17 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2018/09/02/Visual-Studio-Code-常用快捷键/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2018-09-02T15:14:07.000Z" itemprop="datePublished">2018-09-02</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/VScode/">VScode</a>
+    <a class="article-tag-link" href="/tags/learn/">learn</a>, <a class="article-tag-link" href="/tags/vscode/">vscode</a>
 </div>
 
 
@@ -1541,6 +1570,14 @@
 
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -1553,17 +1590,17 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2018/09/01/排序算法的javascript实现/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2018-09-01T15:19:21.000Z" itemprop="datePublished">2018-09-01</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/algorithm/">algorithm</a>
+    <a class="article-tag-link" href="/tags/algorithm/">algorithm</a>, <a class="article-tag-link" href="/tags/interview/">interview</a>
 </div>
 
 
@@ -1637,6 +1674,14 @@
 <h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (arr.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> step = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">var</span> left, right;</span><br><span class="line">    <span class="keyword">while</span> (step &lt; arr.length) &#123;</span><br><span class="line">        left = <span class="number">0</span>;</span><br><span class="line">        right = step;</span><br><span class="line">        <span class="keyword">while</span> (right + step &lt;= arr.length) &#123;</span><br><span class="line">            mergeArrays(arr, left, left + step, right, right + step);</span><br><span class="line">            left = right + step;</span><br><span class="line">            right = left + step;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (right &lt; arr.length) &#123;</span><br><span class="line">            mergeArrays(arr, left, left + step, right, arr.length);</span><br><span class="line">        &#125;</span><br><span class="line">        step *= <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeArrays</span>(<span class="params">arr, startLeft, stopLeft, startRight, stopRight</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> rightArr = <span class="keyword">new</span> <span class="built_in">Array</span>(stopRight - startRight + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">var</span> leftArr = <span class="keyword">new</span> <span class="built_in">Array</span>(stopLeft - startLeft + <span class="number">1</span>);</span><br><span class="line">    k = startRight;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; (rightArr.length - <span class="number">1</span>); ++i) &#123;</span><br><span class="line">        rightArr[i] = arr[k];</span><br><span class="line">        ++k;</span><br><span class="line">    &#125;</span><br><span class="line">    k = startLeft;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; (leftArr.length - <span class="number">1</span>); ++i) &#123;</span><br><span class="line">        leftArr[i] = arr[k];</span><br><span class="line">        ++k;</span><br><span class="line">    &#125;</span><br><span class="line">    rightArr[rightArr.length - <span class="number">1</span>] = <span class="literal">Infinity</span>; <span class="comment">// 哨兵值</span></span><br><span class="line">    leftArr[leftArr.length - <span class="number">1</span>] = <span class="literal">Infinity</span>; <span class="comment">// 哨兵值</span></span><br><span class="line">    <span class="keyword">var</span> m = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> n = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> k = startLeft; k &lt; stopRight; ++k) &#123;</span><br><span class="line">        <span class="keyword">if</span> (leftArr[m] &lt;= rightArr[n]) &#123;</span><br><span class="line">            arr[k] = leftArr[m];</span><br><span class="line">            m++;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            arr[k] = rightArr[n];</span><br><span class="line">            n++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -1662,7 +1707,13 @@
 
     </main>
 
+    
+    <div id="appreciate-modal" class="modal">
+    <img class="appreciate-image" src="/images/my-alipay.jpg">
+</div>
+    
     <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
         $(function() {

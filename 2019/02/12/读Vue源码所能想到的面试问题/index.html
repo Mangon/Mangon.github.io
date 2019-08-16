@@ -11,7 +11,9 @@
         Gblog
     </title>
     <meta name="author" content="Mangon">
-    <meta name="version" content="1.0.0">
+    <meta name="version" content="1.0.1">
+    
+        <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础">
     
     
         <meta name="description" content="指令v-if v-show有什么不同？v-if 和 v-show都是Vue中的指令而且都可以用来控制模板的渲染。  v-if 是“真正”的条件渲染，因为它会确保在切换过程中条件块内的事件监听器和子组件适当地被销毁和重建。  v-if 也是惰性的：如果在初始渲染时条件为假，则什么也不做——直到条件第一次变为真时，才会开始渲染条件块。  相比之下，v-show 就简单得多——不管初始条件是什么，元素总是会被渲染，并且只是简单地基于 CSS 进行切换。  一般来说，v-if 有更高的切换...">
@@ -24,6 +26,7 @@
     
 
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/jquery.modal.min.css">
 </head>
 <body>
 
@@ -81,17 +84,17 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2019/02/12/读Vue源码所能想到的面试问题/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2019-02-12T03:37:05.000Z" itemprop="datePublished">2019-02-12</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/vue/">vue</a>
+    <a class="article-tag-link" href="/tags/interview/">interview</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
 </div>
 
 
@@ -143,6 +146,14 @@
 <h2 id="描述javascript-event-loop-机制，说明异步机制-setTimeout-setInterval-setImmediate-Promise-process-nextTick-MutationObserver-有何不同"><a href="#描述javascript-event-loop-机制，说明异步机制-setTimeout-setInterval-setImmediate-Promise-process-nextTick-MutationObserver-有何不同" class="headerlink" title="描述javascript event loop 机制，说明异步机制 setTimeout setInterval setImmediate Promise process.nextTick MutationObserver 有何不同"></a>描述javascript event loop 机制，说明异步机制 <code>setTimeout</code> <code>setInterval</code> <code>setImmediat</code>e <code>Promise</code> <code>process.nextTick</code> <code>MutationObserver</code> 有何不同</h2><h2 id="未完待续。。。"><a href="#未完待续。。。" class="headerlink" title="未完待续。。。"></a>未完待续。。。</h2>
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -162,7 +173,13 @@
 
     </main>
 
+    
+    <div id="appreciate-modal" class="modal">
+    <img class="appreciate-image" src="/images/my-alipay.jpg">
+</div>
+    
     <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
         $(function() {

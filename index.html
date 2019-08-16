@@ -11,8 +11,12 @@
         Gblog
     </title>
     <meta name="author" content="Mangon">
-    <meta name="version" content="1.0.0">
+    <meta name="version" content="1.0.1">
     
+        <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础">
+    
+    
+        <meta name="description" content="Mangon&#39;s Technology Blog">
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
@@ -22,6 +26,7 @@
     
 
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/jquery.modal.min.css">
 </head>
 <body>
 
@@ -103,12 +108,12 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2019/08/12/node-server常用npm库/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2019-08-12T07:04:09.000Z" itemprop="datePublished">2019-08-12</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
@@ -151,6 +156,14 @@
 
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -163,17 +176,17 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2019/08/05/MongoDB-cheatsheet/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2019-08-05T06:04:31.000Z" itemprop="datePublished">2019-08-05</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/MongoDB/">MongoDB</a>
+    <a class="article-tag-link" href="/tags/database/">database</a>, <a class="article-tag-link" href="/tags/mongodb/">mongodb</a>
 </div>
 
 
@@ -842,6 +855,14 @@
 
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -854,17 +875,17 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2019/06/19/little-tips/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2019-06-19T08:08:39.000Z" itemprop="datePublished">2019-06-19</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/Tips/">Tips</a>
+    <a class="article-tag-link" href="/tags/learn/">learn</a>
 </div>
 
 
@@ -878,42 +899,45 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">post_max_size = 128M ## （表单提交的最大限制，此项不是限制上传单个文件的大小，而是针对整个表单提交的数据进行限制）</span><br><span class="line">upload_max_filesize = 128M ## （上传的单个文件的最大限制）</span><br></pre></td></tr></table></figure>
 <p>需要保证 post_max_size &gt;= upload_max_filesize ，也就是前者不小于后者。修改之后一定要重启 php-fpm (service php-fpm restart)。</p>
 <p>除了修改 php 配置，你也需要修改nginx配置文件 nginx.conf<br>打开 nginx 配置文件 nginx.conf，找到 http{} 段，在其中添加一行配置：<br>client_max_body_size 128m; 其中 128m 可以根据需要上传文件大小自行设定。<br>修改之后一定要重新载入 nginx （service nginx reload）。</p>
-<h2 id="导入-导出-csv文件到mysql"><a href="#导入-导出-csv文件到mysql" class="headerlink" title="导入/导出 csv文件到mysql"></a>导入/导出 csv文件到mysql</h2><h4 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h4><p>需要表存在且字段与csv文件中的相同</p>
+<h2 id="导入-导出-csv文件到mysql"><a href="#导入-导出-csv文件到mysql" class="headerlink" title="导入/导出 csv文件到mysql"></a>导入/导出 csv文件到mysql</h2><h3 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h3><p>需要表存在且字段与csv文件中的相同</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">LOAD</span> <span class="keyword">DATA</span> <span class="keyword">LOCAL</span> <span class="keyword">INFILE</span> <span class="string">'$&#123;csv文件路径&#125;'</span></span><br><span class="line"><span class="keyword">INTO</span> <span class="keyword">TABLE</span> $&#123;数据库表名&#125;</span><br><span class="line"><span class="built_in">CHARACTER</span> <span class="keyword">SET</span>  utf8</span><br><span class="line"><span class="keyword">FIELDS</span></span><br><span class="line">    <span class="keyword">TERMINATED</span> <span class="keyword">BY</span> <span class="string">','</span></span><br><span class="line">    <span class="keyword">ENCLOSED</span> <span class="keyword">BY</span> <span class="string">'"'</span></span><br><span class="line"><span class="keyword">LINES</span></span><br><span class="line">    <span class="keyword">TERMINATED</span> <span class="keyword">BY</span> <span class="string">'\n'</span></span><br><span class="line"><span class="keyword">IGNORE</span> <span class="number">1</span> <span class="keyword">ROWS</span>;</span><br></pre></td></tr></table></figure>
-<h4 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">LOCK</span> <span class="keyword">TABLES</span> $&#123;数据库表名&#125; <span class="keyword">read</span>;</span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> $&#123;数据库表名&#125; <span class="keyword">INTO</span> <span class="keyword">OUTFILE</span> <span class="string">'$&#123;csv文件路径&#125;'</span> </span><br><span class="line"><span class="keyword">FIELDS</span></span><br><span class="line">    <span class="keyword">TERMINATED</span> <span class="keyword">BY</span> <span class="string">','</span></span><br><span class="line">    <span class="keyword">OPTIONALLY</span> <span class="keyword">ENCLOSED</span> <span class="keyword">BY</span> <span class="string">'"'</span></span><br><span class="line"><span class="keyword">LINES</span></span><br><span class="line">    <span class="keyword">TERMINATED</span> <span class="keyword">BY</span> <span class="string">'\n'</span>;</span><br><span class="line"><span class="keyword">UNLOCK</span> <span class="keyword">TABLES</span>;</span><br></pre></td></tr></table></figure>
-<p>如果在执行语句时报错 <code>Error 1148 MySQL The used command is not allowed with this MySQL version</code> 可能是因为MySQL的安全策略阻止读取本地文件，可以通过以下方法解决：</p>
+<h3 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">LOCK</span> <span class="keyword">TABLES</span> $&#123;数据库表名&#125; <span class="keyword">read</span>;</span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> $&#123;数据库表名&#125; <span class="keyword">INTO</span> <span class="keyword">OUTFILE</span> <span class="string">'$&#123;csv文件路径&#125;'</span> </span><br><span class="line"><span class="keyword">FIELDS</span></span><br><span class="line">    <span class="keyword">TERMINATED</span> <span class="keyword">BY</span> <span class="string">','</span></span><br><span class="line">    <span class="keyword">OPTIONALLY</span> <span class="keyword">ENCLOSED</span> <span class="keyword">BY</span> <span class="string">'"'</span></span><br><span class="line"><span class="keyword">LINES</span></span><br><span class="line">    <span class="keyword">TERMINATED</span> <span class="keyword">BY</span> <span class="string">'\n'</span>;</span><br><span class="line"><span class="keyword">UNLOCK</span> <span class="keyword">TABLES</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="导出csv文件到mysql报错"><a href="#导出csv文件到mysql报错" class="headerlink" title="导出csv文件到mysql报错"></a>导出csv文件到mysql报错</h2><h3 id="Error-1148"><a href="#Error-1148" class="headerlink" title="Error 1148"></a>Error 1148</h3><p>如果在执行语句时报错 <code>Error 1148 MySQL The used command is not allowed with this MySQL version</code> 可能是因为MySQL的安全策略阻止读取本地文件，可以通过以下方法解决：</p>
 <ol>
-<li><p>Use –local-infile=1 argument on the mysql commandline:</p>
+<li>Use –local-infile=1 argument on the mysql commandline:</li>
+</ol>
 <p>When you start MySQL on the terminal, include –local-infile=1 argument, Something like this:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql <span class="comment">--local-infile=1 -uroot -p</span></span><br><span class="line"></span><br><span class="line">mysql&gt;LOAD DATA LOCAL INFILE '/tmp/foo.txt' INTO TABLE foo </span><br><span class="line">COLUMNS TERMINATED BY '\t';</span><br></pre></td></tr></table></figure>
 <p>Then the command is permitted:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Query OK, 3 rows affected (0.00 sec)</span><br><span class="line">Records: 3  Deleted: 0  Skipped: 0  Warnings: 0</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Or send the parameter into the mysql daemon:</p>
+<ol>
+<li>Or send the parameter into the mysql daemon:</li>
+</ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld --local-infile=1</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Or set it in the my.cnf file (This is a security risk):</p>
+<ol>
+<li>Or set it in the my.cnf file (This is a security risk):</li>
+</ol>
 <p>Find your mysql my.cnf file and edit it as root.</p>
 <p>Add the local-infile line under the mysqld and mysql designators:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">local-infile </span><br><span class="line"></span><br><span class="line">[mysql]</span><br><span class="line">local-infile</span><br></pre></td></tr></table></figure>
 <p>Save the file, restart mysql. Try it again.</p>
-</li>
-<li><p>The main reason why we are using the LOCAL keyword is explained in the MySQL manual. On the other hand, you do not need the FILE privilege to load local files. So if you in fact do have file access to the server then try to skip using the word “LOCAL” in SQL query, and instead copy the file to the server and the directory mysql/data/[tablename].</p>
-</li>
-</ol>
-<p>如果在执行语句时报错 <code>[Error Code] 1290 - The MySQL server is running with the --secure-file-priv option</code> 说明参数secure-file-priv 可能有问题</p>
-<p>执行以下语句<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">VARIABLES</span> <span class="keyword">LIKE</span> <span class="string">"secure_file_priv"</span>;</span><br></pre></td></tr></table></figure></p>
-<p>可以看到<br>　　secure_file_prive=null   – 限制mysqld 不允许导入导出<br>　　secure_file_priv=/tmp/   – 限制mysqld的导入导出只能发生在/tmp/目录下<br>　　secure_file_priv=’’     – 不对mysqld 的导入/导出做限制</p>
-<p>可以在 my.ini（windows） 或 /etc/my.cnf(linux) 文件中的[mysqld]节点添加secure_file_priv=’’，然后重启mysql服务</p>
-<p>如果在启动mysql时遇到了 <code>[ERROR] InnoDB: Unable to lock ./ibdata1, error: 11</code><br>说明 ibdata1 文件被其他的进程占用 或者 磁盘空间目录不足，有以下解决方案：</p>
 <ol>
-<li><p>查看磁盘空间情况</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看系统 mysql 相关进程</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -eaf | grep mysql</span><br><span class="line">kill -9 78806</span><br></pre></td></tr></table></figure>
-</li>
+<li>The main reason why we are using the LOCAL keyword is explained in the MySQL manual. On the other hand, you do not need the FILE privilege to load local files. So if you in fact do have file access to the server then try to skip using the word “LOCAL” in SQL query, and instead copy the file to the server and the directory mysql/data/[tablename].</li>
 </ol>
+<h3 id="Error-1290"><a href="#Error-1290" class="headerlink" title="Error 1290"></a>Error 1290</h3><p>如果在执行语句时报错 <code>[Error Code] 1290 - The MySQL server is running with the --secure-file-priv option</code> 说明参数secure-file-priv 可能有问题</p>
+<p>执行以下语句<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">VARIABLES</span> <span class="keyword">LIKE</span> <span class="string">"secure_file_priv"</span>;</span><br></pre></td></tr></table></figure></p>
+<p>可以看到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">　　secure_file_prive=null   -- 限制mysqld 不允许导入导出</span><br><span class="line">　　secure_file_priv=/tmp/   -- 限制mysqld的导入导出只能发生在/tmp/目录下</span><br><span class="line">　　secure_file_priv=&apos;&apos;     -- 不对mysqld 的导入/导出做限制</span><br></pre></td></tr></table></figure>
+<p>可以在 my.ini（windows） 或 /etc/my.cnf(linux) 文件中的[mysqld]节点添加secure_file_priv=’’，然后重启mysql服务</p>
+<h2 id="启动mysql报错error-11"><a href="#启动mysql报错error-11" class="headerlink" title="启动mysql报错error: 11"></a>启动mysql报错error: 11</h2><p>如果在启动mysql时遇到了 <code>[ERROR] InnoDB: Unable to lock ./ibdata1, error: 11</code><br>说明 ibdata1 文件被其他的进程占用 或者 磁盘空间目录不足，有以下解决方案：</p>
+<ol>
+<li>查看磁盘空间情况</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br></pre></td></tr></table></figure>
+<ol>
+<li>查看系统 mysql 相关进程</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -eaf | grep mysql</span><br><span class="line">kill -9 78806</span><br></pre></td></tr></table></figure>
 <p>如果语句执行正常但是返回 <code>0 row(s) affected</code> ，查看一下csv中的字段是否是否与表中的字段一致，区分大小写；查看一下csv文件的分隔符的设置是否正确。</p>
 <h2 id="处理-mongoose-中-bson-MODULE-NOT-FOUND-相关报错"><a href="#处理-mongoose-中-bson-MODULE-NOT-FOUND-相关报错" class="headerlink" title="处理 mongoose 中 bson MODULE_NOT_FOUND 相关报错"></a>处理 mongoose 中 bson MODULE_NOT_FOUND 相关报错</h2><p>node.js 在使用 mongoose时报错 <code>[Error: Cannot find module &#39;../build/Release/bson&#39;] code: &#39;MODULE_NOT_FOUND&#39;</code>  </p>
 <p>参见 <a href="https://github.com/Automattic/mongoose/issues/3436" target="_blank" rel="noopener">https://github.com/Automattic/mongoose/issues/3436</a> </p>
@@ -926,12 +950,20 @@
 <p>或</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bson = require(&apos;bson&apos;);</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>更改mongoose版本<br>将原有的mongoose升级为 <code>&quot;mongoose &quot;: &quot;~3.8.23&quot;</code></p>
+<li><p>更改mongoose版本<br>将原有的mongoose升级为 <code>&quot;mongoose &quot;: &quot;~3.8.23&quot;</code>  </p>
 </li>
 </ol>
 
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -944,17 +976,17 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2019/05/06/redis支持的数据类型/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2019-05-06T08:16:10.000Z" itemprop="datePublished">2019-05-06</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/redis/">redis</a>
+    <a class="article-tag-link" href="/tags/database/">database</a>, <a class="article-tag-link" href="/tags/redis/">redis</a>
 </div>
 
 
@@ -975,6 +1007,14 @@
 
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -987,17 +1027,17 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2019/02/12/读Vue源码所能想到的面试问题/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2019-02-12T03:37:05.000Z" itemprop="datePublished">2019-02-12</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/vue/">vue</a>
+    <a class="article-tag-link" href="/tags/interview/">interview</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
 </div>
 
 
@@ -1049,6 +1089,14 @@
 <h2 id="描述javascript-event-loop-机制，说明异步机制-setTimeout-setInterval-setImmediate-Promise-process-nextTick-MutationObserver-有何不同"><a href="#描述javascript-event-loop-机制，说明异步机制-setTimeout-setInterval-setImmediate-Promise-process-nextTick-MutationObserver-有何不同" class="headerlink" title="描述javascript event loop 机制，说明异步机制 setTimeout setInterval setImmediate Promise process.nextTick MutationObserver 有何不同"></a>描述javascript event loop 机制，说明异步机制 <code>setTimeout</code> <code>setInterval</code> <code>setImmediat</code>e <code>Promise</code> <code>process.nextTick</code> <code>MutationObserver</code> 有何不同</h2><h2 id="未完待续。。。"><a href="#未完待续。。。" class="headerlink" title="未完待续。。。"></a>未完待续。。。</h2>
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -1074,7 +1122,13 @@
 
     </main>
 
+    
+    <div id="appreciate-modal" class="modal">
+    <img class="appreciate-image" src="/images/my-alipay.jpg">
+</div>
+    
     <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
         $(function() {

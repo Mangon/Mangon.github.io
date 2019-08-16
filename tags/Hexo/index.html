@@ -7,12 +7,16 @@
 
     
     <title>
-        Tag: Hexo | 
+        Tag: hexo | 
         Gblog
     </title>
     <meta name="author" content="Mangon">
-    <meta name="version" content="1.0.0">
+    <meta name="version" content="1.0.1">
     
+        <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础">
+    
+    
+        <meta name="description" content="Mangon&#39;s Technology Blog">
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
@@ -22,6 +26,7 @@
     
 
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/jquery.modal.min.css">
 </head>
 <body>
 
@@ -103,17 +108,17 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2018/09/15/Hexo也能构建SPA/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2018-09-15T08:45:26.000Z" itemprop="datePublished">2018-09-15</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/Hexo/">Hexo</a>
+    <a class="article-tag-link" href="/tags/hexo/">hexo</a>, <a class="article-tag-link" href="/tags/spa/">spa</a>
 </div>
 
 
@@ -159,6 +164,14 @@
 
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -171,17 +184,17 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2018/09/04/Hexo-添加站内搜索功能/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2018-09-04T09:28:50.000Z" itemprop="datePublished">2018-09-04</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/Hexo/">Hexo</a>
+    <a class="article-tag-link" href="/tags/hexo/">hexo</a>
 </div>
 
 
@@ -233,6 +246,14 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (config.search) &#123; %&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot; src=&quot;/js/search.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">        var search_path = &quot;&lt;%= config.search.path %&gt;&quot;;</span><br><span class="line">            if (search_path.length == 0) &#123;</span><br><span class="line">            search_path = &quot;search.xml&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        var path = &quot;&lt;%= config.root %&gt;&quot; + search_path;</span><br><span class="line">        searchFunc(path, &apos;search-box&apos;, &apos;search-result&apos;);</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -245,17 +266,17 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2018/08/24/使用Hexo发布个人博客到GithubPages/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2018-08-24T05:11:29.000Z" itemprop="datePublished">2018-08-24</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/Hexo/">Hexo</a>
+    <a class="article-tag-link" href="/tags/blog/">blog</a>, <a class="article-tag-link" href="/tags/github/">github</a>, <a class="article-tag-link" href="/tags/hexo/">hexo</a>
 </div>
 
 
@@ -279,6 +300,14 @@
 
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -300,7 +329,13 @@
 
     </main>
 
+    
+    <div id="appreciate-modal" class="modal">
+    <img class="appreciate-image" src="/images/my-alipay.jpg">
+</div>
+    
     <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
         $(function() {

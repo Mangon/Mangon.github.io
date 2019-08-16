@@ -11,7 +11,9 @@
         Gblog
     </title>
     <meta name="author" content="Mangon">
-    <meta name="version" content="1.0.0">
+    <meta name="version" content="1.0.1">
+    
+        <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础">
     
     
         <meta name="description" content="Hexo是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。安装前提安装 Hexo 相当简单。然而在安装前，您必须检查电脑中是否已安装下列应用程序：Node.jsGit  安装Hexo-cli1$ npm install -g hexo-cli在github中创建仓库仓库需要以.github.io结尾建站12345$ hexo init &amp;lt;folder&amp;gt;$ cd &amp;lt;folder&amp;...">
@@ -24,6 +26,7 @@
     
 
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/jquery.modal.min.css">
 </head>
 <body>
 
@@ -81,17 +84,17 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2018/08/24/使用Hexo发布个人博客到GithubPages/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2018-08-24T05:11:29.000Z" itemprop="datePublished">2018-08-24</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/Hexo/">Hexo</a>
+    <a class="article-tag-link" href="/tags/blog/">blog</a>, <a class="article-tag-link" href="/tags/github/">github</a>, <a class="article-tag-link" href="/tags/hexo/">hexo</a>
 </div>
 
 
@@ -115,6 +118,14 @@
 
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -134,7 +145,13 @@
 
     </main>
 
+    
+    <div id="appreciate-modal" class="modal">
+    <img class="appreciate-image" src="/images/my-alipay.jpg">
+</div>
+    
     <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
         $(function() {

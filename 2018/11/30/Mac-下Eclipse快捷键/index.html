@@ -11,7 +11,9 @@
         Gblog
     </title>
     <meta name="author" content="Mangon">
-    <meta name="version" content="1.0.0">
+    <meta name="version" content="1.0.1">
+    
+        <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础">
     
     
         <meta name="description" content="快捷操作操作快捷键全选command A复制command C粘贴command V查找command F回退command Z剪切command X退出command Q删除当前行command D放大字体command +缩小字体command -注释/反注释command /打开preferencecommand ,代码补全提示option /最大化/还原con...">
@@ -24,6 +26,7 @@
     
 
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/jquery.modal.min.css">
 </head>
 <body>
 
@@ -81,17 +84,17 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2018/11/30/Mac-下Eclipse快捷键/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2018-11-30T10:29:17.000Z" itemprop="datePublished">2018-11-30</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/Eclipse/">Eclipse</a>
+    <a class="article-tag-link" href="/tags/eclipse/">eclipse</a>, <a class="article-tag-link" href="/tags/learn/">learn</a>
 </div>
 
 
@@ -178,6 +181,14 @@
 <p><input type="checkbox" checked> Show line numbers<br><input type="checkbox" checked> Show white space charactors</p>
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -197,7 +208,13 @@
 
     </main>
 
+    
+    <div id="appreciate-modal" class="modal">
+    <img class="appreciate-image" src="/images/my-alipay.jpg">
+</div>
+    
     <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
         $(function() {

@@ -11,7 +11,9 @@
         Gblog
     </title>
     <meta name="author" content="Mangon">
-    <meta name="version" content="1.0.0">
+    <meta name="version" content="1.0.1">
+    
+        <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础">
     
     
         <meta name="description" content="样式&amp;lt;a&gt; 标签定义超链接，用于从一张页面链接到另一张页面。在所有浏览器中，链接的默认外观是：  未被访问的链接带有下划线而且是蓝色的活动链接带有下划线而且是红色的已被访问的链接带有下划线而且是紫色的链接默认样式1234a:link &amp;#123;color: blue;text-decoration: underline;&amp;#125;    /* 未访问的链接 */a:hover &amp;#123;color: blue;text-decoration: underline;&amp;#...">
@@ -24,6 +26,7 @@
     
 
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/jquery.modal.min.css">
 </head>
 <body>
 
@@ -81,12 +84,12 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2019/01/03/a-的用法/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2019-01-03T12:16:31.000Z" itemprop="datePublished">2019-01-03</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
@@ -241,6 +244,14 @@
 
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -260,7 +271,13 @@
 
     </main>
 
+    
+    <div id="appreciate-modal" class="modal">
+    <img class="appreciate-image" src="/images/my-alipay.jpg">
+</div>
+    
     <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
         $(function() {

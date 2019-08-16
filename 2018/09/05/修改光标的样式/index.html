@@ -11,7 +11,9 @@
         Gblog
     </title>
     <meta name="author" content="Mangon">
-    <meta name="version" content="1.0.0">
+    <meta name="version" content="1.0.1">
+    
+        <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础">
     
     
         <meta name="description" content="某些情况下我们需要修改默认的光标样式，比如当我们为一个元素添加了点击事件之后，这个元素就会表现的像一个按钮。为了更好的用户体验，我们可以将光标样式由默认的箭头样式改为指针样式。这样，当用户划过此元素时，就会意识到这是一个可点击的元素。可以通过修改cursor属性来改变元素的光标样式。css cursor 属性cursor 属性规定要显示的光标的类型（形状）。  该属性定义了鼠标指针放在一个元素边界范围内时所用的光标形状。  可能的值值描述样式url需使用的自定...">
@@ -24,6 +26,7 @@
     
 
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/jquery.modal.min.css">
 </head>
 <body>
 
@@ -81,12 +84,12 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2018/09/05/修改光标的样式/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2018-09-05T12:00:34.000Z" itemprop="datePublished">2018-09-05</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
@@ -203,6 +206,14 @@
 <div style="cursor:pointer;"></div>
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -222,7 +233,13 @@
 
     </main>
 
+    
+    <div id="appreciate-modal" class="modal">
+    <img class="appreciate-image" src="/images/my-alipay.jpg">
+</div>
+    
     <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
         $(function() {

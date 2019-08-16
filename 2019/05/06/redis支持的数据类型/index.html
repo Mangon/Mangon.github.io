@@ -11,7 +11,9 @@
         Gblog
     </title>
     <meta name="author" content="Mangon">
-    <meta name="version" content="1.0.0">
+    <meta name="version" content="1.0.1">
+    
+        <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础">
     
     
         <meta name="description" content="以下列举 redis支持的数据类型 （截止2019-05-06 redis最新为5.0.4版本）  二进制安全的字符串（Binary-safe strings）如字面意思。列表（Lists）按照插入顺序排序的字符串元素的集合。基本上就是是链表（linked lists）。集合（Sets）不重复且无序的的字符串元素集合。有序集合（Sorted sets）和集合（Sets）类似但是每个字符串元素都和一个浮动的被称为评分（score）的数字值相关联。 元素值总是根据评分的值来排序,所以不...">
@@ -24,6 +26,7 @@
     
 
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/jquery.modal.min.css">
 </head>
 <body>
 
@@ -81,17 +84,17 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2019/05/06/redis支持的数据类型/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2019-05-06T08:16:10.000Z" itemprop="datePublished">2019-05-06</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/redis/">redis</a>
+    <a class="article-tag-link" href="/tags/database/">database</a>, <a class="article-tag-link" href="/tags/redis/">redis</a>
 </div>
 
 
@@ -112,6 +115,14 @@
 
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -131,7 +142,13 @@
 
     </main>
 
+    
+    <div id="appreciate-modal" class="modal">
+    <img class="appreciate-image" src="/images/my-alipay.jpg">
+</div>
+    
     <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
         $(function() {

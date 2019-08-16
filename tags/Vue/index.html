@@ -11,8 +11,12 @@
         Gblog
     </title>
     <meta name="author" content="Mangon">
-    <meta name="version" content="1.0.0">
+    <meta name="version" content="1.0.1">
     
+        <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础">
+    
+    
+        <meta name="description" content="Mangon&#39;s Technology Blog">
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
@@ -22,6 +26,7 @@
     
 
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/jquery.modal.min.css">
 </head>
 <body>
 
@@ -103,17 +108,17 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2019/02/12/读Vue源码所能想到的面试问题/">
+            <span class="article-date">
     
     <i class="icon-calendar"></i>
     
     <time datetime="2019-02-12T03:37:05.000Z" itemprop="datePublished">2019-02-12</time>
-</a>
+</span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/vue/">vue</a>
+    <a class="article-tag-link" href="/tags/interview/">interview</a>, <a class="article-tag-link" href="/tags/vue/">vue</a>
 </div>
 
 
@@ -165,76 +170,209 @@
 <h2 id="描述javascript-event-loop-机制，说明异步机制-setTimeout-setInterval-setImmediate-Promise-process-nextTick-MutationObserver-有何不同"><a href="#描述javascript-event-loop-机制，说明异步机制-setTimeout-setInterval-setImmediate-Promise-process-nextTick-MutationObserver-有何不同" class="headerlink" title="描述javascript event loop 机制，说明异步机制 setTimeout setInterval setImmediate Promise process.nextTick MutationObserver 有何不同"></a>描述javascript event loop 机制，说明异步机制 <code>setTimeout</code> <code>setInterval</code> <code>setImmediat</code>e <code>Promise</code> <code>process.nextTick</code> <code>MutationObserver</code> 有何不同</h2><h2 id="未完待续。。。"><a href="#未完待续。。。" class="headerlink" title="未完待续。。。"></a>未完待续。。。</h2>
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
+    <article class="article" itemscope="" itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2019/01/09/ionic4-vue搭建跨平台移动应用框架/">ionic4+vue搭建跨平台移动应用框架</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-01-09T07:09:36.000Z" itemprop="datePublished">2019-01-09</time>
+</span>
 
-
-
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/vue/">vue</a>
 </div>
-        <article id="search-result" class="search-result content"></article>
-        <footer class="footer">
-    
-        <div class="license">
-            <p>版权声明：
-                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
-            </p>
+
+
         </div>
+    </header>
     
-</footer>
+    <section class="article-body markdown-body">
+        
+        <h2 id="ionic4及vue介绍"><a href="#ionic4及vue介绍" class="headerlink" title="ionic4及vue介绍"></a>ionic4及vue介绍</h2><p>ionic是一款混合移动应用开发框架，可以用来构建跨平台（Android &amp; iOS）的移动应用程序，而且还可以基于Sass和AngularJS进行构建，是目前跨平台移动应用开发的一个翘楚。这个框架的目的是从web的角度开发手机应用，基于PhoneGap的编译平台，可以实现编译成各个平台的应用程序。<br>Vue.js是一个MVVM驱动的 web 界面的渐进式框架，学习简单并且十分灵活。ionic3之前一般默认和Angular“绑定”在了一起，从ionic4开始，Ionic Team宣布将会逐渐采用<a href="https://github.com/ionic-team/stencil" target="_blank" rel="noopener">Stencil</a>来实现标准Web Components，使用ionic将不再必须使用Angular，可以使用React，Vue，Jquery或者什么框架都不使用。  </p>
+<h2 id="准备环境"><a href="#准备环境" class="headerlink" title="准备环境"></a>准备环境</h2><p>Vue提供了CLI工具来方便的创建Vue应用，首先我们需要  </p>
+<ol>
+<li>安装Vue CLI：  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g vue-cli</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建vue项目</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init webpack ionic-vue</span><br></pre></td></tr></table></figure>
+<p>随后一路enter</p>
+<ol start="3">
+<li>打开项目</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ionic-vue</span><br><span class="line">npm install</span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+<h2 id="引入Ionic"><a href="#引入Ionic" class="headerlink" title="引入Ionic"></a>引入Ionic</h2><ol>
+<li>在 index.html 引入 Ionic</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"format-detection"</span> <span class="attr">content</span>=<span class="string">"telephone=no"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"msapplication-tap-highlight"</span> <span class="attr">content</span>=<span class="string">"no"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/@ionic/core@0.0.2-20/dist/ionic.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>在 src/main.js 中添加ignoredElements</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Vue.config.ignoredElements = [</span><br><span class="line">    <span class="string">'ion-app'</span>,</span><br><span class="line">    <span class="string">'ion-header'</span>,</span><br><span class="line">    <span class="string">'ion-navbar'</span>,</span><br><span class="line">    <span class="string">'ion-title'</span>,</span><br><span class="line">    <span class="string">'ion-content'</span>,</span><br><span class="line">    <span class="string">'ion-button'</span>,</span><br><span class="line">    ··· ···</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<h2 id="开发应用"><a href="#开发应用" class="headerlink" title="开发应用"></a>开发应用</h2><ol>
+<li>创建两个新页面</li>
+</ol>
+<p>我们希望演示如何在两个页面之间跳转</p>
+<p>例如 src/pages/HelloWorld.vue<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ion-app</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ion-header</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ion-navbar</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ion-title</span>&gt;</span>Ionic<span class="tag">&lt;/<span class="name">ion-title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ion-navbar</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ion-header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ion-content</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ion-button</span> @<span class="attr">click</span>=<span class="string">"goToDetail"</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">ion-button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ion-content</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ion-app</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">  name: <span class="string">'HelloWorld'</span>,</span></span><br><span class="line"><span class="undefined">  data () &#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">      msg: <span class="string">'Welcome to Your Vue.js App'</span></span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;,</span></span><br><span class="line"><span class="undefined">  methods: &#123;</span></span><br><span class="line"><span class="undefined">    goToDetail () &#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">this</span>.$router.push(<span class="string">'detail'</span>)</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>src/pages/Detail.vue<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ion-app</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ion-header</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ion-navbar</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ion-title</span>&gt;</span>Ionic<span class="tag">&lt;/<span class="name">ion-title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ion-navbar</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ion-header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ion-content</span> <span class="attr">padding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/"</span>&gt;</span>Go home<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ion-content</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ion-app</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">  name: <span class="string">'Detail'</span>,</span></span><br><span class="line"><span class="undefined">  data () &#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">      msg: <span class="string">'Welcome to Your Ionic App'</span></span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<ol start="2">
+<li>添加路由</li>
+</ol>
+<p>router/index.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br><span class="line"><span class="keyword">import</span> HelloWorld <span class="keyword">from</span> <span class="string">'@/pages/HelloWorld'</span></span><br><span class="line"><span class="keyword">import</span> Detail <span class="keyword">from</span> <span class="string">'@/pages/Detail'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Router)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">'/'</span>,</span><br><span class="line">      component: HelloWorld</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">'/detail'</span>,</span><br><span class="line">      component: Detail</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<ol start="3">
+<li>添加全局过渡动画效果</li>
+</ol>
+<p>src/App.vue<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">    &lt;transition name=<span class="string">"slide-fade"</span>&gt;</span><br><span class="line">      &lt;router-view/&gt;</span><br><span class="line">    &lt;<span class="regexp">/transition&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">export default &#123;</span></span><br><span class="line"><span class="regexp">  name: 'app'</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">#app &#123;</span><br><span class="line">  font-family: <span class="string">'Avenir'</span>, Helvetica, Arial, sans-serif;</span><br><span class="line">  -webkit-font-smoothing: antialiased;</span><br><span class="line">  -moz-osx-font-smoothing: grayscale;</span><br><span class="line">  text-align: center;</span><br><span class="line">  color: #2c3e50;</span><br><span class="line">  margin-top: <span class="number">60</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.slide-fade-enter-active &#123;</span><br><span class="line">  transition: all <span class="number">.3</span>s ease;</span><br><span class="line">&#125;</span><br><span class="line">.slide-fade-leave-active &#123;</span><br><span class="line">  transition: all <span class="number">.8</span>s cubic-bezier(<span class="number">1.0</span>, <span class="number">0.5</span>, <span class="number">0.8</span>, <span class="number">1.0</span>);</span><br><span class="line">&#125;</span><br><span class="line">.slide-fade-enter, .slide-fade-leave-to</span><br><span class="line"><span class="comment">/* .slide-fade-leave-active below version 2.1.8 */</span> &#123;</span><br><span class="line">  transform: translateX(<span class="number">10</span>px);</span><br><span class="line">  opacity: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">&lt;<span class="regexp">/style&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="打包成应用"><a href="#打包成应用" class="headerlink" title="打包成应用"></a>打包成应用</h2><ol>
+<li>添加cordova 到项目</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cordova</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建cordova项目</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova create my-project-name</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>创建/移动vue项目</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init webpack my-app</span><br></pre></td></tr></table></figure>
+<p>将my-app里的内容剪切到my-project-name下，同名覆盖</p>
+<ol start="4">
+<li>修改打包路径<br>修改config/index.js文件下的build属性，将dist改为www，绝对路径改为相对路径</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">build: &#123;</span><br><span class="line">  index: path.resolve(__dirname, <span class="string">'../www/index.html'</span>),</span><br><span class="line"></span><br><span class="line">  assetsRoot: path.resolve(__dirname, <span class="string">'../www'</span>),</span><br><span class="line">  assetsSubDirectory: <span class="string">'static'</span>,</span><br><span class="line">  assetsPublicPath: <span class="string">'./'</span>,</span><br><span class="line"></span><br><span class="line">  productionSourceMap: <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">  devtool: <span class="string">'#source-map'</span>,</span><br><span class="line"></span><br><span class="line">  productionGzip: <span class="literal">false</span>,</span><br><span class="line">  productionGzipExtensions: [<span class="string">'js'</span>, <span class="string">'css'</span>],</span><br><span class="line"></span><br><span class="line">  bundleAnalyzerReport: process.env.npm_config_report</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>5.vue项目中添加cordova.js</p>
+<p>在index.html body中添加cordova.js<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"cordova.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>同时在 head 中添加 移动端meta信息</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"format-detection"</span> <span class="attr">content</span>=<span class="string">"telephone=no,email=no"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"msapplication-tap-highlight"</span> <span class="attr">content</span>=<span class="string">"no"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>运行项目</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+<ol start="7">
+<li>编译成 iOS &amp; Android 项目</li>
+</ol>
+<p>安装 cordova iOS &amp; Android 平台</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova platform add ios android --save</span><br></pre></td></tr></table></figure>
+<p>编译</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+<p>运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cordova run ios --device</span><br><span class="line">cordova run android --device</span><br></pre></td></tr></table></figure>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
 
 
-    </main>
+    <article class="article" itemscope="" itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/2018/10/12/Vue组件间通信/">Vue2组件间通信</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-10-12T06:44:35.000Z" itemprop="datePublished">2018-10-12</time>
+</span>
 
-    <script type="text/javascript" src="/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/common.js"></script>
-    <script type="text/javascript">
-        $(function() {
-            var nodes = {
-                nav: $('#nav'),
-                aside: $('#aside'),
-                navTags: $('#nav-tags')
-            };
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/vue/">vue</a>
+</div>
 
-            $('#open-panel, #aside-mask').on('click', function() {
-                nodes.aside.toggleClass('panel-show');
-            });
-            $('.toc-link').on('click', function() {
-                nodes.aside.toggleClass('panel-show');
-            });
-            $('#nav-tag').on('click', function(event) {
-                event.preventDefault();
-                // console.log(nodes.navTags.attr('class'))
-                nodes.navTags.toggleClass('tag-show');
-                // console.log(nodes.navTags.attr('class'))
-            });/*.hover(function() {
-                nodes.navTags.addClass('tag-show');
-            }, function() {
-                nodes.navTags.removeClass('tag-show');
-            });*/
-        });
-    </script>
+
+        </div>
+    </header>
     
-        <script type="text/javascript" src="/js/search.js"></script>
-        <script type="text/javascript">
-            var search_path = "search.xml";
-            if (search_path.length == 0) {
-                search_path = "search.xml";
-            }
-            var path = "/" + search_path;
-            searchFunc(path, 'search-box', 'search-result');
-        </script>
-    
-    
-</body>
-</html>
-components: &#123; App &#125;,</span><br><span class="line">  beforeCreate () &#123;</span><br><span class="line">    Vue.prototype.bus = <span class="keyword">this</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+    <section class="article-body markdown-body">
+        
+        <p>本篇主要讲述Vue2中组件间通信。目前 <a href="https://github.com/vuejs/vue" target="_blank" rel="noopener">Vue</a> 最新版本为<a href="https://www.npmjs.com/package/vue" target="_blank" rel="noopener"><img src="https://img.shields.io/npm/v/vue.svg" alt="Version" style="width:auto !important;margin:auto;margin-left: 5px;"></a>。</p>
+<h2 id="props与自定义事件"><a href="#props与自定义事件" class="headerlink" title="props与自定义事件"></a>props与自定义事件</h2><p>这是Vue推荐使用的通信方法</p>
+<h3 id="Vue中通过props属性可以实现父组件向子组件的参数传递。"><a href="#Vue中通过props属性可以实现父组件向子组件的参数传递。" class="headerlink" title="Vue中通过props属性可以实现父组件向子组件的参数传递。"></a>Vue中通过props属性可以实现父组件向子组件的参数传递。</h3><p>所有的 prop 都使得其父子之间形成了一个 <em>单向下行绑定</em> ：父级 prop 的更新会向下流动到子组件中，但是反过来则不行。这样会防止从子组件意外改变父级组件的状态，从而导致你的应用的数据流向难以理解。每次父级组件发生更新时，子组件中所有的 prop 都将会刷新为最新的值。</p>
+<p>在子组件中定义props属性<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'blog-post'</span>, &#123;</span><br><span class="line">  <span class="comment">// 在 JavaScript 中是 camelCase 的</span></span><br><span class="line">  props: [<span class="string">'postTitle'</span>],</span><br><span class="line">  template: <span class="string">'&lt;h3&gt;&#123;&#123; postTitle &#125;&#125;&lt;/h3&gt;'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>在父组件中传入对应的props属性<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 在 HTML 中是 kebab-case 的 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">blog-post</span> <span class="attr">post-title</span>=<span class="string">"hello!"</span>&gt;</span><span class="tag">&lt;/<span class="name">blog-post</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>在 JavaScript 中对象和数组是通过引用传入的，所以对于一个数组或对象类型的 prop 来说，在子组件中改变这个对象或数组本身将会影响到父组件的状态。  </p>
+</blockquote>
+<h3 id="Vue中通过自定义事件可以实现子组件向父组件的参数传递。"><a href="#Vue中通过自定义事件可以实现子组件向父组件的参数传递。" class="headerlink" title="Vue中通过自定义事件可以实现子组件向父组件的参数传递。"></a>Vue中通过自定义事件可以实现子组件向父组件的参数传递。</h3><p>在子组件中触发事件<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$emit(<span class="string">'myEvent'</span>, data)</span><br></pre></td></tr></table></figure></p>
+<p>在父组件中接受事件并进行处理<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">my-component</span> <span class="attr">v-on:my-event</span>=<span class="string">"doSomething"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-component</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="provide与inject"><a href="#provide与inject" class="headerlink" title="provide与inject"></a>provide与inject</h2><p>2.2.0+ 新增  </p>
+<p>这对选项需要一起使用，以允许一个祖先组件向其所有子孙后代组件注入一个依赖，不论组件层次有多深，并在起上下游关系成立的时间里始终生效。祖先组件中通过provide来提供变量，然后在子孙后代组件中通过inject来注入变量。不论子孙后代有多深，只要调用了inject那么就可以注入provide中的数据。而不是局限于只能从当前父组件的prop属性来获取数据，只要在祖先组件的生命周期内，子孙后代组件都可以调用。  </p>
+<blockquote>
+<p>provide 和 inject 绑定并不是可响应的。这是刻意为之的。然而，如果你传入了一个可监听的对象，那么其对象的属性还是可响应的。</p>
+</blockquote>
+<blockquote>
+<p>provide 和 inject 主要为高阶插件/组件库提供用例。并不推荐直接用于应用程序代码中。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'child'</span>, &#123;</span><br><span class="line">    inject: [<span class="string">'somedata'</span>], <span class="comment">//得到父组件传递过来的数据</span></span><br><span class="line">    data() &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            mymessage: <span class="keyword">this</span>.somedata</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    template:<span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;input type="tet" v-model="mymessage"&gt; </span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">        `</span></span><br><span class="line">&#125;)</span><br><span class="line">Vue.component(<span class="string">'parent'</span>, &#123;</span><br><span class="line">    provide:&#123;</span><br><span class="line">        somedata: <span class="string">'test'</span> <span class="comment">//提供给子组件的数据</span></span><br><span class="line">    &#125;,</span><br><span class="line">    template:<span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;p&gt;this is parent compoent!&lt;/p&gt;</span></span><br><span class="line"><span class="string">            &lt;child&gt;&lt;/child&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="props与-sync"><a href="#props与-sync" class="headerlink" title="props与.sync"></a>props与.sync</h2><p>2.3.0+ 新增</p>
+<p>.sync 是一个自定义事件修饰符，可以实现对props的“双向绑定”<br>实际上sync只是props&amp;自定义事件的一个语法糖  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">text-document</span> <span class="attr">v-bind:title.sync</span>=<span class="string">"doc.title"</span>&gt;</span><span class="tag">&lt;/<span class="name">text-document</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>实际上是以下写法的一个缩写  </p>
+<p>父组件<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">text-document</span></span></span><br><span class="line"><span class="tag">  <span class="attr">v-bind:title</span>=<span class="string">"doc.title"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">v-on:update:title</span>=<span class="string">"doc.title = $event"</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">text-document</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>子组件<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$emit(<span class="string">'update:title'</span>, newTitle)</span><br></pre></td></tr></table></figure></p>
+<h2 id="v-model"><a href="#v-model" class="headerlink" title="v-model"></a>v-model</h2><p>一个组件上的 <code>v-model</code> 默认会利用名为 value 的 prop 和名为 input 的事件<br>所以可以在父组件中使用  <code>v-model=&quot;message&quot;</code> 然后在子组件中通过 <code>$emit(&#39;input&#39;, newMessage)</code> 来改变父组件上v-model绑定的值message。<br>但是像单选框、复选框等类型的输入控件可能会将 <code>value</code> 特性用于不同的目的。  </p>
+<h2 id="parent与-children-refs"><a href="#parent与-children-refs" class="headerlink" title="$parent与$children/$refs"></a>$parent与$children/$refs</h2><p>不推荐使用  </p>
+<p>在子组件中可以直接通过 <code>this.$parent.$data</code> 来访问和修改父组件的值，<br>在父组件中也可以通过 <code>this.$children[0].$data</code> 来访问和修改子组件的值<br>也可以在引用子组件时通过添加ref来使得父组件中可以通过 <code>this.$refs.child.$data</code> 来访问和修改子组件的值  </p>
+<h2 id="attr与-listener"><a href="#attr与-listener" class="headerlink" title="$attr与$listener"></a>$attr与$listener</h2><p>2.4.0+新增  </p>
+<p>$attr与$listener实现了一种跨父子的参数传递方法  </p>
+<p>$attr包含了父作用域中不作为 prop 被识别 (且获取) 的特性绑定 (class 和 style 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 v-bind=”$attrs” 传入内部组件。  </p>
+<p>$listener包含了父作用域中的 (不含 .native 修饰器的) v-on 事件监听器。它可以通过 v-on=”$listeners” 传入内部组件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'C'</span>, &#123;</span><br><span class="line">    template:<span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;input type="text"</span></span><br><span class="line"><span class="string">                v-model="$attrs.messagec"</span></span><br><span class="line"><span class="string">                @input="passCData($attrs.messagec)"&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;`</span>,</span><br><span class="line"></span><br><span class="line">    methods: &#123;</span><br><span class="line">        passCData(val)&#123;</span><br><span class="line">            <span class="comment">//触发父组件A中的事件</span></span><br><span class="line">            <span class="keyword">this</span>.$emit(<span class="string">'getCData'</span>, val)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">Vue.component(<span class="string">'B'</span>, &#123;</span><br><span class="line">    data()&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            mymessage: <span class="keyword">this</span>.message</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    template:<span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;input type="text" v-model="mymessage" @input="passData(mymessage)"&gt; </span></span><br><span class="line"><span class="string">            &lt;!-- C组件中能直接触发getCData的原因在于 B组件调用C组件时 使用 v-on 绑定了$listeners 属性 --&gt;</span></span><br><span class="line"><span class="string">            &lt;!-- 通过v-bind 绑定$attrs属性，C组件可以直接获取到A组件中传递下来的props（除了B组件中props声明的） --&gt;</span></span><br><span class="line"><span class="string">            &lt;C v-bind="$attrs" v-on="$listeners"&gt;&lt;/C&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span>,</span><br><span class="line">    props:[<span class="string">'message'</span>], <span class="comment">//得到父组件传递过来的数据</span></span><br><span class="line">    methods:&#123;</span><br><span class="line">        passData(val)&#123;</span><br><span class="line">            <span class="comment">//触发父组件中的事件</span></span><br><span class="line">            <span class="keyword">this</span>.$emit(<span class="string">'getChildData'</span>,val)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">Vue.component(<span class="string">'A'</span>, &#123;</span><br><span class="line">    data()&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            message:<span class="string">'hello b'</span>, <span class="comment">//传递给子组件的数据</span></span><br><span class="line">            messagec:<span class="string">'hello c'</span> <span class="comment">//传递给c组件的数据</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    template:<span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;p&gt;this is parent compoent!&lt;/p&gt;</span></span><br><span class="line"><span class="string">            &lt;B :message="message" @getChildData="getChildData"</span></span><br><span class="line"><span class="string">                v-bind="$attrs" v-on="$listeners" &gt;&lt;/B&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span>,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        <span class="comment">//执行子组件触发的事件</span></span><br><span class="line">        getChildData(val)&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'这是来自B组件的数据'</span>)</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">//执行C组件触发的事件</span></span><br><span class="line">        getCData(val)&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"这是来自C组件的数据："</span> + val)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="中央事件总栈-emit-on"><a href="#中央事件总栈-emit-on" class="headerlink" title="中央事件总栈 $emit $on"></a>中央事件总栈 $emit $on</h2><p>为了实现非父子间的通信，我们可以通过通过使用一个空的Vue实例作为中央事件总线来处理所有的事件，通过Vue自带的$emit $on来进行组件间通信。  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> bus = <span class="keyword">new</span> Vue()</span><br><span class="line">Vue.prototype.bus = bus</span><br></pre></td></tr></table></figure>
+<p>甚至可以用app.js中的Vue实例来处理  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* app.js*/</span></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  router,</span><br><span class="line">  template: <span class="string">'&lt;App/&gt;'</span>,</span><br><span class="line">  components: &#123; App &#125;,</span><br><span class="line">  beforeCreate () &#123;</span><br><span class="line">    Vue.prototype.bus = <span class="keyword">this</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>这样在组件中我们就可以通过以下方式处理  </p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.bus.$emit(<span class="string">'some-event'</span>, data)</span><br><span class="line"><span class="keyword">this</span>.bus.$on(<span class="string">'some-event'</span>, ()=&gt;&#123;&#125;)</span><br></pre></td></tr></table></figure>
 <h2 id="vuex"><a href="#vuex" class="headerlink" title="vuex"></a>vuex</h2><p><a href="https://github.com/vuejs/vuex" target="_blank" rel="noopener">vuex</a></p>
 
         
     </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
 
 
@@ -256,7 +394,13 @@ components: &#123; App &#125;,</span><br><span class="line">  beforeCreate () &#
 
     </main>
 
+    
+    <div id="appreciate-modal" class="modal">
+    <img class="appreciate-image" src="/images/my-alipay.jpg">
+</div>
+    
     <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
         $(function() {
