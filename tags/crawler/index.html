@@ -195,6 +195,22 @@
 <p>来打印相应object  </p>
 <h2 id="Scrapy-Items"><a href="#Scrapy-Items" class="headerlink" title="Scrapy Items"></a>Scrapy Items</h2><p>通常我们需要爬取的都是结构化的数据，在 Scrapy 中被称为 Item，在 items.py 中我们需要定义需要爬取的字段，类似 Python dict</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name = scrapy.Field()</span><br></pre></td></tr></table></figure>
+<h2 id="Scrapy-Item-Pipeline"><a href="#Scrapy-Item-Pipeline" class="headerlink" title="Scrapy Item Pipeline"></a>Scrapy Item Pipeline</h2><p>Scrapy支持pipeline来对爬取到的数据进行类似于管道一样的一系列操作。<br>管道类一般用来进行以下几类操作：  </p>
+<ul>
+<li>清洗 HTML 数据</li>
+<li>验证爬取到的数据（检查items包括特定的field）</li>
+<li>检查重复数据</li>
+<li>将爬取到的数据存储于数据库中</li>
+</ul>
+<p>包括以下几分方法</p>
+<p><code>process_item(self, item, spider)</code></p>
+<p>处理item，需要返回处理后的 data dict</p>
+<p><code>open_spider(self, spider)</code></p>
+<p>spider开始时触发的钩子</p>
+<p><code>close_spider(self, spider)</code></p>
+<p>spider结束时触发的钩子</p>
+<p><code>from_crawler(cls, crawler)</code></p>
+<p>类方法，可以通过 crawler.settings 获取 settings.py 里的配置信息</p>
 <h2 id="运行爬虫"><a href="#运行爬虫" class="headerlink" title="运行爬虫"></a>运行爬虫</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ scrapy crawl [SPIDER_NAME] [-o [FILE_NAME]]</span><br></pre></td></tr></table></figure>
 <p>可以添加 <code>-o</code> 参数来输出为不同的文件例如 xml, csv, json 文件<br>爬取后的文件默认放到项目根目录下  </p>
 
