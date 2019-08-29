@@ -22,11 +22,11 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     
     
-        <link rel="icon" href="/blog/images/favicon.ico">
+        <link rel="icon" href="/images/favicon.ico">
     
 
-    <link rel="stylesheet" href="/blog/css/style.css">
-    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/jquery.modal.min.css">
 </head>
 <body>
 
@@ -38,13 +38,13 @@
         
             
                 <li class="nav-item">
-                    <a class="nav-link" href="/blog/">主页</a>
+                    <a class="nav-link" href="/">主页</a>
                 </li>
             
         
             
                 <li class="nav-item">
-                    <a class="nav-link" href="/blog/archives">目录</a>
+                    <a class="nav-link" href="/archives">目录</a>
                 </li>
             
         
@@ -54,7 +54,7 @@
     <aside id="aside" class="aside">
     <div id="aside-mask" class="aside-mask"></div>
     <div id="aside-inner" class="aside-inner">
-        <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://mangon.github.io/blog"></form> -->
+        <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://mangon.github.io"></form> -->
         <div class="search-box" id="search-box">
     <form>
         <div class="search-btn"></div>
@@ -94,7 +94,7 @@
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/Javascript/">Javascript</a>, <a class="article-tag-link" href="/blog/tags/interview/">interview</a>, <a class="article-tag-link" href="/blog/tags/underscore/">underscore</a>
+    <a class="article-tag-link" href="/tags/Javascript/">Javascript</a>, <a class="article-tag-link" href="/tags/interview/">interview</a>, <a class="article-tag-link" href="/tags/underscore/">underscore</a>
 </div>
 
 
@@ -160,12 +160,12 @@
 
     
     <div id="appreciate-modal" class="modal">
-    <img class="appreciate-image" src="/blog/images/my-alipay.jpg">
+    <img class="appreciate-image" src="/images/my-alipay.jpg">
 </div>
     
-    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/blog/js/jquery.modal.js"></script>
-    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.modal.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
         $(function() {
             var nodes = {
@@ -193,18 +193,18 @@
         });
     </script>
     
-        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript" src="/js/search.js"></script>
         <script type="text/javascript">
             var search_path = "search.xml";
             if (search_path.length == 0) {
                 search_path = "search.xml";
             }
-            var path = "/blog/" + search_path;
+            var path = "/" + search_path;
             searchFunc(path, 'search-box', 'search-result');
         </script>
     
     
-        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript" src="/js/scrollspy.min.js"></script>
         <script type="text/javascript">
         $('#content').scrollspy({target: '#aside-inner'});
         </script>
