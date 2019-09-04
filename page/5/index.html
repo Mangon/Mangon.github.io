@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    
+
+    
+    <title>
+        
+        Gblog
+    </title>
+    <meta name="author" content="Mangon">
+    <meta name="version" content="1.0.3">
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础">
+    
+    
+    <meta name="description" content="Mangon&#39;s Technology Blog">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw">
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    <link rel="stylesheet" href="/blog/css/style.css">
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item active">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://mangon.cn/blog"></form> -->
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索">
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+
+        
+            <div class="author-meta">
+                
+                <div class="author-avatar">
+                    <a href="/blog/">
+                        <img src="/blog/images/avatar.jpg" title="Mangon">
+                    </a>
+                </div>
+                
+                <div class="author-name">Mangon</div>
+                <div class="author-work">Front-End Software Engineer</div>
+                <div class="author-location">
+                    <i class="icon-location vm"></i>
+                    <span class="vm">Beijing, China</span>
+                </div>
+                
+                <div class="author-thread-wrap">
+                    <div class="author-threads clearfix">
+                        
+                        <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
+                        
+                        
+                        
+                    </div>
+                </div>
+                
+            </div>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+    <article class="article" itemscope="" itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/28/清除网站中的无效链接/">清除网站中的无效链接</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-28T08:32:55.000Z" itemprop="datePublished">2018-09-28</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/SEO/">SEO</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>网站上有大量的无效链接（返回404或域名不存在）会使网站的总体质量下降，所以清除网站中的无效链接也是提升网站质量，优化用户体验的一种方法。  </p>
+<p>通常而言，链接有链接向外部的也有在网站内部跳转的链接，链接向外部的网站尽量希望链接到一些稳定的网站，有些地址是很容易被移除的，比如链接到文章或评论的，链接到个人网站的，链接到下载页的。时常注意一些大的域名变动，比如有些产品可能已经下线或更换地址，如果自己的网站中有引用，也需要同步的改变。链接到内部的网站时可以做一次引用记录，当记录的链接修改时同步修改所有的地方。  </p>
+<p>同时介绍一个可以查看页面内链接情况的 Chrome extension  </p>
+<p><a href="https://github.com/ocodia/Check-My-Links" target="_blank" rel="noopener">Check-My-Links</a>  </p>
+<div class="check-my-links"><style>.check-my-links img {width:auto;}</style><img src="/blog/static/imgs/check_my_links.png" alt="Check-My-Links"></div>
+
+<ul>
+<li>Valid links: 通过的链接</li>
+<li>Valid redirecting links: 通过的链接</li>
+<li>Warnings: 警告</li>
+<li>invalid links: 503/404 或其它无效链接</li>
+</ul>
+<p>Check-My-Links 会将当前页面中所有的http/https链接的background改为与上面四种情况对应的颜色。值得注意的是，有时候一些可用的链接可能由于某种原因而被标注为 Invalid links ，所以在 Invalid links 里的链接最好被重新手工测试一下。Warnings 的链接会被在console中显示出来，什么样的链接会被标为warning是可配置的，一般链接的href为空或“#”或者没有href或者表示为hashtag形式却无法在落地页找到时可以标注为warning。可用的链接可以被cache起来，这样就不用相同的链接也发多次请求验证其正确性。如果不想要验证链接的正确性，比如一些退出账户（log out）的链接，可以在链接上加上属性 <code>rel=&quot;nofollow&quot;</code> 来让Check-My-Links跳过对他的验证。具体配置可以在 Check-My-Links 的 <a href="chrome-extension://ojkcdipcgfaekbeaelaapakgnjflfglf/options.html" target="_blank" rel="noopener">配置页</a> 查看。有一个问题是当请求返回状态是302，然后跳转到一个下载时，此链接会一直在Queue中，这算是一个bug吧。</p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope="" itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/27/Charles使用说明/">Charles使用说明</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-27T06:34:26.000Z" itemprop="datePublished">2018-09-27</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/charles/">charles</a>, <a class="article-tag-link" href="/blog/tags/proxy/">proxy</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>在前端开发过程中我们常常要用到代理工具来处理一些诸如改变请求参数，代理请求地址，以及抓包的问题。目前最流行的代理工具有两种 <a href="https://www.telerik.com/fiddler" target="_blank" rel="noopener">Fiddler</a> &amp; <a href="https://www.charlesproxy.com/" target="_blank" rel="noopener">Charles</a>。Fiddler是免费的，一直以来只提供了Windows版本，2016年10月之后也提供了Mac OSX版本，不过需要安装跨平台方案Mono。Charles是付费的，20$/license，不过Charles是java swing编写的，网上可以找到很多破解的方案，这里不再赘述。Charles的好处在于功能齐全，界面简单，提供了几乎所有可以用到的代理功能，在MacOS下十分好用，2018年3月之后甚至提供了IOS的版本。下面主要来讲一下Charles的使用。</p>
+<h2 id="Charles是什么"><a href="#Charles是什么" class="headerlink" title="Charles是什么"></a>Charles是什么</h2><p>Charles是一个提供了HTTP代理/HTTP监控/反向代理的工具，通过这个工具，开发者可以查看本机与网络之间的所有HTTP以及SSL/HTTPS通信，包括请求与返回以及HTTP头部信息（包含cookie和缓存信息）。</p>
+<div><style type="text/css">img {box-shadow:none !important;</style><img src="/blog/static/imgs/charles-macosx.png" alt="charles-macosx"></div>
+
+<h2 id="Charles主要功能"><a href="#Charles主要功能" class="headerlink" title="Charles主要功能"></a>Charles主要功能</h2><p>Charles主要功能如下：  </p>
+<ol>
+<li>记录了本机与网络之间的所有通信流量</li>
+<li>展示了所有的请求，返回数据，cookie和头部信息的内容</li>
+<li>支持SSL和HTTPS</li>
+<li>模拟慢网速环境</li>
+<li>下载静态资源</li>
+<li>请求高度可配置</li>
+</ol>
+<h2 id="Charles-安装"><a href="#Charles-安装" class="headerlink" title="Charles 安装"></a>Charles 安装</h2><p>点击<a href="https://www.charlesproxy.com/download/" target="_blank" rel="noopener">这里</a>可以跳转到下载页面。<br>截止北京时间2018年9月27日16:09 最新的版本为4.2.7  </p>
+<p>Charles提供了以下版本</p>
+<ul>
+<li><p>Windows</p>
+<blockquote>
+<p>Windows 64 bit (msi, 64.7 MB)<br>Windows 32 bit (msi, 63.9 MB)</p>
+</blockquote>
+</li>
+<li><p>macOS</p>
+<blockquote>
+<p>macOS (dmg, 58 MB) (兼容 macOS 10.7 - 10.13)</p>
+</blockquote>
+</li>
+<li><p>Linux</p>
+<blockquote>
+<p>Linux 64 bit (tar.gz, 56.1 MB)<br>Linux 32 bit (tar.gz, 55.6 MB)</p>
+</blockquote>
+</li>
+</ul>
+<p>Firefox浏览器下还提供了一个add-on来支持Charles.</p>
+<h2 id="Charles配置"><a href="#Charles配置" class="headerlink" title="Charles配置"></a>Charles配置</h2><p>在Windows及 MacOS系统中，只要赋予权限Charles会自动将自己配置为代理服务器，不过还有一些比较通用的设置，以MacOS为例  </p>
+<ul>
+<li>打开 Charles &gt; Preference &gt; Startup ，关掉Start throttling，Check for updates。  </li>
+<li>点击 Proxy &gt; Mac OS X Proxy 启用系统代理。  </li>
+</ul>
+<p>在IOS中需要自己在wifi配置中手动设置。配置步骤如下：  </p>
+<ol>
+<li>打开 设置 &gt; Wifi ，找到自己连接的网络然后打开</li>
+<li>滑动到 HTTP代理设置，选择 手动 ，输入运行Charles server的IP与端口号（通常是8888）。</li>
+</ol>
+<h2 id="Charles-用法"><a href="#Charles-用法" class="headerlink" title="Charles 用法"></a>Charles 用法</h2><p>以Charles 3.9.1为例，Charles的常用功能如下：  </p>
+<h3 id="查看请求内容（抓包）"><a href="#查看请求内容（抓包）" class="headerlink" title="查看请求内容（抓包）"></a>查看请求内容（抓包）</h3><p>首先点击 File &gt; New 或者 菜单栏的New Session创建一个session，然后点击 Proxy &gt; Start Recording 开始记录请求。 在浏览器中发送请求，就可以在Charles中查看请求的相关信息。Charles支持以结构化（Structure）或者序列（Sequence）的方式展示请求，结构化展示会把同地址端口的请求汇总，序列化则会按照请求顺序展示请求。<br>可以在Proxy &gt; Recording Setting设置记录的相关信息  </p>
+<p>支持：</p>
+<ol>
+<li>限制请求数量与大小</li>
+<li>仅记录固定地址列表</li>
+<li>记录时排除某些地址</li>
+</ol>
+<p>记录的信息是存储在内存中的，所以如果不需要记录的请求最好能够过滤掉，记录的数据过多时Charles也会提醒并关闭记录。记录的数据可以通过 File &gt; Export 导出，也可以通过 File &gt; Save as 保存为Charles可识别的.chls文件。</p>
+<h3 id="代理请求"><a href="#代理请求" class="headerlink" title="代理请求"></a>代理请求</h3><p>打开 Tools &gt; Map Remote/Map Local &gt; Enable Map Remote/Enable Map Local ，点击 Add 可以添加新的代理映射<br>代理的作用是将请求的地址转向一个新的网络地址/本地地址，有些情况下可以用到  </p>
+<ol>
+<li>在生产环境测试时发现了问题，可以将请求的资源映射到本地资源，然后通过修改本地的代码预览修改后的效果。</li>
+<li>可以配置生产环境，测试环境，开发环境的地址，通过在 Map remote 中切换环境地址来切换环境而不用修改访问的地址。</li>
+<li>某些已发布的客户端请求的地址时固定的，可以通过 Map remote 来修改请求的地址。</li>
+</ol>
+<h3 id="查看HTTPS"><a href="#查看HTTPS" class="headerlink" title="查看HTTPS"></a>查看HTTPS</h3><p>通常情况下HTTPS请求是加密并无法被查看的，但是通过替换正常证书为Charles颁发的证书可以做到查看HTTPS请求。<br>打开 Proxy &gt; Proxy Settings &gt; SSL &gt; Enable SSL proxying ，点击Add添加地址，通常端口号为443(HTTPS的端口号)。<br>然后打开网址，以Chrome为例，需要点击 高级 &gt; 允许 来访问地址，这时就可以在Charles中查看HTTPS请求内容。<br>通过将Charles证书添加到“受信任的证书”可以避免浏览器的不信任阻塞。<br>如何将Charles证书添加到“受信任的证书”的方法根据操作系统及浏览器的不同而不同。<br>Windows/IE</p>
+<blockquote>
+<p>Help &gt; SSL Proxying &gt; Install Charles Root Certificate &gt; Install Certificate</p>
+</blockquote>
+<p>MacOS</p>
+<blockquote>
+<p>Help &gt; SSL Proxying &gt; Install Charles Root Certificate 打开钥匙串，搜索 Charles Proxy，双击打开，然后将 信任 &gt; 使用此证书时 下拉框选择为“始终信任”<br>根据官网文档，如上步骤操作就行了，实际上因为Charles certficate 采用的SHA1加密算法，仍旧会被Chrome提示不安全，Safari不再提示不安全</p>
+</blockquote>
+<h3 id="截流"><a href="#截流" class="headerlink" title="截流"></a>截流</h3><p>打开 Proxy &gt; Throttle Settings &gt; Enable Throttling ，可以模仿弱网环境下的请求。  </p>
+<p>支持：  </p>
+<ol>
+<li>对指定host截流</li>
+<li>限制上传下载带宽，利用率，往返延迟，最大传输单元（MTU）</li>
+</ol>
+<h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><p>Charles还提供了其它的一些功能：  </p>
+<ol>
+<li>请求内容的结构化展示</li>
+<li>请求的断点与内容修改/重写</li>
+<li>反向代理，将请求向本机的资源转发到远端的 web server 上</li>
+<li>TCP/UDP 端口转发</li>
+<li>IP访问控制</li>
+<li>外部 HTTP/HTTPS/SOCKS 代理服务器连接</li>
+<li>Charles web化管理</li>
+<li>SSL连接</li>
+<li>no cache连接，包括特定地址的 no cache 连接</li>
+<li>block cookie连接，包括特定地址的 block cookie 连接</li>
+<li>DNS欺骗</li>
+<li>发布Gist</li>
+</ol>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope="" itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/26/列表拖拽排序sortablejs/">列表拖拽排序sortablejs</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-26T12:47:08.000Z" itemprop="datePublished">2018-09-26</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/Javascript/">Javascript</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="简单的拖拽交换"><a href="#简单的拖拽交换" class="headerlink" title="简单的拖拽交换"></a>简单的拖拽交换</h2><p>实现列表拖拽排序，最简单的方法就是将想要拖拽的元素设置为dragable=“true”，然后利用drag事件处理元素位置变换。  </p>
+<p>拖拽的时候主要有以下几个事件  </p>
+<ul>
+<li>ondragstart 事件：当拖拽元素开始被拖拽的时候触发的事件，此事件作用在被拖曳元素上  </li>
+<li>ondragenter 事件：当拖曳元素进入目标元素的时候触发的事件，此事件作用在目标元素上  </li>
+<li>ondragover 事件：拖拽元素在目标元素上移动的时候触发的事件，此事件作用在目标元素上  </li>
+<li>ondrop 事件：被拖拽的元素在目标元素上同时鼠标放开触发的事件，此事件作用在目标元素上  </li>
+<li>ondragend 事件：当拖拽完成后触发的事件，此事件作用在被拖曳元素上  </li>
+</ul>
+<p>实现一个最简单的拖拽交换顺序，可以通过以下步骤来实现</p>
+<ol>
+<li>ondragstart 记录初始拖拽元素，需要注意的是在Firefox浏览器中必须调用 <code>dataTransfer.setData()</code> 设置拖拽的值否则无法拖拽</li>
+<li>ondragover e.preventDefault() 阻止ondragover可能导致ondrop无法触发</li>
+<li>ondrop 记录目标元素，并交换初始元素与目标元素</li>
+</ol>
+<h2 id="Sortable用法"><a href="#Sortable用法" class="headerlink" title="Sortable用法"></a>Sortable用法</h2><p>实现更顺滑的拖拽排序可以通过<a href="https://github.com/RubaXa/Sortable" target="_blank" rel="noopener">Sortable</a> 来实现。<br>Sortable采用的是MIT协议，不依赖任何其它的库，使用原生html5 DnD来实现，并且只有1500行。<br>查看<a href="http://rubaxa.github.io/Sortable/" target="_blank" rel="noopener">Demo</a>  </p>
+<p>用法：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">Sortable.create(<span class="built_in">document</span>.getElementById(<span class="string">'foo'</span>), &#123;</span><br><span class="line">    group: <span class="string">"name"</span>,  <span class="comment">// 列表名，在多列表中互相交换时为Object,形如&#123;name:"...",pull:true,put:false，revertClone:false&#125;多列表需要设置相同的name，pull和put表示拖拽入和出的各种情况</span></span><br><span class="line">    sort: <span class="literal">true</span>,  <span class="comment">// 是否在列表中排序</span></span><br><span class="line">    delay: <span class="number">0</span>, <span class="comment">// 毫秒值，定义何时排序开始</span></span><br><span class="line">    touchStartThreshold: <span class="number">0</span>, <span class="comment">// px, how many pixels the point should move before cancelling a delayed drag event</span></span><br><span class="line">    disabled: <span class="literal">false</span>, <span class="comment">// 设定为true则禁止排序</span></span><br><span class="line">    store: <span class="literal">null</span>,  <span class="comment">// @see Store</span></span><br><span class="line">    animation: <span class="number">150</span>,  <span class="comment">// 毫秒值，移动的动画时间，设置为0则没有动画效果</span></span><br><span class="line">    <span class="comment">// 以下都是一些元素选择器命名</span></span><br><span class="line">    handle: <span class="string">".my-handle"</span>,  <span class="comment">// Drag handle selector within list items</span></span><br><span class="line">    filter: <span class="string">".ignore-elements"</span>,  <span class="comment">// Selectors that do not lead to dragging (String or Function)</span></span><br><span class="line">    preventOnFilter: <span class="literal">true</span>, <span class="comment">// Call `event.preventDefault()` when triggered `filter`</span></span><br><span class="line">    draggable: <span class="string">".item"</span>,  <span class="comment">// Specifies which items inside the element should be draggable</span></span><br><span class="line">    ghostClass: <span class="string">"sortable-ghost"</span>,  <span class="comment">// Class name for the drop placeholder</span></span><br><span class="line">    chosenClass: <span class="string">"sortable-chosen"</span>,  <span class="comment">// Class name for the chosen item</span></span><br><span class="line">    dragClass: <span class="string">"sortable-drag"</span>,  <span class="comment">// Class name for the dragging item</span></span><br><span class="line">    dataIdAttr: <span class="string">'data-id'</span>,</span><br><span class="line"></span><br><span class="line">    forceFallback: <span class="literal">false</span>,  <span class="comment">// 是否忽略HTML5 原生dnd行为</span></span><br><span class="line"></span><br><span class="line">    fallbackClass: <span class="string">"sortable-fallback"</span>,  <span class="comment">// Class name for the cloned DOM Element when using forceFallback</span></span><br><span class="line">    fallbackOnBody: <span class="literal">false</span>,  <span class="comment">// Appends the cloned DOM Element into the Document's Body</span></span><br><span class="line">    fallbackTolerance: <span class="number">0</span>, <span class="comment">// Specify in pixels how far the mouse should move before it's considered as a drag.</span></span><br><span class="line"></span><br><span class="line">    scroll: <span class="literal">true</span>, <span class="comment">// or HTMLElement</span></span><br><span class="line">    scrollFn: <span class="function"><span class="keyword">function</span>(<span class="params">offsetX, offsetY, originalEvent, touchEvt, hoverTargetEl</span>) </span>&#123; ... &#125;, <span class="comment">// if you have custom scrollbar scrollFn may be used for autoscrolling</span></span><br><span class="line">    scrollSensitivity: <span class="number">30</span>, <span class="comment">// px, how near the mouse must be to an edge to start scrolling.</span></span><br><span class="line">    scrollSpeed: <span class="number">10</span>, <span class="comment">// px</span></span><br><span class="line"></span><br><span class="line">    setData: <span class="function"><span class="keyword">function</span> (<span class="params"><span class="regexp">/** DataTransfer */</span>dataTransfer, <span class="regexp">/** HTMLElement*/</span>dragEl</span>) </span>&#123;</span><br><span class="line">        dataTransfer.setData(<span class="string">'Text'</span>, dragEl.textContent); <span class="comment">// `dataTransfer` object of HTML5 DragEvent</span></span><br><span class="line">    &#125;,</span><br><span class="line">    onChoose: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;  <span class="comment">// 元素被选择时触发该事件</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'onChoose.foo:'</span>, [evt.item]);</span><br><span class="line">    &#125;,</span><br><span class="line">    onStart:<span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;  <span class="comment">//开始拖拽触发该事件</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'onStart.foo:'</span>, [evt.item]);</span><br><span class="line">    &#125;,</span><br><span class="line">    onEnd: <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123; <span class="comment">//拖拽完毕之后触发该事件</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'onEnd.foo:'</span>, [evt.item, evt.from, evt.to, evt.oldIndex, evt.newIndex]);</span><br><span class="line">    &#125;</span><br><span class="line">    onAdd: <span class="function"><span class="keyword">function</span> (<span class="params">evt</span>)</span>&#123;   <span class="comment">//从另外一个列表拖找到当前列表时触发该事件</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'onAdd.foo:'</span>, [evt.item]);</span><br><span class="line">    &#125;,</span><br><span class="line">    onUpdate: <span class="function"><span class="keyword">function</span> (<span class="params">evt</span>)</span>&#123;  <span class="comment">//在列表内更新位置时触发该事件</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'onUpdate.foo:'</span>, [evt.item]);</span><br><span class="line">    &#125;,</span><br><span class="line">    onSort:<span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;  <span class="comment">//发生排序时触发该事件</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'onSort.foo:'</span>, [evt.item]);</span><br><span class="line">    &#125;</span><br><span class="line">    onRemove: <span class="function"><span class="keyword">function</span> (<span class="params">evt</span>)</span>&#123;  <span class="comment">//从当前列表删除时触发该事件（被拖拽到另一个列表）</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'onRemove.foo:'</span>, [evt.item]);</span><br><span class="line">    &#125;,</span><br><span class="line">    onFilter: <span class="function"><span class="keyword">function</span> (<span class="params">evt</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'onFilter.foo:'</span>, [evt.item]);</span><br><span class="line">    &#125;,</span><br><span class="line">    onMove: <span class="function"><span class="keyword">function</span> (<span class="params">evt, originalEvent</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'onMove.foo:'</span>, [evt.dragged,evt.draggedRect, evt.related, evt.relatedRect, originalEvent.clientY]);</span><br><span class="line">    &#125;,</span><br><span class="line">    onClone: <span class="function"><span class="keyword">function</span> (<span class="params">evt</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'onClone.foo:'</span>, [evt.item, evt.clone]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="Sortable在React中的用法示例"><a href="#Sortable在React中的用法示例" class="headerlink" title="Sortable在React中的用法示例"></a>Sortable在React中的用法示例</h2><p>React中的示例：<br><figure class="highlight javascript"><figcaption><span>react</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Sortable.create(<span class="built_in">document</span>.getElementsByClassName(<span class="string">'ul-container'</span>)[<span class="number">0</span>], &#123;</span><br><span class="line">    animation: <span class="number">150</span>,</span><br><span class="line">    onSort: <span class="function"><span class="params">evt</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> newOrderItem = <span class="keyword">this</span>.state.orderItem;</span><br><span class="line">        <span class="keyword">let</span> dragedItem = newOrderItem.splice(evt.oldIndex, <span class="number">1</span>)[<span class="number">0</span>];</span><br><span class="line">        newOrderItem.splice(evt.newIndex, <span class="number">0</span>, dragedItem);</span><br><span class="line">        <span class="keyword">this</span>.setState(&#123; <span class="attr">orderItem</span>: newOrderItem &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>通常，还需要将拖拽的item的样式设置为不可见<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ul</span> <span class="selector-tag">li</span> &#123;</span><br><span class="line">    <span class="attribute">cursor</span>: move;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.sortable-ghost</span> &#123;</span><br><span class="line">    <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="其它版本的Sortable"><a href="#其它版本的Sortable" class="headerlink" title="其它版本的Sortable"></a>其它版本的Sortable</h2><p>Sortable由于只采用了原生的HTML5来实现拖拽，所以可以被轻松地移植到几乎所有的框架中，例如<a href="https://github.com/SortableJS/Vue.Draggable" target="_blank" rel="noopener">Vue版本的Sortable</a>，<a href="https://github.com/SortableJS/angular-sortablejs" target="_blank" rel="noopener">Angular2版本的Sortable</a>.</p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope="" itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/25/失效链接替换方案/">失效链接替换方案</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-25T08:05:17.000Z" itemprop="datePublished">2018-09-25</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/Javascript/">Javascript</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>有些时候，尤其在文档型的网站中，页面链接经常变化调整。通常的做法即搜索网站中的所有相应页面进行url替换，但是即使这样做了，还是有一定风险，用户可能已经收藏了链接，在用户点击收藏链接跳转的时候，会发现页面不存在。这时，我们可以通过设置404页面来引导用户跳转到其它的可能符合用户期望的页面（比如主页）。同样的，如果其它网站引用了该失效链接，同时不希望此网站的引用失效（或者没有修改此网站的权限），就只能在落地页网站做一下兼容，在跳转的时候重新定向一下，具体代码如下：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">!<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> path = location.pathname + location.hash;</span><br><span class="line">    <span class="keyword">var</span> urlMap = &#123;</span><br><span class="line">        <span class="string">'xxx'</span>: <span class="string">'xxxx'</span>,</span><br><span class="line">        <span class="string">'xxx/media#live-player'</span>: <span class="string">'xxx/media_live-player/'</span></span><br><span class="line">    &#125;;</span><br><span class="line">    urlMap[path] &amp;&amp; location.replace(urlMap[path]);</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
+<p>这是一种治标不治本的改动，最好的改动还是移除失效的链接。  </p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope="" itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/18/CSS长度单位/">css长度单位</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-18T12:15:59.000Z" itemprop="datePublished">2018-09-18</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>下面将会讲解一下CSS中常用到的几个长度单位。包含px、em、rem、vh、vw、rpx。</p>
+<h2 id="px"><a href="#px" class="headerlink" title="px"></a>px</h2><p>px(Pixel)像素。相对长度单位。1px等于计算机屏幕上的一个点像素的宽度。px是相对于显示器屏幕分辨率而言的。  </p>
+<h2 id="em"><a href="#em" class="headerlink" title="em"></a>em</h2><p>em是相对长度单位。相对于当前对象内文本的字体尺寸。如当前行内文本的字体尺寸未被人为设置，则相当于浏览器的默认字体尺寸。  </p>
+<p>em特点  </p>
+<ol>
+<li>em的值并不是固定的</li>
+<li>em会继承父级元素的字体大小</li>
+</ol>
+<p>注意：任意浏览器的默认字体高都是16px。所有未经调整的浏览器都符合: 1em = 16px。那么12px = 0.75em，10px = 0.625em。<br>如果使用em作为当前项目的单位，为了简化font-size的换算，需要在CSS中的body选择器中声明font-size=62.5%，这就使em值变为 16px * 62.5% = 10px，这样12px = 1.2em，10px=1em，也就是说只需要将你的原来的px数值除以10，然后换上em作为单位就行了。  </p>
+<h2 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h2><p>rem(Font size of the root element)是CSS3新增的一个相对单位，指相对于根元素（即html元素）的字体大小的单位。  </p>
+<p>rem特点  </p>
+<ol>
+<li>可以做到只修改根元素就成比例地调整所有字体大小</li>
+<li>避免px em混用导致的字体复数计算</li>
+</ol>
+<p>如果使用rem作为当前项目的单位，可以设置<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>那么<code>10px</code>就可以表示为<code>.1rem</code></p>
+<h2 id="vh-vw"><a href="#vh-vw" class="headerlink" title="vh/vw"></a>vh/vw</h2><p>vh(Viewport height)相对于视口的高度。视口被均分为100单位的vh，通过vh可以在不知道视口高度的情况下设置一个相对视口的高度。同理，vw指相对于视口的宽度。</p>
+<p>用法<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.banner</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100vh</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100vw</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="rpx"><a href="#rpx" class="headerlink" title="rpx"></a>rpx</h2><p>rpx(Relative pixcel) 相对像素。只有在小程序中采用的长度计算值。以屏幕宽度恒为750rpx来计算。以iPhone6来讲，屏幕宽度为375px，所以在iPhone6中，375px = 750rpx，也就是1rpx = 0.5px。</p>
+<h2 id="一些坑"><a href="#一些坑" class="headerlink" title="一些坑"></a>一些坑</h2><p>PC chrome有12px最小字号限制，若使用10px会造成pc调试困难带来不必要的麻烦，所以可以设置字号为12px，然后通过 <code>transform: scale(.8)</code> 来达到同样的效果。  </p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+
+
+<nav class="page-nav">
+    <a class="extend prev" rel="prev" href="/blog/page/4/">&laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/3/">3</a><a class="page-number" href="/blog/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/blog/page/6/">6</a><a class="page-number" href="/blog/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/10/">10</a><a class="extend next" rel="next" href="/blog/page/6/">Next &raquo;</a>
+</nav>
+
+
+</div>
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明：
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <img class="appreciate-image" src="/blog/images/my-alipay.jpg">
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>
