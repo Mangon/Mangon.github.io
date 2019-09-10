@@ -6,7 +6,7 @@
 
     
     <title>
-        
+        Tag: database | 
         Gblog
     </title>
     <meta name="author" content="Mangon">
@@ -38,7 +38,7 @@
     <nav class="nav-inner">
         
             
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="/blog/">主页</a>
                 </li>
             
@@ -100,202 +100,6 @@
 </header>
 
         <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
-    <article class="article" itemscope="" itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2019/08/21/Python爬虫Scrapy/">Python爬虫Scrapy</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-08-21T07:16:45.000Z" itemprop="datePublished">2019-08-21</time>
-</span>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/crawler/">crawler</a>, <a class="article-tag-link" href="/blog/tags/python/">python</a>, <a class="article-tag-link" href="/blog/tags/scrapy/">scrapy</a>, <a class="article-tag-link" href="/blog/tags/spider/">spider</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="Scrapy简介"><a href="#Scrapy简介" class="headerlink" title="Scrapy简介"></a>Scrapy简介</h2><p><a href="https://scrapy.org/" target="_blank" rel="noopener">Scrapy</a> 是一个开源的Python网络爬虫框架。源码在github上开源，<a href="https://github.com/scrapy/scrapy" target="_blank" rel="noopener">地址</a>。Scrapy简单易学而且非常好用，支持配置、代理分布式爬取、容易扩展而且官方也很活跃。截止目前（2019年8月21日）最新版本为 v1.7.3 。  </p>
-<h2 id="Scrapy-安装"><a href="#Scrapy-安装" class="headerlink" title="Scrapy 安装"></a>Scrapy 安装</h2><p>你需要先安装Python，Scrapy需要 Python 2.7 或者 Python 3.5+ ，通常MacOS会自带Python，其它系统需要自己安装，Python安装不再赘述。  </p>
-<p>Scrapy由纯Python语言实现，但是需要依赖一些Python包，包括  </p>
-<ul>
-<li><a href="lxml.de">lxml</a>：一种高效的XML和HTML解析器，</li>
-<li><a href="https://pypi.python.org/pypi/parsel" target="_blank" rel="noopener">parsel</a>：一个HTML / XML数据提取库，基于上面的lxml，</li>
-<li><a href="https://pypi.org/project/w3lib/" target="_blank" rel="noopener">w3lib</a>：一种处理URL和网页编码多功能辅助</li>
-<li><a href="https://twistedmatrix.com/trac/" target="_blank" rel="noopener">twisted</a>：一个异步网络框架</li>
-<li><a href="https://cryptography.io" target="_blank" rel="noopener">cryptography</a> and <a href="https://pypi.org/project/pyOpenSSL/" target="_blank" rel="noopener">pyOpenSSL</a>：处理各种网络级安全需求</li>
-</ul>
-<p>由于包依赖版本问题，建议首先安装 <a href="https://virtualenv.pypa.io" target="_blank" rel="noopener">virtualenv</a> ，这是一个独立Python运行环境包。</p>
-<ol>
-<li>全局安装 virtualenv</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pip install virtualenv</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>创建独立Python运行环境</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ virtualenv ENV</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>安装Scrapy</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install scrapy</span><br></pre></td></tr></table></figure>
-<p><strong> 在不同的平台上的安装步骤不尽相同，某些平台需要安装平台依赖包，具体请 <a href="https://docs.scrapy.org/en/latest/intro/install.html#intro-install-platform-notes" target="_blank" rel="noopener">查看</a> </strong> </p>
-<h2 id="Scrapy项目创建"><a href="#Scrapy项目创建" class="headerlink" title="Scrapy项目创建"></a>Scrapy项目创建</h2><ol>
-<li>创建项目&amp;生成爬虫</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ scrapy startproject [PROJECT_NAME]</span><br><span class="line">$ cd [PROJECT_NAME]</span><br><span class="line">$ scrapy genspider [SPIDER_NAME] [START_SITE_NAME]</span><br></pre></td></tr></table></figure>
-<p>[PROJECT_NAME] 是待创建的爬虫项目名<br>[SPIDER_NAME] 是爬虫名<br>[SITE_NAME] 是待爬取的初始站点地址</p>
-<p>例如我们创建了一个名为 tutorial 的项目，并添加爬虫 top  </p>
-<p>项目目录如下  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">tutorial/</span><br><span class="line">|___scrapy.cfg            # 配置文件</span><br><span class="line">|___tutorial/             # 项目的 Python 模块，代码存在这里</span><br><span class="line">    |___ __init__.py</span><br><span class="line">    |___items.py          # 项目 items 定义文件</span><br><span class="line">    |___middlewares.py    # 项目 middlewares 文件</span><br><span class="line">    |___pipelines.py      # 项目 pipelines 文件</span><br><span class="line">    |___settings.py       # 项目 settings 文件</span><br><span class="line">    |___spiders/          # 爬虫文件目录</span><br><span class="line">        |___ __init__.py</span><br><span class="line">        |___top.py        # 爬虫文件</span><br></pre></td></tr></table></figure>
-<p>打开 top.py 可以看到 Scrapy 爬虫文件结构  </p>
-<ul>
-<li><strong>name</strong> 爬虫名  </li>
-<li><strong>allowed_domains</strong> 是允许爬取的域名  </li>
-<li><strong>start_urls</strong> 开始爬取的链接  </li>
-<li><strong>start_requests()</strong> 开始爬取的链接方法，需要返回 Requests 对象的遍历器或者 Reqeusts 数组  </li>
-<li><strong>parse()</strong> 爬取后的处理方法  </li>
-</ul>
-<h2 id="settings-修改"><a href="#settings-修改" class="headerlink" title="settings 修改"></a>settings 修改</h2><p>可以在 settings.py 文件中看到常用设置: </p>
-<ul>
-<li><strong>USER_AGENT</strong> request的 <code>user-agent</code> header 中的 user-agent 参数  </li>
-<li><strong>ROBOTSTXT_OBEY</strong> 是否遵守robots.txt协议，默认 <code>True</code>  </li>
-<li><strong>CONCURRENT_REQUESTS</strong> 最大并发请求数量  </li>
-<li><strong>DEFAULT_REQUEST_HEADERS</strong> 覆盖默认请求header 参数</li>
-<li><strong>SPIDER_MIDDLEWARES</strong> 爬虫中间件  </li>
-<li><strong>DOWNLOADER_MIDDLEWARES</strong> 下载中间件  </li>
-<li><strong>ITEM_PIPELINES</strong> 设置pipeline调用顺序  </li>
-</ul>
-<h2 id="使用-shell-命令分析待爬取网站"><a href="#使用-shell-命令分析待爬取网站" class="headerlink" title="使用 shell 命令分析待爬取网站"></a>使用 shell 命令分析待爬取网站</h2><p>shell命令是Scrapy提供的交互式页面分析工具，类似于一个debug工具，你可以先使用shell分析待爬取的页面然后再执行爬虫。  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy shell [SITE_NAME]</span><br></pre></td></tr></table></figure>
-<p>shell命令将会采用settings里的配置来请求地址 [SITE_NAME] ，以下列出一些常用分析命令  </p>
-<ul>
-<li><strong>scrapy</strong> scrapy模块，包括scrapy.Request, scrapy.Selector等  </li>
-<li><strong>crawler</strong> scrapy.crawler.Crawler object  </li>
-<li><strong>response</strong> 返回的响应object</li>
-<li><strong>request</strong> 请求的ojbect</li>
-<li><strong>settings</strong> 请求的设置</li>
-<li><strong>view(response)</strong> 在浏览器中查看获取到页面  </li>
-<li><strong>fetch(url[, redicrect=True])</strong> 重新获取url内容并更新当前object</li>
-<li><strong>fetch(req)</strong> 获取一个 scrapy.Request 并更新当前object</li>
-</ul>
-<p><code>view(response)</code> 可以在浏览器中查看页面结构。<br>如果返回的结构和我们期待的有所不同，可以通过 <code>request.replace()</code> 进行修改，例如修改请求方法 <code>request.replace(method=&#39;POST&#39;)</code><br><code>fetch(req)</code> 常用在对request或settings进行了修改然后重新请求。<br><code>response</code> 是返回的响应体，这通常是我们需要分析的东西，如果分析的是html，首先最好先执行 <code>view(response)</code> 在浏览器中查看页面结构，找到我们需要获取的 文本/链接 位置。<br>然后使用 xpath选择器 或者 css选择器 定位我们需要获取的 文本/链接 位置。<br>例如采用 css选择器 且我们需要获取页面中的所有链接，则可以执行<br> <code>response.css(&#39;a::attr(href).getall()&#39;)</code><br>如果获取title文本则可以执行<br> <code>response.css(&#39;title::text&#39;).get(default=&#39;&#39;)</code><br><code>fetch(url)</code> 常用来获取下一个待分析的链接<br>这样就构成了一个完整闭环  </p>
-<p>另外我们也可以通过<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from pprint import pprint</span><br><span class="line">pprint(response.headers)</span><br></pre></td></tr></table></figure></p>
-<p>来打印相应object  </p>
-<h2 id="Scrapy-Items"><a href="#Scrapy-Items" class="headerlink" title="Scrapy Items"></a>Scrapy Items</h2><p>通常我们需要爬取的都是结构化的数据，在 Scrapy 中被称为 Item，在 items.py 中我们需要定义需要爬取的字段，类似 Python dict</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name = scrapy.Field()</span><br></pre></td></tr></table></figure>
-<h2 id="Scrapy-Item-Pipeline"><a href="#Scrapy-Item-Pipeline" class="headerlink" title="Scrapy Item Pipeline"></a>Scrapy Item Pipeline</h2><p>Scrapy支持pipeline来对爬取到的数据进行类似于管道一样的一系列操作。<br>管道类一般用来进行以下几类操作：  </p>
-<ul>
-<li>清洗 HTML 数据</li>
-<li>验证爬取到的数据（检查items包括特定的field）</li>
-<li>检查重复数据</li>
-<li>将爬取到的数据存储于数据库中</li>
-</ul>
-<p>包括以下几分方法</p>
-<p><code>process_item(self, item, spider)</code></p>
-<p>处理item，需要返回处理后的 data dict</p>
-<p><code>open_spider(self, spider)</code></p>
-<p>spider开始时触发的钩子</p>
-<p><code>close_spider(self, spider)</code></p>
-<p>spider结束时触发的钩子</p>
-<p><code>from_crawler(cls, crawler)</code></p>
-<p>类方法，可以通过 crawler.settings 获取 settings.py 里的配置信息</p>
-<h2 id="运行爬虫"><a href="#运行爬虫" class="headerlink" title="运行爬虫"></a>运行爬虫</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ scrapy crawl [SPIDER_NAME] [-o [FILE_NAME]]</span><br></pre></td></tr></table></figure>
-<p>可以添加 <code>-o</code> 参数来输出为不同的文件例如 xml, csv, json 文件<br>爬取后的文件默认放到项目根目录下  </p>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope="" itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2019/08/12/node-server常用npm库/">node server常用npm库</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-08-12T07:04:09.000Z" itemprop="datePublished">2019-08-12</time>
-</span>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/node/">node</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>以下列举一些 node server 常用npm库：  </p>
-<ul>
-<li><a href="https://github.com/expressjs/express" target="_blank" rel="noopener">express</a>: nodejs server web框架</li>
-<li><a href="https://github.com/koajs/koa" target="_blank" rel="noopener">koa</a>: nodejs server web框架 采用es6 async调用方式</li>
-<li><a href="https://github.com/Automattic/mongoose" target="_blank" rel="noopener">mongoose</a>: MongoDB 对象建模库  </li>
-<li><a href="https://github.com/jdesboeufs/connect-mongo" target="_blank" rel="noopener">connect-mongo</a>: MongoDB 会话存储库(连接池)，支持Express  </li>
-<li><a href="https://github.com/tj/co" target="_blank" rel="noopener">co</a>: 基于es6的generator及yield用同步的形式编写异步代码  </li>
-<li><a href="https://github.com/motdotla/dotenv" target="_blank" rel="noopener">dotenv</a>: 从.env文件自动加载环境变量  </li>
-<li><a href="https://github.com/remy/nodemon" target="_blank" rel="noopener">nodemon</a>: node守护进程  </li>
-<li><a href="https://github.com/Unitech/pm2" target="_blank" rel="noopener">pm2</a>: nodejs应用生产环境进程管理库  </li>
-<li><a href="https://github.com/tjunnone/npm-check-updates" target="_blank" rel="noopener">npm-check-updates</a>: 检查package是否有新版本  </li>
-<li><a href="https://github.com/dylang/npm-check" target="_blank" rel="noopener">npm-check</a>: 检查package是否有过时版本  </li>
-<li><a href="https://github.com/jaredhanson/passport" target="_blank" rel="noopener">passport</a>: 身份认证库  </li>
-<li><a href="https://github.com/jaredhanson/passport-local" target="_blank" rel="noopener">passport-local</a>: 身份认证本地认证策略  </li>
-<li><a href="https://github.com/helmetjs/helmet" target="_blank" rel="noopener">helmet</a>: 通过修改header来减少安全问题的库  </li>
-<li><a href="https://github.com/winstonjs/winston" target="_blank" rel="noopener">winston</a>: 生产环境日志记录  </li>
-<li><a href="https://github.com/expressjs/body-parser" target="_blank" rel="noopener">body-parser</a>: body解析 <strong>express中间件</strong>  </li>
-<li><a href="https://github.com/expressjs/cookie-parser" target="_blank" rel="noopener">cookie-parser</a>: cookie解析 <strong>express中间件</strong>  </li>
-<li><a href="https://github.com/expressjs/compression" target="_blank" rel="noopener">compression</a>: gzip压缩  <strong>express中间件</strong>  </li>
-<li><a href="https://github.com/expressjs/session" target="_blank" rel="noopener">express-session</a>: session控制 <strong>express中间件</strong>  </li>
-<li><a href="https://github.com/expressjs/csurf" target="_blank" rel="noopener">csurf</a>: 避免csrf安全问题 <strong>express中间件</strong></li>
-<li><a href="https://github.com/expressjs/cors" target="_blank" rel="noopener">cors</a>: 跨域 <strong>express中间件</strong>  </li>
-<li><a href="https://github.com/expressjs/morgan" target="_blank" rel="noopener">morgan</a>: 请求日志记录 <strong>express中间件</strong>  </li>
-<li><a href="https://github.com/expressjs/multer" target="_blank" rel="noopener">multer</a>: 文件上传 <strong>express中间件</strong>  </li>
-<li><a href="https://github.com/expressjs/method-override" target="_blank" rel="noopener">method-override</a>: 协议头复写 <strong>express中间件</strong>  </li>
-</ul>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
     <article class="article" itemscope="" itemprop="blogPost">
     
     <header class="article-header">
@@ -1000,115 +804,6 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2019/06/19/little-tips/">little tips</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-06-19T08:08:39.000Z" itemprop="datePublished">2019-06-19</time>
-</span>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/learn/">learn</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="在eclipse中设置字体"><a href="#在eclipse中设置字体" class="headerlink" title="在eclipse中设置字体"></a>在eclipse中设置字体</h2><p>在eclipse中设置 Windows-&gt;Preferences-&gt;General-&gt;Appearance-&gt;Color and Fonts-&gt;Basic-&gt;Text Font-&gt;Edit-&gt;脚本(R) 选择 <code>中欧字符</code> 后中文字体的显示能够更好看些。  </p>
-<h2 id="处理-nginx-php-遇到后端返回413错误"><a href="#处理-nginx-php-遇到后端返回413错误" class="headerlink" title="处理 nginx + php 遇到后端返回413错误"></a>处理 nginx + php 遇到后端返回413错误</h2><p>php 默认上传文件大小限制为 2M，如果超出 2M 你需要修改 php 配置文件 php.ini 里面的参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">post_max_size = 128M ## （表单提交的最大限制，此项不是限制上传单个文件的大小，而是针对整个表单提交的数据进行限制）</span><br><span class="line">upload_max_filesize = 128M ## （上传的单个文件的最大限制）</span><br></pre></td></tr></table></figure>
-<p>需要保证 post_max_size &gt;= upload_max_filesize ，也就是前者不小于后者。修改之后一定要重启 php-fpm (service php-fpm restart)。</p>
-<p>除了修改 php 配置，你也需要修改nginx配置文件 nginx.conf<br>打开 nginx 配置文件 nginx.conf，找到 http{} 段，在其中添加一行配置：<br>client_max_body_size 128m; 其中 128m 可以根据需要上传文件大小自行设定。<br>修改之后一定要重新载入 nginx （service nginx reload）。</p>
-<h2 id="导入-导出-csv文件到mysql"><a href="#导入-导出-csv文件到mysql" class="headerlink" title="导入/导出 csv文件到mysql"></a>导入/导出 csv文件到mysql</h2><h3 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h3><p>需要表存在且字段与csv文件中的相同</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">LOAD</span> <span class="keyword">DATA</span> <span class="keyword">LOCAL</span> <span class="keyword">INFILE</span> <span class="string">'$&#123;csv文件路径&#125;'</span></span><br><span class="line"><span class="keyword">INTO</span> <span class="keyword">TABLE</span> $&#123;数据库表名&#125;</span><br><span class="line"><span class="built_in">CHARACTER</span> <span class="keyword">SET</span>  utf8</span><br><span class="line"><span class="keyword">FIELDS</span></span><br><span class="line">    <span class="keyword">TERMINATED</span> <span class="keyword">BY</span> <span class="string">','</span></span><br><span class="line">    <span class="keyword">ENCLOSED</span> <span class="keyword">BY</span> <span class="string">'"'</span></span><br><span class="line"><span class="keyword">LINES</span></span><br><span class="line">    <span class="keyword">TERMINATED</span> <span class="keyword">BY</span> <span class="string">'\n'</span></span><br><span class="line"><span class="keyword">IGNORE</span> <span class="number">1</span> <span class="keyword">ROWS</span>;</span><br></pre></td></tr></table></figure>
-<h3 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">LOCK</span> <span class="keyword">TABLES</span> $&#123;数据库表名&#125; <span class="keyword">read</span>;</span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> $&#123;数据库表名&#125; <span class="keyword">INTO</span> <span class="keyword">OUTFILE</span> <span class="string">'$&#123;csv文件路径&#125;'</span> </span><br><span class="line"><span class="keyword">FIELDS</span></span><br><span class="line">    <span class="keyword">TERMINATED</span> <span class="keyword">BY</span> <span class="string">','</span></span><br><span class="line">    <span class="keyword">OPTIONALLY</span> <span class="keyword">ENCLOSED</span> <span class="keyword">BY</span> <span class="string">'"'</span></span><br><span class="line"><span class="keyword">LINES</span></span><br><span class="line">    <span class="keyword">TERMINATED</span> <span class="keyword">BY</span> <span class="string">'\n'</span>;</span><br><span class="line"><span class="keyword">UNLOCK</span> <span class="keyword">TABLES</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="导出csv文件到mysql报错"><a href="#导出csv文件到mysql报错" class="headerlink" title="导出csv文件到mysql报错"></a>导出csv文件到mysql报错</h2><h3 id="Error-1148"><a href="#Error-1148" class="headerlink" title="Error 1148"></a>Error 1148</h3><p>如果在执行语句时报错 <code>Error 1148 MySQL The used command is not allowed with this MySQL version</code> 可能是因为MySQL的安全策略阻止读取本地文件，可以通过以下方法解决：</p>
-<ol>
-<li>Use –local-infile=1 argument on the mysql commandline:</li>
-</ol>
-<p>When you start MySQL on the terminal, include –local-infile=1 argument, Something like this:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql <span class="comment">--local-infile=1 -uroot -p</span></span><br><span class="line"></span><br><span class="line">mysql&gt;LOAD DATA LOCAL INFILE '/tmp/foo.txt' INTO TABLE foo </span><br><span class="line">COLUMNS TERMINATED BY '\t';</span><br></pre></td></tr></table></figure>
-<p>Then the command is permitted:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Query OK, 3 rows affected (0.00 sec)</span><br><span class="line">Records: 3  Deleted: 0  Skipped: 0  Warnings: 0</span><br></pre></td></tr></table></figure>
-<ol>
-<li>Or send the parameter into the mysql daemon:</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld --local-infile=1</span><br></pre></td></tr></table></figure>
-<ol>
-<li>Or set it in the my.cnf file (This is a security risk):</li>
-</ol>
-<p>Find your mysql my.cnf file and edit it as root.</p>
-<p>Add the local-infile line under the mysqld and mysql designators:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">local-infile </span><br><span class="line"></span><br><span class="line">[mysql]</span><br><span class="line">local-infile</span><br></pre></td></tr></table></figure>
-<p>Save the file, restart mysql. Try it again.</p>
-<ol>
-<li>The main reason why we are using the LOCAL keyword is explained in the MySQL manual. On the other hand, you do not need the FILE privilege to load local files. So if you in fact do have file access to the server then try to skip using the word “LOCAL” in SQL query, and instead copy the file to the server and the directory mysql/data/[tablename].</li>
-</ol>
-<h3 id="Error-1290"><a href="#Error-1290" class="headerlink" title="Error 1290"></a>Error 1290</h3><p>如果在执行语句时报错 <code>[Error Code] 1290 - The MySQL server is running with the --secure-file-priv option</code> 说明参数secure-file-priv 可能有问题</p>
-<p>执行以下语句<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">VARIABLES</span> <span class="keyword">LIKE</span> <span class="string">"secure_file_priv"</span>;</span><br></pre></td></tr></table></figure></p>
-<p>可以看到</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">　　secure_file_prive=null   -- 限制mysqld 不允许导入导出</span><br><span class="line">　　secure_file_priv=/tmp/   -- 限制mysqld的导入导出只能发生在/tmp/目录下</span><br><span class="line">　　secure_file_priv=&apos;&apos;     -- 不对mysqld 的导入/导出做限制</span><br></pre></td></tr></table></figure>
-<p>可以在 my.ini（windows） 或 /etc/my.cnf(linux) 文件中的[mysqld]节点添加secure_file_priv=’’，然后重启mysql服务</p>
-<h2 id="启动mysql报错error-11"><a href="#启动mysql报错error-11" class="headerlink" title="启动mysql报错error: 11"></a>启动mysql报错error: 11</h2><p>如果在启动mysql时遇到了 <code>[ERROR] InnoDB: Unable to lock ./ibdata1, error: 11</code><br>说明 ibdata1 文件被其他的进程占用 或者 磁盘空间目录不足，有以下解决方案：</p>
-<ol>
-<li>查看磁盘空间情况</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br></pre></td></tr></table></figure>
-<ol>
-<li>查看系统 mysql 相关进程</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -eaf | grep mysql</span><br><span class="line">kill -9 78806</span><br></pre></td></tr></table></figure>
-<p>如果语句执行正常但是返回 <code>0 row(s) affected</code> ，查看一下csv中的字段是否是否与表中的字段一致，区分大小写；查看一下csv文件的分隔符的设置是否正确。</p>
-<h2 id="处理-mongoose-中-bson-MODULE-NOT-FOUND-相关报错"><a href="#处理-mongoose-中-bson-MODULE-NOT-FOUND-相关报错" class="headerlink" title="处理 mongoose 中 bson MODULE_NOT_FOUND 相关报错"></a>处理 mongoose 中 bson MODULE_NOT_FOUND 相关报错</h2><p>node.js 在使用 mongoose时报错 <code>[Error: Cannot find module &#39;../build/Release/bson&#39;] code: &#39;MODULE_NOT_FOUND&#39;</code>  </p>
-<p>参见 <a href="https://github.com/Automattic/mongoose/issues/3436" target="_blank" rel="noopener">https://github.com/Automattic/mongoose/issues/3436</a> </p>
-<p>应该是mongoose版本问题，理论上升级到最新版本可以解决，也可以按照以下步骤解决  </p>
-<ol>
-<li><p>更改 bson 引用<br>找到 module mongodb ..node_modules\mongodb\node_modules\bson\ext\index.js<br>改变bson引用的路径</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bson = <span class="built_in">require</span>(<span class="string">'../build/Release/bson'</span>);</span><br></pre></td></tr></table></figure>
-<p>改为</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bson = <span class="built_in">require</span>(<span class="string">'../browser_build/bson'</span>);</span><br></pre></td></tr></table></figure>
-<p>或</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bson = require(&apos;bson&apos;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>更改mongoose版本<br>将原有的mongoose升级为 <code>&quot;mongoose &quot;: &quot;~3.8.23&quot;</code>  </p>
-</li>
-</ol>
-<h2 id="Python-报错-‘ascii’-codec-can’t-encode-characters-in-position-0-8：ordinal-not-in-range-128"><a href="#Python-报错-‘ascii’-codec-can’t-encode-characters-in-position-0-8：ordinal-not-in-range-128" class="headerlink" title="Python 报错 ‘ascii’ codec can’t encode characters in position 0-8：ordinal not in range(128)"></a>Python 报错 ‘ascii’ codec can’t encode characters in position 0-8：ordinal not in range(128)</h2><ol>
-<li>第一步，别忘了给文件顶部加上  </li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>重新载入SYS模块并设置uft-8  </li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">reload(sys)</span><br><span class="line">sys.setdefaultencoding(<span class="string">'utf-8'</span>)</span><br></pre></td></tr></table></figure>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope="" itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
             <a href="/blog/2019/05/06/redis支持的数据类型/">redis支持的数据类型</a>
         </h1>
         
@@ -1156,10 +851,6 @@
 
 
 
-
-<nav class="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="page-number" href="/blog/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/10/">10</a><a class="extend next" rel="next" href="/blog/page/2/">Next &raquo;</a>
-</nav>
 
 
 </div>
