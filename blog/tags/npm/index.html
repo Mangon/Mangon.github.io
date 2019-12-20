@@ -6,7 +6,7 @@
 
     
     <title>
-        Archives: 2019/12 | 
+        Tag: npm | 
         Gblog
     </title>
     <meta name="author" content="Mangon">
@@ -44,7 +44,7 @@
             
         
             
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="/blog/archives">目录</a>
                 </li>
             
@@ -100,53 +100,79 @@
 </header>
 
         <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
-
+    <article class="article" itemscope="" itemprop="blogPost">
     
-    
-    
-    
-    <section class="archives-wrap">
-    <div class="archive-year-wrap">
-    <a href="/blog/archives/2019" class="archive-year">2019</a>
-    </div>
-    <ol class="archives">
-    
-
-    <li class="archive-section-item">
-        <article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/blog/2019/12/20/npm发包/">npm发包</a>
-            (<span class="article-date">
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
     
-    <time datetime="2019-12-20T04:15:42.000Z" itemprop="datePublished">12/20</time>
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-12-20T04:15:42.000Z" itemprop="datePublished">2019-12-20</time>
 </span>
-)
-        </header>
-    </div>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/npm/">npm</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>本文记录了如何发布npm包到 <a href="https://registory.npmjs.com" target="_blank" rel="noopener">https://registory.npmjs.com</a> 的过程，完整的 npm 命令可以参考 <a href="https://docs.npmjs.com/cli-documentation/cli" target="_blank" rel="noopener">npm CLI commands</a> 。</p>
+<ol>
+<li>创建待发包工程</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init [--force|-f|--yes|-y|--scope]</span><br></pre></td></tr></table></figure>
+<p>npm init 创建了一个 package.json 描述 project 信息。<br>name 描述了待发布的 package 名。<br>version 描述了待发布的版本号。<br>dependencies 描述了该 project 所需要的依赖包，在发布前保证所有依赖在 <a href="npmjs.org">npmjs.org</a> 均可找到。  </p>
+<ol start="2">
+<li>排除无需发布的文件</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch .npmignore</span><br></pre></td></tr></table></figure>
+<p>.npmignore 文件的写法和 .gitignore 文件的写法一样，可以将无需发布的文件路径添加到该文件中。  </p>
+<ol start="3">
+<li>添加用户</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm adduser [--registry=http://resgistry.npmjs.com] [--scope=@orgname]</span><br></pre></td></tr></table></figure>
+<p>该命令用来注册一个账户。它会提示你填写用户名密码和邮箱，然后（通过将你的验证信息存储在 .npmrc 文件中）自动登录，在 npmjs.org 发包需要验证邮箱。<br>你可以用 <code>npm logout</code> 命令登出，也可以用 <code>npm login</code> 命令再次登入。可以用 <code>npm who am i</code> 命令查看当前登录用户名。  </p>
+<ol start="4">
+<li>预发包</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm pack</span><br></pre></td></tr></table></figure>
+<p>该命令会根据当前配置将 project 打包为 <code>.tgz</code> 文件，可以使用 <code>npm install</code> + <code>.taz</code> 文件的路径测试是否打包正确。   </p>
+<ol start="5">
+<li>发包</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm publish</span><br></pre></td></tr></table></figure>
+<p>默认发布的是公共包，如果包名带有 npm-scope ，那么默认发的是私有包，私有包在 npmjs 上发布需要收费，如果不想发私有包可以使用 <code>npm publish --access public</code> 发布公共包。<br>每次发布需要保证版本号有变更，如果包名和版本号已经存在那么会发布失败。  </p>
+<ol>
+<li>取消发包</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm unpublish</span><br></pre></td></tr></table></figure>
+<p>可以使用以上命令取消发包，但是如果是不再支持某个包的话应该是用 <code>npm deprecate</code> 来表示不再支持。  </p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
 </article>
-    </li>
-
-    
-    
-
-    <li class="archive-section-item">
-        <article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <header class="archive-article-header">
-            <a href="/blog/2019/12/04/如何沟通/">如何沟通</a>
-            (<span class="article-date">
-    
-    <time datetime="2019-12-04T11:22:46.000Z" itemprop="datePublished">12/4</time>
-</span>
-)
-        </header>
-    </div>
-</article>
-    </li>
 
 
-</ol></section>
 
 
 
