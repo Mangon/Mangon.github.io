@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    
+
+    
+    <title>
+        
+        Gblog
+    </title>
+    <meta name="author" content="Mangon">
+    <meta name="version" content="1.0.3">
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础">
+    
+    
+    <meta name="description" content="Mangon&#39;s Technology Blog">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw">
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    <link rel="stylesheet" href="/blog/css/style.css">
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item active">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://mangon.cn/blog"></form> -->
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索">
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+
+        
+            <div class="author-meta">
+                
+                <div class="author-avatar">
+                    <a href="/blog/">
+                        <img src="/blog/images/avatar.jpeg" title="Mangon">
+                    </a>
+                </div>
+                
+                <div class="author-name">Mangon</div>
+                <div class="author-work">Front-End Software Engineer</div>
+                <div class="author-location">
+                    <i class="icon-location vm"></i>
+                    <span class="vm">Beijing, China</span>
+                </div>
+                
+                <div class="author-thread-wrap">
+                    <div class="author-threads clearfix">
+                        
+                        <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
+                        
+                        
+                        
+                    </div>
+                </div>
+                
+            </div>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/12/14/面向对象编程-函数式编程/">面向对象编程&amp;函数式编程</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-12-14T08:06:59.000Z" itemprop="datePublished">2018-12-14</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/algorithm/">algorithm</a>, <a class="article-tag-link" href="/blog/tags/interview/">interview</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h2><p>函数式编程（英语：Functional programming）或称函数程序设计，又称泛函编程，是一种编程范型，它将电脑运算视为数学上的函数计算，并且避免使用程序状态以及易变对象。函数编程语言最重要的基础是λ演算（lambda calculus）。而且λ演算的函数可以接受函数当作输入（引数）和输出（传出值）。</p>
+<p>函数式编程优点：  </p>
+<ol>
+<li>没有并发编程的问题，是多线程安全的</li>
+<li>函数式编程的表达方式更加符合人类日常生活中的语法，代码可读性更强，实现同样的功能函数式编程所需要的代码比面向对象编程要少很多，代码更加简洁明晰</li>
+</ol>
+<p>函数式编程缺点：  </p>
+<ol>
+<li>所有的变量在程序运行期间都是一直存在的，资源利用率低</li>
+<li>大型项目中工程化不足，使得代码易读性降低</li>
+</ol>
+<h2 id="面向对象编程"><a href="#面向对象编程" class="headerlink" title="面向对象编程"></a>面向对象编程</h2><p>面向对象程序设计（英语：Object-oriented programming，缩写：OOP）是种具有对象概念的程序编程范型，同时也是一种程序开发的方法。它可能包含数据、属性、代码与方法。对象则指的是类的实例。它将对象作为程序的基本单元，将程序和数据封装其中，以提高软件的重用性、灵活性和扩展性，对象里的程序可以访问及经常修改对象相关连的数据。在面向对象程序编程里，计算机程序会被设计成彼此相关的对象。</p>
+<p>面向对象编程优点：  </p>
+<ol>
+<li>灵活，可维护，易拓展，在大型项目设计中广为应用</li>
+<li>由于继承、封装、多态的特性，自然设计出高内聚、低耦合的系统结构，使得系统更灵活、更容易扩展，而且成本较低。</li>
+<li>23种设计模式广泛应用</li>
+</ol>
+<p>面向对象编程缺点：  </p>
+<ol>
+<li>在多线程并发编程中，多个线程同时操作数据的时候可能会导致数据修改的不确定性。</li>
+<li>为了写可重用的代码而产生了很多无用的代码，导致代码膨胀</li>
+<li>为了面向对象而面向对象，使得代码易读性降低</li>
+<li>代码的运行效率比起面向过程要低很多</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>函数式编程和面向对象编程各有利弊，一个语法更加自由，一个健壮性更好，作为编程者应该对两种编程方式都有所了解，不管是哪种方式，只要能够很好的解决当前的问题就是正确的方式。对于编程者来说，编程范式并没有重要到一定要遵循的地步，重要的是解决问题的思想。</p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/12/10/头像的显示/">头像的显示</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-12-10T10:37:19.000Z" itemprop="datePublished">2018-12-10</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>在项目中遇到了上传头像图片的需求，包括两个部分，一个是头像的上传。另一个是上传后头像图片的显示。</p>
+<h2 id="头像的上传"><a href="#头像的上传" class="headerlink" title="头像的上传"></a>头像的上传</h2><p>头像的上传和普通的图片上传几乎没有不同，但通常需要对上传的图片进行限制，例如限制图片格式为png/jpg，图片大小的限制，图片像素的限制等。</p>
+<h3 id="图片格式的限制"><a href="#图片格式的限制" class="headerlink" title="图片格式的限制"></a>图片格式的限制</h3><p>限制为图片格式[‘jpg’, ‘jpeg’, ‘png’, ‘bmp’]，如果头像允许显示动态图，也可以允许gif，不过考虑到大小，一般不允许。最好给予用户提示文案，限定一种最友好的图片格式，例如png。</p>
+<h3 id="图片大小的限制"><a href="#图片大小的限制" class="headerlink" title="图片大小的限制"></a>图片大小的限制</h3><p>头像一般不允许过大的图片，因为引用的页面可能比较多，所以一般限制在百k的级别。例如120k。</p>
+<h3 id="图片像素的限制"><a href="#图片像素的限制" class="headerlink" title="图片像素的限制"></a>图片像素的限制</h3><p>头像一般为正方形，所以最好有文案提示用户上传正方形的图片，而且给予限定范围，例如“尺寸需小于256px*256px且大于120px*120px”，同时给出最佳的头像显示像素，采用此种像素，在应用中大部分情况下既不压缩也不拉伸。由于大部分情况下用户不会上传完全正方形的图片，所以在一定的宽高比例内，也应该允许上传。</p>
+<h3 id="提示语"><a href="#提示语" class="headerlink" title="提示语"></a>提示语</h3><p>包括：  </p>
+<pre><code>1. 默认提示语
+2. 默认上传失败提示语
+3. 上传成功提示语
+4. 图片格式不正确
+5. 图片大小超过限制
+6. 图片宽高比例不正确
+</code></pre><h3 id="上传进度"><a href="#上传进度" class="headerlink" title="上传进度"></a>上传进度</h3><p>有时也需要显示上传进度，不过一般而言图片文件不会很大，如果单单只是图片的上传，也可以使用loading图。</p>
+<h3 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h3><p>最简单的上传头像图片的逻辑代码如下：  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span></span></span><br><span class="line"><span class="tag">    <span class="attr">class</span>=<span class="string">"upload-example"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">type</span>=<span class="string">"file"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">placeholder</span>=<span class="string">"选择图片"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">onchange</span>=<span class="string">"onChange"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">onChange</span>(<span class="params">e</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> file = e.target.files[<span class="number">0</span>];</span></span><br><span class="line"><span class="javascript">    check(file); <span class="comment">// 检查待上传文件是否符合要求</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> formData = <span class="keyword">new</span> FormData();</span></span><br><span class="line"><span class="javascript">    formData.append(<span class="string">'file'</span>, file, file.name);</span></span><br><span class="line">    upload(formData);</span><br><span class="line">&#125;</span><br><span class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">upload</span>(<span class="params">formData</span>) </span>&#123;</span></span><br><span class="line">    axios.request(&#123;</span><br><span class="line"><span class="javascript">            method: <span class="string">'post'</span>,</span></span><br><span class="line">            url: uploadUrl,</span><br><span class="line">            data: formData,</span><br><span class="line">            headers: &#123;</span><br><span class="line"><span class="javascript">                <span class="string">'Content-Type'</span>: <span class="string">'multipart/form-data'</span></span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).then(</span><br><span class="line">            ...</span><br><span class="line">        )</span><br><span class="line">&#125;</span><br><span class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">check</span>(<span class="params">file</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// file.type in [typeLimit]</span></span></span><br><span class="line"><span class="javascript">    <span class="comment">// file.size &lt; sizeLimit</span></span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="头像的显示"><a href="#头像的显示" class="headerlink" title="头像的显示"></a>头像的显示</h2><p>头像的显示也有两种方案，一种是显示为img，另一种是显示为div，然后通过将背景设置为头像图片来显示。两种都需要设置 <code>border-radiu: 50%;</code> 。下面演示下两种显示方案。我们假设头像的区域范围为120px*120px。用户上传了几种头像，一种是实际图片大小为400px*400px，另一种为800px*400px，还有一种为120px*60px。</p>
+<h3 id="用img标签显示"><a href="#用img标签显示" class="headerlink" title="用img标签显示"></a>用img标签显示</h3><p>设置图片的宽和高，通常长度相同，然后设置 <code>border-radiu: 50%;</code> 即可，这样如果用户上传的图片不是正方形的话，在相应的方向上会有拉伸或压缩的效果，如下图二，因为宽度大于高度，且大于120px所以产生了在宽度上压缩的效果。下图三因为高度小于宽度，且小于120px，所以在高度上产生了拉伸的效果。</p>
+<p>效果图：  </p>
+<div><style type="text/css">img.avator-example-1 {height: 120px;width: 120px;border-radius: 50%;box-shadow:none;}</style></div><div><img class="avator-example-1" src="/blog/static/imgs/avator/400_400.jpg"><img class="avator-example-1" src="/blog/static/imgs/avator/800_400.jpg"><img class="avator-example-1" src="/blog/static/imgs/avator/120_60.jpg"></div>
+
+<p>代码：  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">img</span><span class="selector-class">.avator-example-1</span> &#123;</span></span><br><span class="line">        height: 120px;</span><br><span class="line">        width: 120px;</span><br><span class="line">        border-radius: 50%;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"avator-example-1"</span> <span class="attr">src</span>=<span class="string">"/blog/static/imgs/avator/400_400.jpg"</span>&gt;</span><span class="tag">&lt;/<span class="name">img</span>&gt;</span><span class="comment">&lt;!-- 图一 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"avator-example-1"</span> <span class="attr">src</span>=<span class="string">"/blog/static/imgs/avator/800_400.jpg"</span>&gt;</span><span class="tag">&lt;/<span class="name">img</span>&gt;</span><span class="comment">&lt;!-- 图二 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"avator-example-1"</span> <span class="attr">src</span>=<span class="string">"/blog/static/imgs/avator/120_60.jpg"</span>&gt;</span><span class="tag">&lt;/<span class="name">img</span>&gt;</span><span class="comment">&lt;!-- 图三 --&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="用div标签的background-image来显示"><a href="#用div标签的background-image来显示" class="headerlink" title="用div标签的background-image来显示"></a>用div标签的background-image来显示</h3><p>设置区域的 <code>background-image</code> 为用户上传的图片然后设置 <code>background-size</code> 属性即可，例如设置 <code>background-size: 120px 120px;</code> 则会在相应的方向上压缩或拉伸，如下图三。如果设置 <code>background-size: auto 120px;</code> 则图像的高度会占满空间，宽度会取120px，如下图二。这和设置成 <code>background-size: cover;</code> 的效果是相同的，如下图四，五。注意，因为此处举例的图片为宽度大于高度，所以设置 <code>background-size: auto 120px;</code> 会呈现圆形，如果高度大于宽度，则应当设置 <code>backgounrd-size: 120px auto;</code> 。</p>
+<p>效果图：  </p>
+<div><style type="text/css">div.avator-example-2,div.avator-example-3,div.avator-example-4,div.avator-example-5,div.avator-example-6 {height: 120px;width: 120px;margin: 10px 25px;border-radius: 50%;background-color: #fff;background-size: 120px 120px;background-repeat: no-repeat;background-image: url(/blog/static/imgs/avator/800_400.jpg);}div.avator-example-2 {background-image: url(/blog/static/imgs/avator/400_400.jpg);}div.avator-example-3 {background-size: auto 120px;}div.avator-example-5,div.avator-example-6 {background-size: cover;}div.avator-example-6 {background-image:url(/blog/static/imgs/avator/120_60.jpg);}</style></div><div style="display:flex; flex-wrap: wrap;"><div class="avator-example-2"></div><div class="avator-example-3"></div><div class="avator-example-4"></div><div class="avator-example-5"></div><div class="avator-example-6"></div></div>
+
+<p>代码：  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-2</span>,</span></span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-3</span>,</span></span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-4</span>,</span></span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-5</span> &#123;</span></span><br><span class="line">        height: 120px;</span><br><span class="line">        width: 120px;</span><br><span class="line">        border-radius: 50%;</span><br><span class="line"><span class="css">        <span class="selector-tag">background-color</span>: <span class="selector-id">#fff</span>;</span></span><br><span class="line">        background-size: 120px 120px;</span><br><span class="line">        background-repeat: no-repeat;</span><br><span class="line">        background-image: url(/blog/static/imgs/avator/800_400.jpg);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-2</span> &#123;</span></span><br><span class="line">        background-image: url(/blog/static/imgs/avator/400_400.jpg);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-3</span> &#123;</span></span><br><span class="line">        background-size: auto 120px;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-5</span>,</span></span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-6</span> &#123;</span></span><br><span class="line">        background-size: cover;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-6</span> &#123;</span></span><br><span class="line">        background-image: url(/blog/static/imgs/avator/120_60.jpg);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"avator-example-2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="comment">&lt;!-- 图一 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"avator-example-3"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="comment">&lt;!-- 图二 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"avator-example-4"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="comment">&lt;!-- 图三 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"avator-example-5"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="comment">&lt;!-- 图四 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"avator-example-6"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="comment">&lt;!-- 图五 --&gt;</span></span><br></pre></td></tr></table></figure>
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/12/06/Flex布局/">Flex布局</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-12-06T12:34:55.000Z" itemprop="datePublished">2018-12-06</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/">CSS</a>, <a class="article-tag-link" href="/blog/tags/flex/">flex</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="Flex布局"><a href="#Flex布局" class="headerlink" title="Flex布局"></a>Flex布局</h2><p>Flex是Flexible Box的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性，设为Flex布局以后，子元素的float、clear和vertical-align属性无效。  </p>
+<p>任何一个容器都可以指定为flex布局</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: -webkit-flex;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>flex布局由父子元素共同组成，父元素被称为flex container，子元素被称为flex item。</p>
+<div><style type="text/css">img {box-shadow:none !important;</style><img src="/blog/static/imgs/flex.png" alt="flex"></div>
+
+<p>容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。主轴的开始位置（与边框的交叉点）叫做main start，结束位置叫做main end；交叉轴的开始位置叫做cross start，结束位置叫做cross end。  </p>
+<p>项目默认沿主轴排列。单个项目占据的主轴空间叫做main size，占据的交叉轴空间叫做cross size。  </p>
+<h2 id="flex-container-属性"><a href="#flex-container-属性" class="headerlink" title="flex container 属性"></a>flex container 属性</h2><p>flex container包含以下属性  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">flex-container &#123; // flex容器</span><br><span class="line">    display: flex; // 设置容器为弹性布局</span><br><span class="line">    flex-direction: row(default) | row-reverse | column | column-reverse; // 主轴方向</span><br><span class="line">    flex-wrap: nowrap(default) | wrap | wrap-reverse; //换行</span><br><span class="line">    flex-flow: &lt;flex-direction&gt;||&lt;flex-wrap&gt;; //以上两属性的缩写形式</span><br><span class="line">    justify-centent: flex-start | flex-end | center | space-between | space-around; //主轴对齐方式</span><br><span class="line">    align-items: flex-start | flex-end | center | baseline | stretch; // 交叉轴对齐方式</span><br><span class="line">    align-content: flex-start | flex-end | center | space-between | space-around | stretch; // 轴有多个时（flex-wrap:wrap），多根轴线的对齐方式</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="flex-item-属性"><a href="#flex-item-属性" class="headerlink" title="flex item 属性"></a>flex item 属性</h2><p>flex item 包含以下属性  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">flex-item &#123; // flex item</span><br><span class="line">    order: &lt;integer&gt;(default 0); //顺序</span><br><span class="line">    flex-grow:&lt;number&gt;(default 0); //项目放大比例 默认存在剩余空间也不放大</span><br><span class="line">    flex-shrink: &lt;number&gt;(default 1); //项目缩小比例 默认空间不足时，当前项目缩小</span><br><span class="line">    flex-basis: &lt;length&gt;|auto(default auto); // 在分配多余空间之前，项目占据主轴的空间</span><br><span class="line">    flex:&lt;flex-grow&gt; || &lt;flex-shrink&gt; || &lt;flex-basis&gt;; //flex-grow flex-shrink flex-basis 缩写</span><br><span class="line">    align-self: auto | flex-start | flex-end | center | baseline | stretch;//该项目交叉轴对齐方式， 覆盖container的align-items属性</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/11/30/Mac-下Eclipse快捷键/">Mac下Eclipse快捷键</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-11-30T10:29:17.000Z" itemprop="datePublished">2018-11-30</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/eclipse/">eclipse</a>, <a class="article-tag-link" href="/blog/tags/learn/">learn</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="快捷操作"><a href="#快捷操作" class="headerlink" title="快捷操作"></a>快捷操作</h2><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>快捷键</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>全选</td>
+<td>command A</td>
+</tr>
+<tr>
+<td>复制</td>
+<td>command C</td>
+</tr>
+<tr>
+<td>粘贴</td>
+<td>command V</td>
+</tr>
+<tr>
+<td>查找</td>
+<td>command F</td>
+</tr>
+<tr>
+<td>回退</td>
+<td>command Z</td>
+</tr>
+<tr>
+<td>剪切</td>
+<td>command X</td>
+</tr>
+<tr>
+<td>退出</td>
+<td>command Q</td>
+</tr>
+<tr>
+<td>删除当前行</td>
+<td>command D</td>
+</tr>
+<tr>
+<td>放大字体</td>
+<td>command +</td>
+</tr>
+<tr>
+<td>缩小字体</td>
+<td>command -</td>
+</tr>
+<tr>
+<td>注释/反注释</td>
+<td>command /</td>
+</tr>
+<tr>
+<td>打开preference</td>
+<td>command ,</td>
+</tr>
+<tr>
+<td>代码补全提示</td>
+<td>option /</td>
+</tr>
+<tr>
+<td>最大化/还原</td>
+<td>control M</td>
+</tr>
+<tr>
+<td>格式化代码</td>
+<td>command shift F</td>
+</tr>
+<tr>
+<td>自动导入包</td>
+<td>command shift O</td>
+</tr>
+</tbody>
+</table>
+<h2 id="便利设置"><a href="#便利设置" class="headerlink" title="便利设置"></a>便利设置</h2><p>Preference -&gt; General -&gt; Editors -&gt; Text Editors</p>
+<p><input type="checkbox" checked> Show line numbers<br><input type="checkbox" checked> Show white space charactors</p>
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/11/29/CSS-position的四种值/">css postion的四种值</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-11-29T11:29:20.000Z" itemprop="datePublished">2018-11-29</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="position四个属性"><a href="#position四个属性" class="headerlink" title="position四个属性"></a>position四个属性</h2><table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>absolute</td>
+<td>生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。<br>此元素的位置可通过 “left”、”top”、”right” 以及 “bottom” 属性来规定。</td>
+</tr>
+<tr>
+<td>relative</td>
+<td>生成相对定位的元素，相对于其正常位置进行定位。</td>
+</tr>
+<tr>
+<td>fixed</td>
+<td>生成绝对定位的元素，相对于浏览器窗口进行定位。<br>元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。</td>
+</tr>
+<tr>
+<td>static</td>
+<td>默认值。static 元素会忽略任何 top、bottom、left、right 和z-index 声明</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>规定应该从父元素继承 position 属性的值。</td>
+</tr>
+</tbody>
+</table>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+
+
+<nav class="page-nav">
+    <a class="extend prev" rel="prev" href="/blog/page/3/">&laquo; Prev</a><a class="page-number" href="/blog/">1</a><a class="page-number" href="/blog/page/2/">2</a><a class="page-number" href="/blog/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/blog/page/5/">5</a><a class="page-number" href="/blog/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/10/">10</a><a class="extend next" rel="next" href="/blog/page/5/">Next &raquo;</a>
+</nav>
+
+
+</div>
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明：
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码">
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码">
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>
