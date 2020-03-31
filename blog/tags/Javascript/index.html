@@ -105,6 +105,81 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/blog/2020/03/31/Javascript中call的模拟实现/">Javascript中call,apply,bind的模拟实现</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2020-03-31T05:01:10.000Z" itemprop="datePublished">2020-03-31</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/Javascript/">Javascript</a>, <a class="article-tag-link" href="/blog/tags/interview/">interview</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="call-的模拟实现"><a href="#call-的模拟实现" class="headerlink" title="call 的模拟实现"></a>call 的模拟实现</h2><p><strong>Function.prototype.call()</strong></p>
+<p>call() 方法使用一个指定的 this 值和单独给出的一个或多个参数来调用一个函数。  </p>
+<p>我们所要做的和注意的有以下几点：  </p>
+<ol>
+<li>call 函数是 Function 的一个原型方法</li>
+<li>call 改变了原函数 this 的指向，this 变成了给定的第一个参数</li>
+<li>call 函数的第一个参数应该是对象或者能转换成对象</li>
+<li>该函数执行了，并返回了结果</li>
+<li>给出多个参数时，从第二个参数到最后一个参数作为函数的实参进行调用</li>
+<li>call 的第一个参数可以传 null/undefined，当为 null/undefined 的时候，视为指向全局对象</li>
+</ol>
+<p>实际实现如下：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.call = <span class="function"><span class="keyword">function</span>(<span class="params">context</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> context = <span class="built_in">Object</span>(context) || <span class="built_in">window</span>; <span class="comment">// 1 当context为 字符串、数字或布尔值时进行转换 2 传null/undefined时指向window</span></span><br><span class="line">    <span class="keyword">var</span> id = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (context[<span class="string">'_fn'</span> + id]) &#123;</span><br><span class="line">        id++;</span><br><span class="line">    &#125;</span><br><span class="line">    context[<span class="string">'_fn'</span> + id] = <span class="keyword">this</span>; <span class="comment">// 为 context 添加新方法，避免context已有同名方法需要找到不重复的函数名</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> args = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>, len = <span class="built_in">arguments</span>.length; i &lt; len; i++) &#123;</span><br><span class="line">        args.push(<span class="string">'arguments['</span> + i + <span class="string">']'</span>);</span><br><span class="line">    &#125; <span class="comment">// 拼接从第二个参数到最后一个参数</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> result = <span class="built_in">eval</span>(<span class="string">'context._fn'</span> + id + <span class="string">'('</span> + args + <span class="string">')'</span>); <span class="comment">// 调用eval执行函数，args 会自动调用 toString()转换为字符串</span></span><br><span class="line">    <span class="keyword">delete</span> context[<span class="string">'_fn'</span> + id]; <span class="comment">// 删除添加的属性</span></span><br><span class="line">    <span class="keyword">return</span> result; <span class="comment">// 返回函数执行结果</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="apply-的模拟实现"><a href="#apply-的模拟实现" class="headerlink" title="apply 的模拟实现"></a>apply 的模拟实现</h2><p><strong>Function.prototype.apply()</strong></p>
+<p>apply() 方法调用一个具有给定this值的函数，以及作为一个数组（或类似数组对象）提供的参数。  </p>
+<p>apply的模拟实现和call类似，需要注意的是apply的第二个参数是一个数组（或类似数组对象）。  </p>
+<p>实际实现如下：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.apply = <span class="function"><span class="keyword">function</span>(<span class="params">context, arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> context = <span class="built_in">Object</span>(context) || <span class="built_in">window</span>;</span><br><span class="line">    <span class="keyword">var</span> id = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (context[<span class="string">'_fn'</span> + id]) &#123;</span><br><span class="line">        id++;</span><br><span class="line">    &#125;</span><br><span class="line">    context[<span class="string">'_fn'</span> + id] = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> result;</span><br><span class="line">    <span class="keyword">if</span> (!arr) &#123;</span><br><span class="line">        result = context[<span class="string">'_fn'</span> + id]();</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> arr !== <span class="string">'object'</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="built_in">TypeError</span>(<span class="string">'CreateListFromArrayLike called on non-object'</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> args = [];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, len = arr.length; i &lt; len; i++) &#123;</span><br><span class="line">           args.push(<span class="string">'arr['</span> + i + <span class="string">']'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        result = <span class="built_in">eval</span>(<span class="string">'context._fn'</span> + id + <span class="string">'('</span> + args + <span class="string">')'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span> context[<span class="string">'_fn'</span> + id];</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="bind-的模拟实现"><a href="#bind-的模拟实现" class="headerlink" title="bind 的模拟实现"></a>bind 的模拟实现</h2><p><strong>Function.prototype.bind()</strong></p>
+<p>bind() 方法创建一个新的函数，在 bind() 被调用时，这个新函数的 this 被指定为 bind() 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。</p>
+<p>我们所要做的和注意的有以下几点：  </p>
+<ol>
+<li>bind 函数是 Function 的一个原型方法</li>
+<li>直接调用时 bind 改变了 this 的指向，this 变成了给定的第一个参数</li>
+<li>bind 函数的第一个参数应该是对象或者能转换成对象</li>
+<li>bind 函数返回的是一个函数而不是函数执行的结果</li>
+<li>给出多个参数时，从第二个参数到最后一个参数作为函数的实参进行调用</li>
+<li>bind 返回的函数在调用时，可以继续添加参数</li>
+<li>当 bind 返回的函数作为构造函数的时候，bind 时指定的 this 值会失效，但传入的参数依然生效。</li>
+</ol>
+<p>实际实现如下：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.bind = <span class="built_in">Function</span>.prototype.bind || <span class="function"><span class="keyword">function</span> (<span class="params">context</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span> !== <span class="string">"function"</span>) &#123; <span class="comment">// </span></span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"Function.prototype.bind - what is trying to be bound is not callable"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">var</span> slice = <span class="built_in">Array</span>.prototype.slice;</span><br><span class="line">    <span class="keyword">var</span> args = slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>); <span class="comment">// 获取bind函数从第二个参数到最后一个参数</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> fNOP = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> fBound = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> bindArgs = slice.call(<span class="built_in">arguments</span>); <span class="comment">// 这个时候的 arguments 是指 fBound 函数传入的参数</span></span><br><span class="line">        <span class="keyword">return</span> self.apply(<span class="keyword">this</span> <span class="keyword">instanceof</span> fBound ? <span class="keyword">this</span> : context, args.concat(bindArgs)); <span class="comment">// 当作为构造函数时，this 指向实例，此时结果为 true，将绑定函数的 this 指向该实例，可以让实例获得来自绑定函数的值</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fNOP.prototype = <span class="keyword">this</span>.prototype;</span><br><span class="line">    fBound.prototype = <span class="keyword">new</span> fNOP(); <span class="comment">// 修改返回函数的 prototype 为绑定函数的 prototype，实例就可以继承绑定函数的原型中的值</span></span><br><span class="line">    <span class="keyword">return</span> fBound;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="es5-shim"><a href="#es5-shim" class="headerlink" title="es5-shim"></a>es5-shim</h2><p>完整的模拟实现参考 <a href="https://github.com/es-shims/es5-shim" target="_blank" rel="noopener">es5-shim</a> </p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope="" itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/blog/2018/11/26/下载csv文件/">下载csv文件</a>
         </h1>
         
