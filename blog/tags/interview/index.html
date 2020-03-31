@@ -105,7 +105,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2020/03/31/Javascript中call的模拟实现/">Javascript中call,apply,bind的模拟实现</a>
+            <a href="/blog/2020/03/31/Javascript中call,apply,bind的模拟实现/">Javascript中call,apply,bind的模拟实现</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -819,7 +819,36 @@
 <h3 id="常用正则表达式如何书写？"><a href="#常用正则表达式如何书写？" class="headerlink" title="常用正则表达式如何书写？"></a>常用正则表达式如何书写？</h3><p>（手机号）（邮箱地址）（url地址）</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 手机号</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPhoneAvailable</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> myreg = <span class="regexp">/^1[3,4,5,7,8]\d&#123;9&#125;$/</span>;</span><br><span class="line">    <span class="keyword">if</span> (!myreg.test(str)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 邮箱</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isMailAvailable</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> myreg = <span class="regexp">/^([\w\-\.]+)@([\w\-]+)\.([a-zA-Z]&#123;2,4&#125;)$/</span>;</span><br><span class="line">    <span class="keyword">if</span> (!myreg.test(str)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// url</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isUrlAvailable</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> myreg = <span class="regexp">/[a-zA-Z]+:/</span><span class="regexp">/[^\s]+/</span>;</span><br><span class="line">    <span class="keyword">if</span> (!myreg.test(str)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="解释-http-https-http2-含义"><a href="#解释-http-https-http2-含义" class="headerlink" title="解释 http https http2 含义"></a>解释 http https http2 含义</h3><p><code>TODO: 解释 http https http2 含义</code></p>
-<p><a href="https://www.jianshu.com/p/67c541a421f9" target="_blank" rel="noopener">https://www.jianshu.com/p/67c541a421f9</a></p>
+<p><a href="https://www.jianshu.com/p/67c541a421f9" target="_blank" rel="noopener">https://www.jianshu.com/p/67c541a421f9</a><br><a href="https://www.jianshu.com/p/e57ca4fec26f" target="_blank" rel="noopener">https://www.jianshu.com/p/e57ca4fec26f</a></p>
+<h3 id="http2有哪些特性？"><a href="#http2有哪些特性？" class="headerlink" title="http2有哪些特性？"></a>http2有哪些特性？</h3><ol>
+<li><p>二进制分帧层 (Binary Framing Layer)<br>帧是数据传输的最小单位，以二进制传输代替原本的明文传输，原本的报文消息被划分为更小的数据帧</p>
+</li>
+<li><p>多路复用 (MultiPlexing)<br>在一个 TCP 连接上，我们可以向对方不断发送帧，每帧的 stream identifier 的标明这一帧属于哪个流，然后在对方接收时，根据 stream identifier 拼接每个流的所有帧组成一整块数据。<br>把 HTTP/1.1 每个请求都当作一个流，那么多个请求变成多个流，请求响应数据分成多个帧，不同流中的帧交错地发送给对方，这就是 HTTP/2 中的多路复用。</p>
+</li>
+<li><p>服务端推送 (Server Push)<br>浏览器发送一个请求，服务器主动向浏览器推送与这个请求相关的资源，这样浏览器就不用发起后续请求。</p>
+</li>
+<li><p>Header 压缩 (HPACK)<br>使用 HPACK 算法来压缩首部内容</p>
+</li>
+<li><p>应用层的重置连接<br>对于 HTTP/1 来说，是通过设置 tcp segment 里的 reset flag 来通知对端关闭连接的。这种方式会直接断开连接，下次再发请求就必须重新建立连接。HTTP/2 引入 RST_STREAM 类型的 frame，可以在不断开连接的前提下取消某个 request 的 stream，表现更好。</p>
+</li>
+<li><p>请求优先级设置<br>HTTP/2 里的每个 stream 都可以设置依赖 (Dependency) 和权重，可以按依赖树分配优先级，解决了关键请求被阻塞的问题</p>
+</li>
+<li><p>流量控制<br>每个 http2 流都拥有自己的公示的流量窗口，它可以限制另一端发送数据。对于每个流来说，两端都必须告诉对方自己还有足够的空间来处理新的数据，而在该窗口被扩大前，另一端只被允许发送这么多数据。</p>
+</li>
+</ol>
+<p>以下优化方法在HTTP2中不再适用：  </p>
+<ol>
+<li>域名分片</li>
+</ol>
+<p>HTTP/2 对于同一域名使用一个 TCP 连接足矣，过多 TCP 连接浪费资源而且效果不见得一定好而且资源分域会破坏 HTTP/2 的优先级特性，还会降低头部压缩效果</p>
+<ol start="2">
+<li>资源合并</li>
+</ol>
+<p>资源合并会不利于缓存机制，而且单文件过大对于 HTTP/2 的传输不好，尽量做到细粒化更有利于 HTTP2 传输</p>
+<ol start="3">
+<li>资源内联</li>
+</ol>
+<p>HTTP/2 支持 Server-Push，相比较内联优势更大效果更好，而且内联的资源不能有效缓存，如果有共用，多页面内联也会造成浪费</p>
 <h3 id="为什么js在html尾部引入，CSS在头部引入比较合适？"><a href="#为什么js在html尾部引入，CSS在头部引入比较合适？" class="headerlink" title="为什么js在html尾部引入，CSS在头部引入比较合适？"></a>为什么js在html尾部引入，CSS在头部引入比较合适？</h3><p>网站加载的整个完整过程</p>
 <ol>
 <li>首先浏览器从服务器接收到html代码，然后开始解析html</li>
@@ -942,11 +971,64 @@
 <li>处理渲染</li>
 </ol>
 <h3 id="前端性能优化从哪几方面入手？有哪些方法？"><a href="#前端性能优化从哪几方面入手？有哪些方法？" class="headerlink" title="前端性能优化从哪几方面入手？有哪些方法？"></a>前端性能优化从哪几方面入手？有哪些方法？</h3><ol>
-<li>减少请求次数</li>
-<li>加快请求速度</li>
-<li>减小请求体积</li>
-<li>缩短渲染时间</li>
+<li>性能优化=》减少从用户输入网址到用户看到期望内容的时间</li>
+<li>从用户输入url到 window.onload 发生了什么<ul>
+<li>预处理 本地</li>
+<li>读取cache 本地</li>
+<li>查询DNS 网络</li>
+<li>建立连接 网络</li>
+<li>发送请求 网络</li>
+<li>等待响应 网络</li>
+<li>接收数据 本地</li>
+<li>处理渲染 本地</li>
+</ul>
+</li>
+<li>本地 =》 缩短渲染时间<br>网络 =》 减少请求次数 减小请求体积 加快请求速度</li>
+<li>基本原则<ul>
+<li>建立监控机制 （监控）</li>
+<li>日志分析 （分析）</li>
+<li>针对监控暴露的弱点优化 （优化）</li>
+</ul>
+</li>
+<li>监控节点 window.performance.timing<ul>
+<li>白屏时间 &lt;\/head&gt;结束 domLoading - fetchStart</li>
+<li>首屏时间 首屏加载结束</li>
+<li>用户可操作时间 DOMReady&amp;核心js加载完毕 domContentLoadedEventEnd - fetchStart</li>
+<li>总下载时间 onload/异步渲染完毕 loadEventEnd - fetchStart</li>
+</ul>
+</li>
+<li>常用的性能优化方法</li>
 </ol>
+<ul>
+<li>减少http请求内容</li>
+<li>使用cdn</li>
+<li>添加 expires/ cache-control header</li>
+<li>使用gzip</li>
+<li>将css放到html顶部加载</li>
+<li>将js放到底部加载</li>
+<li>外部引用js &amp; css</li>
+<li>uglify js &amp; css</li>
+<li>避免重定向</li>
+<li>移除重复js</li>
+<li>配置Etags</li>
+<li>缓存ajax数据</li>
+<li>预先加载组件</li>
+<li>减少dom元素个数</li>
+<li>减少iframes</li>
+<li>避免404错误</li>
+<li>减少cookie大小</li>
+<li>对于不需要cookie的组件/请求，使用单独的域名</li>
+<li>减少dom操作</li>
+<li>采用事件委托</li>
+<li>减少 @import 动态导入</li>
+<li>优化图像大小</li>
+<li>使用css图像拼合</li>
+<li>不要缩放图像</li>
+<li>favicon.icon 尽量小&amp;缓存</li>
+<li>组件小于25k</li>
+<li>避免空image src</li>
+<li>采用 渐进式jpeg</li>
+</ul>
 <h3 id="解释-MVVM，MVC"><a href="#解释-MVVM，MVC" class="headerlink" title="解释 MVVM，MVC"></a>解释 MVVM，MVC</h3><p>MVVM: Model View View-Model<br>MVC: Model View Controller</p>
 <h3 id="解释-SSR、SEO、SPA"><a href="#解释-SSR、SEO、SPA" class="headerlink" title="解释 SSR、SEO、SPA"></a>解释 SSR、SEO、SPA</h3><p>SSR: Server side render 服务器渲染<br>SEO: Search engine optimize 搜索引擎优化<br>SPA: Single page application 单页面应用</p>
 <h2 id="vue相关"><a href="#vue相关" class="headerlink" title="vue相关"></a>vue相关</h2><h3 id="v-if和v-show有哪些不同？"><a href="#v-if和v-show有哪些不同？" class="headerlink" title="v-if和v-show有哪些不同？"></a>v-if和v-show有哪些不同？</h3><p>v-if和v-show都是控制组件是否显示的参数, v-if为false时dom不会被渲染,<br>v-show为false时dom会被渲染，但是会被设置成 <code>display:none</code> , 在组件可能频繁切换显示状态的时候推荐用v-show</p>
