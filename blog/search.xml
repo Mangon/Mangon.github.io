@@ -129,9 +129,9 @@
       
         <tags>
             
-            <tag> database </tag>
-            
             <tag> MongoDB </tag>
+            
+            <tag> database </tag>
             
         </tags>
       
@@ -173,9 +173,9 @@
       
         <tags>
             
-            <tag> redis </tag>
-            
             <tag> database </tag>
+            
+            <tag> redis </tag>
             
         </tags>
       
