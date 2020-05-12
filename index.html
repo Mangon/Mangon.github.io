@@ -105,6 +105,95 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/blog/2020/05/12/js引擎介绍/">Javascript引擎介绍</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2020-05-12T06:40:22.000Z" itemprop="datePublished">2020-05-12</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/Javascript/">Javascript</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="Javascript历史"><a href="#Javascript历史" class="headerlink" title="Javascript历史"></a>Javascript历史</h2><p>ECMAScript 最初是由网景的 Brendan Eich 开发的一种脚本语言的标准化规范；一开始命名为Mocha，后来改名为LiveScript，最后重命名为JavaScript。1995年12月，Sun 与 Netscape 联合发表了JavaScript。1996年11月，网景公司将 JavaScript 提交给欧洲计算机制造商协会进行标准化。ECMA-262的第一个版本于1997年6月被Ecma组织采纳。ECMA Script是ECMA-262标准化的脚本语言的名称。尽管JavaScript和JScript与ECMAScript兼容，但包含超出ECMA Script的功能。  </p>
+<p>ECMAScript是一种可以在宿主环境中执行计算并能操作可计算对象的基于对象的程序设计语言。ECMAScript最先被设计成一种Web脚本语言，用来支持Web页面的动态表现以及为基于Web的客户机—服务器架构提供服务器端的计算能力。但作为一种脚本语言， ECMAScript具备同其他脚本语言一样的性质，即“用来操纵、定制一个已存在系统所提供的功能，以及对其进行自动化”。  </p>
+<p>1999年12月，ECMAScript 3.0版发布，成为JavaScript的通行标准，得到了广泛支持。<br>2009年12月，ECMAScript 5.0版正式发布。<br>2015年6月17日，ECMAScript 6发布正式版本，即ECMAScript 2015。</p>
+<p>ECMA的第39号技术专家委员会（Technical Committee 39，简称TC39）负责制订ECMAScript标准，成员包括Microsoft、Mozilla、Google等大公司。</p>
+<p>Javascript 语言规范 <a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm" target="_blank" rel="noopener">ECMA-262</a>。</p>
+<p>理论上，实现了上述规范能够提供执行JavaScript代码的运行环境都可以称为Javascript引擎，下面我们来了解下比较流行的Javascript引擎。  </p>
+<table>
+<thead>
+<tr>
+<th>主流浏览器</th>
+<th>js引擎</th>
+<th>浏览器内核</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IE -&gt; Edge</td>
+<td>JScript（IE3.0-IE8.0） / ChakraCore（IE9+之后）</td>
+<td>Trident-&gt;EdgeHTML-&gt;Chromium</td>
+</tr>
+<tr>
+<td>Chrome</td>
+<td>V8</td>
+<td>Chromium(Webkit-&gt;Blink)</td>
+</tr>
+<tr>
+<td>Safari</td>
+<td>Nitro（4-）</td>
+<td>Webkit</td>
+</tr>
+<tr>
+<td>Firefox</td>
+<td>SpiderMonkey（1.0-3.0）/ TraceMonkey（3.5-3.6）/ JaegerMonkey（4.0-）</td>
+<td>Gecko</td>
+</tr>
+<tr>
+<td>Opera</td>
+<td>Linear A（4.0-6.1）/ Linear B（7.0-9.2）/ Futhark（9.5-10.2）/ Carakan（10.5-）</td>
+<td>Elektra(4-6)-&gt;Presto(7.0-12.18)-&gt;WebKit-&gt;Blink</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ChakraCore"><a href="#ChakraCore" class="headerlink" title="ChakraCore"></a>ChakraCore</h2><p><a href="https://github.com/Microsoft/ChakraCore" target="_blank" rel="noopener">ChakraCore</a> 是 Micosoft Edge 所使用的Javascript引擎。支持JIT，垃圾回收机制。</p>
+<h2 id="JavaScriptCore"><a href="#JavaScriptCore" class="headerlink" title="JavaScriptCore"></a>JavaScriptCore</h2><p>Apple 开发的开源 JavaScript 引擎，<a href="https://github.com/WebKit/webkit/tree/master/Source/JavaScriptCore" target="_blank" rel="noopener">JavaScriptCore</a> 引擎是 WebKit 中默认的引擎。2008 年重写了，叫做 SquirrelFish，后来是 SquirrelFish Extreme，又叫 Nitro。它主要是将源代码翻译成抽象语法树，之后是平台无关的字节码，在最初的版本中，字节码会被 JavaScriptCore 引擎解释执行。在后面的版本中，逐渐加入了JIT编译器，将热点函数生成本地代码。</p>
+<h2 id="v8"><a href="#v8" class="headerlink" title="v8"></a>v8</h2><p>Google 开发的开源 JavaScript 引擎，以高性能著称。 <a href="https://github.com/v8/v8" target="_blank" rel="noopener">v8</a>最开始是一帮语言方面的专家设计出来的，之后被 Google 收购，成为了 JavaScript 引擎和众多相关技术的引领者。为了达到高性能的 JavaScript 代码执行效率从而获得更好的网页浏览效果，V8 采用直接将 JavaScript 编译成本地代码的方式。V8 支持众多的操作系统，包括但是不限于 Windows、Linux、Android、Mac OS X 等。同时它也是能够支持众多的硬件架构，例如 IA32、X64、ARM、MIPS 等。</p>
+<h2 id="SpiderMonkey"><a href="#SpiderMonkey" class="headerlink" title="SpiderMonkey"></a>SpiderMonkey</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Mozilla/Projects/SpiderMonkey/Releases" target="_blank" rel="noopener">SpiderMonkey</a> 是 Mozilla 使用C/C++编写的 JavaScript 引擎。它被用于包括Firefox 在内的多个 Mozilla 产品中，使用的是 MPL 2 授权协议.</p>
+<h2 id="Rhino"><a href="#Rhino" class="headerlink" title="Rhino"></a>Rhino</h2><p><a href="https://github.com/mozilla/rhino" target="_blank" rel="noopener">Rhino</a>Rhino 是一个完全使用Java语言编写的开源JavaScript实现，由 Mozilla 开发。<a href="https://developer.mozilla.org/zh-CN/docs/Mozilla/Projects/Rhino/Download_Rhino" target="_blank" rel="noopener">Rhino</a> 通常用于在Java程序中，为最终用户提供脚本化能力。它被作为J2SE 6上的默认Java脚本化引擎。</p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope="" itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/blog/2020/03/31/Javascript中call,apply,bind的模拟实现/">Javascript中call,apply,bind的模拟实现</a>
         </h1>
         
@@ -404,138 +493,10 @@
 </article>
 
 
-    <article class="article" itemscope="" itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2019/08/21/Python爬虫Scrapy/">Python爬虫Scrapy</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-08-21T07:16:45.000Z" itemprop="datePublished">2019-08-21</time>
-</span>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/crawler/">crawler</a>, <a class="article-tag-link" href="/blog/tags/python/">python</a>, <a class="article-tag-link" href="/blog/tags/scrapy/">scrapy</a>, <a class="article-tag-link" href="/blog/tags/spider/">spider</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="Scrapy简介"><a href="#Scrapy简介" class="headerlink" title="Scrapy简介"></a>Scrapy简介</h2><p><a href="https://scrapy.org/" target="_blank" rel="noopener">Scrapy</a> 是一个开源的Python网络爬虫框架。源码在github上开源，<a href="https://github.com/scrapy/scrapy" target="_blank" rel="noopener">地址</a>。Scrapy简单易学而且非常好用，支持配置、代理分布式爬取、容易扩展而且官方也很活跃。截止目前（2019年8月21日）最新版本为 v1.7.3 。  </p>
-<h2 id="Scrapy-安装"><a href="#Scrapy-安装" class="headerlink" title="Scrapy 安装"></a>Scrapy 安装</h2><p>你需要先安装Python，Scrapy需要 Python 2.7 或者 Python 3.5+ ，通常MacOS会自带Python，其它系统需要自己安装，Python安装不再赘述。  </p>
-<p>Scrapy由纯Python语言实现，但是需要依赖一些Python包，包括  </p>
-<ul>
-<li><a href="lxml.de">lxml</a>：一种高效的XML和HTML解析器，</li>
-<li><a href="https://pypi.python.org/pypi/parsel" target="_blank" rel="noopener">parsel</a>：一个HTML / XML数据提取库，基于上面的lxml，</li>
-<li><a href="https://pypi.org/project/w3lib/" target="_blank" rel="noopener">w3lib</a>：一种处理URL和网页编码多功能辅助</li>
-<li><a href="https://twistedmatrix.com/trac/" target="_blank" rel="noopener">twisted</a>：一个异步网络框架</li>
-<li><a href="https://cryptography.io" target="_blank" rel="noopener">cryptography</a> and <a href="https://pypi.org/project/pyOpenSSL/" target="_blank" rel="noopener">pyOpenSSL</a>：处理各种网络级安全需求</li>
-</ul>
-<p>由于包依赖版本问题，建议首先安装 <a href="https://virtualenv.pypa.io" target="_blank" rel="noopener">virtualenv</a> ，这是一个独立Python运行环境包。</p>
-<ol>
-<li>全局安装 virtualenv</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pip install virtualenv</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>创建独立Python运行环境</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ virtualenv ENV</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>安装Scrapy</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install scrapy</span><br></pre></td></tr></table></figure>
-<p><strong> 在不同的平台上的安装步骤不尽相同，某些平台需要安装平台依赖包，具体请 <a href="https://docs.scrapy.org/en/latest/intro/install.html#intro-install-platform-notes" target="_blank" rel="noopener">查看</a> </strong> </p>
-<h2 id="Scrapy项目创建"><a href="#Scrapy项目创建" class="headerlink" title="Scrapy项目创建"></a>Scrapy项目创建</h2><ol>
-<li>创建项目&amp;生成爬虫</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ scrapy startproject [PROJECT_NAME]</span><br><span class="line">$ cd [PROJECT_NAME]</span><br><span class="line">$ scrapy genspider [SPIDER_NAME] [START_SITE_NAME]</span><br></pre></td></tr></table></figure>
-<p>[PROJECT_NAME] 是待创建的爬虫项目名<br>[SPIDER_NAME] 是爬虫名<br>[SITE_NAME] 是待爬取的初始站点地址</p>
-<p>例如我们创建了一个名为 tutorial 的项目，并添加爬虫 top  </p>
-<p>项目目录如下  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">tutorial/</span><br><span class="line">|___scrapy.cfg            # 配置文件</span><br><span class="line">|___tutorial/             # 项目的 Python 模块，代码存在这里</span><br><span class="line">    |___ __init__.py</span><br><span class="line">    |___items.py          # 项目 items 定义文件</span><br><span class="line">    |___middlewares.py    # 项目 middlewares 文件</span><br><span class="line">    |___pipelines.py      # 项目 pipelines 文件</span><br><span class="line">    |___settings.py       # 项目 settings 文件</span><br><span class="line">    |___spiders/          # 爬虫文件目录</span><br><span class="line">        |___ __init__.py</span><br><span class="line">        |___top.py        # 爬虫文件</span><br></pre></td></tr></table></figure>
-<p>打开 top.py 可以看到 Scrapy 爬虫文件结构  </p>
-<ul>
-<li><strong>name</strong> 爬虫名  </li>
-<li><strong>allowed_domains</strong> 是允许爬取的域名  </li>
-<li><strong>start_urls</strong> 开始爬取的链接  </li>
-<li><strong>start_requests()</strong> 开始爬取的链接方法，需要返回 Requests 对象的遍历器或者 Reqeusts 数组  </li>
-<li><strong>parse()</strong> 爬取后的处理方法  </li>
-</ul>
-<h2 id="settings-修改"><a href="#settings-修改" class="headerlink" title="settings 修改"></a>settings 修改</h2><p>可以在 settings.py 文件中看到常用设置: </p>
-<ul>
-<li><strong>USER_AGENT</strong> request的 <code>user-agent</code> header 中的 user-agent 参数  </li>
-<li><strong>ROBOTSTXT_OBEY</strong> 是否遵守robots.txt协议，默认 <code>True</code>  </li>
-<li><strong>CONCURRENT_REQUESTS</strong> 最大并发请求数量  </li>
-<li><strong>DEFAULT_REQUEST_HEADERS</strong> 覆盖默认请求header 参数</li>
-<li><strong>SPIDER_MIDDLEWARES</strong> 爬虫中间件  </li>
-<li><strong>DOWNLOADER_MIDDLEWARES</strong> 下载中间件  </li>
-<li><strong>ITEM_PIPELINES</strong> 设置pipeline调用顺序  </li>
-</ul>
-<h2 id="使用-shell-命令分析待爬取网站"><a href="#使用-shell-命令分析待爬取网站" class="headerlink" title="使用 shell 命令分析待爬取网站"></a>使用 shell 命令分析待爬取网站</h2><p>shell命令是Scrapy提供的交互式页面分析工具，类似于一个debug工具，你可以先使用shell分析待爬取的页面然后再执行爬虫。  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy shell [SITE_NAME]</span><br></pre></td></tr></table></figure>
-<p>shell命令将会采用settings里的配置来请求地址 [SITE_NAME] ，以下列出一些常用分析命令  </p>
-<ul>
-<li><strong>scrapy</strong> scrapy模块，包括scrapy.Request, scrapy.Selector等  </li>
-<li><strong>crawler</strong> scrapy.crawler.Crawler object  </li>
-<li><strong>response</strong> 返回的响应object</li>
-<li><strong>request</strong> 请求的object</li>
-<li><strong>settings</strong> 请求的设置</li>
-<li><strong>view(response)</strong> 在浏览器中查看获取到页面  </li>
-<li><strong>fetch(url[, redicrect=True])</strong> 重新获取url内容并更新当前object</li>
-<li><strong>fetch(req)</strong> 获取一个 scrapy.Request 并更新当前object</li>
-</ul>
-<p><code>view(response)</code> 可以在浏览器中查看页面结构。<br>如果返回的结构和我们期待的有所不同，可以通过 <code>request.replace()</code> 进行修改，例如修改请求方法 <code>request.replace(method=&#39;POST&#39;)</code><br><code>fetch(req)</code> 常用在对request或settings进行了修改然后重新请求。<br><code>response</code> 是返回的响应体，这通常是我们需要分析的东西，如果分析的是html，首先最好先执行 <code>view(response)</code> 在浏览器中查看页面结构，找到我们需要获取的 文本/链接 位置。<br>然后使用 xpath选择器 或者 css选择器 定位我们需要获取的 文本/链接 位置。<br>例如采用 css选择器 且我们需要获取页面中的所有链接，则可以执行<br> <code>response.css(&#39;a::attr(href).getall()&#39;)</code><br>如果获取title文本则可以执行<br> <code>response.css(&#39;title::text&#39;).get(default=&#39;&#39;)</code><br><code>fetch(url)</code> 常用来获取下一个待分析的链接<br>这样就构成了一个完整闭环  </p>
-<p>另外我们也可以通过<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from pprint import pprint</span><br><span class="line">pprint(response.headers)</span><br></pre></td></tr></table></figure></p>
-<p>来打印相应object  </p>
-<h2 id="Scrapy-Items"><a href="#Scrapy-Items" class="headerlink" title="Scrapy Items"></a>Scrapy Items</h2><p>通常我们需要爬取的都是结构化的数据，在 Scrapy 中被称为 Item，在 items.py 中我们需要定义需要爬取的字段，类似 Python dict</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name = scrapy.Field()</span><br></pre></td></tr></table></figure>
-<h2 id="Scrapy-Item-Pipeline"><a href="#Scrapy-Item-Pipeline" class="headerlink" title="Scrapy Item Pipeline"></a>Scrapy Item Pipeline</h2><p>Scrapy支持pipeline来对爬取到的数据进行类似于管道一样的一系列操作。<br>管道类一般用来进行以下几类操作：  </p>
-<ul>
-<li>清洗 HTML 数据</li>
-<li>验证爬取到的数据（检查items包括特定的field）</li>
-<li>检查重复数据</li>
-<li>将爬取到的数据存储于数据库中</li>
-</ul>
-<p>包括以下几分方法</p>
-<p><code>process_item(self, item, spider)</code></p>
-<p>处理item，需要返回处理后的 data dict</p>
-<p><code>open_spider(self, spider)</code></p>
-<p>spider开始时触发的钩子</p>
-<p><code>close_spider(self, spider)</code></p>
-<p>spider结束时触发的钩子</p>
-<p><code>from_crawler(cls, crawler)</code></p>
-<p>类方法，可以通过 crawler.settings 获取 settings.py 里的配置信息</p>
-<h2 id="运行爬虫"><a href="#运行爬虫" class="headerlink" title="运行爬虫"></a>运行爬虫</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ scrapy crawl [SPIDER_NAME] [-o [FILE_NAME]]</span><br></pre></td></tr></table></figure>
-<p>可以添加 <code>-o</code> 参数来输出为不同的文件例如 xml, csv, json 文件<br>爬取后的文件默认放到项目根目录下  </p>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
 
 
 <nav class="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="page-number" href="/blog/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/10/">10</a><a class="extend next" rel="next" href="/blog/page/2/">Next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="page-number" href="/blog/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/11/">11</a><a class="extend next" rel="next" href="/blog/page/2/">Next &raquo;</a>
 </nav>
 
 
