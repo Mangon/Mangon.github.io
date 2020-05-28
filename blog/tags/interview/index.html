@@ -105,6 +105,173 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/blog/2020/05/27/面试常用简单算法实现/">面试常用简单算法实现</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2020-05-27T03:54:35.000Z" itemprop="datePublished">2020-05-27</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/algorithm/">algorithm</a>, <a class="article-tag-link" href="/blog/tags/interview/">interview</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="阶乘"><a href="#阶乘" class="headerlink" title="阶乘"></a>阶乘</h2><p>在数学上, 自然数n的阶乘写作n!。一个正整数 n 的阶乘, 就是所有小于等于 n 的正整数的乘积，0的阶乘为1。比如:</p>
+<p>5！ = 5 <em> 4 </em> 3 <em> 2 </em> 1 = 120</p>
+<table>
+<thead>
+<tr>
+<th>n</th>
+<th style="text-align:right">n!</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<td>1</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align:right">2</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align:right">6</td>
+</tr>
+<tr>
+<td>4</td>
+<td style="text-align:right">24</td>
+</tr>
+<tr>
+<td>5</td>
+<td style="text-align:right">120</td>
+</tr>
+<tr>
+<td>6</td>
+<td style="text-align:right">720</td>
+</tr>
+<tr>
+<td>7</td>
+<td style="text-align:right">5 040</td>
+</tr>
+<tr>
+<td>8</td>
+<td style="text-align:right">40 320</td>
+</tr>
+<tr>
+<td>9</td>
+<td style="text-align:right">362 880</td>
+</tr>
+<tr>
+<td>10</td>
+<td style="text-align:right">3 628 800</td>
+</tr>
+<tr>
+<td>11</td>
+<td style="text-align:right">39 916 800</td>
+</tr>
+<tr>
+<td>12</td>
+<td style="text-align:right">479 001 600</td>
+</tr>
+<tr>
+<td>13</td>
+<td style="text-align:right">6 227 020 800</td>
+</tr>
+<tr>
+<td>14</td>
+<td style="text-align:right">87 178 291 200</td>
+</tr>
+<tr>
+<td>15</td>
+<td style="text-align:right">1 307 674 368 000</td>
+</tr>
+</tbody>
+</table>
+<p>问题： 求自然数n的阶乘  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; number</span></span><br><span class="line"><span class="comment"> * @return &#123;number&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">number</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result = <span class="number">1</span>;</span><br><span class="line">  <span class="comment">// 0 或 1 返回 1</span></span><br><span class="line">  <span class="keyword">if</span> (number === <span class="number">0</span> || number === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 大于等于2时循环相乘</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt;= number; i++) &#123;</span><br><span class="line">    result *= i;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="斐波那契"><a href="#斐波那契" class="headerlink" title="斐波那契"></a>斐波那契</h2><p>斐波那契数列（Fibonacci sequence），又称黄金分割数列、因数学家列昂纳多·斐波那契（Leonardoda Fibonacci）以兔子繁殖为例子而引入，故又称为“兔子数列”，指的是这样一个数列：1、1、2、3、5、8、13、21、34、……在数学上，斐波纳契数列以如下被以递推的方法定义：F(1)=1，F(2)=1, F(n)=F(n-1)+F(n-2)（n&gt;=3，n∈N*）在现代物理、准晶体结构、化学等领域，斐波纳契数列都有直接的应用。  </p>
+<table>
+<thead>
+<tr>
+<th>n</th>
+<th style="text-align:right">Fibonacci (n)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align:right">2</td>
+</tr>
+<tr>
+<td>4</td>
+<td style="text-align:right">3</td>
+</tr>
+<tr>
+<td>5</td>
+<td style="text-align:right">5</td>
+</tr>
+<tr>
+<td>6</td>
+<td style="text-align:right">8</td>
+</tr>
+<tr>
+<td>7</td>
+<td style="text-align:right">13</td>
+</tr>
+</tbody>
+</table>
+<p>问题： 求斐波那契数列的第n个数字  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 采用递归方法</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">Fibonacci</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(n === <span class="number">1</span> || n === <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="comment">// 递归结束的条件，求前两项</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 如果是求其它项，先要求出它前面两项，然后做和。</span></span><br><span class="line">        <span class="keyword">return</span> Fibonacci(n<span class="number">-1</span>) + Fibonacci(n<span class="number">-2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 递归优化</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">Fibonacci</span> (<span class="params">n , prev = <span class="number">1</span> , curr = <span class="number">1</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n === <span class="number">1</span> || n === <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> curr;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> Fibonacci (n - <span class="number">1</span>, curr, prev + curr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 循环</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">Fibonacci</span> (<span class="params">n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n === <span class="number">1</span> || n === <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> prev = <span class="number">1</span>, curr = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i = n; i++)&#123;</span><br><span class="line">        [prev, curr] = [curr, prev + curr];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> curr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// fibonacci generator</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">fibonacci</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">let</span> [prev, curr] = [<span class="number">1</span>, <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        [prev, curr] = [curr, prev + curr];</span><br><span class="line">        <span class="keyword">yield</span> curr;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// fibonacci function</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">Fibonacci</span> (<span class="params">n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> ac = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">const</span> fibo = fibonacci();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">      ac = fibo.next()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ac.value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="素数"><a href="#素数" class="headerlink" title="素数"></a>素数</h2><p>素数（又叫质数）是指在大于1的自然数中，除了1和它本身以外不再有其他因数的自然数。<br>例如： 2，3，5，7，11，13，17，19，23，29，31，37…</p>
+<p>问题： 判断自然数n是否是素数  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; number</span></span><br><span class="line"><span class="comment"> * @return &#123;boolean&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">trialDivision</span>(<span class="params">number</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Check if number is integer.</span></span><br><span class="line">  <span class="keyword">if</span> (number % <span class="number">1</span> !== <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (number &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="comment">// If number is less than one then it isn't prime by definition.</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (number &lt;= <span class="number">3</span>) &#123;</span><br><span class="line">    <span class="comment">// All numbers from 2 to 3 are prime.</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// If the number is not divided by 2 then we may eliminate all further even dividers.</span></span><br><span class="line">  <span class="keyword">if</span> (number % <span class="number">2</span> === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// If there is no dividers up to square root of n then there is no higher dividers as well.</span></span><br><span class="line">  <span class="keyword">const</span> dividerLimit = <span class="built_in">Math</span>.sqrt(number);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> divider = <span class="number">3</span>; divider &lt;= dividerLimit; divider += <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (number % divider === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope="" itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/blog/2020/05/22/Javascript模块化/">Javascript模块化</a>
         </h1>
         
@@ -1000,11 +1167,6 @@
 <h3 id="书写一个方法将一个字符串倒序输出"><a href="#书写一个方法将一个字符串倒序输出" class="headerlink" title="书写一个方法将一个字符串倒序输出"></a>书写一个方法将一个字符串倒序输出</h3><p>/<em> TODO: 书写一个方法将一个字符串倒序输出</em>/</p>
 <h3 id="书写一个方法使用reduce模拟map-使用map来模拟reduce"><a href="#书写一个方法使用reduce模拟map-使用map来模拟reduce" class="headerlink" title="书写一个方法使用reduce模拟map/使用map来模拟reduce"></a>书写一个方法使用reduce模拟map/使用map来模拟reduce</h3><p>使用reduce模拟map<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype._map = <span class="function"><span class="keyword">function</span>(<span class="params">fn, callbackThis</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 最终返回的新数组</span></span><br><span class="line">    <span class="keyword">let</span> res = [];</span><br><span class="line">    <span class="comment">// 定义回调函数的执行环境</span></span><br><span class="line">    <span class="comment">// call第一个参数传入null，则 this指向全局对象，同 map的规则</span></span><br><span class="line">    <span class="keyword">let</span> CBThis = callbackThis || <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">this</span>.reduce(<span class="function">(<span class="params">brfore, after, idx, arr</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 传入map回调函数拥有的参数</span></span><br><span class="line">        <span class="comment">// 把每一项的执行结果push进res中</span></span><br><span class="line">        res.push(fn.call(CBThis, after, idx, arr));</span><br><span class="line">    &#125;, <span class="literal">null</span>);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <h3 id="解析url，将url中的参数转化为对象"><a href="#解析url，将url中的参数转化为对象" class="headerlink" title="解析url，将url中的参数转化为对象"></a>解析url，将url中的参数转化为对象</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getQueryString</span>(<span class="params">name</span>) </span>&#123; </span><br><span class="line">    <span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"(^|&amp;)"</span> + name + <span class="string">"=([^&amp;]*)(&amp;|$)"</span>, <span class="string">"i"</span>); </span><br><span class="line">    <span class="keyword">var</span> r = <span class="built_in">window</span>.location.search.substr(<span class="number">1</span>).match(reg); </span><br><span class="line">    <span class="keyword">if</span> (r != <span class="literal">null</span>) <span class="keyword">return</span> <span class="built_in">unescape</span>(r[<span class="number">2</span>]); <span class="keyword">return</span> <span class="literal">null</span>; </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">GetRequest</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> url = location.search; <span class="comment">//获取url中"?"符后的字串</span></span><br><span class="line">    <span class="keyword">var</span> theRequest = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">    <span class="keyword">if</span> (url.indexOf(<span class="string">"?"</span>) != <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> str = url.substr(<span class="number">1</span>);</span><br><span class="line">        strs = str.split(<span class="string">"&amp;"</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; strs.length; i ++) &#123;</span><br><span class="line">            theRequest[strs[i].split(<span class="string">"="</span>)[<span class="number">0</span>]] = <span class="built_in">unescape</span>(strs[i].split(<span class="string">"="</span>)[<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> theRequest;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="实现函数返回斐波那契数列的第n的数字"><a href="#实现函数返回斐波那契数列的第n的数字" class="headerlink" title="实现函数返回斐波那契数列的第n的数字"></a>实现函数返回斐波那契数列的第n的数字</h3><p>斐波那契数列（Fibonacci sequence），又称黄金分割数列、因数学家列昂纳多·斐波那契（Leonardoda Fibonacci）以兔子繁殖为例子而引入，故又称为“兔子数列”，指的是这样一个数列：1、1、2、3、5、8、13、21、34、……在数学上，斐波纳契数列以如下被以递推的方法定义：F(1)=1，F(2)=1, F(n)=F(n-1)+F(n-2)（n&gt;=3，n∈N*）在现代物理、准晶体结构、化学等领域，斐波纳契数列都有直接的应用。  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 采用递归方法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fibonacci</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(n === <span class="number">1</span> || n === <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="comment">// 递归结束的条件，求前两项</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 如果是求其它项，先要求出它前面两项，然后做和。</span></span><br><span class="line">        <span class="keyword">return</span> Fibonacci(n<span class="number">-1</span>) + Fibonacci(n<span class="number">-2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 递归优化</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fibonacci</span> (<span class="params">n , prev = <span class="number">1</span> , curr = <span class="number">1</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n === <span class="number">1</span> || n === <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> curr;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> Fibonacci (n - <span class="number">1</span>, curr, prev + curr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 循环</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fibonacci</span> (<span class="params">n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n === <span class="number">1</span> || n === <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> prev = <span class="number">1</span>, curr = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i = n; i++)&#123;</span><br><span class="line">        [prev, curr] = [curr, prev + curr];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> curr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// fibonacci generator</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">fibonacci</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">let</span> [prev, curr] = [<span class="number">1</span>, <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        [prev, curr] = [curr, prev + curr];</span><br><span class="line">        <span class="keyword">yield</span> curr;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// fibonacci function</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fibonacci</span> (<span class="params">n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> ac = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">const</span> fibo = fibonacci();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">      ac = fibo.next()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ac.value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="书写sass／less-mixin的例子"><a href="#书写sass／less-mixin的例子" class="headerlink" title="书写sass／less mixin的例子"></a>书写sass／less mixin的例子</h3><blockquote>
 <p>Saas</p>
 </blockquote>
