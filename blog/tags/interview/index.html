@@ -105,6 +105,81 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/blog/2020/07/28/初始化一个从0到99的数组/">初始化一个从0到99的数组</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2020-07-28T09:19:46.000Z" itemprop="datePublished">2020-07-28</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/interview/">interview</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>开发过程中遇到了一个问题，需要mock一些数据。一开始直接用的静态常量，后来想想这实在是太占地方了，尤其为了符合eslint需要写很多行，找其它部分代码的时候也不方便，而且很显然，我们可以用“时间换取空间”，通过程序简化这一部分。<br>我需要mock的是一个数组，数组里有一些固定的或是随机的数据（这里不妨假设只需要填满不同的数字），那么如何才能简便的mock一个这样的数组呢？</p>
+<h2 id="如何初始化一个从0到99的数组"><a href="#如何初始化一个从0到99的数组" class="headerlink" title="如何初始化一个从0到99的数组"></a>如何初始化一个从0到99的数组</h2><p>通常最简单的能想到的方法，不就是个循环嘛  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span> ; i++) &#123;</span><br><span class="line">    result.push(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但这实在是太笨了，“高级程序员是不会使用for循环的（偷笑）”，在js中，我们可以用其它的方法循环。比如 <code>map</code>。 利用 <code>map</code> 方法会看起来更简便些，但我们首先要构造一个长度为100并且初始化了的数组。</p>
+<h3 id="如何构造一个长度为100的数组"><a href="#如何构造一个长度为100的数组" class="headerlink" title="如何构造一个长度为100的数组"></a>如何构造一个长度为100的数组</h3><ol>
+<li>Array的构造方法 + …扩展运算符</li>
+</ol>
+<p>通过 Array 的构造方法 <code>Array(100)</code> 我们可以创建长度为100的数组，但是并没有初始化。</p>
+<p>我们可以通过…来初始化它</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[...Array(<span class="number">100</span>)];</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>将类数组对象初始化为数组 - <code>Array.from</code></li>
+</ol>
+<p>类数组对象比较好写 <code>{length: 100}</code> ，那如何把它变成初始化了的数组呢？</p>
+<p>可以直接用 <code>Array.from</code> ，这个方法本身就是为了从一个类似数组或可迭代对象创建一个新的数组。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.from(&#123;<span class="attr">length</span>: <span class="number">100</span>&#125;);</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>将类数组对象初始化为数组 - <code>Array.apply</code></li>
+</ol>
+<p>使用 <code>Array({length: 100})</code> 并不会创建长度为100的数组，这是因为Array的构造方法把入参当成了一个对象进行了初始化，如何让Array的构造方法把入参作为类数组对象呢？可以使用 <code>apply</code> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.apply(<span class="literal">null</span>, &#123;<span class="attr">length</span>: <span class="number">100</span>&#125;);</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li><code>Array.prototype.slice</code> + …扩展运算符</li>
+</ol>
+<p>Array 的 slice 方法可以对数组进行拷贝，也可以用它来将类数组对象拷贝成长度为100的数组，直接使用是不行的，因为毕竟类数组对象还不是数组，我们可以用 <code>call</code> 或者 <code>apply</code> 、 <code>bind</code> 来调用它  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[...Array.prototype.slice.call(&#123;<span class="attr">length</span>: <span class="number">100</span>&#125;)];</span><br><span class="line">[...Array.prototype.slice.apply(&#123;<span class="attr">length</span>: <span class="number">100</span>&#125;)];</span><br><span class="line">[...Array.prototype.slice.bind(&#123;<span class="attr">length</span>: <span class="number">100</span>&#125;)()];</span><br></pre></td></tr></table></figure>
+<h3 id="利用-Array-prototype-map-初始化"><a href="#利用-Array-prototype-map-初始化" class="headerlink" title="利用 Array.prototype.map 初始化"></a>利用 <code>Array.prototype.map</code> 初始化</h3><p>有了已经初始化为undefined的数组后面就是将数组填满值了  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[...Array(<span class="number">100</span>)].map(<span class="function">(<span class="params">_, i</span>) =&gt;</span> i);</span><br><span class="line"><span class="built_in">Array</span>.from(&#123;<span class="attr">length</span>: <span class="number">100</span>&#125;, (_, i) =&gt; i);</span><br><span class="line"><span class="built_in">Array</span>.apply(<span class="literal">null</span>, &#123;<span class="attr">length</span>: <span class="number">100</span>&#125;).map(<span class="function">(<span class="params">_, i</span>) =&gt;</span> i);</span><br><span class="line"><span class="comment">// 上面4的写法已经够长了，我就不加map了</span></span><br></pre></td></tr></table></figure>
+<p>因为 <code>mapFn</code> 可以随意写，我们还可以用以上两种方法构造诸如全是1的数组  </p>
+<h3 id="利用-Object-keys-获取初始化数组的key"><a href="#利用-Object-keys-获取初始化数组的key" class="headerlink" title="利用 Object.keys() 获取初始化数组的key"></a>利用 <code>Object.keys()</code> 获取初始化数组的key</h3><p>注意，我们要初始化的值其实和数组的key是相同的！这样我们其实可以有一些取巧的方法，比如，可以通过 <code>Object.keys()</code> 来得到这样一个符合条件的新的数组。<code>Object.keys()</code> 方法会返回一个由一个给定对象的自身可枚举属性组成的数组，数组中属性名的排列顺序和正常循环遍历该对象时返回的顺序一致 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.keys([...Array(<span class="number">100</span>)]);</span><br><span class="line"><span class="built_in">Object</span>.keys(<span class="built_in">Array</span>.from(&#123;<span class="attr">length</span>: <span class="number">100</span>&#125;));</span><br><span class="line"><span class="built_in">Object</span>.keys(<span class="built_in">Array</span>.apply(<span class="literal">null</span>,&#123;<span class="attr">length</span>:<span class="number">100</span>&#125;));</span><br></pre></td></tr></table></figure>
+<h3 id="利用-Array-prototype-keys-生成迭代器"><a href="#利用-Array-prototype-keys-生成迭代器" class="headerlink" title="利用 Array.prototype.keys 生成迭代器"></a>利用 <code>Array.prototype.keys</code> 生成迭代器</h3><p>如果我们构造了一个长度为100的数组但是没有初始化，我们可以生成从0到99的数组吗？其实也是可以的，我们可以通过 <code>Array.prototype.keys</code> 生成一个数组迭代器对象，然后再通过 …扩展运算符 来生成一个从0到99的数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[...Array(<span class="number">100</span>).keys()]</span><br><span class="line">[...Array.prototype.slice.call(&#123;<span class="attr">length</span>: <span class="number">100</span>&#125;).keys()]</span><br></pre></td></tr></table></figure>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope="" itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/blog/2020/05/27/面试常用简单算法实现/">面试常用简单算法实现</a>
         </h1>
         
