@@ -105,6 +105,142 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/blog/2020/08/28/ES6特性/">ES6较常见的特性</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2020-08-28T06:34:12.000Z" itemprop="datePublished">2020-08-28</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/Javascript/">Javascript</a>, <a class="article-tag-link" href="/blog/tags/interview/">interview</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>ES6是ECMA的为JavaScript制定的第6个版本的标准，标准委员会TC39最终决定，标准在每年的 6 月份正式发布一次，作为当年的正式版本。ECMAscript 2015 是在2015年6月份发布的ES6的第一个版本。依次类推ECMAscript 2016 是ES6的第二个版本、 ECMAscript 2017 是ES6的第三个版本。  </p>
+<p><a href="https://kangax.github.io/compat-table/es6/" target="_blank" rel="noopener">查看浏览器对es6的语法支持情况</a>  </p>
+<p>以下记录了ES6的比较常见的特性，并做了简单的解释，默认为ES2015引入的，如果不是则在后面用（）标志引入的版本。  </p>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><ol>
+<li>let 和 const 变量声明</li>
+</ol>
+<p>let const 声明的变量具有块级作用域，不会变量提升，不能重复声明。<br>const 声明常量，声明时必须立即初始化。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> y = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>变量的解构赋值</li>
+</ol>
+<p>ES6 允许按照一定模式，从数组和对象(具有 Iterator 接口)中提取值，对变量进行赋值，这被称为解构。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [x, y] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> &#123; foo, bar &#125; = &#123; <span class="attr">foo</span>: <span class="string">'aaa'</span>, <span class="attr">bar</span>: <span class="string">'bbb'</span> &#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><ol>
+<li>支持Unicode表示</li>
+<li>支持使用for…of循环遍历字符串</li>
+<li>字符串方法 String.raw() 返回字符串模板的原始值</li>
+<li>字符串实例方法 startsWith(), endsWith()，repeat()，normalize()，codePointAt()</li>
+<li>字符串实例方法 includes() (ES2016)</li>
+<li>字符串实例方法 padStart()，padEnd() (ES2017)</li>
+<li>字符串实例方法 trimStart()，trimEnd() (ES2019)</li>
+<li>字符串实例方法 matchAll() (ES2020)</li>
+</ol>
+<h2 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h2><ol>
+<li>从 ES2015 开始，当第一个参数为正则表达式而第二个标志参数存在时，不再抛错</li>
+<li>字符串对象共有 4 个方法，可以使用正则表达式：match()、replace()、search()和split()。ES6 将这 4 个方法，在语言内部全部调用RegExp的实例方法，从而做到所有与正则相关的方法，全都定义在RegExp对象上。</li>
+</ol>
+<p>String.prototype.match 调用 RegExp.prototype[Symbol.match]<br>String.prototype.replace 调用 RegExp.prototype[Symbol.replace]<br>String.prototype.search 调用 RegExp.prototype[Symbol.search]<br>String.prototype.split 调用 RegExp.prototype[Symbol.split]</p>
+<ol start="3">
+<li>添加了u修饰符，含义为“Unicode 模式”，用来正确处理大于\uFFFF的 Unicode 字符。</li>
+<li>正则实例属性 unicode 表示是否设置了u修饰符</li>
+<li>添加了y修饰符，叫做“粘连”（sticky）修饰符，和修饰符g类似，但是y修饰符确保匹配必须从剩余的第一个位置开始</li>
+<li>正则实例属性 sticky 表示是否设置了y修饰符</li>
+<li>正则实例属性 flags 返回正则表达式的修饰符</li>
+<li>添加了s修饰符，s修饰符下点（.）代表任意字符包括行终止符</li>
+<li>正则实例属性 dotAll 表示是否设置了s修饰符</li>
+<li>后行断言 (ES2018)</li>
+<li>Unicode 属性类 \P \p (ES2018)</li>
+<li><p>具名组匹配 (ES2018)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> RE_DATE = <span class="regexp">/(?&lt;year&gt;\d&#123;4&#125;)-(?&lt;month&gt;\d&#123;2&#125;)-(?&lt;day&gt;\d&#123;2&#125;)/</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> matchObj = RE_DATE.exec(<span class="string">'1999-12-31'</span>);</span><br><span class="line"><span class="keyword">const</span> year = matchObj.groups.year; <span class="comment">// 1999</span></span><br><span class="line"><span class="keyword">const</span> month = matchObj.groups.month; <span class="comment">// 12</span></span><br><span class="line"><span class="keyword">const</span> day = matchObj.groups.day; <span class="comment">// 31</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>具名组匹配的引用 (ES2018)</p>
+</li>
+</ol>
+<h2 id="数值"><a href="#数值" class="headerlink" title="数值"></a>数值</h2><ol>
+<li>数值二进制和八进制表示法<br>分别用前缀0b（或0B）和0o（或0O）表示。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0b111110111</span> === <span class="number">503</span> <span class="comment">// true</span></span><br><span class="line"><span class="number">0o767</span> === <span class="number">503</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>方法 Number.isFinite(), Number.isNaN()<br>与全局方法isFinite()和isNaN()相比，这两个新方法只对数值有效，非数值返回 false</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">isFinite</span>(<span class="number">25</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">isFinite</span>(<span class="string">"25"</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Number</span>.isFinite(<span class="number">25</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Number</span>.isFinite(<span class="string">"25"</span>) <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">isNaN</span>(<span class="literal">NaN</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">isNaN</span>(<span class="string">"NaN"</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Number</span>.isNaN(<span class="literal">NaN</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Number</span>.isNaN(<span class="string">"NaN"</span>) <span class="comment">// false</span></span><br><span class="line"><span class="built_in">Number</span>.isNaN(<span class="number">1</span>) <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p>Number.parseInt(), Number.parseFloat()<br>与全局方法 parseInt() 和 parseFloat() 相同</p>
+</li>
+<li><p>Number.isInteger()<br>用来判断一个数值是否为整数</p>
+</li>
+<li><p>Number.EPSILON 属性<br>常量，表示 1 与大于 1 的最小浮点数之间的差</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>.EPSILON === <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">-52</span>)</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>Number.MAX_SAFE_INTEGER 与 Number.MIN_SAFE_INTEGER，Number.isSafeInteger()<br>Number.MAX_SAFE_INTEGER 和 Number.MIN_SAFE_INTEGER这两个常量，用来表示JavaScript能够准确表示的整数范围的上下限。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>.MAX_SAFE_INTEGER === <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>) - <span class="number">1</span></span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"><span class="built_in">Number</span>.MIN_SAFE_INTEGER === -<span class="built_in">Number</span>.MAX_SAFE_INTEGER</span><br><span class="line"><span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>Number.isSafeInteger()则是用来判断一个整数是否落在这个范围之内。</p>
+<ol start="7">
+<li>Math 对象的方法（17个）<br>Math.trunc()<br>Math.sign()<br>Math.cbrt()<br>Math.clz32()<br>Math.imul()<br>Math.fround()<br>Math.hypot()</li>
+</ol>
+<p>Math.expm1()<br>Math.log1p()<br>Math.log10()<br>Math.log2()</p>
+<p>Math.sinh(x) 返回x的双曲正弦（hyperbolic sine）<br>Math.cosh(x) 返回x的双曲余弦（hyperbolic cosine）<br>Math.tanh(x) 返回x的双曲正切（hyperbolic tangent）<br>Math.asinh(x) 返回x的反双曲正弦（inverse hyperbolic sine）<br>Math.acosh(x) 返回x的反双曲余弦（inverse hyperbolic cosine）<br>Math.atanh(x) 返回x的反双曲正切（inverse hyperbolic tangent）</p>
+<ol start="8">
+<li>指数运算符 **<br>右结合的指数运算符</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2 ** 2 === Math.pow(2, 2)</span><br><span class="line">2 ** 3 ** 2 === 2 ** (3 ** 2)</span><br></pre></td></tr></table></figure>
+<ol start="9">
+<li>BitInt 数据类型 (ESnext)<br>BigInt 只用来表示整数，没有位数的限制，任何位数的整数都可以精确表示</li>
+</ol>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><ol>
+<li>函数参数的默认值</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point</span>(<span class="params">x = <span class="number">0</span>, y = <span class="number">0</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.x = x;</span><br><span class="line">  <span class="keyword">this</span>.y = y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> Point();</span><br><span class="line">p <span class="comment">// &#123; x: 0, y: 0 &#125;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>rest 参数</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">...values</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> val <span class="keyword">of</span> values) &#123;</span><br><span class="line">    sum += val;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">add(<span class="number">2</span>, <span class="number">5</span>, <span class="number">3</span>) <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p>只要函数参数使用了默认值、解构赋值、或者扩展运算符，那么函数内部就不能显式设定为严格模式</p>
+</li>
+<li><p>函数 name 属性，返回该函数的函数名</p>
+</li>
+<li><p>箭头函数</p>
+</li>
+</ol>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope="" itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/blog/2020/07/28/初始化一个从0到99的数组/">初始化一个从0到99的数组</a>
         </h1>
         
@@ -518,81 +654,6 @@
 <h2 id="v8"><a href="#v8" class="headerlink" title="v8"></a>v8</h2><p>Google 开发的开源 JavaScript 引擎，以高性能著称。 <a href="https://github.com/v8/v8" target="_blank" rel="noopener">v8</a>最开始是一帮语言方面的专家设计出来的，之后被 Google 收购，成为了 JavaScript 引擎和众多相关技术的引领者。为了达到高性能的 JavaScript 代码执行效率从而获得更好的网页浏览效果，V8 采用直接将 JavaScript 编译成本地代码的方式。V8 支持众多的操作系统，包括但是不限于 Windows、Linux、Android、Mac OS X 等。同时它也是能够支持众多的硬件架构，例如 IA32、X64、ARM、MIPS 等。</p>
 <h2 id="SpiderMonkey"><a href="#SpiderMonkey" class="headerlink" title="SpiderMonkey"></a>SpiderMonkey</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Mozilla/Projects/SpiderMonkey/Releases" target="_blank" rel="noopener">SpiderMonkey</a> 是 Mozilla 使用C/C++编写的 JavaScript 引擎。它被用于包括Firefox 在内的多个 Mozilla 产品中，使用的是 MPL 2 授权协议.</p>
 <h2 id="Rhino"><a href="#Rhino" class="headerlink" title="Rhino"></a>Rhino</h2><p><a href="https://github.com/mozilla/rhino" target="_blank" rel="noopener">Rhino</a> 是一个完全使用Java语言编写的开源JavaScript实现，由 Mozilla 开发。<a href="https://developer.mozilla.org/zh-CN/docs/Mozilla/Projects/Rhino/Download_Rhino" target="_blank" rel="noopener">Rhino</a> 通常用于在Java程序中，为最终用户提供脚本化能力。它被作为J2SE 6上的默认Java脚本化引擎。</p>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope="" itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2020/03/31/Javascript中call,apply,bind的模拟实现/">Javascript中call,apply,bind的模拟实现</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2020-03-31T05:01:10.000Z" itemprop="datePublished">2020-03-31</time>
-</span>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/Javascript/">Javascript</a>, <a class="article-tag-link" href="/blog/tags/interview/">interview</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="call-的模拟实现"><a href="#call-的模拟实现" class="headerlink" title="call 的模拟实现"></a>call 的模拟实现</h2><p><strong>Function.prototype.call()</strong></p>
-<p>call() 方法使用一个指定的 this 值和单独给出的一个或多个参数来调用一个函数。  </p>
-<p>我们所要做的和注意的有以下几点：  </p>
-<ol>
-<li>call 函数是 Function 的一个原型方法</li>
-<li>call 改变了原函数 this 的指向，this 变成了给定的第一个参数</li>
-<li>call 函数的第一个参数应该是对象或者能转换成对象</li>
-<li>该函数执行了，并返回了结果</li>
-<li>给出多个参数时，从第二个参数到最后一个参数作为函数的实参进行调用</li>
-<li>call 的第一个参数可以传 null/undefined，当为 null/undefined 的时候，视为指向全局对象</li>
-</ol>
-<p>实际实现如下：  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.call = <span class="function"><span class="keyword">function</span>(<span class="params">context</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> context = <span class="built_in">Object</span>(context) || <span class="built_in">window</span>; <span class="comment">// 1 当context为 字符串、数字或布尔值时进行转换 2 传null/undefined时指向window</span></span><br><span class="line">    <span class="keyword">var</span> id = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (context[<span class="string">'_fn'</span> + id]) &#123;</span><br><span class="line">        id++;</span><br><span class="line">    &#125;</span><br><span class="line">    context[<span class="string">'_fn'</span> + id] = <span class="keyword">this</span>; <span class="comment">// 为 context 添加新方法，避免context已有同名方法需要找到不重复的函数名</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> args = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>, len = <span class="built_in">arguments</span>.length; i &lt; len; i++) &#123;</span><br><span class="line">        args.push(<span class="string">'arguments['</span> + i + <span class="string">']'</span>);</span><br><span class="line">    &#125; <span class="comment">// 拼接从第二个参数到最后一个参数</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> result = <span class="built_in">eval</span>(<span class="string">'context._fn'</span> + id + <span class="string">'('</span> + args + <span class="string">')'</span>); <span class="comment">// 调用eval执行函数，args 会自动调用 toString()转换为字符串</span></span><br><span class="line">    <span class="keyword">delete</span> context[<span class="string">'_fn'</span> + id]; <span class="comment">// 删除添加的属性</span></span><br><span class="line">    <span class="keyword">return</span> result; <span class="comment">// 返回函数执行结果</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="apply-的模拟实现"><a href="#apply-的模拟实现" class="headerlink" title="apply 的模拟实现"></a>apply 的模拟实现</h2><p><strong>Function.prototype.apply()</strong></p>
-<p>apply() 方法调用一个具有给定this值的函数，以及作为一个数组（或类似数组对象）提供的参数。  </p>
-<p>apply的模拟实现和call类似，需要注意的是apply的第二个参数是一个数组（或类似数组对象）。  </p>
-<p>实际实现如下：  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.apply = <span class="function"><span class="keyword">function</span>(<span class="params">context, arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> context = <span class="built_in">Object</span>(context) || <span class="built_in">window</span>;</span><br><span class="line">    <span class="keyword">var</span> id = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (context[<span class="string">'_fn'</span> + id]) &#123;</span><br><span class="line">        id++;</span><br><span class="line">    &#125;</span><br><span class="line">    context[<span class="string">'_fn'</span> + id] = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> result;</span><br><span class="line">    <span class="keyword">if</span> (!arr) &#123;</span><br><span class="line">        result = context[<span class="string">'_fn'</span> + id]();</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> arr !== <span class="string">'object'</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="built_in">TypeError</span>(<span class="string">'CreateListFromArrayLike called on non-object'</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> args = [];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, len = arr.length; i &lt; len; i++) &#123;</span><br><span class="line">           args.push(<span class="string">'arr['</span> + i + <span class="string">']'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        result = <span class="built_in">eval</span>(<span class="string">'context._fn'</span> + id + <span class="string">'('</span> + args + <span class="string">')'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span> context[<span class="string">'_fn'</span> + id];</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="bind-的模拟实现"><a href="#bind-的模拟实现" class="headerlink" title="bind 的模拟实现"></a>bind 的模拟实现</h2><p><strong>Function.prototype.bind()</strong></p>
-<p>bind() 方法创建一个新的函数，在 bind() 被调用时，这个新函数的 this 被指定为 bind() 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。</p>
-<p>我们所要做的和注意的有以下几点：  </p>
-<ol>
-<li>bind 函数是 Function 的一个原型方法</li>
-<li>直接调用时 bind 改变了 this 的指向，this 变成了给定的第一个参数</li>
-<li>bind 函数的第一个参数应该是对象或者能转换成对象</li>
-<li>bind 函数返回的是一个函数而不是函数执行的结果</li>
-<li>给出多个参数时，从第二个参数到最后一个参数作为函数的实参进行调用</li>
-<li>bind 返回的函数在调用时，可以继续添加参数</li>
-<li>当 bind 返回的函数作为构造函数的时候，bind 时指定的 this 值会失效，但传入的参数依然生效。</li>
-</ol>
-<p>实际实现如下：  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.bind = <span class="built_in">Function</span>.prototype.bind || <span class="function"><span class="keyword">function</span> (<span class="params">context</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span> !== <span class="string">"function"</span>) &#123; <span class="comment">// </span></span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"Function.prototype.bind - what is trying to be bound is not callable"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">var</span> slice = <span class="built_in">Array</span>.prototype.slice;</span><br><span class="line">    <span class="keyword">var</span> args = slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>); <span class="comment">// 获取bind函数从第二个参数到最后一个参数</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> fNOP = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> fBound = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> bindArgs = slice.call(<span class="built_in">arguments</span>); <span class="comment">// 这个时候的 arguments 是指 fBound 函数传入的参数</span></span><br><span class="line">        <span class="keyword">return</span> self.apply(<span class="keyword">this</span> <span class="keyword">instanceof</span> fBound ? <span class="keyword">this</span> : context, args.concat(bindArgs)); <span class="comment">// 当作为构造函数时，this 指向实例，此时结果为 true，将绑定函数的 this 指向该实例，可以让实例获得来自绑定函数的值</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fNOP.prototype = <span class="keyword">this</span>.prototype;</span><br><span class="line">    fBound.prototype = <span class="keyword">new</span> fNOP(); <span class="comment">// 修改返回函数的 prototype 为绑定函数的 prototype，实例就可以继承绑定函数的原型中的值</span></span><br><span class="line">    <span class="keyword">return</span> fBound;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="es5-shim"><a href="#es5-shim" class="headerlink" title="es5-shim"></a>es5-shim</h2><p>完整的模拟实现参考 <a href="https://github.com/es-shims/es5-shim" target="_blank" rel="noopener">es5-shim</a> </p>
 
         
     </section>

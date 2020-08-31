@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    
+
+    
+    <title>
+        ES6较常见的特性 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon">
+    <meta name="version" content="1.0.3">
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础">
+    
+    
+    <meta name="description" content="ES6是ECMA的为JavaScript制定的第6个版本的标准，标准委员会TC39最终决定，标准在每年的 6 月份正式发布一次，作为当年的正式版本。ECMAscript 2015 是在2015年6月份发布的ES6的第一个版本。依次类推ECMAscript 2016 是ES6的第二个版本、 ECMAscript 2017 是ES6的第三个版本。  查看浏览器对es6的语法支持情况  以下记录了ES6的比较常见的特性，并做了简单的解释，默认为ES2015引入的，如果不是则在后面用（）标志引...">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw">
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    <link rel="stylesheet" href="/blog/css/style.css">
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://mangon.cn/blog"></form> -->
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索">
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#变量"><span class="toc-number">1.</span> <span class="toc-text">变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串"><span class="toc-number">2.</span> <span class="toc-text">字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正则"><span class="toc-number">3.</span> <span class="toc-text">正则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数值"><span class="toc-number">4.</span> <span class="toc-text">数值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数"><span class="toc-number">5.</span> <span class="toc-text">函数</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content"><article class="article" itemscope="" itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            ES6较常见的特性
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2020-08-28T06:34:12.000Z" itemprop="datePublished">2020-08-28</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/Javascript/">Javascript</a>, <a class="article-tag-link" href="/blog/tags/interview/">interview</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>ES6是ECMA的为JavaScript制定的第6个版本的标准，标准委员会TC39最终决定，标准在每年的 6 月份正式发布一次，作为当年的正式版本。ECMAscript 2015 是在2015年6月份发布的ES6的第一个版本。依次类推ECMAscript 2016 是ES6的第二个版本、 ECMAscript 2017 是ES6的第三个版本。  </p>
+<p><a href="https://kangax.github.io/compat-table/es6/" target="_blank" rel="noopener">查看浏览器对es6的语法支持情况</a>  </p>
+<p>以下记录了ES6的比较常见的特性，并做了简单的解释，默认为ES2015引入的，如果不是则在后面用（）标志引入的版本。  </p>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><ol>
+<li>let 和 const 变量声明</li>
+</ol>
+<p>let const 声明的变量具有块级作用域，不会变量提升，不能重复声明。<br>const 声明常量，声明时必须立即初始化。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> y = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>变量的解构赋值</li>
+</ol>
+<p>ES6 允许按照一定模式，从数组和对象(具有 Iterator 接口)中提取值，对变量进行赋值，这被称为解构。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [x, y] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> &#123; foo, bar &#125; = &#123; <span class="attr">foo</span>: <span class="string">'aaa'</span>, <span class="attr">bar</span>: <span class="string">'bbb'</span> &#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><ol>
+<li>支持Unicode表示</li>
+<li>支持使用for…of循环遍历字符串</li>
+<li>字符串方法 String.raw() 返回字符串模板的原始值</li>
+<li>字符串实例方法 startsWith(), endsWith()，repeat()，normalize()，codePointAt()</li>
+<li>字符串实例方法 includes() (ES2016)</li>
+<li>字符串实例方法 padStart()，padEnd() (ES2017)</li>
+<li>字符串实例方法 trimStart()，trimEnd() (ES2019)</li>
+<li>字符串实例方法 matchAll() (ES2020)</li>
+</ol>
+<h2 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h2><ol>
+<li>从 ES2015 开始，当第一个参数为正则表达式而第二个标志参数存在时，不再抛错</li>
+<li>字符串对象共有 4 个方法，可以使用正则表达式：match()、replace()、search()和split()。ES6 将这 4 个方法，在语言内部全部调用RegExp的实例方法，从而做到所有与正则相关的方法，全都定义在RegExp对象上。</li>
+</ol>
+<p>String.prototype.match 调用 RegExp.prototype[Symbol.match]<br>String.prototype.replace 调用 RegExp.prototype[Symbol.replace]<br>String.prototype.search 调用 RegExp.prototype[Symbol.search]<br>String.prototype.split 调用 RegExp.prototype[Symbol.split]</p>
+<ol start="3">
+<li>添加了u修饰符，含义为“Unicode 模式”，用来正确处理大于\uFFFF的 Unicode 字符。</li>
+<li>正则实例属性 unicode 表示是否设置了u修饰符</li>
+<li>添加了y修饰符，叫做“粘连”（sticky）修饰符，和修饰符g类似，但是y修饰符确保匹配必须从剩余的第一个位置开始</li>
+<li>正则实例属性 sticky 表示是否设置了y修饰符</li>
+<li>正则实例属性 flags 返回正则表达式的修饰符</li>
+<li>添加了s修饰符，s修饰符下点（.）代表任意字符包括行终止符</li>
+<li>正则实例属性 dotAll 表示是否设置了s修饰符</li>
+<li>后行断言 (ES2018)</li>
+<li>Unicode 属性类 \P \p (ES2018)</li>
+<li><p>具名组匹配 (ES2018)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> RE_DATE = <span class="regexp">/(?&lt;year&gt;\d&#123;4&#125;)-(?&lt;month&gt;\d&#123;2&#125;)-(?&lt;day&gt;\d&#123;2&#125;)/</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> matchObj = RE_DATE.exec(<span class="string">'1999-12-31'</span>);</span><br><span class="line"><span class="keyword">const</span> year = matchObj.groups.year; <span class="comment">// 1999</span></span><br><span class="line"><span class="keyword">const</span> month = matchObj.groups.month; <span class="comment">// 12</span></span><br><span class="line"><span class="keyword">const</span> day = matchObj.groups.day; <span class="comment">// 31</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>具名组匹配的引用 (ES2018)</p>
+</li>
+</ol>
+<h2 id="数值"><a href="#数值" class="headerlink" title="数值"></a>数值</h2><ol>
+<li>数值二进制和八进制表示法<br>分别用前缀0b（或0B）和0o（或0O）表示。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0b111110111</span> === <span class="number">503</span> <span class="comment">// true</span></span><br><span class="line"><span class="number">0o767</span> === <span class="number">503</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>方法 Number.isFinite(), Number.isNaN()<br>与全局方法isFinite()和isNaN()相比，这两个新方法只对数值有效，非数值返回 false</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">isFinite</span>(<span class="number">25</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">isFinite</span>(<span class="string">"25"</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Number</span>.isFinite(<span class="number">25</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Number</span>.isFinite(<span class="string">"25"</span>) <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">isNaN</span>(<span class="literal">NaN</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">isNaN</span>(<span class="string">"NaN"</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Number</span>.isNaN(<span class="literal">NaN</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Number</span>.isNaN(<span class="string">"NaN"</span>) <span class="comment">// false</span></span><br><span class="line"><span class="built_in">Number</span>.isNaN(<span class="number">1</span>) <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p>Number.parseInt(), Number.parseFloat()<br>与全局方法 parseInt() 和 parseFloat() 相同</p>
+</li>
+<li><p>Number.isInteger()<br>用来判断一个数值是否为整数</p>
+</li>
+<li><p>Number.EPSILON 属性<br>常量，表示 1 与大于 1 的最小浮点数之间的差</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>.EPSILON === <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">-52</span>)</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>Number.MAX_SAFE_INTEGER 与 Number.MIN_SAFE_INTEGER，Number.isSafeInteger()<br>Number.MAX_SAFE_INTEGER 和 Number.MIN_SAFE_INTEGER这两个常量，用来表示JavaScript能够准确表示的整数范围的上下限。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>.MAX_SAFE_INTEGER === <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>) - <span class="number">1</span></span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"><span class="built_in">Number</span>.MIN_SAFE_INTEGER === -<span class="built_in">Number</span>.MAX_SAFE_INTEGER</span><br><span class="line"><span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>Number.isSafeInteger()则是用来判断一个整数是否落在这个范围之内。</p>
+<ol start="7">
+<li>Math 对象的方法（17个）<br>Math.trunc()<br>Math.sign()<br>Math.cbrt()<br>Math.clz32()<br>Math.imul()<br>Math.fround()<br>Math.hypot()</li>
+</ol>
+<p>Math.expm1()<br>Math.log1p()<br>Math.log10()<br>Math.log2()</p>
+<p>Math.sinh(x) 返回x的双曲正弦（hyperbolic sine）<br>Math.cosh(x) 返回x的双曲余弦（hyperbolic cosine）<br>Math.tanh(x) 返回x的双曲正切（hyperbolic tangent）<br>Math.asinh(x) 返回x的反双曲正弦（inverse hyperbolic sine）<br>Math.acosh(x) 返回x的反双曲余弦（inverse hyperbolic cosine）<br>Math.atanh(x) 返回x的反双曲正切（inverse hyperbolic tangent）</p>
+<ol start="8">
+<li>指数运算符 **<br>右结合的指数运算符</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2 ** 2 === Math.pow(2, 2)</span><br><span class="line">2 ** 3 ** 2 === 2 ** (3 ** 2)</span><br></pre></td></tr></table></figure>
+<ol start="9">
+<li>BitInt 数据类型 (ESnext)<br>BigInt 只用来表示整数，没有位数的限制，任何位数的整数都可以精确表示</li>
+</ol>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><ol>
+<li>函数参数的默认值</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point</span>(<span class="params">x = <span class="number">0</span>, y = <span class="number">0</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.x = x;</span><br><span class="line">  <span class="keyword">this</span>.y = y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> Point();</span><br><span class="line">p <span class="comment">// &#123; x: 0, y: 0 &#125;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>rest 参数</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">...values</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> val <span class="keyword">of</span> values) &#123;</span><br><span class="line">    sum += val;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">add(<span class="number">2</span>, <span class="number">5</span>, <span class="number">3</span>) <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p>只要函数参数使用了默认值、解构赋值、或者扩展运算符，那么函数内部就不能显式设定为严格模式</p>
+</li>
+<li><p>函数 name 属性，返回该函数的函数名</p>
+</li>
+<li><p>箭头函数</p>
+</li>
+</ol>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+
+</div>
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明：
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码">
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码">
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>
