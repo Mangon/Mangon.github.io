@@ -131,7 +131,7 @@
         <p>ES6是ECMA的为JavaScript制定的第6个版本的标准，标准委员会TC39最终决定，标准在每年的 6 月份正式发布一次，作为当年的正式版本。ECMAscript 2015 是在2015年6月份发布的ES6的第一个版本。依次类推ECMAscript 2016 是ES6的第二个版本、 ECMAscript 2017 是ES6的第三个版本。  </p>
 <p><a href="https://kangax.github.io/compat-table/es6/" target="_blank" rel="noopener">查看浏览器对es6的语法支持情况</a>  </p>
 <p>以下记录了ES6的比较常见的特性，并做了简单的解释，默认为ES2015引入的，如果不是则在后面用（）标志引入的版本。  </p>
-<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><ol>
+<h2 id="语句-amp-声明-amp-表达式-amp-运算符"><a href="#语句-amp-声明-amp-表达式-amp-运算符" class="headerlink" title="语句 &amp; 声明 &amp; 表达式 &amp; 运算符"></a>语句 &amp; 声明 &amp; 表达式 &amp; 运算符</h2><ol>
 <li>let 和 const 变量声明</li>
 </ol>
 <p>let const 声明的变量具有块级作用域，不会变量提升，不能重复声明。<br>const 声明常量，声明时必须立即初始化。</p>
@@ -139,12 +139,23 @@
 <ol start="2">
 <li>变量的解构赋值</li>
 </ol>
-<p>ES6 允许按照一定模式，从数组和对象(具有 Iterator 接口)中提取值，对变量进行赋值，这被称为解构。</p>
+<p>ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [x, y] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> &#123; foo, bar &#125; = &#123; <span class="attr">foo</span>: <span class="string">'aaa'</span>, <span class="attr">bar</span>: <span class="string">'bbb'</span> &#125;;</span><br></pre></td></tr></table></figure>
 <ol start="3">
-<li>globalThis对象</li>
+<li>globalThis 对象</li>
 </ol>
 <p>引入globalThis作为顶层对象。也就是说，任何环境下，globalThis都是存在的，都可以从它拿到顶层对象，指向全局环境下的this。(ES2020)</p>
+<ol start="4">
+<li>for…of 循环表达式</li>
+</ol>
+<p>for…of语句在可迭代对象（包括 Array，Map，Set，String，TypedArray，arguments 对象等等）上创建一个迭代循环，调用自定义迭代钩子，并为每个不同属性的值执行语句。</p>
+<ol start="5">
+<li>class 声明<br>class 声明创建一个基于原型继承的具有给定名称的新类。<br>类声明不存在变量提升</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">class ClassName [extends] &#123;</span><br><span class="line">  static #privateProp = 0; // 静态私有属性</span><br><span class="line">  #privateProp = 0; // 私有属性 （ES2019）</span><br><span class="line">  _prop = <span class="number">0</span>; <span class="comment">// 类实例属性</span></span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="comment">// 类的构造方法</span></span><br><span class="line">  &#125;</span><br><span class="line">  someMethod() &#123;</span><br><span class="line">    <span class="comment">// 类实例方法(实例继承，子类继承)</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span> staticMethod() &#123;</span><br><span class="line">    <span class="comment">// 静态方法（不会被实例继承，可以被子类继承）</span></span><br><span class="line">  &#125;</span><br><span class="line">  static #privateMethod = () =&gt; &#123;</span><br><span class="line">    <span class="comment">// 私有静态方法</span></span><br><span class="line">  &#125;</span><br><span class="line">  #privateSomeMethod = ()=&gt; &#123;</span><br><span class="line">    <span class="comment">// 私有方法</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> inst = <span class="keyword">new</span> ClassName(); <span class="comment">// 声明类的实例</span></span><br><span class="line">inst.someMethod(); <span class="comment">// 调用实例的方法</span></span><br><span class="line">ClassName.staticMethod(); <span class="comment">// 调用类的静态方法</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChildClass</span> <span class="keyword">extends</span> <span class="title">ClassName</span> </span>&#123; <span class="comment">// 子类</span></span><br><span class="line">  someMethod() &#123;</span><br><span class="line">    <span class="keyword">super</span>.staticMethod(); <span class="comment">// 可以通过super调用父类上的方法</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">ChildClass.staticMethod() <span class="comment">// 子类可以继承父类的静态方法</span></span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>new.target<br>new.target属性允许你检测函数或构造方法是否是通过new运算符被调用的。在通过new运算符被初始化的函数或构造方法中，new.target返回一个指向构造方法或函数的引用。在普通的函数调用中，new.target 的值是undefined。</li>
+</ol>
 <h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><ol>
 <li>支持Unicode表示，允许采用\uxxxx形式表示一个字符</li>
 <li>为字符串添加了遍历器接口，支持使用for…of循环遍历字符串</li>
@@ -391,9 +402,9 @@
 </tr>
 </tbody>
 </table>
-<h2 id="Set-和-Map"><a href="#Set-和-Map" class="headerlink" title="Set 和 Map"></a>Set 和 Map</h2><p>Set对象是值的集合，你可以按照插入的顺序迭代它的元素。 Set中的元素只会出现一次，即 Set 中的元素是唯一的。  </p>
+<h2 id="Set-amp-Map"><a href="#Set-amp-Map" class="headerlink" title="Set &amp; Map"></a>Set &amp; Map</h2><p>Set对象是值的集合，你可以按照插入的顺序迭代它的元素。 Set中的元素只会出现一次，即 Set 中的元素是唯一的。  </p>
 <ol>
-<li><p>Set的实例属性 Set.prototype.size 返回Set 对象中的值的个数</p>
+<li><p>Set的实例属性 Set.prototype.size 返回 Set 对象中的值的个数</p>
 </li>
 <li><p>Set的实例方法 </p>
 </li>
@@ -441,7 +452,215 @@
 </tbody>
 </table>
 <p>WeakSet 对象允许你将弱保持对象存储在一个集合中。<br>与Set有两点不同<br>（1）与Set相比，WeakSet 只能是对象的集合，而不能是任何类型的任意值。<br>（2）WeakSet持弱引用：集合中对象的引用为弱引用。 如果没有其他的对WeakSet中对象的引用，那么这些对象会被当成垃圾回收掉。 这也意味着WeakSet中没有存储当前对象的列表。 正因为这样，WeakSet 是不可枚举的。</p>
-<p>Map 对象保存键值对，并且能够记住键的原始插入顺序。任何值(对象或者原始值) 都可以作为一个键或一个值。</p>
+<p>Map 对象保存键值对，并且能够记住键的原始插入顺序。任何值(对象或者原始值) 都可以作为一个键或一个值。<br>和Object类似，最大的不同的是Map的key可以是任意值，而Object的key必须是string 或者Symbol。</p>
+<ol>
+<li><p>Map的实例属性 Map.prototype.size 返回 Map 对象中键值对的个数。</p>
+</li>
+<li><p>Map的实例方法</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Map.prototype.get(key)</td>
+<td>返回键对应的值，如果不存在，则返回undefined。</td>
+</tr>
+<tr>
+<td>Map.prototype.set(key, value)</td>
+<td>设置Map对象中键的值。返回该Map对象。</td>
+</tr>
+<tr>
+<td>Map.prototype.delete(key)</td>
+<td>如果 Map 对象中存在该元素，则移除它并返回 true；否则如果该元素不存在则返回 false。</td>
+</tr>
+<tr>
+<td>Map.prototype.has(key)</td>
+<td>返回一个布尔值，表示Map实例是否包含键对应的值。</td>
+</tr>
+<tr>
+<td>Map.prototype.clear()</td>
+<td>移除Map对象的所有键/值对</td>
+</tr>
+<tr>
+<td>Map.prototype.entries()</td>
+<td>返回一个新的 Iterator 对象，它按插入顺序包含了Map对象中每个元素的 [key, value] 数组。</td>
+</tr>
+<tr>
+<td>Map.prototype.keys()</td>
+<td>返回一个新的 Iterator对象， 它按插入顺序包含了Map对象中每个元素的键 。</td>
+</tr>
+<tr>
+<td>Map.prototype.values()</td>
+<td>返回一个新的Iterator对象，它按插入顺序包含了Map对象中每个元素的值 。</td>
+</tr>
+<tr>
+<td>Map.prototype.forEach(callbackFn[, thisArg])</td>
+<td>按插入顺序，为 Map对象里的每一键值对调用一次callbackFn函数。如果为forEach提供了thisArg，它将在每次回调中作为this值。</td>
+</tr>
+</tbody>
+</table>
+<p>WeakMap 对象是一组键/值对的集合，其中的键是弱引用的。其键必须是对象，而值可以是任意的。</p>
+<h2 id="Proxy-amp-Reflect"><a href="#Proxy-amp-Reflect" class="headerlink" title="Proxy &amp; Reflect"></a>Proxy &amp; Reflect</h2><p>Proxy 对象用于代理基本操作的自定义行为（如属性查找、赋值、枚举、函数调用等）</p>
+<p>用法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="built_in">Proxy</span>(target, handler);</span><br></pre></td></tr></table></figure>
+<p>target<br>要使用 Proxy 包装的目标对象（可以是任何类型的对象，包括原生数组，函数，甚至另一个代理）。</p>
+<p>handler<br>一个通常以函数作为属性的对象，各属性中的函数分别定义了在执行各种操作时代理 p 的行为。</p>
+<p>Reflect 是一个内置反射对象，它提供拦截 JavaScript 操作的方法。这些方法与proxy handlers的方法相同。Reflect不是一个函数对象，因此它是不可构造的。</p>
+<p>Reflect可以和Proxy配合使用来完成默认行为的基础上定制自定义的行为。</p>
+<p>handler 对象的方法</p>
+<table>
+<thead>
+<tr>
+<th>proxy handler方法</th>
+<th>含义</th>
+<th>Reflect方法</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>get(target, propKey, receiver)</td>
+<td>拦截对象属性的读取，比如proxy.foo和proxy[‘foo’]。</td>
+<td>Reflect.get(target, propKey, receiver)</td>
+<td>获取对象身上某个属性的值，类似于 target[propKey]。</td>
+</tr>
+<tr>
+<td>set(target, propKey, value, receiver)</td>
+<td>拦截对象属性的设置，比如proxy.foo = v或proxy[‘foo’] = v，返回一个布尔值。</td>
+<td>Reflect.set(target, propKey, value, receiver)</td>
+<td>将值分配给属性的函数。返回一个Boolean，如果更新成功，则返回true。</td>
+</tr>
+<tr>
+<td>has(target, propKey)</td>
+<td>拦截propKey in proxy的操作，返回一个布尔值。</td>
+<td>Reflect.has(target, propKey)</td>
+<td>判断一个对象是否存在某个属性，和 in 运算符 的功能完全相同。</td>
+</tr>
+<tr>
+<td>deleteProperty(target, propKey)</td>
+<td>拦截delete proxy[propKey]的操作，返回一个布尔值。</td>
+<td>Reflect.deleteProperty(target, propKey)</td>
+<td>作为函数的delete操作符，相当于执行 delete target[propKey]。</td>
+</tr>
+<tr>
+<td>ownKeys(target)</td>
+<td>拦截Object.getOwnPropertyNames(proxy)、Object.getOwnPropertySymbols(proxy)、Object.keys(proxy)、for…in循环，返回一个数组。该方法返回目标对象所有自身的属性的属性名，而Object.keys()的返回结果仅包括目标对象自身的可遍历属性。</td>
+<td>Reflect.ownKeys(target)</td>
+<td>返回一个包含所有自身属性（不包含继承属性）的数组。(类似于 Object.keys(), 但不会受enumerable影响).</td>
+</tr>
+<tr>
+<td>getOwnPropertyDescriptor(target, propKey)</td>
+<td>拦截Object.getOwnPropertyDescriptor(proxy, propKey)，返回属性的描述对象。</td>
+<td>Reflect.getOwnPropertyDescriptor(target, propKey)</td>
+<td>类似于 Object.getOwnPropertyDescriptor()。如果对象中存在该属性，则返回对应的属性描述符,  否则返回 undefined.</td>
+</tr>
+<tr>
+<td>defineProperty(target, propKey, propDesc)</td>
+<td>拦截Object.defineProperty(proxy, propKey, propDesc）、Object.defineProperties(proxy, propDescs)，返回一个布尔值。</td>
+<td>Reflect.defineProperty(target, propKey, propDesc)</td>
+<td>和 Object.defineProperty() 类似。如果设置成功就会返回 true</td>
+</tr>
+<tr>
+<td>preventExtensions(target)</td>
+<td>拦截Object.preventExtensions(proxy)，返回一个布尔值。</td>
+<td>Reflect.preventExtensions(target)</td>
+<td>类似于 Object.preventExtensions()。返回一个Boolean。</td>
+</tr>
+<tr>
+<td>getPrototypeOf(target)</td>
+<td>拦截Object.getPrototypeOf(proxy)，返回一个对象。</td>
+<td>Reflect.getPrototypeOf(target)</td>
+<td>类似于 Object.getPrototypeOf()。</td>
+</tr>
+<tr>
+<td>isExtensible(target)</td>
+<td>拦截Object.isExtensible(proxy)，返回一个布尔值。</td>
+<td>Reflect.isExtensible(target)</td>
+<td>类似于 Object.isExtensible().</td>
+</tr>
+<tr>
+<td>setPrototypeOf(target, proto)</td>
+<td>拦截Object.setPrototypeOf(proxy, proto)，返回一个布尔值。如果目标对象是函数，那么还有两种额外操作可以拦截。</td>
+<td>Reflect.setPrototypeOf(target, proto)</td>
+<td>设置对象原型的函数. 返回一个 Boolean， 如果更新成功，则返回true。</td>
+</tr>
+<tr>
+<td>apply(target, object, args)</td>
+<td>拦截 Proxy 实例作为函数调用的操作，比如proxy(…args)、proxy.call(object, …args)、proxy.apply(…)。</td>
+<td>Reflect.apply(target, thisArgument, args)</td>
+<td>对一个函数进行调用操作，同时可以传入一个数组作为调用参数。和 Function.prototype.apply() 功能类似。</td>
+</tr>
+<tr>
+<td>construct(target, args)</td>
+<td>拦截 Proxy 实例作为构造函数调用的操作，比如new proxy(…args)。</td>
+<td>Reflect.construct(target, args)</td>
+<td>对构造函数进行 new 操作，相当于执行 new target(…args)。</td>
+</tr>
+</tbody>
+</table>
+<p>Proxy 方法 Proxy.revocable() 创建一个可销毁的代理对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123;proxy, revoke&#125; = <span class="built_in">Proxy</span>.revocable(target, handler);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用revoke()可销毁proxy</span></span><br><span class="line">revoke()</span><br></pre></td></tr></table></figure>
+<h2 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h2><p>Promise 对象用于表示一个异步操作的最终完成 (或失败), 及其结果值.</p>
+<p>Promise 对象是一个代理对象（代理一个值），被代理的值在Promise对象创建时可能是未知的。它允许你为异步操作的成功和失败分别绑定相应的处理方法（handlers）。 这让异步方法可以像同步方法那样返回值，但并不是立即返回最终执行结果，而是一个能代表未来出现的结果的promise对象。<br>一个 Promise有以下几种状态:</p>
+<ul>
+<li>pending: 初始状态，既不是成功，也不是失败状态。</li>
+<li>fulfilled: 意味着操作成功完成。</li>
+<li>rejected: 意味着操作失败。</li>
+</ul>
+<ol>
+<li><p>Promise实例方法 Promise.prototype.then() 用来执行resolved状态的回调</p>
+</li>
+<li><p>Promise实例方法 Promise.prototype.catch() 用来执行错误时的回调（包括reject和抛出错误）</p>
+</li>
+<li><p>Promise实例方法 Promise.prototype.finally() 用来执行不管 Promise 对象最后状态如何，都会执行的操作（ES2018）</p>
+</li>
+<li><p>Promise方法 Promise.all(iterable) 方法返回一个 Promise 实例，此实例在 iterable 参数内所有的 promise 都“完成（resolved）”或参数中不包含 promise 时回调完成（resolve）；如果参数中  promise 有一个失败（rejected），此实例回调失败（reject），失败的原因是第一个失败 promise 的结果。</p>
+</li>
+<li><p>Promise方法 Promise.race(iterable) 方法返回一个 promise，一旦迭代器中的某个promise resolve 或 reject，返回的 promise 就会 resolve 或 reject。</p>
+</li>
+<li><p>Promise方法 Promise.allSettled()返回一个在所有给定的promise都已经 fulfilled 或rejected 后的 promise ，并带有一个对象数组，每个对象表示对应的promise结果。 (ES2020 stage4)</p>
+</li>
+<li><p>Promise方法 Promise.any(iterable) 接收一个Promise对象的集合，当其中的一个promise 成功，就返回那个成功的 promise 的值。 (ES2020 stage4)</p>
+</li>
+<li><p>Promise方法 Promise.reject(reason) 方法返回一个带有拒绝原因的Promise对象。</p>
+</li>
+<li><p>Promise方法 Promise.resolve(value)方法返回一个以给定值解析后的Promise 对象。</p>
+</li>
+</ol>
+<h2 id="Generator-amp-GeneratorFunction"><a href="#Generator-amp-GeneratorFunction" class="headerlink" title="Generator &amp; GeneratorFunction"></a>Generator &amp; GeneratorFunction</h2><p>Generator 是由一个 generator function(function*) 或 GeneratorFunction 构造器生成新的 返回的符合 iterator 和 iterable 的对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">gen</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">  <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> g = gen(); </span><br><span class="line"><span class="comment">// "Generator &#123; &#125;"</span></span><br></pre></td></tr></table></figure>
+<p>Gnerator对象实例方法</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Generator.prototype.next()</td>
+<td>返回一个由 yield表达式生成的值。</td>
+</tr>
+<tr>
+<td>Generator.prototype.return()</td>
+<td>返回给定的值并结束生成器。</td>
+</tr>
+<tr>
+<td>Generator.prototype.throw()</td>
+<td>向生成器抛出一个错误。</td>
+</tr>
+</tbody>
+</table>
+<p>GeneratorFunction构造器生成新的 Generator 对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> GeneratorFunction ([arg1[, arg2[, ...argN]],] functionBody)</span><br></pre></td></tr></table></figure>
+<h2 id="async-await-ES2017"><a href="#async-await-ES2017" class="headerlink" title="async await (ES2017)"></a>async await (ES2017)</h2><p>async function 用来定义一个返回 AsyncFunction 对象的异步函数。异步函数是指通过事件循环异步执行的函数，它会通过一个隐式的 Promise 返回其结果。</p>
 
         
     </section>
@@ -1420,7 +1639,7 @@
 </ol>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="built_in">Object</span>.create(<span class="built_in">Object</span>.prototype);</span><br></pre></td></tr></table></figure>
 <h3 id="解释js原型链-prototype-chain-含义"><a href="#解释js原型链-prototype-chain-含义" class="headerlink" title="解释js原型链(prototype chain)含义"></a>解释js原型链(prototype chain)含义</h3><p><code>TODO: 解释js原型链(prototype chain)含义</code></p>
-<h3 id="描述你所了解的-ES6特性"><a href="#描述你所了解的-ES6特性" class="headerlink" title="描述你所了解的[ES6特性]"></a>描述你所了解的[ES6特性]</h3><p>参见呢<a href="/blog/2020/08/28/ES6特性/">ES6常见特性</a></p>
+<h3 id="描述你所了解的ES6特性"><a href="#描述你所了解的ES6特性" class="headerlink" title="描述你所了解的ES6特性"></a>描述你所了解的ES6特性</h3><p>参见<a href="/blog/2020/08/28/ES6特性/">ES6常见特性</a></p>
 <h3 id="解释-var-let-const-的区别"><a href="#解释-var-let-const-的区别" class="headerlink" title="解释 var let const 的区别"></a>解释 <code>var</code> <code>let</code> <code>const</code> 的区别</h3><p><code>var</code> :</p>
 <ol>
 <li>默认声明变量形式</li>
