@@ -128,7 +128,7 @@
     
     <section class="article-body markdown-body">
         
-        <p>ES6 是 ECMA 为 JavaScript 制定的第 6 个版本的标准，标准委员会 TC39 最终决定，标准在每年的 6 月份正式发布一次，作为当年的正式版本。ECMAscript 2015 是在2015年6月份发布的ES6的第一个版本。依次类推 ECMAscript 2016 是 ES6 的第二个版本、 ECMAscript 2017 是 ES6 的第三个版本。<a href="https://kangax.github.io/compat-table/es6/" target="_blank" rel="noopener">查看浏览器对ES6的语法支持情况</a>。以下记录了 ES6 的比较常见的特性，并做了简单的解释，默认为 ES2015 引入（finished）的，如果不是则在后面用（）标志引入的版本。也可以<a href="https://github.com/tc39/proposals/blob/master/finished-proposals.md" target="_blank" rel="noopener">从这里查看从哪个版本支持</a></p>
+        <p>ES6 是 ECMA 为 JavaScript 制定的第 6 个版本的标准，标准委员会 TC39 最终决定，标准在每年的 6 月份正式发布一次，作为当年的正式版本。ECMAscript 2015 是在2015年6月份发布的ES6的第一个版本。依次类推 ECMAscript 2016 是 ES6 的第二个版本、 ECMAscript 2017 是 ES6 的第三个版本。<a href="https://kangax.github.io/compat-table/es6/" target="_blank" rel="noopener">查看浏览器对ES6的语法支持情况</a>。以下记录了 ES6 的比较常见的特性，并做了简单的解释，默认为 ES2015 引入（finished）的，如果不是则在后面用（）标志引入的版本。也可以<a href="https://github.com/tc39/proposals/blob/master/finished-proposals.md" target="_blank" rel="noopener">从这里查看从哪个版本支持</a>。</p>
 <h2 id="语句-amp-声明-amp-表达式-amp-运算符"><a href="#语句-amp-声明-amp-表达式-amp-运算符" class="headerlink" title="语句 &amp; 声明 &amp; 表达式 &amp; 运算符"></a>语句 &amp; 声明 &amp; 表达式 &amp; 运算符</h2><ol>
 <li>let 和 const 变量声明<br>let const 声明的变量具有块级作用域，不会变量提升，不能重复声明。<br>const 声明常量，声明时必须立即初始化。</li>
 </ol>
@@ -242,7 +242,7 @@
 </tbody>
 </table>
 <ol start="7">
-<li>JSON.stringify 行为改变   (ES2019)<br>如果遇到0xD800到0xDFFF之间的单个码点，或者不存在的配对形式，它会返回转义字符串，留给应用自己决定下一步的处理</li>
+<li>JSON.stringify 行为改变   (ES2019)<br>如果遇到0xD800到0xDFFF之间的单个码点，或者不存在的配对形式，它会返回转义字符串，留给应用自己决定下一步的处理。</li>
 </ol>
 <h2 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h2><ol>
 <li>从 ES2015 开始，当第一个参数为正则表达式而第二个标志参数存在时，不再抛错</li>
@@ -276,7 +276,7 @@
 </tr>
 <tr>
 <td>RegExp.prototype.flags</td>
-<td>-</td>
+<td></td>
 <td>返回一个字符串，由当前正则表达式对象的标志组成。</td>
 </tr>
 <tr>
@@ -423,13 +423,13 @@
 </ol>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point</span>(<span class="params">x = <span class="number">0</span>, y = <span class="number">0</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.x = x;</span><br><span class="line">  <span class="keyword">this</span>.y = y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> Point();</span><br><span class="line">p <span class="comment">// &#123; x: 0, y: 0 &#125;</span></span><br></pre></td></tr></table></figure>
 <ol start="2">
-<li>rest 参数</li>
+<li>rest 参数<br>允许将一个不定数量的参数表示为一个数组</li>
 </ol>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">...values</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> val <span class="keyword">of</span> values) &#123;</span><br><span class="line">    sum += val;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">add(<span class="number">2</span>, <span class="number">5</span>, <span class="number">3</span>) <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
 <ol start="3">
 <li><p>只要函数参数使用了默认值、解构赋值、或者扩展运算符，那么函数内部就不能显式设定为严格模式</p>
 </li>
-<li><p>函数 name 属性，返回该函数的函数名</p>
+<li><p>函数 Function.name 属性，返回该函数的函数名</p>
 </li>
 <li><p>箭头函数<br>(1) 函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。<br>(2) 不可以当作构造函数<br>(3) 不可以使用arguments对象<br>(4) 不可以使用yield命令</p>
 </li>
@@ -506,7 +506,7 @@
 </li>
 </ol>
 <p>在 ES2015中 Object.getPrototypeOf() 的入参如果不是对象将会被转换成对象<br>Object.setPrototypeOf() 用设置一个指定的对象的原型 (即, 内部[[Prototype]]属性）到另一个对象或 null。同样如果入参不是对象将会被转换成对象。</p>
-<ol>
+<ol start="11">
 <li><p>对象方法 Object.entries() (ES2017) Object.keys() Object.values() (ES2017) 对健值对、健名、健值进行遍历，返回Interator对象</p>
 </li>
 <li><p>对象方法 Object.fromEntries() 用于把键值对列表转换为一个对象。(ES2019)</p>
@@ -848,7 +848,7 @@
 <h2 id="class"><a href="#class" class="headerlink" title="class"></a>class</h2><p>class 声明创建一个基于原型继承的具有给定名称的新类。类声明不存在变量提升。</p>
 <p>用法：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">class ClassName [extends] &#123;</span><br><span class="line">  static #privateProp = 0; // 静态私有属性</span><br><span class="line">  #privateProp = 0; // 私有属性</span><br><span class="line">  _prop = <span class="number">0</span>; <span class="comment">// 类实例属性</span></span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="comment">// 类的构造方法</span></span><br><span class="line">  &#125;</span><br><span class="line">  someMethod() &#123;</span><br><span class="line">    <span class="comment">// 类实例方法(实例继承，子类继承)</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span> staticMethod() &#123;</span><br><span class="line">    <span class="comment">// 静态方法（不会被实例继承，可以被子类继承）</span></span><br><span class="line">  &#125;</span><br><span class="line">  static #privateMethod = () =&gt; &#123;</span><br><span class="line">    <span class="comment">// 私有静态方法 （ES2020 stage3）</span></span><br><span class="line">  &#125;</span><br><span class="line">  #privateSomeMethod = ()=&gt; &#123;</span><br><span class="line">    <span class="comment">// 私有方法 （ES2020 stage3）</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> inst = <span class="keyword">new</span> ClassName(); <span class="comment">// 声明类的实例</span></span><br><span class="line">inst.someMethod(); <span class="comment">// 调用实例的方法</span></span><br><span class="line">ClassName.staticMethod(); <span class="comment">// 调用类的静态方法</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChildClass</span> <span class="keyword">extends</span> <span class="title">ClassName</span> </span>&#123; <span class="comment">// 子类</span></span><br><span class="line">  someMethod() &#123;</span><br><span class="line">    <span class="keyword">super</span>.staticMethod(); <span class="comment">// 可以通过super调用父类上的方法</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">ChildClass.staticMethod() <span class="comment">// 子类可以继承父类的静态方法</span></span><br></pre></td></tr></table></figure>
-<h2 id="SharedArrayBuffer-amp-Atomics-ES2017"><a href="#SharedArrayBuffer-amp-Atomics-ES2017" class="headerlink" title="SharedArrayBuffer &amp; Atomics (ES2017)"></a>SharedArrayBuffer &amp; Atomics (ES2017)</h2><p>SharedArrayBuffer 对象用来表示一个通用的，固定长度的原始二进制数据缓冲区，类似于 ArrayBuffer 对象，它们都可以用来在共享内存（shared memory）上创建视图。与 ArrayBuffer 不同的是，SharedArrayBuffer 不能被分离。<br>Atomics 对象提供了一组静态方法用来对 SharedArrayBuffer 对象进行原子操作。  </p>
+<h2 id="SharedArrayBuffer-amp-Atomics-ES2017"><a href="#SharedArrayBuffer-amp-Atomics-ES2017" class="headerlink" title="SharedArrayBuffer &amp; Atomics (ES2017)"></a>SharedArrayBuffer &amp; Atomics (ES2017)</h2><p>SharedArrayBuffer 对象用来表示一个通用的，固定长度的原始二进制数据缓冲区，类似于 ArrayBuffer 对象，它们都可以用来在共享内存（shared memory）上创建视图。与 ArrayBuffer 不同的是，SharedArrayBuffer 不能被分离。<br>Atomics 对象提供了一组静态方法用来对 SharedArrayBuffer 对象和 ArrayBuffer 对象进行原子操作。  </p>
 
         
     </section>
