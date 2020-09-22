@@ -6,7 +6,7 @@
 
     
     <title>
-        Tag: 小程序 | 
+        小程序性能优化三板斧 | 
         Gblog
     </title>
     <meta name="author" content="Mangon">
@@ -15,7 +15,7 @@
     <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础">
     
     
-    <meta name="description" content="Mangon&#39;s Technology Blog">
+    <meta name="description" content="为什么有这篇文章想看干货的可以直接跳转到正文  小程序中心是百度APP小程序流量分发的入口，从百度个人中心可以进入。它长这样2020年第二季度末我接手了小程序中心。小程序中心说大不大，说小也不小，属于麻雀虽小五脏俱全的那种，从18年到现在经历了2年的迭代，经手了20多任开发，1000次左右的commit，也发展成了一个比较成熟的产品。产品发展到一定阶段，就开始呈现出技术上的一些瓶颈，前期为了快速的上线功能埋下了不少的坑，尤其是性能上的坑，达到了不可忽视的程度。但是这些坑还是需要后人一点...">
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
@@ -64,34 +64,11 @@
     </form>
 </div>        
         
+            
+        
 
         
-            <div class="author-meta">
-                
-                <div class="author-avatar">
-                    <a href="/blog/">
-                        <img src="/blog/images/avatar.jpeg" title="Mangon">
-                    </a>
-                </div>
-                
-                <div class="author-name">Mangon</div>
-                <div class="author-work">Front-End Software Engineer</div>
-                <div class="author-location">
-                    <i class="icon-location vm"></i>
-                    <span class="vm">Beijing, China</span>
-                </div>
-                
-                <div class="author-thread-wrap">
-                    <div class="author-threads clearfix">
-                        
-                        <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
-                        
-                        
-                        
-                    </div>
-                </div>
-                
-            </div>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么有这篇文章"><span class="toc-number">1.</span> <span class="toc-text">为什么有这篇文章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#性能优化的背景"><span class="toc-number">2.</span> <span class="toc-text">性能优化的背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第一板斧-断舍离，减少小程序包体积"><span class="toc-number">3.</span> <span class="toc-text">第一板斧-断舍离，减少小程序包体积</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#能删除的资源删除，实在不能删除的压缩"><span class="toc-number">3.1.</span> <span class="toc-text">能删除的资源删除，实在不能删除的压缩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#将入口页占比较高的页面分到主包，其它页面分到子包"><span class="toc-number">3.2.</span> <span class="toc-text">将入口页占比较高的页面分到主包，其它页面分到子包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二板斧-存数据，巧用缓存与官方能力"><span class="toc-number">4.</span> <span class="toc-text">第二板斧-存数据，巧用缓存与官方能力</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用prelink，使用onInit"><span class="toc-number">4.1.</span> <span class="toc-text">使用prelink，使用onInit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存API端能力"><span class="toc-number">4.2.</span> <span class="toc-text">缓存API端能力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存页面主数据"><span class="toc-number">4.3.</span> <span class="toc-text">缓存页面主数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三板斧-轻渲染，只渲染必须的内容"><span class="toc-number">5.</span> <span class="toc-text">第三板斧-轻渲染，只渲染必须的内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#减少对渲染有消耗的写法"><span class="toc-number">5.1.</span> <span class="toc-text">减少对渲染有消耗的写法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分屏渲染"><span class="toc-number">5.2.</span> <span class="toc-text">分屏渲染</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#取消骨架屏采用渐进式加载"><span class="toc-number">5.3.</span> <span class="toc-text">取消骨架屏采用渐进式加载</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后记"><span class="toc-number">6.</span> <span class="toc-text">后记</span></a></li></ol>
         
         <div id="coffee-content"></div>
     </div>
@@ -99,13 +76,12 @@
 
 </header>
 
-        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
-    <article class="article" itemscope="" itemprop="blogPost">
+        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content"><article class="article" itemscope="" itemprop="blogPost">
     
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2020/09/21/小程序性能优化三板斧/">小程序性能优化三板斧</a>
+            小程序性能优化三板斧
         </h1>
         
         <div class="article-meta clearfix">
@@ -172,8 +148,6 @@
 </div>
     
 </article>
-
-
 
 
 
@@ -246,6 +220,11 @@
             searchFunc(path, 'search-box', 'search-result');
         </script>
     
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        </script>
     
     
         <script>
