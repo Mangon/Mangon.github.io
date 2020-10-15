@@ -2148,6 +2148,14 @@
 <h2 id="vue相关"><a href="#vue相关" class="headerlink" title="vue相关"></a>vue相关</h2><h3 id="v-if和v-show有哪些不同？"><a href="#v-if和v-show有哪些不同？" class="headerlink" title="v-if和v-show有哪些不同？"></a>v-if和v-show有哪些不同？</h3><p>v-if和v-show都是控制组件是否显示的参数, v-if为false时dom不会被渲染,<br>v-show为false时dom会被渲染，但是会被设置成 <code>display:none</code> , 在组件可能频繁切换显示状态的时候推荐用v-show</p>
 <h3 id="vue父组件与子组件如何通信-（传参）"><a href="#vue父组件与子组件如何通信-（传参）" class="headerlink" title="vue父组件与子组件如何通信?（传参）"></a>vue父组件与子组件如何通信?（传参）</h3><p>父组件传值到子组件：<br>给渲染的子组件自定义标签属性，绑定传输数据，子组件通过props属性接收数据<br>子组件传值到父组件：<br>在子组件中调用this.$emit()发送事件，数据，在父组件中通过v-on监听事件处理数据  </p>
 <h3 id="vue不同组件之间如何通信"><a href="#vue不同组件之间如何通信" class="headerlink" title="vue不同组件之间如何通信?"></a>vue不同组件之间如何通信?</h3><p>通过使用一个空的Vue实例作为中间事件栈<br>使用 $emit $on传递数据</p>
+<h3 id="vue3-和-vue2-相比有什么不同？"><a href="#vue3-和-vue2-相比有什么不同？" class="headerlink" title="vue3 和 vue2 相比有什么不同？"></a>vue3 和 vue2 相比有什么不同？</h3><ol>
+<li><p>Object.defineProperty -&gt; Proxy 使用 Proxy 替代 Object.defineProperty 来实现对数据的监听</p>
+</li>
+<li><p>Virtual Dom 重构</p>
+</li>
+<li><p>编译时优化</p>
+</li>
+</ol>
 <h2 id="react相关"><a href="#react相关" class="headerlink" title="react相关"></a>react相关</h2><h3 id="react组件生命周期"><a href="#react组件生命周期" class="headerlink" title="react组件生命周期"></a>react组件生命周期</h3><p>组件的生命周期可分成三个状态：  </p>
 <ul>
 <li>Mounting：已插入真实 DOM</li>
