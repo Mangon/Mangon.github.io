@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
-    <meta charset="UTF-8">
+<head>
+    <meta charset="UTF-8" />
     
 
     
@@ -9,26 +9,28 @@
         Tag: npm | 
         Gblog
     </title>
-    <meta name="author" content="Mangon">
-    <meta name="version" content="1.0.3">
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.0.3" />
     
-    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础">
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
     
     
-    <meta name="description" content="Mangon&#39;s Technology Blog">
+    <meta name="description" content="Mangon&#39;s Technology Blog" />
     
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
     
-    <meta name="baidu-site-verification" content="pWri9ahJmw">
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
     
     
     
     <link rel="icon" href="/blog/images/favicon.ico">
     
-    <link rel="stylesheet" href="/blog/css/style.css">
-    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css">
-</head>
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.3.0"></head>
 <body>
 
     <main class="app">
@@ -59,7 +61,8 @@
         <div class="search-box" id="search-box">
     <form>
         <div class="search-btn"></div>
-        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索">
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
         <button type="reset" class="reset-search-btn"></button>
     </form>
 </div>        
@@ -100,12 +103,12 @@
 </header>
 
         <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
-    <article class="article" itemscope="" itemprop="blogPost">
+    <article class="article" itemscope itemprop="blogPost">
     
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2019/12/20/npm发包/">npm发包</a>
+            <a href="/blog/2019/12/20/npm%E5%8F%91%E5%8C%85/">npm发包</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -119,7 +122,7 @@
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/npm/">npm</a>
+    <a class="article-tag-link" href="/blog/tags/npm/" rel="tag">npm</a>
 </div>
 
 
@@ -128,7 +131,7 @@
     
     <section class="article-body markdown-body">
         
-        <p>本文记录了如何发布npm包到  <a href="http://registry.npmjs.org" target="_blank" rel="noopener">http://registry.npmjs.org</a> 的过程，完整的 npm 命令可以参考 <a href="https://docs.npmjs.com/cli-documentation/cli" target="_blank" rel="noopener">npm CLI commands</a> 。</p>
+        <p>本文记录了如何发布npm包到  <a target="_blank" rel="noopener" href="http://registry.npmjs.org">http://registry.npmjs.org</a> 的过程，完整的 npm 命令可以参考 <a target="_blank" rel="noopener" href="https://docs.npmjs.com/cli-documentation/cli">npm CLI commands</a> 。</p>
 <ol>
 <li>创建待发包工程</li>
 </ol>
@@ -142,7 +145,7 @@
 <ol start="3">
 <li>添加用户</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm adduser [--registry=http://registry.npmjs.com] [--scope=@orgname]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm adduser [--registry&#x3D;http:&#x2F;&#x2F;registry.npmjs.com] [--scope&#x3D;@orgname]</span><br></pre></td></tr></table></figure>
 <p>该命令用来注册一个账户。它会提示你填写用户名密码和邮箱，然后（通过将你的验证信息存储在 .npmrc 文件中）自动登录，在 npmjs.org 发包需要验证邮箱。<br>你可以用 <code>npm logout</code> 命令登出，也可以用 <code>npm login</code> 命令再次登入。可以用 <code>npm who am i</code> 命令查看当前登录用户名。  </p>
 <ol start="4">
 <li>预发包</li>
@@ -195,11 +198,11 @@
     <div id="appreciate-modal" class="modal">
     <div class="appreciate-container">
         <div class="appreciate-image">
-            <img src="/blog/images/zfb.png" alt="支付宝二维码">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
             <p>⬆️支付宝</p>
         </div>
         <div class="appreciate-image">
-            <img src="/blog/images/wx.png" alt="微信二维码">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
             <p>⬆️微信</p>
         </div>
     </div>

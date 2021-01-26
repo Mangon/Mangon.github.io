@@ -26,9 +26,11 @@
     
     <link rel="icon" href="/blog/images/favicon.ico">
     
-    <link rel="stylesheet" href="/blog/css/style.css">
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
     <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
-</head>
+<meta name="generator" content="Hexo 5.3.0"></head>
 <body>
 
     <main class="app">
@@ -59,7 +61,8 @@
         <div class="search-box" id="search-box">
     <form>
         <div class="search-btn"></div>
-        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索">
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
         <button type="reset" class="reset-search-btn"></button>
     </form>
 </div>        
@@ -105,7 +108,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2019/01/21/head中的meta/">head中的meta</a>
+            <a href="/blog/2019/01/21/head%E4%B8%AD%E7%9A%84meta/">head中的meta</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -119,7 +122,7 @@
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/html/">html</a>
+    <a class="article-tag-link" href="/blog/tags/html/" rel="tag">html</a>
 </div>
 
 
@@ -129,15 +132,15 @@
     <section class="article-body markdown-body">
         
         <p>meta指的是html元素中存在与head中的meta元素<br>它长这样  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="meta的含义"><a href="#meta的含义" class="headerlink" title="meta的含义"></a>meta的含义</h2><p>HTML <meta> 元素表示那些不能由其它HTML元相关元素 (&lt;base>, &lt;link>, &lt;script>, &lt;style> 或 &lt;title>) 之一表示的任何元数据信息.  </p>
 <h2 id="meta的属性"><a href="#meta的属性" class="headerlink" title="meta的属性"></a>meta的属性</h2><h3 id="charset"><a href="#charset" class="headerlink" title="charset"></a>charset</h3><p>此特性声明当前文档所使用的字符编码，但该声明可以被任何一个元素(通常是html)的 lang 特性的值覆盖。此特性的值必须是一个符合由IANA所定义的字符编码首选MIME 名称（preferred MIME name ）之一。</p>
 <p>有几点需要注意：</p>
 <ol>
 <li>推荐使用 UTF-8；  </li>
-<li><meta> 元素必须包含在 <head><meta name="generator" content="Hexo 3.8.0"> 元素中并且在HTML代码的前1024个字节内，因为某些浏览器在选择编码之前只查看前面这些字节。  </head></li>
-<li>meta charset元素并不能决定字符集，网页采用何种字符是由 <a href="https://html.spec.whatwg.org/multipage/parsing.html#encoding-sniffing-algorithm" target="_blank" rel="noopener">网页字符算法</a> 决定的  </li>
-<li>强烈建议使用该属性定义字符编码. 如果未定义，某些跨脚本技术可能危害网页， 例如 <a href="http://code.google.com/p/doctype-mirror/wiki/ArticleUtf7" target="_blank" rel="noopener">UTF-7 降级XSS攻击</a>  </li>
+<li><meta> 元素必须包含在 <head> 元素中并且在HTML代码的前1024个字节内，因为某些浏览器在选择编码之前只查看前面这些字节。  </li>
+<li>meta charset元素并不能决定字符集，网页采用何种字符是由 <a target="_blank" rel="noopener" href="https://html.spec.whatwg.org/multipage/parsing.html#encoding-sniffing-algorithm">网页字符算法</a> 决定的  </li>
+<li>强烈建议使用该属性定义字符编码. 如果未定义，某些跨脚本技术可能危害网页， 例如 <a target="_blank" rel="noopener" href="http://code.google.com/p/doctype-mirror/wiki/ArticleUtf7">UTF-7 降级XSS攻击</a>  </li>
 </ol>
 <h3 id="http-equiv"><a href="#http-equiv" class="headerlink" title="http-equiv"></a>http-equiv</h3><p>这个枚举属性定义了能改变服务器和用户引擎行为的编译行为。值使用 content 来定义，如下：  </p>
 <table>
@@ -229,7 +232,7 @@
 </tr>
 </tbody>
 </table>
-<p>有些name虽然没有被正式承认，但是也被广泛使用，<a href="https://wiki.whatwg.org/wiki/MetaExtensions" target="_blank" rel="noopener">这个网站</a> 列举了所有存在的meta值。以下列举一些常用的。</p>
+<p>有些name虽然没有被正式承认，但是也被广泛使用，<a target="_blank" rel="noopener" href="https://wiki.whatwg.org/wiki/MetaExtensions">这个网站</a> 列举了所有存在的meta值。以下列举一些常用的。</p>
 <table>
 <thead>
 <tr>
@@ -252,7 +255,7 @@
 </tr>
 <tr>
 <td>viewport</td>
-<td>视口，提供有关视口初始大小的提示，仅供移动设备使用，虽然目前标准化程度不高，还处于草案(work in progress)的进度，但由于事实上的几个浏览器的支配地位，大多数移动浏览器都尊重这一声明，更多有关viewport的解释参见<a href="https://drafts.csswg.org/css-device-adapt/#viewport-meta" target="_blank" rel="noopener">文档</a></td>
+<td>视口，提供有关视口初始大小的提示，仅供移动设备使用，虽然目前标准化程度不高，还处于草案(work in progress)的进度，但由于事实上的几个浏览器的支配地位，大多数移动浏览器都尊重这一声明，更多有关viewport的解释参见<a target="_blank" rel="noopener" href="https://drafts.csswg.org/css-device-adapt/#viewport-meta">文档</a></td>
 </tr>
 </tbody>
 </table>
@@ -271,12 +274,12 @@
 </article>
 
 
-    <article class="article" itemscope="" itemprop="blogPost">
+    <article class="article" itemscope itemprop="blogPost">
     
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2019/01/21/浅谈viewport/">浅谈viewport</a>
+            <a href="/blog/2019/01/21/%E6%B5%85%E8%B0%88viewport/">浅谈viewport</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -290,7 +293,7 @@
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/html/">html</a>
+    <a class="article-tag-link" href="/blog/tags/html/" rel="tag">html</a>
 </div>
 
 
@@ -300,7 +303,7 @@
     <section class="article-body markdown-body">
         
         <h2 id="viewport来源"><a href="#viewport来源" class="headerlink" title="viewport来源"></a>viewport来源</h2><p>通常为了使得网页能够成为响应式的，我们需要在head内声名有关viewport的meta。<br>它长这样  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,initial-scale=1,user-scalable=no"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width,initial-scale=1,user-scalable=no&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 <p>viewport的设计是由于pc互联网向移动互联网的过渡。在过去，多数文档被设计用来在pc上进行阅读，而pc的设备通常比较宽，同样的网页不进行任何改变放到移动端的话，内容就会变得无法辨认。</p>
 <p>例如，新浪网在移动端的显示：<br><img src="/blog/static/imgs/viewport/web_page.png" alt="新浪网桌面版在移动端的显示"></p>
 <p>为了避免这个问题，浏览器通常使用一个固定的初始区域宽度来模拟桌面浏览器窗口大小（通常980px-1024px)。而移动端的宽度是小于这个值的，于是内容便看起来像自动放大了一般，同样的，移动端当前的屏幕也只会显示文档的一部分。<br><img src="/blog/static/imgs/viewport/layout_viewport.png" alt="布局视口"><br><img src="/blog/static/imgs/viewport/visual_viewport.png" alt="视觉视口"></p>
@@ -333,7 +336,7 @@
 </table>
 <p>即使如此，对于一个用户而言，还是不甚理想，在狭窄的屏幕上更适合一个狭窄的网站而不是需要用户来缩放的桌面网站。于是Safari引入了meta标签viewport以及理想视口的概念，其它浏览器厂商也纷纷跟进。  </p>
 <p>只有当网站是为移动端准备的时候才应该使用理想视口。<br>只有主动地往页面里添加meta视口标签时理想视口才会生效。<br>如果没有meta视口标签声明，那么布局视口将会维持它的默认宽度，理想视口只有当显式地使用它的时候才会产生影响。<br>理想视口只和设备有关，由浏览器定义，因此同一设备上的不同浏览器拥有不同的理想视口。<br>以下代码告之浏览器，布局视口的宽度应该与理想视口的宽度一致：  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"device"</span> <span class="attr">content</span>=<span class="string">"width=device-width"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;device&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p><code>screen.width/height</code> 返回的是理想视口的尺寸  </p>
 <h2 id="viewport取值"><a href="#viewport取值" class="headerlink" title="viewport取值"></a>viewport取值</h2><table>
 <thead>
@@ -390,12 +393,12 @@
 </article>
 
 
-    <article class="article" itemscope="" itemprop="blogPost">
+    <article class="article" itemscope itemprop="blogPost">
     
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2019/01/03/a-的用法/">链接a标签的用法</a>
+            <a href="/blog/2019/01/03/a-%E7%9A%84%E7%94%A8%E6%B3%95/">链接a标签的用法</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -409,7 +412,7 @@
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/html/">html</a>
+    <a class="article-tag-link" href="/blog/tags/html/" rel="tag">html</a>
 </div>
 
 
@@ -442,7 +445,7 @@
 <ul>
 <li><p>除了相对URL和锚点，其它的表现都和在地址栏中输入相应href类似。<br>亦和<code>window.location.href=?</code>差不多，值得注意的是，在console执行 <code>window.location.href=&quot;file:///Users/work/Desktop/test.txt&quot;</code> 时会报错 <code>Not allowed to load local resource:file:///Users/work/Desktop/test.txt</code> 而执行 <code>window.location.href=&quot;tel:+86-10010&quot;</code> 则根本没反应</p>
 </li>
-<li><p>如果不是采用hash方式进行页面内导航的话，可以使用 <code>href=&quot;#top&quot;</code> 或者 <code>href=&quot;#&quot;</code> 链接返回到页面顶部 <span class="tag">HTML5<span></span></span></p>
+<li><p>如果不是采用hash方式进行页面内导航的话，可以使用 <code>href=&quot;#top&quot;</code> 或者 <code>href=&quot;#&quot;</code> 链接返回到页面顶部 <span class="tag">HTML5<span/></p>
 </li>
 </ul>
 <h2 id="target"><a href="#target" class="headerlink" title="target"></a>target</h2><p>&lt;a> 标签的 target 属性规定在何处打开链接文档。  </p>
@@ -539,7 +542,7 @@
 <ul>
 <li>使用target时，考虑添加 <code>rel=&quot;external noopener noreferrer&quot;</code> 以防止针对 window.opener API 的恶意行为。</li>
 </ul>
-<h2 id="download-HTML5"><a href="#download-HTML5" class="headerlink" title="download HTML5"></a>download <span class="self-tag">HTML5<span></span></span></h2><p>&lt;a> 标签的 download 属性指示浏览器下载URL而不是导航到它，因此将提示用户将链接（href）指向地址保存为本地文件。如果属性有一个值，那么它将在Save提示符中作为预填充的文件名使用（如果用户需要，仍然可以更改文件名）。此属性对允许的值没有限制，但是/和\会被转换为下划线。大多数文件系统限制了文件名中的标点符号，故此，浏览器将相应地调整建议的文件名。  </p>
+<h2 id="download-HTML5"><a href="#download-HTML5" class="headerlink" title="download HTML5"></a>download <span class="self-tag">HTML5<span/></h2><p>&lt;a> 标签的 download 属性指示浏览器下载URL而不是导航到它，因此将提示用户将链接（href）指向地址保存为本地文件。如果属性有一个值，那么它将在Save提示符中作为预填充的文件名使用（如果用户需要，仍然可以更改文件名）。此属性对允许的值没有限制，但是/和\会被转换为下划线。大多数文件系统限制了文件名中的标点符号，故此，浏览器将相应地调整建议的文件名。  </p>
 <p>⚠️注意事项</p>
 <ul>
 <li>此属性仅适用于同源 URLs。</li>
@@ -592,11 +595,11 @@
     <div id="appreciate-modal" class="modal">
     <div class="appreciate-container">
         <div class="appreciate-image">
-            <img src="/blog/images/zfb.png" alt="支付宝二维码">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
             <p>⬆️支付宝</p>
         </div>
         <div class="appreciate-image">
-            <img src="/blog/images/wx.png" alt="微信二维码">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
             <p>⬆️微信</p>
         </div>
     </div>

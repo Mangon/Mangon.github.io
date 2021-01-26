@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
-    <meta charset="UTF-8">
+<head>
+    <meta charset="UTF-8" />
     
 
     
@@ -9,26 +9,28 @@
         Tag: Web | 
         Gblog
     </title>
-    <meta name="author" content="Mangon">
-    <meta name="version" content="1.0.3">
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.0.3" />
     
-    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础">
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
     
     
-    <meta name="description" content="Mangon&#39;s Technology Blog">
+    <meta name="description" content="Mangon&#39;s Technology Blog" />
     
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
     
-    <meta name="baidu-site-verification" content="pWri9ahJmw">
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
     
     
     
     <link rel="icon" href="/blog/images/favicon.ico">
     
-    <link rel="stylesheet" href="/blog/css/style.css">
-    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css">
-</head>
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.3.0"></head>
 <body>
 
     <main class="app">
@@ -59,7 +61,8 @@
         <div class="search-box" id="search-box">
     <form>
         <div class="search-btn"></div>
-        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索">
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
         <button type="reset" class="reset-search-btn"></button>
     </form>
 </div>        
@@ -100,12 +103,12 @@
 </header>
 
         <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
-    <article class="article" itemscope="" itemprop="blogPost">
+    <article class="article" itemscope itemprop="blogPost">
     
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2018/11/02/HTTP状态码/">HTTP状态码</a>
+            <a href="/blog/2018/11/02/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/">HTTP状态码</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -119,7 +122,7 @@
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/Web/">Web</a>
+    <a class="article-tag-link" href="/blog/tags/Web/" rel="tag">Web</a>
 </div>
 
 
@@ -131,7 +134,7 @@
         <div><style type="text/css">th {white-space: nowrap;}</style></div>
 
 <p>HTTP状态码（HTTP Status Code）是用以表示网页服务器HTTP响应状态的3位数字代码。它由 RFC 2616 规范定义的，并得到RFC 2518、RFC 2817、RFC 2295、RFC 2774、RFC 4918等规范扩展。  </p>
-<p>常见状态码以<font color="red">红色</font>显示。</p>
+<p>常见状态码以<font color='red'>红色</font>显示。</p>
 <h2 id="消息"><a href="#消息" class="headerlink" title="消息"></a>消息</h2><p>这一类型的状态码，代表请求已被接受，需要继续处理。这类响应是临时响应，只包含状态行和某些可选的响应头信息，并以空行结束。由于 HTTP/1.0 协议中没有定义任何 1xx 状态码，所以除非在某些试验条件下，服务器禁止向此类客户端发送 1xx 响应。  </p>
 <table>
 <thead>
@@ -170,8 +173,8 @@
 </thead>
 <tbody>
 <tr>
-<td><font color="red">200</font></td>
-<td><font color="red">OK</font></td>
+<td><font color='red'>200</font></td>
+<td><font color='red'>OK</font></td>
 <td>请求已成功，请求所希望的响应头或数据体将随此响应返回。出现此状态码是表示正常状态</td>
 </tr>
 <tr>
@@ -227,13 +230,13 @@
 <td>被请求的资源有一系列可供选择的回馈信息，每个都有自己特定的地址和浏览器驱动的商议信息。用户或浏览器能够自行选择一个首选的地址进行重定向。<br>除非这是一个 HEAD 请求，否则该响应应当包括一个资源特性及地址的列表的实体，以便用户或浏览器从中选择最合适的重定向地址。这个实体的格式由 Content-Type 定义的格式所决定。浏览器可能根据响应的格式以及浏览器自身能力，自动作出最合适的选择。当然，RFC 2616规范并没有规定这样的自动选择该如何进行。<br>如果服务器本身已经有了首选的回馈选择，那么在 Location 中应当指明这个回馈的 URI；浏览器可能会将这个 Location 值作为自动重定向的地址。此外，除非额外指定，否则这个响应也是可缓存的。</td>
 </tr>
 <tr>
-<td><font color="red">301</font></td>
-<td><font color="red">Moved Permanently</font></td>
+<td><font color='red'>301</font></td>
+<td><font color='red'>Moved Permanently</font></td>
 <td>被请求的资源已永久移动到新位置，并且将来任何对此资源的引用都应该使用本响应返回的若干个 URI 之一。如果可能，拥有链接编辑功能的客户端应当自动把请求的地址修改为从服务器反馈回来的地址。除非额外指定，否则这个响应也是可缓存的。<br>新的永久性的URI 应当在响应的 Location 域中返回。除非这是一个 HEAD 请求，否则响应的实体中应当包含指向新的 URI 的超链接及简短说明。<br>如果这不是一个 GET 或者 HEAD 请求，因此浏览器禁止自动进行重定向，除非得到用户的确认，因为请求的条件可能因此发生变化。</td>
 </tr>
 <tr>
-<td><font color="red">302<font></font></font></td>
-<td><font color="red">Move temporarily</font></td>
+<td><font color='red'>302<font></td>
+<td><font color='red'>Move temporarily</font></td>
 <td>请求的资源临时从不同的 URI响应请求。由于这样的重定向是临时的，客户端应当继续向原有地址发送以后的请求。只有在Cache-Control或Expires中进行了指定的情况下，这个响应才是可缓存的。</td>
 </tr>
 <tr>
@@ -279,8 +282,8 @@
 <td>1、语义有误，当前请求无法被服务器理解。除非进行修改，否则客户端不应该重复提交这个请求。<br>2、请求参数有误。</td>
 </tr>
 <tr>
-<td><font color="red">401</font></td>
-<td><font color="red">Unauthorized</font></td>
+<td><font color='red'>401</font></td>
+<td><font color='red'>Unauthorized</font></td>
 <td>当前请求需要用户验证。该响应必须包含一个适用于被请求资源的 WWW-Authenticate 信息头用以询问用户信息。客户端可以重复提交一个包含恰当的 Authorization 头信息的请求。如果当前请求已经包含了 Authorization 证书，那么401响应代表着服务器验证已经拒绝了那些证书。如果401响应包含了与前一个响应相同的身份验证询问，且浏览器已经至少尝试了一次验证，那么浏览器应当向用户展示响应中包含的实体信息，因为这个实体信息中可能包含了相关诊断信息。参见RFC 2617。</td>
 </tr>
 <tr>
@@ -289,13 +292,13 @@
 <td>该状态码是为了将来可能的需求而预留的。</td>
 </tr>
 <tr>
-<td><font color="red">403</font></td>
-<td><font color="red">Forbidden</font></td>
+<td><font color='red'>403</font></td>
+<td><font color='red'>Forbidden</font></td>
 <td>服务器已经理解请求，但是拒绝执行它。与401响应不同的是，身份验证并不能提供任何帮助，而且这个请求也不应该被重复提交。如果这不是一个 HEAD 请求，而且服务器希望能够讲清楚为何请求不能被执行，那么就应该在实体内描述拒绝的原因。当然服务器也可以返回一个404响应，假如它不希望让客户端获得任何信息。</td>
 </tr>
 <tr>
-<td><font color="red">404</font></td>
-<td><font color="red">Not Found</font></td>
+<td><font color='red'>404</font></td>
+<td><font color='red'>Not Found</font></td>
 <td>请求失败，请求所希望得到的资源未被在服务器上发现。没有信息能够告诉用户这个状况到底是暂时的还是永久的。假如服务器知道情况的话，应当使用410状态码来告知旧资源因为某些内部的配置机制问题，已经永久的不可用，而且没有任何可以跳转的地址。404这个状态码被广泛应用于当服务器不想揭示到底为何请求被拒绝或者没有其他适合的响应可用的情况下。出现这个错误的最有可能的原因是服务器端没有这个页面。</td>
 </tr>
 <tr>
@@ -416,8 +419,8 @@
 </thead>
 <tbody>
 <tr>
-<td><font color="red">500</font></td>
-<td><font color="red">Internal Server Error</font></td>
+<td><font color='red'>500</font></td>
+<td><font color='red'>Internal Server Error</font></td>
 <td>服务器遇到了一个未曾预料的状况，导致了它无法完成对请求的处理。一般来说，这个问题都会在服务器端的源代码出现错误时出现。</td>
 </tr>
 <tr>
@@ -431,8 +434,8 @@
 <td>作为网关或者代理工作的服务器尝试执行请求时，从上游服务器接收到无效的响应。</td>
 </tr>
 <tr>
-<td><font color="red">503</font></td>
-<td><font color="red">Service Unavailable</font></td>
+<td><font color='red'>503</font></td>
+<td><font color='red'>Service Unavailable</font></td>
 <td>由于临时的服务器维护或者过载，服务器当前无法处理请求。这个状况是临时的，并且将在一段时间以后恢复。如果能够预计延迟时间，那么响应中可以包含一个 Retry-After 头用以标明这个延迟时间。如果没有给出这个 Retry-After 信息，那么客户端应当以处理500响应的方式处理它。</td>
 </tr>
 <tr>
@@ -508,11 +511,11 @@
     <div id="appreciate-modal" class="modal">
     <div class="appreciate-container">
         <div class="appreciate-image">
-            <img src="/blog/images/zfb.png" alt="支付宝二维码">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
             <p>⬆️支付宝</p>
         </div>
         <div class="appreciate-image">
-            <img src="/blog/images/wx.png" alt="微信二维码">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
             <p>⬆️微信</p>
         </div>
     </div>

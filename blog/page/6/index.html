@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
-    <meta charset="UTF-8">
+<head>
+    <meta charset="UTF-8" />
     
 
     
@@ -9,26 +9,28 @@
         
         Gblog
     </title>
-    <meta name="author" content="Mangon">
-    <meta name="version" content="1.0.3">
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.0.3" />
     
-    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础">
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
     
     
-    <meta name="description" content="Mangon&#39;s Technology Blog">
+    <meta name="description" content="Mangon&#39;s Technology Blog" />
     
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
     
-    <meta name="baidu-site-verification" content="pWri9ahJmw">
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
     
     
     
     <link rel="icon" href="/blog/images/favicon.ico">
     
-    <link rel="stylesheet" href="/blog/css/style.css">
-    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css">
-</head>
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.3.0"></head>
 <body>
 
     <main class="app">
@@ -59,7 +61,8 @@
         <div class="search-box" id="search-box">
     <form>
         <div class="search-btn"></div>
-        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索">
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
         <button type="reset" class="reset-search-btn"></button>
     </form>
 </div>        
@@ -100,12 +103,65 @@
 </header>
 
         <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
-    <article class="article" itemscope="" itemprop="blogPost">
+    <article class="article" itemscope itemprop="blogPost">
     
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2018/11/30/Mac-下Eclipse快捷键/">Mac下Eclipse快捷键</a>
+            <a href="/blog/2018/12/06/Flex%E5%B8%83%E5%B1%80/">Flex布局</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-12-06T12:34:55.000Z" itemprop="datePublished">2018-12-06</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>, <a class="article-tag-link" href="/blog/tags/flex/" rel="tag">flex</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="Flex布局"><a href="#Flex布局" class="headerlink" title="Flex布局"></a>Flex布局</h2><p>Flex是Flexible Box的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性，设为Flex布局以后，子元素的float、clear和vertical-align属性无效。  </p>
+<p>任何一个容器都可以指定为flex布局</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: -webkit-flex;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>flex布局由父子元素共同组成，父元素被称为flex container，子元素被称为flex item。</p>
+<div><style type="text/css">img {box-shadow:none !important;</style><img src="/blog/static/imgs/flex.png" alt="flex"></div>
+
+<p>容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。主轴的开始位置（与边框的交叉点）叫做main start，结束位置叫做main end；交叉轴的开始位置叫做cross start，结束位置叫做cross end。  </p>
+<p>项目默认沿主轴排列。单个项目占据的主轴空间叫做main size，占据的交叉轴空间叫做cross size。  </p>
+<h2 id="flex-container-属性"><a href="#flex-container-属性" class="headerlink" title="flex container 属性"></a>flex container 属性</h2><p>flex container包含以下属性  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">flex-container &#123; // flex容器</span><br><span class="line">    <span class="selector-tag">display</span>: <span class="selector-tag">flex</span>; // 设置容器为弹性布局</span><br><span class="line">    flex-direction: row(default) | row-reverse | column | column-reverse; // 主轴方向</span><br><span class="line">    flex-wrap: nowrap(default) | wrap | wrap-reverse; //换行</span><br><span class="line">    flex-flow: &lt;flex-direction&gt;||&lt;flex-wrap&gt;; //以上两属性的缩写形式</span><br><span class="line">    justify-centent: flex-start | flex-end | center | space-between | space-around; //主轴对齐方式</span><br><span class="line">    align-items: flex-start | flex-end | center | baseline | stretch; // 交叉轴对齐方式</span><br><span class="line">    align-content: flex-start | flex-end | center | space-between | space-around | stretch; // 轴有多个时（flex-wrap:wrap），多根轴线的对齐方式</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="flex-item-属性"><a href="#flex-item-属性" class="headerlink" title="flex item 属性"></a>flex item 属性</h2><p>flex item 包含以下属性  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">flex-item &#123; // flex item</span><br><span class="line">    <span class="selector-tag">order</span>: &lt;<span class="selector-tag">integer</span>&gt;(<span class="selector-tag">default</span> 0); //顺序</span><br><span class="line">    <span class="selector-tag">flex-grow</span>:&lt;<span class="selector-tag">number</span>&gt;(<span class="selector-tag">default</span> 0); //项目放大比例 默认存在剩余空间也不放大</span><br><span class="line">    <span class="selector-tag">flex-shrink</span>: &lt;<span class="selector-tag">number</span>&gt;(<span class="selector-tag">default</span> 1); //项目缩小比例 默认空间不足时，当前项目缩小</span><br><span class="line">    flex-basis: &lt;length&gt;|auto(default auto); // 在分配多余空间之前，项目占据主轴的空间</span><br><span class="line">    flex:&lt;flex-grow&gt; || &lt;flex-shrink&gt; || &lt;flex-basis&gt;; //flex-grow flex-shrink flex-basis 缩写</span><br><span class="line">    align-self: auto | flex-start | flex-end | center | baseline | stretch;//该项目交叉轴对齐方式， 覆盖container的align-items属性</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/11/30/Mac-%E4%B8%8BEclipse%E5%BF%AB%E6%8D%B7%E9%94%AE/">Mac下Eclipse快捷键</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -119,7 +175,7 @@
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/eclipse/">eclipse</a>, <a class="article-tag-link" href="/blog/tags/learn/">learn</a>
+    <a class="article-tag-link" href="/blog/tags/eclipse/" rel="tag">eclipse</a>, <a class="article-tag-link" href="/blog/tags/learn/" rel="tag">learn</a>
 </div>
 
 
@@ -203,7 +259,7 @@
 </tbody>
 </table>
 <h2 id="便利设置"><a href="#便利设置" class="headerlink" title="便利设置"></a>便利设置</h2><p>Preference -&gt; General -&gt; Editors -&gt; Text Editors</p>
-<p><input type="checkbox" checked> Show line numbers<br><input type="checkbox" checked> Show white space charactors</p>
+<p><input type="checkbox" checked></input> Show line numbers<br><input type="checkbox" checked></input> Show white space charactors</p>
         
     </section>
     
@@ -217,12 +273,12 @@
 </article>
 
 
-    <article class="article" itemscope="" itemprop="blogPost">
+    <article class="article" itemscope itemprop="blogPost">
     
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2018/11/29/CSS-position的四种值/">css postion的四种值</a>
+            <a href="/blog/2018/11/29/CSS-position%E7%9A%84%E5%9B%9B%E7%A7%8D%E5%80%BC/">css postion的四种值</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -236,7 +292,7 @@
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/CSS/">CSS</a>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
 </div>
 
 
@@ -255,7 +311,7 @@
 <tbody>
 <tr>
 <td>absolute</td>
-<td>生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。<br>此元素的位置可通过 “left”、”top”、”right” 以及 “bottom” 属性来规定。</td>
+<td>生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。<br/>此元素的位置可通过 “left”、”top”、”right” 以及 “bottom” 属性来规定。</td>
 </tr>
 <tr>
 <td>relative</td>
@@ -263,7 +319,7 @@
 </tr>
 <tr>
 <td>fixed</td>
-<td>生成绝对定位的元素，相对于浏览器窗口进行定位。<br>元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。</td>
+<td>生成绝对定位的元素，相对于浏览器窗口进行定位。<br/>元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。</td>
 </tr>
 <tr>
 <td>static</td>
@@ -289,12 +345,12 @@
 </article>
 
 
-    <article class="article" itemscope="" itemprop="blogPost">
+    <article class="article" itemscope itemprop="blogPost">
     
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2018/11/26/下载csv文件/">下载csv文件</a>
+            <a href="/blog/2018/11/26/%E4%B8%8B%E8%BD%BDcsv%E6%96%87%E4%BB%B6/">下载csv文件</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -308,7 +364,7 @@
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/Javascript/">Javascript</a>
+    <a class="article-tag-link" href="/blog/tags/Javascript/" rel="tag">Javascript</a>
 </div>
 
 
@@ -320,10 +376,9 @@
         <p>在B端项目中，经常遇到报表类的需求。即一个表单，然后查询出多种数据，最后导出为excel文件。<br>这里就需要遇到文件下载类的开发。通常，有以下几种方式：  </p>
 <h2 id="打开一个文件地址"><a href="#打开一个文件地址" class="headerlink" title="打开一个文件地址"></a>打开一个文件地址</h2><p>前端传递表单参数，后端生成文件，然后返回静态文件地址，然后前端可以在空白页面打开这个地址，文件就会被下载。  </p>
 <h2 id="下载文件流"><a href="#下载文件流" class="headerlink" title="下载文件流"></a>下载文件流</h2><p>前端传递表单参数，后端生成文件，然后返回文件流，最后前端将文件流保存。  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// <span class="doctag">TODO:</span> 前后端采用不同的编码格式会使文件名乱码，暂未解决，work around:可以前端直接定义文件名而不从content-disposition获取</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span>;</span><br><span class="line">axios.request(&#123;</span><br><span class="line">    method: <span class="string">'get'</span>,</span><br><span class="line">    url: url,</span><br><span class="line">    params: params,</span><br><span class="line">    responseType: <span class="string">'blob'</span></span><br><span class="line">&#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> filename = res.headers[<span class="string">'content-disposition'</span>];</span><br><span class="line">    <span class="keyword">let</span> filetype = res.headers[<span class="string">'content-type'</span>];</span><br><span class="line">    <span class="keyword">const</span> blob = <span class="keyword">new</span> Blob([res.data], &#123;<span class="attr">type</span>: filetype&#125;);</span><br><span class="line">    <span class="comment">// IE hack; see http://msdn.microsoft.com/en-us/library/ie/hh779016.aspx</span></span><br><span class="line">    <span class="keyword">const</span> result = filename.split(<span class="string">';filename='</span>)[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span> (result &amp;&amp; result.endsWith(<span class="string">'.csv'</span>)) &#123;</span><br><span class="line">        filename = result;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        filename = <span class="string">`<span class="subst">$&#123;result || filename&#125;</span>.csv`</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.navigator.msSaveOrOpenBlob) &#123;</span><br><span class="line">        <span class="built_in">window</span>.navigator.msSaveBlob(blob, filename);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> a = <span class="built_in">window</span>.document.createElement(<span class="string">'a'</span>);</span><br><span class="line">        a.href = <span class="built_in">window</span>.URL.createObjectURL(blob, &#123;<span class="attr">type</span>: <span class="string">'text/plain'</span>&#125;);</span><br><span class="line">        a.download = filename;</span><br><span class="line">        <span class="built_in">document</span>.body.appendChild(a);</span><br><span class="line">        <span class="comment">// IE: "Access is denied"; see: https://connect.microsoft.com/IE/feedback/details/797361/ie-10-treats-blob-url-as-cross-origin-and-denies-access</span></span><br><span class="line">        a.click();</span><br><span class="line">        <span class="built_in">document</span>.body.removeChild(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// error handle</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h2 id="传递数据，由前端生成文件"><a href="#传递数据，由前端生成文件" class="headerlink" title="传递数据，由前端生成文件"></a>传递数据，由前端生成文件</h2><p>前端post传递表单参数，后端返回数据（data）,前端根据返回的数据生成excel文件。<br>这里需要用到 <a href="https://github.com/SheetJS/js-xlsx" target="_blank" rel="noopener">js-xlsx</a><br> <a href="https://github.com/SheetJS/js-xlsx" target="_blank" rel="noopener">js-xlsx</a> 是一个方便操作xlsx文件的js工具库, node环境及客户端环境都可以用。  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> XLSX <span class="keyword">from</span> <span class="string">'xlsx'</span>;</span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span>;</span><br><span class="line">axios.post(url, params).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> result = res.data.list; <span class="comment">// result should be array of arrays</span></span><br><span class="line">    <span class="keyword">const</span> ws = XLSX.utils.aoa_to_sheet(result);</span><br><span class="line">    <span class="keyword">const</span> wb = XLSX.utils.book_new();</span><br><span class="line">    XLSX.utils.book_append_sheet(wb, ws, <span class="string">"tabname"</span>);</span><br><span class="line">    XLSX.writeFile(wb, <span class="string">'filename.xlsx'</span>);</span><br><span class="line">&#125;).catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// error handle</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// <span class="doctag">TODO:</span> 前后端采用不同的编码格式会使文件名乱码，暂未解决，work around:可以前端直接定义文件名而不从content-disposition获取</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line">axios.request(&#123;</span><br><span class="line">    method: <span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">    url: url,</span><br><span class="line">    params: params,</span><br><span class="line">    responseType: <span class="string">&#x27;blob&#x27;</span></span><br><span class="line">&#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> filename = res.headers[<span class="string">&#x27;content-disposition&#x27;</span>];</span><br><span class="line">    <span class="keyword">let</span> filetype = res.headers[<span class="string">&#x27;content-type&#x27;</span>];</span><br><span class="line">    <span class="keyword">const</span> blob = <span class="keyword">new</span> Blob([res.data], &#123;<span class="attr">type</span>: filetype&#125;);</span><br><span class="line">    <span class="comment">// IE hack; see http://msdn.microsoft.com/en-us/library/ie/hh779016.aspx</span></span><br><span class="line">    <span class="keyword">const</span> result = filename.split(<span class="string">&#x27;;filename=&#x27;</span>)[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span> (result &amp;&amp; result.endsWith(<span class="string">&#x27;.csv&#x27;</span>)) &#123;</span><br><span class="line">        filename = result;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        filename = <span class="string">`<span class="subst">$&#123;result || filename&#125;</span>.csv`</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.navigator.msSaveOrOpenBlob) &#123;</span><br><span class="line">        <span class="built_in">window</span>.navigator.msSaveBlob(blob, filename);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> a = <span class="built_in">window</span>.document.createElement(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">        a.href = <span class="built_in">window</span>.URL.createObjectURL(blob, &#123;<span class="attr">type</span>: <span class="string">&#x27;text/plain&#x27;</span>&#125;);</span><br><span class="line">        a.download = filename;</span><br><span class="line">        <span class="built_in">document</span>.body.appendChild(a);</span><br><span class="line">        <span class="comment">// IE: &quot;Access is denied&quot;; see: https://connect.microsoft.com/IE/feedback/details/797361/ie-10-treats-blob-url-as-cross-origin-and-denies-access</span></span><br><span class="line">        a.click();</span><br><span class="line">        <span class="built_in">document</span>.body.removeChild(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// error handle</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="传递数据，由前端生成文件"><a href="#传递数据，由前端生成文件" class="headerlink" title="传递数据，由前端生成文件"></a>传递数据，由前端生成文件</h2><p>前端post传递表单参数，后端返回数据（data）,前端根据返回的数据生成excel文件。<br>这里需要用到 <a target="_blank" rel="noopener" href="https://github.com/SheetJS/js-xlsx">js-xlsx</a><br> <a target="_blank" rel="noopener" href="https://github.com/SheetJS/js-xlsx">js-xlsx</a> 是一个方便操作xlsx文件的js工具库, node环境及客户端环境都可以用。  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> XLSX <span class="keyword">from</span> <span class="string">&#x27;xlsx&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line">axios.post(url, params).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> result = res.data.list; <span class="comment">// result should be array of arrays</span></span><br><span class="line">    <span class="keyword">const</span> ws = XLSX.utils.aoa_to_sheet(result);</span><br><span class="line">    <span class="keyword">const</span> wb = XLSX.utils.book_new();</span><br><span class="line">    XLSX.utils.book_append_sheet(wb, ws, <span class="string">&quot;tabname&quot;</span>);</span><br><span class="line">    XLSX.writeFile(wb, <span class="string">&#x27;filename.xlsx&#x27;</span>);</span><br><span class="line">&#125;).catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// error handle</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
         
     </section>
     
@@ -337,12 +392,12 @@
 </article>
 
 
-    <article class="article" itemscope="" itemprop="blogPost">
+    <article class="article" itemscope itemprop="blogPost">
     
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2018/11/02/HTTP状态码/">HTTP状态码</a>
+            <a href="/blog/2018/11/02/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/">HTTP状态码</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -356,7 +411,7 @@
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/Web/">Web</a>
+    <a class="article-tag-link" href="/blog/tags/Web/" rel="tag">Web</a>
 </div>
 
 
@@ -368,7 +423,7 @@
         <div><style type="text/css">th {white-space: nowrap;}</style></div>
 
 <p>HTTP状态码（HTTP Status Code）是用以表示网页服务器HTTP响应状态的3位数字代码。它由 RFC 2616 规范定义的，并得到RFC 2518、RFC 2817、RFC 2295、RFC 2774、RFC 4918等规范扩展。  </p>
-<p>常见状态码以<font color="red">红色</font>显示。</p>
+<p>常见状态码以<font color='red'>红色</font>显示。</p>
 <h2 id="消息"><a href="#消息" class="headerlink" title="消息"></a>消息</h2><p>这一类型的状态码，代表请求已被接受，需要继续处理。这类响应是临时响应，只包含状态行和某些可选的响应头信息，并以空行结束。由于 HTTP/1.0 协议中没有定义任何 1xx 状态码，所以除非在某些试验条件下，服务器禁止向此类客户端发送 1xx 响应。  </p>
 <table>
 <thead>
@@ -407,8 +462,8 @@
 </thead>
 <tbody>
 <tr>
-<td><font color="red">200</font></td>
-<td><font color="red">OK</font></td>
+<td><font color='red'>200</font></td>
+<td><font color='red'>OK</font></td>
 <td>请求已成功，请求所希望的响应头或数据体将随此响应返回。出现此状态码是表示正常状态</td>
 </tr>
 <tr>
@@ -464,13 +519,13 @@
 <td>被请求的资源有一系列可供选择的回馈信息，每个都有自己特定的地址和浏览器驱动的商议信息。用户或浏览器能够自行选择一个首选的地址进行重定向。<br>除非这是一个 HEAD 请求，否则该响应应当包括一个资源特性及地址的列表的实体，以便用户或浏览器从中选择最合适的重定向地址。这个实体的格式由 Content-Type 定义的格式所决定。浏览器可能根据响应的格式以及浏览器自身能力，自动作出最合适的选择。当然，RFC 2616规范并没有规定这样的自动选择该如何进行。<br>如果服务器本身已经有了首选的回馈选择，那么在 Location 中应当指明这个回馈的 URI；浏览器可能会将这个 Location 值作为自动重定向的地址。此外，除非额外指定，否则这个响应也是可缓存的。</td>
 </tr>
 <tr>
-<td><font color="red">301</font></td>
-<td><font color="red">Moved Permanently</font></td>
+<td><font color='red'>301</font></td>
+<td><font color='red'>Moved Permanently</font></td>
 <td>被请求的资源已永久移动到新位置，并且将来任何对此资源的引用都应该使用本响应返回的若干个 URI 之一。如果可能，拥有链接编辑功能的客户端应当自动把请求的地址修改为从服务器反馈回来的地址。除非额外指定，否则这个响应也是可缓存的。<br>新的永久性的URI 应当在响应的 Location 域中返回。除非这是一个 HEAD 请求，否则响应的实体中应当包含指向新的 URI 的超链接及简短说明。<br>如果这不是一个 GET 或者 HEAD 请求，因此浏览器禁止自动进行重定向，除非得到用户的确认，因为请求的条件可能因此发生变化。</td>
 </tr>
 <tr>
-<td><font color="red">302<font></font></font></td>
-<td><font color="red">Move temporarily</font></td>
+<td><font color='red'>302<font></td>
+<td><font color='red'>Move temporarily</font></td>
 <td>请求的资源临时从不同的 URI响应请求。由于这样的重定向是临时的，客户端应当继续向原有地址发送以后的请求。只有在Cache-Control或Expires中进行了指定的情况下，这个响应才是可缓存的。</td>
 </tr>
 <tr>
@@ -516,8 +571,8 @@
 <td>1、语义有误，当前请求无法被服务器理解。除非进行修改，否则客户端不应该重复提交这个请求。<br>2、请求参数有误。</td>
 </tr>
 <tr>
-<td><font color="red">401</font></td>
-<td><font color="red">Unauthorized</font></td>
+<td><font color='red'>401</font></td>
+<td><font color='red'>Unauthorized</font></td>
 <td>当前请求需要用户验证。该响应必须包含一个适用于被请求资源的 WWW-Authenticate 信息头用以询问用户信息。客户端可以重复提交一个包含恰当的 Authorization 头信息的请求。如果当前请求已经包含了 Authorization 证书，那么401响应代表着服务器验证已经拒绝了那些证书。如果401响应包含了与前一个响应相同的身份验证询问，且浏览器已经至少尝试了一次验证，那么浏览器应当向用户展示响应中包含的实体信息，因为这个实体信息中可能包含了相关诊断信息。参见RFC 2617。</td>
 </tr>
 <tr>
@@ -526,13 +581,13 @@
 <td>该状态码是为了将来可能的需求而预留的。</td>
 </tr>
 <tr>
-<td><font color="red">403</font></td>
-<td><font color="red">Forbidden</font></td>
+<td><font color='red'>403</font></td>
+<td><font color='red'>Forbidden</font></td>
 <td>服务器已经理解请求，但是拒绝执行它。与401响应不同的是，身份验证并不能提供任何帮助，而且这个请求也不应该被重复提交。如果这不是一个 HEAD 请求，而且服务器希望能够讲清楚为何请求不能被执行，那么就应该在实体内描述拒绝的原因。当然服务器也可以返回一个404响应，假如它不希望让客户端获得任何信息。</td>
 </tr>
 <tr>
-<td><font color="red">404</font></td>
-<td><font color="red">Not Found</font></td>
+<td><font color='red'>404</font></td>
+<td><font color='red'>Not Found</font></td>
 <td>请求失败，请求所希望得到的资源未被在服务器上发现。没有信息能够告诉用户这个状况到底是暂时的还是永久的。假如服务器知道情况的话，应当使用410状态码来告知旧资源因为某些内部的配置机制问题，已经永久的不可用，而且没有任何可以跳转的地址。404这个状态码被广泛应用于当服务器不想揭示到底为何请求被拒绝或者没有其他适合的响应可用的情况下。出现这个错误的最有可能的原因是服务器端没有这个页面。</td>
 </tr>
 <tr>
@@ -653,8 +708,8 @@
 </thead>
 <tbody>
 <tr>
-<td><font color="red">500</font></td>
-<td><font color="red">Internal Server Error</font></td>
+<td><font color='red'>500</font></td>
+<td><font color='red'>Internal Server Error</font></td>
 <td>服务器遇到了一个未曾预料的状况，导致了它无法完成对请求的处理。一般来说，这个问题都会在服务器端的源代码出现错误时出现。</td>
 </tr>
 <tr>
@@ -668,8 +723,8 @@
 <td>作为网关或者代理工作的服务器尝试执行请求时，从上游服务器接收到无效的响应。</td>
 </tr>
 <tr>
-<td><font color="red">503</font></td>
-<td><font color="red">Service Unavailable</font></td>
+<td><font color='red'>503</font></td>
+<td><font color='red'>Service Unavailable</font></td>
 <td>由于临时的服务器维护或者过载，服务器当前无法处理请求。这个状况是临时的，并且将在一段时间以后恢复。如果能够预计延迟时间，那么响应中可以包含一个 Retry-After 头用以标明这个延迟时间。如果没有给出这个 Retry-After 信息，那么客户端应当以处理500响应的方式处理它。</td>
 </tr>
 <tr>
@@ -723,92 +778,10 @@
 </article>
 
 
-    <article class="article" itemscope="" itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2018/10/12/Vue组件间通信/">Vue2组件间通信</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-10-12T06:44:35.000Z" itemprop="datePublished">2018-10-12</time>
-</span>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/Vue/">Vue</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>本篇主要讲述Vue2中组件间通信。目前 <a href="https://github.com/vuejs/vue" target="_blank" rel="noopener">Vue</a> 最新版本为<a href="https://www.npmjs.com/package/vue" target="_blank" rel="noopener"><img src="https://img.shields.io/npm/v/vue.svg" alt="Version" style="width:auto !important;margin:auto;margin-left: 5px;"></a>。</p>
-<h2 id="props与自定义事件"><a href="#props与自定义事件" class="headerlink" title="props与自定义事件"></a>props与自定义事件</h2><p>这是Vue推荐使用的通信方法</p>
-<h3 id="Vue中通过props属性可以实现父组件向子组件的参数传递。"><a href="#Vue中通过props属性可以实现父组件向子组件的参数传递。" class="headerlink" title="Vue中通过props属性可以实现父组件向子组件的参数传递。"></a>Vue中通过props属性可以实现父组件向子组件的参数传递。</h3><p>所有的 prop 都使得其父子之间形成了一个 <em>单向下行绑定</em> ：父级 prop 的更新会向下流动到子组件中，但是反过来则不行。这样会防止从子组件意外改变父级组件的状态，从而导致你的应用的数据流向难以理解。每次父级组件发生更新时，子组件中所有的 prop 都将会刷新为最新的值。</p>
-<p>在子组件中定义props属性<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'blog-post'</span>, &#123;</span><br><span class="line">  <span class="comment">// 在 JavaScript 中是 camelCase 的</span></span><br><span class="line">  props: [<span class="string">'postTitle'</span>],</span><br><span class="line">  template: <span class="string">'&lt;h3&gt;&#123;&#123; postTitle &#125;&#125;&lt;/h3&gt;'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<p>在父组件中传入对应的props属性<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 在 HTML 中是 kebab-case 的 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">blog-post</span> <span class="attr">post-title</span>=<span class="string">"hello!"</span>&gt;</span><span class="tag">&lt;/<span class="name">blog-post</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>在 JavaScript 中对象和数组是通过引用传入的，所以对于一个数组或对象类型的 prop 来说，在子组件中改变这个对象或数组本身将会影响到父组件的状态。  </p>
-</blockquote>
-<h3 id="Vue中通过自定义事件可以实现子组件向父组件的参数传递。"><a href="#Vue中通过自定义事件可以实现子组件向父组件的参数传递。" class="headerlink" title="Vue中通过自定义事件可以实现子组件向父组件的参数传递。"></a>Vue中通过自定义事件可以实现子组件向父组件的参数传递。</h3><p>在子组件中触发事件<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$emit(<span class="string">'myEvent'</span>, data)</span><br></pre></td></tr></table></figure></p>
-<p>在父组件中接受事件并进行处理<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">my-component</span> <span class="attr">v-on:my-event</span>=<span class="string">"doSomething"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-component</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="provide与inject"><a href="#provide与inject" class="headerlink" title="provide与inject"></a>provide与inject</h2><p>2.2.0+ 新增  </p>
-<p>这对选项需要一起使用，以允许一个祖先组件向其所有子孙后代组件注入一个依赖，不论组件层次有多深，并在起上下游关系成立的时间里始终生效。祖先组件中通过provide来提供变量，然后在子孙后代组件中通过inject来注入变量。不论子孙后代有多深，只要调用了inject那么就可以注入provide中的数据。而不是局限于只能从当前父组件的prop属性来获取数据，只要在祖先组件的生命周期内，子孙后代组件都可以调用。  </p>
-<blockquote>
-<p>provide 和 inject 绑定并不是可响应的。这是刻意为之的。然而，如果你传入了一个可监听的对象，那么其对象的属性还是可响应的。</p>
-</blockquote>
-<blockquote>
-<p>provide 和 inject 主要为高阶插件/组件库提供用例。并不推荐直接用于应用程序代码中。</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'child'</span>, &#123;</span><br><span class="line">    inject: [<span class="string">'somedata'</span>], <span class="comment">//得到父组件传递过来的数据</span></span><br><span class="line">    data() &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            mymessage: <span class="keyword">this</span>.somedata</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    template:<span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;input type="tet" v-model="mymessage"&gt; </span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">        `</span></span><br><span class="line">&#125;)</span><br><span class="line">Vue.component(<span class="string">'parent'</span>, &#123;</span><br><span class="line">    provide:&#123;</span><br><span class="line">        somedata: <span class="string">'test'</span> <span class="comment">//提供给子组件的数据</span></span><br><span class="line">    &#125;,</span><br><span class="line">    template:<span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;p&gt;this is parent compoent!&lt;/p&gt;</span></span><br><span class="line"><span class="string">            &lt;child&gt;&lt;/child&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="props与-sync"><a href="#props与-sync" class="headerlink" title="props与.sync"></a>props与.sync</h2><p>2.3.0+ 新增</p>
-<p>.sync 是一个自定义事件修饰符，可以实现对props的“双向绑定”<br>实际上sync只是props&amp;自定义事件的一个语法糖  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">text-document</span> <span class="attr">v-bind:title.sync</span>=<span class="string">"doc.title"</span>&gt;</span><span class="tag">&lt;/<span class="name">text-document</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>实际上是以下写法的一个缩写  </p>
-<p>父组件<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">text-document</span></span></span><br><span class="line"><span class="tag">  <span class="attr">v-bind:title</span>=<span class="string">"doc.title"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">v-on:update:title</span>=<span class="string">"doc.title = $event"</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">text-document</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>子组件<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$emit(<span class="string">'update:title'</span>, newTitle)</span><br></pre></td></tr></table></figure></p>
-<h2 id="v-model"><a href="#v-model" class="headerlink" title="v-model"></a>v-model</h2><p>一个组件上的 <code>v-model</code> 默认会利用名为 value 的 prop 和名为 input 的事件<br>所以可以在父组件中使用  <code>v-model=&quot;message&quot;</code> 然后在子组件中通过 <code>$emit(&#39;input&#39;, newMessage)</code> 来改变父组件上v-model绑定的值message。<br>但是像单选框、复选框等类型的输入控件可能会将 <code>value</code> 特性用于不同的目的。  </p>
-<h2 id="parent与-children-refs"><a href="#parent与-children-refs" class="headerlink" title="$parent与$children/$refs"></a>$parent与$children/$refs</h2><p>不推荐使用  </p>
-<p>在子组件中可以直接通过 <code>this.$parent.$data</code> 来访问和修改父组件的值，<br>在父组件中也可以通过 <code>this.$children[0].$data</code> 来访问和修改子组件的值<br>也可以在引用子组件时通过添加ref来使得父组件中可以通过 <code>this.$refs.child.$data</code> 来访问和修改子组件的值  </p>
-<h2 id="attr与-listener"><a href="#attr与-listener" class="headerlink" title="$attr与$listener"></a>$attr与$listener</h2><p>2.4.0+新增  </p>
-<p>$attr与$listener实现了一种跨父子的参数传递方法  </p>
-<p>$attr包含了父作用域中不作为 prop 被识别 (且获取) 的特性绑定 (class 和 style 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 v-bind=”$attrs” 传入内部组件。  </p>
-<p>$listener包含了父作用域中的 (不含 .native 修饰器的) v-on 事件监听器。它可以通过 v-on=”$listeners” 传入内部组件</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'C'</span>, &#123;</span><br><span class="line">    template:<span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;input type="text"</span></span><br><span class="line"><span class="string">                v-model="$attrs.messagec"</span></span><br><span class="line"><span class="string">                @input="passCData($attrs.messagec)"&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;`</span>,</span><br><span class="line"></span><br><span class="line">    methods: &#123;</span><br><span class="line">        passCData(val)&#123;</span><br><span class="line">            <span class="comment">//触发父组件A中的事件</span></span><br><span class="line">            <span class="keyword">this</span>.$emit(<span class="string">'getCData'</span>, val)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">Vue.component(<span class="string">'B'</span>, &#123;</span><br><span class="line">    data()&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            mymessage: <span class="keyword">this</span>.message</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    template:<span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;input type="text" v-model="mymessage" @input="passData(mymessage)"&gt; </span></span><br><span class="line"><span class="string">            &lt;!-- C组件中能直接触发getCData的原因在于 B组件调用C组件时 使用 v-on 绑定了$listeners 属性 --&gt;</span></span><br><span class="line"><span class="string">            &lt;!-- 通过v-bind 绑定$attrs属性，C组件可以直接获取到A组件中传递下来的props（除了B组件中props声明的） --&gt;</span></span><br><span class="line"><span class="string">            &lt;C v-bind="$attrs" v-on="$listeners"&gt;&lt;/C&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span>,</span><br><span class="line">    props:[<span class="string">'message'</span>], <span class="comment">//得到父组件传递过来的数据</span></span><br><span class="line">    methods:&#123;</span><br><span class="line">        passData(val)&#123;</span><br><span class="line">            <span class="comment">//触发父组件中的事件</span></span><br><span class="line">            <span class="keyword">this</span>.$emit(<span class="string">'getChildData'</span>,val)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">Vue.component(<span class="string">'A'</span>, &#123;</span><br><span class="line">    data()&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            message:<span class="string">'hello b'</span>, <span class="comment">//传递给子组件的数据</span></span><br><span class="line">            messagec:<span class="string">'hello c'</span> <span class="comment">//传递给c组件的数据</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    template:<span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;p&gt;this is parent compoent!&lt;/p&gt;</span></span><br><span class="line"><span class="string">            &lt;B :message="message" @getChildData="getChildData"</span></span><br><span class="line"><span class="string">                v-bind="$attrs" v-on="$listeners" &gt;&lt;/B&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span>,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        <span class="comment">//执行子组件触发的事件</span></span><br><span class="line">        getChildData(val)&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'这是来自B组件的数据'</span>)</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">//执行C组件触发的事件</span></span><br><span class="line">        getCData(val)&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"这是来自C组件的数据："</span> + val)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="中央事件总栈-emit-on"><a href="#中央事件总栈-emit-on" class="headerlink" title="中央事件总栈 $emit $on"></a>中央事件总栈 $emit $on</h2><p>为了实现非父子间的通信，我们可以通过通过使用一个空的Vue实例作为中央事件总线来处理所有的事件，通过Vue自带的$emit $on来进行组件间通信。  </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> bus = <span class="keyword">new</span> Vue()</span><br><span class="line">Vue.prototype.bus = bus</span><br></pre></td></tr></table></figure>
-<p>甚至可以用app.js中的Vue实例来处理  </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* app.js*/</span></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  router,</span><br><span class="line">  template: <span class="string">'&lt;App/&gt;'</span>,</span><br><span class="line">  components: &#123; App &#125;,</span><br><span class="line">  beforeCreate () &#123;</span><br><span class="line">    Vue.prototype.bus = <span class="keyword">this</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>这样在组件中我们就可以通过以下方式处理  </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.bus.$emit(<span class="string">'some-event'</span>, data)</span><br><span class="line"><span class="keyword">this</span>.bus.$on(<span class="string">'some-event'</span>, ()=&gt;&#123;&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="vuex"><a href="#vuex" class="headerlink" title="vuex"></a>vuex</h2><p><a href="https://github.com/vuejs/vuex" target="_blank" rel="noopener">vuex</a></p>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
 
 
 <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/blog/page/5/">&laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/4/">4</a><a class="page-number" href="/blog/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/blog/page/7/">7</a><a class="page-number" href="/blog/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/12/">12</a><a class="extend next" rel="next" href="/blog/page/7/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/blog/page/5/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/4/">4</a><a class="page-number" href="/blog/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/blog/page/7/">7</a><a class="page-number" href="/blog/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/12/">12</a><a class="extend next" rel="next" href="/blog/page/7/">Next &amp;raquo;</a>
 </nav>
 
 
@@ -831,11 +804,11 @@
     <div id="appreciate-modal" class="modal">
     <div class="appreciate-container">
         <div class="appreciate-image">
-            <img src="/blog/images/zfb.png" alt="支付宝二维码">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
             <p>⬆️支付宝</p>
         </div>
         <div class="appreciate-image">
-            <img src="/blog/images/wx.png" alt="微信二维码">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
             <p>⬆️微信</p>
         </div>
     </div>
