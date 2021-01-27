@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    
+
+    
+    <title>
+        
+        Gblog
+    </title>
+    <meta name="author" content="Mangon">
+    <meta name="version" content="1.0.3">
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础">
+    
+    
+    <meta name="description" content="Mangon&#39;s Technology Blog">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw">
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    <link rel="stylesheet" href="/blog/css/style.css">
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item active">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://mangon.cn/blog"></form> -->
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索">
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+
+        
+            <div class="author-meta">
+                
+                <div class="author-avatar">
+                    <a href="/blog/">
+                        <img src="/blog/images/avatar.jpeg" title="Mangon">
+                    </a>
+                </div>
+                
+                <div class="author-name">Mangon</div>
+                <div class="author-work">Front-End Software Engineer</div>
+                <div class="author-location">
+                    <i class="icon-location vm"></i>
+                    <span class="vm">Beijing, China</span>
+                </div>
+                
+                <div class="author-thread-wrap">
+                    <div class="author-threads clearfix">
+                        
+                        <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
+                        
+                        
+                        
+                    </div>
+                </div>
+                
+            </div>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/01/19/webpack小全/">webpack小全</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-01-19T07:02:30.000Z" itemprop="datePublished">2021-01-19</time>
+</span>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="什么是-webpack"><a href="#什么是-webpack" class="headerlink" title="什么是 webpack"></a>什么是 webpack</h2><p><a href="https://webpack.js.org/" target="_blank" rel="noopener">webpack</a> 是一个用于现代 JavaScript 应用程序的静态模块绑定器。当webpack处理你的应用程序时，它会在内部构建一个依赖关系图，映射项目所需的每个模块，并生成一个或多个包（bundles）。  </p>
+<p>webpack 可以转换打包多种类型的文件、模块、资源，包括 ES Modules 、CommonJS 和 AMD 模块， 也可以将 TypeScript 转换为 JavaScript，将 Handlebars 字符串转换为函数，将图片转换为 Base64，你也可以自己编写插件（plugins）来实现将任何你的应用程序需要的资源进行转换与打包。  </p>
+<p>webpack 支持所有兼容 ES5 的浏览器。webpack 需要 Promise 来 import() 和 require.ensure() ，在更老旧的浏览器中使用 webpack 时，需要使用 polyfill。  </p>
+<p>当前（2021年1月19日）最新版本的 webpack 是 v5.15.0， 以下内容默认适用于该版本， 另外 webpack5 运行时需要 Nodejs 版本在 10.13.0 以上。  </p>
+<h2 id="webpack可以做什么"><a href="#webpack可以做什么" class="headerlink" title="webpack可以做什么"></a>webpack可以做什么</h2><h3 id="资源管理"><a href="#资源管理" class="headerlink" title="资源管理"></a>资源管理</h3><p>将各种类型的文件/模块作为资源进行统一的处理，webpack 通过 资源视图 和 loader 来实现对项目资源的管理。</p>
+<h3 id="输出管理"><a href="#输出管理" class="headerlink" title="输出管理"></a>输出管理</h3><p>通过丰富的插件，webpack 可以在打包过程中进行一系列的处理，同时支持多个入口和输出。</p>
+<h3 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h3><p>区分 开发 模式 和 生产 模式，可以对开发模式进行更有利于 debug 的编译(source map)，热更新等。甚至提供了 webpack-dev-server 提供本地简易服务器进行开发调试。 </p>
+<h3 id="代码分割"><a href="#代码分割" class="headerlink" title="代码分割"></a>代码分割</h3><p>支持将代码拆分为不同的包，然后可以按需或并行加载。它可以用来拆分更小的包和控制资源负载优先级，如果使用正确，会对负载时间产生重大影响。</p>
+<p>多种方法可以实现代码分割，包括</p>
+<ol>
+<li>使用 SplitChunksPlugin 插件将公用依赖导出到特定包</li>
+<li>使用 mini-css-extract-plugin 来将 CSS 从主应用中拆分出来</li>
+<li>使用动态 import </li>
+<li>使用 预获取/预加载 (prefetch/preload)</li>
+<li>包解析<ol>
+<li>使用官方提供的 <code>webpack --profile --json &gt; stats.json</code> 生成分析的JSON文件</li>
+<li>webpack-chart </li>
+<li>webpack-visualizer</li>
+<li>webpack-bundle-analyzer</li>
+<li>webpack bundle optimize helper</li>
+<li>bundle-stats</li>
+</ol>
+</li>
+</ol>
+<h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><p>浏览器使用缓存来避免无用的请求以及让资源加载更快，webpack 可以根据文件内容在输出文件名中添加 hash 串来控制浏览器的缓存更新策略。通常，可以将 node_modules 中的依赖打包为 vendors.js 然后固定 MODULE id，这样 vendors.[conenthash].js 便不会一直更新。</p>
+<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p>通过设置 <code>--env</code> 参数设置环境变量，在不同的环境下执行不同的编译方案。</p>
+<h2 id="webpack的5个核心概念"><a href="#webpack的5个核心概念" class="headerlink" title="webpack的5个核心概念"></a>webpack的5个核心概念</h2><h3 id="Entry"><a href="#Entry" class="headerlink" title="Entry"></a>Entry</h3><p>entry 指示 webpack 应该使用哪个模块来开始构建其内部依赖关系图。webpack将找出 entry 所依赖的其他模块和库（直接和间接）。</p>
+<p>默认情况下，其值为 <code>./src/index.js</code>，但可以通过在 webpack 配置中设置 entry 属性来指定不同的（或多个入口点）。例如：</p>
+<figure class="highlight js"><figcaption><span>webpack.config.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">'./path/to/my/entry/file.js'</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>output 属性告诉 webpack 在何处导出它创建的包以及如何命名这些文件。对于主输出文件，默认为 <code>./dist/main.js</code> ，对于任何其他生成的文件，默认为<code>./dist</code> 文件夹。</p>
+<p>可以通过在配置中指定输出字段来配置流程的这一部分：</p>
+<figure class="highlight js"><figcaption><span>webpack.config.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">'./path/to/my/entry/file.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">    filename: <span class="string">'my-first-webpack.bundle.js'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Loaders"><a href="#Loaders" class="headerlink" title="Loaders"></a>Loaders</h3><p>默认情况下，webpack 只理解 JavaScript 和 JSON 文件。Loaders 允许 webpack 处理其他类型的文件，并将它们转换为有效的模块，这些模块可以被应用程序使用并添加到依赖关系图中。  </p>
+<p>loaders 是按照规则（rules）进行的，rules 在配置中有两个属性，test 属性标识应转换的文件，use 属性指示应该使用哪个加载程序进行转换。  </p>
+<p>loaders可以是链式的，在链重的每个loader都会按照反向的顺序被执行</p>
+<figure class="highlight js"><figcaption><span>webpack.config.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">'my-first-webpack.bundle.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        use: [<span class="string">'style-loader'</span>, <span class="string">'css-loader'</span>]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>常用 loaders :</p>
+<table>
+<thead>
+<tr>
+<th>loader名字</th>
+<th>作用</th>
+<th>文件扩展名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>style-loader</td>
+<td>将 CSS 注入 DOM</td>
+<td>.css</td>
+</tr>
+<tr>
+<td>css-loader</td>
+<td>css-loader 将会像 import/require() 那样解析 @import 和 url()</td>
+<td>.css</td>
+</tr>
+<tr>
+<td>postcss-loader</td>
+<td>用于对css文件进行预处理</td>
+<td>.css</td>
+</tr>
+<tr>
+<td>file-loader</td>
+<td>file-loader 将文件的 import/require（）解析为 url，并将文件发送到输出目录，在 webpack5 中使用自带的 asset/resource 来代替</td>
+<td>.png .jpg .jpeg .gif</td>
+</tr>
+<tr>
+<td>url-loader</td>
+<td>将文件转换为 base64 url 在 webpack5 中使用自带的 asset/resource 来代替</td>
+<td>.png .jpg .gif</td>
+</tr>
+<tr>
+<td>raw-loader</td>
+<td>允许导入文件作为字符串 在 webpack5 中使用自带的 asset/resource 来代替</td>
+<td>.txt</td>
+</tr>
+<tr>
+<td>csv-loader</td>
+<td>允许导入csv文件作为字符串</td>
+<td>.csv</td>
+</tr>
+<tr>
+<td>xml-loader</td>
+<td>允许导入xml文件作为字符串</td>
+<td>.xml</td>
+</tr>
+<tr>
+<td>less-loader</td>
+<td>将 less 文件编译为 css</td>
+<td>.less</td>
+</tr>
+<tr>
+<td>sass-loader</td>
+<td>将 sass 文件编译为 css</td>
+<td>.sass</td>
+</tr>
+<tr>
+<td>stylus-loader</td>
+<td>将 styl 文件编译为 css</td>
+<td>.styl</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Plugins"><a href="#Plugins" class="headerlink" title="Plugins"></a>Plugins</h3><p>loaders 用于转换某些类型的模块，但可以利用 plugins 执行更广泛的任务，如包优化、资源管理和环境变量的注入。<br>为了使用 plugin ，你需要先引入它并将其添加到配置文件的 plugins 数组中。大多数插件都可以通过选项进行定制。由于可以在配置中多次使用插件以实现不同的目的，因此需要通过使用 New 操作符调用插件来创建插件的实例。</p>
+<figure class="highlight js"><figcaption><span>webpack.config.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>); <span class="comment">// 通过 npm 引入的 plugin</span></span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>); <span class="comment">// 使用 webpack 自带的 plugin</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123; <span class="attr">test</span>: <span class="regexp">/\.txt$/</span>, <span class="attr">use</span>: <span class="string">'raw-loader'</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;<span class="attr">template</span>: <span class="string">'./src/index.html'</span>&#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>常用 plugins :</p>
+<table>
+<thead>
+<tr>
+<th>plugin 名字</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BannerPlugin</td>
+<td>在每个生成的块的顶部添加一个Banner(横幅)</td>
+</tr>
+<tr>
+<td>CleanWebpackPlugin</td>
+<td>编译前自动清除输出目录</td>
+</tr>
+<tr>
+<td>CommonsChunkPlugin</td>
+<td>提取块之间共享的公共模块</td>
+</tr>
+<tr>
+<td>CompressionWebpackPlugin</td>
+<td>准备资源的压缩版本，为其提供内容编码</td>
+</tr>
+<tr>
+<td>ContextReplacementPlugin</td>
+<td>重写require表达式的推断上下文</td>
+</tr>
+<tr>
+<td>CopyWebpackPlugin</td>
+<td>将单个文件或整个目录复制到生成目录</td>
+</tr>
+<tr>
+<td>DefinePlugin</td>
+<td>允许在编译时配置全局常量</td>
+</tr>
+<tr>
+<td>DllPlugin</td>
+<td>拆分捆绑包以显著缩短构建时间</td>
+</tr>
+<tr>
+<td>EnvironmentPlugin</td>
+<td>使用 DefinePlugin 的 process.env 更便捷的方法</td>
+</tr>
+<tr>
+<td>EslintWebpackPlugin</td>
+<td>ESLint 的 webpack插件</td>
+</tr>
+<tr>
+<td>HotModuleReplacementPlugin</td>
+<td>允许热替换(HMR)</td>
+</tr>
+<tr>
+<td>HtmlWebpackPlugin</td>
+<td>为包创建HTML</td>
+</tr>
+<tr>
+<td>IgnorePlugin</td>
+<td>从包中排除某些模块</td>
+</tr>
+<tr>
+<td>LimitChunkCountPlugin</td>
+<td>设置分块的最小/最大限制以更好地控制分块</td>
+</tr>
+<tr>
+<td>MinChunkSizePlugin</td>
+<td>保持块大小高于指定的限制</td>
+</tr>
+<tr>
+<td>MiniCssExtractPlugin</td>
+<td>为每个需要CSS的JS文件创建一个CSS文件</td>
+</tr>
+<tr>
+<td>NoEmitOnErrorsPlugin</td>
+<td>出现编译错误时不再抛出</td>
+</tr>
+<tr>
+<td>NormalModuleReplacementPlugin</td>
+<td>替换与 regexp 匹配的资源</td>
+</tr>
+<tr>
+<td>NpmInstallWebpackPlugin</td>
+<td>开发时自动安装缺失的依赖</td>
+</tr>
+<tr>
+<td>ProgressPlugin</td>
+<td>汇报编译进度</td>
+</tr>
+<tr>
+<td>ProvidePlugin</td>
+<td>使用模块而不必使用import/require</td>
+</tr>
+<tr>
+<td>SourceMapDevToolPlugin</td>
+<td>支持对源映射进行更细粒度的控制</td>
+</tr>
+<tr>
+<td>EvalSourceMapDevToolPlugin</td>
+<td>支持对eval源映射进行更细粒度的控制</td>
+</tr>
+<tr>
+<td>TerserPlugin</td>
+<td>使用 Terser 压缩混淆项目中的JS</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Mode"><a href="#Mode" class="headerlink" title="Mode"></a>Mode</h3><p>通过将 mode 参数设置为 development 、 production 或 none，可以启用与每个环境相对应的 webpack 内置优化。默认值为 production 。</p>
+<h2 id="webpack安装"><a href="#webpack安装" class="headerlink" title="webpack安装"></a>webpack安装</h2><p>使用npm/yarn安装</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev webpack</span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line">yarn add webpack --dev</span><br><span class="line"><span class="comment">// webpack4以上的版本需要同事安装webpack-cli</span></span><br><span class="line">npm install --save-dev webpack-cli</span><br></pre></td></tr></table></figure>
+<p>添加build脚本到package.json中</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"scripts": &#123;</span><br><span class="line">  "build": "webpack --config webpack.config.js"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2020/09/21/小程序性能优化三板斧/">小程序性能优化三板斧</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2020-09-21T05:55:42.000Z" itemprop="datePublished">2020-09-21</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/小程序/">小程序</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="为什么有这篇文章"><a href="#为什么有这篇文章" class="headerlink" title="为什么有这篇文章"></a>为什么有这篇文章</h2><p>想看干货的可以直接跳转到<a href="#第一板斧-断舍离，减少小程序包体积">正文</a>  </p>
+<p>小程序中心是百度APP小程序流量分发的入口，从百度个人中心可以进入。<br><img style="width: 300px;" src="/blog/static/imgs/fmp/entry.png">它长这样</p>
+<p>2020年第二季度末我接手了小程序中心。小程序中心说大不大，说小也不小，属于麻雀虽小五脏俱全的那种，从18年到现在经历了2年的迭代，经手了20多任开发，1000次左右的commit，也发展成了一个比较成熟的产品。产品发展到一定阶段，就开始呈现出技术上的一些瓶颈，前期为了快速的上线功能埋下了不少的坑，尤其是性能上的坑，达到了不可忽视的程度。但是这些坑还是需要后人一点点填上的，然后自然而言的这个艰巨的任务就落在了我的身上，随后就开始了小程序中心的性能优化工作。<br>第三季度对性能优化进行了排期，经历了一系列“神奇的操作”，小程序中心的FMP从2100ms降低到了现在的1300ms。针对小程序性能优化也有了一些经验，总结了一套方法，在组内做了分享，滔滔不绝的讲了两个小时，但是也许讲的太方法论了些，组内的小伙伴看起来都听的一迷一迷的。甚至会后还是会被问“怎么做才能快速的提升小程序的性能呢”。其实性能提升永远没有捷径，需要分析、优化、实验、监控，需要一点点积累和深入，随着你对项目和性能优化的理解不断提升，性能提升的手段会越来越丰富，性能数据自然会提升上去。但，你可能还是要问“那么怎么做才能快速的提升小程序的性能呢”。<br><img style="width: 300px;" src="/blog/static/imgs/fmp/yixiaoerguo.jpg">好吧，不装了，我摊牌了，（敲黑板！）以下是一些简单有效的方法，而且几乎可以无脑应用到所有小程序中<br>什么？你说你不会？好吧，我把源代码也给你贴上去了，<del>ctrl+c ctrl+v总会吧！</del>该怎么做你看着办。  </p>
+<h2 id="性能优化的背景"><a href="#性能优化的背景" class="headerlink" title="性能优化的背景"></a>性能优化的背景</h2><p>在探讨性能优化之前，我们需要首先知道什么是性能。我们讨论到性能时，其实是讨论应用在各种情况下的表现，<strong>我们希望用户不因为程序代码写法上（而不是策略算法或者业务上）的问题而导致自己的需求受到影响，希望我们的应用快速的响应，流畅的切换，可以让用户无缝的满足自己的需求</strong>。在小程序中，性能可以收敛于三个指标，FMP、白屏率、服务可用性，下面讲一下这三个指标的意义。  </p>
+<p>FMP： First Meaningful Paint，即首次有意义的绘制。<strong>FMP通常是最重要的指标</strong>，标志了程序在一般情况下的应用表现，FMP高了说明程序首次加载时间较长，也就是用户需要等待较长的时间才能进入到小程序中，在这个过程中用户可能就会选择退出了，FMP低说明用户很快就可以进入到小程序中，给用户的感觉就是快，减少了用户等待的时间。  </p>
+<p>白屏率：用户触发页面打开后，间隔一定时间后仍然没有任何页面绘制，则认定为白屏，白屏率 = 白屏发生 PV / 小程序冷启动打开 PV。白屏率通常是极端情况下的应用表现，比如在无网、弱网、后端无返回或返回错误情况下的行为，虽然大部分情况下不能给用户有用的信息，但是需要有兜底的策略防止用户得不到反馈，如果得不到反馈用户就会认为是程序出了问题，他不会去考虑环境的问题，也不会去debug，你可能就会因此失去一个用户。  </p>
+<p>服务可用性：包括</p>
+<ol>
+<li>HTTP请求访问失败率：请求后端服务时的失败率，失败率=请求失败次数/请求数量。  </li>
+<li>JSError：小程序运行过程中发生的JS error。  </li>
+</ol>
+<p>服务可用性代表了错误情况下的应用表现，错误按照来源方简单分为两种，一个是服务器端的错误，具体的表现就是HTTP请求失败，一种是前端的错误，也就是JS error。这些错误有可能什么都不影响，但也可能严重到导致程序异常不能运行，需要具体问题具体分析。  </p>
+<p>你可以在 <a href="https://smartprogram.baidu.com/developer/home/alarm.html?from=homeIndex&amp;tabCur=watchLoad" target="_blank" rel="noopener">开发者平台-开发管理-运维中心</a> 看到这三个指标的详细情况。我们可以看到白屏率和服务可用性其实标志了应用的稳定性和错误/异常场景下的表现，而FMP，是在正常的业务场景下最直观的描述小程序性能的指标，下面我们就围绕降低小程序FMP讲一下具体的提升小程序性能的“三板斧”。  </p>
+<h2 id="第一板斧-断舍离，减少小程序包体积"><a href="#第一板斧-断舍离，减少小程序包体积" class="headerlink" title="第一板斧-断舍离，减少小程序包体积"></a>第一板斧-断舍离，减少小程序包体积</h2><p>我们知道，小程序在发布的时候都是先将本地的代码打个包，然后上传到服务器，<strong>用户在使用我们的小程序时首先会先下载代码包，然后宿主app中的小程序核心会根据代码包进行渲染</strong>。用户的网络情况我们不能控制，但代码包的大小我们还是可以把控的。减少代码包体积就是一种最简单也是最直接有效的方法。</p>
+<h3 id="能删除的资源删除，实在不能删除的压缩"><a href="#能删除的资源删除，实在不能删除的压缩" class="headerlink" title="能删除的资源删除，实在不能删除的压缩"></a>能删除的资源删除，实在不能删除的压缩</h3><p>用户打开小程序时只会看到一个页面，那么我们可以把其它页面都删掉，只保留这一个页面，这样FMP就可以降下去。<br><img style="width: 300px;" src="/blog/static/imgs/fmp/doge.png">手动狗头保命，当然不能这么做，除非饭碗不想要了…<br>但是这个思路是可以借鉴的。事实上，如果你的小程序经历过了多次迭代，经手过了不同的开发人员之后，你会发现，小程序的功能更完善了，包体积也不断的增加了，然而，这些页面这些功能真的都是必须的嘛？在 <a href="https://smartprogram.baidu.com/developer/home/tjpage.html?tabCur=page" target="_blank" rel="noopener">开发者平台-数据分析-行为分析-页面分析-页面访问量</a> 可以看到你的小程序各个页面流量的情况，<strong>对大部分的小程序而言，流量只集中在少数的几个页面上，有些页面根本没有流量，那这些没有流量的页面与功能是不是也可以从小程序中摘除</strong>呢？当然可以。<br>从小见大，没有用的页面可以删除，没有用到的资源也可以从小程序包中删除，包括自定义组件、npm包、css、图片。<br>说到图片，其实小程序包中并不适合放图片，小程序包中的图片会随小程序包一起下载，而这些图片其实可以放到静态资源服务器上，小程序代码中直接使用图片地址就好。如果特别需要使用图片，别忘了在小程序开发者工具-项目信息-本地配置-上传代码时开启图片压缩。  </p>
+<h3 id="将入口页占比较高的页面分到主包，其它页面分到子包"><a href="#将入口页占比较高的页面分到主包，其它页面分到子包" class="headerlink" title="将入口页占比较高的页面分到主包，其它页面分到子包"></a>将入口页占比较高的页面分到主包，其它页面分到子包</h3><p><a href="https://smartprogram.baidu.com/docs/develop/framework/subpackages/" target="_blank" rel="noopener">分包</a> 是小程序官方提供的减少包体积的方法，开发者可以将智能小程序划分成不同的子包，在构建时打包成不同的分包，用户在使用时按需进行加载。分包默认会包含一个主包，可以包含多个子包，建议按照 <a href="https://smartprogram.baidu.com/developer/home/tjpage.html?tabCur=page" target="_blank" rel="noopener">开发者平台-数据分析-行为分析-页面分析-入口页面次数</a> 降序来分包，将做入口页多的页面放到主包中，其它的页面适当的分包即可。<br>需要注意的是，在分包之后，页面的路径也会变化，如果之前某些页面做过推广活动，为了防止用户找不到页面，需要使用 <a href="https://smartprogram.baidu.com/docs/develop/framework/app_service_customroute/" target="_blank" rel="noopener">自定义路由</a> 的功能将原地址映射到新地址上。  </p>
+<h2 id="第二板斧-存数据，巧用缓存与官方能力"><a href="#第二板斧-存数据，巧用缓存与官方能力" class="headerlink" title="第二板斧-存数据，巧用缓存与官方能力"></a>第二板斧-存数据，巧用缓存与官方能力</h2><p>快速的展示首屏是我们的目的，为了快速的展示首屏，有些东西要放弃，有些东西要妥协。使用官方提供的性能优化的方法，虽然不是那么优雅，但确实是提升性能的好手段。而缓存这种用空间换取时间的策略，在性能优化的方法上是真的实用有效。  </p>
+<h3 id="使用prelink，使用onInit"><a href="#使用prelink，使用onInit" class="headerlink" title="使用prelink，使用onInit"></a>使用prelink，使用onInit</h3><p><a href="https://smartprogram.baidu.com/docs/develop/performance/performance_prelink/" target="_blank" rel="noopener">prelink</a> 只需要改动一行代码，而你可以得到200ms的提升，这简直是官方给你的尚方宝剑，用不用看你了。它的原理是提前建立TCP连接和复用TCP连接。需要注意的是，配置的请求地址是需要支持 HEAD 类型请求的。  </p>
+<p><a href="https://smartprogram.baidu.com/docs/develop/performance/performance_oninit/" target="_blank" rel="noopener">onInit</a> 是官方给你的又一个魔法，只需要把 <code>onLoad()</code> 中的获取数据的方法在 <code>onInit()</code> 中再进行一遍即可。就这么简单。  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 修改前</span></span><br><span class="line">    onLoad() &#123;</span><br><span class="line">        <span class="keyword">this</span>.getPageData();</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">// 修改后</span></span><br><span class="line">    onInit() &#123;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">this</span>.onInitLoaded) &#123;</span><br><span class="line">            <span class="keyword">this</span>.onInitLoaded = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">this</span>.getPageData();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    onLoad(options) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">this</span>.onInitLoaded) &#123;</span><br><span class="line">            <span class="keyword">this</span>.onInitLoaded = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">this</span>.getPageData();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="缓存API端能力"><a href="#缓存API端能力" class="headerlink" title="缓存API端能力"></a>缓存API端能力</h3><p>API端能力是小程序提供的不同于普通web应用的功能，这些功能方便了开发者去实现丰富的应用，但端能力实际上是有性能消耗的，和普通的js语句相比执行起来要慢一些，为了抹平这种差异，<strong>一些不常变化的API端能力其实可以缓存起来，多次获取时直接从我们缓存的数据中获取</strong>。  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cached = swan.getStorageSync(<span class="string">'apiResultCached'</span>) || &#123;&#125;;</span><br><span class="line"><span class="keyword">const</span> promiseCache = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line"><span class="keyword">const</span> MAX_CACHE_TIME = <span class="number">1000</span> * <span class="number">60</span> * <span class="number">60</span> * <span class="number">24</span> * <span class="number">7</span>;</span><br><span class="line"><span class="comment">// 缓存方法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">memorize</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> apiName = fn.name;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (cached[apiName]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">Date</span>.now() - cached[apiName][<span class="string">'__timestamp'</span>] &lt; MAX_CACHE_TIME) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="built_in">Promise</span>.resolve(cached[apiName]);</span><br><span class="line">            &#125;</span><br><span class="line">            cached[apiName] = <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> promise = promiseCache.get(apiName);</span><br><span class="line">        <span class="keyword">if</span> (promise) &#123;</span><br><span class="line">            <span class="keyword">return</span> promise;</span><br><span class="line">        &#125;</span><br><span class="line">        promise  = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">            fn().then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">                cached[apiName] = res;</span><br><span class="line">                cached[apiName][<span class="string">'__timestamp'</span>] = <span class="built_in">Date</span>.now();</span><br><span class="line">                swan.setStorage(&#123;</span><br><span class="line">                    key: <span class="string">'apiResultCached'</span>,</span><br><span class="line">                    data: cached</span><br><span class="line">                &#125;);</span><br><span class="line">                resolve(res);</span><br><span class="line">            &#125;).catch(<span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">                reject(e);</span><br><span class="line">            &#125;).finally(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                promiseCache.delete(apiName);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">        promiseCache.set(apiName, promise);</span><br><span class="line">        <span class="keyword">return</span> promise;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getSystemInfoAPI</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        swan.getSystemInfo(&#123;</span><br><span class="line">            success: <span class="function"><span class="params">res</span> =&gt;</span> resolve(res),</span><br><span class="line">            fail: <span class="function"><span class="params">err</span> =&gt;</span> reject(err)</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 这里只缓存了swan.getSystemInfo，一些其它的API方法，只要是不长变化的都可以缓存起来</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> getSystemInfo = memorize(getSystemInfoAPI);</span><br></pre></td></tr></table></figure>
+<h3 id="缓存页面主数据"><a href="#缓存页面主数据" class="headerlink" title="缓存页面主数据"></a>缓存页面主数据</h3><p>如果页面的数据是静态的，直接写到 <code>Page</code> 的 <code>data</code> 中即可，但实际上我们的页面大部分情况下一部分是前端就可以渲染的静态的结构与数据，另一部分是从后端接口获取的数据。从后端接口获取的首屏数据可以缓存到 <code>storage</code> 中，这样在第二次加载这个页面的时候可以从 <code>storage</code> 中获取，同时异步发起请求，请求返回后再更新页面数据。注意，我们是为了更快的展现页面，所以只<strong>缓存和加载首屏可见的数据即可，非首屏数据延迟加载</strong>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从storage中获取页面数据</span></span><br><span class="line">swan.getStorage(&#123;</span><br><span class="line">    key: <span class="string">'pageData'</span>,</span><br><span class="line">    success: <span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 如果有缓存且异步请求未返回则使用缓存的数据渲染页面</span></span><br><span class="line">        <span class="keyword">if</span> (res.data &amp;&amp; !<span class="keyword">this</span>.requestBack) &#123;</span><br><span class="line">            <span class="keyword">this</span>.renderPage(data);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 异步发起请求获取页面数据</span></span><br><span class="line">getPageData().then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.requestBack = <span class="literal">true</span>;</span><br><span class="line">    <span class="comment">// 请求返回后根据最新数据渲染页面</span></span><br><span class="line">    <span class="keyword">this</span>.renderPage(res.pageData);</span><br><span class="line">    <span class="comment">// 同时缓存页面数据到storage中</span></span><br><span class="line">    swan.setStorage(&#123;</span><br><span class="line">        key: <span class="string">'pageData'</span>,</span><br><span class="line">        data: res.pageData</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这样做可能会带来一个问题，就是页面数据加载后并不一定是最新的数据，最新的数据从请求获取到后会刷新页面的数据。所以，如果你的应用对实时性的要求比较高的话可能并不适合使用这种方法。</p>
+<h2 id="第三板斧-轻渲染，只渲染必须的内容"><a href="#第三板斧-轻渲染，只渲染必须的内容" class="headerlink" title="第三板斧-轻渲染，只渲染必须的内容"></a>第三板斧-轻渲染，只渲染必须的内容</h2><p>在小程序加载过程中，逻辑代码和渲染代码是分离的，分别由不同的线程进行。<br><img src="https://b.bdstatic.com/searchbox/icms/searchbox/img/perf-2-1.png" alt="小程序启动流程图"><br>慢的线程会拖累整个加载的速度，当你的逻辑代码已经跑的飞起的时候，可以考虑下是否在渲染的层面有改进的办法。  </p>
+<h3 id="减少对渲染有消耗的写法"><a href="#减少对渲染有消耗的写法" class="headerlink" title="减少对渲染有消耗的写法"></a>减少对渲染有消耗的写法</h3><p>小程序本身提供了丰富多彩的用法，包括<a href="https://smartprogram.baidu.com/docs/develop/framework/custom-component/" target="_blank" rel="noopener">自定义组件</a>、<a href="https://smartprogram.baidu.com/docs/develop/framework/editor/" target="_blank" rel="noopener">动态库</a>、<a href="https://smartprogram.baidu.com/docs/develop/framework/view_filter/" target="_blank" rel="noopener">filter</a>、<a href="https://smartprogram.baidu.com/docs/develop/framework/sjs_start/" target="_blank" rel="noopener">sjs</a>等等，这些功能提升了我们开发的效率，但另一方面，<strong>多种多样的功能有可能带来新的的性能消耗陷阱</strong>。你需要在效率和性能之间找寻一种平衡，有哪些用法提升的效率有限而带来的性能消耗却是不可忽视的？这需要结合自身业务的实践，但在FMP占比较高的页面，这些功能还是需要慎之又慎。<br>另外，也需要注意 <a href="https://smartprogram.baidu.com/docs/develop/performance/performance_view&amp;text/" target="_blank" rel="noopener">减少view和text组件的特殊属性和事件</a> ，这是很容易忽视的一点，虽然单次使用带来的性能消耗有限，但是要用到view和text组件的地方太多了，架不住使用数量的上升带来质的改变。尤其是自定义组件中使用了低性能的写法，因为自定义组件可能会被用到多次（例如列表项，甚至可能会被用上百次上千次），低性能的自定义组件会带来成倍的性能消耗。  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 修改前 view 使用了 style 属性</span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">style</span>=<span class="string">"height: 20rpx;"</span>&gt;</span>热门榜单<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"></span><br><span class="line">// 修改后 view 使用了 class ，在 css 文件中写样式</span><br><span class="line">.title &#123;</span><br><span class="line">    height: 20rpx;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span>热门榜单<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="分屏渲染"><a href="#分屏渲染" class="headerlink" title="分屏渲染"></a>分屏渲染</h3><p>设想一下，当我们加载一个长列表的时候，加载一个长度超过一个屏幕的列表，其实用户不会看到列表的所有内容，只能看到列表的前几项，那么我们当然可以只加载列表的前几项，当用户滑动的时候再加载剩余的内容。同样的，<strong>在渲染页面的时候，我们也可以在第一次 <code>setData</code> 时进行数据的分割，只加载首屏可见的数据，非首屏数据延迟加载</strong>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// appList是从后端接口获取的页面数据 active是当前可见的tab索引</span></span><br><span class="line"><span class="comment">// firstLoadAppList为计算出的首屏幕数据</span></span><br><span class="line"><span class="keyword">const</span> firstLoadAppList = appList.map(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">   <span class="keyword">return</span> index === active ? item.slice(<span class="number">0</span>, <span class="number">10</span>) : [];</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">this</span>.setData(&#123;</span><br><span class="line">   appList: firstLoadAppList</span><br><span class="line">&#125;, () =&gt; &#123;</span><br><span class="line">   <span class="comment">// 可将完整数据记录待之后加载</span></span><br><span class="line">   <span class="keyword">this</span>.appList = appList;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="取消骨架屏采用渐进式加载"><a href="#取消骨架屏采用渐进式加载" class="headerlink" title="取消骨架屏采用渐进式加载"></a>取消骨架屏采用渐进式加载</h3><p><a href="https://smartprogram.baidu.com/docs/develop/performance/peformance_gradually_load/" target="_blank" rel="noopener">骨架屏</a> 是小程序提供的一种优化用户体验的机制，但其实任何渲染都有消耗，骨架屏也是。在骨架屏中写了复杂的结构甚至动画效果，反而不利于真正的有意义的页面快速的加载。当然，骨架屏确实可以让用户更快的感知到页面正在加载，所以需要在这之间寻找一种平衡，是需要用户先看到一个正在加载的页面，还是让用户更快的看到有意义的有内容的画面。推荐的一个方案是，<strong>使用官方提供的骨架屏，但简化骨架屏的框架，减少使用样式与动画效果，在真正的页面渲染中，为各个部分设置背景色与高度，在 <code>Page</code> 的 <code>data</code> 中设置默认值，让还未进行第一次 <code>setData</code> 的时候渲染出页面的框架</strong>，这样，当页面数据来了的时候，只是在特定的部分填充值即可。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>欢迎在 <a href="https://smartprogram.baidu.com/forum/" target="_blank" rel="noopener">小程序开发者社区</a> 中提问性能相关的问题，也欢迎在Github上 <a href="https://github.com/Mangon" target="_blank" rel="noopener">follow我</a>，我会不定期更新一些前端相关的文章，如果想更深入的和我讨论小程序性能相关的问题，可以给我发邮件。</p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2020/08/28/ES6特性/">ES6较常见的特性</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2020-08-28T06:34:12.000Z" itemprop="datePublished">2020-08-28</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/Javascript/">Javascript</a>, <a class="article-tag-link" href="/blog/tags/interview/">interview</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>ES6 是 ECMA 为 JavaScript 制定的第 6 个版本的标准，标准委员会 TC39 最终决定，标准在每年的 6 月份正式发布一次，作为当年的正式版本。ECMAscript 2015 是在2015年6月份发布的ES6的第一个版本。依次类推 ECMAscript 2016 是 ES6 的第二个版本、 ECMAscript 2017 是 ES6 的第三个版本。<a href="https://kangax.github.io/compat-table/es6/" target="_blank" rel="noopener">查看浏览器对ES6的语法支持情况</a>。以下记录了 ES6 的比较常见的特性，并做了简单的解释，默认为 ES2015 引入（finished）的，如果不是则在后面用（）标志引入的版本。也可以<a href="https://github.com/tc39/proposals/blob/master/finished-proposals.md" target="_blank" rel="noopener">从这里查看从哪个版本支持</a>。</p>
+<h2 id="语句-amp-声明-amp-表达式-amp-运算符"><a href="#语句-amp-声明-amp-表达式-amp-运算符" class="headerlink" title="语句 &amp; 声明 &amp; 表达式 &amp; 运算符"></a>语句 &amp; 声明 &amp; 表达式 &amp; 运算符</h2><ol>
+<li>let 和 const 变量声明<br>let const 声明的变量具有块级作用域，不会变量提升，不能重复声明。<br>const 声明常量，声明时必须立即初始化。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> y = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>变量的解构赋值<br>ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [x, y] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> &#123; foo, bar &#125; = &#123; <span class="attr">foo</span>: <span class="string">'aaa'</span>, <span class="attr">bar</span>: <span class="string">'bbb'</span> &#125;;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p>globalThis 对象<br>引入globalThis作为顶层对象。也就是说，任何环境下，globalThis都是存在的，都可以从它拿到顶层对象，指向全局环境下的this。(ES2020)</p>
+</li>
+<li><p>for…of 循环表达式<br>for…of语句在可迭代对象（包括 Array，Map，Set，String，TypedArray，arguments 对象等等）上创建一个迭代循环，调用自定义迭代钩子，并为每个不同属性的值执行语句。</p>
+</li>
+<li><p>new.target<br>new.target属性允许你检测函数或构造方法是否是通过new运算符被调用的。在通过new运算符被初始化的函数或构造方法中，new.target返回一个指向构造方法或函数的引用。在普通的函数调用中，new.target 的值是undefined。</p>
+</li>
+<li><p>… spread扩展操作符<br>扩展运算符 … 将一个数组或arguments或对象的可遍历属性（ES2018）转为用逗号分隔的参数序列。</p>
+</li>
+</ol>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><ol>
+<li>支持 Unicode 表示，允许采用 \uxxxx 形式表示一个字符</li>
+<li>行分隔符（U + 2028）和段分隔符（U + 2029）符号现在允许在字符串文字中，与JSON匹配 （ES2019）</li>
+<li>为字符串添加了遍历器接口，支持使用for…of循环遍历字符串</li>
+<li>模板字符串，可以使用反引号 ``来拼接多行字符串，将变量名写在 ${} 中</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'#result'</span>).append(<span class="string">`</span></span><br><span class="line"><span class="string">  There are &lt;b&gt;<span class="subst">$&#123;basket.count&#125;</span>&lt;/b&gt; items</span></span><br><span class="line"><span class="string">   in your basket, &lt;em&gt;<span class="subst">$&#123;basket.onSale&#125;</span>&lt;/em&gt;</span></span><br><span class="line"><span class="string">  are on sale!</span></span><br><span class="line"><span class="string">`</span>);</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>标签模板<br>模板字符串可以紧跟在一个函数名后面，该函数将被调用来处理这个模板字符串。这被称为“标签模板”功能（tagged template）。标签模板可以用来过滤 HTML 字符串，防止用户输入恶意内容，也可以用来解决多语言转换的问题（i18n）。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">let</span> b = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">tag<span class="string">`Hello <span class="subst">$&#123; a + b &#125;</span> world <span class="subst">$&#123; a * b &#125;</span>`</span>;</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line">tag([<span class="string">'Hello '</span>, <span class="string">' world '</span>, <span class="string">''</span>], <span class="number">15</span>, <span class="number">50</span>);</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>新添加的字符串方法及实例方法</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>作用</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>String.raw()</td>
+<td>String.raw() 是一个模板字符串的标签函数，是用来获取一个模板字符串的原始字符串的，占位符（例如 ${foo}）会被处理为它所代表的其他字符串，而转义字符（例如 \n）不会。</td>
+<td><code>String.raw(&#39;Hi\n${2+3}!&#39;) ===  &#39;Hi\\n5!&#39;</code></td>
+</tr>
+<tr>
+<td>String.fromCodePoint()</td>
+<td>返回使用指定的代码点序列创建的字符串</td>
+<td><code>String.fromCodePoint(0x1D306, 0x61, 0x1D307) === &quot;\uD834\uDF06a\uD834\uDF07&quot;</code></td>
+</tr>
+<tr>
+<td>String.prototype.codePointAt()</td>
+<td>返回一个 Unicode 编码点值的非负整数</td>
+<td><code>&#39;d&#39;.codePointAt() === 100</code></td>
+</tr>
+<tr>
+<td>String.prototype.startsWith()</td>
+<td>用来判断当前字符串是否以另外一个给定的子字符串开头，并根据判断结果返回 true 或 false。</td>
+<td><code>&#39;i love u&#39;.startsWith(&#39;i lo&#39;)</code></td>
+</tr>
+<tr>
+<td>String.prototype.endsWith()</td>
+<td>用来判断当前字符串是否是以另外一个给定的子字符串“结尾”的，根据判断结果返回 true 或 false。</td>
+<td><code>&#39;i love u&#39;.endsWith(&#39;e u&#39;)</code></td>
+</tr>
+<tr>
+<td>String.prototype.repeat()</td>
+<td>构造并返回一个新字符串，该字符串包含被连接在一起的指定数量的字符串的副本。</td>
+<td><code>&#39;isee &#39;.repeat(3) === &#39;isee isee isee &#39;</code></td>
+</tr>
+<tr>
+<td>String.prototype.normalize()</td>
+<td>按照指定的一种 Unicode 正规形式将当前字符串正规化。（如果该值不是字符串，则首先将其转换为一个字符串）。</td>
+<td><code>&#39;\u00F1&#39;.normalize() === &#39;\u006E\u0303&#39;.normalize()</code></td>
+</tr>
+<tr>
+<td>String.prototype.includes()</td>
+<td>用于判断一个字符串是否包含在另一个字符串中，根据情况返回 true 或 false。</td>
+<td><code>&#39;To be, or not to be, that is the question.&#39;.includes(&#39;To be&#39;)</code></td>
+</tr>
+<tr>
+<td>String.prototype.padStart()</td>
+<td>用另一个字符串填充当前字符串(如果需要的话，会重复多次)，以便产生的字符串达到给定的长度。从当前字符串的左侧开始填充。(ES2017)</td>
+<td><code>&#39;abc&#39;.padStart(10, &quot;foo&quot;) === &#39;foofoofabc&#39;</code></td>
+</tr>
+<tr>
+<td>String.prototype.padEnd()</td>
+<td>用一个字符串填充当前字符串（如果需要的话则重复填充），返回填充后达到指定长度的字符串。从当前字符串的末尾（右侧）开始填充。(ES2017)</td>
+<td><code>&#39;abc&#39;.padEnd(10, &#39;foo&#39;) === &#39;abcfoofoof&#39;</code></td>
+</tr>
+<tr>
+<td>String.prototype.trimStart()</td>
+<td>从字符串的开头删除空格。trimLeft() 是此方法的别名。(ES2019)</td>
+<td><code>&#39;   Hello world!   &#39;.trimStart() === &#39;Hello world!   &#39;</code></td>
+</tr>
+<tr>
+<td>String.prototype.trimEnd()</td>
+<td>从一个字符串的末端移除空白字符。trimRight() 是这个方法的别名。(ES2019)</td>
+<td><code>&#39;   Hello world!   &#39;.trimStart() === &#39;   Hello world!&#39;</code></td>
+</tr>
+<tr>
+<td>String.prototype.matchAll()</td>
+<td>返回一个包含所有匹配正则表达式的结果及分组捕获组的迭代器。(ES2020)</td>
+<td><code>&#39;test1test2&#39;.matchAll(/t(e)(st(\d?))/g)</code></td>
+</tr>
+<tr>
+<td>String.prototype.replaceAll()</td>
+<td>被用来在正则表达式和字符串直接比较，然后用新的子串来替换所有被匹配的子串。（ES2021）</td>
+</tr>
+</tbody>
+</table>
+<ol start="7">
+<li>JSON.stringify 行为改变   (ES2019)<br>如果遇到0xD800到0xDFFF之间的单个码点，或者不存在的配对形式，它会返回转义字符串，留给应用自己决定下一步的处理。</li>
+</ol>
+<h2 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h2><ol>
+<li>从 ES2015 开始，当第一个参数为正则表达式而第二个标志参数存在时，不再抛错</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> regex = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/xyz/</span>, <span class="string">'i'</span>);</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>字符串对象共有 4 个方法，可以使用正则表达式：match()、replace()、search()和split()。ES6 将这 4 个方法，在语言内部全部调用RegExp的实例方法，从而做到所有与正则相关的方法，全都定义在RegExp对象上。</li>
+</ol>
+<p>String.prototype.match 调用 RegExp.prototype[Symbol.match]<br>String.prototype.replace 调用 RegExp.prototype[Symbol.replace]<br>String.prototype.search 调用 RegExp.prototype[Symbol.search]<br>String.prototype.split 调用 RegExp.prototype[Symbol.split]</p>
+<ol start="3">
+<li>新添加了实例属性与对应的修饰符</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>实例属性</th>
+<th>修饰符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RegExp.prototype.unicode</td>
+<td>u</td>
+<td>用来正确处理大于\uFFFF的 Unicode 字符(ES2018)</td>
+</tr>
+<tr>
+<td>RegExp.prototype.sticky</td>
+<td>y</td>
+<td>反映了搜索是否具有粘性（ 仅从正则表达式的 lastIndex 属性表示的索引处搜索 ）</td>
+</tr>
+<tr>
+<td>RegExp.prototype.flags</td>
+<td></td>
+<td>返回一个字符串，由当前正则表达式对象的标志组成。</td>
+</tr>
+<tr>
+<td>RegExp.prototype.dotAll</td>
+<td>s</td>
+<td>使得.可以匹配任意单个字符(ES2018)</td>
+</tr>
+</tbody>
+</table>
+<ol start="4">
+<li>支持后行断言 (ES2018)</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 先行断言 先行否定断言</span></span><br><span class="line">/\d+(?=%)/.exec(<span class="string">'100% of US presidents have been male'</span>)  <span class="comment">// ["100"]</span></span><br><span class="line">/\d+(?!%)/.exec(<span class="string">'that’s all 44 of them'</span>)                 <span class="comment">// ["44"]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//后行断言 后行否定断言</span></span><br><span class="line">/(?<span class="xml"><span class="tag">&lt;<span class="name">=\$)\d+</span>/<span class="attr">.exec</span>('<span class="attr">Benjamin</span> <span class="attr">Franklin</span> <span class="attr">is</span> <span class="attr">on</span> <span class="attr">the</span> $<span class="attr">100</span> <span class="attr">bill</span>')  // ["<span class="attr">100</span>"]</span></span></span><br><span class="line"><span class="xml">/(?<span class="tag">&lt;<span class="name">!\$)\d+</span>/<span class="attr">.exec</span>('<span class="attr">it</span>’<span class="attr">s</span> <span class="attr">is</span> <span class="attr">worth</span> <span class="attr">about</span> €<span class="attr">90</span>')                // ["<span class="attr">90</span>"]</span></span></span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>Unicode 属性类 \P \p (ES2018)<br>引入了一种新的类的写法\p{…}和\P{…}，允许正则表达式匹配符合 Unicode 某种属性的所有字符。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> regexGreekSymbol = <span class="regexp">/\p&#123;Script=Greek&#125;/u</span>; <span class="comment">// \p&#123;Script=Greek&#125;指定匹配一个希腊文字母</span></span><br><span class="line">regexGreekSymbol.test(<span class="string">'π'</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>具名组匹配 &amp; 具名组匹配的引用 (ES2018)<br>正则表达式可以使用圆括号进行组匹配</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> RE_DATE = <span class="regexp">/(?&lt;year&gt;\d&#123;4&#125;)-(?&lt;month&gt;\d&#123;2&#125;)-(?&lt;day&gt;\d&#123;2&#125;)/</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> matchObj = RE_DATE.exec(<span class="string">'1999-12-31'</span>);</span><br><span class="line"><span class="keyword">const</span> year = matchObj.groups.year; <span class="comment">// 1999</span></span><br><span class="line"><span class="keyword">const</span> month = matchObj.groups.month; <span class="comment">// 12</span></span><br><span class="line"><span class="keyword">const</span> day = matchObj.groups.day; <span class="comment">// 31</span></span><br></pre></td></tr></table></figure>
+<p>如果要在正则表达式内部引用某个“具名组匹配”，可以使用 <code>\k&lt;组名&gt;</code> 的写法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> RE_TWICE = <span class="regexp">/^(?&lt;word&gt;[a-z]+)!\k&lt;word&gt;$/</span>;</span><br><span class="line">RE_TWICE.test(<span class="string">'abc!abc'</span>) <span class="comment">// true</span></span><br><span class="line">RE_TWICE.test(<span class="string">'abc!ab'</span>) <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<h2 id="数值"><a href="#数值" class="headerlink" title="数值"></a>数值</h2><ol>
+<li>数值二进制和八进制表示法<br>分别用前缀0b（或0B）和0o（或0O）表示。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0b111110111</span> === <span class="number">503</span> <span class="comment">// true</span></span><br><span class="line"><span class="number">0o767</span> === <span class="number">503</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>方法 Number.isFinite(), Number.isNaN()<br>与全局方法isFinite()和isNaN()相比，这两个新方法只对数值有效，非数值返回 false</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">isFinite</span>(<span class="number">25</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">isFinite</span>(<span class="string">"25"</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Number</span>.isFinite(<span class="number">25</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Number</span>.isFinite(<span class="string">"25"</span>) <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">isNaN</span>(<span class="literal">NaN</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">isNaN</span>(<span class="string">"NaN"</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Number</span>.isNaN(<span class="literal">NaN</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Number</span>.isNaN(<span class="string">"NaN"</span>) <span class="comment">// false</span></span><br><span class="line"><span class="built_in">Number</span>.isNaN(<span class="number">1</span>) <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p>Number.parseInt(), Number.parseFloat()<br>与全局方法 parseInt() 和 parseFloat() 相同</p>
+</li>
+<li><p>Number.isInteger()<br>用来判断一个数值是否为整数</p>
+</li>
+<li><p>Number.EPSILON 属性<br>常量，表示 1 与大于 1 的最小浮点数之间的差</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>.EPSILON === <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">-52</span>)</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>Number.MAX_SAFE_INTEGER 与 Number.MIN_SAFE_INTEGER，Number.isSafeInteger()<br>Number.MAX_SAFE_INTEGER 和 Number.MIN_SAFE_INTEGER这两个常量，用来表示JavaScript能够准确表示的整数范围的上下限。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>.MAX_SAFE_INTEGER === <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>) - <span class="number">1</span></span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"><span class="built_in">Number</span>.MIN_SAFE_INTEGER === -<span class="built_in">Number</span>.MAX_SAFE_INTEGER</span><br><span class="line"><span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>Number.isSafeInteger()则是用来判断一个整数是否落在这个范围之内。</p>
+<ol start="7">
+<li>Math 对象的新方法（17个）</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Math.trunc(x)</td>
+<td>返回一个数的整数部分，直接去除其小数点及之后的部分。</td>
+</tr>
+<tr>
+<td>Math.sign(x)</td>
+<td>返回一个数的符号，得知一个数是正数、负数还是 0。</td>
+</tr>
+<tr>
+<td>Math.cbrt(x)</td>
+<td>返回一个数的立方根。</td>
+</tr>
+<tr>
+<td>Math.clz32(x)</td>
+<td>返回一个 32 位整数的前导零的数量。</td>
+</tr>
+<tr>
+<td>Math.imul(x, y)</td>
+<td>返回 32 位整数乘法的结果。</td>
+</tr>
+<tr>
+<td>Math.fround(x)</td>
+<td>返回最接近一个数的单精度浮点型表示。</td>
+</tr>
+<tr>
+<td>Math.imul(x, y)</td>
+<td>返回 32 位整数乘法的结果。</td>
+</tr>
+<tr>
+<td>Math.hypot([x[, y[, …]]])</td>
+<td>返回其所有参数平方和的平方根。</td>
+</tr>
+<tr>
+<td>Math.expm1(x)</td>
+<td>返回 exp(x) - 1 的值。</td>
+</tr>
+<tr>
+<td>Math.log1p(x)</td>
+<td>返回一个数加 1 的和的自然对数（㏒e，即 ㏑）。</td>
+</tr>
+<tr>
+<td>Math.log10(x)</td>
+<td>返回一个数以 10 为底数的对数。</td>
+</tr>
+<tr>
+<td>Math.log2(x)</td>
+<td>返回一个数以 2 为底数的对数。</td>
+</tr>
+<tr>
+<td>Math.sinh(x)</td>
+<td>返回x的双曲正弦</td>
+</tr>
+<tr>
+<td>Math.cosh(x)</td>
+<td>返回x的双曲余弦</td>
+</tr>
+<tr>
+<td>Math.tanh(x)</td>
+<td>返回x的双曲正切</td>
+</tr>
+<tr>
+<td>Math.asinh(x)</td>
+<td>返回x的反双曲正弦</td>
+</tr>
+<tr>
+<td>Math.acosh(x)</td>
+<td>返回x的反双曲余弦</td>
+</tr>
+<tr>
+<td>Math.atanh(x)</td>
+<td>返回x的反双曲正切</td>
+</tr>
+</tbody>
+</table>
+<ol start="8">
+<li>指数运算符 **(ES2016)<br>右结合的指数运算符</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span> ** <span class="number">2</span> === <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line"><span class="number">2</span> ** <span class="number">3</span> ** <span class="number">2</span> === <span class="number">2</span> ** (<span class="number">3</span> ** <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<ol start="9">
+<li><p>BitInt 数据类型 (ES2020)<br>BigInt 只用来表示整数，没有位数的限制，任何位数的整数都可以精确表示</p>
+</li>
+<li><p>_ 数字分隔符 （ES2021）<br>可以使用下划线来分割数字，下划线没有实际的意义数字的值不会变化，更具有可读性</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>_000_000_000 === <span class="number">1000000000</span>;</span><br><span class="line"><span class="number">101</span>_475_938<span class="number">.38</span> === <span class="number">101475938.38</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><ol>
+<li>函数参数的默认值</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point</span>(<span class="params">x = <span class="number">0</span>, y = <span class="number">0</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.x = x;</span><br><span class="line">  <span class="keyword">this</span>.y = y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> Point();</span><br><span class="line">p <span class="comment">// &#123; x: 0, y: 0 &#125;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>rest 参数<br>允许将一个不定数量的参数表示为一个数组</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">...values</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> val <span class="keyword">of</span> values) &#123;</span><br><span class="line">    sum += val;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">add(<span class="number">2</span>, <span class="number">5</span>, <span class="number">3</span>) <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p>只要函数参数使用了默认值、解构赋值、或者扩展运算符，那么函数内部就不能显式设定为严格模式</p>
+</li>
+<li><p>函数 Function.name 属性，返回该函数的函数名</p>
+</li>
+<li><p>箭头函数<br>(1) 函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。<br>(2) 不可以当作构造函数<br>(3) 不可以使用arguments对象<br>(4) 不可以使用yield命令</p>
+</li>
+<li><p>尾递归调用优化</p>
+</li>
+<li><p>允许函数的最后一个参数有尾逗号 (ES2017)</p>
+</li>
+<li><p>Function.prototype.toString() 将会包含注释空格 (ES2019)</p>
+</li>
+<li><p>catch 命令的参数可省略 (ES2019)</p>
+</li>
+</ol>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><ol>
+<li>扩展运算符 … 将一个数组转为用逗号分隔的参数序列</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(...[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"><span class="comment">// 1 2 3</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>Array.from() 方法 类似数组的对象（array-like object）和可遍历（iterable）的对象 转换为数组</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// NodeList对象</span></span><br><span class="line"><span class="keyword">let</span> ps = <span class="built_in">document</span>.querySelectorAll(<span class="string">'p'</span>);</span><br><span class="line"><span class="built_in">Array</span>.from(ps).filter(<span class="function"><span class="params">p</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> p.textContent.length &gt; <span class="number">100</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// arguments对象</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> args = <span class="built_in">Array</span>.from(<span class="built_in">arguments</span>);</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// string</span></span><br><span class="line"><span class="built_in">Array</span>.from(<span class="string">'hello'</span>)</span><br><span class="line"><span class="comment">// ['h', 'e', 'l', 'l', 'o']</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Set 对象</span></span><br><span class="line"><span class="keyword">let</span> namesSet = <span class="keyword">new</span> <span class="built_in">Set</span>([<span class="string">'a'</span>, <span class="string">'b'</span>])</span><br><span class="line"><span class="built_in">Array</span>.from(namesSet) <span class="comment">// ['a', 'b']</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>Array.of() 将一组值，转换为数组</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>(<span class="number">3</span>) <span class="comment">// [, , ,]</span></span><br><span class="line"><span class="built_in">Array</span>.of(<span class="number">3</span>) <span class="comment">// [3]</span></span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li><p>数组实例方法 copyWithin() 方法浅复制数组的一部分到同一数组中的另一个位置，并返回它，不会改变原数组的长度</p>
+</li>
+<li><p>数组实例方法 find() 和 findIndex() 用于找出第一个符合条件的数组成员和位置</p>
+</li>
+<li><p>数组实例方法 fill() 使用给定值，填充一个数组</p>
+</li>
+<li><p>数组实例方法 entries() keys() values() 对健值对、健名、健值进行遍历，返回Interator对象</p>
+</li>
+<li><p>数组实例方法 includes() 返回一个布尔值，表示某个数组是否包含给定的值 (ES2016)</p>
+</li>
+<li><p>数组实例方法 flat() flatMap() 对数组进行扁平化，映射后扁平化 (ES2019)</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">2</span>, [<span class="number">3</span>, <span class="number">4</span>]].flat()</span><br><span class="line"><span class="comment">// [1, 2, 3, 4]</span></span><br></pre></td></tr></table></figure>
+<ol start="10">
+<li>Array.prototype.sort() 的默认排序算法稳定 (ES2019)</li>
+</ol>
+<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><ol>
+<li>对象属性的简洁表示法</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> foo = <span class="string">'bar'</span>;</span><br><span class="line"><span class="keyword">const</span> baz = &#123;foo&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="keyword">const</span> baz = &#123;<span class="attr">foo</span>: foo&#125;;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>定义对象时，属性名允许使用表达式</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> propKey = <span class="string">'foo'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  [propKey]: <span class="literal">true</span>,</span><br><span class="line">  [<span class="string">'a'</span> + <span class="string">'bc'</span>]: <span class="number">123</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p>super 关键字 代表对象的原型对象</p>
+</li>
+<li><p>扩展运算符 … 将一个对象的可遍历属性转为用逗号分隔的参数序列（ES2018）</p>
+</li>
+<li><p>可选链操作符 ?. 用于在获取对象属性或调用对象方法时预先判断对象的属性方法是否存在 （ES2020）</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> firstName = (message</span><br><span class="line">  &amp;&amp; message.body</span><br><span class="line">  &amp;&amp; message.body.user</span><br><span class="line">  &amp;&amp; message.body.user.firstName) || <span class="string">'default'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="keyword">const</span> firstName = message?.body?.user?.firstName || <span class="string">'default'</span>;</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>空值合并操作符 ?? 用于对 null 与 undefined的值赋值默认值 （ES2020）</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 与逻辑或操作符（||）不同，逻辑或操作符会在左侧操作数为假值时返回右侧操作数。也就是说，如果使用 || 来为某些变量设置默认值，可能会遇到意料之外的行为。比如为假值（例如，'' 或 0 或 false）时。</span></span><br><span class="line"><span class="keyword">const</span> showMask = settings.showMask || <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> showMask = settings.showMask ?? <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+<ol start="7">
+<li>对象方法 Object.is() 用于判断两个值是否同值相等<br>与 === 基本一致，有两个例外</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+<span class="number">0</span> === <span class="number">-0</span> <span class="comment">//true</span></span><br><span class="line"><span class="literal">NaN</span> === <span class="literal">NaN</span> <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.is(+<span class="number">0</span>, <span class="number">-0</span>) <span class="comment">// false</span></span><br><span class="line"><span class="built_in">Object</span>.is(<span class="literal">NaN</span>, <span class="literal">NaN</span>) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<ol start="8">
+<li><p>对象方法 Object.assign() 用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。</p>
+</li>
+<li><p>对象方法 Object.getOwnPropertyDescriptors() 用于获取所指定对象的所有自身属性的描述符 （ES2017）</p>
+</li>
+<li><p>对象方法 Object.getPrototypeOf() 与 Object.setPrototypeOf()</p>
+</li>
+</ol>
+<p>在 ES2015中 Object.getPrototypeOf() 的入参如果不是对象将会被转换成对象<br>Object.setPrototypeOf() 用设置一个指定的对象的原型 (即, 内部[[Prototype]]属性）到另一个对象或 null。同样如果入参不是对象将会被转换成对象。</p>
+<ol start="11">
+<li><p>对象方法 Object.entries() (ES2017) Object.keys() Object.values() (ES2017) 对健值对、健名、健值进行遍历，返回Interator对象</p>
+</li>
+<li><p>对象方法 Object.fromEntries() 用于把键值对列表转换为一个对象。(ES2019)</p>
+</li>
+</ol>
+<h2 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h2><p>ES6 引入了一种新的原始数据类型Symbol，表示独一无二的值，一个symbol值能作为对象属性的标识符</p>
+<ol>
+<li><p>Symbol的实例属性 Symbol.prototype.description 返回Symbol 的描述 (ES2019)</p>
+</li>
+<li><p>Symbol方法 Symbol.for()，Symbol.keyFor()<br>Symbol.for(key) 方法会根据给定的键 key，来从运行时的 symbol 注册表中找到对应的 symbol，如果找到了，则返回它，否则，新建一个与该键关联的 symbol，并放入全局 symbol 注册表中。<br>Symbol.keyFor(sym) 方法用来获取 symbol 注册表中与某个 symbol 关联的键。  </p>
+</li>
+<li><p>Symbol的属性<br>这些属性存在的意义为，子类可以重载这些属性来改变默认的行为。<br>这些属性都是不可写不可枚举不可配置的。</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Symbol.hasInstance</td>
+<td>Symbol.hasInstance用于判断某对象是否为某构造器的实例。因此你可以用它自定义 instanceof 操作符在某个类上的行为。</td>
+</tr>
+<tr>
+<td>Symbol.isConcatSpreadable</td>
+<td>Symbol.isConcatSpreadable用于配置某对象作为Array.prototype.concat()方法的参数时是否展开其数组元素。</td>
+</tr>
+<tr>
+<td>Symbol.species</td>
+<td>Symbol.species 是个函数值属性，其被构造函数用以创建派生对象</td>
+</tr>
+<tr>
+<td>Symbol.match</td>
+<td>Symbol.match 指定了匹配的是正则表达式而不是字符串。String.prototype.match() 方法会调用此函数</td>
+</tr>
+<tr>
+<td>Symbol.replace</td>
+<td>Symbol.replace 这个属性指定了当一个字符串替换所匹配字符串时所调用的方法。String.prototype.replace() 方法会调用此方法。</td>
+</tr>
+<tr>
+<td>Symbol.search</td>
+<td>Symbol.search 指定了一个搜索方法，这个方法接受用户输入的正则表达式，返回该正则表达式在字符串中匹配到的下标，这个方法由以下的方法来调用 String.prototype.search()</td>
+</tr>
+<tr>
+<td>Symbol.split</td>
+<td>Symbol.split 指向 一个正则表达式的索引处分割字符串的方法。 这个方法通过 String.prototype.split() 调用</td>
+</tr>
+<tr>
+<td>Symbol.iterator</td>
+<td>Symbol.iterator 为每一个对象定义了默认的迭代器。该迭代器可以被 for…of 循环使用</td>
+</tr>
+<tr>
+<td>Symbol.toPrimitive</td>
+<td>Symbol.toPrimitive 是一个内置的 Symbol 值，它是作为对象的函数值属性存在的，当一个对象转换为对应的原始值时，会调用此函数。</td>
+</tr>
+<tr>
+<td>Symbol.toStringTag</td>
+<td>Symbol.toStringTag 是一个内置 symbol，它通常作为对象的属性键使用，对应的属性值应该为字符串类型，这个字符串用来表示该对象的自定义类型标签，通常只有内置的 Object.prototype.toString() 方法会去读取这个标签并把它包含在自己的返回值里。</td>
+</tr>
+<tr>
+<td>Symbol.unscopables</td>
+<td>Symbol.unscopables 指用于指定对象值，其对象自身和继承的从关联对象的 with 环境绑定中排除的属性名称。</td>
+</tr>
+<tr>
+<td>Symbol.asyncIterator</td>
+<td>Symbol.asyncIterator 符号指定了一个对象的默认异步迭代器。如果一个对象设置了这个属性，它就是异步可迭代对象，可用于for await…of循环（ES2018）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Set-amp-Map"><a href="#Set-amp-Map" class="headerlink" title="Set &amp; Map"></a>Set &amp; Map</h2><p>Set对象是值的集合，你可以按照插入的顺序迭代它的元素。 Set中的元素只会出现一次，即 Set 中的元素是唯一的。  </p>
+<ol>
+<li><p>Set的实例属性 Set.prototype.size 返回 Set 对象中的值的个数</p>
+</li>
+<li><p>Set的实例方法 </p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Set.prototype.add(value)</td>
+<td>在Set对象尾部添加一个元素。返回该Set对象。</td>
+</tr>
+<tr>
+<td>Set.prototype.delete(value)</td>
+<td>删除某个值，返回一个布尔值，表示删除是否成功。</td>
+</tr>
+<tr>
+<td>Set.prototype.has(value)</td>
+<td>返回一个布尔值，表示该值是否为Set的成员。</td>
+</tr>
+<tr>
+<td>Set.prototype.clear()</td>
+<td>移除Set对象内的所有元素。</td>
+</tr>
+<tr>
+<td>Set.prototype.entries()</td>
+<td>返回一个新的迭代器对象，该对象包含Set对象中的按插入顺序排列的所有元素的值的[value, value]数组。为了使这个方法和Map对象保持相似， 每个值的键和值相等。</td>
+</tr>
+<tr>
+<td>Set.prototype.keys()</td>
+<td>与values()方法相同，返回一个新的迭代器对象，该对象包含Set对象中的按插入顺序排列的所有元素的值。</td>
+</tr>
+<tr>
+<td>Set.prototype.values()</td>
+<td>返回一个新的迭代器对象，该对象包含Set对象中的按插入顺序排列的所有元素的值。</td>
+</tr>
+<tr>
+<td>Set.prototype.forEach(callbackFn[, thisArg])</td>
+<td>按照插入顺序，为Set对象中的每一个值调用一次callBackFn。如果提供了thisArg参数，回调中的this会是这个参数。</td>
+</tr>
+</tbody>
+</table>
+<p>WeakSet 对象允许你将弱保持对象存储在一个集合中。<br>与Set有两点不同<br>（1）与Set相比，WeakSet 只能是对象的集合，而不能是任何类型的任意值。<br>（2）WeakSet持弱引用：集合中对象的引用为弱引用。 如果没有其他的对WeakSet中对象的引用，那么这些对象会被当成垃圾回收掉。 这也意味着WeakSet中没有存储当前对象的列表。 正因为这样，WeakSet 是不可枚举的。</p>
+<p>Map 对象保存键值对，并且能够记住键的原始插入顺序。任何值(对象或者原始值) 都可以作为一个键或一个值。和Object类似，最大的不同的是Map的key可以是任意值，而Object的key必须是string 或者Symbol。</p>
+<ol>
+<li><p>Map的实例属性 Map.prototype.size 返回 Map 对象中键值对的个数。</p>
+</li>
+<li><p>Map的实例方法</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Map.prototype.get(key)</td>
+<td>返回键对应的值，如果不存在，则返回undefined。</td>
+</tr>
+<tr>
+<td>Map.prototype.set(key, value)</td>
+<td>设置Map对象中键的值。返回该Map对象。</td>
+</tr>
+<tr>
+<td>Map.prototype.delete(key)</td>
+<td>如果 Map 对象中存在该元素，则移除它并返回 true；否则如果该元素不存在则返回 false。</td>
+</tr>
+<tr>
+<td>Map.prototype.has(key)</td>
+<td>返回一个布尔值，表示Map实例是否包含键对应的值。</td>
+</tr>
+<tr>
+<td>Map.prototype.clear()</td>
+<td>移除Map对象的所有键/值对</td>
+</tr>
+<tr>
+<td>Map.prototype.entries()</td>
+<td>返回一个新的 Iterator 对象，它按插入顺序包含了Map对象中每个元素的 [key, value] 数组。</td>
+</tr>
+<tr>
+<td>Map.prototype.keys()</td>
+<td>返回一个新的 Iterator对象， 它按插入顺序包含了Map对象中每个元素的键 。</td>
+</tr>
+<tr>
+<td>Map.prototype.values()</td>
+<td>返回一个新的Iterator对象，它按插入顺序包含了Map对象中每个元素的值 。</td>
+</tr>
+<tr>
+<td>Map.prototype.forEach(callbackFn[, thisArg])</td>
+<td>按插入顺序，为 Map对象里的每一键值对调用一次callbackFn函数。如果为forEach提供了thisArg，它将在每次回调中作为this值。</td>
+</tr>
+</tbody>
+</table>
+<p>WeakMap 对象是一组键/值对的集合，其中的键是弱引用的。其键必须是对象，而值可以是任意的。</p>
+<h2 id="Proxy-amp-Reflect"><a href="#Proxy-amp-Reflect" class="headerlink" title="Proxy &amp; Reflect"></a>Proxy &amp; Reflect</h2><p>Proxy 对象用于代理基本操作的自定义行为（如属性查找、赋值、枚举、函数调用等）</p>
+<p>用法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="built_in">Proxy</span>(target, handler);</span><br></pre></td></tr></table></figure>
+<p>target 要使用 Proxy 包装的目标对象（可以是任何类型的对象，包括原生数组，函数，甚至另一个代理）。<br>handler 一个通常以函数作为属性的对象，各属性中的函数分别定义了在执行各种操作时代理 p 的行为。  </p>
+<p>Reflect 是一个内置反射对象，它提供拦截 JavaScript 操作的方法。这些方法与proxy handlers的方法相同。Reflect不是一个函数对象，因此它是不可构造的。<br>Reflect可以和Proxy配合使用来完成默认行为的基础上定制自定义的行为。  </p>
+<p>handler 对象的方法</p>
+<table>
+<thead>
+<tr>
+<th>proxy handler方法</th>
+<th>含义</th>
+<th>Reflect方法</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>get(target, propKey, receiver)</td>
+<td>拦截对象属性的读取，比如proxy.foo和proxy[‘foo’]。</td>
+<td>Reflect.get(target, propKey, receiver)</td>
+<td>获取对象身上某个属性的值，类似于 target[propKey]。</td>
+</tr>
+<tr>
+<td>set(target, propKey, value, receiver)</td>
+<td>拦截对象属性的设置，比如proxy.foo = v或proxy[‘foo’] = v，返回一个布尔值。</td>
+<td>Reflect.set(target, propKey, value, receiver)</td>
+<td>将值分配给属性的函数。返回一个Boolean，如果更新成功，则返回true。</td>
+</tr>
+<tr>
+<td>has(target, propKey)</td>
+<td>拦截propKey in proxy的操作，返回一个布尔值。</td>
+<td>Reflect.has(target, propKey)</td>
+<td>判断一个对象是否存在某个属性，和 in 运算符 的功能完全相同。</td>
+</tr>
+<tr>
+<td>deleteProperty(target, propKey)</td>
+<td>拦截delete proxy[propKey]的操作，返回一个布尔值。</td>
+<td>Reflect.deleteProperty(target, propKey)</td>
+<td>作为函数的delete操作符，相当于执行 delete target[propKey]。</td>
+</tr>
+<tr>
+<td>ownKeys(target)</td>
+<td>拦截Object.getOwnPropertyNames(proxy)、Object.getOwnPropertySymbols(proxy)、Object.keys(proxy)、for…in循环，返回一个数组。该方法返回目标对象所有自身的属性的属性名，而Object.keys()的返回结果仅包括目标对象自身的可遍历属性。</td>
+<td>Reflect.ownKeys(target)</td>
+<td>返回一个包含所有自身属性（不包含继承属性）的数组。(类似于 Object.keys(), 但不会受enumerable影响).</td>
+</tr>
+<tr>
+<td>getOwnPropertyDescriptor(target, propKey)</td>
+<td>拦截Object.getOwnPropertyDescriptor(proxy, propKey)，返回属性的描述对象。</td>
+<td>Reflect.getOwnPropertyDescriptor(target, propKey)</td>
+<td>类似于 Object.getOwnPropertyDescriptor()。如果对象中存在该属性，则返回对应的属性描述符,  否则返回 undefined.</td>
+</tr>
+<tr>
+<td>defineProperty(target, propKey, propDesc)</td>
+<td>拦截Object.defineProperty(proxy, propKey, propDesc）、Object.defineProperties(proxy, propDescs)，返回一个布尔值。</td>
+<td>Reflect.defineProperty(target, propKey, propDesc)</td>
+<td>和 Object.defineProperty() 类似。如果设置成功就会返回 true</td>
+</tr>
+<tr>
+<td>preventExtensions(target)</td>
+<td>拦截Object.preventExtensions(proxy)，返回一个布尔值。</td>
+<td>Reflect.preventExtensions(target)</td>
+<td>类似于 Object.preventExtensions()。返回一个Boolean。</td>
+</tr>
+<tr>
+<td>getPrototypeOf(target)</td>
+<td>拦截Object.getPrototypeOf(proxy)，返回一个对象。</td>
+<td>Reflect.getPrototypeOf(target)</td>
+<td>类似于 Object.getPrototypeOf()。</td>
+</tr>
+<tr>
+<td>isExtensible(target)</td>
+<td>拦截Object.isExtensible(proxy)，返回一个布尔值。</td>
+<td>Reflect.isExtensible(target)</td>
+<td>类似于 Object.isExtensible().</td>
+</tr>
+<tr>
+<td>setPrototypeOf(target, proto)</td>
+<td>拦截Object.setPrototypeOf(proxy, proto)，返回一个布尔值。如果目标对象是函数，那么还有两种额外操作可以拦截。</td>
+<td>Reflect.setPrototypeOf(target, proto)</td>
+<td>设置对象原型的函数. 返回一个 Boolean， 如果更新成功，则返回true。</td>
+</tr>
+<tr>
+<td>apply(target, object, args)</td>
+<td>拦截 Proxy 实例作为函数调用的操作，比如proxy(…args)、proxy.call(object, …args)、proxy.apply(…)。</td>
+<td>Reflect.apply(target, thisArgument, args)</td>
+<td>对一个函数进行调用操作，同时可以传入一个数组作为调用参数。和 Function.prototype.apply() 功能类似。</td>
+</tr>
+<tr>
+<td>construct(target, args)</td>
+<td>拦截 Proxy 实例作为构造函数调用的操作，比如new proxy(…args)。</td>
+<td>Reflect.construct(target, args)</td>
+<td>对构造函数进行 new 操作，相当于执行 new target(…args)。</td>
+</tr>
+</tbody>
+</table>
+<p>Proxy 方法 Proxy.revocable() 创建一个可销毁的代理对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123;proxy, revoke&#125; = <span class="built_in">Proxy</span>.revocable(target, handler);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用revoke()可销毁proxy</span></span><br><span class="line">revoke()</span><br></pre></td></tr></table></figure>
+<h2 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h2><p>Promise 对象用于表示一个异步操作的最终完成 (或失败), 及其结果值.<br>Promise 对象是一个代理对象（代理一个值），被代理的值在Promise对象创建时可能是未知的。它允许你为异步操作的成功和失败分别绑定相应的处理方法（handlers）。 这让异步方法可以像同步方法那样返回值，但并不是立即返回最终执行结果，而是一个能代表未来出现的结果的promise对象。<br>一个 Promise有以下几种状态:</p>
+<ul>
+<li>pending: 初始状态，既不是成功，也不是失败状态。</li>
+<li>fulfilled: 意味着操作成功完成。</li>
+<li>rejected: 意味着操作失败。</li>
+</ul>
+<ol>
+<li><p>Promise实例方法 Promise.prototype.then() 用来执行resolved状态的回调</p>
+</li>
+<li><p>Promise实例方法 Promise.prototype.catch() 用来执行错误时的回调（包括reject和抛出错误）</p>
+</li>
+<li><p>Promise实例方法 Promise.prototype.finally() 用来执行不管 Promise 对象最后状态如何，都会执行的操作（ES2018）</p>
+</li>
+<li><p>Promise方法 Promise.all(iterable) 方法返回一个 Promise 实例，此实例在 iterable 参数内所有的 promise 都“完成（resolved）”或参数中不包含 promise 时回调完成（resolve）；如果参数中  promise 有一个失败（rejected），此实例回调失败（reject），失败的原因是第一个失败 promise 的结果。</p>
+</li>
+<li><p>Promise方法 Promise.race(iterable) 方法返回一个 promise，一旦迭代器中的某个promise resolve 或 reject，返回的 promise 就会 resolve 或 reject。</p>
+</li>
+<li><p>Promise方法 Promise.allSettled()返回一个在所有给定的promise都已经 fulfilled 或rejected 后的 promise ，并带有一个对象数组，每个对象表示对应的promise结果。 (ES2020)</p>
+</li>
+<li><p>Promise方法 Promise.any(iterable) 接收一个Promise对象的集合，当其中的一个promise 成功，就返回那个成功的 promise 的值。 (ES2021)</p>
+</li>
+<li><p>Promise方法 Promise.reject(reason) 方法返回一个带有拒绝原因的Promise对象。</p>
+</li>
+<li><p>Promise方法 Promise.resolve(value)方法返回一个以给定值解析后的Promise 对象。</p>
+</li>
+</ol>
+<h2 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h2><p>Generator 是由一个 generator function(function*) 或 GeneratorFunction 构造器生成新的 返回的符合 iterator 和 iterable 的对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">gen</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">  <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> g = gen(); </span><br><span class="line"><span class="comment">// "Generator &#123; &#125;"</span></span><br></pre></td></tr></table></figure>
+<p>Gnerator对象实例方法</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Generator.prototype.next()</td>
+<td>返回一个由 yield表达式生成的值。</td>
+</tr>
+<tr>
+<td>Generator.prototype.return()</td>
+<td>返回给定的值并结束生成器。</td>
+</tr>
+<tr>
+<td>Generator.prototype.throw()</td>
+<td>向生成器抛出一个错误。</td>
+</tr>
+</tbody>
+</table>
+<p>GeneratorFunction构造器生成新的 Generator 对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> GeneratorFunction ([arg1[, arg2[, ...argN]],] functionBody)</span><br></pre></td></tr></table></figure>
+<h2 id="async-await-ES2017"><a href="#async-await-ES2017" class="headerlink" title="async await (ES2017)"></a>async await (ES2017)</h2><p>async function 用来定义一个返回 AsyncFunction 对象的异步函数。异步函数是指通过事件循环异步执行的函数，它会通过一个隐式的 Promise 返回其结果。</p>
+<h2 id="Module-import-amp-export"><a href="#Module-import-amp-export" class="headerlink" title="Module(import &amp; export)"></a>Module(import &amp; export)</h2><p>静态的import 语句用于导入由另一个模块导出的绑定。<br>export 语句用于从模块中导出实时绑定的函数、对象或原始值，以便其他程序可以通过 import 语句使用它们。</p>
+<p>用法  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> defaultExport <span class="keyword">from</span> <span class="string">"module-name"</span>;</span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> name <span class="keyword">from</span> <span class="string">"module-name"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="keyword">export</span> &#125; <span class="keyword">from</span> <span class="string">"module-name"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="keyword">export</span> <span class="keyword">as</span> alias &#125; <span class="keyword">from</span> <span class="string">"module-name"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; export1 , export2 &#125; <span class="keyword">from</span> <span class="string">"module-name"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; foo , bar &#125; <span class="keyword">from</span> <span class="string">"module-name/path/to/specific/un-exported/file"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; export1 , export2 <span class="keyword">as</span> alias2 , [...] &#125; <span class="keyword">from</span> <span class="string">"module-name"</span>;</span><br><span class="line"><span class="keyword">import</span> defaultExport, &#123; <span class="keyword">export</span> [ , [...] ] &#125; <span class="keyword">from</span> <span class="string">"module-name"</span>;</span><br><span class="line"><span class="keyword">import</span> defaultExport, * <span class="keyword">as</span> name <span class="keyword">from</span> <span class="string">"module-name"</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">"module-name"</span>;</span><br><span class="line"><span class="keyword">var</span> promise = <span class="keyword">import</span>(<span class="string">"module-name"</span>); <span class="comment">// 动态import (ES2020)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">var</span> foo =<span class="string">'bar'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">cube</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x * x * x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> &#123;foo <span class="keyword">as</span> bar&#125;;</span><br><span class="line"><span class="keyword">export</span> &#123; es6 <span class="keyword">as</span> <span class="keyword">default</span> &#125; <span class="keyword">from</span> <span class="string">'./someModule'</span>;  <span class="comment">// 支持引入导出重命名</span></span><br></pre></td></tr></table></figure>
+<p>由于import是静态执行，所以不能使用表达式和变量，这些只有在运行时才能得到结果的语法结构。<br>同时import命令具有提升效果，会提升到整个模块的头部，首先执行。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> * <span class="keyword">as</span> ns <span class="keyword">from</span> <span class="string">"mod"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> ns <span class="keyword">from</span> <span class="string">"mod"</span>;</span><br><span class="line"><span class="keyword">export</span> &#123;ns&#125;;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>import.meta是一个给JavaScript模块暴露特定上下文的元数据属性的对象。它包含了这个模块的信息，比如说这个模块的URL。(ES2020)</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"module"</span>&gt;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'./index.mjs?someURLInfo=5'</span>;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">console.log(import.meta); /</span><span class="regexp">/ &#123; url: "file:/</span><span class="comment">//home/user/my-module.mjs" &#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="class"><a href="#class" class="headerlink" title="class"></a>class</h2><p>class 声明创建一个基于原型继承的具有给定名称的新类。类声明不存在变量提升。</p>
+<p>用法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">class ClassName [extends] &#123;</span><br><span class="line">  static #privateProp = 0; // 静态私有属性</span><br><span class="line">  #privateProp = 0; // 私有属性</span><br><span class="line">  _prop = <span class="number">0</span>; <span class="comment">// 类实例属性</span></span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="comment">// 类的构造方法</span></span><br><span class="line">  &#125;</span><br><span class="line">  someMethod() &#123;</span><br><span class="line">    <span class="comment">// 类实例方法(实例继承，子类继承)</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span> staticMethod() &#123;</span><br><span class="line">    <span class="comment">// 静态方法（不会被实例继承，可以被子类继承）</span></span><br><span class="line">  &#125;</span><br><span class="line">  static #privateMethod = () =&gt; &#123;</span><br><span class="line">    <span class="comment">// 私有静态方法 （ES2020 stage3）</span></span><br><span class="line">  &#125;</span><br><span class="line">  #privateSomeMethod = ()=&gt; &#123;</span><br><span class="line">    <span class="comment">// 私有方法 （ES2020 stage3）</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> inst = <span class="keyword">new</span> ClassName(); <span class="comment">// 声明类的实例</span></span><br><span class="line">inst.someMethod(); <span class="comment">// 调用实例的方法</span></span><br><span class="line">ClassName.staticMethod(); <span class="comment">// 调用类的静态方法</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChildClass</span> <span class="keyword">extends</span> <span class="title">ClassName</span> </span>&#123; <span class="comment">// 子类</span></span><br><span class="line">  someMethod() &#123;</span><br><span class="line">    <span class="keyword">super</span>.staticMethod(); <span class="comment">// 可以通过super调用父类上的方法</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">ChildClass.staticMethod() <span class="comment">// 子类可以继承父类的静态方法</span></span><br></pre></td></tr></table></figure>
+<h2 id="SharedArrayBuffer-amp-Atomics-ES2017"><a href="#SharedArrayBuffer-amp-Atomics-ES2017" class="headerlink" title="SharedArrayBuffer &amp; Atomics (ES2017)"></a>SharedArrayBuffer &amp; Atomics (ES2017)</h2><p>SharedArrayBuffer 对象用来表示一个通用的，固定长度的原始二进制数据缓冲区，类似于 ArrayBuffer 对象，它们都可以用来在共享内存（shared memory）上创建视图。与 ArrayBuffer 不同的是，SharedArrayBuffer 不能被分离。<br>Atomics 对象提供了一组静态方法用来对 SharedArrayBuffer 对象和 ArrayBuffer 对象进行原子操作。  </p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2020/07/28/初始化一个从0到99的数组/">初始化一个从0到99的数组</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2020-07-28T09:19:46.000Z" itemprop="datePublished">2020-07-28</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/interview/">interview</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>开发过程中遇到了一个问题，需要mock一些数据。一开始直接用的静态常量，后来想想这实在是太占地方了，尤其为了符合eslint需要写很多行，找其它部分代码的时候也不方便，而且很显然，我们可以用“时间换取空间”，通过程序简化这一部分。<br>我需要mock的是一个数组，数组里有一些固定的或是随机的数据（这里不妨假设只需要填满不同的数字），那么如何才能简便的mock一个这样的数组呢？</p>
+<h2 id="如何初始化一个从0到99的数组"><a href="#如何初始化一个从0到99的数组" class="headerlink" title="如何初始化一个从0到99的数组"></a>如何初始化一个从0到99的数组</h2><p>通常最简单的能想到的方法，不就是个循环嘛  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span> ; i++) &#123;</span><br><span class="line">    result.push(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但这实在是太笨了，“高级程序员是不会使用for循环的（偷笑）”，在js中，我们可以用其它的方法循环。比如 <code>map</code>。 利用 <code>map</code> 方法会看起来更简便些，但我们首先要构造一个长度为100并且初始化了的数组。</p>
+<h3 id="如何构造一个长度为100的数组"><a href="#如何构造一个长度为100的数组" class="headerlink" title="如何构造一个长度为100的数组"></a>如何构造一个长度为100的数组</h3><ol>
+<li>Array的构造方法 + …扩展运算符</li>
+</ol>
+<p>通过 Array 的构造方法 <code>Array(100)</code> 我们可以创建长度为100的数组，但是并没有初始化。</p>
+<p>我们可以通过…来初始化它</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[...Array(<span class="number">100</span>)];</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>将类数组对象初始化为数组 - <code>Array.from</code></li>
+</ol>
+<p>类数组对象比较好写 <code>{length: 100}</code> ，那如何把它变成初始化了的数组呢？</p>
+<p>可以直接用 <code>Array.from</code> ，这个方法本身就是为了从一个类似数组或可迭代对象创建一个新的数组。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.from(&#123;<span class="attr">length</span>: <span class="number">100</span>&#125;);</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>将类数组对象初始化为数组 - <code>Array.apply</code></li>
+</ol>
+<p>使用 <code>Array({length: 100})</code> 并不会创建长度为100的数组，这是因为Array的构造方法把入参当成了一个对象进行了初始化，如何让Array的构造方法把入参作为类数组对象呢？可以使用 <code>apply</code> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.apply(<span class="literal">null</span>, &#123;<span class="attr">length</span>: <span class="number">100</span>&#125;);</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li><code>Array.prototype.slice</code> + …扩展运算符</li>
+</ol>
+<p>Array 的 slice 方法可以对数组进行拷贝，也可以用它来将类数组对象拷贝成长度为100的数组，直接使用是不行的，因为毕竟类数组对象还不是数组，我们可以用 <code>call</code> 或者 <code>apply</code> 、 <code>bind</code> 来调用它  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[...Array.prototype.slice.call(&#123;<span class="attr">length</span>: <span class="number">100</span>&#125;)];</span><br><span class="line">[...Array.prototype.slice.apply(&#123;<span class="attr">length</span>: <span class="number">100</span>&#125;)];</span><br><span class="line">[...Array.prototype.slice.bind(&#123;<span class="attr">length</span>: <span class="number">100</span>&#125;)()];</span><br></pre></td></tr></table></figure>
+<h3 id="利用-Array-prototype-map-初始化"><a href="#利用-Array-prototype-map-初始化" class="headerlink" title="利用 Array.prototype.map 初始化"></a>利用 <code>Array.prototype.map</code> 初始化</h3><p>有了已经初始化为undefined的数组后面就是将数组填满值了  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[...Array(<span class="number">100</span>)].map(<span class="function">(<span class="params">_, i</span>) =&gt;</span> i);</span><br><span class="line"><span class="built_in">Array</span>.from(&#123;<span class="attr">length</span>: <span class="number">100</span>&#125;, (_, i) =&gt; i);</span><br><span class="line"><span class="built_in">Array</span>.apply(<span class="literal">null</span>, &#123;<span class="attr">length</span>: <span class="number">100</span>&#125;).map(<span class="function">(<span class="params">_, i</span>) =&gt;</span> i);</span><br><span class="line"><span class="comment">// 上面4的写法已经够长了，我就不加map了</span></span><br></pre></td></tr></table></figure>
+<p>因为 <code>mapFn</code> 可以随意写，我们还可以用以上两种方法构造诸如全是1的数组  </p>
+<h3 id="利用-Object-keys-获取初始化数组的key"><a href="#利用-Object-keys-获取初始化数组的key" class="headerlink" title="利用 Object.keys() 获取初始化数组的key"></a>利用 <code>Object.keys()</code> 获取初始化数组的key</h3><p>注意，我们要初始化的值其实和数组的key是相同的！这样我们其实可以有一些取巧的方法，比如，可以通过 <code>Object.keys()</code> 来得到这样一个符合条件的新的数组。<code>Object.keys()</code> 方法会返回一个由一个给定对象的自身可枚举属性组成的数组，数组中属性名的排列顺序和正常循环遍历该对象时返回的顺序一致 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.keys([...Array(<span class="number">100</span>)]);</span><br><span class="line"><span class="built_in">Object</span>.keys(<span class="built_in">Array</span>.from(&#123;<span class="attr">length</span>: <span class="number">100</span>&#125;));</span><br><span class="line"><span class="built_in">Object</span>.keys(<span class="built_in">Array</span>.apply(<span class="literal">null</span>,&#123;<span class="attr">length</span>:<span class="number">100</span>&#125;));</span><br></pre></td></tr></table></figure>
+<h3 id="利用-Array-prototype-keys-生成迭代器"><a href="#利用-Array-prototype-keys-生成迭代器" class="headerlink" title="利用 Array.prototype.keys 生成迭代器"></a>利用 <code>Array.prototype.keys</code> 生成迭代器</h3><p>如果我们构造了一个长度为100的数组但是没有初始化，我们可以生成从0到99的数组吗？其实也是可以的，我们可以通过 <code>Array.prototype.keys</code> 生成一个数组迭代器对象，然后再通过 …扩展运算符 来生成一个从0到99的数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[...Array(<span class="number">100</span>).keys()]</span><br><span class="line">[...Array.prototype.slice.call(&#123;<span class="attr">length</span>: <span class="number">100</span>&#125;).keys()]</span><br></pre></td></tr></table></figure>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2020/05/27/面试常用简单算法实现/">面试常用简单算法实现</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2020-05-27T03:54:35.000Z" itemprop="datePublished">2020-05-27</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/algorithm/">algorithm</a>, <a class="article-tag-link" href="/blog/tags/interview/">interview</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="阶乘"><a href="#阶乘" class="headerlink" title="阶乘"></a>阶乘</h2><p>在数学上, 自然数n的阶乘写作n!。一个正整数 n 的阶乘, 就是所有小于等于 n 的正整数的乘积，0的阶乘为1。比如:</p>
+<p>5！ = 5 <em> 4 </em> 3 <em> 2 </em> 1 = 120</p>
+<table>
+<thead>
+<tr>
+<th>n</th>
+<th style="text-align:right">n!</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<td>1</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align:right">2</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align:right">6</td>
+</tr>
+<tr>
+<td>4</td>
+<td style="text-align:right">24</td>
+</tr>
+<tr>
+<td>5</td>
+<td style="text-align:right">120</td>
+</tr>
+<tr>
+<td>6</td>
+<td style="text-align:right">720</td>
+</tr>
+<tr>
+<td>7</td>
+<td style="text-align:right">5 040</td>
+</tr>
+<tr>
+<td>8</td>
+<td style="text-align:right">40 320</td>
+</tr>
+<tr>
+<td>9</td>
+<td style="text-align:right">362 880</td>
+</tr>
+<tr>
+<td>10</td>
+<td style="text-align:right">3 628 800</td>
+</tr>
+<tr>
+<td>11</td>
+<td style="text-align:right">39 916 800</td>
+</tr>
+<tr>
+<td>12</td>
+<td style="text-align:right">479 001 600</td>
+</tr>
+<tr>
+<td>13</td>
+<td style="text-align:right">6 227 020 800</td>
+</tr>
+<tr>
+<td>14</td>
+<td style="text-align:right">87 178 291 200</td>
+</tr>
+<tr>
+<td>15</td>
+<td style="text-align:right">1 307 674 368 000</td>
+</tr>
+</tbody>
+</table>
+<p>问题： 求自然数n的阶乘  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; number</span></span><br><span class="line"><span class="comment"> * @return &#123;number&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">number</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result = <span class="number">1</span>;</span><br><span class="line">  <span class="comment">// 0 或 1 返回 1</span></span><br><span class="line">  <span class="keyword">if</span> (number === <span class="number">0</span> || number === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 大于等于2时循环相乘</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt;= number; i++) &#123;</span><br><span class="line">    result *= i;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用尾递归的方法<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; n</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; total</span></span><br><span class="line"><span class="comment"> * @return &#123;number&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n, total = <span class="number">1</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> n === <span class="number">1</span> ? total : factorial(n - <span class="number">1</span>, n * total);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="斐波那契"><a href="#斐波那契" class="headerlink" title="斐波那契"></a>斐波那契</h2><p>斐波那契数列（Fibonacci sequence），又称黄金分割数列、因数学家列昂纳多·斐波那契（Leonardoda Fibonacci）以兔子繁殖为例子而引入，故又称为“兔子数列”，指的是这样一个数列：1、1、2、3、5、8、13、21、34、……在数学上，斐波纳契数列以如下被以递推的方法定义：F(1)=1，F(2)=1, F(n)=F(n-1)+F(n-2)（n&gt;=3，n∈N*）在现代物理、准晶体结构、化学等领域，斐波纳契数列都有直接的应用。  </p>
+<table>
+<thead>
+<tr>
+<th>n</th>
+<th style="text-align:right">Fibonacci (n)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align:right">2</td>
+</tr>
+<tr>
+<td>4</td>
+<td style="text-align:right">3</td>
+</tr>
+<tr>
+<td>5</td>
+<td style="text-align:right">5</td>
+</tr>
+<tr>
+<td>6</td>
+<td style="text-align:right">8</td>
+</tr>
+<tr>
+<td>7</td>
+<td style="text-align:right">13</td>
+</tr>
+</tbody>
+</table>
+<p>问题： 求斐波那契数列的第n个数字  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 采用递归方法</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">Fibonacci</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(n === <span class="number">1</span> || n === <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="comment">// 递归结束的条件，求前两项</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 如果是求其它项，先要求出它前面两项，然后做和。</span></span><br><span class="line">        <span class="keyword">return</span> Fibonacci(n<span class="number">-1</span>) + Fibonacci(n<span class="number">-2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用尾递归优化</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">Fibonacci</span> (<span class="params">n , prev = <span class="number">1</span> , curr = <span class="number">1</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n === <span class="number">1</span> || n === <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> curr;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> Fibonacci (n - <span class="number">1</span>, curr, prev + curr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用解构赋值+循环</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">Fibonacci</span> (<span class="params">n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n === <span class="number">1</span> || n === <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> prev = <span class="number">1</span>, curr = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i = n; i++)&#123;</span><br><span class="line">        [prev, curr] = [curr, prev + curr];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> curr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用生成器</span></span><br><span class="line"><span class="comment">// fibonacci generator</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">fibonacci</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">let</span> [prev, curr] = [<span class="number">1</span>, <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        [prev, curr] = [curr, prev + curr];</span><br><span class="line">        <span class="keyword">yield</span> curr;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// fibonacci function</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">Fibonacci</span> (<span class="params">n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> ac = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">const</span> fibo = fibonacci();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">      ac = fibo.next()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ac.value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="素数"><a href="#素数" class="headerlink" title="素数"></a>素数</h2><p>素数（又叫质数）是指在大于1的自然数中，除了1和它本身以外不再有其他因数的自然数。<br>例如： 2，3，5，7，11，13，17，19，23，29，31，37…</p>
+<p>问题： 判断自然数n是否是素数  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; number</span></span><br><span class="line"><span class="comment"> * @return &#123;boolean&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">trialDivision</span>(<span class="params">number</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Check if number is integer.</span></span><br><span class="line">  <span class="keyword">if</span> (number % <span class="number">1</span> !== <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (number &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="comment">// If number is less than one then it isn't prime by definition.</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (number &lt;= <span class="number">3</span>) &#123;</span><br><span class="line">    <span class="comment">// All numbers from 2 to 3 are prime.</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// If the number is not divided by 2 then we may eliminate all further even dividers.</span></span><br><span class="line">  <span class="keyword">if</span> (number % <span class="number">2</span> === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// If there is no dividers up to square root of n then there is no higher dividers as well.</span></span><br><span class="line">  <span class="keyword">const</span> dividerLimit = <span class="built_in">Math</span>.sqrt(number);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> divider = <span class="number">3</span>; divider &lt;= dividerLimit; divider += <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (number % divider === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="欧几里得算法"><a href="#欧几里得算法" class="headerlink" title="欧几里得算法"></a>欧几里得算法</h2><p>在数学中，欧几里德算法，是计算两个数的最大公约数（GCD）的一种有效方法。两个数的最大公约数是指不留余数即可将两个数整除的数中最大的数。<br>欧几里德算法是基于如果用大数与小数的差代替大数，两个数的最大公约数不变的原理。例如，21 是 252（21 <em> 21） 与 105 （21 </em> 5）的最大公约数，那么 21 同时也是 105 和 252 - 105 = 147 的最大公约数。由于这个替换减少了两个数字中较大的一个，重复这个过程会连续地给出较小的一对数字，直到两个数字相等为止。当出现这种情况时，它们是原始两个数字的GCD。<br>通过颠倒这些步骤，GCD可以表示为每个原始数乘以正整数或负整数的和，例如21=5×105+（-2）×252。GCD总是可以用这种方式表达的事实被称为裴蜀定理。</p>
+<p>问题： 利用欧几里得算法求两个数的最大公约数  </p>
+<p>递归<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Recursive version of Euclidean Algorithm of finding greatest common divisor (GCD).</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; originalA</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; originalB</span></span><br><span class="line"><span class="comment"> * @return &#123;number&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">euclideanAlgorithm</span>(<span class="params">originalA, originalB</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Make input numbers positive.</span></span><br><span class="line">  <span class="keyword">const</span> a = <span class="built_in">Math</span>.abs(originalA);</span><br><span class="line">  <span class="keyword">const</span> b = <span class="built_in">Math</span>.abs(originalB);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// To make algorithm work faster instead of subtracting one number from the other</span></span><br><span class="line">  <span class="comment">// we may use modulo operation.</span></span><br><span class="line">  <span class="keyword">return</span> (b === <span class="number">0</span>) ? a : euclideanAlgorithm(b, a % b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>循环<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Iterative version of Euclidean Algorithm of finding greatest common divisor (GCD).</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; originalA</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; originalB</span></span><br><span class="line"><span class="comment"> * @return &#123;number&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">euclideanAlgorithmIterative</span>(<span class="params">originalA, originalB</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Make input numbers positive.</span></span><br><span class="line">  <span class="keyword">let</span> a = <span class="built_in">Math</span>.abs(originalA);</span><br><span class="line">  <span class="keyword">let</span> b = <span class="built_in">Math</span>.abs(originalB);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Subtract one number from another until both numbers would become the same.</span></span><br><span class="line">  <span class="comment">// This will be out GCD. Also quit the loop if one of the numbers is zero.</span></span><br><span class="line">  <span class="keyword">while</span> (a &amp;&amp; b &amp;&amp; a !== b) &#123;</span><br><span class="line">    [a, b] = a &gt; b ? [a - b, b] : [a, b - a];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Return the number that is not equal to zero since the last subtraction (it will be a GCD).</span></span><br><span class="line">  <span class="keyword">return</span> a || b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="最小公倍数"><a href="#最小公倍数" class="headerlink" title="最小公倍数"></a>最小公倍数</h2><p>在算术和数论中，两个整数a和b的最小公倍数、最小公倍数或最小公倍数，通常用LCM（a，b）表示，是可被a和b整除的最小正整数。由于整数被零除是未定义的，只有当a和b都不等于0时，这个定义才有意义。但也有些人定义 <code>lcm(a, 0) = 0</code>  </p>
+<p>最小公倍数可以这样计算 <code>lcm(a, b) = |a * b| / gcd(a, b)</code> </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> euclideanAlgorithm <span class="keyword">from</span> <span class="string">'./euclideanAlgorithm'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; a</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; b</span></span><br><span class="line"><span class="comment"> * @return &#123;number&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">leastCommonMultiple</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> ((a === <span class="number">0</span>) || (b === <span class="number">0</span>)) ? <span class="number">0</span> : <span class="built_in">Math</span>.abs(a * b) / euclideanAlgorithm(a, b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>##</p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+
+
+<nav class="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="page-number" href="/blog/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/12/">12</a><a class="extend next" rel="next" href="/blog/page/2/">Next &raquo;</a>
+</nav>
+
+
+</div>
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明：
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码">
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码">
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>
