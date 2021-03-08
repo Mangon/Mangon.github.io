@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        小程序性能优化三板斧 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.0.3" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="为什么有这篇文章想看干货的可以直接跳转到正文  小程序中心是百度APP小程序流量分发的入口，从百度个人中心可以进入。它长这样2020年第二季度末我接手了小程序中心。小程序中心说大不大，说小也不小，属于麻雀虽小五脏俱全的那种，从18年到现在经历了2年的迭代，经手了20多任开发，1000次左右的commit，也发展成了一个比较成熟的产品。产品发展到一定阶段，就开始呈现出技术上的一些瓶颈，前期为了快速的上线功能埋下了不少的坑，尤其是性能上的坑，达到了不可忽视的程度。但是这些坑还是需要后人一点点填上" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://mangon.cn/blog"></form> -->
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%9C%89%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0"><span class="toc-number">1.</span> <span class="toc-text">为什么有这篇文章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%9A%84%E8%83%8C%E6%99%AF"><span class="toc-number">2.</span> <span class="toc-text">性能优化的背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%9D%BF%E6%96%A7-%E6%96%AD%E8%88%8D%E7%A6%BB%EF%BC%8C%E5%87%8F%E5%B0%91%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%8C%85%E4%BD%93%E7%A7%AF"><span class="toc-number">3.</span> <span class="toc-text">第一板斧-断舍离，减少小程序包体积</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%83%BD%E5%88%A0%E9%99%A4%E7%9A%84%E8%B5%84%E6%BA%90%E5%88%A0%E9%99%A4%EF%BC%8C%E5%AE%9E%E5%9C%A8%E4%B8%8D%E8%83%BD%E5%88%A0%E9%99%A4%E7%9A%84%E5%8E%8B%E7%BC%A9"><span class="toc-number">3.1.</span> <span class="toc-text">能删除的资源删除，实在不能删除的压缩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E5%85%A5%E5%8F%A3%E9%A1%B5%E5%8D%A0%E6%AF%94%E8%BE%83%E9%AB%98%E7%9A%84%E9%A1%B5%E9%9D%A2%E5%88%86%E5%88%B0%E4%B8%BB%E5%8C%85%EF%BC%8C%E5%85%B6%E5%AE%83%E9%A1%B5%E9%9D%A2%E5%88%86%E5%88%B0%E5%AD%90%E5%8C%85"><span class="toc-number">3.2.</span> <span class="toc-text">将入口页占比较高的页面分到主包，其它页面分到子包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%9D%BF%E6%96%A7-%E5%AD%98%E6%95%B0%E6%8D%AE%EF%BC%8C%E5%B7%A7%E7%94%A8%E7%BC%93%E5%AD%98%E4%B8%8E%E5%AE%98%E6%96%B9%E8%83%BD%E5%8A%9B"><span class="toc-number">4.</span> <span class="toc-text">第二板斧-存数据，巧用缓存与官方能力</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8prelink%EF%BC%8C%E4%BD%BF%E7%94%A8onInit"><span class="toc-number">4.1.</span> <span class="toc-text">使用prelink，使用onInit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98API%E7%AB%AF%E8%83%BD%E5%8A%9B"><span class="toc-number">4.2.</span> <span class="toc-text">缓存API端能力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E9%A1%B5%E9%9D%A2%E4%B8%BB%E6%95%B0%E6%8D%AE"><span class="toc-number">4.3.</span> <span class="toc-text">缓存页面主数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%9D%BF%E6%96%A7-%E8%BD%BB%E6%B8%B2%E6%9F%93%EF%BC%8C%E5%8F%AA%E6%B8%B2%E6%9F%93%E5%BF%85%E9%A1%BB%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-number">5.</span> <span class="toc-text">第三板斧-轻渲染，只渲染必须的内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%8F%E5%B0%91%E5%AF%B9%E6%B8%B2%E6%9F%93%E6%9C%89%E6%B6%88%E8%80%97%E7%9A%84%E5%86%99%E6%B3%95"><span class="toc-number">5.1.</span> <span class="toc-text">减少对渲染有消耗的写法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%B1%8F%E6%B8%B2%E6%9F%93"><span class="toc-number">5.2.</span> <span class="toc-text">分屏渲染</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%96%E6%B6%88%E9%AA%A8%E6%9E%B6%E5%B1%8F%E9%87%87%E7%94%A8%E6%B8%90%E8%BF%9B%E5%BC%8F%E5%8A%A0%E8%BD%BD"><span class="toc-number">5.3.</span> <span class="toc-text">取消骨架屏采用渐进式加载</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E8%AE%B0"><span class="toc-number">6.</span> <span class="toc-text">后记</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            小程序性能优化三板斧
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2020-09-21T05:55:42.000Z" itemprop="datePublished">2020-09-21</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="为什么有这篇文章"><a href="#为什么有这篇文章" class="headerlink" title="为什么有这篇文章"></a>为什么有这篇文章</h2><p>想看干货的可以直接跳转到<a href="#第一板斧-断舍离，减少小程序包体积">正文</a>  </p>
+<p>小程序中心是百度APP小程序流量分发的入口，从百度个人中心可以进入。<br><img style="width: 300px;" src="/blog/static/imgs/fmp/entry.png">它长这样</p>
+<p>2020年第二季度末我接手了小程序中心。小程序中心说大不大，说小也不小，属于麻雀虽小五脏俱全的那种，从18年到现在经历了2年的迭代，经手了20多任开发，1000次左右的commit，也发展成了一个比较成熟的产品。产品发展到一定阶段，就开始呈现出技术上的一些瓶颈，前期为了快速的上线功能埋下了不少的坑，尤其是性能上的坑，达到了不可忽视的程度。但是这些坑还是需要后人一点点填上的，然后自然而言的这个艰巨的任务就落在了我的身上，随后就开始了小程序中心的性能优化工作。<br>第三季度对性能优化进行了排期，经历了一系列“神奇的操作”，小程序中心的FMP从2100ms降低到了现在的1300ms。针对小程序性能优化也有了一些经验，总结了一套方法，在组内做了分享，滔滔不绝的讲了两个小时，但是也许讲的太方法论了些，组内的小伙伴看起来都听的一迷一迷的。甚至会后还是会被问“怎么做才能快速的提升小程序的性能呢”。其实性能提升永远没有捷径，需要分析、优化、实验、监控，需要一点点积累和深入，随着你对项目和性能优化的理解不断提升，性能提升的手段会越来越丰富，性能数据自然会提升上去。但，你可能还是要问“那么怎么做才能快速的提升小程序的性能呢”。<br><img style="width: 300px;" src="/blog/static/imgs/fmp/yixiaoerguo.jpg">好吧，不装了，我摊牌了，（敲黑板！）以下是一些简单有效的方法，而且几乎可以无脑应用到所有小程序中<br>什么？你说你不会？好吧，我把源代码也给你贴上去了，<del>ctrl+c ctrl+v总会吧！</del>该怎么做你看着办。  </p>
+<h2 id="性能优化的背景"><a href="#性能优化的背景" class="headerlink" title="性能优化的背景"></a>性能优化的背景</h2><p>在探讨性能优化之前，我们需要首先知道什么是性能。我们讨论到性能时，其实是讨论应用在各种情况下的表现，<strong>我们希望用户不因为程序代码写法上（而不是策略算法或者业务上）的问题而导致自己的需求受到影响，希望我们的应用快速的响应，流畅的切换，可以让用户无缝的满足自己的需求</strong>。在小程序中，性能可以收敛于三个指标，FMP、白屏率、服务可用性，下面讲一下这三个指标的意义。  </p>
+<p>FMP： First Meaningful Paint，即首次有意义的绘制。<strong>FMP通常是最重要的指标</strong>，标志了程序在一般情况下的应用表现，FMP高了说明程序首次加载时间较长，也就是用户需要等待较长的时间才能进入到小程序中，在这个过程中用户可能就会选择退出了，FMP低说明用户很快就可以进入到小程序中，给用户的感觉就是快，减少了用户等待的时间。  </p>
+<p>白屏率：用户触发页面打开后，间隔一定时间后仍然没有任何页面绘制，则认定为白屏，白屏率 = 白屏发生 PV / 小程序冷启动打开 PV。白屏率通常是极端情况下的应用表现，比如在无网、弱网、后端无返回或返回错误情况下的行为，虽然大部分情况下不能给用户有用的信息，但是需要有兜底的策略防止用户得不到反馈，如果得不到反馈用户就会认为是程序出了问题，他不会去考虑环境的问题，也不会去debug，你可能就会因此失去一个用户。  </p>
+<p>服务可用性：包括</p>
+<ol>
+<li>HTTP请求访问失败率：请求后端服务时的失败率，失败率=请求失败次数/请求数量。  </li>
+<li>JSError：小程序运行过程中发生的JS error。  </li>
+</ol>
+<p>服务可用性代表了错误情况下的应用表现，错误按照来源方简单分为两种，一个是服务器端的错误，具体的表现就是HTTP请求失败，一种是前端的错误，也就是JS error。这些错误有可能什么都不影响，但也可能严重到导致程序异常不能运行，需要具体问题具体分析。  </p>
+<p>你可以在 <a href="https://smartprogram.baidu.com/developer/home/alarm.html?from=homeIndex&amp;tabCur=watchLoad" target="_blank" rel="noopener">开发者平台-开发管理-运维中心</a> 看到这三个指标的详细情况。我们可以看到白屏率和服务可用性其实标志了应用的稳定性和错误/异常场景下的表现，而FMP，是在正常的业务场景下最直观的描述小程序性能的指标，下面我们就围绕降低小程序FMP讲一下具体的提升小程序性能的“三板斧”。  </p>
+<h2 id="第一板斧-断舍离，减少小程序包体积"><a href="#第一板斧-断舍离，减少小程序包体积" class="headerlink" title="第一板斧-断舍离，减少小程序包体积"></a>第一板斧-断舍离，减少小程序包体积</h2><p>我们知道，小程序在发布的时候都是先将本地的代码打个包，然后上传到服务器，<strong>用户在使用我们的小程序时首先会先下载代码包，然后宿主app中的小程序核心会根据代码包进行渲染</strong>。用户的网络情况我们不能控制，但代码包的大小我们还是可以把控的。减少代码包体积就是一种最简单也是最直接有效的方法。</p>
+<h3 id="能删除的资源删除，实在不能删除的压缩"><a href="#能删除的资源删除，实在不能删除的压缩" class="headerlink" title="能删除的资源删除，实在不能删除的压缩"></a>能删除的资源删除，实在不能删除的压缩</h3><p>用户打开小程序时只会看到一个页面，那么我们可以把其它页面都删掉，只保留这一个页面，这样FMP就可以降下去。<br><img style="width: 300px;" src="/blog/static/imgs/fmp/doge.png">手动狗头保命，当然不能这么做，除非饭碗不想要了…<br>但是这个思路是可以借鉴的。事实上，如果你的小程序经历过了多次迭代，经手过了不同的开发人员之后，你会发现，小程序的功能更完善了，包体积也不断的增加了，然而，这些页面这些功能真的都是必须的嘛？在 <a href="https://smartprogram.baidu.com/developer/home/tjpage.html?tabCur=page" target="_blank" rel="noopener">开发者平台-数据分析-行为分析-页面分析-页面访问量</a> 可以看到你的小程序各个页面流量的情况，<strong>对大部分的小程序而言，流量只集中在少数的几个页面上，有些页面根本没有流量，那这些没有流量的页面与功能是不是也可以从小程序中摘除</strong>呢？当然可以。<br>从小见大，没有用的页面可以删除，没有用到的资源也可以从小程序包中删除，包括自定义组件、npm包、css、图片。<br>说到图片，其实小程序包中并不适合放图片，小程序包中的图片会随小程序包一起下载，而这些图片其实可以放到静态资源服务器上，小程序代码中直接使用图片地址就好。如果特别需要使用图片，别忘了在小程序开发者工具-项目信息-本地配置-上传代码时开启图片压缩。  </p>
+<h3 id="将入口页占比较高的页面分到主包，其它页面分到子包"><a href="#将入口页占比较高的页面分到主包，其它页面分到子包" class="headerlink" title="将入口页占比较高的页面分到主包，其它页面分到子包"></a>将入口页占比较高的页面分到主包，其它页面分到子包</h3><p><a href="https://smartprogram.baidu.com/docs/develop/framework/subpackages/" target="_blank" rel="noopener">分包</a> 是小程序官方提供的减少包体积的方法，开发者可以将智能小程序划分成不同的子包，在构建时打包成不同的分包，用户在使用时按需进行加载。分包默认会包含一个主包，可以包含多个子包，建议按照 <a href="https://smartprogram.baidu.com/developer/home/tjpage.html?tabCur=page" target="_blank" rel="noopener">开发者平台-数据分析-行为分析-页面分析-入口页面次数</a> 降序来分包，将做入口页多的页面放到主包中，其它的页面适当的分包即可。<br>需要注意的是，在分包之后，页面的路径也会变化，如果之前某些页面做过推广活动，为了防止用户找不到页面，需要使用 <a href="https://smartprogram.baidu.com/docs/develop/framework/app_service_customroute/" target="_blank" rel="noopener">自定义路由</a> 的功能将原地址映射到新地址上。  </p>
+<h2 id="第二板斧-存数据，巧用缓存与官方能力"><a href="#第二板斧-存数据，巧用缓存与官方能力" class="headerlink" title="第二板斧-存数据，巧用缓存与官方能力"></a>第二板斧-存数据，巧用缓存与官方能力</h2><p>快速的展示首屏是我们的目的，为了快速的展示首屏，有些东西要放弃，有些东西要妥协。使用官方提供的性能优化的方法，虽然不是那么优雅，但确实是提升性能的好手段。而缓存这种用空间换取时间的策略，在性能优化的方法上是真的实用有效。  </p>
+<h3 id="使用prelink，使用onInit"><a href="#使用prelink，使用onInit" class="headerlink" title="使用prelink，使用onInit"></a>使用prelink，使用onInit</h3><p><a href="https://smartprogram.baidu.com/docs/develop/performance/performance_prelink/" target="_blank" rel="noopener">prelink</a> 只需要改动一行代码，而你可以得到200ms的提升，这简直是官方给你的尚方宝剑，用不用看你了。它的原理是提前建立TCP连接和复用TCP连接。需要注意的是，配置的请求地址是需要支持 HEAD 类型请求的。  </p>
+<p><a href="https://smartprogram.baidu.com/docs/develop/performance/performance_oninit/" target="_blank" rel="noopener">onInit</a> 是官方给你的又一个魔法，只需要把 <code>onLoad()</code> 中的获取数据的方法在 <code>onInit()</code> 中再进行一遍即可。就这么简单。  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 修改前</span></span><br><span class="line">    onLoad() &#123;</span><br><span class="line">        <span class="keyword">this</span>.getPageData();</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">// 修改后</span></span><br><span class="line">    onInit() &#123;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">this</span>.onInitLoaded) &#123;</span><br><span class="line">            <span class="keyword">this</span>.onInitLoaded = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">this</span>.getPageData();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    onLoad(options) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">this</span>.onInitLoaded) &#123;</span><br><span class="line">            <span class="keyword">this</span>.onInitLoaded = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">this</span>.getPageData();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="缓存API端能力"><a href="#缓存API端能力" class="headerlink" title="缓存API端能力"></a>缓存API端能力</h3><p>API端能力是小程序提供的不同于普通web应用的功能，这些功能方便了开发者去实现丰富的应用，但端能力实际上是有性能消耗的，和普通的js语句相比执行起来要慢一些，为了抹平这种差异，<strong>一些不常变化的API端能力其实可以缓存起来，多次获取时直接从我们缓存的数据中获取</strong>。  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cached = swan.getStorageSync(<span class="string">'apiResultCached'</span>) || &#123;&#125;;</span><br><span class="line"><span class="keyword">const</span> promiseCache = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line"><span class="keyword">const</span> MAX_CACHE_TIME = <span class="number">1000</span> * <span class="number">60</span> * <span class="number">60</span> * <span class="number">24</span> * <span class="number">7</span>;</span><br><span class="line"><span class="comment">// 缓存方法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">memorize</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> apiName = fn.name;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (cached[apiName]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">Date</span>.now() - cached[apiName][<span class="string">'__timestamp'</span>] &lt; MAX_CACHE_TIME) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="built_in">Promise</span>.resolve(cached[apiName]);</span><br><span class="line">            &#125;</span><br><span class="line">            cached[apiName] = <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> promise = promiseCache.get(apiName);</span><br><span class="line">        <span class="keyword">if</span> (promise) &#123;</span><br><span class="line">            <span class="keyword">return</span> promise;</span><br><span class="line">        &#125;</span><br><span class="line">        promise  = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">            fn().then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">                cached[apiName] = res;</span><br><span class="line">                cached[apiName][<span class="string">'__timestamp'</span>] = <span class="built_in">Date</span>.now();</span><br><span class="line">                swan.setStorage(&#123;</span><br><span class="line">                    key: <span class="string">'apiResultCached'</span>,</span><br><span class="line">                    data: cached</span><br><span class="line">                &#125;);</span><br><span class="line">                resolve(res);</span><br><span class="line">            &#125;).catch(<span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">                reject(e);</span><br><span class="line">            &#125;).finally(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                promiseCache.delete(apiName);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">        promiseCache.set(apiName, promise);</span><br><span class="line">        <span class="keyword">return</span> promise;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getSystemInfoAPI</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        swan.getSystemInfo(&#123;</span><br><span class="line">            success: <span class="function"><span class="params">res</span> =&gt;</span> resolve(res),</span><br><span class="line">            fail: <span class="function"><span class="params">err</span> =&gt;</span> reject(err)</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 这里只缓存了swan.getSystemInfo，一些其它的API方法，只要是不长变化的都可以缓存起来</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> getSystemInfo = memorize(getSystemInfoAPI);</span><br></pre></td></tr></table></figure>
+<h3 id="缓存页面主数据"><a href="#缓存页面主数据" class="headerlink" title="缓存页面主数据"></a>缓存页面主数据</h3><p>如果页面的数据是静态的，直接写到 <code>Page</code> 的 <code>data</code> 中即可，但实际上我们的页面大部分情况下一部分是前端就可以渲染的静态的结构与数据，另一部分是从后端接口获取的数据。从后端接口获取的首屏数据可以缓存到 <code>storage</code> 中，这样在第二次加载这个页面的时候可以从 <code>storage</code> 中获取，同时异步发起请求，请求返回后再更新页面数据。注意，我们是为了更快的展现页面，所以只<strong>缓存和加载首屏可见的数据即可，非首屏数据延迟加载</strong>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从storage中获取页面数据</span></span><br><span class="line">swan.getStorage(&#123;</span><br><span class="line">    key: <span class="string">'pageData'</span>,</span><br><span class="line">    success: <span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 如果有缓存且异步请求未返回则使用缓存的数据渲染页面</span></span><br><span class="line">        <span class="keyword">if</span> (res.data &amp;&amp; !<span class="keyword">this</span>.requestBack) &#123;</span><br><span class="line">            <span class="keyword">this</span>.renderPage(data);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 异步发起请求获取页面数据</span></span><br><span class="line">getPageData().then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.requestBack = <span class="literal">true</span>;</span><br><span class="line">    <span class="comment">// 请求返回后根据最新数据渲染页面</span></span><br><span class="line">    <span class="keyword">this</span>.renderPage(res.pageData);</span><br><span class="line">    <span class="comment">// 同时缓存页面数据到storage中</span></span><br><span class="line">    swan.setStorage(&#123;</span><br><span class="line">        key: <span class="string">'pageData'</span>,</span><br><span class="line">        data: res.pageData</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这样做可能会带来一个问题，就是页面数据加载后并不一定是最新的数据，最新的数据从请求获取到后会刷新页面的数据。所以，如果你的应用对实时性的要求比较高的话可能并不适合使用这种方法。</p>
+<h2 id="第三板斧-轻渲染，只渲染必须的内容"><a href="#第三板斧-轻渲染，只渲染必须的内容" class="headerlink" title="第三板斧-轻渲染，只渲染必须的内容"></a>第三板斧-轻渲染，只渲染必须的内容</h2><p>在小程序加载过程中，逻辑代码和渲染代码是分离的，分别由不同的线程进行。<br><img src="https://b.bdstatic.com/searchbox/icms/searchbox/img/perf-2-1.png" alt="小程序启动流程图"><br>慢的线程会拖累整个加载的速度，当你的逻辑代码已经跑的飞起的时候，可以考虑下是否在渲染的层面有改进的办法。  </p>
+<h3 id="减少对渲染有消耗的写法"><a href="#减少对渲染有消耗的写法" class="headerlink" title="减少对渲染有消耗的写法"></a>减少对渲染有消耗的写法</h3><p>小程序本身提供了丰富多彩的用法，包括<a href="https://smartprogram.baidu.com/docs/develop/framework/custom-component/" target="_blank" rel="noopener">自定义组件</a>、<a href="https://smartprogram.baidu.com/docs/develop/framework/editor/" target="_blank" rel="noopener">动态库</a>、<a href="https://smartprogram.baidu.com/docs/develop/framework/view_filter/" target="_blank" rel="noopener">filter</a>、<a href="https://smartprogram.baidu.com/docs/develop/framework/sjs_start/" target="_blank" rel="noopener">sjs</a>等等，这些功能提升了我们开发的效率，但另一方面，<strong>多种多样的功能有可能带来新的的性能消耗陷阱</strong>。你需要在效率和性能之间找寻一种平衡，有哪些用法提升的效率有限而带来的性能消耗却是不可忽视的？这需要结合自身业务的实践，但在FMP占比较高的页面，这些功能还是需要慎之又慎。<br>另外，也需要注意 <a href="https://smartprogram.baidu.com/docs/develop/performance/performance_view&amp;text/" target="_blank" rel="noopener">减少view和text组件的特殊属性和事件</a> ，这是很容易忽视的一点，虽然单次使用带来的性能消耗有限，但是要用到view和text组件的地方太多了，架不住使用数量的上升带来质的改变。尤其是自定义组件中使用了低性能的写法，因为自定义组件可能会被用到多次（例如列表项，甚至可能会被用上百次上千次），低性能的自定义组件会带来成倍的性能消耗。  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 修改前 view 使用了 style 属性</span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">style</span>=<span class="string">"height: 20rpx;"</span>&gt;</span>热门榜单<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"></span><br><span class="line">// 修改后 view 使用了 class ，在 css 文件中写样式</span><br><span class="line">.title &#123;</span><br><span class="line">    height: 20rpx;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span>热门榜单<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="分屏渲染"><a href="#分屏渲染" class="headerlink" title="分屏渲染"></a>分屏渲染</h3><p>设想一下，当我们加载一个长列表的时候，加载一个长度超过一个屏幕的列表，其实用户不会看到列表的所有内容，只能看到列表的前几项，那么我们当然可以只加载列表的前几项，当用户滑动的时候再加载剩余的内容。同样的，<strong>在渲染页面的时候，我们也可以在第一次 <code>setData</code> 时进行数据的分割，只加载首屏可见的数据，非首屏数据延迟加载</strong>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// appList是从后端接口获取的页面数据 active是当前可见的tab索引</span></span><br><span class="line"><span class="comment">// firstLoadAppList为计算出的首屏幕数据</span></span><br><span class="line"><span class="keyword">const</span> firstLoadAppList = appList.map(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">   <span class="keyword">return</span> index === active ? item.slice(<span class="number">0</span>, <span class="number">10</span>) : [];</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">this</span>.setData(&#123;</span><br><span class="line">   appList: firstLoadAppList</span><br><span class="line">&#125;, () =&gt; &#123;</span><br><span class="line">   <span class="comment">// 可将完整数据记录待之后加载</span></span><br><span class="line">   <span class="keyword">this</span>.appList = appList;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="取消骨架屏采用渐进式加载"><a href="#取消骨架屏采用渐进式加载" class="headerlink" title="取消骨架屏采用渐进式加载"></a>取消骨架屏采用渐进式加载</h3><p><a href="https://smartprogram.baidu.com/docs/develop/performance/peformance_gradually_load/" target="_blank" rel="noopener">骨架屏</a> 是小程序提供的一种优化用户体验的机制，但其实任何渲染都有消耗，骨架屏也是。在骨架屏中写了复杂的结构甚至动画效果，反而不利于真正的有意义的页面快速的加载。当然，骨架屏确实可以让用户更快的感知到页面正在加载，所以需要在这之间寻找一种平衡，是需要用户先看到一个正在加载的页面，还是让用户更快的看到有意义的有内容的画面。推荐的一个方案是，<strong>使用官方提供的骨架屏，但简化骨架屏的框架，减少使用样式与动画效果，在真正的页面渲染中，为各个部分设置背景色与高度，在 <code>Page</code> 的 <code>data</code> 中设置默认值，让还未进行第一次 <code>setData</code> 的时候渲染出页面的框架</strong>，这样，当页面数据来了的时候，只是在特定的部分填充值即可。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>欢迎在 <a href="https://smartprogram.baidu.com/forum/" target="_blank" rel="noopener">小程序开发者社区</a> 中提问性能相关的问题，也欢迎在Github上 <a href="https://github.com/Mangon" target="_blank" rel="noopener">follow我</a>，我会不定期更新一些前端相关的文章，如果想更深入的和我讨论小程序性能相关的问题，可以给我发邮件。</p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+
+</div>
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明：
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

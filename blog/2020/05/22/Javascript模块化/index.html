@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        Javascript模块化 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.0.3" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="模块化什么是模块化？Javascript在最初的时候没有自己的模块化标准和引入外部模块的方法，类似于 c 的 #include java 的 package ，一个完备的编程语言会考虑一个工程在运行时各个模块的引用和依赖关系。但显然Javascript在设计之初只是被当作了一个网页端的脚本语言，既然 HTML 中可以引用js，为什么还要设计 js 中引入 js 的方法呢。可是 Javascript 的发展实在是太快了，我们知道现在 Javascript 不仅在网页中使用，服务器(Nodejs)，" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://mangon.cn/blog"></form> -->
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text">模块化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%A8%A1%E5%9D%97%E5%8C%96%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">什么是模块化？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%A8%A1%E5%9D%97%E5%8C%96%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">为什么模块化？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E5%89%8D%E5%B8%B8%E8%A7%81%E7%9A%84%E6%A8%A1%E5%9D%97%E5%8C%96%E8%A7%84%E8%8C%83%EF%BC%9F"><span class="toc-number">1.3.</span> <span class="toc-text">目前常见的模块化规范？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CommonJS"><span class="toc-number">2.</span> <span class="toc-text">CommonJS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#require"><span class="toc-number">2.1.</span> <span class="toc-text">require</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#module"><span class="toc-number">2.2.</span> <span class="toc-text">module</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#exports"><span class="toc-number">2.3.</span> <span class="toc-text">exports</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AMD"><span class="toc-number">3.</span> <span class="toc-text">AMD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CMD"><span class="toc-number">4.</span> <span class="toc-text">CMD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES6-module"><span class="toc-number">5.</span> <span class="toc-text">ES6 module</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#export"><span class="toc-number">5.1.</span> <span class="toc-text">export</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#import"><span class="toc-number">5.2.</span> <span class="toc-text">import</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#as"><span class="toc-number">5.3.</span> <span class="toc-text">as</span></a></li></ol></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            Javascript模块化
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2020-05-22T07:09:51.000Z" itemprop="datePublished">2020-05-22</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/Javascript/" rel="tag">Javascript</a>, <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><h3 id="什么是模块化？"><a href="#什么是模块化？" class="headerlink" title="什么是模块化？"></a>什么是模块化？</h3><p>Javascript在最初的时候没有自己的模块化标准和引入外部模块的方法，类似于 c 的 <code>#include</code> java 的 <code>package</code> ，一个完备的编程语言会考虑一个工程在运行时各个模块的引用和依赖关系。但显然Javascript在设计之初只是被当作了一个网页端的脚本语言，既然 HTML 中可以引用js，为什么还要设计 js 中引入 js 的方法呢。可是 Javascript 的发展实在是太快了，我们知道现在 Javascript 不仅在网页中使用，服务器(Nodejs)，PC客户端(Electron)甚至移动客户端都有Js的程序。如何更好的定义模块并进行模块间的引用成了Javascript的当务之重。<br>模块化是一种将系统分离成独立功能部分的方法，可将系统分割成独立的功能部分，严格定义模块接口、模块间具有透明性。  </p>
+<h3 id="为什么模块化？"><a href="#为什么模块化？" class="headerlink" title="为什么模块化？"></a>为什么模块化？</h3><ul>
+<li>可以解决命名冲突</li>
+<li>更好的管理依赖</li>
+<li>提高代码的可读性</li>
+<li>代码解耦，提高代码的复用性</li>
+</ul>
+<h3 id="目前常见的模块化规范？"><a href="#目前常见的模块化规范？" class="headerlink" title="目前常见的模块化规范？"></a>目前常见的模块化规范？</h3><p><strong>CommonJS规范</strong> 是在服务器端模块的规范，是同步加载的。应用有Nodejs。<br><strong>AMD规范</strong>（ Asynchronous Module Definition）是 RequireJS 在推广过程中对模块定义的规范化产出，也是主要用于浏览器端。其特点是：依赖前置，需要在定义时就写好需要的依赖，提前执行依赖，应用有require.js<br><strong>CMD规范</strong> （Common Module Definition）是sea.js在推广过程中对模块定义的规范化产出，主要用于浏览器端。它主要特点是：对于依赖的模块是延迟执行，依赖可以就近书写，等到需要用这个依赖的时候再引入这个依赖，应用有sea.js<br><strong>ES6 module</strong> 在 ES6 中定义了js语言的模块化的规范。从此AMD和CMD退出了历史舞台。</p>
+<h2 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h2><p>CommonJS规范参见 <a href="http://wiki.commonjs.org/wiki/CommonJS" target="_blank" rel="noopener">http://wiki.commonjs.org/wiki/CommonJS</a><br>Nodejs采用了CommonJS的模块化规范，下面我列出了CommonJS中模块部分相关的变量，并以 Nodejs 的实现来解释含义和用法。  </p>
+<h3 id="require"><a href="#require" class="headerlink" title="require"></a>require</h3><p>require 方法用于加载模块文件。require 方法的基本功能是，接受一个模块标示符，返回外部模块的 exports 对象或方法。如果没有发现指定模块，会报错。如果有循环调用，require 返回的对象必须至少包含外部模块在调用 require 之前准备好的导出，该调用导致当前模块的执行。<br>模块标示符是指由正斜杠分隔的特殊字符串。这些字符串需要是驼峰化的，或者 . (代表当前路径)或者 .. (代表上一个路径)。可以省略文件后缀（例如.js）。顶层标识符从模块名称空间根解析。相对标识符是相对于写入和调用 require 的模块的位置来解析。  </p>
+<p>在 Nodejs 中，require 方法有以下方法 &amp; 属性  </p>
+<ul>
+<li><p>resolve 方法<br>使用内部的 require 机制查询模块的位置，此操作只返回解析后的文件名，不会加载该模块。</p>
+</li>
+<li><p>resolve.paths 方法<br>返回一个数组，其中包含解析 request 过程中被查询的路径，如果 request 字符串指向核心模块（例如 http 或 fs）则返回 null。</p>
+</li>
+<li><p>main 对象<br>Module 对象实例，表示当 Node.js 进程启动时加载的入口脚本。</p>
+</li>
+<li><p>extensions 对象<br>可以加载的文件类型及方法，node中默认支持 <code>.js</code> <code>.json</code> <code>.node</code> 文件，如果省略后缀，也会按照这三种的次序依次补足扩展名然后尝试加载。可以通过例如以下方法来让node加载不同的文件后缀。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>.extensions[<span class="string">'.sjs'</span>] = <span class="built_in">require</span>.extensions[<span class="string">'.js'</span>];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>cache 对象<br>require缓存，文件的绝对路径和 Module 对象实例的健值对数组。当再次require时，会返回缓存的模块。从此对象中删除键值对将会导致下一次 require 重新加载被删除的模块。</p>
+</li>
+</ul>
+<p>和标准稍微有些不同的是：<br>如果模块标志符是 Nodejs 默认携带的核心模块，会加载响应的核心模块，例如<code>fs</code>、<code>net</code>，或者一个位于各级 <code>node_modules</code> 目录的已安装模块。<br>如果 <code>require</code> 通过分析文件扩展名之后，可能没有查找到对应文件，但却得到一个目录，Nodejs 会将目录当做一个 Nodejs 包来处理，首先，Nodejs 在当前目录下查找 package.json (CommonJS包规范定义的包描述文件)，通过 <code>JSON.parse()</code> 解析出包描述对象，从中取出 <code>main</code> 属性指定的文件名进行定位。如果文件名缺少扩展名，将会进入扩展名分析的步骤。而如果 <code>main</code> 属性指定的文件名错误，或者压根没有 package.json 文件，Nodejs 会将 index 当做默认文件名，然后依次查找 index.js、index.json、index.node。</p>
+<h3 id="module"><a href="#module" class="headerlink" title="module"></a>module</h3><p>module 指加载后的模块。CommonJS 规范中，module 中应包括变量 require 指向 require 方法，变量 exports 指向当外部其它模块导入时可以引用的对，变量 module 对象 包括唯一的可被追溯的 id 属性以及 uri 属性指向模块的资源位置。</p>
+<p>在 Node.js 中，稍微有些不同，module对象是一个 Module 类的实例，这个对象包括以下属性 &amp; 方法：</p>
+<ul>
+<li>id<br>模块的标识符。 通常是完全解析后的文件名。</li>
+<li>exports<br>将期望导出的对象赋值给 module.exports 可以让其它模块使用</li>
+<li>parent<br>最先引用该模块的模块。</li>
+<li>filename<br>模块的完全解析后的文件名。<br>相当于 require.resolve(\/<em>模块标志符</em>\/)</li>
+<li>loaded<br>模块是否已经加载完成，或正在加载中。</li>
+<li>children<br>被该模块引用的模块对象。</li>
+<li>paths<br>模块的搜索路径。<br>相当于 require.resolve.paths(module.filenname)</li>
+<li>require 方法<br>和require方法类似，也是引入其它模块，但是相对path是当前的module</li>
+</ul>
+<h3 id="exports"><a href="#exports" class="headerlink" title="exports"></a>exports</h3><p>exports 变量是在模块的文件级作用域内可用的，且在模块执行之前赋值给 module.exports。<br>它允许使用快捷方式，因此 <code>module.exports.f = ...</code> 可以更简洁地写成 <code>exports.f = ...</code> 。 但是，就像任何变量一样，如果为 exports 赋予了新值，则它将不再绑定到 module.exports。<br>当 module.exports 属性被新对象完全替换时，通常也会重新赋值 exports。</p>
+<h2 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a>AMD</h2><p>实现了AMD的 <a href="https://github.com/requirejs/requirejs" target="_blank" rel="noopener">RequireJS</a></p>
+<h2 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h2><p>实现了CMD的 <a href="https://github.com/seajs/seajs" target="_blank" rel="noopener">Sea.js</a><br>作者 <a href="https://github.com/lifesinger" target="_blank" rel="noopener">王保平 玉伯 阿里p10</a> <a href="https://www.zhihu.com/people/lifesinger" target="_blank" rel="noopener">知乎达人</a></p>
+<h2 id="ES6-module"><a href="#ES6-module" class="headerlink" title="ES6 module"></a>ES6 module</h2><p><a href="http://www.ecma-international.org/ecma-262/6.0/#sec-modules" target="_blank" rel="noopener">ES6 module</a> 为Javascript 引入了模块化的标准。模块功能主要由两个关键字构成： export 和 import 。 export 关键字用于规定模块的对外接口， import 关键字用于输入其他模块提供的功能。  </p>
+<h3 id="export"><a href="#export" class="headerlink" title="export"></a>export</h3><p>一个模块就是一个独立的文件。该文件内部的所有变量，外部无法获取。如果你希望外部能够读取模块内部的某个变量，就必须使用 export 关键字输出该变量。<br>可以导出变量、方法和类。可以直接导出，也可以在文件中将待导出的变量、方法或类作为对象的属性导出。<br>export 关键字可以出现在模块的任何位置，但不能处于块级作用域内。<br>使用 export default 关键字，为模块指定默认输出。一个模块只能有一个默认输出，因此 export default 命令只能使用一次  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// profile.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">var</span> firstName = <span class="string">'Michael'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">var</span> lastName = <span class="string">'Jackson'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">var</span> year = <span class="number">1958</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">multiply</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x * y;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// profile1.js</span></span><br><span class="line"><span class="keyword">var</span> firstName = <span class="string">'Michael'</span>;</span><br><span class="line"><span class="keyword">var</span> lastName = <span class="string">'Jackson'</span>;</span><br><span class="line"><span class="keyword">var</span> year = <span class="number">1958</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123;firstName, lastName, year&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// export-default.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'foo'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="import"><a href="#import" class="headerlink" title="import"></a>import</h3><p>使用 export 命令定义了模块的对外接口以后，其他 JS 文件就可以通过 import 命令加载这个模块。<br>import 命令接受一对大括号，里面指定要从其他模块导入的变量名。大括号里面的变量名，必须与被导入模块对外接口的名称相同。<br>import 后面的 from 指定模块文件的位置，可以是相对路径，也可以是绝对路径，.js 路径可以省略。如果只是模块名，不带有路径，那么必须有配置文件，告诉 JavaScript 引擎该模块的位置。<br>import 命令是编译阶段执行的，在代码运行之前。由于 import 是静态执行，所以不能使用表达式和变量，这些只有在运行时才能得到结果的语法结构。<br>import 语句会执行所加载的模块。<br>如果多次重复执行同一句 import 语句，那么只会执行一次，而不会执行多次。<br>除了指定加载某个输出值，还可以使用整体加载，即用星号（*）指定一个对象，所有输出值都加载在这个对象上面。<br>当用到 export default 命令，为模块指定默认输出时，其他模块加载该模块时，import 命令可以为该匿名函数指定任意名字(此时不使用{})。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">import</span> &#123;firstName, lastName, year&#125; <span class="keyword">from</span> <span class="string">'./profile'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setName</span>(<span class="params">element</span>) </span>&#123;</span><br><span class="line">  element.textContent = firstName + <span class="string">' '</span> + lastName;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// circle.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">area</span>(<span class="params">radius</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.PI * radius * radius;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">circumference</span>(<span class="params">radius</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">2</span> * <span class="built_in">Math</span>.PI * radius;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// calculate.js</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> circle <span class="keyword">from</span> <span class="string">'./circle'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'圆面积：'</span> + circle.area(<span class="number">4</span>));</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'圆周长：'</span> + circle.circumference(<span class="number">14</span>));</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// import-default.js</span></span><br><span class="line"><span class="keyword">import</span> customName <span class="keyword">from</span> <span class="string">'./export-default'</span>;</span><br><span class="line">customName(); <span class="comment">// 'foo'</span></span><br></pre></td></tr></table></figure>
+<h3 id="as"><a href="#as" class="headerlink" title="as"></a>as</h3><p>可以使用as关键字重命名导出或导入的变量。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; lastName <span class="keyword">as</span> surname &#125; <span class="keyword">from</span> <span class="string">'./profile'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">v1</span>(<span class="params"></span>) </span>&#123; ... &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">v2</span>(<span class="params"></span>) </span>&#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123;</span><br><span class="line">  v1 <span class="keyword">as</span> streamV1,</span><br><span class="line">  v2 <span class="keyword">as</span> streamV2,</span><br><span class="line">  v2 <span class="keyword">as</span> streamLatestVersion</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+
+</div>
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明：
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>
