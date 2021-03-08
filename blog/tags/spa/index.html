@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="/blog/css/style.css">
 
     <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
-</head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 <body>
 
     <main class="app">
@@ -132,7 +132,7 @@
     <section class="article-body markdown-body">
         
         <h2 id="SPA"><a href="#SPA" class="headerlink" title="SPA"></a>SPA</h2><p>单页Web应用（single page web application，SPA），就是只有一张Web页面的应用，是加载单个HTML页面并在用户与应用程序交互时动态更新该页面的Web应用程序。<br>单页面应用的好处是不必使得用户在加载新页面时感觉到闪烁刷新的效果，有更好的用户体验。当然，单页面应用也有其问题，例如首屏渲染问题以及SEO问题，但如果构建的是类似于应用型的web页面的话，SPA的好处是远远大于其弊端的。  </p>
-<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><p><a href="https://github.com/hexojs/hexo" target="_blank" rel="noopener">Hexo</a> 是一个静态页面生成框架，一般用来其来搭建博客或者文档型的网站。  </p>
+<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><p><a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo">Hexo</a> 是一个静态页面生成框架，一般用来其来搭建博客或者文档型的网站。  </p>
 <h2 id="Hexo-gt-SPA"><a href="#Hexo-gt-SPA" class="headerlink" title="Hexo =&gt; SPA"></a>Hexo =&gt; SPA</h2><p>如何在Hexo的基础上转换为SPA呢？基本的思路就是，监管所有的点击跳转链接，阻止默认行为采用ajax调用的方式获取文档然后替换当前页面。为了使替换时的影响较小，当前文档中数据没有变化的元素就不用替换了，只替换变化的部分。例如，一个采用Hexo的文档型的网站，一般而言包括三个部分header，nav，以及article，header及nav部分是不用变的，只需要替换article部分即可。需要注意的事，在替换后需要注意article内部的事件，需要重新绑定一遍，同时也需要处理nav部分的一些事件，比如focus的变化及样式上的变化，以及其它的一些变化，比如页面title的变化。这样当用户点击左侧nav时，只有article内部内容的替换，看起来就像一个应用一样。但这样修改还有两个问题，一是当用户点击后退时，浏览器不能很好的处理，我们希望记录每一次用户的点击跳转，当用户点击后退时能够回到上一次点击时的页面，另外一个问题是地址栏的没有变化，我们希望每一次用户点击跳转时地址栏也显示相应页面的URL。这时就需要用到History API了.  </p>
 <p>History 对象包含用户（在浏览器窗口中）访问过的 URL。<br>History 对象是 window 对象的一部分，可通过 window.history 属性对其进行访问。  </p>
 <p>属性<br>History.length 只读<br>History.scrollRestoration<br>允许Web应用程序在历史导航上显式地设置默认滚动恢复行为。此属性可以是自动的（auto）或者手动的（manual）。<br>History.state 只读<br>返回一个表示历史堆栈顶部的状态的值。这是一种可以不必等待popstate 事件而查看状态而的方式。  </p>
@@ -146,12 +146,12 @@
 <ol start="2">
 <li>ajax获取文档内容  </li>
 </ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// href 跳转url</span></span><br><span class="line">$.ajax(&#123;</span><br><span class="line">    url: href,</span><br><span class="line">    dataType: <span class="string">'html'</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> article = $(res).find(<span class="string">'#article'</span>).html();</span><br><span class="line">        $(<span class="string">'#article'</span>).html(article);</span><br><span class="line">    &#125;,</span><br><span class="line">    error: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">window</span>.location.href = href;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// href 跳转url</span></span><br><span class="line">$.ajax(&#123;</span><br><span class="line">    url: href,</span><br><span class="line">    dataType: <span class="string">&#x27;html&#x27;</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> article = $(res).find(<span class="string">&#x27;#article&#x27;</span>).html();</span><br><span class="line">        $(<span class="string">&#x27;#article&#x27;</span>).html(article);</span><br><span class="line">    &#125;,</span><br><span class="line">    error: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">window</span>.location.href = href;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>成功替换文章内容之后需要重新绑定文章内部的事件，同时对一些样式（例如选中的样式）进行改变。<br>ajax失败则直接通过改变url的方式刷新页面。  </p>
 <ol start="3">
 <li>页面title变化  </li>
 </ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">doc.title = $(res).filter(<span class="string">'title'</span>).html();</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">doc.title = $(res).filter(<span class="string">&#x27;title&#x27;</span>).html();</span><br></pre></td></tr></table></figure>
 <ol start="4">
 <li>window.history.pushState() <ol>
 <li>页面url变化</li>
@@ -159,11 +159,11 @@
 </ol>
 </li>
 </ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">win.history.pushState(href, <span class="string">''</span>, href);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">win.history.pushState(href, <span class="string">&#x27;&#x27;</span>, href);</span><br></pre></td></tr></table></figure>
 <ol start="5">
 <li>window.onpopstate() 处理用户点击后退/前进时的逻辑</li>
 </ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">window</span>).on(<span class="string">'popstate'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (e.state) &#123;</span><br><span class="line">        <span class="keyword">var</span> href = e.state ? e.state : win.location.href;</span><br><span class="line">        <span class="keyword">this</span>.getArticle(href, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">// ...</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">window</span>).on(<span class="string">&#x27;popstate&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (e.state) &#123;</span><br><span class="line">        <span class="keyword">var</span> href = e.state ? e.state : win.location.href;</span><br><span class="line">        <span class="built_in">this</span>.getArticle(href, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">// ...</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>如上代码中，getArticle封装了获取文章的action，加入callback是考虑到获取文章内容之后如果url中包含锚点，页面应该滑动到锚点所在处。  </p>
 
         

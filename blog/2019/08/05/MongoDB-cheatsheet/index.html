@@ -107,7 +107,7 @@
     
     <section class="article-body markdown-body">
         
-        <h2 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h2><p><a href="https://www.mongodb.com/" target="_blank" rel="noopener">MongoDB</a> 是一个基于分布式文件存储的数据库，截止当前日期（2019-08-05） 最新版本是 MongoDB 4.0。MongoDB由 C++ 语言编写，旨在为 WEB 应用提供可扩展的高性能数据存储解决方案。<br>MongoDB 将数据存储为一个文档，数据结构由键值对(key=&gt;value)组成。 MongoDB 文档类型似于 JSON 对象。字段值可以包含其他文档，数组及文档数组等。<br>你可以在 MongoDB 官网 <a href="https://www.mongodb.com/download-center/community" target="_blank" rel="noopener">下载安装包</a>。<br>MongoDB可视化工具有 <a href="https://robomongo.org/" target="_blank" rel="noopener">Robomongo</a> 等。<br>MongoDB的文档写的很好可惜没有中文版的，英语不错的同学可以直接访问 <a href="https://docs.mongodb.com/" target="_blank" rel="noopener">MongoDB文档官网</a>  </p>
+        <h2 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h2><p><a target="_blank" rel="noopener" href="https://www.mongodb.com/">MongoDB</a> 是一个基于分布式文件存储的数据库，截止当前日期（2019-08-05） 最新版本是 MongoDB 4.0。MongoDB由 C++ 语言编写，旨在为 WEB 应用提供可扩展的高性能数据存储解决方案。<br>MongoDB 将数据存储为一个文档，数据结构由键值对(key=&gt;value)组成。 MongoDB 文档类型似于 JSON 对象。字段值可以包含其他文档，数组及文档数组等。<br>你可以在 MongoDB 官网 <a target="_blank" rel="noopener" href="https://www.mongodb.com/download-center/community">下载安装包</a>。<br>MongoDB可视化工具有 <a target="_blank" rel="noopener" href="https://robomongo.org/">Robomongo</a> 等。<br>MongoDB的文档写的很好可惜没有中文版的，英语不错的同学可以直接访问 <a target="_blank" rel="noopener" href="https://docs.mongodb.com/">MongoDB文档官网</a>  </p>
 <h2 id="MongoDB-命令"><a href="#MongoDB-命令" class="headerlink" title="MongoDB 命令"></a>MongoDB 命令</h2><p>Windows系统下的命令如下，其他系统类似：</p>
 <ol>
 <li>运行Mongo服务器</li>
@@ -121,7 +121,7 @@
 <ol start="3">
 <li>安装MongoDB服务</li>
 </ol>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">C:\<span class="title">mongodb</span>\<span class="title">bin</span>\<span class="title">mongod.exe</span> --<span class="title">config</span> "<span class="title">C</span>:\<span class="title">mongodb</span>\<span class="title">mongod.cfg</span>" --<span class="title">install</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">C:\<span class="title">mongodb</span>\<span class="title">bin</span>\<span class="title">mongod.exe</span> --<span class="title">config</span> &quot;<span class="title">C</span>:\<span class="title">mongodb</span>\<span class="title">mongod.cfg</span>&quot; --<span class="title">install</span></span></span><br></pre></td></tr></table></figure>
 <ol start="4">
 <li>启用MongoDB服务</li>
 </ol>
@@ -381,7 +381,7 @@
 <li>后 32 位是在某秒中操作的一个递增的序数</li>
 </ul>
 <h4 id="Date"><a href="#Date" class="headerlink" title="Date"></a>Date</h4><p>BSON Date 是一个64位整型，表示当前距离 Unix新纪元（1970年1月1日）的毫秒数。日期类型是有符号的, 负数表示 1970 年之前的日期。  </p>
-<h2 id="MongoDB-连接"><a href="#MongoDB-连接" class="headerlink" title="MongoDB 连接"></a>MongoDB 连接</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongodb://[username:password@]host1[:port1][,...hostN[:portN]][/[database][?options]]</span><br></pre></td></tr></table></figure>
+<h2 id="MongoDB-连接"><a href="#MongoDB-连接" class="headerlink" title="MongoDB 连接"></a>MongoDB 连接</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongodb:&#x2F;&#x2F;[username:password@]host1[:port1][,...hostN[:portN]][&#x2F;[database][?options]]</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p><strong>mongodb://</strong> mongodb协议头。</p>
 </li>
@@ -396,7 +396,7 @@
 <li><p><strong>?options</strong> 是连接选项。如果不使用/database，则前面需要加上/。所有连接选项都是键值对name=value，键值对之间通过&amp;或;（分号）隔开。</p>
 </li>
 </ul>
-<h2 id="MongoDB-shell-方法"><a href="#MongoDB-shell-方法" class="headerlink" title="MongoDB shell 方法"></a>MongoDB shell 方法</h2><p>参见<a href="https://docs.mongodb.com/manual/reference/method/index.html" target="_blank" rel="noopener">mongo Shell Methods</a>，以下列举一些常用的方法：  </p>
+<h2 id="MongoDB-shell-方法"><a href="#MongoDB-shell-方法" class="headerlink" title="MongoDB shell 方法"></a>MongoDB shell 方法</h2><p>参见<a target="_blank" rel="noopener" href="https://docs.mongodb.com/manual/reference/method/index.html">mongo Shell Methods</a>，以下列举一些常用的方法：  </p>
 <h3 id="数据库-Database-相关"><a href="#数据库-Database-相关" class="headerlink" title="数据库(Database)相关"></a>数据库(Database)相关</h3><h4 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use DATABASE_NAME</span><br></pre></td></tr></table></figure>
 <h4 id="查看所有数据库"><a href="#查看所有数据库" class="headerlink" title="查看所有数据库"></a>查看所有数据库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show dbs</span><br></pre></td></tr></table></figure>
 <h4 id="查看当前数据库名"><a href="#查看当前数据库名" class="headerlink" title="查看当前数据库名"></a>查看当前数据库名</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db</span><br></pre></td></tr></table></figure>
@@ -583,7 +583,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.COLLECTION_NAME.dropIndex(&lt;index name&gt;)</span><br><span class="line">db.COLLECTION_NAME.dropIndexes() // 删除所有索引</span><br></pre></td></tr></table></figure>
+<h4 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.COLLECTION_NAME.dropIndex(&lt;index name&gt;)</span><br><span class="line">db.COLLECTION_NAME.dropIndexes() &#x2F;&#x2F; 删除所有索引</span><br></pre></td></tr></table></figure>
 <h4 id="查看索引"><a href="#查看索引" class="headerlink" title="查看索引"></a>查看索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.COLLECTION_NAME.getIndexes()</span><br></pre></td></tr></table></figure>
 <h4 id="强制使用指定索引"><a href="#强制使用指定索引" class="headerlink" title="强制使用指定索引"></a>强制使用指定索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.COLLECTION_NAME.find(&lt;query&gt;).hint(&lt;string or document&gt;)</span><br><span class="line">db.COLLECTION_NAME.find( &#123; $query: &#123;&#125;, $hint: &lt;string or document&gt; &#125; )</span><br></pre></td></tr></table></figure>
 <h3 id="其它常用"><a href="#其它常用" class="headerlink" title="其它常用"></a>其它常用</h3><h4 id="聚合"><a href="#聚合" class="headerlink" title="聚合"></a>聚合</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.COLLECTION_NAME.aggregate(pipeline, options)</span><br></pre></td></tr></table></figure>
@@ -623,147 +623,147 @@
 <td><code>$eq</code></td>
 <td>比较</td>
 <td>equal 值相等</td>
-<td><code>{ &lt;field&gt;: { $eq: &lt;value&gt; } }</code></td>
+<td><code>&#123; &lt;field&gt;: &#123; $eq: &lt;value&gt; &#125; &#125;</code></td>
 </tr>
 <tr>
 <td><code>$gt</code></td>
 <td>比较</td>
 <td>greater than 值大于</td>
-<td><code>{ &lt;field&gt;: {$gt: &lt;value&gt;} }</code></td>
+<td><code>&#123; &lt;field&gt;: &#123;$gt: &lt;value&gt;&#125; &#125;</code></td>
 </tr>
 <tr>
 <td><code>$gte</code></td>
 <td>比较</td>
 <td>greater than equal 值大于等于</td>
-<td><code>{ &lt;field&gt;: {$gte: &lt;value&gt;} }</code></td>
+<td><code>&#123; &lt;field&gt;: &#123;$gte: &lt;value&gt;&#125; &#125;</code></td>
 </tr>
 <tr>
 <td><code>$in</code></td>
 <td>比较</td>
 <td>值存在于</td>
-<td><code>{ &lt;field&gt;: { $in: [&lt;value1&gt;, &lt;value2&gt;, ... &lt;valueN&gt; ] } }</code></td>
+<td><code>&#123; &lt;field&gt;: &#123; $in: [&lt;value1&gt;, &lt;value2&gt;, ... &lt;valueN&gt; ] &#125; &#125;</code></td>
 </tr>
 <tr>
 <td><code>$lt</code></td>
 <td>比较</td>
 <td>less than 值小于</td>
-<td><code>{ &lt;field&gt;: {$lt: &lt;value&gt;} }</code></td>
+<td><code>&#123; &lt;field&gt;: &#123;$lt: &lt;value&gt;&#125; &#125;</code></td>
 </tr>
 <tr>
 <td><code>$lte</code></td>
 <td>比较</td>
 <td>less than equal 值小于等于</td>
-<td><code>{ &lt;field&gt;: { $lte: &lt;value&gt;} }</code></td>
+<td><code>&#123; &lt;field&gt;: &#123; $lte: &lt;value&gt;&#125; &#125;</code></td>
 </tr>
 <tr>
 <td><code>$ne</code></td>
 <td>比较</td>
 <td>not equal 值不等于</td>
-<td><code>{ &lt;field&gt;: {$ne: &lt;value&gt;} }</code></td>
+<td><code>&#123; &lt;field&gt;: &#123;$ne: &lt;value&gt;&#125; &#125;</code></td>
 </tr>
 <tr>
 <td><code>$nin</code></td>
 <td>比较</td>
 <td>not in 值不存在于</td>
-<td><code>{ &lt;field&gt;: { $nin: [ &lt;value1&gt;, &lt;value2&gt; ... &lt;valueN&gt; ]} }</code></td>
+<td><code>&#123; &lt;field&gt;: &#123; $nin: [ &lt;value1&gt;, &lt;value2&gt; ... &lt;valueN&gt; ]&#125; &#125;</code></td>
 </tr>
 <tr>
 <td><code>$and</code></td>
 <td>逻辑</td>
 <td>与，跟表达式数组，表达式之间是与关系</td>
-<td><code>{ $and: [ { &lt;expression1&gt; }, { &lt;expression2&gt; } , ... , { &lt;expressionN&gt; } ] }</code></td>
+<td><code>&#123; $and: [ &#123; &lt;expression1&gt; &#125;, &#123; &lt;expression2&gt; &#125; , ... , &#123; &lt;expressionN&gt; &#125; ] &#125;</code></td>
 </tr>
 <tr>
 <td><code>$not</code></td>
 <td>逻辑</td>
 <td>非，跟操作符表达式</td>
-<td><code>{ &lt;field&gt;: { $not: { &lt;operator-expression&gt; } } }</code></td>
+<td><code>&#123; &lt;field&gt;: &#123; $not: &#123; &lt;operator-expression&gt; &#125; &#125; &#125;</code></td>
 </tr>
 <tr>
 <td><code>$nor</code></td>
 <td>逻辑</td>
 <td>异或，跟表达式数组，表达式之间是异或关系</td>
-<td>{ <code>$nor: [ { &lt;expression1&gt; }, { &lt;expression2&gt; }, ...  { &lt;expressionN&gt; } ] }</code></td>
+<td>{ <code>$nor: [ &#123; &lt;expression1&gt; &#125;, &#123; &lt;expression2&gt; &#125;, ...  &#123; &lt;expressionN&gt; &#125; ] &#125;</code></td>
 </tr>
 <tr>
 <td><code>$or</code></td>
 <td>逻辑</td>
 <td>或，跟表达式数组，表达式之间是或关系</td>
-<td><code>{ $or: [ { &lt;expression1&gt; }, { &lt;expression2&gt; }, ... , { &lt;expressionN&gt; } ] }</code></td>
+<td><code>&#123; $or: [ &#123; &lt;expression1&gt; &#125;, &#123; &lt;expression2&gt; &#125;, ... , &#123; &lt;expressionN&gt; &#125; ] &#125;</code></td>
 </tr>
 <tr>
 <td><code>$exists</code></td>
 <td>元素</td>
 <td>表示field是否存在</td>
-<td><code>{ &lt;field&gt;: { $exists: &lt;boolean&gt; } }</code></td>
+<td><code>&#123; &lt;field&gt;: &#123; $exists: &lt;boolean&gt; &#125; &#125;</code></td>
 </tr>
 <tr>
 <td><code>$type</code></td>
 <td>元素</td>
 <td>表示field需要符合列出的BSON类型，<code>&lt;BSON type&gt;</code>可以是 <a href="#BSON-Types">BSON Types</a> 的别名或者数字</td>
-<td><code>{ &lt;field&gt;: { $type: &lt;BSON type&gt; } }</code> <br> <code>{ &lt;field&gt;: { $type: [ &lt;BSON type1&gt; , &lt;BSON type2&gt;, ... ] } }</code></td>
+<td><code>&#123; &lt;field&gt;: &#123; $type: &lt;BSON type&gt; &#125; &#125;</code> <br> <code>&#123; &lt;field&gt;: &#123; $type: [ &lt;BSON type1&gt; , &lt;BSON type2&gt;, ... ] &#125; &#125;</code></td>
 </tr>
 <tr>
 <td><code>$where</code></td>
 <td>评估</td>
 <td><code>$where</code> 查询操作符只对最顶层的document生效，会执行javascript但不走索引，所以尽量先使用其它操作符对数据进行过滤</td>
-<td><code>{$where: function() {&lt;code&gt; return true;}}</code></td>
+<td><code>&#123;$where: function() &#123;&lt;code&gt; return true;&#125;&#125;</code></td>
 </tr>
 <tr>
 <td><code>$all</code></td>
 <td>数组</td>
 <td>field应当是数组，过滤出包含所有给定数组中值的field</td>
-<td><code>{ &lt;field&gt;: { $all: [ &lt;value1&gt; , &lt;value2&gt; ... ] } }</code></td>
+<td><code>&#123; &lt;field&gt;: &#123; $all: [ &lt;value1&gt; , &lt;value2&gt; ... ] &#125; &#125;</code></td>
 </tr>
 <tr>
 <td><code>$elemMath</code></td>
 <td>数组</td>
 <td>field应当是数组，过滤出至少有一个元素符合所有给定表达式的field</td>
-<td><code>{ &lt;field&gt;: { $elemMatch: { &lt;query1&gt;, &lt;query2&gt;, ... } } }</code></td>
+<td><code>&#123; &lt;field&gt;: &#123; $elemMatch: &#123; &lt;query1&gt;, &lt;query2&gt;, ... &#125; &#125; &#125;</code></td>
 </tr>
 <tr>
 <td><code>$size</code></td>
 <td>数组</td>
 <td>field应当是数组，过滤出所有元素数量符合size的field</td>
-<td><code>{ &lt;field&gt;: { $size: &lt;positive integer&gt; } }</code></td>
+<td><code>&#123; &lt;field&gt;: &#123; $size: &lt;positive integer&gt; &#125; &#125;</code></td>
 </tr>
 <tr>
 <td><code>$comment</code></td>
 <td>评论</td>
 <td>为查询添加注释</td>
-<td><code>{ &lt;query&gt;, $comment: &lt;comment&gt; }</code></td>
+<td><code>&#123; &lt;query&gt;, $comment: &lt;comment&gt; &#125;</code></td>
 </tr>
 <tr>
 <td><code>$sort</code></td>
 <td>聚合</td>
 <td>排序，根据给定的field和排序规则对结果进行排序，<code>&lt;sort order&gt;</code>有两种取值，1代表asc，-1代表desc</td>
-<td><code>{ $sort: { &lt;field1&gt;: &lt;sort order&gt;, &lt;field2&gt;: &lt;sort order&gt; ... } }</code></td>
+<td><code>&#123; $sort: &#123; &lt;field1&gt;: &lt;sort order&gt;, &lt;field2&gt;: &lt;sort order&gt; ... &#125; &#125;</code></td>
 </tr>
 <tr>
 <td><code>$limit</code></td>
 <td>聚合</td>
 <td>限制取前n个数据</td>
-<td><code>{ $limit: &lt;positive integer&gt; }</code></td>
+<td><code>&#123; $limit: &lt;positive integer&gt; &#125;</code></td>
 </tr>
 <tr>
 <td><code>$skip</code></td>
 <td>聚合</td>
 <td>跳过n个数据</td>
-<td><code>{ $skip: &lt;positive integer&gt; }</code></td>
+<td><code>&#123; $skip: &lt;positive integer&gt; &#125;</code></td>
 </tr>
 <tr>
 <td><code>$group</code></td>
 <td>聚合</td>
 <td>分组，通过特定表达式与输出将文档分成不同的group</td>
-<td><code>{ $group: { _id: &lt;expression&gt;, &lt;field1&gt;: { &lt;accumulator1&gt; : &lt;expression1&gt; }, ... } }</code></td>
+<td><code>&#123; $group: &#123; _id: &lt;expression&gt;, &lt;field1&gt;: &#123; &lt;accumulator1&gt; : &lt;expression1&gt; &#125;, ... &#125; &#125;</code></td>
 </tr>
 </tbody>
 </table>
 <h2 id="事务与原子性"><a href="#事务与原子性" class="headerlink" title="事务与原子性"></a>事务与原子性</h2><p>MongoDB在 4.0版本之后支持了多文档事务，并且计划在4.2版本支持分布式事务。  </p>
-<p>在MongoDB中，对单文件的操作是原子性的。4.0之后通过复制集合的方式支持了多文档事务。多文档事务支持跨多操作、集合、数据库以及文档，但是大部分情况下相比于单文档写会导致巨大的性能消耗。官方仍旧推荐嵌入式的文档模型而不是多文档事务。而且多文档事务限制较多，具体限制可以查看 <a href="https://docs.mongodb.com/manual/core/transactions/" target="_blank" rel="noopener">事务文档</a> 。  </p>
+<p>在MongoDB中，对单文件的操作是原子性的。4.0之后通过复制集合的方式支持了多文档事务。多文档事务支持跨多操作、集合、数据库以及文档，但是大部分情况下相比于单文档写会导致巨大的性能消耗。官方仍旧推荐嵌入式的文档模型而不是多文档事务。而且多文档事务限制较多，具体限制可以查看 <a target="_blank" rel="noopener" href="https://docs.mongodb.com/manual/core/transactions/">事务文档</a> 。  </p>
 <p>只有存储引擎 WiredTiger 支持 多文档事务，内存数据引擎或 MMAPv1 存储引擎不支持。  </p>
 <p>事务例子如下：  </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Start a session.</span></span><br><span class="line">session = db.getMongo().startSession( &#123; <span class="attr">readPreference</span>: &#123; <span class="attr">mode</span>: <span class="string">"primary"</span> &#125; &#125; );</span><br><span class="line"></span><br><span class="line">employeesCollection = session.getDatabase(<span class="string">"hr"</span>).employees;</span><br><span class="line">eventsCollection = session.getDatabase(<span class="string">"reporting"</span>).events;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Start a transaction</span></span><br><span class="line">session.startTransaction( &#123; <span class="attr">readConcern</span>: &#123; <span class="attr">level</span>: <span class="string">"snapshot"</span> &#125;, <span class="attr">writeConcern</span>: &#123; <span class="attr">w</span>: <span class="string">"majority"</span> &#125; &#125; );</span><br><span class="line"></span><br><span class="line"><span class="comment">// Operations inside the transaction</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">   employeesCollection.updateOne( &#123; <span class="attr">employee</span>: <span class="number">3</span> &#125;, &#123; <span class="attr">$set</span>: &#123; <span class="attr">status</span>: <span class="string">"Inactive"</span> &#125; &#125; );</span><br><span class="line">   eventsCollection.insertOne( &#123; <span class="attr">employee</span>: <span class="number">3</span>, <span class="attr">status</span>: &#123; <span class="attr">new</span>: <span class="string">"Inactive"</span>, <span class="attr">old</span>: <span class="string">"Active"</span> &#125; &#125; );</span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">   <span class="comment">// Abort transaction on error</span></span><br><span class="line">   session.abortTransaction();</span><br><span class="line">   <span class="keyword">throw</span> error;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Commit the transaction using write concern set at transaction start</span></span><br><span class="line">session.commitTransaction();</span><br><span class="line"></span><br><span class="line">session.endSession();</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Start a session.</span></span><br><span class="line">session = db.getMongo().startSession( &#123; <span class="attr">readPreference</span>: &#123; <span class="attr">mode</span>: <span class="string">&quot;primary&quot;</span> &#125; &#125; );</span><br><span class="line"></span><br><span class="line">employeesCollection = session.getDatabase(<span class="string">&quot;hr&quot;</span>).employees;</span><br><span class="line">eventsCollection = session.getDatabase(<span class="string">&quot;reporting&quot;</span>).events;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Start a transaction</span></span><br><span class="line">session.startTransaction( &#123; <span class="attr">readConcern</span>: &#123; <span class="attr">level</span>: <span class="string">&quot;snapshot&quot;</span> &#125;, <span class="attr">writeConcern</span>: &#123; <span class="attr">w</span>: <span class="string">&quot;majority&quot;</span> &#125; &#125; );</span><br><span class="line"></span><br><span class="line"><span class="comment">// Operations inside the transaction</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">   employeesCollection.updateOne( &#123; <span class="attr">employee</span>: <span class="number">3</span> &#125;, &#123; <span class="attr">$set</span>: &#123; <span class="attr">status</span>: <span class="string">&quot;Inactive&quot;</span> &#125; &#125; );</span><br><span class="line">   eventsCollection.insertOne( &#123; <span class="attr">employee</span>: <span class="number">3</span>, <span class="attr">status</span>: &#123; <span class="attr">new</span>: <span class="string">&quot;Inactive&quot;</span>, <span class="attr">old</span>: <span class="string">&quot;Active&quot;</span> &#125; &#125; );</span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">   <span class="comment">// Abort transaction on error</span></span><br><span class="line">   session.abortTransaction();</span><br><span class="line">   <span class="keyword">throw</span> error;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Commit the transaction using write concern set at transaction start</span></span><br><span class="line">session.commitTransaction();</span><br><span class="line"></span><br><span class="line">session.endSession();</span><br></pre></td></tr></table></figure>
 
         
     </section>

@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="/blog/css/style.css">
 
     <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
-</head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 <body>
 
     <main class="app">
@@ -134,7 +134,7 @@
         <p>网站上有大量的无效链接（返回404或域名不存在）会使网站的总体质量下降，所以清除网站中的无效链接也是提升网站质量，优化用户体验的一种方法。  </p>
 <p>通常而言，链接有链接向外部的也有在网站内部跳转的链接，链接向外部的网站尽量希望链接到一些稳定的网站，有些地址是很容易被移除的，比如链接到文章或评论的，链接到个人网站的，链接到下载页的。时常注意一些大的域名变动，比如有些产品可能已经下线或更换地址，如果自己的网站中有引用，也需要同步的改变。链接到内部的网站时可以做一次引用记录，当记录的链接修改时同步修改所有的地方。  </p>
 <p>同时介绍一个可以查看页面内链接情况的 Chrome extension  </p>
-<p><a href="https://github.com/ocodia/Check-My-Links" target="_blank" rel="noopener">Check-My-Links</a>  </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/ocodia/Check-My-Links">Check-My-Links</a>  </p>
 <div class="check-my-links"><style>.check-my-links img {width:auto;}</style><img src="/blog/static/imgs/check_my_links.png" alt="Check-My-Links"></div>
 
 <ul>
@@ -143,7 +143,7 @@
 <li>Warnings: 警告</li>
 <li>invalid links: 503/404 或其它无效链接</li>
 </ul>
-<p>Check-My-Links 会将当前页面中所有的http/https链接的background改为与上面四种情况对应的颜色。值得注意的是，有时候一些可用的链接可能由于某种原因而被标注为 Invalid links ，所以在 Invalid links 里的链接最好被重新手工测试一下。Warnings 的链接会被在console中显示出来，什么样的链接会被标为warning是可配置的，一般链接的href为空或“#”或者没有href或者表示为hashtag形式却无法在落地页找到时可以标注为warning。可用的链接可以被cache起来，这样就不用相同的链接也发多次请求验证其正确性。如果不想要验证链接的正确性，比如一些退出账户（log out）的链接，可以在链接上加上属性 <code>rel=&quot;nofollow&quot;</code> 来让Check-My-Links跳过对他的验证。具体配置可以在 Check-My-Links 的 <a href="chrome-extension://ojkcdipcgfaekbeaelaapakgnjflfglf/options.html" target="_blank" rel="noopener">配置页</a> 查看。有一个问题是当请求返回状态是302，然后跳转到一个下载时，此链接会一直在Queue中，这算是一个bug吧。</p>
+<p>Check-My-Links 会将当前页面中所有的http/https链接的background改为与上面四种情况对应的颜色。值得注意的是，有时候一些可用的链接可能由于某种原因而被标注为 Invalid links ，所以在 Invalid links 里的链接最好被重新手工测试一下。Warnings 的链接会被在console中显示出来，什么样的链接会被标为warning是可配置的，一般链接的href为空或“#”或者没有href或者表示为hashtag形式却无法在落地页找到时可以标注为warning。可用的链接可以被cache起来，这样就不用相同的链接也发多次请求验证其正确性。如果不想要验证链接的正确性，比如一些退出账户（log out）的链接，可以在链接上加上属性 <code>rel=&quot;nofollow&quot;</code> 来让Check-My-Links跳过对他的验证。具体配置可以在 Check-My-Links 的 <a href="chrome-extension://ojkcdipcgfaekbeaelaapakgnjflfglf/options.html">配置页</a> 查看。有一个问题是当请求返回状态是302，然后跳转到一个下载时，此链接会一直在Queue中，这算是一个bug吧。</p>
 
         
     </section>

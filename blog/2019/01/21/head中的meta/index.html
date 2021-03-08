@@ -15,7 +15,7 @@
     <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
     
     
-    <meta name="description" content="meta指的是html元素中存在与head中的meta元素它长这样  1&amp;lt;meta charset=&#34;utf-8&#34;&amp;gt;meta的含义HTML  元素表示那些不能由其它HTML元相关元素 (&amp;lt;base&gt;, &amp;lt;link&gt;, &amp;lt;script&gt;, &amp;lt;style&gt; 或 &amp;lt;title&gt;) 之一表示的任何元数据信息.  meta的属性charset此特性声明当前文档所使用的字符编码，但该声明可以被任何一个元素(通常是html)的 lang 特性的值覆盖。此特性的值" />
+    <meta name="description" content="meta指的是html元素中存在与head中的meta元素它长这样  1&amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;meta的含义HTML  元素表示那些不能由其它HTML元相关元素 (&amp;lt;base&gt;, &amp;lt;link&gt;, &amp;lt;script&gt;, &amp;lt;style&gt; 或 &amp;lt;title&gt;) 之一表示的任何元数据信息.  meta的属性charset此特性声明当前文档所使用的字符编码，但该声明可以被任何一个元素(通常是html)的 lang 特性" />
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="/blog/css/style.css">
 
     <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
-</head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 <body>
 
     <main class="app">
@@ -108,15 +108,15 @@
     <section class="article-body markdown-body">
         
         <p>meta指的是html元素中存在与head中的meta元素<br>它长这样  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="meta的含义"><a href="#meta的含义" class="headerlink" title="meta的含义"></a>meta的含义</h2><p>HTML <meta> 元素表示那些不能由其它HTML元相关元素 (&lt;base>, &lt;link>, &lt;script>, &lt;style> 或 &lt;title>) 之一表示的任何元数据信息.  </p>
 <h2 id="meta的属性"><a href="#meta的属性" class="headerlink" title="meta的属性"></a>meta的属性</h2><h3 id="charset"><a href="#charset" class="headerlink" title="charset"></a>charset</h3><p>此特性声明当前文档所使用的字符编码，但该声明可以被任何一个元素(通常是html)的 lang 特性的值覆盖。此特性的值必须是一个符合由IANA所定义的字符编码首选MIME 名称（preferred MIME name ）之一。</p>
 <p>有几点需要注意：</p>
 <ol>
 <li>推荐使用 UTF-8；  </li>
-<li><meta> 元素必须包含在 <head><meta name="generator" content="Hexo 3.9.0"> 元素中并且在HTML代码的前1024个字节内，因为某些浏览器在选择编码之前只查看前面这些字节。  </head></li>
-<li>meta charset元素并不能决定字符集，网页采用何种字符是由 <a href="https://html.spec.whatwg.org/multipage/parsing.html#encoding-sniffing-algorithm" target="_blank" rel="noopener">网页字符算法</a> 决定的  </li>
-<li>强烈建议使用该属性定义字符编码. 如果未定义，某些跨脚本技术可能危害网页， 例如 <a href="http://code.google.com/p/doctype-mirror/wiki/ArticleUtf7" target="_blank" rel="noopener">UTF-7 降级XSS攻击</a>  </li>
+<li><meta> 元素必须包含在 <head> 元素中并且在HTML代码的前1024个字节内，因为某些浏览器在选择编码之前只查看前面这些字节。  </li>
+<li>meta charset元素并不能决定字符集，网页采用何种字符是由 <a target="_blank" rel="noopener" href="https://html.spec.whatwg.org/multipage/parsing.html#encoding-sniffing-algorithm">网页字符算法</a> 决定的  </li>
+<li>强烈建议使用该属性定义字符编码. 如果未定义，某些跨脚本技术可能危害网页， 例如 <a target="_blank" rel="noopener" href="http://code.google.com/p/doctype-mirror/wiki/ArticleUtf7">UTF-7 降级XSS攻击</a>  </li>
 </ol>
 <h3 id="http-equiv"><a href="#http-equiv" class="headerlink" title="http-equiv"></a>http-equiv</h3><p>这个枚举属性定义了能改变服务器和用户引擎行为的编译行为。值使用 content 来定义，如下：  </p>
 <table>
@@ -208,7 +208,7 @@
 </tr>
 </tbody>
 </table>
-<p>有些name虽然没有被正式承认，但是也被广泛使用，<a href="https://wiki.whatwg.org/wiki/MetaExtensions" target="_blank" rel="noopener">这个网站</a> 列举了所有存在的meta值。以下列举一些常用的。</p>
+<p>有些name虽然没有被正式承认，但是也被广泛使用，<a target="_blank" rel="noopener" href="https://wiki.whatwg.org/wiki/MetaExtensions">这个网站</a> 列举了所有存在的meta值。以下列举一些常用的。</p>
 <table>
 <thead>
 <tr>
@@ -231,7 +231,7 @@
 </tr>
 <tr>
 <td>viewport</td>
-<td>视口，提供有关视口初始大小的提示，仅供移动设备使用，虽然目前标准化程度不高，还处于草案(work in progress)的进度，但由于事实上的几个浏览器的支配地位，大多数移动浏览器都尊重这一声明，更多有关viewport的解释参见<a href="https://drafts.csswg.org/css-device-adapt/#viewport-meta" target="_blank" rel="noopener">文档</a></td>
+<td>视口，提供有关视口初始大小的提示，仅供移动设备使用，虽然目前标准化程度不高，还处于草案(work in progress)的进度，但由于事实上的几个浏览器的支配地位，大多数移动浏览器都尊重这一声明，更多有关viewport的解释参见<a target="_blank" rel="noopener" href="https://drafts.csswg.org/css-device-adapt/#viewport-meta">文档</a></td>
 </tr>
 </tbody>
 </table>

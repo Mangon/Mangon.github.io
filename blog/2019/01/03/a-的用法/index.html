@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="/blog/css/style.css">
 
     <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
-</head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 <body>
 
     <main class="app">
@@ -131,7 +131,7 @@
 <ul>
 <li><p>除了相对URL和锚点，其它的表现都和在地址栏中输入相应href类似。<br>亦和<code>window.location.href=?</code>差不多，值得注意的是，在console执行 <code>window.location.href=&quot;file:///Users/work/Desktop/test.txt&quot;</code> 时会报错 <code>Not allowed to load local resource:file:///Users/work/Desktop/test.txt</code> 而执行 <code>window.location.href=&quot;tel:+86-10010&quot;</code> 则根本没反应</p>
 </li>
-<li><p>如果不是采用hash方式进行页面内导航的话，可以使用 <code>href=&quot;#top&quot;</code> 或者 <code>href=&quot;#&quot;</code> 链接返回到页面顶部 <span class="tag">HTML5<span></span></span></p>
+<li><p>如果不是采用hash方式进行页面内导航的话，可以使用 <code>href=&quot;#top&quot;</code> 或者 <code>href=&quot;#&quot;</code> 链接返回到页面顶部 <span class="tag">HTML5<span/></p>
 </li>
 </ul>
 <h2 id="target"><a href="#target" class="headerlink" title="target"></a>target</h2><p>&lt;a> 标签的 target 属性规定在何处打开链接文档。  </p>
@@ -228,7 +228,7 @@
 <ul>
 <li>使用target时，考虑添加 <code>rel=&quot;external noopener noreferrer&quot;</code> 以防止针对 window.opener API 的恶意行为。</li>
 </ul>
-<h2 id="download-HTML5"><a href="#download-HTML5" class="headerlink" title="download HTML5"></a>download <span class="self-tag">HTML5<span></span></span></h2><p>&lt;a> 标签的 download 属性指示浏览器下载URL而不是导航到它，因此将提示用户将链接（href）指向地址保存为本地文件。如果属性有一个值，那么它将在Save提示符中作为预填充的文件名使用（如果用户需要，仍然可以更改文件名）。此属性对允许的值没有限制，但是/和\会被转换为下划线。大多数文件系统限制了文件名中的标点符号，故此，浏览器将相应地调整建议的文件名。  </p>
+<h2 id="download-HTML5"><a href="#download-HTML5" class="headerlink" title="download HTML5"></a>download <span class="self-tag">HTML5<span/></h2><p>&lt;a> 标签的 download 属性指示浏览器下载URL而不是导航到它，因此将提示用户将链接（href）指向地址保存为本地文件。如果属性有一个值，那么它将在Save提示符中作为预填充的文件名使用（如果用户需要，仍然可以更改文件名）。此属性对允许的值没有限制，但是/和\会被转换为下划线。大多数文件系统限制了文件名中的标点符号，故此，浏览器将相应地调整建议的文件名。  </p>
 <p>⚠️注意事项</p>
 <ul>
 <li>此属性仅适用于同源 URLs。</li>

@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="/blog/css/style.css">
 
     <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
-</head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 <body>
 
     <main class="app">
@@ -122,8 +122,7 @@
 <li>可以做到只修改根元素就成比例地调整所有字体大小</li>
 <li>避免px em混用导致的字体复数计算</li>
 </ol>
-<p>如果使用rem作为当前项目的单位，可以设置<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>那么<code>10px</code>就可以表示为<code>.1rem</code></p>
+<p>如果使用rem作为当前项目的单位，可以设置<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>那么<code>10px</code>就可以表示为<code>.1rem</code></p>
 <h2 id="vh-vw"><a href="#vh-vw" class="headerlink" title="vh/vw"></a>vh/vw</h2><p>vh(Viewport height)相对于视口的高度。视口被均分为100单位的vh，通过vh可以在不知道视口高度的情况下设置一个相对视口的高度。同理，vw指相对于视口的宽度。</p>
 <p>用法<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.banner</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100vh</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100vw</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="rpx"><a href="#rpx" class="headerlink" title="rpx"></a>rpx</h2><p>rpx(Relative pixcel) 相对像素。只有在小程序中采用的长度计算值。以屏幕宽度恒为750rpx来计算。以iPhone6来讲，屏幕宽度为375px，所以在iPhone6中，375px = 750rpx，也就是1rpx = 0.5px。</p>

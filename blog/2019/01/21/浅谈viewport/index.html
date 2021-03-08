@@ -15,7 +15,7 @@
     <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
     
     
-    <meta name="description" content="viewport来源通常为了使得网页能够成为响应式的，我们需要在head内声名有关viewport的meta。它长这样  1&amp;lt;meta name=&#34;viewport&#34; content=&#34;width=device-width,initial-scale=1,user-scalable=no&#34;/&amp;gt;viewport的设计是由于pc互联网向移动互联网的过渡。在过去，多数文档被设计用来在pc上进行阅读，而pc的设备通常比较宽，同样的网页不进行任何改变放到移动端的话，内容就会变得无法辨认。" />
+    <meta name="description" content="viewport来源通常为了使得网页能够成为响应式的，我们需要在head内声名有关viewport的meta。它长这样  1&amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width,initial-scale=1,user-scalable=no&amp;quot;/&amp;gt;viewport的设计是由于pc互联网向移动互联网的过渡。在过去，多数文档被设计用来在pc上进行阅读，而pc的设备通常比较宽，同样的网页不进行任何改变" />
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="/blog/css/style.css">
 
     <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
-</head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 <body>
 
     <main class="app">
@@ -108,7 +108,7 @@
     <section class="article-body markdown-body">
         
         <h2 id="viewport来源"><a href="#viewport来源" class="headerlink" title="viewport来源"></a>viewport来源</h2><p>通常为了使得网页能够成为响应式的，我们需要在head内声名有关viewport的meta。<br>它长这样  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,initial-scale=1,user-scalable=no"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width,initial-scale=1,user-scalable=no&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 <p>viewport的设计是由于pc互联网向移动互联网的过渡。在过去，多数文档被设计用来在pc上进行阅读，而pc的设备通常比较宽，同样的网页不进行任何改变放到移动端的话，内容就会变得无法辨认。</p>
 <p>例如，新浪网在移动端的显示：<br><img src="/blog/static/imgs/viewport/web_page.png" alt="新浪网桌面版在移动端的显示"></p>
 <p>为了避免这个问题，浏览器通常使用一个固定的初始区域宽度来模拟桌面浏览器窗口大小（通常980px-1024px)。而移动端的宽度是小于这个值的，于是内容便看起来像自动放大了一般，同样的，移动端当前的屏幕也只会显示文档的一部分。<br><img src="/blog/static/imgs/viewport/layout_viewport.png" alt="布局视口"><br><img src="/blog/static/imgs/viewport/visual_viewport.png" alt="视觉视口"></p>
@@ -141,7 +141,7 @@
 </table>
 <p>即使如此，对于一个用户而言，还是不甚理想，在狭窄的屏幕上更适合一个狭窄的网站而不是需要用户来缩放的桌面网站。于是Safari引入了meta标签viewport以及理想视口的概念，其它浏览器厂商也纷纷跟进。  </p>
 <p>只有当网站是为移动端准备的时候才应该使用理想视口。<br>只有主动地往页面里添加meta视口标签时理想视口才会生效。<br>如果没有meta视口标签声明，那么布局视口将会维持它的默认宽度，理想视口只有当显式地使用它的时候才会产生影响。<br>理想视口只和设备有关，由浏览器定义，因此同一设备上的不同浏览器拥有不同的理想视口。<br>以下代码告之浏览器，布局视口的宽度应该与理想视口的宽度一致：  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"device"</span> <span class="attr">content</span>=<span class="string">"width=device-width"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;device&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p><code>screen.width/height</code> 返回的是理想视口的尺寸  </p>
 <h2 id="viewport取值"><a href="#viewport取值" class="headerlink" title="viewport取值"></a>viewport取值</h2><table>
 <thead>
