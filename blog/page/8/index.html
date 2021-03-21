@@ -108,7 +108,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2018/09/25/%E5%A4%B1%E6%95%88%E9%93%BE%E6%8E%A5%E6%9B%BF%E6%8D%A2%E6%96%B9%E6%A1%88/">失效链接替换方案</a>
+            <a href="/blog/2020/03/31/JS-Javascript%E4%B8%ADcall,apply,bind%E7%9A%84%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0/">Javascript中call,apply,bind的作用&amp;模拟实现</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -116,13 +116,13 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2018-09-25T08:05:17.000Z" itemprop="datePublished">2018-09-25</time>
+    <time datetime="2020-03-31T05:01:10.000Z" itemprop="datePublished">2020-03-31</time>
 </span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/Javascript/" rel="tag">Javascript</a>
+    <a class="article-tag-link" href="/blog/tags/Javascript/" rel="tag">Javascript</a>, <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>
 </div>
 
 
@@ -131,9 +131,48 @@
     
     <section class="article-body markdown-body">
         
-        <p>有些时候，尤其在文档型的网站中，页面链接经常变化调整。通常的做法即搜索网站中的所有相应页面进行url替换，但是即使这样做了，还是有一定风险，用户可能已经收藏了链接，在用户点击收藏链接跳转的时候，会发现页面不存在。这时，我们可以通过设置404页面来引导用户跳转到其它的可能符合用户期望的页面（比如主页）。同样的，如果其它网站引用了该失效链接，同时不希望此网站的引用失效（或者没有修改此网站的权限），就只能在落地页网站做一下兼容，在跳转的时候重新定向一下，具体代码如下：  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">!<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> path = location.pathname + location.hash;</span><br><span class="line">    <span class="keyword">var</span> urlMap = &#123;</span><br><span class="line">        <span class="string">&#x27;xxx&#x27;</span>: <span class="string">&#x27;xxxx&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;xxx/media#live-player&#x27;</span>: <span class="string">&#x27;xxx/media_live-player/&#x27;</span></span><br><span class="line">    &#125;;</span><br><span class="line">    urlMap[path] &amp;&amp; location.replace(urlMap[path]);</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
-<p>这是一种治标不治本的改动，最好的改动还是移除失效的链接。  </p>
+        <h2 id="call-apply-bind的作用"><a href="#call-apply-bind的作用" class="headerlink" title="call,apply,bind的作用"></a>call,apply,bind的作用</h2><p>都是Function的原型方法</p>
+<p><strong>Function.prototype.bind()</strong></p>
+<p>bind() 方法创建一个新的函数，在 bind() 被调用时，这个新函数的 this 被指定为 bind() 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。</p>
+<p><strong>Function.prototype.apply()</strong></p>
+<p>apply() 方法调用一个具有给定this值的函数，以及作为一个数组（或类似数组对象）提供的参数。</p>
+<p><strong>Function.prototype.call()</strong></p>
+<p>call() 方法使用一个指定的 this 值和单独给出的一个或多个参数来调用一个函数。</p>
+<p>call() 方法的语法和作用与 apply() 方法类似，只有一个区别，就是 call() 方法接受的是一个参数列表，而 apply() 方法接受的是一个包含多个参数的数组。</p>
+<p>bind() 方法和call方法的不同之处在于，bind() 方法返回一个新的函数，而call方法会直接调用此函数。</p>
+<h2 id="call-的模拟实现"><a href="#call-的模拟实现" class="headerlink" title="call 的模拟实现"></a>call 的模拟实现</h2><p><strong>Function.prototype.call()</strong></p>
+<p>call() 方法使用一个指定的 this 值和单独给出的一个或多个参数来调用一个函数。  </p>
+<p>我们所要做的和注意的有以下几点：  </p>
+<ol>
+<li>call 函数是 Function 的一个原型方法</li>
+<li>call 改变了原函数 this 的指向，this 变成了给定的第一个参数</li>
+<li>call 函数的第一个参数应该是对象或者能转换成对象</li>
+<li>该函数执行了，并返回了结果</li>
+<li>给出多个参数时，从第二个参数到最后一个参数作为函数的实参进行调用</li>
+<li>call 的第一个参数可以传 null/undefined，当为 null/undefined 的时候，视为指向全局对象</li>
+</ol>
+<p>实际实现如下：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.call = <span class="function"><span class="keyword">function</span>(<span class="params">context</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> context = <span class="built_in">Object</span>(context) || <span class="built_in">window</span>; <span class="comment">// 1 当context为 字符串、数字或布尔值时进行转换 2 传null/undefined时指向window</span></span><br><span class="line">    <span class="keyword">var</span> id = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (context[<span class="string">&#x27;_fn&#x27;</span> + id]) &#123;</span><br><span class="line">        id++;</span><br><span class="line">    &#125;</span><br><span class="line">    context[<span class="string">&#x27;_fn&#x27;</span> + id] = <span class="built_in">this</span>; <span class="comment">// 为 context 添加新方法，避免context已有同名方法需要找到不重复的函数名</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> args = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>, len = <span class="built_in">arguments</span>.length; i &lt; len; i++) &#123;</span><br><span class="line">        args.push(<span class="string">&#x27;arguments[&#x27;</span> + i + <span class="string">&#x27;]&#x27;</span>);</span><br><span class="line">    &#125; <span class="comment">// 拼接从第二个参数到最后一个参数</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> result = <span class="built_in">eval</span>(<span class="string">&#x27;context._fn&#x27;</span> + id + <span class="string">&#x27;(&#x27;</span> + args + <span class="string">&#x27;)&#x27;</span>); <span class="comment">// 调用eval执行函数，args 会自动调用 toString()转换为字符串</span></span><br><span class="line">    <span class="keyword">delete</span> context[<span class="string">&#x27;_fn&#x27;</span> + id]; <span class="comment">// 删除添加的属性</span></span><br><span class="line">    <span class="keyword">return</span> result; <span class="comment">// 返回函数执行结果</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="apply-的模拟实现"><a href="#apply-的模拟实现" class="headerlink" title="apply 的模拟实现"></a>apply 的模拟实现</h2><p><strong>Function.prototype.apply()</strong></p>
+<p>apply() 方法调用一个具有给定this值的函数，以及作为一个数组（或类似数组对象）提供的参数。  </p>
+<p>apply的模拟实现和call类似，需要注意的是apply的第二个参数是一个数组（或类似数组对象）。  </p>
+<p>实际实现如下：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.apply = <span class="function"><span class="keyword">function</span>(<span class="params">context, arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> context = <span class="built_in">Object</span>(context) || <span class="built_in">window</span>;</span><br><span class="line">    <span class="keyword">var</span> id = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (context[<span class="string">&#x27;_fn&#x27;</span> + id]) &#123;</span><br><span class="line">        id++;</span><br><span class="line">    &#125;</span><br><span class="line">    context[<span class="string">&#x27;_fn&#x27;</span> + id] = <span class="built_in">this</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> result;</span><br><span class="line">    <span class="keyword">if</span> (!arr) &#123;</span><br><span class="line">        result = context[<span class="string">&#x27;_fn&#x27;</span> + id]();</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> arr !== <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="built_in">TypeError</span>(<span class="string">&#x27;CreateListFromArrayLike called on non-object&#x27;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> args = [];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, len = arr.length; i &lt; len; i++) &#123;</span><br><span class="line">           args.push(<span class="string">&#x27;arr[&#x27;</span> + i + <span class="string">&#x27;]&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        result = <span class="built_in">eval</span>(<span class="string">&#x27;context._fn&#x27;</span> + id + <span class="string">&#x27;(&#x27;</span> + args + <span class="string">&#x27;)&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span> context[<span class="string">&#x27;_fn&#x27;</span> + id];</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="bind-的模拟实现"><a href="#bind-的模拟实现" class="headerlink" title="bind 的模拟实现"></a>bind 的模拟实现</h2><p><strong>Function.prototype.bind()</strong></p>
+<p>bind() 方法创建一个新的函数，在 bind() 被调用时，这个新函数的 this 被指定为 bind() 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。</p>
+<p>我们所要做的和注意的有以下几点：  </p>
+<ol>
+<li>bind 函数是 Function 的一个原型方法</li>
+<li>直接调用时 bind 改变了 this 的指向，this 变成了给定的第一个参数</li>
+<li>bind 函数的第一个参数应该是对象或者能转换成对象</li>
+<li>bind 函数返回的是一个函数而不是函数执行的结果</li>
+<li>给出多个参数时，从第二个参数到最后一个参数作为函数的实参进行调用</li>
+<li>bind 返回的函数在调用时，可以继续添加参数</li>
+<li>当 bind 返回的函数作为构造函数的时候，bind 时指定的 this 值会失效，但传入的参数依然生效。</li>
+</ol>
+<p>实际实现如下：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.bind = <span class="built_in">Function</span>.prototype.bind || <span class="function"><span class="keyword">function</span> (<span class="params">context</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">this</span> !== <span class="string">&quot;function&quot;</span>) &#123; <span class="comment">// </span></span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&quot;Function.prototype.bind - what is trying to be bound is not callable&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> self = <span class="built_in">this</span>;</span><br><span class="line">    <span class="keyword">var</span> slice = <span class="built_in">Array</span>.prototype.slice;</span><br><span class="line">    <span class="keyword">var</span> args = slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>); <span class="comment">// 获取bind函数从第二个参数到最后一个参数</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> fNOP = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> fBound = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> bindArgs = slice.call(<span class="built_in">arguments</span>); <span class="comment">// 这个时候的 arguments 是指 fBound 函数传入的参数</span></span><br><span class="line">        <span class="keyword">return</span> self.apply(<span class="built_in">this</span> <span class="keyword">instanceof</span> fBound ? <span class="built_in">this</span> : context, args.concat(bindArgs)); <span class="comment">// 当作为构造函数时，this 指向实例，此时结果为 true，将绑定函数的 this 指向该实例，可以让实例获得来自绑定函数的值</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fNOP.prototype = <span class="built_in">this</span>.prototype;</span><br><span class="line">    fBound.prototype = <span class="keyword">new</span> fNOP(); <span class="comment">// 修改返回函数的 prototype 为绑定函数的 prototype，实例就可以继承绑定函数的原型中的值</span></span><br><span class="line">    <span class="keyword">return</span> fBound;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="es5-shim"><a href="#es5-shim" class="headerlink" title="es5-shim"></a>es5-shim</h2><p>完整的模拟实现参考 <a target="_blank" rel="noopener" href="https://github.com/es-shims/es5-shim">es5-shim</a> </p>
 
         
     </section>
@@ -153,7 +192,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2018/09/18/CSS%E9%95%BF%E5%BA%A6%E5%8D%95%E4%BD%8D/">css长度单位</a>
+            <a href="/blog/2019/12/26/CS-%E4%BD%9C%E4%B8%BA%E4%B8%80%E4%B8%AA%E9%9D%A2%E8%AF%95%E5%AE%98%E5%BA%94%E8%AF%A5%E6%80%9D%E8%80%83%E7%9A%84%E9%97%AE%E9%A2%98/">作为一个面试官应该思考的问题</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -161,13 +200,13 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2018-09-18T12:15:59.000Z" itemprop="datePublished">2018-09-18</time>
+    <time datetime="2019-12-26T02:46:34.000Z" itemprop="datePublished">2019-12-26</time>
 </span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+    <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>
 </div>
 
 
@@ -176,214 +215,25 @@
     
     <section class="article-body markdown-body">
         
-        <p>下面将会讲解一下CSS中常用到的几个长度单位。包含px、em、rem、vh、vw、rpx、in、cm、mm、ex、pt、pc。</p>
-<h2 id="px"><a href="#px" class="headerlink" title="px"></a>px</h2><p>px(Pixel)像素。相对长度单位。1px等于计算机屏幕上的一个点像素的宽度。px是相对于显示器屏幕分辨率而言的。  </p>
-<h2 id="em"><a href="#em" class="headerlink" title="em"></a>em</h2><p>em是相对长度单位。相对于当前对象内文本的字体尺寸。如当前行内文本的字体尺寸未被人为设置，则相当于浏览器的默认字体尺寸。  </p>
-<p>em特点  </p>
-<ol>
-<li>em的值并不是固定的</li>
-<li>em会继承父级元素的字体大小</li>
-</ol>
-<p>注意：任意浏览器的默认字体高都是16px。所有未经调整的浏览器都符合: 1em = 16px。那么12px = 0.75em，10px = 0.625em。<br>如果使用em作为当前项目的单位，为了简化font-size的换算，需要在CSS中的body选择器中声明font-size=62.5%，这就使em值变为 16px * 62.5% = 10px，这样12px = 1.2em，10px=1em，也就是说只需要将你的原来的px数值除以10，然后换上em作为单位就行了。  </p>
-<h2 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h2><p>rem(Font size of the root element)是CSS3新增的一个相对单位，指相对于根元素（即html元素）的字体大小的单位。  </p>
-<p>rem特点  </p>
-<ol>
-<li>可以做到只修改根元素就成比例地调整所有字体大小</li>
-<li>避免px em混用导致的字体复数计算</li>
-</ol>
-<p>如果使用rem作为当前项目的单位，可以设置<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>那么<code>10px</code>就可以表示为<code>.1rem</code></p>
-<h2 id="vh-vw"><a href="#vh-vw" class="headerlink" title="vh/vw"></a>vh/vw</h2><p>vh(Viewport height)相对于视口的高度。视口被均分为100单位的vh，通过vh可以在不知道视口高度的情况下设置一个相对视口的高度。同理，vw指相对于视口的宽度。</p>
-<p>用法<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.banner</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100vh</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100vw</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="rpx"><a href="#rpx" class="headerlink" title="rpx"></a>rpx</h2><p>rpx(Relative pixcel) 相对像素。只有在小程序中采用的长度计算值。以屏幕宽度恒为750rpx来计算。以iPhone6来讲，屏幕宽度为375px，所以在iPhone6中，375px = 750rpx，也就是1rpx = 0.5px。</p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>多是一些绝对长度单位<br>1in = 2.54cm = 25.4 mm = 101.6q = 72pt = 6pc = 96px</p>
-<table>
-<thead>
-<tr>
-<th>单位</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>in</td>
-<td>英寸</td>
-</tr>
-<tr>
-<td>pt</td>
-<td>磅 (1pt =  1/72 in)</td>
-</tr>
-<tr>
-<td>cm</td>
-<td>厘米</td>
-</tr>
-<tr>
-<td>mm</td>
-<td>毫米</td>
-</tr>
-<tr>
-<td>q</td>
-<td>1/4毫米 (1q = 1/4mm)</td>
-</tr>
-<tr>
-<td>pc</td>
-<td>派卡（Picas）(1pc = 12px)</td>
-</tr>
-<tr>
-<td>ex</td>
-<td>相对长度单位 ex 代表了字符 x 的高度(通常是字体尺寸的一半)</td>
-</tr>
-<tr>
-<td>ch</td>
-<td>相对长度单位 ch 代表了字符 0 的宽度</td>
-</tr>
-</tbody>
-</table>
-<h2 id="一些坑"><a href="#一些坑" class="headerlink" title="一些坑"></a>一些坑</h2><p>PC chrome有12px最小字号限制，若使用10px会造成pc调试困难带来不必要的麻烦，所以可以设置字号为12px，然后通过 <code>transform: scale(.8)</code> 来达到同样的效果。  </p>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2018/09/17/DDOS%E6%94%BB%E5%87%BB/">DDOS攻击</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-09-17T11:42:50.000Z" itemprop="datePublished">2018-09-17</time>
-</span>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/ddos/" rel="tag">ddos</a>, <a class="article-tag-link" href="/blog/tags/security/" rel="tag">security</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>分布式拒绝服务(DDoS:Distributed Denial of Service)攻击指借助于客户/服务器技术，将多个计算机联合起来作为攻击平台，对一个或多个目标发动DoS攻击，从而成倍地提高拒绝服务攻击威力的一种攻击方式。</p>
-<h2 id="攻击方式"><a href="#攻击方式" class="headerlink" title="攻击方式"></a>攻击方式</h2><p>DDoS攻击通过大量的请求占用网络资源，以达到瘫痪网络的目的。 这种攻击方式大致可分为以下几种：</p>
-<ul>
-<li>通过使网络过载来干扰甚至阻断正常的网络通讯；</li>
-<li>通过向服务器提交大量请求，使服务器超负荷；</li>
-<li>阻断某一用户访问服务器；</li>
-<li>阻断某服务与特定系统或个人的通讯。</li>
-</ul>
-<p>下面列举一些常见的DDos/Dos攻击方式：  </p>
-<h3 id="SYN-flood"><a href="#SYN-flood" class="headerlink" title="SYN flood"></a>SYN flood</h3><p>该攻击以多个随机的源主机地址向意图主机发送SYN包，而在收到意图主机的SYN ACK后并不回应，这么，意图主机就为这些源主机树立了很多的衔接行列，而且因为没有收到ACK一直维护着这些行列，形成了资源的很多耗费而不能向正常请求供给服务。</p>
-<h3 id="ACK-flood"><a href="#ACK-flood" class="headerlink" title="ACK flood"></a>ACK flood</h3><p>ACK Flood攻击是在TCP连接建立之后，所有的数据传输TCP报文都是带有ACK标志位的，主机在接收到一个带有ACK标志位的数据包的时候，需要检查该数据包所表示的连接四元组是否存在，如果存在则检查该数据包所表示的状态是否合法，然后再向应用层传递该数据包。如果在检查中发现该数据包不合法，例如该数据包所指向的目的端口在本机并未开放，则主机操作系统协议栈会回应RST包告诉对方此端口不存在。</p>
-<h3 id="UDP-flood"><a href="#UDP-flood" class="headerlink" title="UDP flood"></a>UDP flood</h3><p>如今在Internet上UDP（用户数据包协议）的应用比较广泛，很多提供WWW和Mail等服务设备通常是使用Unix的服务器，它们默认打开一些被黑客恶意利用的UDP服务。如echo服务会显示接收到的每一个数据包，而原本作为测试功能的chargen服务会在收到每一个数据包时随机反馈一些字符。UDP flood攻击就是利用这两个简单的TCP/IP服务的漏洞进行恶意攻击，通过伪造与某一主机的Chargen服务之间的一次的UDP连接，回复地址指向开着Echo服务的一台主机，通过将Chargen和Echo服务互指，来回传送毫无用处且占满带宽的垃圾数据，在两台主机之间生成足够多的无用数据流，这一拒绝服务攻击飞快地导致网络可用带宽耗尽。</p>
-<h3 id="Ping-of-Death"><a href="#Ping-of-Death" class="headerlink" title="Ping of Death"></a>Ping of Death</h3><p>ICMP(Internet Control Message Protocol，Internet控制信息协议)在Internet上用于错误处理和传递控制信息。最普通的ping程序就是这个功能。而在TCP/IP的RFC文档中对包的最大尺寸都有严格限制规定，许多操作系统的TCP/IP协议栈都规定ICMP包大小为64KB，且在对包的标题头进行读取之后，要根据该标题头里包含的信息来为有效载荷生成缓冲区。”Ping of Death”就是故意产生畸形的测试Ping（Packet Internet Groper）包，声称自己的尺寸超过ICMP上限，也就是加载的尺寸超过64KB上限，使未采取保护措施的网络系统出现内存分配错误，导致TCP/IP协议栈崩溃，最终接收方宕机。</p>
-<h3 id="Teardrop"><a href="#Teardrop" class="headerlink" title="Teardrop"></a>Teardrop</h3><p>Teardrop攻击利用在TCP/IP协议栈实现中信任IP碎片中的包的标题头所包含的信息来实现自己的攻击。IP分段含有指示该分段所包含的是原包的哪一段的信息，某些TCP/IP协议栈（例如NT在servicepack4以前）在收到含有重叠偏移的伪造分段时将崩溃。</p>
-<h3 id="Smurf"><a href="#Smurf" class="headerlink" title="Smurf"></a>Smurf</h3><p>该攻击向一个子网的广播地址发一个带有特定请求(如ICMP回应请求)的包，并且将源地址伪装成想要攻击的主机地址。子网上所有主机都回应广播包请求而向被攻击主机发包，使该主机受到攻击。</p>
-<h3 id="IP-Spoofing"><a href="#IP-Spoofing" class="headerlink" title="IP Spoofing"></a>IP Spoofing</h3><p>IP欺骗攻击是一种黑客通过向服务端发送虚假的包以欺骗服务器的做法。具体说，就是将包中的源IP地址设置为不存在或不合法的值。服务器一旦接受到该包便会返回接受请求包，但实际上这个包永远返回不到来源处的计算机。这种做法使服务器必需开启自己的监听端口不断等待，也就浪费了系统各方面的资源。</p>
-<h3 id="Land-Attack"><a href="#Land-Attack" class="headerlink" title="Land Attack"></a>Land Attack</h3><p>在Land攻击中，黑客利用一个特别打造的SYN包–它的原地址和目标地址都被设置成某一个服务器地址进行攻击。此举将导致接受服务器向它自己的地址发送SYN-ACK消息，结果这个地址又发回ACK消息并创建一个空连接，每一个这样的连接都将保留直到超时，在Land攻击下，许多UNIX将崩溃，NT变得极其缓慢（大约持续五分钟）。</p>
-<h3 id="ICMP-flood"><a href="#ICMP-flood" class="headerlink" title="ICMP flood"></a>ICMP flood</h3><p>ICMP flood是通过向未良好设置的路由器发送广播信息占用系统资源的做法。</p>
-<h3 id="Application-level-flood"><a href="#Application-level-flood" class="headerlink" title="Application level flood"></a>Application level flood</h3><p>与前面叙说的攻击方式不同，Application level flood主要是针对应用软件层的，也就是高于OSI的。它同样是以大量消耗系统资源为目的，通过向IIS这样的网络服务程序提出无节制的资源申请来迫害正常的网络服务。</p>
-<h2 id="防御措施"><a href="#防御措施" class="headerlink" title="防御措施"></a>防御措施</h2><p>可参考措施如下：  </p>
-<ol>
-<li>采用高性能的网络设备引<br>首先要保证网络设备不能成为瓶颈，因此选择路由器、交换机、硬件防火墙等设备的时候要尽量选用知名度高、 口碑好的产品。 再就是假如和网络提供商有特殊关系或协议的话就更好了，当大量攻击发生的时候请他们在网络接点处做一下流量限制来对抗某些种类的DDOS 攻击是非常有效的。</li>
-<li>尽量避免 NAT 的使用<br>无论是路由器还是硬件防护墙设备要尽量避免采用网络地址转换 NAT 的使用， 因为采用此技术会较大降低网络通信能力，其实原因很简单，因为 NAT 需要对地址来回转换，转换过程中需要对网络包的校验和进行计算，因此浪费了很多 CPU 的时间，但有些时候必须使用 NAT，那就没有好办法了。</li>
-<li>充足的网络带宽保证<br>网络带宽直接决定了能抗受攻击的能力， 假若仅仅有 10M 带宽的话， 无论采取什么措施都很难对抗当今的 SYNFlood 攻击， 至少要选择 100M 的共享带宽，最好的当然是挂在1000M 的主干上了。但需要注意的是，主机上的网卡是 1000M 的并不意味着它的网络带宽就是千兆的， 若把它接在 100M 的交换机上， 它的实际带宽不会超过 100M， 再就是接在 100M的带宽上也不等于就有了百兆的带宽， 因为网络服务商很可能会在交换机上限制实际带宽为10M，这点一定要搞清楚。</li>
-<li>升级主机服务器硬件<br>在有网络带宽保证的前提下，请尽量提升硬件配置，要有效对抗每秒 10 万个 SYN 攻击包，服务器的配置至少应该为：P4 2.4G/DDR512M/SCSI-HD，起关键作用的主要是 CPU 和内存， 内存一定要选择 DDR 的高速内存， 硬盘要尽量选择SCSI 的，别只贪 IDE 价格不贵量还足的便宜，否则会付出高昂的性能代价，再就是网卡一定要选用 3COM 或 Intel 等名牌的，若是 Realtek 的还是用在自己的 PC 上吧。</li>
-<li>把网站做成静态页面<br>大量事实证明，把网站尽可能做成静态页面，不仅能大大提高抗攻击能力，而且还给黑客入侵带来不少麻烦，至少到为止关于 HTML 的溢出还没出现，新浪、搜狐、网易等门户网站主要都是静态页面， 若你非需要动态脚本调用， 那就把它弄到另外一台单独主机去，免的遭受攻击时连累主服务器， 当然， 适当放一些不做数据库调用脚本还是可以的， 此外，最好在需要调用数据库的脚本中拒绝使用代理的访问， 因为经验表明使用代理访问你网站的80%属于恶意行为。</li>
-</ol>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2018/09/15/Hexo%E4%B9%9F%E8%83%BD%E6%9E%84%E5%BB%BASPA/">Hexo也能构建SPA</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-09-15T08:45:26.000Z" itemprop="datePublished">2018-09-15</time>
-</span>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/Hexo/" rel="tag">Hexo</a>, <a class="article-tag-link" href="/blog/tags/spa/" rel="tag">spa</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="SPA"><a href="#SPA" class="headerlink" title="SPA"></a>SPA</h2><p>单页Web应用（single page web application，SPA），就是只有一张Web页面的应用，是加载单个HTML页面并在用户与应用程序交互时动态更新该页面的Web应用程序。<br>单页面应用的好处是不必使得用户在加载新页面时感觉到闪烁刷新的效果，有更好的用户体验。当然，单页面应用也有其问题，例如首屏渲染问题以及SEO问题，但如果构建的是类似于应用型的web页面的话，SPA的好处是远远大于其弊端的。  </p>
-<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><p><a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo">Hexo</a> 是一个静态页面生成框架，一般用来其来搭建博客或者文档型的网站。  </p>
-<h2 id="Hexo-gt-SPA"><a href="#Hexo-gt-SPA" class="headerlink" title="Hexo =&gt; SPA"></a>Hexo =&gt; SPA</h2><p>如何在Hexo的基础上转换为SPA呢？基本的思路就是，监管所有的点击跳转链接，阻止默认行为采用ajax调用的方式获取文档然后替换当前页面。为了使替换时的影响较小，当前文档中数据没有变化的元素就不用替换了，只替换变化的部分。例如，一个采用Hexo的文档型的网站，一般而言包括三个部分header，nav，以及article，header及nav部分是不用变的，只需要替换article部分即可。需要注意的事，在替换后需要注意article内部的事件，需要重新绑定一遍，同时也需要处理nav部分的一些事件，比如focus的变化及样式上的变化，以及其它的一些变化，比如页面title的变化。这样当用户点击左侧nav时，只有article内部内容的替换，看起来就像一个应用一样。但这样修改还有两个问题，一是当用户点击后退时，浏览器不能很好的处理，我们希望记录每一次用户的点击跳转，当用户点击后退时能够回到上一次点击时的页面，另外一个问题是地址栏的没有变化，我们希望每一次用户点击跳转时地址栏也显示相应页面的URL。这时就需要用到History API了.  </p>
-<p>History 对象包含用户（在浏览器窗口中）访问过的 URL。<br>History 对象是 window 对象的一部分，可通过 window.history 属性对其进行访问。  </p>
-<p>属性<br>History.length 只读<br>History.scrollRestoration<br>允许Web应用程序在历史导航上显式地设置默认滚动恢复行为。此属性可以是自动的（auto）或者手动的（manual）。<br>History.state 只读<br>返回一个表示历史堆栈顶部的状态的值。这是一种可以不必等待popstate 事件而查看状态而的方式。  </p>
-<p>方法<br>History.back()<br>前往上一页, 用户可点击浏览器左上角的返回按钮模拟此方法. 等价于 history.go(-1).<br>History.forward()<br>在浏览器历史记录里前往下一页，用户可点击浏览器左上角的前进按钮模拟此方法. 等价于 history.go(1).<br>History.go()<br>通过当前页面的相对位置从浏览器历史记录( 会话记录 )加载页面。<br>History.pushState()<br>按指定的名称和URL（如果提供该参数）将数据push进会话历史栈，数据被DOM进行不透明处理；你可以指定任何可以被序列化的javascript对象。<br>History.replaceState()<br>按指定的数据，名称和URL(如果提供该参数)，更新历史栈上最新的入口。这个数据被DOM 进行了不透明处理。  </p>
-<p>这里我们需要用到History.pushState()<br>这个方法接收三个参数，第一个state，记录页面状态，第二个title，并不是页面title，感觉没有什么用，第三个是页面URL。在页面变化时执行History.pushState()把将要跳转的页面记录到history中，地址栏中的地址就会同时改变。同时，需要在window.onpopstate中监听后退事件，在后退时也通过ajax方法获取article内容。如果想要减少请求，还可以将ajax获取到的文档缓存下来，当用户点击新URL时再去获取，如果用户点击的是一个已经访问过的URL时，从本地获取。  </p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>让我们总结一下，我们需要改变的是如下几个部分(代码中引入了jQuery)：  </p>
-<ol>
-<li>阻止点击链接的默认行为  </li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e.preventDefault();</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>ajax获取文档内容  </li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// href 跳转url</span></span><br><span class="line">$.ajax(&#123;</span><br><span class="line">    url: href,</span><br><span class="line">    dataType: <span class="string">&#x27;html&#x27;</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> article = $(res).find(<span class="string">&#x27;#article&#x27;</span>).html();</span><br><span class="line">        $(<span class="string">&#x27;#article&#x27;</span>).html(article);</span><br><span class="line">    &#125;,</span><br><span class="line">    error: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">window</span>.location.href = href;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>成功替换文章内容之后需要重新绑定文章内部的事件，同时对一些样式（例如选中的样式）进行改变。<br>ajax失败则直接通过改变url的方式刷新页面。  </p>
-<ol start="3">
-<li>页面title变化  </li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">doc.title = $(res).filter(<span class="string">&#x27;title&#x27;</span>).html();</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>window.history.pushState() <ol>
-<li>页面url变化</li>
-<li>记录跳转页面信息到历史记录中，当用户点击后退时能够正确响应 </li>
-</ol>
+        <h2 id="我需要什么样的同事"><a href="#我需要什么样的同事" class="headerlink" title="我需要什么样的同事"></a>我需要什么样的同事</h2><p>招人首先应该明确招收人的性质。看，如果我需要的是一个技术专家我肯定不会提出和实习生一样的要求。如果我只是要招收一个打杂的人，我也不会要求他非得具有研究生学历。成本是很好的衡量一个人价值的方法，当老板（或者你自己就是老板）告诉你有一个HC时，首先应当明确的是这是一个什么样的HC。  </p>
+<h3 id="我需要知道他的薪资范围-amp-职级"><a href="#我需要知道他的薪资范围-amp-职级" class="headerlink" title="我需要知道他的薪资范围&amp;职级"></a>我需要知道他的薪资范围&amp;职级</h3><p>薪资应该与要求匹配，你可以对比下和他一样的的同事的薪资，然后确定要招收的这个人的能力水平。如果薪资无法知道，那就用职级对比。  </p>
+<h3 id="我需要明确他在团队中的角色"><a href="#我需要明确他在团队中的角色" class="headerlink" title="我需要明确他在团队中的角色"></a>我需要明确他在团队中的角色</h3><p>有的人天生就是很好的实干家，而有的人却善于组织和沟通。一个团队的人一定不是一个模子里刻印出来的，它需要各式各样的人来组成一个有机体。明确需要一个什么角色的人很重要，这通常与这个人的性格有关系。  </p>
+<h3 id="我需要知道他未来要承担的任务"><a href="#我需要知道他未来要承担的任务" class="headerlink" title="我需要知道他未来要承担的任务"></a>我需要知道他未来要承担的任务</h3><p>对的人做对的事，如果这个人对于他未来在团队中要承担的任务十分的了解（通常之前做过类似的事），那最好不过。  </p>
+<h2 id="他需要有什么样的能力"><a href="#他需要有什么样的能力" class="headerlink" title="他需要有什么样的能力"></a>他需要有什么样的能力</h2><p>优秀的人有很多种，完美的人却几乎是不存在的。每个人都有自己的特色和引以为傲的地方，但没有十全十美的人。当我们想要招收一个人时，必须有取有舍。我认为，一个优秀的人，一个我想要和他一起工作的人，应当具备以下能力。  </p>
+<h3 id="持续学习的能力"><a href="#持续学习的能力" class="headerlink" title="持续学习的能力"></a>持续学习的能力</h3><p>世界变化很快，技术更是如此，无论技术上多么强大的人，如果不懂得学习，几年后也会一无是处。他应当有自己的学习计划和学习的途径，有的人喜欢读书，有的人习惯从论坛学习，但无论如何他都应当有自己的一套计划并能坚持下去。  </p>
+<h3 id="解决问题的能力"><a href="#解决问题的能力" class="headerlink" title="解决问题的能力"></a>解决问题的能力</h3><p>事实上，工作就是不停的在解决问题。如果他接到一个问题后不知道从哪里入手，那就实在太糟糕了。他可以去搜索（他得知道搜索什么关键词），可以去询问（如果别人会告诉他），也可以自己摸索着解决（如果知道从哪里开始）。总之，他得有一套自己的方法。如何评判解决问题的能力？要知道，有时解决问题的方法不只一种，最终采取哪一种这和自身的经验&amp;习惯有关系。我觉得在不违背价值观的前提下，当然是越快速的找到越简单的正确答案最好。  </p>
+<h3 id="沟通的能力"><a href="#沟通的能力" class="headerlink" title="沟通的能力"></a>沟通的能力</h3><p>沟通是理解和表达的合集。<br>一个有能力的人应该可以理解对方的诉求，获取到对方真正的含义。这个能力通常在需求调研的时候用的最多，开发者需要聆听产品经理/用户的诉求，然后在脑中将其转换成一段段的伪代码。当同事来找你的时候也应当尽快的了解到他的诉求，采取对应的办法。<br>表达能力也十分重要。如果能够表达的有顺序，有结构，有逻辑，理解起来也会更方便。有的人说起话来口若悬河，实际上却是一种在重复一件事，甚至翻来覆去表达重复的观点，那也是十分讨厌的。<br>聆听与表达，这两点是相辅相成的。其实我到不是希望每个同事都巧舌如簧，只希望和我一起工作的人能够听懂我的意思，同时让我理解他想要表达的观点。  </p>
+<h2 id="怎样才能鉴别出他是否是我想要的人"><a href="#怎样才能鉴别出他是否是我想要的人" class="headerlink" title="怎样才能鉴别出他是否是我想要的人"></a>怎样才能鉴别出他是否是我想要的人</h2><h3 id="简历"><a href="#简历" class="headerlink" title="简历"></a>简历</h3><p>简历是快速了解一个人的最佳方式，但通常简历上的字并不能完全相信。这也是最让人头痛的一个地方。我通常希望一个人在简历上描述清楚，自己做过什么，自己擅长什么。你不用担心他希望做什么，你放出了一个职位而他投出了他的简历，那就说明这个职位符合他的要求。在过滤简历的时候，你大可以把简历上的事情都当作事实，如果这样的一份简历还不能够入你的法眼，那完全不用进入下一步的考察。  </p>
+<h3 id="技术面试"><a href="#技术面试" class="headerlink" title="技术面试"></a>技术面试</h3><p>技术面试通常以简历中提到的能力和项目经验为主进行的扩展，作为前端，不可避免的会问到前端基础，包括CSS、HTML、JS、计算机网络、前端工程化。还有一些一定会问的问题包括，ES6语法，Git的使用。会针对面试者的简历，对他熟悉的框架进行提问（Vue React Angular 小程序 Electron）。nodejs、数据库有了解更好。</p>
+<h3 id="能力面试"><a href="#能力面试" class="headerlink" title="能力面试"></a>能力面试</h3><p>一些通用的能力是职场中必备的，如果想要在职场中发展的更远，除了硬实力（技术与业务能力），还应当有一定的“软实力”。除了上面提到的“学习的能力”、“解决问题的能力”、“沟通的能力”。还有哪些能力是我比较看重的呢？排在第一位的是“目标”，我希望面试者有自己明确的目标与规划，短期的和长期的都有最好。我希望面试者有强大的执行力，对一件事能够坚持做下去，至少有那么一件事，无论是自己的爱好，还是坚持一个习惯。最后一个，我希望面试者有总结归纳的能力，这在回报和回顾的时候十分有用，不会总结归纳的人生活是杂乱无章的，也很难指望在工作中有什么亮点。</p>
+<h2 id="如何才能说服他加入我的团队"><a href="#如何才能说服他加入我的团队" class="headerlink" title="如何才能说服他加入我的团队"></a>如何才能说服他加入我的团队</h2><ol>
+<li><p>职位优势</p>
+</li>
+<li><p>发展空间</p>
+</li>
+<li><p>对他的好处</p>
 </li>
 </ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">win.history.pushState(href, <span class="string">&#x27;&#x27;</span>, href);</span><br></pre></td></tr></table></figure>
-<ol start="5">
-<li>window.onpopstate() 处理用户点击后退/前进时的逻辑</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">window</span>).on(<span class="string">&#x27;popstate&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (e.state) &#123;</span><br><span class="line">        <span class="keyword">var</span> href = e.state ? e.state : win.location.href;</span><br><span class="line">        <span class="built_in">this</span>.getArticle(href, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">// ...</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>如上代码中，getArticle封装了获取文章的action，加入callback是考虑到获取文章内容之后如果url中包含锚点，页面应该滑动到锚点所在处。  </p>
 
         
     </section>
@@ -403,7 +253,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2018/09/12/CSS%E6%8A%98%E8%A1%8C/">css折行</a>
+            <a href="/blog/2019/12/20/FE-npm%E5%8F%91%E5%8C%85/">npm发包</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -411,13 +261,13 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2018-09-12T10:46:39.000Z" itemprop="datePublished">2018-09-12</time>
+    <time datetime="2019-12-20T04:15:42.000Z" itemprop="datePublished">2019-12-20</time>
 </span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+    <a class="article-tag-link" href="/blog/tags/npm/" rel="tag">npm</a>
 </div>
 
 
@@ -426,87 +276,260 @@
     
     <section class="article-body markdown-body">
         
-        <p>与折行有关的样式有三个<code>white-space</code>，<code>word-wrap</code>，<code>word-break</code>。  </p>
-<h2 id="css-white-space-属性"><a href="#css-white-space-属性" class="headerlink" title="css white-space 属性"></a>css white-space 属性</h2><p>white-space 属性设置如何处理元素内的空白。  </p>
-<table>
-<thead>
-<tr>
-<th>值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>normal</td>
-<td>默认。空白会被浏览器忽略。</td>
-</tr>
-<tr>
-<td>pre</td>
-<td>空白会被浏览器保留。其行为方式类似 HTML 中的 &lt;pre> 标签。</td>
-</tr>
-<tr>
-<td>nowrap</td>
-<td>文本不会换行，文本会在在同一行上继续，直到遇到 &lt;br> 标签为止。</td>
-</tr>
-<tr>
-<td>pre-wrap</td>
-<td>保留空白符序列，但是正常地进行换行。</td>
-</tr>
-<tr>
-<td>pre-line</td>
-<td>合并空白符序列，但是保留换行符。</td>
-</tr>
-<tr>
-<td>inherit</td>
-<td>规定应该从父元素继承 white-space 属性的值。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="CSS3-word-wrap-属性"><a href="#CSS3-word-wrap-属性" class="headerlink" title="CSS3 word-wrap 属性"></a>CSS3 word-wrap 属性</h2><p>word-wrap 属性允许长单词或 URL 地址换行到下一行。  </p>
-<table>
-<thead>
-<tr>
-<th>值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>normal</td>
-<td>只在允许的断字点换行（浏览器保持默认处理）。</td>
-</tr>
-<tr>
-<td>break-word</td>
-<td>在长单词或 URL 地址内部进行换行。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="CSS3-word-break-属性"><a href="#CSS3-word-break-属性" class="headerlink" title="CSS3 word-break 属性"></a>CSS3 word-break 属性</h2><p>word-break 属性规定自动换行的处理方法。  </p>
-<table>
-<thead>
-<tr>
-<th>值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>normal</td>
-<td>使用浏览器默认的换行规则。</td>
-</tr>
-<tr>
-<td>break-all</td>
-<td>允许在单词内换行。</td>
-</tr>
-<tr>
-<td>keep-all</td>
-<td>只能在半角空格或连字符处换行。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="常用设置"><a href="#常用设置" class="headerlink" title="常用设置"></a>常用设置</h2><p>不折行，可以左右滑动：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">white-space</span>: nowrap;</span><br><span class="line"><span class="attribute">overflow-x</span>: scroll;</span><br></pre></td></tr></table></figure></p>
-<p>每行长度固定，到长度即折行：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">white-space</span>: normal;</span><br><span class="line"><span class="attribute">word-wrap</span>: break-word;</span><br><span class="line"><span class="attribute">word-break</span>: break-all;</span><br></pre></td></tr></table></figure></p>
-<p>每行长度固定，到长度即折行，但标点字符不在首位：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">white-space</span>: normal;</span><br><span class="line"><span class="attribute">word-wrap</span>: break-word;</span><br><span class="line"><span class="attribute">word-break</span>: normal;</span><br></pre></td></tr></table></figure></p>
+        <p>本文记录了如何发布npm包到  <a target="_blank" rel="noopener" href="http://registry.npmjs.org">http://registry.npmjs.org</a> 的过程，完整的 npm 命令可以参考 <a target="_blank" rel="noopener" href="https://docs.npmjs.com/cli-documentation/cli">npm CLI commands</a> 。</p>
+<ol>
+<li>创建待发包工程</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init [--force|-f|--yes|-y|--scope]</span><br></pre></td></tr></table></figure>
+<p>npm init 创建了一个 package.json 描述 project 信息。<br>name 描述了待发布的 package 名。<br>version 描述了待发布的版本号。<br>dependencies 描述了该 project 所需要的依赖包，在发布前保证所有依赖在 <a href="npmjs.org">npmjs.org</a> 均可找到。  </p>
+<ol start="2">
+<li>排除无需发布的文件</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch .npmignore</span><br></pre></td></tr></table></figure>
+<p>.npmignore 文件的写法和 .gitignore 文件的写法一样，可以将无需发布的文件路径添加到该文件中。  </p>
+<ol start="3">
+<li>添加用户</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm adduser [--registry&#x3D;http:&#x2F;&#x2F;registry.npmjs.com] [--scope&#x3D;@orgname]</span><br></pre></td></tr></table></figure>
+<p>该命令用来注册一个账户。它会提示你填写用户名密码和邮箱，然后（通过将你的验证信息存储在 .npmrc 文件中）自动登录，在 npmjs.org 发包需要验证邮箱。<br>你可以用 <code>npm logout</code> 命令登出，也可以用 <code>npm login</code> 命令再次登入。可以用 <code>npm who am i</code> 命令查看当前登录用户名。  </p>
+<ol start="4">
+<li>预发包</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm pack</span><br></pre></td></tr></table></figure>
+<p>该命令会根据当前配置将 project 打包为 <code>.tgz</code> 文件，可以使用 <code>npm install</code> + <code>.taz</code> 文件的路径测试是否打包正确。   </p>
+<ol start="5">
+<li>发包</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm publish</span><br></pre></td></tr></table></figure>
+<p>默认发布的是公共包，如果包名带有 npm-scope ，那么默认发的是私有包，私有包在 npmjs 上发布需要收费，如果不想发私有包可以使用 <code>npm publish --access public</code> 发布公共包。<br>每次发布需要保证版本号有变更，如果包名和版本号已经存在那么会发布失败。  </p>
+<ol>
+<li>取消发包</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm unpublish</span><br></pre></td></tr></table></figure>
+<p>可以使用以上命令取消发包，但是如果是不再支持某个包的话应该是用 <code>npm deprecate</code> 来表示不再支持。  </p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2019/12/04/CS-%E5%A6%82%E4%BD%95%E6%B2%9F%E9%80%9A/">如何沟通</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-12-04T11:22:46.000Z" itemprop="datePublished">2019-12-04</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/communication/" rel="tag">communication</a>, <a class="article-tag-link" href="/blog/tags/learn/" rel="tag">learn</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>与机器沟通是容易的，与人沟通却不是那么容易。每个人都有自己的一套规则，在符合沟通双方的规则下的沟通才会更加有效和让人感到舒适。以下是我的沟通规则，你不一定必须遵循这些规则，但如果你遵循了这些规则，我们之间的沟通会更加高效和舒适。  </p>
+<h2 id="我的信息"><a href="#我的信息" class="headerlink" title="我的信息"></a>我的信息</h2><p>请参见 <a target="_blank" rel="noopener" href="https://github.com/Mangon">Github</a> 上个人信息</p>
+<h2 id="称呼"><a href="#称呼" class="headerlink" title="称呼"></a>称呼</h2><ul>
+<li>请勿拼写错误我的名字，拼写错误是对我的不尊重，恕不回应。</li>
+<li>无论职级，你可以直接称呼我的名字，不需要加任何后缀或前缀。</li>
+<li>在称呼你时，如果你的姓名是三个字，我会默认称呼你的名字，即后两个字，如果你的姓名是两个字，我会默认称呼你的姓名。如果这不是你常用的被称呼的方式，或者这种称呼让你感到不快，请告知我。</li>
+</ul>
+<h2 id="会议邀请"><a href="#会议邀请" class="headerlink" title="会议邀请"></a>会议邀请</h2><ul>
+<li>邀请参加非routine会议请首先和我确定我的时间是OK的，并提前一天发会议邀请，任何当天发出邀请的会议，尤其是要求我立即参与的会议可能会被我拒绝，因为我有我的时间安排。</li>
+<li>任何会议，我会尽量提前到达，如果我是会议邀请者，我会提前5分钟，如果我是被邀请者，我会提前2分钟。</li>
+<li>任何会议，如果除我之外的邀请者或重要的被邀请者迟到10分钟及以上，我可能会取消参与。</li>
+<li>我理解的站会（standup meeting）是不需要携带电脑的，10-15分钟的会议。与会者需要站着参加，反馈自己的产出、计划及block issue。</li>
+<li>迭代kick-off会议请提前告知我icafe地址，需求评审会请提前告知我icafe地址，review会议请提前告知我icode地址，分享会请提前传输给我分享的材料。其它会议也请提前传输我会议相关材料。</li>
+<li>任何会议，除了没有目的讨论、分享会或者review会议，应当有结论。通常会由会议记录来记录与会者达成的共识及存在的分歧，还有待办项(todolist)。通常由会议邀请者记录或会议邀请者指定的人员记录，并在会后发邮件告知与会者，与会者采用邮件列表跟踪问题。</li>
+</ul>
+<h2 id="提问"><a href="#提问" class="headerlink" title="提问"></a>提问</h2><ul>
+<li>提问题前请确保你已经进行了有效的尝试，以及告知我你进行了什么尝试。</li>
+<li>无需问“在吗”“有时间吗”之类的问题，直接提出你的诉求。</li>
+<li><p>提defect请确定包括以下内容</p>
+<ol>
+<li>错误截图</li>
+<li>重现步骤</li>
+<li>期望的正常结果</li>
+<li>浏览器环境</li>
+<li>可能的原因（非必须，如果包含会很感激）</li>
+</ol>
+</li>
+<li><p>提feature请确定包括以下内容</p>
+<ol>
+<li>icafe地址</li>
+<li>背景&amp;收益</li>
+<li>原型图</li>
+<li>UE稿（包括视觉及交互，我只需要一份产出，请勿给多份），或UE交付日期</li>
+<li>接口文档交付日期</li>
+<li>是否需要打点记录</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li>提问不属于我负责的或我不擅长的技术问题时，我会尽可能的回答你的问题，但我不能保证给你充足的时间也不能保证给你的是正确的答案，最正确的做法应该是向你的技术主管寻求帮助。</li>
+<li>未经我允许请不要将你与我之间的通过任何通讯软件p2p的对话截图发送给第三方，我不认为p2p的对话是我的保证或能作为任何质问时的证据，如果需要正式的保证请向我发邮件。</li>
+</ul>
+<h2 id="沟通方式"><a href="#沟通方式" class="headerlink" title="沟通方式"></a>沟通方式</h2><ul>
+<li>请根据事情的紧急程度决定沟通的方式，对你而言重要且紧急的事情对我而言不一定也是重要且紧急的。  </li>
+<li>去工位找我之前请先在通讯软件上沟通，确保我在工位而且有时间而且知道我们沟通的主题。</li>
+<li>打电话沟通请确保要沟通的事情的确是紧急高优的事情，通常是线上问题，或者是某项计划的截止日期将至而我还未给出答复。</li>
+<li>我会在每个工作日早上查看一次电子邮箱，下班前查看一次电子邮箱，以及在有人提醒我查看邮箱时查看邮箱，其它时间给我发送的邮件或邀请我不能实时查看。</li>
+<li>大部分的通讯软件群被我设置了接收但不提醒，工作时间我会每间隔约一小时查看一次，非工作时间我会不定时查看，重要事情或需要我特别关注的事情可以@我，我看到了会回复。</li>
+<li>如果我在假期，那么请优先联系我的backup，通常我会在假期之前给出backup人员，如果没有或你不清楚，请联系我的上级。</li>
+</ul>
+<h2 id="紧急情况"><a href="#紧急情况" class="headerlink" title="紧急情况"></a>紧急情况</h2><ul>
+<li>线上问题：就目前而言，线上问题首先会经过我的上级然后再指派给我，所以请勿在通讯软件群里直接@我，请直接联系我的上级。</li>
+<li>紧急上线：如果feature/defect需要紧急上线，请确保你已经得到了经理许可，就目前而言，紧急上线需要 开发人员/测试人员/运维人员 三方的经理邮件确认，同时上线时也需要测试人员确认效果。</li>
+</ul>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2019/08/21/HACK-Python%E7%88%AC%E8%99%ABScrapy/">Python爬虫Scrapy</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-08-21T07:16:45.000Z" itemprop="datePublished">2019-08-21</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/crawler/" rel="tag">crawler</a>, <a class="article-tag-link" href="/blog/tags/python/" rel="tag">python</a>, <a class="article-tag-link" href="/blog/tags/scrapy/" rel="tag">scrapy</a>, <a class="article-tag-link" href="/blog/tags/spider/" rel="tag">spider</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="Scrapy简介"><a href="#Scrapy简介" class="headerlink" title="Scrapy简介"></a>Scrapy简介</h2><p><a target="_blank" rel="noopener" href="https://scrapy.org/">Scrapy</a> 是一个开源的Python网络爬虫框架。源码在github上开源，<a target="_blank" rel="noopener" href="https://github.com/scrapy/scrapy">地址</a>。Scrapy简单易学而且非常好用，支持配置、代理分布式爬取、容易扩展而且官方也很活跃。截止目前（2019年8月21日）最新版本为 v1.7.3 。  </p>
+<h2 id="Scrapy-安装"><a href="#Scrapy-安装" class="headerlink" title="Scrapy 安装"></a>Scrapy 安装</h2><p>你需要先安装Python，Scrapy需要 Python 2.7 或者 Python 3.5+ ，通常MacOS会自带Python，其它系统需要自己安装，Python安装不再赘述。  </p>
+<p>Scrapy由纯Python语言实现，但是需要依赖一些Python包，包括  </p>
+<ul>
+<li><a href="lxml.de">lxml</a>：一种高效的XML和HTML解析器，</li>
+<li><a target="_blank" rel="noopener" href="https://pypi.python.org/pypi/parsel">parsel</a>：一个HTML / XML数据提取库，基于上面的lxml，</li>
+<li><a target="_blank" rel="noopener" href="https://pypi.org/project/w3lib/">w3lib</a>：一种处理URL和网页编码多功能辅助</li>
+<li><a target="_blank" rel="noopener" href="https://twistedmatrix.com/trac/">twisted</a>：一个异步网络框架</li>
+<li><a target="_blank" rel="noopener" href="https://cryptography.io">cryptography</a> and <a target="_blank" rel="noopener" href="https://pypi.org/project/pyOpenSSL/">pyOpenSSL</a>：处理各种网络级安全需求</li>
+</ul>
+<p>由于包依赖版本问题，建议首先安装 <a target="_blank" rel="noopener" href="https://virtualenv.pypa.io">virtualenv</a> ，这是一个独立Python运行环境包。</p>
+<ol>
+<li>全局安装 virtualenv</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pip install virtualenv</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建独立Python运行环境</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ virtualenv ENV</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>安装Scrapy</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install scrapy</span><br></pre></td></tr></table></figure>
+<p><strong> 在不同的平台上的安装步骤不尽相同，某些平台需要安装平台依赖包，具体请 <a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/intro/install.html#intro-install-platform-notes">查看</a> </strong> </p>
+<h2 id="Scrapy项目创建"><a href="#Scrapy项目创建" class="headerlink" title="Scrapy项目创建"></a>Scrapy项目创建</h2><ol>
+<li>创建项目&amp;生成爬虫</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ scrapy startproject [PROJECT_NAME]</span><br><span class="line">$ cd [PROJECT_NAME]</span><br><span class="line">$ scrapy genspider [SPIDER_NAME] [START_SITE_NAME]</span><br></pre></td></tr></table></figure>
+<p>[PROJECT_NAME] 是待创建的爬虫项目名<br>[SPIDER_NAME] 是爬虫名<br>[SITE_NAME] 是待爬取的初始站点地址</p>
+<p>例如我们创建了一个名为 tutorial 的项目，并添加爬虫 top  </p>
+<p>项目目录如下  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">tutorial&#x2F;</span><br><span class="line">|___scrapy.cfg            # 配置文件</span><br><span class="line">|___tutorial&#x2F;             # 项目的 Python 模块，代码存在这里</span><br><span class="line">    |___ __init__.py</span><br><span class="line">    |___items.py          # 项目 items 定义文件</span><br><span class="line">    |___middlewares.py    # 项目 middlewares 文件</span><br><span class="line">    |___pipelines.py      # 项目 pipelines 文件</span><br><span class="line">    |___settings.py       # 项目 settings 文件</span><br><span class="line">    |___spiders&#x2F;          # 爬虫文件目录</span><br><span class="line">        |___ __init__.py</span><br><span class="line">        |___top.py        # 爬虫文件</span><br></pre></td></tr></table></figure>
+<p>打开 top.py 可以看到 Scrapy 爬虫文件结构  </p>
+<ul>
+<li><strong>name</strong> 爬虫名  </li>
+<li><strong>allowed_domains</strong> 是允许爬取的域名  </li>
+<li><strong>start_urls</strong> 开始爬取的链接  </li>
+<li><strong>start_requests()</strong> 开始爬取的链接方法，需要返回 Requests 对象的遍历器或者 Reqeusts 数组  </li>
+<li><strong>parse()</strong> 爬取后的处理方法  </li>
+</ul>
+<h2 id="settings-修改"><a href="#settings-修改" class="headerlink" title="settings 修改"></a>settings 修改</h2><p>可以在 settings.py 文件中看到常用设置: </p>
+<ul>
+<li><strong>USER_AGENT</strong> request的 <code>user-agent</code> header 中的 user-agent 参数  </li>
+<li><strong>ROBOTSTXT_OBEY</strong> 是否遵守robots.txt协议，默认 <code>True</code>  </li>
+<li><strong>CONCURRENT_REQUESTS</strong> 最大并发请求数量  </li>
+<li><strong>DEFAULT_REQUEST_HEADERS</strong> 覆盖默认请求header 参数</li>
+<li><strong>SPIDER_MIDDLEWARES</strong> 爬虫中间件  </li>
+<li><strong>DOWNLOADER_MIDDLEWARES</strong> 下载中间件  </li>
+<li><strong>ITEM_PIPELINES</strong> 设置pipeline调用顺序  </li>
+</ul>
+<h2 id="使用-shell-命令分析待爬取网站"><a href="#使用-shell-命令分析待爬取网站" class="headerlink" title="使用 shell 命令分析待爬取网站"></a>使用 shell 命令分析待爬取网站</h2><p>shell命令是Scrapy提供的交互式页面分析工具，类似于一个debug工具，你可以先使用shell分析待爬取的页面然后再执行爬虫。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy shell [SITE_NAME]</span><br></pre></td></tr></table></figure>
+<p>shell命令将会采用settings里的配置来请求地址 [SITE_NAME] ，以下列出一些常用分析命令  </p>
+<ul>
+<li><strong>scrapy</strong> scrapy模块，包括scrapy.Request, scrapy.Selector等  </li>
+<li><strong>crawler</strong> scrapy.crawler.Crawler object  </li>
+<li><strong>response</strong> 返回的响应object</li>
+<li><strong>request</strong> 请求的object</li>
+<li><strong>settings</strong> 请求的设置</li>
+<li><strong>view(response)</strong> 在浏览器中查看获取到页面  </li>
+<li><strong>fetch(url[, redicrect=True])</strong> 重新获取url内容并更新当前object</li>
+<li><strong>fetch(req)</strong> 获取一个 scrapy.Request 并更新当前object</li>
+</ul>
+<p><code>view(response)</code> 可以在浏览器中查看页面结构。<br>如果返回的结构和我们期待的有所不同，可以通过 <code>request.replace()</code> 进行修改，例如修改请求方法 <code>request.replace(method=&#39;POST&#39;)</code><br><code>fetch(req)</code> 常用在对request或settings进行了修改然后重新请求。<br><code>response</code> 是返回的响应体，这通常是我们需要分析的东西，如果分析的是html，首先最好先执行 <code>view(response)</code> 在浏览器中查看页面结构，找到我们需要获取的 文本/链接 位置。<br>然后使用 xpath选择器 或者 css选择器 定位我们需要获取的 文本/链接 位置。<br>例如采用 css选择器 且我们需要获取页面中的所有链接，则可以执行<br> <code>response.css(&#39;a::attr(href).getall()&#39;)</code><br>如果获取title文本则可以执行<br> <code>response.css(&#39;title::text&#39;).get(default=&#39;&#39;)</code><br><code>fetch(url)</code> 常用来获取下一个待分析的链接<br>这样就构成了一个完整闭环  </p>
+<p>另外我们也可以通过<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from pprint import pprint</span><br><span class="line">pprint(response.headers)</span><br></pre></td></tr></table></figure><br>来打印相应object  </p>
+<h2 id="Scrapy-Items"><a href="#Scrapy-Items" class="headerlink" title="Scrapy Items"></a>Scrapy Items</h2><p>通常我们需要爬取的都是结构化的数据，在 Scrapy 中被称为 Item，在 items.py 中我们需要定义需要爬取的字段，类似 Python dict</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name = scrapy.Field()</span><br></pre></td></tr></table></figure>
+<h2 id="Scrapy-Item-Pipeline"><a href="#Scrapy-Item-Pipeline" class="headerlink" title="Scrapy Item Pipeline"></a>Scrapy Item Pipeline</h2><p>Scrapy支持pipeline来对爬取到的数据进行类似于管道一样的一系列操作。<br>管道类一般用来进行以下几类操作：  </p>
+<ul>
+<li>清洗 HTML 数据</li>
+<li>验证爬取到的数据（检查items包括特定的field）</li>
+<li>检查重复数据</li>
+<li>将爬取到的数据存储于数据库中</li>
+</ul>
+<p>包括以下几分方法</p>
+<p><code>process_item(self, item, spider)</code></p>
+<p>处理item，需要返回处理后的 data dict</p>
+<p><code>open_spider(self, spider)</code></p>
+<p>spider开始时触发的钩子</p>
+<p><code>close_spider(self, spider)</code></p>
+<p>spider结束时触发的钩子</p>
+<p><code>from_crawler(cls, crawler)</code></p>
+<p>类方法，可以通过 crawler.settings 获取 settings.py 里的配置信息</p>
+<h2 id="运行爬虫"><a href="#运行爬虫" class="headerlink" title="运行爬虫"></a>运行爬虫</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ scrapy crawl [SPIDER_NAME] [-o [FILE_NAME]]</span><br></pre></td></tr></table></figure>
+<p>可以添加 <code>-o</code> 参数来输出为不同的文件例如 xml, csv, json 文件<br>爬取后的文件默认放到项目根目录下  </p>
 
         
     </section>
@@ -524,7 +547,7 @@
 
 
 <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/blog/page/7/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/6/">6</a><a class="page-number" href="/blog/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/blog/page/9/">9</a><a class="page-number" href="/blog/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/12/">12</a><a class="extend next" rel="next" href="/blog/page/9/">Next &gt;&gt;</a>
+    <a class="extend prev" rel="prev" href="/blog/page/7/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/6/">6</a><a class="page-number" href="/blog/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/blog/page/9/">9</a><a class="page-number" href="/blog/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/17/">17</a><a class="extend next" rel="next" href="/blog/page/9/">Next &gt;&gt;</a>
 </nav>
 
 

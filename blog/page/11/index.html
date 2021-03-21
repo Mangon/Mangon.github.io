@@ -108,7 +108,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2018/09/03/jQuery-%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/">jQuery 常用方法</a>
+            <a href="/blog/2019/01/03/HTML-a-%E7%9A%84%E7%94%A8%E6%B3%95/">链接a标签的用法</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -116,13 +116,13 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2018-09-03T11:30:44.000Z" itemprop="datePublished">2018-09-03</time>
+    <time datetime="2019-01-03T12:16:31.000Z" itemprop="datePublished">2019-01-03</time>
 </span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/jQuery/" rel="tag">jQuery</a>
+    <a class="article-tag-link" href="/blog/tags/html/" rel="tag">html</a>
 </div>
 
 
@@ -131,924 +131,144 @@
     
     <section class="article-body markdown-body">
         
-        <p>jQuery 是一个高效、精简并且功能丰富的 JavaScript 工具库。它提供的 API 易于使用且兼容众多浏览器，这让诸如 HTML 文档遍历和操作、事件处理、动画和 Ajax 操作更加简单。  </p>
-<p>jQuery 使用 $ 符号作为 jQuery 的简写。如果你使用其它框架也使用 $ 符号作为简写，有可能导致脚本停止运行。为了防止这种情况，你可以使用jQuery noConflict()方法释放对 $ 标识符的控制并返回对 jQuery 的引用。  </p>
-<h2 id="jQuery-核心函数"><a href="#jQuery-核心函数" class="headerlink" title="jQuery 核心函数"></a>jQuery 核心函数</h2><table>
-<thead>
-<tr>
-<th>函数</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>jQuery()</td>
-<td>接受一个字符串，其中包含了用于匹配元素集合的 css 选择器。</td>
-</tr>
-<tr>
-<td>jQuery.noConflict()</td>
-<td>运行这个函数将变量 $ 的控制权让渡给第一个实现它的那个库。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="jQuery-选择器"><a href="#jQuery-选择器" class="headerlink" title="jQuery 选择器"></a>jQuery 选择器</h2><p>jQuery 使用 css 选择器来选取 HTML 元素。<br>jQuery 使用 XPath 表达式来选择带有给定属性的元素。<br>jQuery css 选择器可用于改变 HTML 元素的 css 属性。  </p>
-<table>
-<thead>
-<tr>
-<th>选择器</th>
-<th>实例</th>
-<th>选取</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>*</td>
-<td>$(“*”)</td>
-<td>所有元素</td>
-</tr>
-<tr>
-<td>#id</td>
-<td>$(“#lastname”)</td>
-<td>id=”lastname” 的元素</td>
-</tr>
-<tr>
-<td>.class</td>
-<td>$(“.intro”)</td>
-<td>所有 class=”intro” 的元素</td>
-</tr>
-<tr>
-<td>element</td>
-<td>$(“p”)</td>
-<td>所有 &lt;p> 元素</td>
-</tr>
-<tr>
-<td>.class.class</td>
-<td>$(“.intro.demo”)</td>
-<td>所有 class=”intro” 且 class=”demo” 的元素</td>
-</tr>
-<tr>
-<td>:first</td>
-<td>$(“p:first”)</td>
-<td>第一个 &lt;p> 元素</td>
-</tr>
-<tr>
-<td>:last</td>
-<td>$(“p:last”)</td>
-<td>最后一个 &lt;p> 元素</td>
-</tr>
-<tr>
-<td>:even</td>
-<td>$(“tr:even”)</td>
-<td>所有偶数 &lt;tr> 元素</td>
-</tr>
-<tr>
-<td>:odd</td>
-<td>$(“tr:odd”)</td>
-<td>所有奇数 &lt;tr> 元素</td>
-</tr>
-<tr>
-<td>:eq(index)</td>
-<td>$(“ul li:eq(3)”)</td>
-<td>列表中的第四个元素（index 从 0 开始）</td>
-</tr>
-<tr>
-<td>:gt(no)</td>
-<td>$(“ul li:gt(3)”)</td>
-<td>列出 index 大于 3 的元素</td>
-</tr>
-<tr>
-<td>:lt(no)</td>
-<td>$(“ul li:lt(3)”)</td>
-<td>列出 index 小于 3 的元素</td>
-</tr>
-<tr>
-<td>:not(selector)</td>
-<td>$(“input:not(:empty)”)</td>
-<td>所有不为空的 input 元素</td>
-</tr>
-<tr>
-<td>:header</td>
-<td>$(“:header”)</td>
-<td>所有标题元素 &lt;h1> - &lt;h6></td>
-</tr>
-<tr>
-<td>:animated</td>
-<td>$(“:animated”)</td>
-<td>所有动画元素</td>
-</tr>
-<tr>
-<td>:contains(text)</td>
-<td>$(“:contains(‘javascript’)”)</td>
-<td>包含指定字符串的所有元素</td>
-</tr>
-<tr>
-<td>:empty</td>
-<td>$(“:empty”)</td>
-<td>无子（元素）节点的所有元素</td>
-</tr>
-<tr>
-<td>:hidden</td>
-<td>$(“p:hidden”)</td>
-<td>所有隐藏的 &lt;p> 元素</td>
-</tr>
-<tr>
-<td>:visible</td>
-<td>$(“table:visible”)</td>
-<td>所有可见的表格</td>
-</tr>
-<tr>
-<td>s1,s2,s3</td>
-<td>$(“th,td,.intro”)</td>
-<td>所有带有匹配选择的元素</td>
-</tr>
-<tr>
-<td>[attribute]</td>
-<td>$(“[href]”)</td>
-<td>所有带有 href 属性的元素</td>
-</tr>
-<tr>
-<td>[attribute=value]</td>
-<td>$(“[href=’#’]”)</td>
-<td>所有 href 属性的值等于 “#” 的元素</td>
-</tr>
-<tr>
-<td>[attribute!=value]</td>
-<td>$(“[href!=’#’]”)</td>
-<td>所有 href 属性的值不等于 “#” 的元素</td>
-</tr>
-<tr>
-<td>[attribute$=value]</td>
-<td>$(“[href$=’.jpg’]”)</td>
-<td>所有 href 属性的值包含以 “.jpg” 结尾的元素</td>
-</tr>
-<tr>
-<td>:input</td>
-<td>$(“:input”)</td>
-<td>所有 &lt;input> 元素</td>
-</tr>
-<tr>
-<td>:text</td>
-<td>$(“:text”)</td>
-<td>所有 type=”text” 的 &lt;input> 元素</td>
-</tr>
-<tr>
-<td>:password</td>
-<td>$(“:password”)</td>
-<td>所有 type=”password” 的 &lt;input> 元素</td>
-</tr>
-<tr>
-<td>:radio</td>
-<td>$(“:radio”)</td>
-<td>所有 type=”radio” 的 &lt;input> 元素</td>
-</tr>
-<tr>
-<td>:checkbox</td>
-<td>$(“:checkbox”)</td>
-<td>所有 type=”checkbox” 的 &lt;input> 元素</td>
-</tr>
-<tr>
-<td>:submit</td>
-<td>$(“:submit”)</td>
-<td>所有 type=”submit” 的 &lt;input> 元素</td>
-</tr>
-<tr>
-<td>:reset</td>
-<td>$(“:reset”)</td>
-<td>所有 type=”reset” 的 &lt;input> 元素</td>
-</tr>
-<tr>
-<td>:button</td>
-<td>$(“:button”)</td>
-<td>所有 type=”button” 的 &lt;input> 元素</td>
-</tr>
-<tr>
-<td>:image</td>
-<td>$(“:image”)</td>
-<td>所有 type=”image” 的 &lt;input> 元素</td>
-</tr>
-<tr>
-<td>:file</td>
-<td>$(“:file”)</td>
-<td>所有 type=”file” 的 &lt;input> 元素</td>
-</tr>
-<tr>
-<td>:enabled</td>
-<td>$(“:enabled”)</td>
-<td>所有激活的 input 元素</td>
-</tr>
-<tr>
-<td>:disabled</td>
-<td>$(“:disabled”)</td>
-<td>所有禁用的 input 元素</td>
-</tr>
-<tr>
-<td>:selected</td>
-<td>$(“:selected”)</td>
-<td>所有被选取的 input 元素</td>
-</tr>
-<tr>
-<td>:checked</td>
-<td>$(“:checked”)</td>
-<td>所有被选中的 input 元素</td>
-</tr>
-</tbody>
-</table>
-<h2 id="jQuery-事件函数"><a href="#jQuery-事件函数" class="headerlink" title="jQuery 事件函数"></a>jQuery 事件函数</h2><p>事件处理程序指的是当 HTML 中发生某些事件时所调用的方法。术语由事件“触发”（或“激发”）经常会被使用。  </p>
-<p>例如：  </p>
-<p><code>$(&quot;button&quot;).click(function() &#123;..some code... &#125; )</code></p>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>bind()</td>
-<td>向匹配元素附加一个或更多事件处理器</td>
-</tr>
-<tr>
-<td>blur()</td>
-<td>触发、或将函数绑定到指定元素的 blur 事件</td>
-</tr>
-<tr>
-<td>change()</td>
-<td>触发、或将函数绑定到指定元素的 change 事件</td>
-</tr>
-<tr>
-<td>click()</td>
-<td>触发、或将函数绑定到指定元素的 click 事件</td>
-</tr>
-<tr>
-<td>dblclick()</td>
-<td>触发、或将函数绑定到指定元素的 double click 事件</td>
-</tr>
-<tr>
-<td>delegate()</td>
-<td>向匹配元素的当前或未来的子元素附加一个或多个事件处理器</td>
-</tr>
-<tr>
-<td>die()</td>
-<td>移除所有通过 live() 函数添加的事件处理程序。</td>
-</tr>
-<tr>
-<td>error()</td>
-<td>触发、或将函数绑定到指定元素的 error 事件</td>
-</tr>
-<tr>
-<td>event.isDefaultPrevented()</td>
-<td>返回 event 对象上是否调用了 event.preventDefault()。</td>
-</tr>
-<tr>
-<td>event.pageX</td>
-<td>相对于文档左边缘的鼠标位置。</td>
-</tr>
-<tr>
-<td>event.pageY</td>
-<td>相对于文档上边缘的鼠标位置。</td>
-</tr>
-<tr>
-<td>event.preventDefault()</td>
-<td>阻止事件的默认动作。</td>
-</tr>
-<tr>
-<td>event.result</td>
-<td>包含由被指定事件触发的事件处理器返回的最后一个值。</td>
-</tr>
-<tr>
-<td>event.target</td>
-<td>触发该事件的 DOM 元素。</td>
-</tr>
-<tr>
-<td>event.timeStamp</td>
-<td>该属性返回从 1970 年 1 月 1 日到事件发生时的毫秒数。</td>
-</tr>
-<tr>
-<td>event.type</td>
-<td>描述事件的类型。</td>
-</tr>
-<tr>
-<td>event.which</td>
-<td>指示按了哪个键或按钮。</td>
-</tr>
-<tr>
-<td>focus()</td>
-<td>触发、或将函数绑定到指定元素的 focus 事件</td>
-</tr>
-<tr>
-<td>keydown()</td>
-<td>触发、或将函数绑定到指定元素的 key down 事件</td>
-</tr>
-<tr>
-<td>keypress()</td>
-<td>触发、或将函数绑定到指定元素的 key press 事件</td>
-</tr>
-<tr>
-<td>keyup()</td>
-<td>触发、或将函数绑定到指定元素的 key up 事件</td>
-</tr>
-<tr>
-<td>live()</td>
-<td>为当前或未来的匹配元素添加一个或多个事件处理器</td>
-</tr>
-<tr>
-<td>load()</td>
-<td>触发、或将函数绑定到指定元素的 load 事件</td>
-</tr>
-<tr>
-<td>mousedown()</td>
-<td>触发、或将函数绑定到指定元素的 mouse down 事件</td>
-</tr>
-<tr>
-<td>mouseenter()</td>
-<td>触发、或将函数绑定到指定元素的 mouse enter 事件</td>
-</tr>
-<tr>
-<td>mouseleave()</td>
-<td>触发、或将函数绑定到指定元素的 mouse leave 事件</td>
-</tr>
-<tr>
-<td>mousemove()</td>
-<td>触发、或将函数绑定到指定元素的 mouse move 事件</td>
-</tr>
-<tr>
-<td>mouseout()</td>
-<td>触发、或将函数绑定到指定元素的 mouse out 事件</td>
-</tr>
-<tr>
-<td>mouseover()</td>
-<td>触发、或将函数绑定到指定元素的 mouse over 事件</td>
-</tr>
-<tr>
-<td>mouseup()</td>
-<td>触发、或将函数绑定到指定元素的 mouse up 事件</td>
-</tr>
-<tr>
-<td>one()</td>
-<td>向匹配元素添加事件处理器。每个元素只能触发一次该处理器。</td>
-</tr>
-<tr>
-<td>ready()</td>
-<td>文档就绪事件（当 HTML 文档就绪可用时）</td>
-</tr>
-<tr>
-<td>resize()</td>
-<td>触发、或将函数绑定到指定元素的 resize 事件</td>
-</tr>
-<tr>
-<td>scroll()</td>
-<td>触发、或将函数绑定到指定元素的 scroll 事件</td>
-</tr>
-<tr>
-<td>select()</td>
-<td>触发、或将函数绑定到指定元素的 select 事件</td>
-</tr>
-<tr>
-<td>submit()</td>
-<td>触发、或将函数绑定到指定元素的 submit 事件</td>
-</tr>
-<tr>
-<td>toggle()</td>
-<td>绑定两个或多个事件处理器函数，当发生轮流的 click 事件时执行。</td>
-</tr>
-<tr>
-<td>trigger()</td>
-<td>所有匹配元素的指定事件</td>
-</tr>
-<tr>
-<td>triggerHandler()</td>
-<td>第一个被匹配元素的指定事件</td>
-</tr>
-<tr>
-<td>unbind()</td>
-<td>从匹配元素移除一个被添加的事件处理器</td>
-</tr>
-<tr>
-<td>undelegate()</td>
-<td>从匹配元素移除一个被添加的事件处理器，现在或将来</td>
-</tr>
-<tr>
-<td>unload()</td>
-<td>触发、或将函数绑定到指定元素的 unload 事件</td>
-</tr>
-</tbody>
-</table>
-<h2 id="jQuery-效果函数"><a href="#jQuery-效果函数" class="headerlink" title="jQuery 效果函数"></a>jQuery 效果函数</h2><p>将CSS动画效果封装成Javascript函数。  </p>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>animate()</td>
-<td>对被选元素应用“自定义”的动画</td>
-</tr>
-<tr>
-<td>clearQueue()</td>
-<td>对被选元素移除所有排队的函数（仍未运行的）</td>
-</tr>
-<tr>
-<td>delay()</td>
-<td>对被选元素的所有排队函数（仍未运行）设置延迟</td>
-</tr>
-<tr>
-<td>dequeue()</td>
-<td>运行被选元素的下一个排队函数</td>
-</tr>
-<tr>
-<td>fadeIn()</td>
-<td>逐渐改变被选元素的不透明度，从隐藏到可见</td>
-</tr>
-<tr>
-<td>fadeOut()</td>
-<td>逐渐改变被选元素的不透明度，从可见到隐藏</td>
-</tr>
-<tr>
-<td>fadeTo()</td>
-<td>把被选元素逐渐改变至给定的不透明度</td>
-</tr>
-<tr>
-<td>hide()</td>
-<td>隐藏被选的元素</td>
-</tr>
-<tr>
-<td>queue()</td>
-<td>显示被选元素的排队函数</td>
-</tr>
-<tr>
-<td>show()</td>
-<td>显示被选的元素</td>
-</tr>
-<tr>
-<td>slideDown()</td>
-<td>通过调整高度来滑动显示被选元素</td>
-</tr>
-<tr>
-<td>slideToggle()</td>
-<td>对被选元素进行滑动隐藏和滑动显示的切换</td>
-</tr>
-<tr>
-<td>slideUp()</td>
-<td>通过调整高度来滑动隐藏被选元素</td>
-</tr>
-<tr>
-<td>stop()</td>
-<td>停止在被选元素上运行动画</td>
-</tr>
-<tr>
-<td>toggle()</td>
-<td>对被选元素进行隐藏和显示的切换</td>
-</tr>
-</tbody>
-</table>
-<h2 id="jQuery-遍历函数"><a href="#jQuery-遍历函数" class="headerlink" title="jQuery 遍历函数"></a>jQuery 遍历函数</h2><p>jQuery 遍历，意为“移动”，用于根据其相对于其他元素的关系来“查找”（或选取）HTML 元素。以某项选择开始，并沿着这个选择移动，直到抵达您期望的元素为止。  </p>
-<p>下图展示了一个家族树。通过 jQuery 遍历，您能够从被选（当前的）元素开始，轻松地在家族树中向上移动（祖先），向下移动（子孙），水平移动（同胞）。这种移动被称为对 DOM 进行遍历。  </p>
-<p><img src="/blog/static/imgs/dom_tree.gif" alt="dom_tree"></p>
+        <h2 id="样式"><a href="#样式" class="headerlink" title="样式"></a>样式</h2><p>&lt;a> 标签定义超链接，用于从一张页面链接到另一张页面。</p>
+<p>在所有浏览器中，链接的默认外观是：  </p>
+<ul><li style="text-decoration: underline; color:blue;">未被访问的链接带有下划线而且是蓝色的</li><li style="text-decoration: underline; color:red;">活动链接带有下划线而且是红色的</li><li style="text-decoration: underline; color:purple;">已被访问的链接带有下划线而且是紫色的</li></ul>
+
+<p>链接默认样式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span> &#123;<span class="attribute">color</span>: blue;<span class="attribute">text-decoration</span>: underline;&#125;    <span class="comment">/* 未访问的链接 */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;<span class="attribute">color</span>: blue;<span class="attribute">text-decoration</span>: underline;&#125;    <span class="comment">/* 鼠标移动到链接上 */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:active</span> &#123;<span class="attribute">color</span>: red;<span class="attribute">text-decoration</span>: underline;&#125;     <span class="comment">/* 鼠标按下但还未收起时的链接 */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span> &#123;<span class="attribute">color</span>: purple;<span class="attribute">text-decoration</span>: underline;&#125;    <span class="comment">/* 已访问的链接 */</span></span><br></pre></td></tr></table></figure>
+<p>&lt;a>不能自闭合，必须有开始标识与结束标识。  </p>
+<h2 id="href"><a href="#href" class="headerlink" title="href"></a>href</h2><p>&lt;a> 元素最重要的属性是 href 属性，它指示链接的目标。  </p>
+<p>如果没有href属性，&lt;a> 标签会表现的像是一个行内元素&lt;span>标签，甚至没有默认的样式。如果href属性没有值或者值为空字符串则点击 &lt;a> 标签会刷新当前页面。  </p>
+<p>href 属性的值可以是任何URL或URL片段。如果用户选择了 &lt;a> 标签中的内容，那么浏览器会尝试检索并显示 href 属性指定的 URL 所表示的文档，或者执行 JavaScript 表达式、方法和函数的列表。  </p>
+<p>href的值可以有很多种：  </p>
 <ul>
-<li>&lt;div> 元素是 &lt;ul> 的父元素，同时是其中所有内容的祖先。</li>
-<li>&lt;ul> 元素是 &lt;li> 元素的父元素，同时是 &lt;div> 的子元素</li>
-<li>左边的 &lt;li> 元素是 &lt;span> 的父元素，&lt;ul> 的子元素，同时是 &lt;div> 的后代。</li>
-<li>&lt;span> 元素是 &lt;li> 的子元素，同时是 &lt;ul> 和 &lt;div> 的后代。</li>
-<li>两个 &lt;li> 元素是同胞（拥有相同的父元素）。</li>
-<li>右边的 &lt;li> 元素是 &lt;b> 的父元素，&lt;ul> 的子元素，同时是 &lt;div> 的后代。</li>
-<li>&lt;b> 元素是右边的 &lt;li> 的子元素，同时是 &lt;ul> 和 &lt;div> 的后代。</li>
+<li>绝对 URL - 指向另一个站点（<code>href=&quot;http://www.example.com/index.html&quot;</code>）</li>
+<li>相对 URL - 指向站点内的某个文件（<code>href=&quot;index.html&quot;</code>）</li>
+<li>锚 URL - 指向页面中的锚（<code>href=&quot;#top&quot;</code>）</li>
+<li>javascript代码 - 执行javascript代码(<code>href=&quot;javascript:alert(&#39;a is clicked&#39;);&quot;</code>)</li>
+<li>本地文件地址 - 在浏览器中打开本地文件(<code>href=&quot;file:///Users/work/Desktop/test.txt&quot;</code>)</li>
+<li>邮件地址 - 发送邮件(<code>href=&quot;mailto://somebody@example.com&quot;</code>)</li>
+<li>电话号码 - 打电话(<code>href=&quot;tel:+86-10010&quot;</code>)</li>
 </ul>
-<p><font color='red'>提示：</font>祖先是父、祖父、曾祖父等等。后代是子、孙、曾孙等等。同胞拥有相同的父。  </p>
-<p>jQuery 遍历函数包括了用于筛选、查找和串联元素的方法。  </p>
+<p>⚠️注意事项</p>
+<ul>
+<li><p>除了相对URL和锚点，其它的表现都和在地址栏中输入相应href类似。<br>亦和<code>window.location.href=?</code>差不多，值得注意的是，在console执行 <code>window.location.href=&quot;file:///Users/work/Desktop/test.txt&quot;</code> 时会报错 <code>Not allowed to load local resource:file:///Users/work/Desktop/test.txt</code> 而执行 <code>window.location.href=&quot;tel:+86-10010&quot;</code> 则根本没反应</p>
+</li>
+<li><p>如果不是采用hash方式进行页面内导航的话，可以使用 <code>href=&quot;#top&quot;</code> 或者 <code>href=&quot;#&quot;</code> 链接返回到页面顶部 <span class="tag">HTML5<span/></p>
+</li>
+</ul>
+<h2 id="target"><a href="#target" class="headerlink" title="target"></a>target</h2><p>&lt;a> 标签的 target 属性规定在何处打开链接文档。  </p>
 <table>
 <thead>
 <tr>
-<th>函数</th>
-<th>描述</th>
+<th>值</th>
+<th>含义</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>.add()</td>
-<td>将元素添加到匹配元素的集合中。</td>
+<td>_blank</td>
+<td>浏览器总在一个新打开、未命名的窗口中载入目标文档。</td>
 </tr>
 <tr>
-<td>.andSelf()</td>
-<td>把堆栈中之前的元素集添加到当前集合中。</td>
+<td>_self</td>
+<td>默认值，它使得目标文档载入并显示在相同的frame或者window中作为源文档。</td>
 </tr>
 <tr>
-<td>.children()</td>
-<td>获得匹配元素集合中每个元素的所有子元素。</td>
+<td>_parent</td>
+<td>这个目标使得文档载入父窗口或者包含来超链接引用的框架的框架集。如果这个引用是在窗口或者在顶级框架中，那么它与目标 _self 等效。</td>
 </tr>
 <tr>
-<td>.closest()</td>
-<td>从元素本身开始，逐级向上级元素匹配，并返回最先匹配的祖先元素。</td>
+<td>_top</td>
+<td>这个目标使得文档载入包含这个超链接的窗口，用 _top 目标将会清除所有被包含的框架并将文档载入整个浏览器窗口。</td>
 </tr>
 <tr>
-<td>.contents()</td>
-<td>获得匹配元素集合中每个元素的子元素，包括文本和注释节点。</td>
-</tr>
-<tr>
-<td>.each()</td>
-<td>对 jQuery 对象进行迭代，为每个匹配元素执行函数。</td>
-</tr>
-<tr>
-<td>.end()</td>
-<td>结束当前链中最近的一次筛选操作，并将匹配元素集合返回到前一次的状态。</td>
-</tr>
-<tr>
-<td>.eq()</td>
-<td>将匹配元素集合缩减为位于指定索引的新元素。</td>
-</tr>
-<tr>
-<td>.filter()</td>
-<td>将匹配元素集合缩减为匹配选择器或匹配函数返回值的新元素。</td>
-</tr>
-<tr>
-<td>.find()</td>
-<td>获得当前匹配元素集合中每个元素的后代，由选择器进行筛选。</td>
-</tr>
-<tr>
-<td>.first()</td>
-<td>将匹配元素集合缩减为集合中的第一个元素。</td>
-</tr>
-<tr>
-<td>.has()</td>
-<td>将匹配元素集合缩减为包含特定元素的后代的集合。</td>
-</tr>
-<tr>
-<td>.is()</td>
-<td>根据选择器检查当前匹配元素集合，如果存在至少一个匹配元素，则返回 true。</td>
-</tr>
-<tr>
-<td>.last()</td>
-<td>将匹配元素集合缩减为集合中的最后一个元素。</td>
-</tr>
-<tr>
-<td>.map()</td>
-<td>把当前匹配集合中的每个元素传递给函数，产生包含返回值的新 jQuery 对象。</td>
-</tr>
-<tr>
-<td>.next()</td>
-<td>获得匹配元素集合中每个元素紧邻的同辈元素。</td>
-</tr>
-<tr>
-<td>.nextAll()</td>
-<td>获得匹配元素集合中每个元素之后的所有同辈元素，由选择器进行筛选（可选）。</td>
-</tr>
-<tr>
-<td>.nextUntil()</td>
-<td>获得每个元素之后所有的同辈元素，直到遇到匹配选择器的元素为止。</td>
-</tr>
-<tr>
-<td>.not()</td>
-<td>从匹配元素集合中删除元素。</td>
-</tr>
-<tr>
-<td>.offsetParent()</td>
-<td>获得用于定位的第一个父元素。</td>
-</tr>
-<tr>
-<td>.parent()</td>
-<td>获得当前匹配元素集合中每个元素的父元素，由选择器筛选（可选）。</td>
-</tr>
-<tr>
-<td>.parents()</td>
-<td>获得当前匹配元素集合中每个元素的祖先元素，由选择器筛选（可选）。</td>
-</tr>
-<tr>
-<td>.parentsUntil()</td>
-<td>获得当前匹配元素集合中每个元素的祖先元素，直到遇到匹配选择器的元素为止。</td>
-</tr>
-<tr>
-<td>.prev()</td>
-<td>获得匹配元素集合中每个元素紧邻的前一个同辈元素，由选择器筛选（可选）。</td>
-</tr>
-<tr>
-<td>.prevAll()</td>
-<td>获得匹配元素集合中每个元素之前的所有同辈元素，由选择器进行筛选（可选）。</td>
-</tr>
-<tr>
-<td>.prevUntil()</td>
-<td>获得每个元素之前所有的同辈元素，直到遇到匹配选择器的元素为止。</td>
-</tr>
-<tr>
-<td>.siblings()</td>
-<td>获得匹配元素集合中所有元素的同辈元素，由选择器筛选（可选）。</td>
-</tr>
-<tr>
-<td>.slice()</td>
-<td>将匹配元素集合缩减为指定范围的子集。</td>
+<td>&lt;framename></td>
+<td>在指定的frame中打开被链接文档。</td>
 </tr>
 </tbody>
 </table>
-<h2 id="jQuery-文档操作"><a href="#jQuery-文档操作" class="headerlink" title="jQuery 文档操作"></a>jQuery 文档操作</h2><p>对HTML元素进行操作。  </p>
+<h2 id="rel"><a href="#rel" class="headerlink" title="rel"></a>rel</h2><p>&lt;a> 标签的 rel 属性用于指定当前文档与被链接文档的关系。与 &lt;link> 标签的 rel 属性类似，事实上许多值两者通用。<br>搜索引擎可以利用该属性获得更多有关链接的信息，在跳转的时候某些值也有特殊的用处。  </p>
 <table>
 <thead>
 <tr>
-<th>方法</th>
-<th>描述</th>
+<th>值</th>
+<th>含义</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>after()</td>
-<td>在匹配的元素之后插入内容。</td>
+<td>alternate</td>
+<td>文档的可选版本（例如打印页、翻译页或镜像）</td>
 </tr>
 <tr>
-<td>append()</td>
-<td>向匹配元素集合中的每个元素结尾插入由参数指定的内容。</td>
+<td>author</td>
+<td>作者链接</td>
 </tr>
 <tr>
-<td>appendTo()</td>
-<td>向目标结尾插入匹配元素集合中的每个元素。</td>
+<td>bookmark</td>
+<td>表明这个超链接是当前页面的一个永久链接（可被加入书签的）</td>
 </tr>
 <tr>
-<td>attr()</td>
-<td>设置或返回匹配元素的属性和值。</td>
+<td>external</td>
+<td>表明指向外部链接</td>
 </tr>
 <tr>
-<td>before()</td>
-<td>在每个匹配的元素之前插入内容。</td>
+<td>licence</td>
+<td>描述版权信息</td>
 </tr>
 <tr>
-<td>clone()</td>
-<td>创建匹配元素集合的副本。</td>
+<td>next</td>
+<td>集合中的下一个文档</td>
 </tr>
 <tr>
-<td>detach()</td>
-<td>从 DOM 中移除匹配元素集合。</td>
+<td>nofollow</td>
+<td>Google 使用 “nofollow”用于指定 Google 搜索引擎不要跟踪链接</td>
 </tr>
 <tr>
-<td>empty()</td>
-<td>删除匹配的元素集合中所有的子节点。</td>
+<td>noopener</td>
+<td>防止新打开的页面通过window.opener访问父级页面</td>
 </tr>
 <tr>
-<td>html()</td>
-<td>设置或返回匹配的元素集合中的 HTML 内容。</td>
+<td>noreferrer</td>
+<td>防止新打开页面时在http请求的header添加referrer字段</td>
 </tr>
 <tr>
-<td>insertAfter()</td>
-<td>把匹配的元素插入到另一个指定的元素集合的后面。</td>
+<td>prev</td>
+<td>集合中的前一个文档</td>
 </tr>
 <tr>
-<td>insertBefore()</td>
-<td>把匹配的元素插入到另一个指定的元素集合的前面。</td>
+<td>help</td>
+<td>指向帮助文档</td>
 </tr>
 <tr>
-<td>prepend()</td>
-<td>向匹配元素集合中的每个元素开头插入由参数指定的内容。</td>
-</tr>
-<tr>
-<td>prependTo()</td>
-<td>向目标开头插入匹配元素集合中的每个元素。</td>
-</tr>
-<tr>
-<td>remove()</td>
-<td>移除所有匹配的元素。</td>
-</tr>
-<tr>
-<td>replaceAll()</td>
-<td>用匹配的元素替换所有匹配到的元素。</td>
-</tr>
-<tr>
-<td>replaceWith()</td>
-<td>用新内容替换匹配的元素。</td>
-</tr>
-<tr>
-<td>text()</td>
-<td>设置或返回匹配元素的内容。</td>
-</tr>
-<tr>
-<td>unwrap()</td>
-<td>移除并替换指定元素的父元素。</td>
-</tr>
-<tr>
-<td>wrap()</td>
-<td>把匹配的元素用指定的内容或元素包裹起来。</td>
-</tr>
-<tr>
-<td>wrapAll()</td>
-<td>把所有匹配的元素用指定的内容或元素包裹起来。</td>
-</tr>
-<tr>
-<td>wrapinner()</td>
-<td>将每一个匹配的元素的子内容用指定的内容或元素包裹起来。</td>
+<td>tag</td>
+<td>描述当前页面标识的页面</td>
 </tr>
 </tbody>
 </table>
-<h2 id="jQuery-属性操作"><a href="#jQuery-属性操作" class="headerlink" title="jQuery 属性操作"></a>jQuery 属性操作</h2><p>下面列出的这些方法获得或设置元素的 DOM 属性。  </p>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>addClass()</td>
-<td>向匹配的元素添加指定的类名。</td>
-</tr>
-<tr>
-<td>attr()</td>
-<td>设置或返回匹配元素的属性和值。</td>
-</tr>
-<tr>
-<td>hasClass()</td>
-<td>检查匹配的元素是否拥有指定的类。</td>
-</tr>
-<tr>
-<td>html()</td>
-<td>设置或返回匹配的元素集合中的 HTML 内容。</td>
-</tr>
-<tr>
-<td>removeAttr()</td>
-<td>从所有匹配的元素中移除指定的属性。</td>
-</tr>
-<tr>
-<td>removeClass()</td>
-<td>从所有匹配的元素中删除全部或者指定的类。</td>
-</tr>
-<tr>
-<td>toggleClass()</td>
-<td>从匹配的元素中添加或删除一个类。</td>
-</tr>
-<tr>
-<td>val()</td>
-<td>设置或返回匹配元素的值。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="jQuery-css-操作函数"><a href="#jQuery-css-操作函数" class="headerlink" title="jQuery css 操作函数"></a>jQuery css 操作函数</h2><p>下面列出的这些方法设置或返回元素的 css 相关属性。  </p>
-<table>
-<thead>
-<tr>
-<th>css 属性</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>css()</td>
-<td>设置或返回匹配元素的样式属性。</td>
-</tr>
-<tr>
-<td>height()</td>
-<td>设置或返回匹配元素的高度。</td>
-</tr>
-<tr>
-<td>offset()</td>
-<td>返回第一个匹配元素相对于文档的位置。</td>
-</tr>
-<tr>
-<td>offsetParent()</td>
-<td>返回最近的定位祖先元素。</td>
-</tr>
-<tr>
-<td>position()</td>
-<td>返回第一个匹配元素相对于父元素的位置。</td>
-</tr>
-<tr>
-<td>scrollLeft()</td>
-<td>设置或返回匹配元素相对滚动条左侧的偏移。</td>
-</tr>
-<tr>
-<td>scrollTop()</td>
-<td>设置或返回匹配元素相对滚动条顶部的偏移。</td>
-</tr>
-<tr>
-<td>width()</td>
-<td>设置或返回匹配元素的宽度。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="jQuery-数据操作函数"><a href="#jQuery-数据操作函数" class="headerlink" title="jQuery 数据操作函数"></a>jQuery 数据操作函数</h2><p>这些方法允许我们将指定的 DOM 元素与任意数据相关联。  </p>
-<table>
-<thead>
-<tr>
-<th>函数</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>.clearQueue()</td>
-<td>从队列中删除所有未运行的项目。</td>
-</tr>
-<tr>
-<td>.data()</td>
-<td>存储与匹配元素相关的任意数据。</td>
-</tr>
-<tr>
-<td>jQuery.data()</td>
-<td>存储与指定元素相关的任意数据。</td>
-</tr>
-<tr>
-<td>.dequeue()</td>
-<td>从队列最前端移除一个队列函数，并执行它。</td>
-</tr>
-<tr>
-<td>jQuery.dequeue()</td>
-<td>从队列最前端移除一个队列函数，并执行它。</td>
-</tr>
-<tr>
-<td>jQuery.hasData()</td>
-<td>存储与匹配元素相关的任意数据。</td>
-</tr>
-<tr>
-<td>.queue()</td>
-<td>显示或操作匹配元素所执行函数的队列。</td>
-</tr>
-<tr>
-<td>jQuery.queue()</td>
-<td>显示或操作匹配元素所执行函数的队列。</td>
-</tr>
-<tr>
-<td>.removeData()</td>
-<td>移除之前存放的数据。</td>
-</tr>
-<tr>
-<td>jQuery.removeData()</td>
-<td>移除之前存放的数据。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="jQuery-AJAX"><a href="#jQuery-AJAX" class="headerlink" title="jQuery AJAX"></a>jQuery AJAX</h2><h3 id="什么是-AJAX？"><a href="#什么是-AJAX？" class="headerlink" title="什么是 AJAX？"></a>什么是 AJAX？</h3><p>AJAX = 异步 JavaScript 和 XML（Asynchronous JavaScript and XML）。  </p>
-<p>简短地说，在不重载整个网页的情况下，AJAX 通过后台加载数据，并在网页上进行显示。  </p>
-<h3 id="jQuery-AJAX方法"><a href="#jQuery-AJAX方法" class="headerlink" title="jQuery AJAX方法"></a>jQuery AJAX方法</h3><table>
-<thead>
-<tr>
-<th>函数</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>jQuery.ajax()</td>
-<td>执行异步 HTTP (Ajax) 请求。</td>
-</tr>
-<tr>
-<td>.ajaxComplete()</td>
-<td>当 Ajax 请求完成时注册要调用的处理程序。这是一个 Ajax 事件。</td>
-</tr>
-<tr>
-<td>.ajaxError()</td>
-<td>当 Ajax 请求完成且出现错误时注册要调用的处理程序。这是一个 Ajax 事件。</td>
-</tr>
-<tr>
-<td>.ajaxSend()</td>
-<td>在 Ajax 请求发送之前显示一条消息。</td>
-</tr>
-<tr>
-<td>jQuery.ajaxSetup()</td>
-<td>设置将来的 Ajax 请求的默认值。</td>
-</tr>
-<tr>
-<td>.ajaxStart()</td>
-<td>当首个 Ajax 请求完成开始时注册要调用的处理程序。这是一个 Ajax 事件。</td>
-</tr>
-<tr>
-<td>.ajaxStop()</td>
-<td>当所有 Ajax 请求完成时注册要调用的处理程序。这是一个 Ajax 事件。</td>
-</tr>
-<tr>
-<td>.ajaxSuccess()</td>
-<td>当 Ajax 请求成功完成时显示一条消息。</td>
-</tr>
-<tr>
-<td>jQuery.get()</td>
-<td>使用 HTTP GET 请求从服务器加载数据。</td>
-</tr>
-<tr>
-<td>jQuery.getJSON()</td>
-<td>使用 HTTP GET 请求从服务器加载 JSON 编码数据。</td>
-</tr>
-<tr>
-<td>jQuery.getScript()</td>
-<td>使用 HTTP GET 请求从服务器加载 JavaScript 文件，然后执行该文件。</td>
-</tr>
-<tr>
-<td>.load()</td>
-<td>从服务器加载数据，然后把返回到 HTML 放入匹配元素。</td>
-</tr>
-<tr>
-<td>jQuery.param()</td>
-<td>创建数组或对象的序列化表示，适合在 URL 查询字符串或 Ajax 请求中使用。</td>
-</tr>
-<tr>
-<td>jQuery.post()</td>
-<td>使用 HTTP POST 请求从服务器加载数据。</td>
-</tr>
-<tr>
-<td>.serialize()</td>
-<td>将表单内容序列化为字符串。</td>
-</tr>
-<tr>
-<td>.serializeArray()</td>
-<td>序列化表单元素，返回 JSON 数据结构数据。</td>
-</tr>
-</tbody>
-</table>
+<p>⚠️注意事项</p>
+<ul>
+<li>使用target时，考虑添加 <code>rel=&quot;external noopener noreferrer&quot;</code> 以防止针对 window.opener API 的恶意行为。</li>
+</ul>
+<h2 id="download-HTML5"><a href="#download-HTML5" class="headerlink" title="download HTML5"></a>download <span class="self-tag">HTML5<span/></h2><p>&lt;a> 标签的 download 属性指示浏览器下载URL而不是导航到它，因此将提示用户将链接（href）指向地址保存为本地文件。如果属性有一个值，那么它将在Save提示符中作为预填充的文件名使用（如果用户需要，仍然可以更改文件名）。此属性对允许的值没有限制，但是/和\会被转换为下划线。大多数文件系统限制了文件名中的标点符号，故此，浏览器将相应地调整建议的文件名。  </p>
+<p>⚠️注意事项</p>
+<ul>
+<li>此属性仅适用于同源 URLs。</li>
+<li>尽管HTTP URL需要位于同一源中，但是可以使用 <code>blob: URLs</code> 和 <code>data: URLs</code> ，以方便用户下载 JavaScript 方式生成的内容（例如使用在线绘图的Web应用创建的照片）。</li>
+<li>如果HTTP头的Content-Disposition赋予了一个不同于此属性的文件名，HTTP头属性Content-Disposition优先于此属性。</li>
+<li>如果HTTP头属性Content-Disposition被设置为inline(即Content-Disposition=’inline’)，那么Firefox优先考虑HTTP头Content-Disposition属性，就像文件名的情况，而Chrome优先考虑download属性。</li>
+</ul>
+<h2 id="type"><a href="#type" class="headerlink" title="type"></a>type</h2><p>该属性指定在一个 MIME type 链接目标的形式的媒体类型。其仅提供建议，并没有内置的功能。  </p>
+<h2 id="废弃属性"><a href="#废弃属性" class="headerlink" title="废弃属性"></a>废弃属性</h2><p>以下属性在HTML5中已废弃，不推荐使用  </p>
+<ul>
+<li>charset</li>
+<li>coords</li>
+<li>name</li>
+<li>rev</li>
+<li>shape</li>
+</ul>
 
         
     </section>
@@ -1068,7 +288,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2018/09/02/Visual-Studio-Code-%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/">Visual Studio Code 常用快捷键</a>
+            <a href="/blog/2018/12/14/FE-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B-%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/">面向对象编程&amp;函数式编程</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -1076,129 +296,7 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2018-09-02T15:14:07.000Z" itemprop="datePublished">2018-09-02</time>
-</span>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/VScode/" rel="tag">VScode</a>, <a class="article-tag-link" href="/blog/tags/learn/" rel="tag">learn</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>以下的Ctrl键指的是Windows系统下的Ctrl键，在Mac上对应Command键。  </p>
-<h2 id="主命令框"><a href="#主命令框" class="headerlink" title="主命令框"></a>主命令框</h2><p>F1 或 Ctrl+Shift+P: 打开命令面板。在打开的输入框内，可以输入任何命令，例如：  </p>
-<ol>
-<li>按一下 Backspace 会进入到 Ctrl+P 模式</li>
-<li>在 Ctrl+P 下输入 &gt; 可以进入 Ctrl+Shift+P 模式</li>
-</ol>
-<p>在 Ctrl+P 窗口下还可以:</p>
-<ol>
-<li>直接输入文件名，跳转到文件</li>
-<li>? 列出当前可执行的动作</li>
-<li>! 显示 Errors或 Warnings，也可以 Ctrl+Shift+M</li>
-<li>: 跳转到行数，也可以 Ctrl+G 直接进入</li>
-<li>@ 跳转到 symbol（搜索变量或者函数），也可以 Ctrl+Shift+O 直接进入</li>
-<li>@ 根据分类跳转 symbol，查找属性或函数，也可以 Ctrl+Shift+O 后输入:进入</li>
-<li># 根据名字查找 symbol，也可以 Ctrl+T</li>
-</ol>
-<h2 id="编辑器与窗口管理"><a href="#编辑器与窗口管理" class="headerlink" title="编辑器与窗口管理"></a>编辑器与窗口管理</h2><ol>
-<li>打开一个新窗口： Ctrl+Shift+N</li>
-<li>关闭窗口： Ctrl+Shift+W</li>
-<li>同时打开多个编辑器（查看多个文件）</li>
-<li>新建文件 Ctrl+N</li>
-<li>文件之间切换 Ctrl+Tab</li>
-<li>切出一个新的编辑器（最多 3 个） Ctrl+\，也可以按住 Ctrl 鼠标点击 Explorer 里的文件名</li>
-<li>左中右 3 个编辑器的快捷键 Ctrl+1 Ctrl+2 Ctrl+3</li>
-<li>3 个编辑器之间循环切换 Ctrl+</li>
-<li>编辑器换位置， Ctrl+k然后按 Left或 Right</li>
-</ol>
-<h2 id="代码格式调整"><a href="#代码格式调整" class="headerlink" title="代码格式调整"></a>代码格式调整</h2><ol>
-<li>代码行缩进 Ctrl+[ 、 Ctrl+]</li>
-<li>Ctrl+C 、 Ctrl+V 复制或剪切当前行/当前选中内容</li>
-<li>代码格式化： Shift+Alt+F，或 Ctrl+Shift+P 后输入 format code</li>
-<li>上下移动一行： Alt+Up 或 Alt+Down</li>
-<li>向上向下复制一行： Shift+Alt+Up 或 Shift+Alt+Down</li>
-<li>在当前行下边插入一行 Ctrl+Enter</li>
-<li>在当前行上方插入一行 Ctrl+Shift+Enter</li>
-</ol>
-<h2 id="光标相关"><a href="#光标相关" class="headerlink" title="光标相关"></a>光标相关</h2><ol>
-<li>移动到行首： Home</li>
-<li>移动到行尾： End</li>
-<li>移动到文件结尾： Ctrl+End</li>
-<li>移动到文件开头： Ctrl+Home</li>
-<li>移动到定义处： F12</li>
-<li>定义处缩略图：只看一眼而不跳转过去 Alt+F12</li>
-<li>移动到后半个括号： Ctrl+Shift+]</li>
-<li>选择从光标到行尾： Shift+End</li>
-<li>选择从行首到光标处： Shift+Home</li>
-<li>删除光标右侧的所有字： Ctrl+Delete</li>
-<li>扩展/缩小选取范围： Shift+Alt+Left 和 Shift+Alt+Right</li>
-<li>多行编辑(列编辑)：Alt+Shift+鼠标左键，Ctrl+Alt+Down/Up</li>
-<li>同时选中所有匹配： Ctrl+Shift+L</li>
-<li>Ctrl+D 下一个匹配的也被选中 (在 sublime 中是删除当前行，后面自定义快键键中，设置与 Ctrl+Shift+K 互换了)</li>
-<li>回退上一个光标操作： Ctrl+U</li>
-</ol>
-<h2 id="修改代码格式"><a href="#修改代码格式" class="headerlink" title="修改代码格式"></a>修改代码格式</h2><ol>
-<li>找到所有的引用： Shift+F12</li>
-<li>同时修改本文件中所有匹配的： Ctrl+F12</li>
-<li>重命名：比如要修改一个方法名，可以选中后按 F2，输入新的名字，回车，会发现所有的文件都修改了</li>
-<li>跳转到下一个 Error 或 Warning：当有多个错误时可以按 F8 逐个跳转</li>
-<li>查看 diff： 在 explorer 里选择文件右键 Set file to compare，然后需要对比的文件上右键选择 Compare with file_name_you_chose</li>
-</ol>
-<h2 id="查找替换"><a href="#查找替换" class="headerlink" title="查找替换"></a>查找替换</h2><ol>
-<li>查找 Ctrl+F</li>
-<li>查找替换 Ctrl+H</li>
-<li>整个文件夹中查找 Ctrl+Shift+F</li>
-</ol>
-<h2 id="显示相关"><a href="#显示相关" class="headerlink" title="显示相关"></a>显示相关</h2><ol>
-<li>全屏：F11</li>
-<li>zoomIn/zoomOut：Ctrl +/-</li>
-<li>侧边栏显/隐：Ctrl+B</li>
-<li>显示资源管理器 Ctrl+Shift+E</li>
-<li>显示搜索 Ctrl+Shift+F</li>
-<li>显示 Git Ctrl+Shift+G</li>
-<li>显示 Debug Ctrl+Shift+D</li>
-<li>显示 Output Ctrl+Shift+U</li>
-</ol>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>自动保存：<br>    File -&gt; AutoSave ，或者 Ctrl+Shift+P，输入 auto<br>修改默认快捷键：  </p>
-<ol>
-<li>打开默认键盘快捷方式设置：File -&gt; Preferences -&gt; Keyboard Shortcuts，或者：Alt+F -&gt; p -&gt; k  </li>
-<li>修改 keybindings.json：  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Place your key bindings in this file to overwrite the defaults</span></span><br><span class="line">[</span><br><span class="line">    <span class="comment">// ctrl+space 被切换输入法快捷键占用</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;key&quot;</span>: <span class="string">&quot;ctrl+alt+space&quot;</span>,</span><br><span class="line">        <span class="string">&quot;command&quot;</span>: <span class="string">&quot;editor.action.triggerSuggest&quot;</span>,</span><br><span class="line">        <span class="string">&quot;when&quot;</span>: <span class="string">&quot;editorTextFocus&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// ctrl+d 删除一行</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;key&quot;</span>: <span class="string">&quot;ctrl+d&quot;</span>,</span><br><span class="line">        <span class="string">&quot;command&quot;</span>: <span class="string">&quot;editor.action.deleteLines&quot;</span>,</span><br><span class="line">        <span class="string">&quot;when&quot;</span>: <span class="string">&quot;editorTextFocus&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 与删除一行的快捷键互换</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;key&quot;</span>: <span class="string">&quot;ctrl+shift+k&quot;</span>,</span><br><span class="line">        <span class="string">&quot;command&quot;</span>: <span class="string">&quot;editor.action.addSelectionToNextFindMatch&quot;</span>,</span><br><span class="line">        <span class="string">&quot;when&quot;</span>: <span class="string">&quot;editorFocus&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// ctrl+shift+/多行注释</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;key&quot;</span>:<span class="string">&quot;ctrl+shift+/&quot;</span>,</span><br><span class="line">        <span class="string">&quot;command&quot;</span>: <span class="string">&quot;editor.action.blockComment&quot;</span>,</span><br><span class="line">        <span class="string">&quot;when&quot;</span>: <span class="string">&quot;editorTextFocus&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 定制与 sublime 相同的大小写转换快捷键，需安装 TextTransform 插件</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;key&quot;</span>: <span class="string">&quot;ctrl+k ctrl+u&quot;</span>,</span><br><span class="line">        <span class="string">&quot;command&quot;</span>: <span class="string">&quot;uppercase&quot;</span>,</span><br><span class="line">        <span class="string">&quot;when&quot;</span>: <span class="string">&quot;editorTextFocus&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;key&quot;</span>: <span class="string">&quot;ctrl+k ctrl+l&quot;</span>,</span><br><span class="line">        <span class="string">&quot;command&quot;</span>: <span class="string">&quot;lowercase&quot;</span>,</span><br><span class="line">        <span class="string">&quot;when&quot;</span>: <span class="string">&quot;editorTextFocus&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2018/09/01/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84javascript%E5%AE%9E%E7%8E%B0/">排序算法的javascript实现</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-09-01T15:19:21.000Z" itemprop="datePublished">2018-09-01</time>
+    <time datetime="2018-12-14T08:06:59.000Z" itemprop="datePublished">2018-12-14</time>
 </span>
 
             
@@ -1213,136 +311,33 @@
     
     <section class="article-body markdown-body">
         
-        <h2 id="时间空间复杂度"><a href="#时间空间复杂度" class="headerlink" title="时间空间复杂度"></a>时间空间复杂度</h2><p>排序是算法中最经典的问题，以下表格对插入排序、冒泡排序、选择排序、希尔排序、快速排序、归并排序这几种排序进行了比较。  </p>
-<table>
-<thead>
-<tr>
-<th>排序算法</th>
-<th>平均时间复杂度</th>
-<th>最坏时间复杂度</th>
-<th>空间复杂度</th>
-<th>是否稳定</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>插入排序</td>
-<td>O（n2）</td>
-<td>O（n2）</td>
-<td>O（1）</td>
-<td>是</td>
-</tr>
-<tr>
-<td>冒泡排序</td>
-<td>O（n2）</td>
-<td>O（n2）</td>
-<td>O（1）</td>
-<td>是</td>
-</tr>
-<tr>
-<td>选择排序</td>
-<td>O（n2）</td>
-<td>O（n2）</td>
-<td>O（1）</td>
-<td>不是</td>
-</tr>
-<tr>
-<td>希尔排序</td>
-<td>O(nlogn)</td>
-<td>O（n2）</td>
-<td>O（1）</td>
-<td>不是</td>
-</tr>
-<tr>
-<td>快速排序</td>
-<td>O(nlogn)</td>
-<td>O（n2）</td>
-<td>O（logn）</td>
-<td>不是</td>
-</tr>
-<tr>
-<td>归并排序</td>
-<td>O(nlogn)</td>
-<td>O(nlogn)</td>
-<td>O（n）</td>
-<td>是</td>
-</tr>
-</tbody>
-</table>
-<p>下面是具体的javascript实现：  </p>
-<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> insertSort = <span class="function"><span class="keyword">function</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> len = arr.length, key;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">var</span> j = i;</span><br><span class="line">            key = arr[j];</span><br><span class="line">            <span class="keyword">while</span> (--j &gt; -<span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (arr[j] &gt; key) &#123;</span><br><span class="line">                    arr[j + <span class="number">1</span>] = arr[j];</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            arr[j + <span class="number">1</span>] = key;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bubbleSort = <span class="function"><span class="keyword">function</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> flag = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">var</span> len = arr.length;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        flag = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; len - <span class="number">1</span> - i; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">var</span> temp = arr[j + <span class="number">1</span>];</span><br><span class="line">                arr[j + <span class="number">1</span>] = arr[j];</span><br><span class="line">                arr[j] = temp;</span><br><span class="line">                flag = <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> selectSort = <span class="function"><span class="keyword">function</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> min;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        min = i;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> j = i + <span class="number">1</span>; j &lt; arr.length; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[min] &gt; arr[j]) &#123;</span><br><span class="line">                min = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (i != min) &#123;</span><br><span class="line">            swap(arr, i, min);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">swap</span>(<span class="params">arr, index1, index2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> temp = arr[index1];</span><br><span class="line">    arr[index1] = arr[index2];</span><br><span class="line">    arr[index2] = temp;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> shellSort = <span class="function"><span class="keyword">function</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> gaps = [<span class="number">5</span>, <span class="number">3</span>, <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> g = <span class="number">0</span>; g &lt; gaps.length; ++g) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = gaps[g]; i &lt; arr.length; ++i) &#123;</span><br><span class="line">            <span class="keyword">var</span> temp = arr[i];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">var</span> j = i; j &gt;= gaps[g] &amp;&amp; arr[j - gaps[g]] &gt; temp; j -= gaps[g])&#123;</span><br><span class="line">                arr[j] = arr[j - gaps[g]];</span><br><span class="line">            &#125;</span><br><span class="line">            arr[j] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> quickSort = <span class="function"><span class="keyword">function</span>(<span class="params">arr, left, right</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> i, j, t, pivot;</span><br><span class="line">    <span class="keyword">if</span> (left &gt;= right) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    pivot = arr[left];</span><br><span class="line">    i = left;</span><br><span class="line">    j = right;</span><br><span class="line">    <span class="keyword">while</span> (i != j) &#123;</span><br><span class="line">        <span class="keyword">while</span> (arr[j] &gt;= pivot &amp;&amp; i &lt; j) &#123;</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (arr[i] &lt;= pivot &amp;&amp; i &lt; j) &#123;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; j) &#123;</span><br><span class="line">            t = arr[i];</span><br><span class="line">            arr[i] = arr[j];</span><br><span class="line">            arr[j] = t;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    arr[left] = arr[j];</span><br><span class="line">    arr[j] = pivot;</span><br><span class="line">    quickSort(arr, left, i - <span class="number">1</span>);</span><br><span class="line">    quickSort(arr, i + <span class="number">1</span>, right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (arr.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> step = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">var</span> left, right;</span><br><span class="line">    <span class="keyword">while</span> (step &lt; arr.length) &#123;</span><br><span class="line">        left = <span class="number">0</span>;</span><br><span class="line">        right = step;</span><br><span class="line">        <span class="keyword">while</span> (right + step &lt;= arr.length) &#123;</span><br><span class="line">            mergeArrays(arr, left, left + step, right, right + step);</span><br><span class="line">            left = right + step;</span><br><span class="line">            right = left + step;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (right &lt; arr.length) &#123;</span><br><span class="line">            mergeArrays(arr, left, left + step, right, arr.length);</span><br><span class="line">        &#125;</span><br><span class="line">        step *= <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeArrays</span>(<span class="params">arr, startLeft, stopLeft, startRight, stopRight</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> rightArr = <span class="keyword">new</span> <span class="built_in">Array</span>(stopRight - startRight + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">var</span> leftArr = <span class="keyword">new</span> <span class="built_in">Array</span>(stopLeft - startLeft + <span class="number">1</span>);</span><br><span class="line">    k = startRight;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; (rightArr.length - <span class="number">1</span>); ++i) &#123;</span><br><span class="line">        rightArr[i] = arr[k];</span><br><span class="line">        ++k;</span><br><span class="line">    &#125;</span><br><span class="line">    k = startLeft;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; (leftArr.length - <span class="number">1</span>); ++i) &#123;</span><br><span class="line">        leftArr[i] = arr[k];</span><br><span class="line">        ++k;</span><br><span class="line">    &#125;</span><br><span class="line">    rightArr[rightArr.length - <span class="number">1</span>] = <span class="literal">Infinity</span>; <span class="comment">// 哨兵值</span></span><br><span class="line">    leftArr[leftArr.length - <span class="number">1</span>] = <span class="literal">Infinity</span>; <span class="comment">// 哨兵值</span></span><br><span class="line">    <span class="keyword">var</span> m = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> n = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> k = startLeft; k &lt; stopRight; ++k) &#123;</span><br><span class="line">        <span class="keyword">if</span> (leftArr[m] &lt;= rightArr[n]) &#123;</span><br><span class="line">            arr[k] = leftArr[m];</span><br><span class="line">            m++;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            arr[k] = rightArr[n];</span><br><span class="line">            n++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2018/08/31/debounce-throttle/">debounce &amp; throttle</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-08-31T13:40:48.000Z" itemprop="datePublished">2018-08-31</time>
-</span>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/Javascript/" rel="tag">Javascript</a>, <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>, <a class="article-tag-link" href="/blog/tags/underscore/" rel="tag">underscore</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="函数节流（throttle）与函数去抖（debounce）"><a href="#函数节流（throttle）与函数去抖（debounce）" class="headerlink" title="函数节流（throttle）与函数去抖（debounce）"></a>函数节流（throttle）与函数去抖（debounce）</h2><p>以下场景往往由于事件频繁被触发，因而频繁执行DOM操作、资源加载等重行为，导致UI停顿甚至浏览器崩溃。  </p>
+        <h2 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h2><p>函数式编程（英语：Functional programming）或称函数程序设计，又称泛函编程，是一种编程范型，它将电脑运算视为数学上的函数计算，并且避免使用程序状态以及易变对象。函数编程语言最重要的基础是λ演算（lambda calculus）。而且λ演算的函数可以接受函数当作输入（引数）和输出（传出值）。</p>
+<p>函数式编程优点：  </p>
 <ol>
-<li><p>window对象的resize、scroll事件</p>
-</li>
-<li><p>拖拽时的mousemove事件</p>
-</li>
-<li><p>射击游戏中的mousedown、keydown事件</p>
-</li>
-<li><p>文字输入、自动完成的keyup事件</p>
-</li>
+<li>没有并发编程的问题，是多线程安全的</li>
+<li>函数式编程的表达方式更加符合人类日常生活中的语法，代码可读性更强，实现同样的功能函数式编程所需要的代码比面向对象编程要少很多，代码更加简洁明晰</li>
 </ol>
-<p>实际上对于window的resize事件，实际需求大多为停止改变大小n毫秒后执行后续处理；而其他事件大多的需求是以一定的频率执行后续处理。针对这两种需求就出现了debounce和throttle两种解决办法。  </p>
-<h3 id="什么是debounce"><a href="#什么是debounce" class="headerlink" title="什么是debounce"></a>什么是debounce</h3><p>[dɪ’baʊns] 防止反弹，即如果用手指一直按住一个弹簧，它将不会弹起直到你松手为止。  </p>
-<p>也就是说当调用动作n毫秒后，才会执行该动作，若在这n毫秒内又调用此动作则将重新计算执行时间。  </p>
-<p>如果该动作持续的触发，那么该函数只会在最后一次触发之后再延迟delay的时间才会执行一次。  </p>
-<p>接口定义：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param </span>fn &#123;function&#125;  请求关联函数，实际应用需要调用的函数</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param </span>delay &#123;number&#125;    空闲时间，单位毫秒</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return <span class="type">&#123;function&#125;</span>    </span>返回客户调用函数</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="title">debounce</span>(<span class="params">fn, delay</span>)</span> &#123;&#125;</span><br></pre></td></tr></table></figure></p>
-<p>简单实现：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> debounce = <span class="function"><span class="keyword">function</span>(<span class="params">fn, delay</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> timer;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> ctx = <span class="built_in">this</span>, args = <span class="built_in">arguments</span>;</span><br><span class="line">        <span class="built_in">clearTimeout</span>(timer);</span><br><span class="line">        timer = <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            fn.apply(ctx, args)</span><br><span class="line">        &#125;, (delay ? delay : <span class="number">300</span>));</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="什么是throttle"><a href="#什么是throttle" class="headerlink" title="什么是throttle"></a>什么是throttle</h3><p>[ˈθrɒtl] 节流阀，即如果将水龙头拧紧直到水是以水滴的形式流出，那你会发现每隔一段时间，就会有一滴水流出。  </p>
-<p>也就是会说预先设定一个执行周期，当调用动作的时刻大于等于执行周期则执行该动作，然后进入下一个新周期。  </p>
-<p>如果该动作持续的触发，那么该函数会在每经过delay时间之后就会执行一次。最终会执行n次, n = 总触发时间/delay。</p>
-<p> 接口定义：<br> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param </span>fn &#123;function&#125;  请求关联函数，实际应用需要调用的函数</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param </span>delay &#123;number&#125;    延迟时间，单位毫秒</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return <span class="type">&#123;function&#125;</span>    </span>返回客户调用函数</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="title">throttle</span>(<span class="params">fn, delay</span>)</span> &#123;&#125;</span><br></pre></td></tr></table></figure></p>
-<p>简单实现：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> throttle = <span class="function"><span class="keyword">function</span>(<span class="params">fn, delay</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> last = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> curr = + <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    <span class="keyword">if</span> (curr - last &gt; delay)&#123;</span><br><span class="line">      fn.apply(<span class="built_in">this</span>, <span class="built_in">arguments</span>)</span><br><span class="line">      last = curr;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="underscore实现"><a href="#underscore实现" class="headerlink" title="underscore实现"></a>underscore实现</h3><p>debounce  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Returns a function, that, as long as it continues to be invoked, will not</span></span><br><span class="line"><span class="comment">// be triggered. The function will be called after it stops being called for</span></span><br><span class="line"><span class="comment">// N milliseconds. If `immediate` is passed, trigger the function on the</span></span><br><span class="line"><span class="comment">// leading edge, instead of the trailing.</span></span><br><span class="line">_.debounce = <span class="function"><span class="keyword">function</span>(<span class="params">func, wait, immediate</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> timeout, result;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> later = <span class="function"><span class="keyword">function</span>(<span class="params">context, args</span>) </span>&#123;</span><br><span class="line">    timeout = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">if</span> (args) result = func.apply(context, args);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> debounced = restArguments(<span class="function"><span class="keyword">function</span>(<span class="params">args</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (timeout) <span class="built_in">clearTimeout</span>(timeout);</span><br><span class="line">    <span class="keyword">if</span> (immediate) &#123;</span><br><span class="line">      <span class="keyword">var</span> callNow = !timeout;</span><br><span class="line">      timeout = <span class="built_in">setTimeout</span>(later, wait);</span><br><span class="line">      <span class="keyword">if</span> (callNow) result = func.apply(<span class="built_in">this</span>, args);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      timeout = _.delay(later, wait, <span class="built_in">this</span>, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  debounced.cancel = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">clearTimeout</span>(timeout);</span><br><span class="line">    timeout = <span class="literal">null</span>;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> debounced;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>throttle  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Returns a function, that, when invoked, will only be triggered at most once</span></span><br><span class="line"> <span class="comment">// during a given window of time. Normally, the throttled function will run</span></span><br><span class="line"> <span class="comment">// as much as it can, without ever going more than once per `wait` duration;</span></span><br><span class="line"> <span class="comment">// but if you&#x27;d like to disable the execution on the leading edge, pass</span></span><br><span class="line"> <span class="comment">// `&#123;leading: false&#125;`. To disable execution on the trailing edge, ditto.</span></span><br><span class="line"> _.throttle = <span class="function"><span class="keyword">function</span>(<span class="params">func, wait, options</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">var</span> timeout, context, args, result;</span><br><span class="line">   <span class="keyword">var</span> previous = <span class="number">0</span>;</span><br><span class="line">   <span class="keyword">if</span> (!options) options = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">var</span> later = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">     previous = options.leading === <span class="literal">false</span> ? <span class="number">0</span> : _.now();</span><br><span class="line">     timeout = <span class="literal">null</span>;</span><br><span class="line">     result = func.apply(context, args);</span><br><span class="line">     <span class="keyword">if</span> (!timeout) context = args = <span class="literal">null</span>;</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">var</span> throttled = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">     <span class="keyword">var</span> now = _.now();</span><br><span class="line">     <span class="keyword">if</span> (!previous &amp;&amp; options.leading === <span class="literal">false</span>) previous = now;</span><br><span class="line">     <span class="keyword">var</span> remaining = wait - (now - previous);</span><br><span class="line">     context = <span class="built_in">this</span>;</span><br><span class="line">     args = <span class="built_in">arguments</span>;</span><br><span class="line">     <span class="keyword">if</span> (remaining &lt;= <span class="number">0</span> || remaining &gt; wait) &#123;</span><br><span class="line">       <span class="keyword">if</span> (timeout) &#123;</span><br><span class="line">         <span class="built_in">clearTimeout</span>(timeout);</span><br><span class="line">         timeout = <span class="literal">null</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       previous = now;</span><br><span class="line">       result = func.apply(context, args);</span><br><span class="line">       <span class="keyword">if</span> (!timeout) context = args = <span class="literal">null</span>;</span><br><span class="line">     &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!timeout &amp;&amp; options.trailing !== <span class="literal">false</span>) &#123;</span><br><span class="line">       timeout = <span class="built_in">setTimeout</span>(later, remaining);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> result;</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   throttled.cancel = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">     <span class="built_in">clearTimeout</span>(timeout);</span><br><span class="line">     previous = <span class="number">0</span>;</span><br><span class="line">     timeout = context = args = <span class="literal">null</span>;</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> throttled;</span><br><span class="line"> &#125;;</span><br></pre></td></tr></table></figure>
+<p>函数式编程缺点：  </p>
+<ol>
+<li>所有的变量在程序运行期间都是一直存在的，资源利用率低</li>
+<li>大型项目中工程化不足，使得代码易读性降低</li>
+</ol>
+<h2 id="面向对象编程"><a href="#面向对象编程" class="headerlink" title="面向对象编程"></a>面向对象编程</h2><p>面向对象程序设计（英语：Object-oriented programming，缩写：OOP）是种具有对象概念的程序编程范型，同时也是一种程序开发的方法。它可能包含数据、属性、代码与方法。对象则指的是类的实例。它将对象作为程序的基本单元，将程序和数据封装其中，以提高软件的重用性、灵活性和扩展性，对象里的程序可以访问及经常修改对象相关连的数据。在面向对象程序编程里，计算机程序会被设计成彼此相关的对象。</p>
+<p>面向对象编程优点：  </p>
+<ol>
+<li>灵活，可维护，易拓展，在大型项目设计中广为应用</li>
+<li>由于继承、封装、多态的特性，自然设计出高内聚、低耦合的系统结构，使得系统更灵活、更容易扩展，而且成本较低。</li>
+<li>23种设计模式广泛应用</li>
+</ol>
+<p>面向对象编程缺点：  </p>
+<ol>
+<li>在多线程并发编程中，多个线程同时操作数据的时候可能会导致数据修改的不确定性。</li>
+<li>为了写可重用的代码而产生了很多无用的代码，导致代码膨胀</li>
+<li>为了面向对象而面向对象，使得代码易读性降低</li>
+<li>代码的运行效率比起面向过程要低很多</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>函数式编程和面向对象编程各有利弊，一个语法更加自由，一个健壮性更好，作为编程者应该对两种编程方式都有所了解，不管是哪种方式，只要能够很好的解决当前的问题就是正确的方式。对于编程者来说，编程范式并没有重要到一定要遵循的地步，重要的是解决问题的思想。</p>
+
         
     </section>
     
@@ -1361,7 +356,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2018/08/30/css-calc-%E5%87%BD%E6%95%B0/">css calc 函数</a>
+            <a href="/blog/2018/12/10/CSS-%E5%A4%B4%E5%83%8F%E7%9A%84%E6%98%BE%E7%A4%BA/">头像的显示</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -1369,7 +364,7 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2018-08-30T12:30:10.000Z" itemprop="datePublished">2018-08-30</time>
+    <time datetime="2018-12-10T10:37:19.000Z" itemprop="datePublished">2018-12-10</time>
 </span>
 
             
@@ -1384,20 +379,204 @@
     
     <section class="article-body markdown-body">
         
-        <p>CSS函数之一，可以在CSS中执行计算操作<br>使用 calc() 函数计算 &lt;div> 元素的宽度，实现div距离左右边界各50px:</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#div1</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="built_in">calc</span>(<span class="number">100%</span> - <span class="number">100px</span>);</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid black;</span><br><span class="line">    <span class="attribute">background-color</span>: yellow;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">5px</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="定义与用法"><a href="#定义与用法" class="headerlink" title="定义与用法"></a>定义与用法</h2><p>calc() 函数用于动态计算长度值，CSS3支持。</p>
-<ul>
-<li>需要注意的是，运算符前后都需要保留一个空格，例如：<code>width: calc(100% - 10px)；</code>  </li>
-<li>任何长度值都可以使用calc()函数进行计算；  </li>
-<li>calc()函数支持 “+”, “-“, “*”, “/“ 运算；  </li>
-<li>calc()函数使用标准的数学运算优先级规则；  </li>
-</ul>
-<h2 id="在LESS中"><a href="#在LESS中" class="headerlink" title="在LESS中"></a>在LESS中</h2><p>在LESS中 <code>calc(100% - 40px)</code> 等带单位混合运算会被LESS解析忽略单位，全部按照百分比计算，此例中的计算被LESS编译成 <code>calc(60%)</code>。  </p>
-<p>解决方案：<br>结合LESS使用特点，将计算放到LESS中解决。如上例 <code>calc(100% - 40px)</code>在LESS中可写为 <code>calc(~&quot;100% - 40px&quot;)</code>  </p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@height:</span> <span class="number">40px</span>;</span><br><span class="line"><span class="variable">@borderHeight:</span> <span class="number">1px</span>;</span><br><span class="line"><span class="variable">@marginHeight:</span> <span class="number">10px</span>;</span><br><span class="line"><span class="attribute">margin-bottom</span>: calc(<span class="string">~&quot;@&#123;height&#125;&quot;</span> );</span><br><span class="line"><span class="attribute">margin-bottom</span>: calc(<span class="string">~&quot;@&#123;height&#125; + @&#123;borderHeight&#125; * 3 + @&#123;marginHeight&#125; * 2&quot;</span> );</span><br></pre></td></tr></table></figure>
-<h2 id="在Stylus中"><a href="#在Stylus中" class="headerlink" title="在Stylus中"></a>在Stylus中</h2><p>在Stylus中 calc 也可以使用，在使用变量时，需要用 <code>%s</code> 替代，然后在行尾 <code>%</code> 之后赋值</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">headHeight=<span class="number">50px</span>  <span class="comment">/* stylus语法中定义一个变量 */</span></span><br><span class="line">footerHeight = <span class="number">50px</span></span><br><span class="line"><span class="attribute">height</span> <span class="string">&#x27;calc(100%  - %s - %s)&#x27;</span> % (headHeight footerHeight)</span><br></pre></td></tr></table></figure>
+        <p>在项目中遇到了上传头像图片的需求，包括两个部分，一个是头像的上传。另一个是上传后头像图片的显示。</p>
+<h2 id="头像的上传"><a href="#头像的上传" class="headerlink" title="头像的上传"></a>头像的上传</h2><p>头像的上传和普通的图片上传几乎没有不同，但通常需要对上传的图片进行限制，例如限制图片格式为png/jpg，图片大小的限制，图片像素的限制等。</p>
+<h3 id="图片格式的限制"><a href="#图片格式的限制" class="headerlink" title="图片格式的限制"></a>图片格式的限制</h3><p>限制为图片格式[‘jpg’, ‘jpeg’, ‘png’, ‘bmp’]，如果头像允许显示动态图，也可以允许gif，不过考虑到大小，一般不允许。最好给予用户提示文案，限定一种最友好的图片格式，例如png。</p>
+<h3 id="图片大小的限制"><a href="#图片大小的限制" class="headerlink" title="图片大小的限制"></a>图片大小的限制</h3><p>头像一般不允许过大的图片，因为引用的页面可能比较多，所以一般限制在百k的级别。例如120k。</p>
+<h3 id="图片像素的限制"><a href="#图片像素的限制" class="headerlink" title="图片像素的限制"></a>图片像素的限制</h3><p>头像一般为正方形，所以最好有文案提示用户上传正方形的图片，而且给予限定范围，例如“尺寸需小于256px*256px且大于120px*120px”，同时给出最佳的头像显示像素，采用此种像素，在应用中大部分情况下既不压缩也不拉伸。由于大部分情况下用户不会上传完全正方形的图片，所以在一定的宽高比例内，也应该允许上传。</p>
+<h3 id="提示语"><a href="#提示语" class="headerlink" title="提示语"></a>提示语</h3><p>包括：  </p>
+<pre><code>1. 默认提示语
+2. 默认上传失败提示语
+3. 上传成功提示语
+4. 图片格式不正确
+5. 图片大小超过限制
+6. 图片宽高比例不正确
+</code></pre><h3 id="上传进度"><a href="#上传进度" class="headerlink" title="上传进度"></a>上传进度</h3><p>有时也需要显示上传进度，不过一般而言图片文件不会很大，如果单单只是图片的上传，也可以使用loading图。</p>
+<h3 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h3><p>最简单的上传头像图片的逻辑代码如下：  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;input</span><br><span class="line">    class=&quot;upload-example&quot;</span><br><span class="line">    type=&quot;file&quot;</span><br><span class="line">    placeholder=&quot;选择图片&quot;</span><br><span class="line">    onchange=&quot;onChange&quot;/&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">onChange</span>(<span class="params">e</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> file = e.target.files[<span class="number">0</span>];</span></span><br><span class="line"><span class="javascript">    check(file); <span class="comment">// 检查待上传文件是否符合要求</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> formData = <span class="keyword">new</span> FormData();</span></span><br><span class="line"><span class="javascript">    formData.append(<span class="string">&#x27;file&#x27;</span>, file, file.name);</span></span><br><span class="line">    upload(formData);</span><br><span class="line">&#125;</span><br><span class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">upload</span>(<span class="params">formData</span>) </span>&#123;</span></span><br><span class="line">    axios.request(&#123;</span><br><span class="line"><span class="javascript">            method: <span class="string">&#x27;post&#x27;</span>,</span></span><br><span class="line">            url: uploadUrl,</span><br><span class="line">            data: formData,</span><br><span class="line">            headers: &#123;</span><br><span class="line"><span class="javascript">                <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;multipart/form-data&#x27;</span></span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).then(</span><br><span class="line">            ...</span><br><span class="line">        )</span><br><span class="line">&#125;</span><br><span class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">check</span>(<span class="params">file</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// file.type in [typeLimit]</span></span></span><br><span class="line"><span class="javascript">    <span class="comment">// file.size &lt; sizeLimit</span></span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="头像的显示"><a href="#头像的显示" class="headerlink" title="头像的显示"></a>头像的显示</h2><p>头像的显示也有两种方案，一种是显示为img，另一种是显示为div，然后通过将背景设置为头像图片来显示。两种都需要设置 <code>border-radiu: 50%;</code> 。下面演示下两种显示方案。我们假设头像的区域范围为120px*120px。用户上传了几种头像，一种是实际图片大小为400px*400px，另一种为800px*400px，还有一种为120px*60px。</p>
+<h3 id="用img标签显示"><a href="#用img标签显示" class="headerlink" title="用img标签显示"></a>用img标签显示</h3><p>设置图片的宽和高，通常长度相同，然后设置 <code>border-radiu: 50%;</code> 即可，这样如果用户上传的图片不是正方形的话，在相应的方向上会有拉伸或压缩的效果，如下图二，因为宽度大于高度，且大于120px所以产生了在宽度上压缩的效果。下图三因为高度小于宽度，且小于120px，所以在高度上产生了拉伸的效果。</p>
+<p>效果图：  </p>
+<div><style type="text/css">img.avator-example-1 {height: 120px;width: 120px;border-radius: 50%;box-shadow:none;}</style></div><div><img class="avator-example-1" src="/blog/static/imgs/avator/400_400.jpg"></img><img class="avator-example-1" src="/blog/static/imgs/avator/800_400.jpg"></img><img class="avator-example-1" src="/blog/static/imgs/avator/120_60.jpg"></img></div>
+
+<p>代码：  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">img</span><span class="selector-class">.avator-example-1</span> &#123;</span></span><br><span class="line"><span class="css">        <span class="attribute">height</span>: <span class="number">120px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">width</span>: <span class="number">120px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">&quot;avator-example-1&quot;</span> <span class="attr">src</span>=<span class="string">&quot;/blog/static/imgs/avator/400_400.jpg&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">img</span>&gt;</span><span class="comment">&lt;!-- 图一 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">&quot;avator-example-1&quot;</span> <span class="attr">src</span>=<span class="string">&quot;/blog/static/imgs/avator/800_400.jpg&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">img</span>&gt;</span><span class="comment">&lt;!-- 图二 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">&quot;avator-example-1&quot;</span> <span class="attr">src</span>=<span class="string">&quot;/blog/static/imgs/avator/120_60.jpg&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">img</span>&gt;</span><span class="comment">&lt;!-- 图三 --&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="用div标签的background-image来显示"><a href="#用div标签的background-image来显示" class="headerlink" title="用div标签的background-image来显示"></a>用div标签的background-image来显示</h3><p>设置区域的 <code>background-image</code> 为用户上传的图片然后设置 <code>background-size</code> 属性即可，例如设置 <code>background-size: 120px 120px;</code> 则会在相应的方向上压缩或拉伸，如下图三。如果设置 <code>background-size: auto 120px;</code> 则图像的高度会占满空间，宽度会取120px，如下图二。这和设置成 <code>background-size: cover;</code> 的效果是相同的，如下图四，五。注意，因为此处举例的图片为宽度大于高度，所以设置 <code>background-size: auto 120px;</code> 会呈现圆形，如果高度大于宽度，则应当设置 <code>backgounrd-size: 120px auto;</code> 。</p>
+<p>效果图：  </p>
+<div><style type="text/css">div.avator-example-2,div.avator-example-3,div.avator-example-4,div.avator-example-5,div.avator-example-6 {height: 120px;width: 120px;margin: 10px 25px;border-radius: 50%;background-color: #fff;background-size: 120px 120px;background-repeat: no-repeat;background-image: url(/blog/static/imgs/avator/800_400.jpg);}div.avator-example-2 {background-image: url(/blog/static/imgs/avator/400_400.jpg);}div.avator-example-3 {background-size: auto 120px;}div.avator-example-5,div.avator-example-6 {background-size: cover;}div.avator-example-6 {background-image:url(/blog/static/imgs/avator/120_60.jpg);}</style></div><div style="display:flex; flex-wrap: wrap;"><div class="avator-example-2"></div><div class="avator-example-3"></div><div class="avator-example-4"></div><div class="avator-example-5"></div><div class="avator-example-6"></div></div>
+
+<p>代码：  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-2</span>,</span></span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-3</span>,</span></span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-4</span>,</span></span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-5</span> &#123;</span></span><br><span class="line"><span class="css">        <span class="attribute">height</span>: <span class="number">120px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">width</span>: <span class="number">120px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">background-color</span>: <span class="number">#fff</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">background-size</span>: <span class="number">120px</span> <span class="number">120px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">background-repeat</span>: no-repeat;</span></span><br><span class="line"><span class="css">        <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">/blog/static/imgs/avator/800_400.jpg</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-2</span> &#123;</span></span><br><span class="line"><span class="css">        <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">/blog/static/imgs/avator/400_400.jpg</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-3</span> &#123;</span></span><br><span class="line"><span class="css">        <span class="attribute">background-size</span>: auto <span class="number">120px</span>;</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-5</span>,</span></span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-6</span> &#123;</span></span><br><span class="line"><span class="css">        <span class="attribute">background-size</span>: cover;</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-6</span> &#123;</span></span><br><span class="line"><span class="css">        <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">/blog/static/imgs/avator/120_60.jpg</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;avator-example-2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="comment">&lt;!-- 图一 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;avator-example-3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="comment">&lt;!-- 图二 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;avator-example-4&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="comment">&lt;!-- 图三 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;avator-example-5&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="comment">&lt;!-- 图四 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;avator-example-6&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="comment">&lt;!-- 图五 --&gt;</span></span><br></pre></td></tr></table></figure>
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/12/06/CSS-Flex%E5%B8%83%E5%B1%80/">CSS-Flex布局</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-12-06T12:34:55.000Z" itemprop="datePublished">2018-12-06</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>, <a class="article-tag-link" href="/blog/tags/flex/" rel="tag">flex</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="Flex布局"><a href="#Flex布局" class="headerlink" title="Flex布局"></a>Flex布局</h2><p>Flex是Flexible Box的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性，设为Flex布局以后，子元素的float、clear和vertical-align属性无效。  </p>
+<p>任何一个容器都可以指定为flex布局</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: -webkit-flex;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>flex布局由父子元素共同组成，父元素被称为flex container，子元素被称为flex item。</p>
+<div><style type="text/css">img {box-shadow:none !important;</style><img src="/blog/static/imgs/flex.png" alt="flex"></div>
+
+<p>容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。主轴的开始位置（与边框的交叉点）叫做main start，结束位置叫做main end；交叉轴的开始位置叫做cross start，结束位置叫做cross end。  </p>
+<p>项目默认沿主轴排列。单个项目占据的主轴空间叫做main size，占据的交叉轴空间叫做cross size。  </p>
+<h2 id="flex-container-属性"><a href="#flex-container-属性" class="headerlink" title="flex container 属性"></a>flex container 属性</h2><p>flex container包含以下属性  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">flex</span>-container &#123; // <span class="attribute">flex</span>容器</span><br><span class="line">    <span class="attribute">display</span>: flex; // 设置容器为弹性布局</span><br><span class="line">    <span class="attribute">flex-direction</span>: <span class="built_in">row</span>(default) | row-reverse | column | column-reverse; // 主轴方向</span><br><span class="line">    <span class="attribute">flex-wrap</span>: <span class="built_in">nowrap</span>(default) | wrap | wrap-reverse; //换行</span><br><span class="line">    <span class="attribute">flex-flow</span>: &lt;flex-direction&gt;||&lt;flex-wrap&gt;; //以上两属性的缩写形式</span><br><span class="line">    justify-centent: flex-start | flex-end | center | space-between | space-around; //主轴对齐方式</span><br><span class="line">    <span class="attribute">align-items</span>: flex-start | flex-end | center | baseline | stretch; // 交叉轴对齐方式</span><br><span class="line">    <span class="attribute">align-content</span>: flex-start | flex-end | center | space-between | space-around | stretch; // 轴有多个时（<span class="attribute">flex-wrap</span>:wrap），多根轴线的对齐方式</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="flex-item-属性"><a href="#flex-item-属性" class="headerlink" title="flex item 属性"></a>flex item 属性</h2><p>flex item 包含以下属性  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">flex</span>-item &#123; // <span class="attribute">flex</span> item</span><br><span class="line">    <span class="attribute">order</span>: &lt;integer&gt;(default <span class="number">0</span>); //顺序</span><br><span class="line">    <span class="attribute">flex-grow</span>:&lt;number&gt;(default <span class="number">0</span>); //项目放大比例 默认存在剩余空间也不放大</span><br><span class="line">    <span class="attribute">flex-shrink</span>: &lt;number&gt;(default <span class="number">1</span>); //项目缩小比例 默认空间不足时，当前项目缩小</span><br><span class="line">    <span class="attribute">flex-basis</span>: &lt;length&gt;|<span class="built_in">auto</span>(default auto); // 在分配多余空间之前，项目占据主轴的空间</span><br><span class="line">    <span class="attribute">flex</span>:&lt;flex-grow&gt; || &lt;flex-shrink&gt; || &lt;flex-basis&gt;; //<span class="attribute">flex-grow</span> <span class="attribute">flex-shrink</span> <span class="attribute">flex-basis</span> 缩写</span><br><span class="line">    <span class="attribute">align-self</span>: auto | flex-start | flex-end | center | baseline | stretch;//该项目交叉轴对齐方式， 覆盖container的<span class="attribute">align-items</span>属性</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/11/30/TIPS-Mac-%E4%B8%8BEclipse%E5%BF%AB%E6%8D%B7%E9%94%AE/">Mac下Eclipse快捷键</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-11-30T10:29:17.000Z" itemprop="datePublished">2018-11-30</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/eclipse/" rel="tag">eclipse</a>, <a class="article-tag-link" href="/blog/tags/learn/" rel="tag">learn</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="快捷操作"><a href="#快捷操作" class="headerlink" title="快捷操作"></a>快捷操作</h2><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>快捷键</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>全选</td>
+<td>command A</td>
+</tr>
+<tr>
+<td>复制</td>
+<td>command C</td>
+</tr>
+<tr>
+<td>粘贴</td>
+<td>command V</td>
+</tr>
+<tr>
+<td>查找</td>
+<td>command F</td>
+</tr>
+<tr>
+<td>回退</td>
+<td>command Z</td>
+</tr>
+<tr>
+<td>剪切</td>
+<td>command X</td>
+</tr>
+<tr>
+<td>退出</td>
+<td>command Q</td>
+</tr>
+<tr>
+<td>删除当前行</td>
+<td>command D</td>
+</tr>
+<tr>
+<td>放大字体</td>
+<td>command +</td>
+</tr>
+<tr>
+<td>缩小字体</td>
+<td>command -</td>
+</tr>
+<tr>
+<td>注释/反注释</td>
+<td>command /</td>
+</tr>
+<tr>
+<td>打开preference</td>
+<td>command ,</td>
+</tr>
+<tr>
+<td>代码补全提示</td>
+<td>option /</td>
+</tr>
+<tr>
+<td>最大化/还原</td>
+<td>control M</td>
+</tr>
+<tr>
+<td>格式化代码</td>
+<td>command shift F</td>
+</tr>
+<tr>
+<td>自动导入包</td>
+<td>command shift O</td>
+</tr>
+</tbody>
+</table>
+<h2 id="便利设置"><a href="#便利设置" class="headerlink" title="便利设置"></a>便利设置</h2><p>Preference -&gt; General -&gt; Editors -&gt; Text Editors</p>
+<p><input type="checkbox" checked></input> Show line numbers<br><input type="checkbox" checked></input> Show white space charactors</p>
         
     </section>
     
@@ -1414,7 +593,7 @@
 
 
 <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/blog/page/10/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/9/">9</a><a class="page-number" href="/blog/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/blog/page/12/">12</a><a class="extend next" rel="next" href="/blog/page/12/">Next &gt;&gt;</a>
+    <a class="extend prev" rel="prev" href="/blog/page/10/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/9/">9</a><a class="page-number" href="/blog/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/blog/page/12/">12</a><a class="page-number" href="/blog/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/17/">17</a><a class="extend next" rel="next" href="/blog/page/12/">Next &gt;&gt;</a>
 </nav>
 
 

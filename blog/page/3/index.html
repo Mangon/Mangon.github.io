@@ -108,7 +108,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2019/12/20/npm%E5%8F%91%E5%8C%85/">npm发包</a>
+            <a href="/blog/2021/03/19/HTML-html5%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/">HTML html5常用标签</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -116,52 +116,17 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2019-12-20T04:15:42.000Z" itemprop="datePublished">2019-12-20</time>
+    <time datetime="2021-03-19T13:08:57.000Z" itemprop="datePublished">2021-03-19</time>
 </span>
 
             
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/npm/" rel="tag">npm</a>
-</div>
-
 
         </div>
     </header>
     
     <section class="article-body markdown-body">
         
-        <p>本文记录了如何发布npm包到  <a target="_blank" rel="noopener" href="http://registry.npmjs.org">http://registry.npmjs.org</a> 的过程，完整的 npm 命令可以参考 <a target="_blank" rel="noopener" href="https://docs.npmjs.com/cli-documentation/cli">npm CLI commands</a> 。</p>
-<ol>
-<li>创建待发包工程</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init [--force|-f|--yes|-y|--scope]</span><br></pre></td></tr></table></figure>
-<p>npm init 创建了一个 package.json 描述 project 信息。<br>name 描述了待发布的 package 名。<br>version 描述了待发布的版本号。<br>dependencies 描述了该 project 所需要的依赖包，在发布前保证所有依赖在 <a href="npmjs.org">npmjs.org</a> 均可找到。  </p>
-<ol start="2">
-<li>排除无需发布的文件</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch .npmignore</span><br></pre></td></tr></table></figure>
-<p>.npmignore 文件的写法和 .gitignore 文件的写法一样，可以将无需发布的文件路径添加到该文件中。  </p>
-<ol start="3">
-<li>添加用户</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm adduser [--registry&#x3D;http:&#x2F;&#x2F;registry.npmjs.com] [--scope&#x3D;@orgname]</span><br></pre></td></tr></table></figure>
-<p>该命令用来注册一个账户。它会提示你填写用户名密码和邮箱，然后（通过将你的验证信息存储在 .npmrc 文件中）自动登录，在 npmjs.org 发包需要验证邮箱。<br>你可以用 <code>npm logout</code> 命令登出，也可以用 <code>npm login</code> 命令再次登入。可以用 <code>npm who am i</code> 命令查看当前登录用户名。  </p>
-<ol start="4">
-<li>预发包</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm pack</span><br></pre></td></tr></table></figure>
-<p>该命令会根据当前配置将 project 打包为 <code>.tgz</code> 文件，可以使用 <code>npm install</code> + <code>.taz</code> 文件的路径测试是否打包正确。   </p>
-<ol start="5">
-<li>发包</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm publish</span><br></pre></td></tr></table></figure>
-<p>默认发布的是公共包，如果包名带有 npm-scope ，那么默认发的是私有包，私有包在 npmjs 上发布需要收费，如果不想发私有包可以使用 <code>npm publish --access public</code> 发布公共包。<br>每次发布需要保证版本号有变更，如果包名和版本号已经存在那么会发布失败。  </p>
-<ol>
-<li>取消发包</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm unpublish</span><br></pre></td></tr></table></figure>
-<p>可以使用以上命令取消发包，但是如果是不再支持某个包的话应该是用 <code>npm deprecate</code> 来表示不再支持。  </p>
+        <h3 id="html5新增的常用标签有哪些"><a href="#html5新增的常用标签有哪些" class="headerlink" title="html5新增的常用标签有哪些"></a>html5新增的常用标签有哪些</h3><p><code>header</code> 定义一个页面或一个区域的头部<br><code>footer</code> 定义一个页面或一个区域的底部<br><code>nav</code> 定义导航链接<br><code>aside</code> 定义页面内容部分的侧边栏<br><code>artical</code> 定义一篇文章<br><code>section</code> 定义一个区域<br><code>hgroup</code> 定义文件中一个区块的相关信息<br><code>figure</code> 定义一组媒体内容以及它们的标题<br><code>dialog</code> 定义一个对话框(会话框)类似微信<br><code>audio</code> 定义声音内容<br><code>video</code> 定义视频内容<br><code>canvas</code> 定义图形<br><code>embed</code> 定义外部交互内容或插件<br><code>mark</code> 定义有记号的文本  </p>
 
         
     </section>
@@ -181,7 +146,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2019/12/04/%E5%A6%82%E4%BD%95%E6%B2%9F%E9%80%9A/">如何沟通</a>
+            <a href="/blog/2021/03/19/HTML-%E8%AF%AD%E4%B9%89%E5%8C%96/">HTML 语义化</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -189,75 +154,18 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2019-12-04T11:22:46.000Z" itemprop="datePublished">2019-12-04</time>
+    <time datetime="2021-03-19T13:05:44.000Z" itemprop="datePublished">2021-03-19</time>
 </span>
 
             
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/communication/" rel="tag">communication</a>, <a class="article-tag-link" href="/blog/tags/learn/" rel="tag">learn</a>
-</div>
-
 
         </div>
     </header>
     
     <section class="article-body markdown-body">
         
-        <p>与机器沟通是容易的，与人沟通却不是那么容易。每个人都有自己的一套规则，在符合沟通双方的规则下的沟通才会更加有效和让人感到舒适。以下是我的沟通规则，你不一定必须遵循这些规则，但如果你遵循了这些规则，我们之间的沟通会更加高效和舒适。  </p>
-<h2 id="我的信息"><a href="#我的信息" class="headerlink" title="我的信息"></a>我的信息</h2><p>请参见 <a target="_blank" rel="noopener" href="https://github.com/Mangon">Github</a> 上个人信息</p>
-<h2 id="称呼"><a href="#称呼" class="headerlink" title="称呼"></a>称呼</h2><ul>
-<li>请勿拼写错误我的名字，拼写错误是对我的不尊重，恕不回应。</li>
-<li>无论职级，你可以直接称呼我的名字，不需要加任何后缀或前缀。</li>
-<li>在称呼你时，如果你的姓名是三个字，我会默认称呼你的名字，即后两个字，如果你的姓名是两个字，我会默认称呼你的姓名。如果这不是你常用的被称呼的方式，或者这种称呼让你感到不快，请告知我。</li>
-</ul>
-<h2 id="会议邀请"><a href="#会议邀请" class="headerlink" title="会议邀请"></a>会议邀请</h2><ul>
-<li>邀请参加非routine会议请首先和我确定我的时间是OK的，并提前一天发会议邀请，任何当天发出邀请的会议，尤其是要求我立即参与的会议可能会被我拒绝，因为我有我的时间安排。</li>
-<li>任何会议，我会尽量提前到达，如果我是会议邀请者，我会提前5分钟，如果我是被邀请者，我会提前2分钟。</li>
-<li>任何会议，如果除我之外的邀请者或重要的被邀请者迟到10分钟及以上，我可能会取消参与。</li>
-<li>我理解的站会（standup meeting）是不需要携带电脑的，10-15分钟的会议。与会者需要站着参加，反馈自己的产出、计划及block issue。</li>
-<li>迭代kick-off会议请提前告知我icafe地址，需求评审会请提前告知我icafe地址，review会议请提前告知我icode地址，分享会请提前传输给我分享的材料。其它会议也请提前传输我会议相关材料。</li>
-<li>任何会议，除了没有目的讨论、分享会或者review会议，应当有结论。通常会由会议记录来记录与会者达成的共识及存在的分歧，还有待办项(todolist)。通常由会议邀请者记录或会议邀请者指定的人员记录，并在会后发邮件告知与会者，与会者采用邮件列表跟踪问题。</li>
-</ul>
-<h2 id="提问"><a href="#提问" class="headerlink" title="提问"></a>提问</h2><ul>
-<li>提问题前请确保你已经进行了有效的尝试，以及告知我你进行了什么尝试。</li>
-<li>无需问“在吗”“有时间吗”之类的问题，直接提出你的诉求。</li>
-<li><p>提defect请确定包括以下内容</p>
-<ol>
-<li>错误截图</li>
-<li>重现步骤</li>
-<li>期望的正常结果</li>
-<li>浏览器环境</li>
-<li>可能的原因（非必须，如果包含会很感激）</li>
-</ol>
-</li>
-<li><p>提feature请确定包括以下内容</p>
-<ol>
-<li>icafe地址</li>
-<li>背景&amp;收益</li>
-<li>原型图</li>
-<li>UE稿（包括视觉及交互，我只需要一份产出，请勿给多份），或UE交付日期</li>
-<li>接口文档交付日期</li>
-<li>是否需要打点记录</li>
-</ol>
-</li>
-</ul>
-<ul>
-<li>提问不属于我负责的或我不擅长的技术问题时，我会尽可能的回答你的问题，但我不能保证给你充足的时间也不能保证给你的是正确的答案，最正确的做法应该是向你的技术主管寻求帮助。</li>
-<li>未经我允许请不要将你与我之间的通过任何通讯软件p2p的对话截图发送给第三方，我不认为p2p的对话是我的保证或能作为任何质问时的证据，如果需要正式的保证请向我发邮件。</li>
-</ul>
-<h2 id="沟通方式"><a href="#沟通方式" class="headerlink" title="沟通方式"></a>沟通方式</h2><ul>
-<li>请根据事情的紧急程度决定沟通的方式，对你而言重要且紧急的事情对我而言不一定也是重要且紧急的。  </li>
-<li>去工位找我之前请先在通讯软件上沟通，确保我在工位而且有时间而且知道我们沟通的主题。</li>
-<li>打电话沟通请确保要沟通的事情的确是紧急高优的事情，通常是线上问题，或者是某项计划的截止日期将至而我还未给出答复。</li>
-<li>我会在每个工作日早上查看一次电子邮箱，下班前查看一次电子邮箱，以及在有人提醒我查看邮箱时查看邮箱，其它时间给我发送的邮件或邀请我不能实时查看。</li>
-<li>大部分的通讯软件群被我设置了接收但不提醒，工作时间我会每间隔约一小时查看一次，非工作时间我会不定时查看，重要事情或需要我特别关注的事情可以@我，我看到了会回复。</li>
-<li>如果我在假期，那么请优先联系我的backup，通常我会在假期之前给出backup人员，如果没有或你不清楚，请联系我的上级。</li>
-</ul>
-<h2 id="紧急情况"><a href="#紧急情况" class="headerlink" title="紧急情况"></a>紧急情况</h2><ul>
-<li>线上问题：就目前而言，线上问题首先会经过我的上级然后再指派给我，所以请勿在通讯软件群里直接@我，请直接联系我的上级。</li>
-<li>紧急上线：如果feature/defect需要紧急上线，请确保你已经得到了经理许可，就目前而言，紧急上线需要 开发人员/测试人员/运维人员 三方的经理邮件确认，同时上线时也需要测试人员确认效果。</li>
-</ul>
+        <h2 id="语义化"><a href="#语义化" class="headerlink" title="语义化"></a>语义化</h2><p>语义化就是根据内容选择标签。</p>
+<h2 id="语义化的好处"><a href="#语义化的好处" class="headerlink" title="语义化的好处"></a>语义化的好处</h2><p>语义化的好处是使代码结构清晰，便于阅读，同时充分利用了SEO。  </p>
 
         
     </section>
@@ -277,7 +185,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2019/08/21/Python%E7%88%AC%E8%99%ABScrapy/">Python爬虫Scrapy</a>
+            <a href="/blog/2021/03/19/HTTP-get-post%E5%8C%BA%E5%88%AB/">HTTP get post区别</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -285,106 +193,23 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2019-08-21T07:16:45.000Z" itemprop="datePublished">2019-08-21</time>
+    <time datetime="2021-03-19T09:24:59.000Z" itemprop="datePublished">2021-03-19</time>
 </span>
 
             
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/crawler/" rel="tag">crawler</a>, <a class="article-tag-link" href="/blog/tags/python/" rel="tag">python</a>, <a class="article-tag-link" href="/blog/tags/scrapy/" rel="tag">scrapy</a>, <a class="article-tag-link" href="/blog/tags/spider/" rel="tag">spider</a>
-</div>
-
 
         </div>
     </header>
     
     <section class="article-body markdown-body">
         
-        <h2 id="Scrapy简介"><a href="#Scrapy简介" class="headerlink" title="Scrapy简介"></a>Scrapy简介</h2><p><a target="_blank" rel="noopener" href="https://scrapy.org/">Scrapy</a> 是一个开源的Python网络爬虫框架。源码在github上开源，<a target="_blank" rel="noopener" href="https://github.com/scrapy/scrapy">地址</a>。Scrapy简单易学而且非常好用，支持配置、代理分布式爬取、容易扩展而且官方也很活跃。截止目前（2019年8月21日）最新版本为 v1.7.3 。  </p>
-<h2 id="Scrapy-安装"><a href="#Scrapy-安装" class="headerlink" title="Scrapy 安装"></a>Scrapy 安装</h2><p>你需要先安装Python，Scrapy需要 Python 2.7 或者 Python 3.5+ ，通常MacOS会自带Python，其它系统需要自己安装，Python安装不再赘述。  </p>
-<p>Scrapy由纯Python语言实现，但是需要依赖一些Python包，包括  </p>
-<ul>
-<li><a href="lxml.de">lxml</a>：一种高效的XML和HTML解析器，</li>
-<li><a target="_blank" rel="noopener" href="https://pypi.python.org/pypi/parsel">parsel</a>：一个HTML / XML数据提取库，基于上面的lxml，</li>
-<li><a target="_blank" rel="noopener" href="https://pypi.org/project/w3lib/">w3lib</a>：一种处理URL和网页编码多功能辅助</li>
-<li><a target="_blank" rel="noopener" href="https://twistedmatrix.com/trac/">twisted</a>：一个异步网络框架</li>
-<li><a target="_blank" rel="noopener" href="https://cryptography.io">cryptography</a> and <a target="_blank" rel="noopener" href="https://pypi.org/project/pyOpenSSL/">pyOpenSSL</a>：处理各种网络级安全需求</li>
-</ul>
-<p>由于包依赖版本问题，建议首先安装 <a target="_blank" rel="noopener" href="https://virtualenv.pypa.io">virtualenv</a> ，这是一个独立Python运行环境包。</p>
-<ol>
-<li>全局安装 virtualenv</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pip install virtualenv</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>创建独立Python运行环境</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ virtualenv ENV</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>安装Scrapy</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install scrapy</span><br></pre></td></tr></table></figure>
-<p><strong> 在不同的平台上的安装步骤不尽相同，某些平台需要安装平台依赖包，具体请 <a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/intro/install.html#intro-install-platform-notes">查看</a> </strong> </p>
-<h2 id="Scrapy项目创建"><a href="#Scrapy项目创建" class="headerlink" title="Scrapy项目创建"></a>Scrapy项目创建</h2><ol>
-<li>创建项目&amp;生成爬虫</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ scrapy startproject [PROJECT_NAME]</span><br><span class="line">$ cd [PROJECT_NAME]</span><br><span class="line">$ scrapy genspider [SPIDER_NAME] [START_SITE_NAME]</span><br></pre></td></tr></table></figure>
-<p>[PROJECT_NAME] 是待创建的爬虫项目名<br>[SPIDER_NAME] 是爬虫名<br>[SITE_NAME] 是待爬取的初始站点地址</p>
-<p>例如我们创建了一个名为 tutorial 的项目，并添加爬虫 top  </p>
-<p>项目目录如下  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">tutorial&#x2F;</span><br><span class="line">|___scrapy.cfg            # 配置文件</span><br><span class="line">|___tutorial&#x2F;             # 项目的 Python 模块，代码存在这里</span><br><span class="line">    |___ __init__.py</span><br><span class="line">    |___items.py          # 项目 items 定义文件</span><br><span class="line">    |___middlewares.py    # 项目 middlewares 文件</span><br><span class="line">    |___pipelines.py      # 项目 pipelines 文件</span><br><span class="line">    |___settings.py       # 项目 settings 文件</span><br><span class="line">    |___spiders&#x2F;          # 爬虫文件目录</span><br><span class="line">        |___ __init__.py</span><br><span class="line">        |___top.py        # 爬虫文件</span><br></pre></td></tr></table></figure>
-<p>打开 top.py 可以看到 Scrapy 爬虫文件结构  </p>
-<ul>
-<li><strong>name</strong> 爬虫名  </li>
-<li><strong>allowed_domains</strong> 是允许爬取的域名  </li>
-<li><strong>start_urls</strong> 开始爬取的链接  </li>
-<li><strong>start_requests()</strong> 开始爬取的链接方法，需要返回 Requests 对象的遍历器或者 Reqeusts 数组  </li>
-<li><strong>parse()</strong> 爬取后的处理方法  </li>
-</ul>
-<h2 id="settings-修改"><a href="#settings-修改" class="headerlink" title="settings 修改"></a>settings 修改</h2><p>可以在 settings.py 文件中看到常用设置: </p>
-<ul>
-<li><strong>USER_AGENT</strong> request的 <code>user-agent</code> header 中的 user-agent 参数  </li>
-<li><strong>ROBOTSTXT_OBEY</strong> 是否遵守robots.txt协议，默认 <code>True</code>  </li>
-<li><strong>CONCURRENT_REQUESTS</strong> 最大并发请求数量  </li>
-<li><strong>DEFAULT_REQUEST_HEADERS</strong> 覆盖默认请求header 参数</li>
-<li><strong>SPIDER_MIDDLEWARES</strong> 爬虫中间件  </li>
-<li><strong>DOWNLOADER_MIDDLEWARES</strong> 下载中间件  </li>
-<li><strong>ITEM_PIPELINES</strong> 设置pipeline调用顺序  </li>
-</ul>
-<h2 id="使用-shell-命令分析待爬取网站"><a href="#使用-shell-命令分析待爬取网站" class="headerlink" title="使用 shell 命令分析待爬取网站"></a>使用 shell 命令分析待爬取网站</h2><p>shell命令是Scrapy提供的交互式页面分析工具，类似于一个debug工具，你可以先使用shell分析待爬取的页面然后再执行爬虫。  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy shell [SITE_NAME]</span><br></pre></td></tr></table></figure>
-<p>shell命令将会采用settings里的配置来请求地址 [SITE_NAME] ，以下列出一些常用分析命令  </p>
-<ul>
-<li><strong>scrapy</strong> scrapy模块，包括scrapy.Request, scrapy.Selector等  </li>
-<li><strong>crawler</strong> scrapy.crawler.Crawler object  </li>
-<li><strong>response</strong> 返回的响应object</li>
-<li><strong>request</strong> 请求的object</li>
-<li><strong>settings</strong> 请求的设置</li>
-<li><strong>view(response)</strong> 在浏览器中查看获取到页面  </li>
-<li><strong>fetch(url[, redicrect=True])</strong> 重新获取url内容并更新当前object</li>
-<li><strong>fetch(req)</strong> 获取一个 scrapy.Request 并更新当前object</li>
-</ul>
-<p><code>view(response)</code> 可以在浏览器中查看页面结构。<br>如果返回的结构和我们期待的有所不同，可以通过 <code>request.replace()</code> 进行修改，例如修改请求方法 <code>request.replace(method=&#39;POST&#39;)</code><br><code>fetch(req)</code> 常用在对request或settings进行了修改然后重新请求。<br><code>response</code> 是返回的响应体，这通常是我们需要分析的东西，如果分析的是html，首先最好先执行 <code>view(response)</code> 在浏览器中查看页面结构，找到我们需要获取的 文本/链接 位置。<br>然后使用 xpath选择器 或者 css选择器 定位我们需要获取的 文本/链接 位置。<br>例如采用 css选择器 且我们需要获取页面中的所有链接，则可以执行<br> <code>response.css(&#39;a::attr(href).getall()&#39;)</code><br>如果获取title文本则可以执行<br> <code>response.css(&#39;title::text&#39;).get(default=&#39;&#39;)</code><br><code>fetch(url)</code> 常用来获取下一个待分析的链接<br>这样就构成了一个完整闭环  </p>
-<p>另外我们也可以通过<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from pprint import pprint</span><br><span class="line">pprint(response.headers)</span><br></pre></td></tr></table></figure><br>来打印相应object  </p>
-<h2 id="Scrapy-Items"><a href="#Scrapy-Items" class="headerlink" title="Scrapy Items"></a>Scrapy Items</h2><p>通常我们需要爬取的都是结构化的数据，在 Scrapy 中被称为 Item，在 items.py 中我们需要定义需要爬取的字段，类似 Python dict</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name = scrapy.Field()</span><br></pre></td></tr></table></figure>
-<h2 id="Scrapy-Item-Pipeline"><a href="#Scrapy-Item-Pipeline" class="headerlink" title="Scrapy Item Pipeline"></a>Scrapy Item Pipeline</h2><p>Scrapy支持pipeline来对爬取到的数据进行类似于管道一样的一系列操作。<br>管道类一般用来进行以下几类操作：  </p>
-<ul>
-<li>清洗 HTML 数据</li>
-<li>验证爬取到的数据（检查items包括特定的field）</li>
-<li>检查重复数据</li>
-<li>将爬取到的数据存储于数据库中</li>
-</ul>
-<p>包括以下几分方法</p>
-<p><code>process_item(self, item, spider)</code></p>
-<p>处理item，需要返回处理后的 data dict</p>
-<p><code>open_spider(self, spider)</code></p>
-<p>spider开始时触发的钩子</p>
-<p><code>close_spider(self, spider)</code></p>
-<p>spider结束时触发的钩子</p>
-<p><code>from_crawler(cls, crawler)</code></p>
-<p>类方法，可以通过 crawler.settings 获取 settings.py 里的配置信息</p>
-<h2 id="运行爬虫"><a href="#运行爬虫" class="headerlink" title="运行爬虫"></a>运行爬虫</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ scrapy crawl [SPIDER_NAME] [-o [FILE_NAME]]</span><br></pre></td></tr></table></figure>
-<p>可以添加 <code>-o</code> 参数来输出为不同的文件例如 xml, csv, json 文件<br>爬取后的文件默认放到项目根目录下  </p>
+        <p>1.get传参方式是通过地址栏URL传递，是可以直接看到get传递的参数，post传参方式参数URL不可见，get把请求的数据在URL后通过？连接，通过&amp;进行参数分割。psot将参数存放在HTTP的包体内</p>
+<p>2.get传递数据是通过URL进行传递，对传递的数据长度是受到URL大小的限制，URL最大长度是2048个字符。post没有长度限制</p>
+<p>3.get后退不会有影响，post后退会重新进行提交</p>
+<p>4.get请求可以被缓存，post不可以被缓存</p>
+<p>5.get请求只URL编码，post支持多种编码方式</p>
+<p>6.get请求的记录会留在历史记录中，post请求不会留在历史记录</p>
+<p>7.get只支持ASCII字符，post没有字符类型限制</p>
 
         
     </section>
@@ -404,7 +229,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2019/08/12/node-server%E5%B8%B8%E7%94%A8npm%E5%BA%93/">node server常用npm库</a>
+            <a href="/blog/2021/03/19/JS-%E5%AE%9E%E8%B7%B5/">JS 实践</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -412,48 +237,24 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2019-08-12T07:04:09.000Z" itemprop="datePublished">2019-08-12</time>
+    <time datetime="2021-03-19T08:10:10.000Z" itemprop="datePublished">2021-03-19</time>
 </span>
 
             
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/node/" rel="tag">node</a>
-</div>
-
 
         </div>
     </header>
     
     <section class="article-body markdown-body">
         
-        <p>以下列举一些 node server 常用npm库：  </p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/expressjs/express">express</a>: nodejs server web框架</li>
-<li><a target="_blank" rel="noopener" href="https://github.com/koajs/koa">koa</a>: nodejs server web框架 采用es6 async调用方式</li>
-<li><a target="_blank" rel="noopener" href="https://github.com/Automattic/mongoose">mongoose</a>: MongoDB 对象建模库  </li>
-<li><a target="_blank" rel="noopener" href="https://github.com/jdesboeufs/connect-mongo">connect-mongo</a>: MongoDB 会话存储库(连接池)，支持Express  </li>
-<li><a target="_blank" rel="noopener" href="https://github.com/tj/co">co</a>: 基于es6的generator及yield用同步的形式编写异步代码  </li>
-<li><a target="_blank" rel="noopener" href="https://github.com/motdotla/dotenv">dotenv</a>: 从.env文件自动加载环境变量  </li>
-<li><a target="_blank" rel="noopener" href="https://github.com/remy/nodemon">nodemon</a>: node守护进程  </li>
-<li><a target="_blank" rel="noopener" href="https://github.com/Unitech/pm2">pm2</a>: nodejs应用生产环境进程管理库  </li>
-<li><a target="_blank" rel="noopener" href="https://github.com/tjunnone/npm-check-updates">npm-check-updates</a>: 检查package是否有新版本  </li>
-<li><a target="_blank" rel="noopener" href="https://github.com/dylang/npm-check">npm-check</a>: 检查package是否有过时版本  </li>
-<li><a target="_blank" rel="noopener" href="https://github.com/jaredhanson/passport">passport</a>: 身份认证库  </li>
-<li><a target="_blank" rel="noopener" href="https://github.com/jaredhanson/passport-local">passport-local</a>: 身份认证本地认证策略  </li>
-<li><a target="_blank" rel="noopener" href="https://github.com/helmetjs/helmet">helmet</a>: 通过修改header来减少安全问题的库  </li>
-<li><a target="_blank" rel="noopener" href="https://github.com/winstonjs/winston">winston</a>: 生产环境日志记录  </li>
-<li><a target="_blank" rel="noopener" href="https://github.com/nock/nock">nock</a>: HTTP 服务器请求模拟库  </li>
-<li><a target="_blank" rel="noopener" href="https://github.com/expressjs/body-parser">body-parser</a>: body解析 <strong>express中间件</strong>  </li>
-<li><a target="_blank" rel="noopener" href="https://github.com/expressjs/cookie-parser">cookie-parser</a>: cookie解析 <strong>express中间件</strong>  </li>
-<li><a target="_blank" rel="noopener" href="https://github.com/expressjs/compression">compression</a>: gzip压缩  <strong>express中间件</strong>  </li>
-<li><a target="_blank" rel="noopener" href="https://github.com/expressjs/session">express-session</a>: session控制 <strong>express中间件</strong>  </li>
-<li><a target="_blank" rel="noopener" href="https://github.com/expressjs/csurf">csurf</a>: 避免csrf安全问题 <strong>express中间件</strong></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/expressjs/cors">cors</a>: 跨域 <strong>express中间件</strong>  </li>
-<li><a target="_blank" rel="noopener" href="https://github.com/expressjs/morgan">morgan</a>: 请求日志记录 <strong>express中间件</strong>  </li>
-<li><a target="_blank" rel="noopener" href="https://github.com/expressjs/multer">multer</a>: 文件上传 <strong>express中间件</strong>  </li>
-<li><a target="_blank" rel="noopener" href="https://github.com/expressjs/method-override">method-override</a>: 协议头复写 <strong>express中间件</strong>  </li>
-</ul>
+        <h2 id="书写一个数组去重的方法"><a href="#书写一个数组去重的方法" class="headerlink" title="书写一个数组去重的方法"></a>书写一个数组去重的方法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 利用ES6 Set数据结构去重</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deduplication</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(array));</span><br><span class="line">    <span class="comment">// return [...new Set(array)];</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历一遍 利用对象的属性不能相同的特点去重</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deduplication</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> obj = &#123;&#125;, result = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i&lt; array.length; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!obj[array[i]])&#123; <span class="comment">//如果能查找到，证明数组元素重复了</span></span><br><span class="line">            obj[array[i]] = <span class="number">1</span>;</span><br><span class="line">            result.push(array[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 双层遍历，内层遍历改用indexOf</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deduplication</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = [];</span><br><span class="line">    array.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item, index ,arr</span>)</span>&#123;  <span class="comment">//这里利用map，filter方法也可以实现外层遍历</span></span><br><span class="line">        <span class="keyword">if</span>(arr.indexOf(item, index + <span class="number">1</span>) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            result.push(item);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 双层遍历, 遇到重复则跳过，不重复的插入到新数组</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deduplication</span>(<span class="params">array</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> result = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; array.length; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(array[i] === array[j])&#123;</span><br><span class="line">                j = ++i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        result.push(array[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 双层遍历，删除重复，返回原数组 *对原数组有修改</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deduplication</span>(<span class="params">array</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> len = array.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; len; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(array[i] == array[j])&#123;</span><br><span class="line">                array.splice(j, <span class="number">1</span>);</span><br><span class="line">                len--;</span><br><span class="line">                j--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> array;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="书写将数组打乱顺序的方法"><a href="#书写将数组打乱顺序的方法" class="headerlink" title="书写将数组打乱顺序的方法"></a>书写将数组打乱顺序的方法</h2><h2 id="书写一个方法将一个字符串倒序输出"><a href="#书写一个方法将一个字符串倒序输出" class="headerlink" title="书写一个方法将一个字符串倒序输出"></a>书写一个方法将一个字符串倒序输出</h2><h2 id="书写一个方法使用reduce模拟map-使用map来模拟reduce"><a href="#书写一个方法使用reduce模拟map-使用map来模拟reduce" class="headerlink" title="书写一个方法使用reduce模拟map/使用map来模拟reduce"></a>书写一个方法使用reduce模拟map/使用map来模拟reduce</h2><p>使用reduce模拟map<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype._map = <span class="function"><span class="keyword">function</span>(<span class="params">fn, callbackThis</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 最终返回的新数组</span></span><br><span class="line">    <span class="keyword">let</span> res = [];</span><br><span class="line">    <span class="comment">// 定义回调函数的执行环境</span></span><br><span class="line">    <span class="comment">// call第一个参数传入null，则 this指向全局对象，同 map的规则</span></span><br><span class="line">    <span class="keyword">let</span> CBThis = callbackThis || <span class="literal">null</span>;</span><br><span class="line">    <span class="built_in">this</span>.reduce(<span class="function">(<span class="params">brfore, after, idx, arr</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 传入map回调函数拥有的参数</span></span><br><span class="line">        <span class="comment">// 把每一项的执行结果push进res中</span></span><br><span class="line">        res.push(fn.call(CBThis, after, idx, arr));</span><br><span class="line">    &#125;, <span class="literal">null</span>);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="解析url，将url中的参数转化为对象"><a href="#解析url，将url中的参数转化为对象" class="headerlink" title="解析url，将url中的参数转化为对象"></a>解析url，将url中的参数转化为对象</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getQueryString</span>(<span class="params">name</span>) </span>&#123; </span><br><span class="line">    <span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">&quot;(^|&amp;)&quot;</span> + name + <span class="string">&quot;=([^&amp;]*)(&amp;|$)&quot;</span>, <span class="string">&quot;i&quot;</span>); </span><br><span class="line">    <span class="keyword">var</span> r = <span class="built_in">window</span>.location.search.substr(<span class="number">1</span>).match(reg); </span><br><span class="line">    <span class="keyword">if</span> (r != <span class="literal">null</span>) <span class="keyword">return</span> <span class="built_in">unescape</span>(r[<span class="number">2</span>]); <span class="keyword">return</span> <span class="literal">null</span>; </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">GetRequest</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> url = location.search; <span class="comment">//获取url中&quot;?&quot;符后的字串</span></span><br><span class="line">    <span class="keyword">var</span> theRequest = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">    <span class="keyword">if</span> (url.indexOf(<span class="string">&quot;?&quot;</span>) != -<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> str = url.substr(<span class="number">1</span>);</span><br><span class="line">        strs = str.split(<span class="string">&quot;&amp;&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; strs.length; i ++) &#123;</span><br><span class="line">            theRequest[strs[i].split(<span class="string">&quot;=&quot;</span>)[<span class="number">0</span>]] = <span class="built_in">unescape</span>(strs[i].split(<span class="string">&quot;=&quot;</span>)[<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> theRequest;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="循环体中不含有break语句时使用while循环来模拟for循环"><a href="#循环体中不含有break语句时使用while循环来模拟for循环" class="headerlink" title="循环体中不含有break语句时使用while循环来模拟for循环"></a>循环体中不含有break语句时使用while循环来模拟for循环</h2><p>for循环：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(initialize; test; increment)body;</span><br></pre></td></tr></table></figure></p>
+<p>while循环：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">initialize;</span><br><span class="line"><span class="keyword">while</span> (test) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123; body;&#125;</span><br><span class="line">    <span class="keyword">finally</span> &#123; increment;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="试写出-bind-的-polyfill-方法"><a href="#试写出-bind-的-polyfill-方法" class="headerlink" title="试写出 bind() 的 polyfill 方法"></a>试写出 bind() 的 polyfill 方法</h2><p>MDN上的实现：  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Does not work with `new funcA.bind(thisArg, args)`</span></span><br><span class="line"><span class="keyword">if</span> (!<span class="built_in">Function</span>.prototype.bind) (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> slice = <span class="built_in">Array</span>.prototype.slice;</span><br><span class="line">  <span class="built_in">Function</span>.prototype.bind = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> thatFunc = <span class="built_in">this</span>, thatArg = <span class="built_in">arguments</span>[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">var</span> args = slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> thatFunc !== <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">      <span class="comment">// closest thing possible to the ECMAScript 5</span></span><br><span class="line">      <span class="comment">// internal IsCallable function</span></span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">&#x27;Function.prototype.bind - &#x27;</span> +</span><br><span class="line">             <span class="string">&#x27;what is trying to be bound is not callable&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">var</span> funcArgs = args.concat(slice.call(<span class="built_in">arguments</span>))</span><br><span class="line">      <span class="keyword">return</span> thatFunc.apply(thatArg, funcArgs);</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<h2 id="实现-emit-on-观察者模式-发布-订阅模式"><a href="#实现-emit-on-观察者模式-发布-订阅模式" class="headerlink" title="实现 emit/on 观察者模式 发布/订阅模式"></a>实现 emit/on 观察者模式 发布/订阅模式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Event = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> list = &#123;&#125;,</span><br><span class="line">        on,</span><br><span class="line">        emit,</span><br><span class="line">        remove;</span><br><span class="line">    on = <span class="function"><span class="keyword">function</span>(<span class="params">key,fn</span>)</span>&#123; <span class="comment">//监听事件函数</span></span><br><span class="line">        <span class="keyword">if</span>(!list[key])&#123;</span><br><span class="line">            list[key] = []; <span class="comment">//如果事件列表中还没有key值命名空间，创建</span></span><br><span class="line">        &#125;</span><br><span class="line">        list[key].push(fn); <span class="comment">//将回调函数推入对象的“键”对应的“值”回调数组</span></span><br><span class="line">    &#125;;</span><br><span class="line">    emit = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">//触发事件函数</span></span><br><span class="line">        <span class="keyword">var</span> key = <span class="built_in">Array</span>.prototype.shift.call(<span class="built_in">arguments</span>); <span class="comment">//第一个参数指定“键”</span></span><br><span class="line">        msg = list[key];</span><br><span class="line">        <span class="keyword">if</span>(!msg || msg.length === <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">//如果回调数组不存在或为空则返回false</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; msg.length; i++)&#123;</span><br><span class="line">            msg[i].apply(<span class="built_in">this</span>, <span class="built_in">arguments</span>); <span class="comment">//循环回调数组执行回调函数</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    remove = <span class="function"><span class="keyword">function</span>(<span class="params">key, fn</span>)</span>&#123; <span class="comment">//移除事件函数</span></span><br><span class="line">        <span class="keyword">var</span> msg = list[key];</span><br><span class="line">        <span class="keyword">if</span>(!msg)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">//事件不存在直接返回false</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(!fn)&#123;</span><br><span class="line">            <span class="keyword">delete</span> list[key]; <span class="comment">//如果没有后续参数，则删除整个回调数组</span></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; msg.length; i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(fn === msg[i])&#123;</span><br><span class="line">                    msg.splice(i, <span class="number">1</span>); <span class="comment">//删除特定回调数组中的回调函数</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        on: on,</span><br><span class="line">        emit: emit,</span><br><span class="line">        remove: remove</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="keyword">var</span> fn = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data + <span class="string">&#x27;的推送消息：xxxxxx......&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line">Event.on(<span class="string">&#x27;action&#x27;</span>, fn);</span><br><span class="line">Event.emit(<span class="string">&#x27;action&#x27;</span>, <span class="string">&#x27;2016.11.26&#x27;</span>);</span><br><span class="line">Event.remove(<span class="string">&#x27;action&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
         
     </section>
@@ -473,7 +274,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2019/08/05/MongoDB-cheatsheet/">MongoDB cheatsheet</a>
+            <a href="/blog/2021/03/19/JS-%E9%97%AD%E5%8C%85/">JS 闭包</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -481,30 +282,18 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2019-08-05T06:04:31.000Z" itemprop="datePublished">2019-08-05</time>
+    <time datetime="2021-03-19T07:56:35.000Z" itemprop="datePublished">2021-03-19</time>
 </span>
 
             
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/MongoDB/" rel="tag">MongoDB</a>, <a class="article-tag-link" href="/blog/tags/database/" rel="tag">database</a>
-</div>
-
 
         </div>
     </header>
     
     <section class="article-body markdown-body">
         
-        https://docs.mongodb.com/
-        
-        <p class="article-more-link">
-            <a href="/blog/2019/08/05/MongoDB-cheatsheet/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
+        <h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p>和其他大多数现代编程语言一样，JavaScript也采用词法作用域(lexical scoping)。也就是，函数的执行依赖于变量作用域，这个作用域是函数定义时决定的。而不是函数执行时决定的。为了实现这种词法作用域，JavaScript函数对象的内部状态不仅包含函数的代码逻辑，还必须引用当前的作用域链(scope chain)。函数可以通过作用域链(scope chain)相互关联起来，函数内部的变量都可以保存在函数作用域内，这种特性称为”闭包”。  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    n = <span class="number">999</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(n);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> f2;<span class="comment">// f2就是一个闭包</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> result = f1();</span><br><span class="line">result(); <span class="comment">// 999</span></span><br></pre></td></tr></table></figure>
         
     </section>
     
@@ -521,7 +310,7 @@
 
 
 <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/blog/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><a class="page-number" href="/blog/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/blog/page/4/">4</a><a class="page-number" href="/blog/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/12/">12</a><a class="extend next" rel="next" href="/blog/page/4/">Next &gt;&gt;</a>
+    <a class="extend prev" rel="prev" href="/blog/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><a class="page-number" href="/blog/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/blog/page/4/">4</a><a class="page-number" href="/blog/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/17/">17</a><a class="extend next" rel="next" href="/blog/page/4/">Next &gt;&gt;</a>
 </nav>
 
 

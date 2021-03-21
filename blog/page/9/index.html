@@ -108,7 +108,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2018/09/12/querySelectorAll%E4%B8%80%E4%B8%AA%E5%B0%8F%E5%9D%91/">querySelectorAll一个小坑</a>
+            <a href="/blog/2019/08/12/FE-node-server%E5%B8%B8%E7%94%A8npm%E5%BA%93/">node server常用npm库</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -116,13 +116,13 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2018-09-12T08:44:45.000Z" itemprop="datePublished">2018-09-12</time>
+    <time datetime="2019-08-12T07:04:09.000Z" itemprop="datePublished">2019-08-12</time>
 </span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/bug/" rel="tag">bug</a>
+    <a class="article-tag-link" href="/blog/tags/node/" rel="tag">node</a>
 </div>
 
 
@@ -131,25 +131,33 @@
     
     <section class="article-body markdown-body">
         
-        <p>首先查看一下querySelectorAll的文档：  </p>
-<h2 id="querySelectorAll"><a href="#querySelectorAll" class="headerlink" title="querySelectorAll"></a>querySelectorAll</h2><p>返回与指定的选择器组匹配的文档中的元素列表 (使用深度优先的先序遍历文档的节点)。返回的对象是 <code>NodeList</code> 。  </p>
-<p>用法：  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> elementList = <span class="built_in">document</span>.querySelectorAll(selectors);</span><br></pre></td></tr></table></figure>
+        <p>以下列举一些 node server 常用npm库：  </p>
 <ul>
-<li>elementList 是一个静态的 NodeList 类型的对象.</li>
-<li>selectors 是一个由逗号连接的包含一个或多个CSS选择器的字符串.</li>
-<li>如果 selectors参数中包含 <code>CSS伪元素</code>,则返回一个空的elementList.</li>
-<li>如果指定的选择器不合法,则抛出一个<code>SYNTAX_ERR</code> 异常.</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/expressjs/express">express</a>: nodejs server web框架</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/koajs/koa">koa</a>: nodejs server web框架 采用es6 async调用方式</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/Automattic/mongoose">mongoose</a>: MongoDB 对象建模库  </li>
+<li><a target="_blank" rel="noopener" href="https://github.com/jdesboeufs/connect-mongo">connect-mongo</a>: MongoDB 会话存储库(连接池)，支持Express  </li>
+<li><a target="_blank" rel="noopener" href="https://github.com/tj/co">co</a>: 基于es6的generator及yield用同步的形式编写异步代码  </li>
+<li><a target="_blank" rel="noopener" href="https://github.com/motdotla/dotenv">dotenv</a>: 从.env文件自动加载环境变量  </li>
+<li><a target="_blank" rel="noopener" href="https://github.com/remy/nodemon">nodemon</a>: node守护进程  </li>
+<li><a target="_blank" rel="noopener" href="https://github.com/Unitech/pm2">pm2</a>: nodejs应用生产环境进程管理库  </li>
+<li><a target="_blank" rel="noopener" href="https://github.com/tjunnone/npm-check-updates">npm-check-updates</a>: 检查package是否有新版本  </li>
+<li><a target="_blank" rel="noopener" href="https://github.com/dylang/npm-check">npm-check</a>: 检查package是否有过时版本  </li>
+<li><a target="_blank" rel="noopener" href="https://github.com/jaredhanson/passport">passport</a>: 身份认证库  </li>
+<li><a target="_blank" rel="noopener" href="https://github.com/jaredhanson/passport-local">passport-local</a>: 身份认证本地认证策略  </li>
+<li><a target="_blank" rel="noopener" href="https://github.com/helmetjs/helmet">helmet</a>: 通过修改header来减少安全问题的库  </li>
+<li><a target="_blank" rel="noopener" href="https://github.com/winstonjs/winston">winston</a>: 生产环境日志记录  </li>
+<li><a target="_blank" rel="noopener" href="https://github.com/nock/nock">nock</a>: HTTP 服务器请求模拟库  </li>
+<li><a target="_blank" rel="noopener" href="https://github.com/expressjs/body-parser">body-parser</a>: body解析 <strong>express中间件</strong>  </li>
+<li><a target="_blank" rel="noopener" href="https://github.com/expressjs/cookie-parser">cookie-parser</a>: cookie解析 <strong>express中间件</strong>  </li>
+<li><a target="_blank" rel="noopener" href="https://github.com/expressjs/compression">compression</a>: gzip压缩  <strong>express中间件</strong>  </li>
+<li><a target="_blank" rel="noopener" href="https://github.com/expressjs/session">express-session</a>: session控制 <strong>express中间件</strong>  </li>
+<li><a target="_blank" rel="noopener" href="https://github.com/expressjs/csurf">csurf</a>: 避免csrf安全问题 <strong>express中间件</strong></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/expressjs/cors">cors</a>: 跨域 <strong>express中间件</strong>  </li>
+<li><a target="_blank" rel="noopener" href="https://github.com/expressjs/morgan">morgan</a>: 请求日志记录 <strong>express中间件</strong>  </li>
+<li><a target="_blank" rel="noopener" href="https://github.com/expressjs/multer">multer</a>: 文件上传 <strong>express中间件</strong>  </li>
+<li><a target="_blank" rel="noopener" href="https://github.com/expressjs/method-override">method-override</a>: 协议头复写 <strong>express中间件</strong>  </li>
 </ul>
-<h2 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h2><p>如下一个element  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;123&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;test&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>document.getElementById(‘123’)可以正常获取到该元素<br>document.querySelectorAll(‘#123’)则报错  </p>
-<p>我们看下Zepto中选择器的实现</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// `$.zepto.qsa` is Zepto&#x27;s css selector implementation which</span></span><br><span class="line"><span class="comment">// uses `document.querySelectorAll` and optimizes for some special cases, like `#id`.</span></span><br><span class="line"><span class="comment">// This method can be overridden in plugins.</span></span><br><span class="line">zepto.qsa = <span class="function"><span class="keyword">function</span>(<span class="params">element, selector</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> found,</span><br><span class="line">      maybeID = selector[<span class="number">0</span>] == <span class="string">&#x27;#&#x27;</span>,</span><br><span class="line">      maybeClass = !maybeID &amp;&amp; selector[<span class="number">0</span>] == <span class="string">&#x27;.&#x27;</span>,</span><br><span class="line">      nameOnly = maybeID || maybeClass ? selector.slice(<span class="number">1</span>) : selector, <span class="comment">// Ensure that a 1 char tag name still gets checked</span></span><br><span class="line">      isSimple = <span class="regexp">/^[\w-]*$/</span>.test(nameOnly)</span><br><span class="line">  <span class="keyword">return</span> (element.getElementById &amp;&amp; isSimple &amp;&amp; maybeID) ? <span class="comment">// Safari DocumentFragment doesn&#x27;t have getElementById</span></span><br><span class="line">    ( (found = element.getElementById(nameOnly)) ? [found] : [] ) :</span><br><span class="line">    (element.nodeType !== <span class="number">1</span> &amp;&amp; element.nodeType !== <span class="number">9</span> &amp;&amp; element.nodeType !== <span class="number">11</span>) ? [] :</span><br><span class="line">    slice.call(</span><br><span class="line">      isSimple &amp;&amp; !maybeID &amp;&amp; element.getElementsByClassName ? <span class="comment">// DocumentFragment doesn&#x27;t have getElementsByClassName/TagName</span></span><br><span class="line">        maybeClass ? element.getElementsByClassName(nameOnly) : <span class="comment">// If it&#x27;s simple, it could be a class</span></span><br><span class="line">        element.getElementsByTagName(selector) : <span class="comment">// Or a tag</span></span><br><span class="line">        element.querySelectorAll(selector) <span class="comment">// Or it&#x27;s not simple, and we need to query all</span></span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>同样的，zepto中的选择器用的就是querySelectorAll，但是对于简单情况，又可能使用getElementById/getElementsByClassName/getElementsByTagName，<br>所以对于上面的元素，$(‘#123’)可以获取到元素， $(‘#123 .test’)却会报错，$(‘#123’).find(‘.sddd’)可以正常获取到。<br>对于如下这种元素使用$(‘#1.2.3-标题’)也会报错<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;1.2.3-标题&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure><br>报错信息：  </p>
-<blockquote>
-<p><em>VM238:1 Uncaught DOMException: Failed to execute ‘querySelectorAll’ on ‘Document’: ‘#123’ is not a valid selector</em>.</p>
-</blockquote>
 
         
     </section>
@@ -169,7 +177,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2018/09/11/CSS%E6%88%AA%E6%96%AD%E6%A0%B7%E5%BC%8F/">css截断样式</a>
+            <a href="/blog/2019/08/05/MongoDB-cheatsheet/">MongoDB cheatsheet</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -177,13 +185,13 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2018-09-11T11:46:53.000Z" itemprop="datePublished">2018-09-11</time>
+    <time datetime="2019-08-05T06:04:31.000Z" itemprop="datePublished">2019-08-05</time>
 </span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+    <a class="article-tag-link" href="/blog/tags/MongoDB/" rel="tag">MongoDB</a>, <a class="article-tag-link" href="/blog/tags/database/" rel="tag">database</a>
 </div>
 
 
@@ -192,56 +200,15 @@
     
     <section class="article-body markdown-body">
         
-        <p>有时，我们需要对某段文字进行截断处理，多余的字符显示…  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;words&quot;</span>&gt;</span>For a long time it seemed to me that life was about to begin , real life. But, there was always some obsacle in the way, something to be gotten through first, some unfinnished business, time still to be served or a debt to be paid. Then life would begin.<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="单行"><a href="#单行" class="headerlink" title="单行"></a>单行</h2><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.words</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;  <span class="comment">/*超过部分不显示*/</span></span><br><span class="line">    <span class="attribute">text-overflow</span>: ellipsis;  <span class="comment">/*超过部分用点点表示*/</span></span><br><span class="line">    <span class="attribute">white-space</span>: nowrap; <span class="comment">/*不换行*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p><div class="words1">For a long time it seemed to me that life was about to begin , real life. But, there was always some obsacle in the way, something to be gotten through first, some unfinnished business, time still to be served or a debt to be paid. Then life would begin.</div></p>
-<style type="text/css">
-.words1 {
-    width: 400px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-</style>
-
-
-<h2 id="多行"><a href="#多行" class="headerlink" title="多行"></a>多行</h2><h3 id="webkit-代码"><a href="#webkit-代码" class="headerlink" title="-webkit 代码"></a>-webkit 代码</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webkit</span></span><br><span class="line"><span class="selector-class">.words</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">    <span class="attribute">overflow </span>: hidden;</span><br><span class="line">    <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">    <span class="attribute">display</span>: -webkit-box;</span><br><span class="line">    -webkit-line-clamp: 2; <span class="comment">/*规定超过两行的部分截断*/</span></span><br><span class="line">    -webkit-box-orient: vertical;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="webkit-效果"><a href="#webkit-效果" class="headerlink" title="-webkit 效果"></a>-webkit 效果</h3><p><div class="words2">For a long time it seemed to me that life was about to begin , real life. But, there was always some obsacle in the way, something to be gotten through first, some unfinnished business, time still to be served or a debt to be paid. Then life would begin.</div></p>
-<style type="text/css">
-.words2 {
-    width: 400px;
-    overflow : hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-}
-</style>
-
-<h3 id="兼容代码"><a href="#兼容代码" class="headerlink" title="兼容代码"></a>兼容代码</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 兼容其它内核 <span class="attribute">padding</span>需要根据实际情况计算</span><br><span class="line"><span class="selector-class">.words</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">1.4em</span>;</span><br><span class="line">    <span class="comment">/* 高度=2倍的行高 */</span></span><br><span class="line">    <span class="attribute">height</span>: <span class="number">2.8em</span>;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.words</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">&quot;...&quot;</span>;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">35px</span> <span class="number">1px</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="兼容代码效果"><a href="#兼容代码效果" class="headerlink" title="兼容代码效果"></a>兼容代码效果</h3><p><div class="words3">For a long time it seemed to me that life was about to begin , real life. But, there was always some obsacle in the way, something to be gotten through first, some unfinnished business, time still to be served or a debt to be paid. Then life would begin.</div></p>
-<style type="text/css">
-.words3 {
-    width: 400px;
-    position: relative;
-    line-height: 1.4em;
-    height: 2.8em;
-    overflow: hidden;
-}
-.words3::after {
-    content: "...";
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    padding: 0 35px 1px 0;
-}
-</style>
-
-
-
-<h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><p>也有一些通过js实现的截断插件，例如 <a target="_blank" rel="noopener" href="https://github.com/FrDH/jQuery.dotdotdot">jQuery.dotdotdot</a>，<a target="_blank" rel="noopener" href="https://github.com/josephschmitt/Clamp.js">Clamp.js</a></p>
-
+        https://docs.mongodb.com/
+        
+        <p class="article-more-link">
+            <a href="/blog/2019/08/05/MongoDB-cheatsheet/#more">
+                <span class="vm">阅读更多</span>
+                <i class="icon-arrow-double-right vm"></i>    
+            </a>
+        </p>
+        
         
     </section>
     
@@ -260,7 +227,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2018/09/10/CSRF%E6%94%BB%E5%87%BB/">CSRF攻击</a>
+            <a href="/blog/2019/06/19/TIPS-little-tips/">little tips</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -268,13 +235,13 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2018-09-10T11:18:43.000Z" itemprop="datePublished">2018-09-10</time>
+    <time datetime="2019-06-19T08:08:39.000Z" itemprop="datePublished">2019-06-19</time>
 </span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/csrf/" rel="tag">csrf</a>, <a class="article-tag-link" href="/blog/tags/security/" rel="tag">security</a>
+    <a class="article-tag-link" href="/blog/tags/learn/" rel="tag">learn</a>
 </div>
 
 
@@ -283,98 +250,67 @@
     
     <section class="article-body markdown-body">
         
-        <p>CSRF（Cross-site request forgery）跨站请求伪造，也被称为“One Click Attack”或者Session Riding，通常缩写为CSRF或者XSRF，是一种通过伪造用户请求破坏网站的攻击方式。  </p>
-<h2 id="CSRF攻击原理"><a href="#CSRF攻击原理" class="headerlink" title="CSRF攻击原理"></a>CSRF攻击原理</h2><p>当你访问 xxx.com 黑客页面的时候，页面上放了一个按钮或者一个表单，URL/action 为 <a href="">http://you.com/delete-myself</a> ,<br>这样引导或迫使甚至伪造用户触发按钮或表单。在浏览器发出 GET 或 POST 请求的时候，它会带上 you.com 的 cookie，如果网站 you.com 没有做 CSRF 防御措施，那么这次请求在 you.com 看来会是完全合法的，这样就会对 you.com 的数据产生破坏。</p>
-<h2 id="CSRF防范"><a href="#CSRF防范" class="headerlink" title="CSRF防范"></a>CSRF防范</h2><p>对于用户：<br>通过在浏览其它站点前登出站点或者在浏览器会话结束后清理浏览器的cookie。</p>
-<p>对于网站拥有者：  </p>
-<h3 id="验证-HTTP-Referer-字段"><a href="#验证-HTTP-Referer-字段" class="headerlink" title="验证 HTTP Referer 字段"></a>验证 HTTP Referer 字段</h3><p>根据 HTTP 协议，在 HTTP 头中有一个字段叫 Referer，它记录了该 HTTP 请求的来源地址。在通常情况下，访问一个安全受限页面的请求来自于同一个网站，比如需要访问 <a href="">http://bank.example/withdraw?account=bob&amp;amount=1000000&amp;for=Mallory</a> ，用户必须先登陆 bank.example，然后通过点击页面上的按钮来触发转账事件。这时，该转帐请求的 Referer 值就会是转账按钮所在的页面的 URL，通常是以 bank.example 域名开头的地址。而如果黑客要对银行网站实施 CSRF 攻击，他只能在他自己的网站构造请求，当用户通过黑客的网站发送请求到银行时，该请求的 Referer 是指向黑客自己的网站。因此，要防御 CSRF 攻击，银行网站只需要对于每一个转账请求验证其 Referer 值，如果是以 bank.example 开头的域名，则说明该请求是来自银行网站自己的请求，是合法的。如果 Referer 是其他网站的话，则有可能是黑客的 CSRF 攻击，拒绝该请求。  </p>
-<p>这种方法的显而易见的好处就是简单易行，网站的普通开发人员不需要操心 CSRF 的漏洞，只需要在最后给所有安全敏感的请求统一增加一个拦截器来检查 Referer 的值就可以。特别是对于当前现有的系统，不需要改变当前系统的任何已有代码和逻辑，没有风险，非常便捷。  </p>
-<p>然而，这种方法并非万无一失。Referer 的值是由浏览器提供的，虽然 HTTP 协议上有明确的要求，但是每个浏览器对于 Referer 的具体实现可能有差别，并不能保证浏览器自身没有安全漏洞。使用验证 Referer 值的方法，就是把安全性都依赖于第三方（即浏览器）来保障，从理论上来讲，这样并不安全。事实上，对于某些浏览器，比如 IE6 或 FF2，目前已经有一些方法可以篡改 Referer 值。如果 bank.example 网站支持 IE6 浏览器，黑客完全可以把用户浏览器的 Referer 值设为以 bank.example 域名开头的地址，这样就可以通过验证，从而进行 CSRF 攻击。  </p>
-<p>即便是使用最新的浏览器，黑客无法篡改 Referer 值，这种方法仍然有问题。因为 Referer 值会记录下用户的访问来源，有些用户认为这样会侵犯到他们自己的隐私权，特别是有些组织担心 Referer 值会把组织内网中的某些信息泄露到外网中。因此，用户自己可以设置浏览器使其在发送请求时不再提供 Referer。当他们正常访问银行网站时，网站会因为请求没有 Referer 值而认为是 CSRF 攻击，拒绝合法用户的访问。  </p>
-<h3 id="在请求地址中添加-token-并验证"><a href="#在请求地址中添加-token-并验证" class="headerlink" title="在请求地址中添加 token 并验证"></a>在请求地址中添加 token 并验证</h3><p>CSRF 攻击之所以能够成功，是因为黑客可以完全伪造用户的请求，该请求中所有的用户验证信息都是存在于 cookie 中，因此黑客可以在不知道这些验证信息的情况下直接利用用户自己的 cookie 来通过安全验证。要抵御 CSRF，关键在于在请求中放入黑客所不能伪造的信息，并且该信息不存在于 cookie 之中。可以在 HTTP 请求中以参数的形式加入一个随机产生的 token，并在服务器端建立一个拦截器来验证这个 token，如果请求中没有 token 或者 token 内容不正确，则认为可能是 CSRF 攻击而拒绝该请求。  </p>
-<p>这种方法要比检查 Referer 要安全一些，token 可以在用户登陆后产生并放于 session 之中，然后在每次请求时把 token 从 session 中拿出，与请求中的 token 进行比对，但这种方法的难点在于如何把 token 以参数的形式加入请求。对于 GET 请求，token 将附在请求地址之后，这样 URL 就变成 <a href="">http://url?csrftoken=tokenvalue</a> 。 而对于 POST 请求来说，要在 form 的最后加上 <code>&lt;input type=”hidden” name=”csrftoken” value=”tokenvalue”/&gt;</code>，这样就把 token 以参数的形式加入请求了。但是，在一个网站中，可以接受请求的地方非常多，要对于每一个请求都加上 token 是很麻烦的，并且很容易漏掉，通常使用的方法就是在每次页面加载时，使用 javascript 遍历整个 dom 树，对于 dom 中所有的 a 和 form 标签后加入 token。这样可以解决大部分的请求，但是对于在页面加载之后动态生成的 html 代码，这种方法就没有作用，还需要程序员在编码时手动添加 token。  </p>
-<p>该方法还有一个缺点是难以保证 token 本身的安全。特别是在一些论坛之类支持用户自己发表内容的网站，黑客可以在上面发布自己个人网站的地址。由于系统也会在这个地址后面加上 token，黑客可以在自己的网站上得到这个 token，并马上就可以发动 CSRF 攻击。为了避免这一点，系统可以在添加 token 的时候增加一个判断，如果这个链接是链到自己本站的，就在后面添加 token，如果是通向外网则不加。不过，即使这个 csrftoken 不以参数的形式附加在请求之中，黑客的网站也同样可以通过 Referer 来得到这个 token 值以发动 CSRF 攻击。这也是一些用户喜欢手动关闭浏览器 Referer 功能的原因。  </p>
-<h3 id="在-HTTP-头中自定义属性并验证"><a href="#在-HTTP-头中自定义属性并验证" class="headerlink" title="在 HTTP 头中自定义属性并验证"></a>在 HTTP 头中自定义属性并验证</h3><p>这种方法也是使用 token 并进行验证，和上一种方法不同的是，这里并不是把 token 以参数的形式置于 HTTP 请求之中，而是把它放到 HTTP 头中自定义的属性里。通过 XMLHttpRequest 这个类，可以一次性给所有该类请求加上 csrftoken 这个 HTTP 头属性，并把 token 值放入其中。这样解决了上种方法在请求中加入 token 的不便，同时，通过 XMLHttpRequest 请求的地址不会被记录到浏览器的地址栏，也不用担心 token 会透过 Referer 泄露到其他网站中去。  </p>
-<p>然而这种方法的局限性非常大。XMLHttpRequest 请求通常用于 Ajax 方法中对于页面局部的异步刷新，并非所有的请求都适合用这个类来发起，而且通过该类请求得到的页面不能被浏览器所记录下，从而进行前进，后退，刷新，收藏等操作，给用户带来不便。另外，对于没有进行 CSRF 防护的遗留系统来说，要采用这种方法来进行防护，要把所有请求都改为 XMLHttpRequest 请求，这样几乎是要重写整个网站，这代价无疑是不能接受的。  </p>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2018/09/09/xss%E6%94%BB%E5%87%BB/">XSS攻击</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-09-09T15:17:07.000Z" itemprop="datePublished">2018-09-09</time>
-</span>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/security/" rel="tag">security</a>, <a class="article-tag-link" href="/blog/tags/xss/" rel="tag">xss</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>XSS, 即为（Cross Site Scripting）, 中文名为跨站脚本, 是发生在目标用户的浏览器层面上的攻击方式，当渲染DOM树的过程成发生了不在预期内执行的JS代码时，就发生了XSS攻击。  </p>
-<h2 id="XSS攻击方式"><a href="#XSS攻击方式" class="headerlink" title="XSS攻击方式"></a>XSS攻击方式</h2><h3 id="反射型-XSS"><a href="#反射型-XSS" class="headerlink" title="反射型 XSS"></a>反射型 XSS</h3><p>反射型XSS，也叫非持久型XSS，是指发生请求时，XSS代码出现在请求URL中，作为参数提交到服务器，服务器解析并响应。响应结果中包含XSS代码，最后浏览器解析并执行。  </p>
-<p>从概念上可以看出，反射型XSS代码是首先出现在URL中的，然后需要服务端解析，最后需要浏览器解析之后XSS代码才能够攻击。  </p>
-<p>例如：<br>使用express起一个web服务器，然后设置一下请求接口。通过ajax的GET请求将参数发往服务器，服务器解析成json后响应。将返回的数据解析后显示到页面上。（没有对返回的数据进行解码和过滤等操作。）  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">&quot;txt&quot;</span> <span class="attr">id</span>=<span class="string">&quot;txt&quot;</span> <span class="attr">cols</span>=<span class="string">&quot;80&quot;</span> <span class="attr">rows</span>=<span class="string">&quot;10&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">id</span>=<span class="string">&quot;test&quot;</span>&gt;</span>测试<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//客户端代码</span></span><br><span class="line"><span class="keyword">var</span> test = <span class="built_in">document</span>.querySelector(<span class="string">&#x27;#test&#x27;</span>)</span><br><span class="line">test.addEventListener(<span class="string">&#x27;click&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> url = <span class="string">`/test?test=<span class="subst">$&#123;txt.value&#125;</span>`</span>   <span class="comment">// 1. 发送一个GET请求</span></span><br><span class="line">  <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line">  xhr.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (xhr.readyState === <span class="number">4</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> ((xhr.status &gt;= <span class="number">200</span> &amp;&amp; xhr.status &lt; <span class="number">300</span>) || xhr.status === <span class="number">304</span>) &#123;</span><br><span class="line">        <span class="comment">// 3. 客户端解析JSON，并执行</span></span><br><span class="line">        <span class="keyword">var</span> str = <span class="built_in">JSON</span>.parse(xhr.responseText).test</span><br><span class="line">        <span class="keyword">var</span> node = <span class="string">`<span class="subst">$&#123;str&#125;</span>`</span></span><br><span class="line">        <span class="built_in">document</span>.body.insertAdjacentHTML(<span class="string">&#x27;beforeend&#x27;</span>, node)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;error&#x27;</span>, xhr.responseText)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  xhr.open(<span class="string">&#x27;GET&#x27;</span>, url, <span class="literal">true</span>)</span><br><span class="line">  xhr.send(<span class="literal">null</span>)</span><br><span class="line">&#125;, <span class="literal">false</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//服务器代码</span></span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> router = express.Router();</span><br><span class="line"></span><br><span class="line">router.get(<span class="string">&#x27;/test&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line"> <span class="comment">// 2. 服务端解析成JSON后响应</span></span><br><span class="line">  res.json(&#123;</span><br><span class="line">    test: req.query.test</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>现在我们通过给textarea添加一段有攻击目的的img标签，<br><code>&lt;img src=&quot;null&quot; onerror=&#39;alert(document.cookie)&#39; /&gt;</code></p>
-<p>现在，我们点击&lt;测试&gt;按钮，一个XSS攻击就发生了。  </p>
-<p>实际上，我们只是模拟攻击，通过alert获取到了个人的cookie信息。但是如果是黑客的话，他们会注入一段第三方的js代码，然后将获取到的cookie信息存到他们的服务器上。这样的话黑客们就有机会拿到我们的身份认证做一些违法的事情了。  </p>
-<h3 id="存储型-XSS"><a href="#存储型-XSS" class="headerlink" title="存储型 XSS"></a>存储型 XSS</h3><p>存储型XSS，也叫持久型XSS，主要是将XSS代码发送到服务器（不管是数据库、内存还是文件系统等。），然后在下次请求页面的时候就不用带上XSS代码了。<br>最典型的就是留言板XSS。用户提交了一条包含XSS代码的留言到数据库。当目标用户查询留言时，那些留言的内容会从服务器解析之后加载出来。浏览器发现有XSS代码，就当做正常的HTML和JS解析执行。XSS攻击就发生了。  </p>
-<h3 id="DOM-XSS"><a href="#DOM-XSS" class="headerlink" title="DOM XSS"></a>DOM XSS</h3><p>DOM XSS攻击不同于反射型XSS和存储型XSS，DOM XSS代码不需要服务器端的解析响应的直接参与，而是通过浏览器端的DOM解析。这完全是客户端的事情。</p>
-<p>DOM XSS代码的攻击发生的可能在于我们编写JS代码造成的。我们知道eval语句有一个作用是将一段字符串转换为真正的JS语句，因此在JS中使用eval是很危险的事情，容易造成XSS攻击。避免使用eval语句。</p>
-<p>例如：  </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">test.addEventListener(<span class="string">&#x27;click&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> node = <span class="built_in">window</span>.eval(txt.value)</span><br><span class="line">  <span class="built_in">window</span>.alert(node)</span><br><span class="line">&#125;, <span class="literal">false</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// txt中的代码如下</span></span><br><span class="line">&lt;img src=<span class="string">&#x27;null&#x27;</span> onerror=<span class="string">&#x27;alert(123)&#x27;</span> /&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="XSS危害"><a href="#XSS危害" class="headerlink" title="XSS危害"></a>XSS危害</h2><ol>
-<li>通过document.cookie盗取cookie</li>
-<li>使用Js或CSS破坏页面正常的结构与样式</li>
-<li>流量劫持（通过访问某段具有window.location.href定位到其他页面）</li>
-<li>Dos攻击：利用合理的客户端请求来占用过多的服务器资源，从而使合法用户无法得到服务器响应。</li>
-<li>利用iframe、frame、XMLHttpRequest或上述Flash等方式，以（被攻击）用户的身份执行一些管理动作，或执行一些一般的如发微博、加好友、发私信等操作。</li>
-<li>利用可被攻击的域受到其他域信任的特点，以受信任来源的身份请求一些平时不允许的操作，如进行不当的投票活动。</li>
+        <h2 id="在eclipse中设置字体"><a href="#在eclipse中设置字体" class="headerlink" title="在eclipse中设置字体"></a>在eclipse中设置字体</h2><p>在eclipse中设置 Windows-&gt;Preferences-&gt;General-&gt;Appearance-&gt;Color and Fonts-&gt;Basic-&gt;Text Font-&gt;Edit-&gt;脚本(R) 选择 <code>中欧字符</code> 后中文字体的显示能够更好看些。  </p>
+<h2 id="处理-nginx-php-遇到后端返回413错误"><a href="#处理-nginx-php-遇到后端返回413错误" class="headerlink" title="处理 nginx + php 遇到后端返回413错误"></a>处理 nginx + php 遇到后端返回413错误</h2><p>php 默认上传文件大小限制为 2M，如果超出 2M 你需要修改 php 配置文件 php.ini 里面的参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">post_max_size &#x3D; 128M ## （表单提交的最大限制，此项不是限制上传单个文件的大小，而是针对整个表单提交的数据进行限制）</span><br><span class="line">upload_max_filesize &#x3D; 128M ## （上传的单个文件的最大限制）</span><br></pre></td></tr></table></figure>
+<p>需要保证 post_max_size &gt;= upload_max_filesize ，也就是前者不小于后者。修改之后一定要重启 php-fpm (service php-fpm restart)。</p>
+<p>除了修改 php 配置，你也需要修改nginx配置文件 nginx.conf<br>打开 nginx 配置文件 nginx.conf，找到 http{} 段，在其中添加一行配置：<br>client_max_body_size 128m; 其中 128m 可以根据需要上传文件大小自行设定。<br>修改之后一定要重新载入 nginx （service nginx reload）。</p>
+<h2 id="导入-导出-csv文件到mysql"><a href="#导入-导出-csv文件到mysql" class="headerlink" title="导入/导出 csv文件到mysql"></a>导入/导出 csv文件到mysql</h2><h3 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h3><p>需要表存在且字段与csv文件中的相同</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">LOAD DATA <span class="keyword">LOCAL</span> INFILE <span class="string">&#x27;$&#123;csv文件路径&#125;&#x27;</span></span><br><span class="line">INTO TABLE $&#123;数据库表名&#125;</span><br><span class="line"><span class="type">CHARACTER</span> <span class="keyword">SET</span>  utf8</span><br><span class="line">FIELDS</span><br><span class="line">    TERMINATED <span class="keyword">BY</span> <span class="string">&#x27;,&#x27;</span></span><br><span class="line">    ENCLOSED <span class="keyword">BY</span> <span class="string">&#x27;&quot;&#x27;</span></span><br><span class="line">LINES</span><br><span class="line">    TERMINATED <span class="keyword">BY</span> <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">IGNORE <span class="number">1</span> <span class="keyword">ROWS</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">LOCK TABLES $&#123;数据库表名&#125; read;</span><br><span class="line">SELECT * FROM $&#123;数据库表名&#125; INTO OUTFILE &#x27;$&#123;csv文件路径&#125;&#x27; </span><br><span class="line">FIELDS</span><br><span class="line">    TERMINATED <span class="keyword">BY</span> <span class="string">&#x27;,&#x27;</span></span><br><span class="line">    OPTIONALLY ENCLOSED <span class="keyword">BY</span> <span class="string">&#x27;&quot;&#x27;</span></span><br><span class="line">LINES</span><br><span class="line">    TERMINATED <span class="keyword">BY</span> <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">UNLOCK TABLES;</span><br></pre></td></tr></table></figure>
+<h2 id="导出csv文件到mysql报错"><a href="#导出csv文件到mysql报错" class="headerlink" title="导出csv文件到mysql报错"></a>导出csv文件到mysql报错</h2><h3 id="Error-1148"><a href="#Error-1148" class="headerlink" title="Error 1148"></a>Error 1148</h3><p>如果在执行语句时报错 <code>Error 1148 MySQL The used command is not allowed with this MySQL version</code> 可能是因为MySQL的安全策略阻止读取本地文件，可以通过以下方法解决：</p>
+<ol>
+<li>Use –local-infile=1 argument on the mysql commandline:</li>
 </ol>
-<h2 id="XSS防御"><a href="#XSS防御" class="headerlink" title="XSS防御"></a>XSS防御</h2><p>从以上的反射型和DOM XSS攻击可以看出，我们不能原样的将用户输入的数据直接存到服务器，需要对数据进行一些处理。以上的代码出现的一些问题如下</p>
-<ul>
-<li>没有过滤危险的DOM节点。如具有执行脚本能力的script, 具有显示广告和色情图片的img, 具有改变样式的link, style, 具有内嵌页面的iframe, frame等元素节点。</li>
-<li>没有过滤危险的属性节点。如事件, style, src, href等</li>
-<li>没有对cookie设置httpOnly。</li>
-</ul>
-<p>如果将以上三点都在渲染过程中过滤，那么出现的XSS攻击的概率也就小很多。  </p>
-<p>解决方法如下:  </p>
-<h3 id="对cookie的保护"><a href="#对cookie的保护" class="headerlink" title="对cookie的保护"></a>对cookie的保护</h3><p>对重要的cookie设置httpOnly, 防止客户端通过document.cookie读取cookie。服务端可以设置此字段。</p>
-<h3 id="对用户输入数据的处理"><a href="#对用户输入数据的处理" class="headerlink" title="对用户输入数据的处理"></a>对用户输入数据的处理</h3><ul>
-<li>编码：不能对用户输入的内容都保持原样，对用户输入的数据进行字符实体编码。对于字符实体的概念可以参考文章底部给出的参考链接。</li>
-<li>解码：原样显示内容的时候必须解码，不然显示不到内容了。</li>
-<li>过滤：把输入的一些不合法的东西都过滤掉，从而保证安全性。如移除用户上传的DOM属性，如onerror，移除用户上传的Style节点，iframe, script节点等。</li>
-</ul>
+<p>When you start MySQL on the terminal, include –local-infile=1 argument, Something like this:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql <span class="comment">--local-infile=1 -uroot -p</span></span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span>LOAD DATA <span class="keyword">LOCAL</span> INFILE <span class="string">&#x27;/tmp/foo.txt&#x27;</span> <span class="keyword">INTO</span> <span class="keyword">TABLE</span> foo </span><br><span class="line">COLUMNS TERMINATED <span class="keyword">BY</span> <span class="string">&#x27;\t&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>Then the command is permitted:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Query OK, <span class="number">3</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br><span class="line">Records: <span class="number">3</span>  Deleted: <span class="number">0</span>  Skipped: <span class="number">0</span>  Warnings: <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>Or send the parameter into the mysql daemon:</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld --local-infile&#x3D;1</span><br></pre></td></tr></table></figure>
+<ol>
+<li>Or set it in the my.cnf file (This is a security risk):</li>
+</ol>
+<p>Find your mysql my.cnf file and edit it as root.</p>
+<p>Add the local-infile line under the mysqld and mysql designators:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">local-infile </span><br><span class="line"></span><br><span class="line">[mysql]</span><br><span class="line">local-infile </span><br></pre></td></tr></table></figure>
+<p>Save the file, restart mysql. Try it again.</p>
+<ol>
+<li>The main reason why we are using the LOCAL keyword is explained in the MySQL manual. On the other hand, you do not need the FILE privilege to load local files. So if you in fact do have file access to the server then try to skip using the word “LOCAL” in SQL query, and instead copy the file to the server and the directory mysql/data/[tablename].</li>
+</ol>
+<h3 id="Error-1290"><a href="#Error-1290" class="headerlink" title="Error 1290"></a>Error 1290</h3><p>如果在执行语句时报错 <code>[Error Code] 1290 - The MySQL server is running with the --secure-file-priv option</code> 说明参数secure-file-priv 可能有问题</p>
+<p>执行以下语句<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> VARIABLES <span class="keyword">LIKE</span> &quot;secure_file_priv&quot;;</span><br></pre></td></tr></table></figure><br>可以看到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">　　secure_file_prive&#x3D;null   -- 限制mysqld 不允许导入导出</span><br><span class="line">　　secure_file_priv&#x3D;&#x2F;tmp&#x2F;   -- 限制mysqld的导入导出只能发生在&#x2F;tmp&#x2F;目录下</span><br><span class="line">　　secure_file_priv&#x3D;&#39;&#39;     -- 不对mysqld 的导入&#x2F;导出做限制</span><br></pre></td></tr></table></figure>
+<p>可以在 my.ini（windows） 或 /etc/my.cnf(linux) 文件中的[mysqld]节点添加secure_file_priv=’’，然后重启mysql服务</p>
+<h2 id="启动mysql报错error-11"><a href="#启动mysql报错error-11" class="headerlink" title="启动mysql报错error: 11"></a>启动mysql报错error: 11</h2><p>如果在启动mysql时遇到了 <code>[ERROR] InnoDB: Unable to lock ./ibdata1, error: 11</code><br>说明 ibdata1 文件被其他的进程占用 或者 磁盘空间目录不足，有以下解决方案：</p>
+<ol>
+<li>查看磁盘空间情况</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br></pre></td></tr></table></figure>
+<ol>
+<li>查看系统 mysql 相关进程</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -eaf | grep mysql</span><br><span class="line">kill -9 78806</span><br></pre></td></tr></table></figure>
+<p>如果语句执行正常但是返回 <code>0 row(s) affected</code> ，查看一下csv中的字段是否是否与表中的字段一致，区分大小写；查看一下csv文件的分隔符的设置是否正确。</p>
+<h2 id="处理-mongoose-中-bson-MODULE-NOT-FOUND-相关报错"><a href="#处理-mongoose-中-bson-MODULE-NOT-FOUND-相关报错" class="headerlink" title="处理 mongoose 中 bson MODULE_NOT_FOUND 相关报错"></a>处理 mongoose 中 bson MODULE_NOT_FOUND 相关报错</h2><p>node.js 在使用 mongoose时报错 <code>[Error: Cannot find module &#39;../build/Release/bson&#39;] code: &#39;MODULE_NOT_FOUND&#39;</code>  </p>
+<p>参见 <a target="_blank" rel="noopener" href="https://github.com/Automattic/mongoose/issues/3436">https://github.com/Automattic/mongoose/issues/3436</a> </p>
+<p>应该是mongoose版本问题，理论上升级到最新版本可以解决，也可以按照以下步骤解决  </p>
+<ol>
+<li>更改 bson 引用<br>找到 module mongodb ..node_modules\mongodb\node_modules\bson\ext\index.js<br>改变bson引用的路径<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bson = <span class="built_in">require</span>(<span class="string">&#x27;../build/Release/bson&#x27;</span>);</span><br></pre></td></tr></table></figure>
+改为<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bson = <span class="built_in">require</span>(<span class="string">&#x27;../browser_build/bson&#x27;</span>);</span><br></pre></td></tr></table></figure>
+或<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bson &#x3D; require(&#39;bson&#39;);</span><br></pre></td></tr></table></figure></li>
+<li>更改mongoose版本<br>将原有的mongoose升级为 <code>&quot;mongoose &quot;: &quot;~3.8.23&quot;</code>  </li>
+</ol>
+<h2 id="Python-报错-‘ascii’-codec-can’t-encode-characters-in-position-0-8：ordinal-not-in-range-128"><a href="#Python-报错-‘ascii’-codec-can’t-encode-characters-in-position-0-8：ordinal-not-in-range-128" class="headerlink" title="Python 报错 ‘ascii’ codec can’t encode characters in position 0-8：ordinal not in range(128)"></a>Python 报错 ‘ascii’ codec can’t encode characters in position 0-8：ordinal not in range(128)</h2><ol>
+<li>第一步，别忘了给文件顶部加上  </li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>重新载入SYS模块并设置uft-8  </li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">reload(sys)</span><br><span class="line">sys.setdefaultencoding(<span class="string">&#x27;utf-8&#x27;</span>)</span><br></pre></td></tr></table></figure>
 
         
     </section>
@@ -394,7 +330,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2018/09/07/%E9%A1%B5%E9%9D%A2%E7%A6%81%E6%AD%A2%E9%80%89%E4%B8%AD%E5%A4%8D%E5%88%B6/">页面禁止选中复制</a>
+            <a href="/blog/2019/05/06/Redis-%E6%94%AF%E6%8C%81%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">redis支持的数据类型</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -402,13 +338,13 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2018-09-07T15:12:46.000Z" itemprop="datePublished">2018-09-07</time>
+    <time datetime="2019-05-06T08:16:10.000Z" itemprop="datePublished">2019-05-06</time>
 </span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+    <a class="article-tag-link" href="/blog/tags/database/" rel="tag">database</a>, <a class="article-tag-link" href="/blog/tags/redis/" rel="tag">redis</a>
 </div>
 
 
@@ -417,12 +353,105 @@
     
     <section class="article-body markdown-body">
         
-        <p>有时，为了防止用户随意的获取页面内的内容，我们需要禁止用户选中和拷贝，下面介绍两种禁止的方法  </p>
-<h2 id="javascript"><a href="#javascript" class="headerlink" title="javascript"></a>javascript</h2><p>可以在需要禁止的元素内监听选中和拷贝的事件，当用户如此操作时予以禁止。  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 禁止右键菜单</span></span><br><span class="line"><span class="built_in">document</span>.oncontextmenu = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;;</span><br><span class="line"><span class="comment">// 禁止文字选择</span></span><br><span class="line"><span class="built_in">document</span>.onselectstart = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;;</span><br><span class="line"><span class="comment">// 禁止复制</span></span><br><span class="line"><span class="built_in">document</span>.oncopy = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;;</span><br><span class="line"><span class="comment">// 禁止剪切</span></span><br><span class="line"><span class="built_in">document</span>.oncut = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;;</span><br><span class="line"><span class="comment">// 禁止粘贴</span></span><br><span class="line"><span class="built_in">document</span>.onpaste = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;;</span><br><span class="line"><span class="comment">// 禁止打印</span></span><br><span class="line"><span class="built_in">document</span>.onbeforeprint = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="css"><a href="#css" class="headerlink" title="css"></a>css</h2><p>在支持use-select属性的浏览器中，设置user-select: none来禁止选中行为。<br>Opera12.5中支持私有的标签属性 unselectable=”on”来实现相同的行为  </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">* &#123; </span><br><span class="line">    -webkit-user-select: none;</span><br><span class="line">       -moz-user-select: none;</span><br><span class="line">        -ms-user-select: none;</span><br><span class="line">            user-select: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="如何破解"><a href="#如何破解" class="headerlink" title="如何破解"></a>如何破解</h2><p>如上所述，如果想要可以选中复制，可以在开发者工具F12中勾选<code>禁止Javascript</code> 并将想要复制的内容的<code>element.style</code><br>改为<code>user-select:none</code>即可。当然，其实什么样的内容都可以在开发者工具的Element中复制得到。</p>
+        <p>以下列举 <a target="_blank" rel="noopener" href="https://redis.io/topics/data-types-intro">redis支持的数据类型</a> （截止2019-05-06 redis最新为5.0.4版本）  </p>
+<h2 id="二进制安全的字符串（Binary-safe-strings）"><a href="#二进制安全的字符串（Binary-safe-strings）" class="headerlink" title="二进制安全的字符串（Binary-safe strings）"></a>二进制安全的字符串（Binary-safe strings）</h2><p>如字面意思。</p>
+<h2 id="列表（Lists）"><a href="#列表（Lists）" class="headerlink" title="列表（Lists）"></a>列表（Lists）</h2><p>按照插入顺序排序的字符串元素的集合。基本上就是是链表（linked lists）。</p>
+<h2 id="集合（Sets）"><a href="#集合（Sets）" class="headerlink" title="集合（Sets）"></a>集合（Sets）</h2><p>不重复且无序的的字符串元素集合。</p>
+<h2 id="有序集合（Sorted-sets）"><a href="#有序集合（Sorted-sets）" class="headerlink" title="有序集合（Sorted sets）"></a>有序集合（Sorted sets）</h2><p>和集合（Sets）类似但是每个字符串元素都和一个浮动的被称为评分（score）的数字值相关联。 元素值总是根据评分的值来排序,所以不像集合（Sets）那样，有序集合可以检索到一系列的数据。（例如你可以请求：给我前十个或者最后十个元素）。</p>
+<h2 id="散列（Hashes）"><a href="#散列（Hashes）" class="headerlink" title="散列（Hashes）"></a>散列（Hashes）</h2><p>由字段(field)和与之关联的值(value)组成的映射。字段(field)与值(value)都是字符串。与Ruby或Python的hashes相似。</p>
+<h2 id="位数组（Bit-arrays）（bitmaps）"><a href="#位数组（Bit-arrays）（bitmaps）" class="headerlink" title="位数组（Bit arrays）（bitmaps）"></a>位数组（Bit arrays）（bitmaps）</h2><p>可以使用特殊命令行来像一个由位（bit）组成的数组(array)一样的控制字符串值：你可以设置并且清除个别的位(bit)，计算所有设置成1的位(bits)，找到第一个设置或未设置的位(bit)，诸如此类。</p>
+<h2 id="超对数日志（HyperLogLogs）"><a href="#超对数日志（HyperLogLogs）" class="headerlink" title="超对数日志（HyperLogLogs）"></a>超对数日志（HyperLogLogs）</h2><p>这是一个用来估算集合（set）基数(cardinality)的数据结构。</p>
+<h2 id="流（Streams）"><a href="#流（Streams）" class="headerlink" title="流（Streams）"></a>流（Streams）</h2><p>只追加提供抽象日志数据类型的类似映射项的集合。</p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2019/02/12/Vue-%E8%AF%BBVue%E6%BA%90%E7%A0%81%E6%89%80%E8%83%BD%E6%83%B3%E5%88%B0%E7%9A%84%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/">读Vue源码所能想到的面试问题</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-02-12T03:37:05.000Z" itemprop="datePublished">2019-02-12</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/Vue/" rel="tag">Vue</a>, <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="指令v-if-v-show有什么不同？"><a href="#指令v-if-v-show有什么不同？" class="headerlink" title="指令v-if v-show有什么不同？"></a>指令v-if v-show有什么不同？</h2><p>v-if 和 v-show都是Vue中的指令而且都可以用来控制模板的渲染。  </p>
+<p>v-if 是“真正”的条件渲染，因为它会确保在切换过程中条件块内的事件监听器和子组件适当地被销毁和重建。  </p>
+<p>v-if 也是惰性的：如果在初始渲染时条件为假，则什么也不做——直到条件第一次变为真时，才会开始渲染条件块。  </p>
+<p>相比之下，v-show 就简单得多——不管初始条件是什么，元素总是会被渲染，并且只是简单地基于 CSS( <code>display:none</code>) 进行切换。  </p>
+<p>一般来说，v-if 有更高的切换开销，而 v-show 有更高的初始渲染开销。因此，如果需要非常频繁地切换，则使用 v-show 较好；如果在运行时条件很少改变，则使用 v-if 较好。  </p>
+<h2 id="写出-normalizeProps-方法"><a href="#写出-normalizeProps-方法" class="headerlink" title="写出 normalizeProps 方法"></a>写出 normalizeProps 方法</h2><p>在 Vue 中，我们在使用 props 的时候有两种写法，一种是使用字符串数组  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ChildComponent = &#123;</span><br><span class="line">  props: [<span class="string">&#x27;some-data1&#x27;</span>， <span class="string">&#x27;someData2&#x27;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另外一种是使用对象语法  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ChildComponent = &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    some-data1: <span class="built_in">Number</span>,</span><br><span class="line">    someData2: &#123;</span><br><span class="line">      type: <span class="built_in">String</span>,</span><br><span class="line">      <span class="keyword">default</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>请写出规范化props的方法 <code>normalizeProps (options, vm)</code>，将两种形式规范成同一种形式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ChildComponent = &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    someData1: &#123;</span><br><span class="line">      type: <span class="built_in">Number</span></span><br><span class="line">    &#125;,</span><br><span class="line">    someData2: &#123;</span><br><span class="line">      type: <span class="built_in">String</span>,</span><br><span class="line">      <span class="keyword">default</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>答案：  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">camelize</span> (<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> str.replace(<span class="regexp">/-(\w)/g</span>, <span class="function">(<span class="params">_, c</span>) =&gt;</span> c ? c.toUpperCase() : <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPlainObject</span> (<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(obj) === <span class="string">&#x27;[object Object]&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">toRawType</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span>  <span class="built_in">Object</span>.prototype.toString.call(value).slice(<span class="number">8</span>, -<span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">normalizeProps</span> (<span class="params">options, vm</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> props = options.props</span><br><span class="line">  <span class="keyword">if</span> (!props) <span class="keyword">return</span></span><br><span class="line">  <span class="keyword">const</span> res = &#123;&#125;</span><br><span class="line">  <span class="keyword">let</span> i, val, name</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(props)) &#123;</span><br><span class="line">    i = props.length</span><br><span class="line">    <span class="keyword">while</span> (i--) &#123;</span><br><span class="line">      val = props[i]</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> val === <span class="string">&#x27;string&#x27;</span>) &#123;</span><br><span class="line">        name = camelize(val)</span><br><span class="line">        res[name] = &#123; <span class="attr">type</span>: <span class="literal">null</span> &#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (process.env.NODE_ENV !== <span class="string">&#x27;production&#x27;</span>) &#123;</span><br><span class="line">        warn(<span class="string">&#x27;props must be strings when using array syntax.&#x27;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (isPlainObject(props)) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> props) &#123;</span><br><span class="line">      val = props[key]</span><br><span class="line">      name = camelize(key)</span><br><span class="line">      res[name] = isPlainObject(val)</span><br><span class="line">        ? val</span><br><span class="line">        : &#123; <span class="attr">type</span>: val &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (process.env.NODE_ENV !== <span class="string">&#x27;production&#x27;</span>) &#123;</span><br><span class="line">    warn(</span><br><span class="line">      <span class="string">`Invalid value for option &quot;props&quot;: expected an Array or an Object, `</span> +</span><br><span class="line">      <span class="string">`but got <span class="subst">$&#123;toRawType(props)&#125;</span>.`</span>,</span><br><span class="line">      vm</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">  options.props = res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="为什么-data-需要写成一个函数？"><a href="#为什么-data-需要写成一个函数？" class="headerlink" title="为什么 data 需要写成一个函数？"></a>为什么 data 需要写成一个函数？</h2><p>通过函数返回数据对象，保证了每个组件实例都有一个唯一的数据副本，避免了组件间数据互相影响。  </p>
+<h2 id="为什么我们能够使用-props-初始化-data-中的数据"><a href="#为什么我们能够使用-props-初始化-data-中的数据" class="headerlink" title="为什么我们能够使用 props 初始化 data 中的数据"></a>为什么我们能够使用 props 初始化 data 中的数据</h2><p>因为 data 选项是在初始化的时候才求值的，而 props 的初始化先于 data 选项的初始化。  </p>
+<h2 id="生命周期钩子是否可以写成数组形式？如果可以那么将以什么顺序执行？如果不可以为什么不可以？"><a href="#生命周期钩子是否可以写成数组形式？如果可以那么将以什么顺序执行？如果不可以为什么不可以？" class="headerlink" title="生命周期钩子是否可以写成数组形式？如果可以那么将以什么顺序执行？如果不可以为什么不可以？"></a>生命周期钩子是否可以写成数组形式？如果可以那么将以什么顺序执行？如果不可以为什么不可以？</h2><p>可以，因为在合并生命周期钩子函数 <code>mergeHook</code> 中判断了子组件钩子函数为数组的情况。钩子函数将按顺序执行。  </p>
+<h2 id="vm-options-parent和-vm-parent-有什么不同？"><a href="#vm-options-parent和-vm-parent-有什么不同？" class="headerlink" title="vm.$options.parent和 vm.$parent 有什么不同？"></a>vm.$options.parent和 vm.$parent 有什么不同？</h2><p>vm.$options.parent 指的是当前实例 components 下注册的子组件的父实例<br>vm.$parent指的是当前实例的非抽象父实例  </p>
+<h2 id="vue源码中大量用到了-Object-create-null-，Object-create-null-和-new-Object-及对象直接量-有什么不同？"><a href="#vue源码中大量用到了-Object-create-null-，Object-create-null-和-new-Object-及对象直接量-有什么不同？" class="headerlink" title="vue源码中大量用到了 Object.create(null)，Object.create(null) 和 new Object() 及对象直接量{}有什么不同？"></a>vue源码中大量用到了 Object.create(null)，Object.create(null) 和 new Object() 及对象直接量{}有什么不同？</h2><p> <code>Object.create()</code> 方法的内部实现简单来说是这样的：  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params">o</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> t = <span class="keyword">typeof</span> o;</span><br><span class="line">    <span class="keyword">if</span> (t != <span class="string">&quot;object&quot;</span> &amp;&amp; t != <span class="string">&quot;function&quot;</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="built_in">TypeError</span>();</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">    f.prototype = o;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> f();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样一来Object.create(null)创建的新对象的原型对象就是null，也就是说它没有任何原型方法；<br>而直接使用{}创建新对象，其实是等同于new Object()，它是继承了Object的，是有原型方法的。  </p>
+<h2 id="Vue-是通过什么方法来实现数据响应系统的？"><a href="#Vue-是通过什么方法来实现数据响应系统的？" class="headerlink" title="Vue 是通过什么方法来实现数据响应系统的？"></a>Vue 是通过什么方法来实现数据响应系统的？</h2><p>Vue 数据响应系统的原理的核心是通过 Object.defineProperty 函数将数据对象的属性转换为访问器(getter/setter)属性，从而使得我们能够拦截到属性的读取和设置。  </p>
+<h2 id="哪些数据变化情况无法被-Vue-的响应式系统观测到，应该如何处理？"><a href="#哪些数据变化情况无法被-Vue-的响应式系统观测到，应该如何处理？" class="headerlink" title="哪些数据变化情况无法被 Vue 的响应式系统观测到，应该如何处理？"></a>哪些数据变化情况无法被 Vue 的响应式系统观测到，应该如何处理？</h2><ol>
+<li>Vue 不能检测到以下变动的对象<ol>
+<li>当你添加或删除对象的属性时，例如：</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    a: <span class="number">1</span>,</span><br><span class="line">    items: [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>. <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// `vm.a` 现在是响应式的</span></span><br><span class="line"></span><br><span class="line">vm.b = <span class="number">2</span></span><br><span class="line"><span class="comment">// `vm.b` 不是响应式的</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>Vue 不能检测到以下变动的数组<ol>
+<li>当你利用索引直接设置一个项时，例如：<code>vm.items[indexOfItem] = newValue</code></li>
+<li>当你修改数组的长度时，例如：<code>vm.items.length = newLength</code></li>
+</ol>
+</li>
+</ol>
+<p>可以使用全局方法 <code>Vue.set(target, key, value)</code> 方法向嵌套对象添加响应式属性/直接设置一个数组的值，或者使用实例方法 <code>vm.$set(target, key, value)</code>。  </p>
+<p>可以使用全局方法 <code>Vue.delete(target, key)</code> 方法向嵌套对象删除响应式属性/删除数组元素，或者使用实例方法 <code>vm.$delete(target, key)</code>。  </p>
+<p>修改数组的长度可以通过 <code>vm.items.splice(newLength)</code> 实现。  </p>
+<p>注意 <code>Vue.set(target, key, value)</code> 或  <code>Vue.delete(target, key)</code> 并不能为根数据对象添加/删除属性也不能为 Vue 实例添加/删除属性。  </p>
+<h2 id="vue不同组件之间如何通信"><a href="#vue不同组件之间如何通信" class="headerlink" title="vue不同组件之间如何通信?"></a>vue不同组件之间如何通信?</h2><p>可以通过使用一个空的Vue实例作为中间事件栈，然后使用 <code>$emit</code> <code>$on</code> 传递数据。  </p>
+<h2 id="vue3-和-vue2-相比有什么不同？"><a href="#vue3-和-vue2-相比有什么不同？" class="headerlink" title="vue3 和 vue2 相比有什么不同？"></a>vue3 和 vue2 相比有什么不同？</h2><ol>
+<li><p>Object.defineProperty -&gt; Proxy 使用 Proxy 替代 Object.defineProperty 来实现对数据的监听</p>
+</li>
+<li><p>Virtual Dom 重构</p>
+</li>
+<li><p>编译时优化</p>
+</li>
+</ol>
 
         
     </section>
@@ -440,7 +469,7 @@
 
 
 <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/blog/page/8/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/7/">7</a><a class="page-number" href="/blog/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/blog/page/10/">10</a><a class="page-number" href="/blog/page/11/">11</a><a class="page-number" href="/blog/page/12/">12</a><a class="extend next" rel="next" href="/blog/page/10/">Next &gt;&gt;</a>
+    <a class="extend prev" rel="prev" href="/blog/page/8/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/7/">7</a><a class="page-number" href="/blog/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/blog/page/10/">10</a><a class="page-number" href="/blog/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/17/">17</a><a class="extend next" rel="next" href="/blog/page/10/">Next &gt;&gt;</a>
 </nav>
 
 

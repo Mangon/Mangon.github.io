@@ -108,7 +108,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2019/02/12/%E8%AF%BBVue%E6%BA%90%E7%A0%81%E6%89%80%E8%83%BD%E6%83%B3%E5%88%B0%E7%9A%84%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/">读Vue源码所能想到的面试问题</a>
+            <a href="/blog/2019/02/12/Vue-%E8%AF%BBVue%E6%BA%90%E7%A0%81%E6%89%80%E8%83%BD%E6%83%B3%E5%88%B0%E7%9A%84%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/">读Vue源码所能想到的面试问题</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -134,7 +134,7 @@
         <h2 id="指令v-if-v-show有什么不同？"><a href="#指令v-if-v-show有什么不同？" class="headerlink" title="指令v-if v-show有什么不同？"></a>指令v-if v-show有什么不同？</h2><p>v-if 和 v-show都是Vue中的指令而且都可以用来控制模板的渲染。  </p>
 <p>v-if 是“真正”的条件渲染，因为它会确保在切换过程中条件块内的事件监听器和子组件适当地被销毁和重建。  </p>
 <p>v-if 也是惰性的：如果在初始渲染时条件为假，则什么也不做——直到条件第一次变为真时，才会开始渲染条件块。  </p>
-<p>相比之下，v-show 就简单得多——不管初始条件是什么，元素总是会被渲染，并且只是简单地基于 CSS 进行切换。  </p>
+<p>相比之下，v-show 就简单得多——不管初始条件是什么，元素总是会被渲染，并且只是简单地基于 CSS( <code>display:none</code>) 进行切换。  </p>
 <p>一般来说，v-if 有更高的切换开销，而 v-show 有更高的初始渲染开销。因此，如果需要非常频繁地切换，则使用 v-show 较好；如果在运行时条件很少改变，则使用 v-if 较好。  </p>
 <h2 id="写出-normalizeProps-方法"><a href="#写出-normalizeProps-方法" class="headerlink" title="写出 normalizeProps 方法"></a>写出 normalizeProps 方法</h2><p>在 Vue 中，我们在使用 props 的时候有两种写法，一种是使用字符串数组  </p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ChildComponent = &#123;</span><br><span class="line">  props: [<span class="string">&#x27;some-data1&#x27;</span>， <span class="string">&#x27;someData2&#x27;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -170,8 +170,16 @@
 <p>可以使用全局方法 <code>Vue.delete(target, key)</code> 方法向嵌套对象删除响应式属性/删除数组元素，或者使用实例方法 <code>vm.$delete(target, key)</code>。  </p>
 <p>修改数组的长度可以通过 <code>vm.items.splice(newLength)</code> 实现。  </p>
 <p>注意 <code>Vue.set(target, key, value)</code> 或  <code>Vue.delete(target, key)</code> 并不能为根数据对象添加/删除属性也不能为 Vue 实例添加/删除属性。  </p>
-<h2 id="描述javascript-event-loop-机制，说明异步机制-setTimeout-setInterval-setImmediate-Promise-process-nextTick-MutationObserver-有何不同"><a href="#描述javascript-event-loop-机制，说明异步机制-setTimeout-setInterval-setImmediate-Promise-process-nextTick-MutationObserver-有何不同" class="headerlink" title="描述javascript event loop 机制，说明异步机制 setTimeout setInterval setImmediate Promise process.nextTick MutationObserver 有何不同"></a>描述javascript event loop 机制，说明异步机制 <code>setTimeout</code> <code>setInterval</code> <code>setImmediate</code> <code>Promise</code> <code>process.nextTick</code> <code>MutationObserver</code> 有何不同</h2><p>参见：<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html">http://www.ruanyifeng.com/blog/2014/10/event-loop.html</a></p>
-<h2 id="未完待续。。。"><a href="#未完待续。。。" class="headerlink" title="未完待续。。。"></a>未完待续。。。</h2>
+<h2 id="vue不同组件之间如何通信"><a href="#vue不同组件之间如何通信" class="headerlink" title="vue不同组件之间如何通信?"></a>vue不同组件之间如何通信?</h2><p>可以通过使用一个空的Vue实例作为中间事件栈，然后使用 <code>$emit</code> <code>$on</code> 传递数据。  </p>
+<h2 id="vue3-和-vue2-相比有什么不同？"><a href="#vue3-和-vue2-相比有什么不同？" class="headerlink" title="vue3 和 vue2 相比有什么不同？"></a>vue3 和 vue2 相比有什么不同？</h2><ol>
+<li><p>Object.defineProperty -&gt; Proxy 使用 Proxy 替代 Object.defineProperty 来实现对数据的监听</p>
+</li>
+<li><p>Virtual Dom 重构</p>
+</li>
+<li><p>编译时优化</p>
+</li>
+</ol>
+
         
     </section>
     
@@ -190,7 +198,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2019/01/09/ionic4-vue%E6%90%AD%E5%BB%BA%E8%B7%A8%E5%B9%B3%E5%8F%B0%E7%A7%BB%E5%8A%A8%E5%BA%94%E7%94%A8%E6%A1%86%E6%9E%B6/">ionic4+vue搭建跨平台移动应用框架</a>
+            <a href="/blog/2019/01/09/TIPS-Ionic4-vue%E6%90%AD%E5%BB%BA%E8%B7%A8%E5%B9%B3%E5%8F%B0%E7%A7%BB%E5%8A%A8%E5%BA%94%E7%94%A8%E6%A1%86%E6%9E%B6/">ionic4+vue搭建跨平台移动应用框架</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -302,7 +310,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2018/10/12/Vue%E7%BB%84%E4%BB%B6%E9%97%B4%E9%80%9A%E4%BF%A1/">Vue2组件间通信</a>
+            <a href="/blog/2018/10/12/Vue-%E7%BB%84%E4%BB%B6%E9%97%B4%E9%80%9A%E4%BF%A1/">Vue2组件间通信</a>
         </h1>
         
         <div class="article-meta clearfix">

@@ -108,7 +108,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2019/01/21/%E6%B5%85%E8%B0%88viewport/">浅谈viewport</a>
+            <a href="/blog/2021/03/19/CSS-%E4%BC%AA%E5%85%83%E7%B4%A0-%E4%BC%AA%E7%B1%BB/">CSS 伪元素&amp;伪类</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -116,98 +116,21 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2019-01-21T11:53:30.000Z" itemprop="datePublished">2019-01-21</time>
+    <time datetime="2021-03-19T07:31:18.000Z" itemprop="datePublished">2021-03-19</time>
 </span>
 
             
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/html/" rel="tag">html</a>
-</div>
-
 
         </div>
     </header>
     
     <section class="article-body markdown-body">
         
-        <h2 id="viewport来源"><a href="#viewport来源" class="headerlink" title="viewport来源"></a>viewport来源</h2><p>通常为了使得网页能够成为响应式的，我们需要在head内声名有关viewport的meta。<br>它长这样  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width,initial-scale=1,user-scalable=no&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-<p>viewport的设计是由于pc互联网向移动互联网的过渡。在过去，多数文档被设计用来在pc上进行阅读，而pc的设备通常比较宽，同样的网页不进行任何改变放到移动端的话，内容就会变得无法辨认。</p>
-<p>例如，新浪网在移动端的显示：<br><img src="/blog/static/imgs/viewport/web_page.png" alt="新浪网桌面版在移动端的显示"></p>
-<p>为了避免这个问题，浏览器通常使用一个固定的初始区域宽度来模拟桌面浏览器窗口大小（通常980px-1024px)。而移动端的宽度是小于这个值的，于是内容便看起来像自动放大了一般，同样的，移动端当前的屏幕也只会显示文档的一部分。<br><img src="/blog/static/imgs/viewport/layout_viewport.png" alt="布局视口"><br><img src="/blog/static/imgs/viewport/visual_viewport.png" alt="视觉视口"></p>
-<p><code>document.documentElement.clientWidth/Height</code> 返回的即是当前布局视口的尺寸<br><code>window.innerWidth/Height</code> 返回的即是当前视觉视口的尺寸  </p>
-<p>由上述描述所知，其实视觉视口的大小和文档缩放程度是逆相关的：放得越大，视觉视口越小  </p>
-<p>浏览器对viewport也有默认布局视口宽度  </p>
-<table>
-<thead>
-<tr>
-<th>iPhone</th>
-<th>iPad</th>
-<th>Android Samsung</th>
-<th>Chrome</th>
-<th>Opera</th>
-<th>BlackBerry</th>
-<th>IE</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>980</td>
-<td>980</td>
-<td>980</td>
-<td>980</td>
-<td>980</td>
-<td>1024</td>
-<td>1024</td>
-</tr>
-</tbody>
-</table>
-<p>即使如此，对于一个用户而言，还是不甚理想，在狭窄的屏幕上更适合一个狭窄的网站而不是需要用户来缩放的桌面网站。于是Safari引入了meta标签viewport以及理想视口的概念，其它浏览器厂商也纷纷跟进。  </p>
-<p>只有当网站是为移动端准备的时候才应该使用理想视口。<br>只有主动地往页面里添加meta视口标签时理想视口才会生效。<br>如果没有meta视口标签声明，那么布局视口将会维持它的默认宽度，理想视口只有当显式地使用它的时候才会产生影响。<br>理想视口只和设备有关，由浏览器定义，因此同一设备上的不同浏览器拥有不同的理想视口。<br>以下代码告之浏览器，布局视口的宽度应该与理想视口的宽度一致：  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;device&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><code>screen.width/height</code> 返回的是理想视口的尺寸  </p>
-<h2 id="viewport取值"><a href="#viewport取值" class="headerlink" title="viewport取值"></a>viewport取值</h2><table>
-<thead>
-<tr>
-<th>值</th>
-<th>可能值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>width</td>
-<td>一个正整数或者字符串 device-width</td>
-<td>以pixels（像素）为单位， 定义viewport（视口）的宽度。</td>
-</tr>
-<tr>
-<td>height</td>
-<td>一个正整数或者字符串 device-height</td>
-<td>以pixels（像素）为单位， 定义viewport（视口）的高度。</td>
-</tr>
-<tr>
-<td>initial-scale</td>
-<td>一个0.0 到10.0之间的正数</td>
-<td>定义设备宽度（纵向模式下的设备宽度或横向模式下的设备高度）与视口大小之间的缩放比率。</td>
-</tr>
-<tr>
-<td>maximum-scale</td>
-<td>一个0.0 到10.0之间的正数</td>
-<td>定义缩放的最大值；它必须大于或等于minimum-scale的值，不然会导致不确定的行为发生。</td>
-</tr>
-<tr>
-<td>minimum-scale</td>
-<td>一个0.0 到10.0之间的正数</td>
-<td>定义缩放的最小值；它必须小于或等于maximum-scale的值，不然会导致不确定的行为发生。</td>
-</tr>
-<tr>
-<td>user-scalable</td>
-<td>一个布尔值（yes 或者no）</td>
-<td>如果设置为 no，用户将不能放大或缩小网页。默认值为 yes。</td>
-</tr>
-</tbody>
-</table>
+        <h2 id="伪元素"><a href="#伪元素" class="headerlink" title="伪元素"></a>伪元素</h2><p>CSS伪元素(pseudo-elements)创建了一个有内容的虚拟容器，用于向某些选择器设置特殊效果<br>用法 <code>selector:pseudo-element &#123;property: value;&#125;</code>  </p>
+<p><code>:first-line</code> : 用于向文本的首行设置特殊样式<br><code>:first-letter</code> : 用于向文本的首字母设置特殊样式<br><code>:before</code> : 可以在元素的内容前面插入新内容<br><code>:after</code> : 可以在元素的内容之后插入新内容  </p>
+<h2 id="伪类"><a href="#伪类" class="headerlink" title="伪类"></a>伪类</h2><p>CSS伪类(pseudo-classes)为了弥补常规CSS选择器的不足，以便获取到更多信息，用于向某些选择器添加特殊的效果<br>用法 <code>selector:pseudo-class &#123;property: value;&#125;</code>  </p>
+<p><code>:active</code> : 向被激活的元素添加样式<br><code>:focus</code> : 向拥有键盘输入焦点的元素添加样式<br><code>:hover</code> : 当鼠标悬浮在元素上方时，向元素添加样式<br><code>:link</code> : 向未被访问的链接添加样式<br><code>:visited</code> : 向已被访问的链接添加样式<br><code>:first-child</code> : 向元素的第一个子元素添加样式<br><code>:lang(language)</code> : 向带有指定 lang 属性的元素添加样式  </p>
+<p>其它CSS3伪类参见 <a href="blog/2018/09/03/CSS选择器参考手册/">CSS选择器参考手册</a>  </p>
 
         
     </section>
@@ -227,7 +150,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2019/01/09/ionic4-vue%E6%90%AD%E5%BB%BA%E8%B7%A8%E5%B9%B3%E5%8F%B0%E7%A7%BB%E5%8A%A8%E5%BA%94%E7%94%A8%E6%A1%86%E6%9E%B6/">ionic4+vue搭建跨平台移动应用框架</a>
+            <a href="/blog/2021/03/19/CSS-%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/">CSS 清除（闭合）浮动</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -235,91 +158,27 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2019-01-09T07:09:36.000Z" itemprop="datePublished">2019-01-09</time>
+    <time datetime="2021-03-19T06:42:46.000Z" itemprop="datePublished">2021-03-19</time>
 </span>
 
             
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/Vue/" rel="tag">Vue</a>
-</div>
-
 
         </div>
     </header>
     
     <section class="article-body markdown-body">
         
-        <h2 id="ionic4及vue介绍"><a href="#ionic4及vue介绍" class="headerlink" title="ionic4及vue介绍"></a>ionic4及vue介绍</h2><p>ionic是一款混合移动应用开发框架，可以用来构建跨平台（Android &amp; iOS）的移动应用程序，而且还可以基于Sass和AngularJS进行构建，是目前跨平台移动应用开发的一个翘楚。这个框架的目的是从web的角度开发手机应用，基于PhoneGap的编译平台，可以实现编译成各个平台的应用程序。<br>Vue.js是一个MVVM驱动的 web 界面的渐进式框架，学习简单并且十分灵活。ionic3之前一般默认和Angular“绑定”在了一起，从ionic4开始，Ionic Team宣布将会逐渐采用<a target="_blank" rel="noopener" href="https://github.com/ionic-team/stencil">Stencil</a>来实现标准Web Components，使用ionic将不再必须使用Angular，可以使用React，Vue，Jquery或者什么框架都不使用。  </p>
-<h2 id="准备环境"><a href="#准备环境" class="headerlink" title="准备环境"></a>准备环境</h2><p>Vue提供了CLI工具来方便的创建Vue应用，首先我们需要  </p>
-<ol>
-<li>安装Vue CLI：  </li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g vue-cli</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>创建vue项目</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init webpack ionic-vue</span><br></pre></td></tr></table></figure>
-<p>随后一路enter</p>
-<ol start="3">
-<li>打开项目</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ionic-vue</span><br><span class="line">npm install</span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
-<h2 id="引入Ionic"><a href="#引入Ionic" class="headerlink" title="引入Ionic"></a>引入Ionic</h2><ol>
-<li>在 index.html 引入 Ionic</li>
-</ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;format-detection&quot;</span> <span class="attr">content</span>=<span class="string">&quot;telephone=no&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;msapplication-tap-highlight&quot;</span> <span class="attr">content</span>=<span class="string">&quot;no&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/@ionic/core@0.0.2-20/dist/ionic.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>在 src/main.js 中添加ignoredElements</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Vue.config.ignoredElements = [</span><br><span class="line">    <span class="string">&#x27;ion-app&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;ion-header&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;ion-navbar&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;ion-title&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;ion-content&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;ion-button&#x27;</span>,</span><br><span class="line">    ··· ···</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
-<h2 id="开发应用"><a href="#开发应用" class="headerlink" title="开发应用"></a>开发应用</h2><ol>
-<li>创建两个新页面</li>
-</ol>
-<p>我们希望演示如何在两个页面之间跳转</p>
-<p>例如 src/pages/HelloWorld.vue<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ion-app</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ion-header</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ion-navbar</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ion-title</span>&gt;</span>Ionic<span class="tag">&lt;/<span class="name">ion-title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ion-navbar</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ion-header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ion-content</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ion-button</span> @<span class="attr">click</span>=<span class="string">&quot;goToDetail&quot;</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">ion-button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ion-content</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ion-app</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">  name: <span class="string">&#x27;HelloWorld&#x27;</span>,</span></span><br><span class="line">  data () &#123;</span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">      msg: <span class="string">&#x27;Welcome to Your Vue.js App&#x27;</span></span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    goToDetail () &#123;</span><br><span class="line"><span class="javascript">      <span class="built_in">this</span>.$router.push(<span class="string">&#x27;detail&#x27;</span>)</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>src/pages/Detail.vue<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ion-app</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ion-header</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ion-navbar</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ion-title</span>&gt;</span>Ionic<span class="tag">&lt;/<span class="name">ion-title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ion-navbar</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ion-header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ion-content</span> <span class="attr">padding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">&quot;/&quot;</span>&gt;</span>Go home<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ion-content</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ion-app</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">  name: <span class="string">&#x27;Detail&#x27;</span>,</span></span><br><span class="line">  data () &#123;</span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">      msg: <span class="string">&#x27;Welcome to Your Ionic App&#x27;</span></span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<ol start="2">
-<li>添加路由</li>
-</ol>
-<p>router/index.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">&#x27;vue-router&#x27;</span></span><br><span class="line"><span class="keyword">import</span> HelloWorld <span class="keyword">from</span> <span class="string">&#x27;@/pages/HelloWorld&#x27;</span></span><br><span class="line"><span class="keyword">import</span> Detail <span class="keyword">from</span> <span class="string">&#x27;@/pages/Detail&#x27;</span></span><br><span class="line"></span><br><span class="line">Vue.use(Router)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">&#x27;/&#x27;</span>,</span><br><span class="line">      component: HelloWorld</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">&#x27;/detail&#x27;</span>,</span><br><span class="line">      component: Detail</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<ol start="3">
-<li>添加全局过渡动画效果</li>
-</ol>
-<p>src/App.vue<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=<span class="string">&quot;app&quot;</span>&gt;</span><br><span class="line">    &lt;transition name=<span class="string">&quot;slide-fade&quot;</span>&gt;</span><br><span class="line">      &lt;router-view/&gt;</span><br><span class="line">    &lt;/transition&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">&#x27;app&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">#app &#123;</span><br><span class="line">  font-family: <span class="string">&#x27;Avenir&#x27;</span>, Helvetica, Arial, sans-serif;</span><br><span class="line">  -webkit-font-smoothing: antialiased;</span><br><span class="line">  -moz-osx-font-smoothing: grayscale;</span><br><span class="line">  text-align: center;</span><br><span class="line">  color: #2c3e50;</span><br><span class="line">  margin-top: 60px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.slide-fade-enter-active &#123;</span><br><span class="line">  transition: all .3s ease;</span><br><span class="line">&#125;</span><br><span class="line">.slide-fade-leave-active &#123;</span><br><span class="line">  transition: all .8s cubic-bezier(<span class="number">1.0</span>, <span class="number">0.5</span>, <span class="number">0.8</span>, <span class="number">1.0</span>);</span><br><span class="line">&#125;</span><br><span class="line">.slide-fade-enter, .slide-fade-leave-to</span><br><span class="line"><span class="comment">/* .slide-fade-leave-active below version 2.1.8 */</span> &#123;</span><br><span class="line">  transform: translateX(10px);</span><br><span class="line">  opacity: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure></p>
-<h2 id="打包成应用"><a href="#打包成应用" class="headerlink" title="打包成应用"></a>打包成应用</h2><ol>
-<li>添加cordova 到项目</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cordova</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>创建cordova项目</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova create my-project-name</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>创建/移动vue项目</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init webpack my-app</span><br></pre></td></tr></table></figure>
-<p>将my-app里的内容剪切到my-project-name下，同名覆盖</p>
-<ol start="4">
-<li>修改打包路径<br>修改config/index.js文件下的build属性，将dist改为www，绝对路径改为相对路径</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">build: &#123;</span><br><span class="line">  index: path.resolve(__dirname, <span class="string">&#x27;../www/index.html&#x27;</span>),</span><br><span class="line"></span><br><span class="line">  assetsRoot: path.resolve(__dirname, <span class="string">&#x27;../www&#x27;</span>),</span><br><span class="line">  assetsSubDirectory: <span class="string">&#x27;static&#x27;</span>,</span><br><span class="line">  assetsPublicPath: <span class="string">&#x27;./&#x27;</span>,</span><br><span class="line"></span><br><span class="line">  productionSourceMap: <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">  devtool: <span class="string">&#x27;#source-map&#x27;</span>,</span><br><span class="line"></span><br><span class="line">  productionGzip: <span class="literal">false</span>,</span><br><span class="line">  productionGzipExtensions: [<span class="string">&#x27;js&#x27;</span>, <span class="string">&#x27;css&#x27;</span>],</span><br><span class="line"></span><br><span class="line">  bundleAnalyzerReport: process.env.npm_config_report</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>5.vue项目中添加cordova.js</p>
-<p>在index.html body中添加cordova.js<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;cordova.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><br>同时在 head 中添加 移动端meta信息</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;self&#x27; data: gap: https://ssl.gstatic.com &#x27;unsafe-eval&#x27;; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;; media-src *; img-src &#x27;self&#x27; data: content:;&quot;--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;format-detection&quot;</span> <span class="attr">content</span>=<span class="string">&quot;telephone=no,email=no&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;msapplication-tap-highlight&quot;</span> <span class="attr">content</span>=<span class="string">&quot;no&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ol start="6">
-<li>运行项目</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
-<ol start="7">
-<li>编译成 iOS &amp; Android 项目</li>
-</ol>
-<p>安装 cordova iOS &amp; Android 平台</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova platform add ios android --save</span><br></pre></td></tr></table></figure>
-<p>编译</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>
-<p>运行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cordova run ios --device</span><br><span class="line">cordova run android --device</span><br></pre></td></tr></table></figure>
+        <h2 id="什么是浮动？"><a href="#什么是浮动？" class="headerlink" title="什么是浮动？"></a>什么是浮动？</h2><p><code>float</code> CSS属性指定一个元素应沿其容器的左侧或右侧放置，允许文本和内联元素环绕它。该元素从网页的正常流动(normal flow)中移除，尽管仍然保持部分的流动性。<br>本属于普通流中的元素，在使用 <code>float</code> 属性后，包含框内部由于不存在其他普通流元素了，也就表现出高度为0的情况。在实际布局中，往往这并不是我们所希望的，所以需要闭合浮动元素，使其包含框表现出正常的高，也就是让浮动内容和周围的内容等高。  </p>
+<h2 id="清除浮动的方法"><a href="#清除浮动的方法" class="headerlink" title="清除浮动的方法"></a>清除浮动的方法</h2><h3 id="添加额外标签"><a href="#添加额外标签" class="headerlink" title="添加额外标签"></a>添加额外标签</h3><p>通过在浮动元素末尾添加一个空的标签例如 <code>&lt;div style=”clear:both”&gt;&lt;/div&gt;</code> 。  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span> <span class="attr">id</span>=<span class="string">&quot;float&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>1）添加额外标签<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span>.main&#123;float:left;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;side&quot;</span>&gt;</span>.side&#123;float:right;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;clear:both;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;footer&quot;</span>&gt;</span>.footer<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="使用br标签和其自身的html属性"><a href="#使用br标签和其自身的html属性" class="headerlink" title="使用br标签和其自身的html属性"></a>使用br标签和其自身的html属性</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span> <span class="attr">id</span>=<span class="string">&quot;float&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>2）使用 br标签和其自身的 html属性<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span>.main&#123;float:left;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;side&quot;</span>&gt;</span>.side&#123;float:right;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span> <span class="attr">clear</span>=<span class="string">&quot;all&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;footer&quot;</span>&gt;</span>.footer<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="父元素设置-overflow：hidden"><a href="#父元素设置-overflow：hidden" class="headerlink" title="父元素设置 overflow：hidden"></a>父元素设置 <code>overflow：hidden</code></h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span> <span class="attr">id</span>=<span class="string">&quot;float&quot;</span> <span class="attr">style</span>=<span class="string">&quot;overflow:hidden; *zoom:1;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>3)父元素设置 overflow: hidden <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span>.main&#123;float:left;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;side&quot;</span>&gt;</span>.side&#123;float:right;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;footer&quot;</span>&gt;</span>.footer<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="父元素设置-overflow：auto"><a href="#父元素设置-overflow：auto" class="headerlink" title="父元素设置 overflow：auto"></a>父元素设置 <code>overflow：auto</code></h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span> <span class="attr">id</span>=<span class="string">&quot;float3&quot;</span> <span class="attr">style</span>=<span class="string">&quot;overflow:auto;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>4)父元素设置 overflow: auto <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span>.main&#123;float:left;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;side&quot;</span>&gt;</span>.side&#123;float:right;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;footer&quot;</span>&gt;</span>.footer<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="父元素也设置浮动"><a href="#父元素也设置浮动" class="headerlink" title="父元素也设置浮动"></a>父元素也设置浮动</h3><h3 id="父元素设置-display-table"><a href="#父元素设置-display-table" class="headerlink" title="父元素设置 display: table"></a>父元素设置 <code>display: table</code></h3><h3 id="父元素设置-display-flow-root"><a href="#父元素设置-display-flow-root" class="headerlink" title="父元素设置 display: flow-root"></a>父元素设置 <code>display: flow-root</code></h3><h3 id="使用-after-伪元素"><a href="#使用-after-伪元素" class="headerlink" title="使用 :after 伪元素"></a>使用 <code>:after</code> 伪元素</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span></span><br><span class="line">.clearfix:after &#123;</span><br><span class="line"><span class="css">    <span class="attribute">content</span>: <span class="string">&quot;.&quot;</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">display</span>: block;</span></span><br><span class="line"><span class="css">    <span class="attribute">height</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">clear</span>: both;</span></span><br><span class="line"><span class="css">    <span class="attribute">visibility</span>: hidden;</span></span><br><span class="line">&#125;</span><br><span class="line">.clearfix &#123;</span><br><span class="line"><span class="css">    <span class="attribute">display</span>: inline-block;</span></span><br><span class="line"><span class="css">&#125;  <span class="comment">/* for IE/Mac */</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--[if IE]&gt;</span></span><br><span class="line"><span class="comment">&lt;style type=&quot;text/css&quot;&gt;</span></span><br><span class="line"><span class="comment">.clearfix &#123;</span></span><br><span class="line"><span class="comment">    zoom: 1;/* triggers hasLayout */</span></span><br><span class="line"><span class="comment">    display: block;/* resets display for IE/Win */</span></span><br><span class="line"><span class="comment">&#125; &lt;/style&gt;</span></span><br><span class="line"><span class="comment">&lt;![endif]--&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="BDF是什么？"><a href="#BDF是什么？" class="headerlink" title="BDF是什么？"></a>BDF是什么？</h2><p>BFC （Block Formatting Context 块级格式化上下文），是一个独立的渲染区域，让处于 BFC 内部的元素与外部的元素相互隔离，使内外元素的定位不会相互影响。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上列举的方法，无非有两类：  </p>
+<p>其一，通过在浮动元素的末尾添加一个空元素，设置 <code>clear：both</code> 属性，<code>after</code> 伪元素其实也是通过 <code>content</code> 在元素的后面生成了内容为一个点的块级元素；  </p>
+<p>其二，通过设置父元素 <code>overflow</code> 或者 <code>display：table</code> 属性来闭合浮动。  </p>
 
         
     </section>
@@ -339,7 +198,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2019/01/04/%E5%9C%A8%E7%BA%BF%E7%BB%98%E5%9B%BE%E5%B0%8F%E5%B7%A5%E5%85%B7/">在线绘图小工具</a>
+            <a href="/blog/2021/03/19/CSS-%E5%AE%9E%E8%B7%B5/">CSS 实践</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -347,22 +206,20 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2019-01-04T10:49:24.000Z" itemprop="datePublished">2019-01-04</time>
+    <time datetime="2021-03-19T06:39:39.000Z" itemprop="datePublished">2021-03-19</time>
 </span>
 
             
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/tools/" rel="tag">tools</a>
-</div>
-
 
         </div>
     </header>
     
     <section class="article-body markdown-body">
         
-        <section><br>    <div class="paint-area"><br>        <p>移动端无法使用</p><br>        <canvas></canvas><br>    </div><br>    <script type="text/javascript" src="/blog/static/js/painter.js"></script><br></section>
+        <h2 id="画一条0-5px的直线"><a href="#画一条0-5px的直线" class="headerlink" title="画一条0.5px的直线"></a>画一条0.5px的直线</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">1px</span>;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">scale</span>(<span class="number">0.5</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="画一个三角形"><a href="#画一个三角形" class="headerlink" title="画一个三角形"></a>画一个三角形</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">border-width</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">border-style</span>: solid;</span><br><span class="line">    <span class="attribute">border-color</span>: transparent <span class="number">#0099CC</span> transparent transparent;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">90deg</span>); <span class="comment">/*顺时针旋转90°*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="实现元素吸底，dom固定显示在浏览器底部"><a href="#实现元素吸底，dom固定显示在浏览器底部" class="headerlink" title="实现元素吸底，dom固定显示在浏览器底部"></a>实现元素吸底，dom固定显示在浏览器底部</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attribute">position</span>: fixed; <span class="comment">/* 相对浏览器定位 */</span></span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="如何打码？"><a href="#如何打码？" class="headerlink" title="如何打码？"></a>如何打码？</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attribute">filter</span>: <span class="built_in">blur</span>(<span class="number">2px</span>); <span class="comment">/* 高斯模糊 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         
     </section>
     
@@ -381,7 +238,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2019/01/03/a-%E7%9A%84%E7%94%A8%E6%B3%95/">链接a标签的用法</a>
+            <a href="/blog/2021/03/19/CSS-%E7%9B%92%E6%A8%A1%E5%9E%8B/">CSS 盒模型</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -389,159 +246,25 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2019-01-03T12:16:31.000Z" itemprop="datePublished">2019-01-03</time>
+    <time datetime="2021-03-19T06:36:15.000Z" itemprop="datePublished">2021-03-19</time>
 </span>
 
             
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/html/" rel="tag">html</a>
-</div>
-
 
         </div>
     </header>
     
     <section class="article-body markdown-body">
         
-        <h2 id="样式"><a href="#样式" class="headerlink" title="样式"></a>样式</h2><p>&lt;a> 标签定义超链接，用于从一张页面链接到另一张页面。</p>
-<p>在所有浏览器中，链接的默认外观是：  </p>
-<ul><li style="text-decoration: underline; color:blue;">未被访问的链接带有下划线而且是蓝色的</li><li style="text-decoration: underline; color:red;">活动链接带有下划线而且是红色的</li><li style="text-decoration: underline; color:purple;">已被访问的链接带有下划线而且是紫色的</li></ul>
-
-<p>链接默认样式</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span> &#123;<span class="attribute">color</span>: blue;<span class="attribute">text-decoration</span>: underline;&#125;    <span class="comment">/* 未访问的链接 */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;<span class="attribute">color</span>: blue;<span class="attribute">text-decoration</span>: underline;&#125;    <span class="comment">/* 鼠标移动到链接上 */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:active</span> &#123;<span class="attribute">color</span>: red;<span class="attribute">text-decoration</span>: underline;&#125;     <span class="comment">/* 鼠标按下但还未收起时的链接 */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span> &#123;<span class="attribute">color</span>: purple;<span class="attribute">text-decoration</span>: underline;&#125;    <span class="comment">/* 已访问的链接 */</span></span><br></pre></td></tr></table></figure>
-<p>&lt;a>不能自闭合，必须有开始标识与结束标识。  </p>
-<h2 id="href"><a href="#href" class="headerlink" title="href"></a>href</h2><p>&lt;a> 元素最重要的属性是 href 属性，它指示链接的目标。  </p>
-<p>如果没有href属性，&lt;a> 标签会表现的像是一个行内元素&lt;span>标签，甚至没有默认的样式。如果href属性没有值或者值为空字符串则点击 &lt;a> 标签会刷新当前页面。  </p>
-<p>href 属性的值可以是任何URL或URL片段。如果用户选择了 &lt;a> 标签中的内容，那么浏览器会尝试检索并显示 href 属性指定的 URL 所表示的文档，或者执行 JavaScript 表达式、方法和函数的列表。  </p>
-<p>href的值可以有很多种：  </p>
+        <h2 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h2><p>任何HTML元素都可以看作一个盒子，它包括：外边距，边框，内边距，和实际内容。<br>Margin(外边距) - 边框外的区域，外边距区域是透明的。<br>Border(边框) - 围绕在内边距和内容外的边框。<br>Padding(内边距) -内容周围的区域，内边距区域是透明的。<br>Content(内容) - 盒子的内容，显示文本和图像。  </p>
+<p>box-sizing 属性定义了浏览器应该如何计算一个元素的总宽度和总高度，可以通过 box-sizing 属性来设置盒模型。</p>
 <ul>
-<li>绝对 URL - 指向另一个站点（<code>href=&quot;http://www.example.com/index.html&quot;</code>）</li>
-<li>相对 URL - 指向站点内的某个文件（<code>href=&quot;index.html&quot;</code>）</li>
-<li>锚 URL - 指向页面中的锚（<code>href=&quot;#top&quot;</code>）</li>
-<li>javascript代码 - 执行javascript代码(<code>href=&quot;javascript:alert(&#39;a is clicked&#39;);&quot;</code>)</li>
-<li>本地文件地址 - 在浏览器中打开本地文件(<code>href=&quot;file:///Users/work/Desktop/test.txt&quot;</code>)</li>
-<li>邮件地址 - 发送邮件(<code>href=&quot;mailto://somebody@example.com&quot;</code>)</li>
-<li>电话号码 - 打电话(<code>href=&quot;tel:+86-10010&quot;</code>)</li>
-</ul>
-<p>⚠️注意事项</p>
-<ul>
-<li><p>除了相对URL和锚点，其它的表现都和在地址栏中输入相应href类似。<br>亦和<code>window.location.href=?</code>差不多，值得注意的是，在console执行 <code>window.location.href=&quot;file:///Users/work/Desktop/test.txt&quot;</code> 时会报错 <code>Not allowed to load local resource:file:///Users/work/Desktop/test.txt</code> 而执行 <code>window.location.href=&quot;tel:+86-10010&quot;</code> 则根本没反应</p>
+<li><p>标准盒模型 box-sizing: content-box<br>content-box:<br>width = content width;<br>height = content height</p>
 </li>
-<li><p>如果不是采用hash方式进行页面内导航的话，可以使用 <code>href=&quot;#top&quot;</code> 或者 <code>href=&quot;#&quot;</code> 链接返回到页面顶部 <span class="tag">HTML5<span/></p>
+<li><p>IE盒模型 box-sizing: border-box<br>border-box:<br>width = border + padding + content width<br>heigth = border + padding + content heigth</p>
 </li>
 </ul>
-<h2 id="target"><a href="#target" class="headerlink" title="target"></a>target</h2><p>&lt;a> 标签的 target 属性规定在何处打开链接文档。  </p>
-<table>
-<thead>
-<tr>
-<th>值</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>_blank</td>
-<td>浏览器总在一个新打开、未命名的窗口中载入目标文档。</td>
-</tr>
-<tr>
-<td>_self</td>
-<td>默认值，它使得目标文档载入并显示在相同的frame或者window中作为源文档。</td>
-</tr>
-<tr>
-<td>_parent</td>
-<td>这个目标使得文档载入父窗口或者包含来超链接引用的框架的框架集。如果这个引用是在窗口或者在顶级框架中，那么它与目标 _self 等效。</td>
-</tr>
-<tr>
-<td>_top</td>
-<td>这个目标使得文档载入包含这个超链接的窗口，用 _top 目标将会清除所有被包含的框架并将文档载入整个浏览器窗口。</td>
-</tr>
-<tr>
-<td>&lt;framename></td>
-<td>在指定的frame中打开被链接文档。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="rel"><a href="#rel" class="headerlink" title="rel"></a>rel</h2><p>&lt;a> 标签的 rel 属性用于指定当前文档与被链接文档的关系。与 &lt;link> 标签的 rel 属性类似，事实上许多值两者通用。<br>搜索引擎可以利用该属性获得更多有关链接的信息，在跳转的时候某些值也有特殊的用处。  </p>
-<table>
-<thead>
-<tr>
-<th>值</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>alternate</td>
-<td>文档的可选版本（例如打印页、翻译页或镜像）</td>
-</tr>
-<tr>
-<td>author</td>
-<td>作者链接</td>
-</tr>
-<tr>
-<td>bookmark</td>
-<td>表明这个超链接是当前页面的一个永久链接（可被加入书签的）</td>
-</tr>
-<tr>
-<td>external</td>
-<td>表明指向外部链接</td>
-</tr>
-<tr>
-<td>licence</td>
-<td>描述版权信息</td>
-</tr>
-<tr>
-<td>next</td>
-<td>集合中的下一个文档</td>
-</tr>
-<tr>
-<td>nofollow</td>
-<td>Google 使用 “nofollow”用于指定 Google 搜索引擎不要跟踪链接</td>
-</tr>
-<tr>
-<td>noopener</td>
-<td>防止新打开的页面通过window.opener访问父级页面</td>
-</tr>
-<tr>
-<td>noreferrer</td>
-<td>防止新打开页面时在http请求的header添加referrer字段</td>
-</tr>
-<tr>
-<td>prev</td>
-<td>集合中的前一个文档</td>
-</tr>
-<tr>
-<td>help</td>
-<td>指向帮助文档</td>
-</tr>
-<tr>
-<td>tag</td>
-<td>描述当前页面标识的页面</td>
-</tr>
-</tbody>
-</table>
-<p>⚠️注意事项</p>
-<ul>
-<li>使用target时，考虑添加 <code>rel=&quot;external noopener noreferrer&quot;</code> 以防止针对 window.opener API 的恶意行为。</li>
-</ul>
-<h2 id="download-HTML5"><a href="#download-HTML5" class="headerlink" title="download HTML5"></a>download <span class="self-tag">HTML5<span/></h2><p>&lt;a> 标签的 download 属性指示浏览器下载URL而不是导航到它，因此将提示用户将链接（href）指向地址保存为本地文件。如果属性有一个值，那么它将在Save提示符中作为预填充的文件名使用（如果用户需要，仍然可以更改文件名）。此属性对允许的值没有限制，但是/和\会被转换为下划线。大多数文件系统限制了文件名中的标点符号，故此，浏览器将相应地调整建议的文件名。  </p>
-<p>⚠️注意事项</p>
-<ul>
-<li>此属性仅适用于同源 URLs。</li>
-<li>尽管HTTP URL需要位于同一源中，但是可以使用 <code>blob: URLs</code> 和 <code>data: URLs</code> ，以方便用户下载 JavaScript 方式生成的内容（例如使用在线绘图的Web应用创建的照片）。</li>
-<li>如果HTTP头的Content-Disposition赋予了一个不同于此属性的文件名，HTTP头属性Content-Disposition优先于此属性。</li>
-<li>如果HTTP头属性Content-Disposition被设置为inline(即Content-Disposition=’inline’)，那么Firefox优先考虑HTTP头Content-Disposition属性，就像文件名的情况，而Chrome优先考虑download属性。</li>
-</ul>
-<h2 id="type"><a href="#type" class="headerlink" title="type"></a>type</h2><p>该属性指定在一个 MIME type 链接目标的形式的媒体类型。其仅提供建议，并没有内置的功能。  </p>
-<h2 id="废弃属性"><a href="#废弃属性" class="headerlink" title="废弃属性"></a>废弃属性</h2><p>以下属性在HTML5中已废弃，不推荐使用  </p>
-<ul>
-<li>charset</li>
-<li>coords</li>
-<li>name</li>
-<li>rev</li>
-<li>shape</li>
-</ul>
+<p>浏览器默认使用标准盒子模型，在ie8以下的浏览器中默认使用IE盒模型。  </p>
 
         
     </section>
@@ -561,7 +284,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2018/12/14/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B-%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/">面向对象编程&amp;函数式编程</a>
+            <a href="/blog/2021/03/19/CSS-%E6%B0%B4%E5%B9%B3-%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/">CSS 水平&amp;垂直居中</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -569,47 +292,20 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2018-12-14T08:06:59.000Z" itemprop="datePublished">2018-12-14</time>
+    <time datetime="2021-03-19T06:13:33.000Z" itemprop="datePublished">2021-03-19</time>
 </span>
 
             
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/algorithm/" rel="tag">algorithm</a>, <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>
-</div>
-
 
         </div>
     </header>
     
     <section class="article-body markdown-body">
         
-        <h2 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h2><p>函数式编程（英语：Functional programming）或称函数程序设计，又称泛函编程，是一种编程范型，它将电脑运算视为数学上的函数计算，并且避免使用程序状态以及易变对象。函数编程语言最重要的基础是λ演算（lambda calculus）。而且λ演算的函数可以接受函数当作输入（引数）和输出（传出值）。</p>
-<p>函数式编程优点：  </p>
-<ol>
-<li>没有并发编程的问题，是多线程安全的</li>
-<li>函数式编程的表达方式更加符合人类日常生活中的语法，代码可读性更强，实现同样的功能函数式编程所需要的代码比面向对象编程要少很多，代码更加简洁明晰</li>
-</ol>
-<p>函数式编程缺点：  </p>
-<ol>
-<li>所有的变量在程序运行期间都是一直存在的，资源利用率低</li>
-<li>大型项目中工程化不足，使得代码易读性降低</li>
-</ol>
-<h2 id="面向对象编程"><a href="#面向对象编程" class="headerlink" title="面向对象编程"></a>面向对象编程</h2><p>面向对象程序设计（英语：Object-oriented programming，缩写：OOP）是种具有对象概念的程序编程范型，同时也是一种程序开发的方法。它可能包含数据、属性、代码与方法。对象则指的是类的实例。它将对象作为程序的基本单元，将程序和数据封装其中，以提高软件的重用性、灵活性和扩展性，对象里的程序可以访问及经常修改对象相关连的数据。在面向对象程序编程里，计算机程序会被设计成彼此相关的对象。</p>
-<p>面向对象编程优点：  </p>
-<ol>
-<li>灵活，可维护，易拓展，在大型项目设计中广为应用</li>
-<li>由于继承、封装、多态的特性，自然设计出高内聚、低耦合的系统结构，使得系统更灵活、更容易扩展，而且成本较低。</li>
-<li>23种设计模式广泛应用</li>
-</ol>
-<p>面向对象编程缺点：  </p>
-<ol>
-<li>在多线程并发编程中，多个线程同时操作数据的时候可能会导致数据修改的不确定性。</li>
-<li>为了写可重用的代码而产生了很多无用的代码，导致代码膨胀</li>
-<li>为了面向对象而面向对象，使得代码易读性降低</li>
-<li>代码的运行效率比起面向过程要低很多</li>
-</ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>函数式编程和面向对象编程各有利弊，一个语法更加自由，一个健壮性更好，作为编程者应该对两种编程方式都有所了解，不管是哪种方式，只要能够很好的解决当前的问题就是正确的方式。对于编程者来说，编程范式并没有重要到一定要遵循的地步，重要的是解决问题的思想。</p>
+        <h2 id="html-布局"><a href="#html-布局" class="headerlink" title="html 布局"></a>html 布局</h2><p>水平居中&amp;垂直居中指的都是子元素相对于父元素位置，所以页面中需要有两个元素，假设外层元素id为out，内层元素id为in。  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;out&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;in&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--p id=&quot;in&quot;/--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// 水平居中 <span class="number">1</span></span><br><span class="line"><span class="selector-id">#in</span> &#123;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br><span class="line">// 水平居中 <span class="number">2</span></span><br><span class="line"><span class="selector-id">#out</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">flex-direction</span>: column;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#in</span> &#123;</span><br><span class="line">    <span class="attribute">align-self</span>: center;</span><br><span class="line">&#125;</span><br><span class="line">// 水平居中 <span class="number">3</span></span><br><span class="line"><span class="selector-id">#out</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: table-cell;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#in</span> &#123;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">150px</span>;</span><br><span class="line">&#125;</span><br><span class="line">// 水平居中 <span class="number">4</span></span><br><span class="line"><span class="selector-id">#out</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#in</span> &#123;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">150px</span>;</span><br><span class="line">&#125;</span><br><span class="line">// 水平居中 <span class="number">5</span></span><br><span class="line"><span class="selector-id">#in</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: fit-content;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br><span class="line">// 水平居中 <span class="number">6</span></span><br><span class="line"><span class="selector-id">#out</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#in</span> &#123;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br><span class="line">// 水平居中 <span class="number">7</span></span><br><span class="line"><span class="selector-id">#out</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#in</span> &#123;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">150px</span>;</span><br><span class="line">&#125;</span><br><span class="line">// 水平居中 <span class="number">8</span></span><br><span class="line"><span class="selector-id">#in</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(-<span class="number">25%</span>, <span class="number">25%</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">// 垂直居中 <span class="number">1</span></span><br><span class="line"><span class="selector-id">#in</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">    <span class="attribute">vertical-align</span>: middle;</span><br><span class="line">&#125;</span><br><span class="line">// 垂直居中 <span class="number">2</span></span><br><span class="line"><span class="selector-id">#out</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">flex-direction</span>: row;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#in</span> &#123;</span><br><span class="line">    <span class="attribute">align-self</span>: center;</span><br><span class="line">&#125;</span><br><span class="line">// 垂直居中 <span class="number">3</span></span><br><span class="line"><span class="selector-id">#out</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: table;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#in</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: table-cell;</span><br><span class="line">    <span class="attribute">vertical-align</span>: middle;</span><br><span class="line">&#125;</span><br><span class="line">// 垂直居中 <span class="number">4</span></span><br><span class="line"><span class="selector-id">#in</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-<span class="number">50%</span>);</span><br><span class="line">&#125;</span><br><span class="line">// 垂直居中 <span class="number">5</span></span><br><span class="line"><span class="selector-id">#out</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#in</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">tranlateY</span>(-<span class="number">50%</span>);</span><br><span class="line">&#125;</span><br><span class="line">// 垂直居中 <span class="number">6</span> (如果子元素为文本)</span><br><span class="line"><span class="selector-tag">p</span><span class="selector-id">#in</span> &#123;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">300px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
         
     </section>
@@ -627,7 +323,7 @@
 
 
 <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/blog/page/4/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/3/">3</a><a class="page-number" href="/blog/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/blog/page/6/">6</a><a class="page-number" href="/blog/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/12/">12</a><a class="extend next" rel="next" href="/blog/page/6/">Next &gt;&gt;</a>
+    <a class="extend prev" rel="prev" href="/blog/page/4/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/3/">3</a><a class="page-number" href="/blog/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/blog/page/6/">6</a><a class="page-number" href="/blog/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/17/">17</a><a class="extend next" rel="next" href="/blog/page/6/">Next &gt;&gt;</a>
 </nav>
 
 

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        JS 数组 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.0.3" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="数组的属性&amp;amp;方法有哪些？length    设置或返回数组中元素的数目。unshift()    将一个或多个元素添加到数组的开头，并返回该数组的新长度shift()    从数组中删除第一个元素，并返回该元素的值push()    将新元素添加到一个数组中，并返回数组的新长度值。pop()    从数组中删除最后一个元素，并返回该元素的值splice(start[, deleteCount[, item1[, item2[, ...]]]])    通过删除或替换现有元素或者原地添加新" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://mangon.cn/blog"></form> -->
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E7%9A%84%E5%B1%9E%E6%80%A7-amp-%E6%96%B9%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">数组的属性&amp;方法有哪些？</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            JS 数组
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-21T08:41:38.000Z" itemprop="datePublished">2021-03-21</time>
+</span>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="数组的属性-amp-方法有哪些？"><a href="#数组的属性-amp-方法有哪些？" class="headerlink" title="数组的属性&amp;方法有哪些？"></a>数组的属性&amp;方法有哪些？</h2><p><code>length</code>    设置或返回数组中元素的数目。<br><code>unshift()</code>    将一个或多个元素添加到数组的开头，并返回该数组的新长度<br><code>shift()</code>    从数组中删除第一个元素，并返回该元素的值<br><code>push()</code>    将新元素添加到一个数组中，并返回数组的新长度值。<br><code>pop()</code>    从数组中删除最后一个元素，并返回该元素的值<br><code>splice(start[, deleteCount[, item1[, item2[, ...]]]])</code>    通过删除或替换现有元素或者原地添加新的元素来修改数组,并以数组形式返回被修改的内容<br><code>reverse()</code>    将数组中元素的位置颠倒，并返回该数组<br><code>sort([compareFunction])</code>    用原地算法对数组的元素进行排序，并返回数组  </p>
+<p><code>slice([begin[, end]])</code>    返回一个新的数组对象，这一对象是一个由 begin 和 end 决定的原数组的浅拷贝（包括 begin，不包括 end）<br><code>join(separator)</code>    将数组的元素组起一个字符串，以separator为分隔符，省略的话则用默认用逗号为分隔符<br><code>concat(value1[, value2[, ...[, valueN]]])</code>    用于合并两个或多个数组<br><code>includes(valueToFind[, fromIndex])</code>    用来判断一个数组是否包含一个指定的值<br><code>indexOf(searchElement[, fromIndex])</code>    返回在数组中可以找到一个给定元素的第一个索引<br><code>lastIndexOf(searchElement[, fromIndex])</code>    返回指定元素（也即有效的 JavaScript 值或变量）在数组中的最后一个的索引<br><code>copyWithin(target[, start[, end]])</code>    浅复制数组的一部分到同一数组中的另一个位置，并返回它，不会改变原数组的长度<br><code>fill(value[, start[, end]])</code>    用一个固定值填充一个数组中从起始索引到终止索引内的全部元素<br><code>flat([depth])</code>    按照一个可指定的深度递归遍历数组，并将所有元素与遍历到的子数组中的元素合并为一个新数组返回<br><code>flatMap(function callback(currentValue[, index[, array]]) &#123;/* return element for new_array */&#125;[, thisArg])</code>    首先使用映射函数映射每个元素，然后将结果压缩成一个新数组  </p>
+<p><code>entries()</code>    返回一个新的 Array Iterator 对象，该对象包含数组中每个索引的键/值对<br><code>keys()</code>    返回一个包含数组中每个索引键的 Array Iterator 对象<br><code>values()</code>    返回一个新的 Array Iterator 对象，该对象包含数组每个索引的值  </p>
+<p><code>toLocaleString([locales[,options]])</code>    返回一个字符串表示数组中的元素。数组中的元素将使用各自的 toLocaleString 方法转成字符串<br><code>toString()</code>    返回一个字符串，表示指定的数组及其元素  </p>
+<p><code>forEach(callback(currentValue [, index [, array]])[, thisArg])</code>    方法对数组的每个元素执行一次给定的函数<br><code>map(function callback(currentValue[, index[, array]]) &#123;/* Return element for new_array */&#125;[, thisArg])</code>    创建一个新数组，其结果是该数组中的每个元素是调用一次提供的函数后的返回值<br><code>reduce(callback(accumulator, currentValue[, index[, array]])[, initialValue])</code>    对数组中的每个元素执行一个由你提供的 reducer 函数(升序执行)，将其结果汇总为单个返回值。<br><code>reduceRight(callback(accumulator, currentValue[, index[, array]])[, initialValue])</code>    和 <code>reduce</code> 相似，降序执行<br><code>some(callback(element[, index[, array]])[, thisArg])</code>    测试数组中是不是至少有1个元素通过了被提供的函数测试<br><code>every(callback(element[, index[, array]])[, thisArg])</code>    测试一个数组内的所有元素是否都能通过某个指定函数的测试<br><code>filter(callback(element[, index[, array]])[, thisArg])</code>    创建一个新数组, 其包含通过所提供函数实现的测试的所有元素<br><code>find(callback[, thisArg])</code>    返回数组中满足提供的测试函数的第一个元素的值<br><code>findIndex(callback[, thisArg])</code>    返回数组中满足提供的测试函数的第一个元素的索引  </p>
+<p><code>Array.from()</code>    从一个类似数组或可迭代对象创建一个新的，浅拷贝的数组实例<br><code>Array.of()</code>    创建一个具有可变数量参数的新数组实例，而不考虑参数的数量或类型<br><code>Array.isArray()</code>    用于确定传递的值是否是一个 <code>Array</code></p>
+<p>其中 <code>shift</code>、<code>unshift</code>、<code>push</code>、<code>pop</code>、<code>reverse</code>、<code>sort</code>、<code>splice</code> 这些方法会改变原数组<br><code>forEach</code>、<code>map</code>、<code>reduce</code>、<code>reduceRight</code>、<code>some</code>、<code>every</code>、<code>filter</code>、<code>find</code>、<code>findIndex</code> 可以用来遍历  </p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+
+</div>
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明：
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

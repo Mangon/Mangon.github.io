@@ -108,7 +108,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2018/09/06/React%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%92/">React父子组件数据传递</a>
+            <a href="/blog/2019/02/01/FE-Git%E5%B0%8F%E5%85%A8/">Git小全</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -116,13 +116,13 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2018-09-06T11:55:58.000Z" itemprop="datePublished">2018-09-06</time>
+    <time datetime="2019-02-01T07:14:46.000Z" itemprop="datePublished">2019-02-01</time>
 </span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/React/" rel="tag">React</a>
+    <a class="article-tag-link" href="/blog/tags/git/" rel="tag">git</a>
 </div>
 
 
@@ -131,294 +131,200 @@
     
     <section class="article-body markdown-body">
         
-        <p>本篇主要讲述<a target="_blank" rel="noopener" href="https://github.com/facebook/react">React</a>中的 props state 以及 父子组件之间的数据传递。  </p>
-<h2 id="props-amp-state"><a href="#props-amp-state" class="headerlink" title="props &amp; state"></a>props &amp; state</h2><p>对于一个组件来说，props属性是只读的，像一个透明包裹一样，子组件可以看到包裹里的东西，却不能直接改变props的值。props来自他的父组件。而state属性则好像是自己的背包一样，可以随意通过setState修改，而且是永远跟随着自己的，不用担心丢失。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChildComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">props</span>)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(props);</span><br><span class="line">        <span class="built_in">this</span>.state = &#123;</span><br><span class="line">            item: <span class="string">&#x27;&#x27;</span></span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">sendToFather</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.props.setData(data);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            &lt;div className=<span class="string">&quot;main&quot;</span>&gt;</span><br><span class="line">                &lt;div onClick=&#123;<span class="function">()=&gt;</span>&#123;<span class="built_in">this</span>.sendToFather(&#123;<span class="attr">item1</span>: value2&#125;)&#125;&#125;&gt;&#123;<span class="built_in">this</span>.props.item&#125;&lt;/div&gt;</span><br><span class="line">                &lt;div&gt;&#123;<span class="built_in">this</span>.state.item&#125;&lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FatherComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">props</span>)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(props);</span><br><span class="line">        <span class="built_in">this</span>.state = &#123;</span><br><span class="line">            item: <span class="string">&#x27;value1&#x27;</span>,</span><br><span class="line">            item1: <span class="string">&#x27;&#x27;</span></span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">setDateMethod</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.setState(value)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            &lt;ChildComponent setData=&#123;(<span class="built_in">this</span>.setDateMethod).bind(<span class="built_in">this</span>))&#125; item=&#123;<span class="built_in">this</span>.state.item&#125;&gt;&lt;/ChildComponent&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="数据传递"><a href="#数据传递" class="headerlink" title="数据传递"></a>数据传递</h2><p>父组件需要向自组件传递数据的时候，比如需要传递一个名字为item，值为value1的数据，<br>只需要引用子组件的时候为其添加一个名字为item的属性，然后将值赋予它，那么在子组件中就可以通过props.item获取到传递进来的值。  </p>
-<p>子组件要把数据返回给父组件，比如需要传递一个名字为item1，值为value2的数据，<br>就需要父组件传递一个函数setData给子组件，子组件通过传入参数{item1: value2}调用函数setData将数据返回给父组件的函数，父组件的函数setDateMethod接受实参来改变父组件中的state等值。  </p>
-<h2 id="全局传递数据"><a href="#全局传递数据" class="headerlink" title="全局传递数据"></a>全局传递数据</h2><p>因为数据只能在父子之间传递，当父子关系嵌套很深的时候，不同组件之间传递数据十分不便。这时可以使用EventEmitter时间传递来实现组件之间的数据传递。使用事件模型，组件之间无论是父子关系还是非父子关系都可以直接沟通，从而解决了组件间层层回调传递的问题，但是频繁地使用事件实现组件间沟通会使整个程序的数据流向越来越乱，因此，组件间的沟通还是要尽量遵循单向数据流机制。  </p>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2018/09/05/%E4%BF%AE%E6%94%B9%E5%85%89%E6%A0%87%E7%9A%84%E6%A0%B7%E5%BC%8F/">修改光标的样式</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-09-05T12:00:34.000Z" itemprop="datePublished">2018-09-05</time>
-</span>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>某些情况下我们需要修改默认的光标样式，比如当我们为一个元素添加了点击事件之后，这个元素就会表现的像一个按钮。为了更好的用户体验，我们可以将光标样式由默认的箭头样式改为指针样式。这样，当用户划过此元素时，就会意识到这是一个可点击的元素。</p>
-<p>可以通过修改cursor属性来改变元素的光标样式。</p>
-<h2 id="css-cursor-属性"><a href="#css-cursor-属性" class="headerlink" title="css cursor 属性"></a>css cursor 属性</h2><p>cursor 属性规定要显示的光标的类型（形状）。  </p>
-<p>该属性定义了鼠标指针放在一个元素边界范围内时所用的光标形状。  </p>
-<h2 id="可能的值"><a href="#可能的值" class="headerlink" title="可能的值"></a>可能的值</h2><table>
+        <h2 id="什么是-Git"><a href="#什么是-Git" class="headerlink" title="什么是 Git"></a>什么是 Git</h2><p><a target="_blank" rel="noopener" href="https://github.com/git/git">Git</a> 是一个免费的开源分布式版本控制系统。它被设计用来高效的控制各种各样的工程项目。<br>Git最初在2005年由 <a target="_blank" rel="noopener" href="https://github.com/torvalds">Linus</a> 花费了两周时间用C语言开发而成，并被用来管理 <a target="_blank" rel="noopener" href="https://github.com/torvalds/linux">Linux kernel</a> 的源码。<br>Git很容易学习，所占用空间极小而且效率很高。它比同类型的版本控制工具比如Subversion(SVN)，CVS， ClearCase要更加功能强大。  </p>
+<h3 id="什么是版本控制"><a href="#什么是版本控制" class="headerlink" title="什么是版本控制"></a>什么是版本控制</h3><p>简单来说就是项目的历史，项目的代码从无到有，从少到多是有个过程的。在写代码的过程中我们免不了会遇到想知道项目发展过程中的许多事情，比如  </p>
+<ol>
+<li><p>谁提交了多少次代码，提交了多少行代码，谁对这个项目的贡献最大  </p>
+</li>
+<li><p>某行代码是何时由谁合并到项目中的，为什么他要这样写  </p>
+</li>
+<li><p>想要回滚当前项目到过去的某个时间段  </p>
+</li>
+<li><p>两个不同的人都修改了代码，如何能够快速的将两个人的代码diff并合并到项目中去  </p>
+</li>
+<li><p>想要维护两套代码分别开发不同的功能  </p>
+</li>
+<li><p>在每次提交代码时想要做一些验证，比如保证代码格式  </p>
+</li>
+</ol>
+<p>版本控制系统就是来控制这些事情的工具。Git也可以做到这些。  </p>
+<h3 id="Git-的特色"><a href="#Git-的特色" class="headerlink" title="Git 的特色"></a>Git 的特色</h3><p>Git与其它的版本控制系统有什么不同呢？最大的不同（除了开源）在于Git采用了分布式的版本控制。<br>在Git之前，版本控制系统都是集中式的，集中式版本控制系统的特色是最基本的版本库是存放在中央服务器的，在开发功能的时候，所有开发者都需要从中央服务器获取代码的最新版本，然后在本地加入自己的功能，最后再将代码合并到中央服务器中，合并的过程中，如果有别人在你之前合入了代码而你的代码和他的有冲突，你就要先处理这些冲突，然后合并入中央服务器。  </p>
+<p><img src="/blog/static/imgs/git/集中式版本控制系统.jpeg" alt="集中式版本控制系统">  </p>
+<p>集中式版本控制系统是可以工作的，但在某些方面也有自己的不足，比如如果中央服务器出现了问题，所有人都必须等待中央服务器可用。由于地理因素，某些开发者可能互相之间需要同步代码，而不希望和中央服务器同步（比如由于和中央服务器之间的带宽较小）。再比如开发者想要并行开发多个功能，但不想每次都需要同服务器同步获取最新代码。<br>分布式版本控制系统很好的解决了以上问题。在分布式版本控制系统中，每个版本库都是独立的。换句话说，每个版本库都可以作为“中央服务器”。这样，在开发的时候，任何两个开发者之间都可以互相推送自己的修改，而且由于记录的都是修改的操作，所以在自己本地创建“新版本库”（实际上通常是分支）来开发新功能的代价很小。  </p>
+<p><img src="/blog/static/imgs/git/分布式版本控制系统.jpeg" alt="分布式版本控制系统">  </p>
+<p>当然，实际上，采用分布式版本控制系统的项目通常也有一个版本库充当“中央服务器”的角色，而这个版本库标记这产品的正式的代码变更，每个开发者从“中央服务器”同步最新的代码相当于获取大家都认可的项目最新的代码。</p>
+<h2 id="如何安装-Git"><a href="#如何安装-Git" class="headerlink" title="如何安装 Git"></a>如何安装 Git</h2><p>下面列举了在Linux/MacOS/Windows中安装Git的方法：  </p>
+<h3 id="在Linux上安装Git"><a href="#在Linux上安装Git" class="headerlink" title="在Linux上安装Git"></a>在Linux上安装Git</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install git</span><br></pre></td></tr></table></figure>
+<h3 id="在Mac-OS-X上安装Git"><a href="#在Mac-OS-X上安装Git" class="headerlink" title="在Mac OS X上安装Git"></a>在Mac OS X上安装Git</h3><p>安装homebrew，然后通过homebrew安装Git，具体方法请参考 <a target="_blank" rel="noopener" href="http://brew.sh/">homebrew</a> 的文档。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install</span><br></pre></td></tr></table></figure>
+<h3 id="在Windows上安装Git"><a href="#在Windows上安装Git" class="headerlink" title="在Windows上安装Git"></a>在Windows上安装Git</h3><p>从Git官网直接 <a target="_blank" rel="noopener" href="https://git-scm.com/downloads">下载安装程序</a> ，然后双击安装即可。  </p>
+<h2 id="Git-常用命令"><a href="#Git-常用命令" class="headerlink" title="Git 常用命令"></a>Git 常用命令</h2><p>首先我们来了解下Git中的各个区域的含义  </p>
+<table>
 <thead>
 <tr>
-<th>值</th>
-<th>描述</th>
-<th>样式</th>
+<th>区域</th>
+<th>解释</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>url</td>
-<td>需使用的自定义光标的 URL。<br><font color="red">注意：</font>请在此列表的末端始终定义一种普通的光标，以防没有由 URL 定义的可用光标。</td>
-<td><div style="cursor:url('/blog/static/imgs/create-repo.png');height:25px"></div></td>
+<td>stash 存档库</td>
+<td>当你去修改别的东西的时候，隐藏（临时保存）当前的修改</td>
 </tr>
 <tr>
-<td>default</td>
-<td>默认光标（通常是一个箭头）</td>
-<td><div style="cursor:default;height:25px"></div></td>
+<td>workspace 工作区</td>
+<td>本地检出</td>
 </tr>
 <tr>
-<td>auto</td>
-<td>默认。浏览器设置的光标。</td>
-<td><div style="cursor:auto;height:25px"></div></td>
+<td>index 暂存区（索引）</td>
+<td>索引（暂存区）保存了一份工作(树)的快照，作为下次提交的内容</td>
 </tr>
 <tr>
-<td>crosshair</td>
-<td>光标呈现为十字线。</td>
-<td><div style="cursor:crosshair;height:25px"></div></td>
+<td>local repository 本地版本库</td>
+<td>.git 文件夹保存版本库需要的全部信息(Git 版本库的骨架)，一般包括分支 <strong>master</strong>, <strong>feature-x</strong>, <strong>bugfix-y</strong></td>
 </tr>
 <tr>
-<td>pointer</td>
-<td>光标呈现为指示链接的指针（一只手）</td>
-<td><div style="cursor:pointer;height:25px"></div></td>
-</tr>
-<tr>
-<td>move</td>
-<td>此光标指示某对象可被移动。</td>
-<td><div style="cursor:move;height:25px"></div></td>
-</tr>
-<tr>
-<td>e-resize</td>
-<td>此光标指示矩形框的边缘可被向右（东）移动。</td>
-<td><div style="cursor:e-resize;height:25px"></div></td>
-</tr>
-<tr>
-<td>ne-resize</td>
-<td>此光标指示矩形框的边缘可被向上及向右移动（北/东）。</td>
-<td><div style="cursor:ne-resize;height:25px"></div></td>
-</tr>
-<tr>
-<td>nw-resize</td>
-<td>此光标指示矩形框的边缘可被向上及向左移动（北/西）。</td>
-<td><div style="cursor:nw-resize;height:25px"></div></td>
-</tr>
-<tr>
-<td>n-resize</td>
-<td>此光标指示矩形框的边缘可被向上（北）移动。</td>
-<td><div style="cursor:n-resize;height:25px"></div></td>
-</tr>
-<tr>
-<td>se-resize</td>
-<td>此光标指示矩形框的边缘可被向下及向右移动（南/东）。</td>
-<td><div style="cursor:se-resize;height:25px"></div></td>
-</tr>
-<tr>
-<td>sw-resize</td>
-<td>此光标指示矩形框的边缘可被向下及向左移动（南/西）。</td>
-<td><div style="cursor:sw-resize;height:25px"></div></td>
-</tr>
-<tr>
-<td>s-resize</td>
-<td>此光标指示矩形框的边缘可被向下移动（南）。</td>
-<td><div style="cursor:s-resize;height:25px"></div></td>
-</tr>
-<tr>
-<td>w-resize</td>
-<td>此光标指示矩形框的边缘可被向左移动（西）。</td>
-<td><div style="cursor:w-resize;height:25px"></div></td>
-</tr>
-<tr>
-<td>text</td>
-<td>此光标指示文本。</td>
-<td><div style="cursor:text;height:25px"></div></td>
-</tr>
-<tr>
-<td>wait</td>
-<td>此光标指示程序正忙（通常是一只表或沙漏）。</td>
-<td><div style="cursor:wait;height:25px"></div></td>
-</tr>
-<tr>
-<td>help</td>
-<td>此光标指示可用的帮助（通常是一个问号或一个气球）。</td>
-<td><div style="cursor:help;height:25px"></div></td>
-</tr>
-<tr>
-<td>none</td>
-<td>光标消失</td>
-<td><div style="cursor:none;height:25px"></div></td>
-</tr>
-<tr>
-<td>not-allowed</td>
-<td>不允许操作</td>
-<td><div style="cursor:not-allowed;height:25px"></div></td>
+<td>upstream repository 上游版本库</td>
+<td>在网络（局域或因特网）上共享给其他开发者的版本库，一般叫”origin”. 一般包括分支<strong>master</strong>, <strong>shared-feature-x</strong>, <strong>release-y</strong></td>
 </tr>
 </tbody>
 </table>
-<div style="cursor:pointer;"></div>
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2018/09/05/%E6%94%B9%E5%8F%98placeholder%E7%9A%84%E9%A2%9C%E8%89%B2/">改变placeholder的颜色</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-09-05T11:46:41.000Z" itemprop="datePublished">2018-09-05</time>
-</span>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>我们都知道输入框中改变默认显示的文字是通过改变input的placeholder来实现的  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;search&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;Search...&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-<p>部分浏览器通过改变类似-webkit-input-placeholder的属性，使得输入框的placeholder也可以有自己的样式。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">input</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#fff</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">input</span>::-webkit-input-placeholder,textarea::-webkit-input-placeholder &#123;</span><br><span class="line">    color: <span class="number">#ccc</span>;</span><br><span class="line">&#125; </span><br><span class="line"><span class="selector-tag">input</span>::-moz-placeholder,</span><br><span class="line">textarea::-moz-placeholder &#123;</span><br><span class="line">    color: <span class="number">#ccc</span>;</span><br><span class="line">&#125; </span><br><span class="line"><span class="selector-tag">input</span>::-moz-placeholder,</span><br><span class="line">textarea::-moz-placeholder &#123;</span><br><span class="line">    color: <span class="number">#ccc</span>;</span><br><span class="line">&#125; </span><br><span class="line"><span class="selector-tag">input</span>::-ms-input-placeholder,</span><br><span class="line">textarea::-ms-input-placeholder &#123;</span><br><span class="line">    color: <span class="number">#ccc</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
-<p>大部分情况下修改的都是颜色，不过其它属性也是可以的  </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">input</span>::-webkit-input-placeholder,textarea::-webkit-input-placeholder &#123;</span><br><span class="line">    color: <span class="number">#ccc</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">12px</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2018/09/04/Hexo-%E6%B7%BB%E5%8A%A0%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/">Hexo 添加站内搜索功能</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-09-04T09:28:50.000Z" itemprop="datePublished">2018-09-04</time>
-</span>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/Hexo/" rel="tag">Hexo</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>搜索功能的实现最主要是生成一份关键字到站内链接的索引，当用户输入关键字后能够根据索引展示相应的链接。<br>通常，搜索引擎公司（例如Google，百度）会有自己的爬虫，当你将自己的网站地址提交给他们后，他们会用爬虫定期分析你的网站结构，然后生成索引文件并加入自己的索引库中。这样当终端用户输入和你的网站匹配的关键词后，你的网站内的链接就会在结果中显示出来。<br>站内搜索一般就不需要爬虫了，因为，其实最重要的是索引文件，只要你的网站更新的时候同时更新索引文件即可。  </p>
-<h2 id="插入Google搜索框"><a href="#插入Google搜索框" class="headerlink" title="插入Google搜索框"></a>插入Google搜索框</h2><p>你可以利用Hexo函数search_form直接插入Google搜索框。  </p>
-<p>search_form<br>插入 Google 搜索框。  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%- search_form(options) %&gt;</span><br></pre></td></tr></table></figure>
+<p>一个Git命令由 <code>git</code>开始，然后加上命令名，例如 <code>config</code>，然后加上参数，例如<code>--global user.name &quot;your name&quot;</code>，中间由空格连接。一个Git命令通常在一个区域或者两个区域之间进行了某些操作。  </p>
+<p>Git提供了很多的命令，可以自由的实现版本控制的几乎所有的要求，然而在日常工作中，最常用的几乎只有那么几个，你只需要打印出来贴在办公桌上即可，这里提供了一个 <a href="/static/docs/github-git-cheat-sheet.pdf" target="_blank" ref="noopener noreferrer">Git 命令小抄</a> 。  </p>
+<p>如果你不想手打Git命令，也有很好的界面化工具 <a target="_blank" rel="noopener" href="https://www.sourcetreeapp.com/">Sourcetree</a> 支持。  </p>
+<p>如果想要更全面的了解Git，可以查看 <a target="_blank" rel="noopener" href="https://git-scm.com/book/zh/v2">《Pro Git》</a> ，这本书由 Scott Chacon &amp; Ben Straub 编写，由Apress发布，遵循 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution Non Commercial Share Alike 3.0 license</a>。  </p>
+<p>下面列出一些常用的Git命令：  </p>
+<h3 id="git-stash-save-lt-msg"><a href="#git-stash-save-lt-msg" class="headerlink" title="git stash save [&lt;msg>]"></a>git stash save [&lt;msg>]</h3><p>所属区域： 从 <code>工作区</code> 到 <code>存档区</code><br>保存当前修改到新的存档库，并且执行<code>git reset ‑‑hard</code>来回滚。 msg是可选的用来描述存档。想快速建立存档，可以省略掉<code>save</code>和<code>msg</code>。</p>
+<h3 id="git-stash-apply-lt-stash"><a href="#git-stash-apply-lt-stash" class="headerlink" title="git stash apply [&lt;stash>]"></a>git stash apply [&lt;stash>]</h3><p>所属区域： 从 <code>存档区</code> 到 <code>工作区</code><br>从某个存档中将改变应用到工作区，默认是最近的存档。</p>
+<h3 id="git-stash-pop"><a href="#git-stash-pop" class="headerlink" title="git stash pop"></a>git stash pop</h3><p>所属区域： 从 <code>存档区</code> 到 <code>工作区</code><br>应用最后一个（或指定的）存档中的改动，然后从存档库丢弃它。</p>
+<h3 id="git-stash-list"><a href="#git-stash-list" class="headerlink" title="git stash list"></a>git stash list</h3><p>所属区域： <code>存档区</code><br>显示当前你有的所有存档。  </p>
+<h3 id="git-stash-show-lt-stash"><a href="#git-stash-show-lt-stash" class="headerlink" title="git stash show [&lt;stash>]"></a>git stash show [&lt;stash>]</h3><p>所属区域： <code>存档区</code><br>显示存档中记录的改动，对比存档生成时的原来状态；不指定stash则显示最后一个。</p>
+<h3 id="git-stash-drop-lt-stash"><a href="#git-stash-drop-lt-stash" class="headerlink" title="git stash drop [&lt;stash>]"></a>git stash drop [&lt;stash>]</h3><p>所属区域： <code>存档区</code><br>从存储区中删除单个存档；不指定stash则删除最后一个。  </p>
+<h3 id="git-stash-clear"><a href="#git-stash-clear" class="headerlink" title="git stash clear"></a>git stash clear</h3><p>所属区域： <code>存档区</code><br>清空存档库。注意相关存档会被清理，此操作<strong>不能被恢复</strong>。  </p>
+<h3 id="git-stash-branch-lt-branshname-lt-stash"><a href="#git-stash-branch-lt-branshname-lt-stash" class="headerlink" title="git stash branch &lt;branshname> [&lt;stash>]"></a>git stash branch &lt;branshname> [&lt;stash>]</h3><p>所属区域： 从 <code>存档区</code> 到 <code>本地版本库</code><br>新建并检出一个新分支branchname, 分支开始于存档建立时的源提交，应用存档的变化作为新的工作区和暂存区。如果成功并且stash是以 stash@{revision}方式给出的，则从存档库删除它。未给出则使用最后一个存档。这在当前分支运行 stash save 导致冲突时很好用，因为存档应用于它生成时的提交一定不会有冲突发生。  </p>
+<h3 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h3><p>所属区域： 在 <code>工作区</code> 与 <code>暂存区</code> 之间<br>显示状态变化，包括  </p>
+<ol>
+<li>暂存区与当前的 HEAD 提交之间(即将提交的)的状态变化</li>
+<li>工作区与暂存区(下次不会提交)的状态变化</li>
+<li>未曾被git追踪(没有历史记录)的状态变化</li>
+</ol>
+<h3 id="git-diff"><a href="#git-diff" class="headerlink" title="git diff"></a>git diff</h3><p>所属区域： 在 <code>工作区</code> 与 <code>暂存区</code> 之间<br>显示未添加到暂存区的不同。  </p>
+<h3 id="git-diff-1"><a href="#git-diff-1" class="headerlink" title="git diff "></a>git diff <commit or branch\></h3><p>所属区域： 在 <code>工作区</code> 与 <code>本地版本库</code> 之间<br>查看工作区与某一提交之间的不同。你也可以使用 HEAD 来对比上一提交，或是用分支名来和分支比较。  </p>
+<h3 id="git-add-lt-file-or-dir…"><a href="#git-add-lt-file-or-dir…" class="headerlink" title="git add &lt;file.. or dir…>"></a>git add &lt;file.. or dir…></h3><p>所属区域： 从 <code>工作区</code> 到 <code>暂存区</code><br>添加当前的新内容或是修改的文件到暂存区，作为下次提交的(部分)内容。用 <code>add --interactive</code> 来交互式操作。  </p>
+<h3 id="git-add-u"><a href="#git-add-u" class="headerlink" title="git add -u"></a>git add -u</h3><p>所属区域： 从 <code>工作区</code> 到 <code>暂存区</code><br>添加当前修改(<strong>不包括新文件</strong>)到暂存区, 这与 <code>git commit -a</code> 准备提交内容的方式一致。  </p>
+<h3 id="git-rm-lt-file-s-…"><a href="#git-rm-lt-file-s-…" class="headerlink" title="git rm &lt;file(s)…>"></a>git rm &lt;file(s)…></h3><p>所属区域： 从 <code>工作区</code> 到 <code>暂存区</code><br>从工作区和暂存区删除某个文件。  </p>
+<h3 id="git-mv-lt-file-s-…"><a href="#git-mv-lt-file-s-…" class="headerlink" title="git mv &lt;file(s)…>"></a>git mv &lt;file(s)…></h3><p>所属区域： 从 <code>工作区</code> 到 <code>暂存区</code><br>从工作区和暂存区移动文件。  </p>
+<h3 id="git-commit-a-m-‘msg’"><a href="#git-commit-a-m-‘msg’" class="headerlink" title="git commit -a [-m ‘msg’]"></a>git commit -a [-m ‘msg’]</h3><p>所属区域： 从 <code>工作区</code> 到 <code>本地版本库</code><br>提交上次提交之后的所有修改，  </p>
+<ol>
+<li>未追踪的除外(即：所有暂存区有记录的文件)；</li>
+<li>从暂存区删除已在工作区删除的文件</li>
+</ol>
+<h3 id="git-checkout-lt-file-s-…-or-dir…"><a href="#git-checkout-lt-file-s-…-or-dir…" class="headerlink" title="git checkout &lt;file(s)… or dir…>"></a>git checkout &lt;file(s)… or dir…></h3><p>所属区域： 从 <code>暂存区</code> 到 <code>工作区</code><br>更新工作区文件或文件夹，<strong>不会</strong>切换分支。  </p>
+<h3 id="git-reset-hard"><a href="#git-reset-hard" class="headerlink" title="git reset - -hard"></a>git reset - -hard</h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>工作区</code><br>恢复工作区和暂存区到上次提交的状态，<br>警告： 所有工作区修改都会被丢弃。使用这条命令来解决合并错误，如果你想从头开始的话传入 ORIG_HEAD 来撤销该次提交以来的所有改动。  </p>
+<h3 id="git-reset-soft-origin-master"><a href="#git-reset-soft-origin-master" class="headerlink" title="git reset  - -soft origin/master"></a>git reset  - -soft origin/master</h3><p>所属区域： 从 <code>上游版本库</code> 到 <code>工作区</code><br>恢复工作区和暂存区到上次提交的状态，当前所有工作区的修改都会保留成未提交的文件。  </p>
+<h3 id="git-checkout-b"><a href="#git-checkout-b" class="headerlink" title="git checkout -b "></a>git checkout -b <name of new branch\></h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>工作区</code><br>切换分支，更改工作区和暂存区为branch分支的内容，之后HEAD指向branch分支。  </p>
+<h3 id="git-merge"><a href="#git-merge" class="headerlink" title="git merge "></a>git merge <commit or branch\></h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>工作区</code><br>从branch name分支合并到当前分支，使用‑‑no-commit可以保持在(已经合并)但未提交状态。  </p>
+<h3 id="git-rebase-lt-upstream"><a href="#git-rebase-lt-upstream" class="headerlink" title="git rebase &lt;upstream>"></a>git rebase &lt;upstream></h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>工作区</code><br>变基：回滚从【当前提交和upstream分支分开处】开始直到当前提交的所有提交，将这些提交一一应用到upstream分支，结果作为upstream的新提交。</p>
+<h3 id="git-cherry-pick-lt-commit"><a href="#git-cherry-pick-lt-commit" class="headerlink" title="git cherry-pick &lt;commit>"></a>git cherry-pick &lt;commit></h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>工作区</code><br>把某个提交移动到当前分支来。  </p>
+<h3 id="git-revert-lt-commit"><a href="#git-revert-lt-commit" class="headerlink" title="git revert &lt;commit>"></a>git revert &lt;commit></h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>工作区</code><br>回滚commit指定的提交，这需要当前工作区是干净的，即相比于 HEAD 提交没有修改。  </p>
+<h3 id="git-clone-lt-repository"><a href="#git-clone-lt-repository" class="headerlink" title="git clone &lt;repository>"></a>git clone &lt;repository></h3><p>所属区域： 从 <code>上游版本库</code> 到 <code>工作区</code><br>下载repository指定的版本库，并在工作区迁出master分支的HEAD版本。  </p>
+<h3 id="git-pull-lt-remote-lt-refspec"><a href="#git-pull-lt-remote-lt-refspec" class="headerlink" title="git pull &lt;remote> &lt;refspec>"></a>git pull &lt;remote> &lt;refspec></h3><p>所属区域： 从 <code>上游版本库</code> 到 <code>工作区</code><br>从远程版本库取得修改到当前分支。 一般来说, git pull 相当于 git fetch 然后做 git merge FETCH_HEAD。  </p>
+<h3 id="git-reset-hard-lt-remote-lt-branch"><a href="#git-reset-hard-lt-remote-lt-branch" class="headerlink" title="git reset - -hard &lt;remote>|&lt;branch>"></a>git reset - -hard &lt;remote>|&lt;branch></h3><p>所属区域： 从 <code>上游版本库</code> 到 <code>工作区</code><br>重置本地版本库，让它与远程版本一致；用 reset ‑‑hard origin/master 来丢弃所有的本地改动；用这个来处理失败的合并，直接从远程开始。  </p>
+<h3 id="git-clean"><a href="#git-clean" class="headerlink" title="git clean"></a>git clean</h3><p>所属区域： 从 <code>工作区</code> 到 <code>工作区</code><br>从当前文件夹开始递归清理不受版本管理的内容。  </p>
+<h3 id="git-reset-HEAD-lt-file-s-…"><a href="#git-reset-HEAD-lt-file-s-…" class="headerlink" title="git reset HEAD &lt;file(s)…>"></a>git reset HEAD &lt;file(s)…></h3><p>所属区域： 从 <code>暂存区</code> 到 <code>暂存区</code><br>从下次提交中移除指定文件。重置暂存区记录但是不处理工作区(即: 文件改动被保留但不会被提交)，同时报告没有被更新的文件。  </p>
+<h3 id="git-reset-soft-HEAD"><a href="#git-reset-soft-HEAD" class="headerlink" title="git reset - -soft HEAD^"></a>git reset - -soft HEAD^</h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>暂存区</code><br>恢复上一次提交，保留暂存区的改动。  </p>
+<h3 id="git-diff-cached-lt-commit"><a href="#git-diff-cached-lt-commit" class="headerlink" title="git diff - -cached [&lt;commit>]"></a>git diff - -cached [&lt;commit>]</h3><p>所属区域： 在 <code>暂存区</code> 与 <code>本地版本库</code> 之间<br>查看已经暂存的内容和上次提交的区别，也可指定某一提交。  </p>
+<h3 id="git-commit-m-‘msg’"><a href="#git-commit-m-‘msg’" class="headerlink" title="git commit [-m ‘msg’]"></a>git commit [-m ‘msg’]</h3><p>所属区域： 从 <code>暂存区</code> 到 <code>本地版本库</code><br>暂存区中的当前内容连同提交信息储存为新提交。  </p>
+<h3 id="git-commit-amend"><a href="#git-commit-amend" class="headerlink" title="git commit - -amend"></a>git commit - -amend</h3><p>所属区域： 从 <code>暂存区</code> 到 <code>本地版本库</code><br>用当前暂存区的内容修改最近一次的提交，也可以拿来修改提交信息。  </p>
+<h3 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h3><p>所属区域： <code>本地版本库</code><br>显示最近的提交，新的在上边。  </p>
 <table>
 <thead>
 <tr>
 <th>参数</th>
-<th>描述</th>
-<th>默认值</th>
+<th>含义</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>class</td>
-<td>表单的 class name</td>
-<td>search-form</td>
+<td>‑‑decorate</td>
+<td>显示分支和tag名字到对应的提交</td>
 </tr>
 <tr>
-<td>text</td>
-<td>搜索提示文字</td>
-<td>Search</td>
+<td>‑‑stat</td>
+<td>显示状态 (文件修改, 添加, 删除)</td>
 </tr>
 <tr>
-<td>button</td>
-<td>显示搜索按钮。此参数可为布尔值（boolean）或字符串，<br>当设定是字符串的时候，即为搜索按钮的文字。</td>
-<td>false</td>
+<td>‑‑author=author</td>
+<td>只显示某个作者</td>
+</tr>
+<tr>
+<td>‑‑after=”MMM DD YYYY”</td>
+<td>如(“Jun 20 2008”) 只显示某个日期之后的提交</td>
+</tr>
+<tr>
+<td>‑‑before=”MMM DD YYYY”</td>
+<td>只显示某个日期之前的提交</td>
+</tr>
+<tr>
+<td>‑‑merge</td>
+<td>只与当前合并冲突有关的提交</td>
 </tr>
 </tbody>
 </table>
-<h2 id="自定义站内搜索"><a href="#自定义站内搜索" class="headerlink" title="自定义站内搜索"></a>自定义站内搜索</h2><p>你也可以利用Hexo插件实现自己的站内搜索的功能。  </p>
-<h3 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h3><p>这个插件的本质是生成了一个搜索索引文件。<br>插件： <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search">hexo-generator-search</a><br>通过以下命令安装：  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-generator-search --save</span><br></pre></td></tr></table></figure>
-<h3 id="修改hexo配置"><a href="#修改hexo配置" class="headerlink" title="修改hexo配置"></a>修改hexo配置</h3><p>在_config.yml中添加站内搜索配置项：  </p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">search:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">search.xml</span></span><br><span class="line">  <span class="comment"># 如只想索引文章，可设置为post</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">all</span></span><br></pre></td></tr></table></figure>
-<h3 id="实现搜索框视图"><a href="#实现搜索框视图" class="headerlink" title="实现搜索框视图"></a>实现搜索框视图</h3><p>结构文件<br>search.ejs<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;search-box&quot;</span> <span class="attr">id</span>=<span class="string">&quot;search-box&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;search-btn&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">autocomplete</span>=<span class="string">&quot;off&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;search-input&quot;</span> <span class="attr">name</span>=<span class="string">&quot;q&quot;</span> <span class="attr">results</span>=<span class="string">&quot;0&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;搜索&quot;</span></span></span><br><span class="line"><span class="tag">        /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;reset&quot;</span> <span class="attr">class</span>=<span class="string">&quot;reset-search-btn&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 上面是搜索框，下面是结果域 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">article</span> <span class="attr">id</span>=<span class="string">&quot;search-result&quot;</span> <span class="attr">class</span>=<span class="string">&quot;search-result content&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>样式文件<br>search.css<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line">// 搜索框</span><br><span class="line"><span class="selector-class">.search-box</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">40px</span>;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">13px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">40px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">36px</span>;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">1</span>;</span><br><span class="line">    <span class="attribute">outline</span>: none;</span><br><span class="line">    <span class="attribute">transition</span>: width <span class="number">0.1s</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-box-focus</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">164px</span>;</span><br><span class="line">    <span class="attribute">padding-left</span>: <span class="number">38px</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#f0f1f2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-box-focus</span> <span class="selector-id">#search-input</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-box</span>  <span class="selector-tag">form</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-box</span> <span class="selector-class">.search-btn</span>,</span><br><span class="line"><span class="selector-class">.reset-search-btn</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">30px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">30px</span>;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">3px</span>;</span><br><span class="line">    <span class="attribute">border</span>: none;</span><br><span class="line">    <span class="attribute">outline</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">background-size</span>: <span class="number">30px</span> <span class="number">30px</span>;</span><br><span class="line">    <span class="attribute">background-repeat</span>: no-repeat;</span><br><span class="line">    <span class="attribute">background-position</span>: center;</span><br><span class="line">    <span class="attribute">background-color</span>: initial;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-box</span> <span class="selector-class">.search-btn</span> &#123;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">3px</span>;</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">../images/header_search.png</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.reset-search-btn</span> &#123;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">3px</span>;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">../images/header_close.png</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-box-focus</span> <span class="selector-class">.reset-search-btn</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#search-input</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">    <span class="attribute">width</span>: <span class="built_in">calc</span>(<span class="number">100%</span> - <span class="number">36px</span>);</span><br><span class="line">    <span class="attribute">border</span>: none;</span><br><span class="line">    <span class="attribute">font</span>: inherit;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">1</span>;</span><br><span class="line">    <span class="attribute">outline</span>: none;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">8px</span> <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">background</span>: transparent;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#search-input</span>::-webkit-input-placeholder &#123;</span><br><span class="line">    color: <span class="number">#999</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-result</span> <span class="selector-tag">ul</span>, <span class="selector-class">.search-result</span> <span class="selector-tag">li</span> &#123;</span><br><span class="line">    <span class="attribute">list-style</span>: none;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-result</span> <span class="selector-tag">li</span> &#123;</span><br><span class="line">    <span class="attribute">padding-top</span>: <span class="number">30px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-result</span> <span class="selector-tag">li</span> <span class="selector-class">.search-result</span> &#123;</span><br><span class="line">    <span class="attribute">overflow</span> : hidden;</span><br><span class="line">    <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">    <span class="attribute">display</span>: -webkit-box;</span><br><span class="line">    -webkit-line-clamp: <span class="number">3</span>;</span><br><span class="line">    -webkit-box-orient: vertical;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-result</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-result</span> <span class="selector-tag">h1</span> &#123;</span><br><span class="line">    <span class="attribute">padding-bottom</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">margin-bottom</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#333</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-result</span> <span class="selector-tag">em</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#38f</span>;</span><br><span class="line">    -webkit-text-emphasis: none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-result</span> <span class="selector-tag">h1</span> <span class="selector-tag">em</span> &#123;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span> <span class="number">5px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search-result</span> <span class="selector-tag">h1</span><span class="selector-class">.empty-title</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#999</span>;</span><br><span class="line">    <span class="attribute">border-bottom</span>: none;</span><br><span class="line">    <span class="attribute">padding-top</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="实现站内搜索逻辑"><a href="#实现站内搜索逻辑" class="headerlink" title="实现站内搜索逻辑"></a>实现站内搜索逻辑</h3><p>search.js</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">searchFunc</span>(<span class="params">path, searchId, contentId</span>) </span>&#123;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        url: path,</span><br><span class="line">        dataType: <span class="string">&#x27;xml&#x27;</span>,</span><br><span class="line">        success: <span class="function"><span class="keyword">function</span> (<span class="params">xmlResponse</span>) </span>&#123;</span><br><span class="line">            <span class="comment">// get the contents from search data</span></span><br><span class="line">            <span class="keyword">var</span> datas = $(<span class="string">&#x27;entry&#x27;</span>, xmlResponse).map(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> &#123;</span><br><span class="line">                    title: $(<span class="string">&#x27;title&#x27;</span>, <span class="built_in">this</span>).text(),</span><br><span class="line">                    content: $(<span class="string">&#x27;content&#x27;</span>, <span class="built_in">this</span>).text(),</span><br><span class="line">                    url: $(<span class="string">&#x27;url&#x27;</span>, <span class="built_in">this</span>).text()</span><br><span class="line">                &#125;;</span><br><span class="line">            &#125;).get();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> $searchBox = $(<span class="string">&#x27;#&#x27;</span> + searchId);</span><br><span class="line">            <span class="keyword">if</span> (!($searchBox &amp;&amp; $searchBox.length == <span class="number">1</span>)) &#123;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">var</span> $resultContent = $(<span class="string">&#x27;#&#x27;</span> + contentId);</span><br><span class="line">            <span class="keyword">if</span> (!($resultContent &amp;&amp; $resultContent.length == <span class="number">1</span> )) &#123;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> $input = $searchBox.find(<span class="string">&#x27;#search-input&#x27;</span>);</span><br><span class="line">            <span class="keyword">var</span> $searchBtn = $searchBox.find(<span class="string">&#x27;.search-btn&#x27;</span>);</span><br><span class="line">            <span class="keyword">var</span> $resetBtn = $searchBox.find(<span class="string">&#x27;.reset-search-btn&#x27;</span>);</span><br><span class="line"></span><br><span class="line">            $searchBtn.on(<span class="string">&#x27;click&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">                $searchBox.addClass(<span class="string">&#x27;search-box-focus&#x27;</span>);</span><br><span class="line">                $input[<span class="number">0</span>].focus();</span><br><span class="line">            &#125;);</span><br><span class="line">            $resetBtn.on(<span class="string">&#x27;click&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">                $(<span class="string">&#x27;#content&#x27;</span>).css(&#123;</span><br><span class="line">                    display: <span class="string">&#x27;block&#x27;</span></span><br><span class="line">                &#125;);</span><br><span class="line">                $resultContent.css(&#123;</span><br><span class="line">                    display: <span class="string">&#x27;none&#x27;</span></span><br><span class="line">                &#125;);</span><br><span class="line">                $input[<span class="number">0</span>].focus();</span><br><span class="line">            &#125;);</span><br><span class="line">            $input.on(<span class="string">&#x27;blur&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                ($(<span class="built_in">this</span>).val() === <span class="string">&#x27;&#x27;</span>) &amp;&amp; $searchBox.removeClass(<span class="string">&#x27;search-box-focus&#x27;</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="keyword">var</span> flag = <span class="literal">true</span>;</span><br><span class="line">            $input.on(<span class="string">&#x27;compositionstart&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                flag = <span class="literal">false</span>;</span><br><span class="line">            &#125;);</span><br><span class="line">            $input.on(<span class="string">&#x27;compositionend&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                flag = <span class="literal">true</span>;</span><br><span class="line">            &#125;);</span><br><span class="line">            $input.on(<span class="string">&#x27;keydown&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">var</span> e = e || event;</span><br><span class="line">                <span class="keyword">if</span> (e.keyCode === <span class="number">13</span>) &#123;</span><br><span class="line">                    e.returnValue = <span class="literal">false</span>;</span><br><span class="line">                    e.preventDefault();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">            $input.on(<span class="string">&#x27;input&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">var</span> $this = <span class="built_in">this</span>;</span><br><span class="line">                <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                    <span class="keyword">if</span> (!flag) &#123;</span><br><span class="line">                        <span class="keyword">return</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">var</span> str = <span class="string">&#x27;&lt;ul class=&quot;search-result-list&quot;&gt;&#x27;</span>;</span><br><span class="line">                    <span class="keyword">var</span> keywords = $this.value.trim().toLowerCase().split(<span class="regexp">/\s+/</span>);</span><br><span class="line">                    $resultContent[<span class="number">0</span>].innerHTML = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">                    <span class="keyword">if</span> ($this.value.trim().length &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">                        $(<span class="string">&#x27;#content&#x27;</span>).css(&#123;</span><br><span class="line">                            display: <span class="string">&#x27;block&#x27;</span></span><br><span class="line">                        &#125;);</span><br><span class="line">                        $resultContent.css(&#123;</span><br><span class="line">                            display: <span class="string">&#x27;none&#x27;</span></span><br><span class="line">                        &#125;);</span><br><span class="line">                        <span class="keyword">return</span>;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        $(<span class="string">&#x27;#content&#x27;</span>).css(&#123;</span><br><span class="line">                            display: <span class="string">&#x27;none&#x27;</span></span><br><span class="line">                        &#125;);</span><br><span class="line">                        $resultContent.css(&#123;</span><br><span class="line">                            display: <span class="string">&#x27;block&#x27;</span></span><br><span class="line">                        &#125;);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">var</span> matchCount = <span class="number">0</span>;</span><br><span class="line">                    datas.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">                        <span class="keyword">var</span> isMatch = <span class="literal">true</span>;</span><br><span class="line">                        <span class="keyword">if</span> (!data.title || data.title.trim() === <span class="string">&#x27;&#x27;</span>) &#123;</span><br><span class="line">                            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">var</span> data_title = data.title.trim().toLowerCase();</span><br><span class="line">                        <span class="keyword">var</span> data_content = data.content.trim().replace(<span class="regexp">/&lt;[^&gt;]+&gt;/g</span>, <span class="string">&quot;&quot;</span>).toLowerCase();</span><br><span class="line">                        <span class="keyword">var</span> data_url = data.url;</span><br><span class="line">                        <span class="keyword">var</span> index_title = -<span class="number">1</span>;</span><br><span class="line">                        <span class="keyword">var</span> index_content = -<span class="number">1</span>;</span><br><span class="line">                        <span class="keyword">var</span> first_occur = -<span class="number">1</span>;</span><br><span class="line">                        <span class="comment">// only match artiles with not empty contents</span></span><br><span class="line">                        <span class="keyword">if</span> (data_content !== <span class="string">&#x27;&#x27;</span>) &#123;</span><br><span class="line">                            keywords.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">keyword, i</span>) </span>&#123;</span><br><span class="line">                                index_title = data_title.indexOf(keyword);</span><br><span class="line">                                index_content = data_content.indexOf(keyword);</span><br><span class="line"></span><br><span class="line">                                <span class="keyword">if</span> (index_title &lt; <span class="number">0</span> &amp;&amp; index_content &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                                    isMatch = <span class="literal">false</span>;</span><br><span class="line">                                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                                    <span class="keyword">if</span> (index_content &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                                        index_content = <span class="number">0</span>;</span><br><span class="line">                                    &#125;</span><br><span class="line">                                    <span class="keyword">if</span> (i === <span class="number">0</span>) &#123;</span><br><span class="line">                                        first_occur = index_content;</span><br><span class="line">                                    &#125;</span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125;);</span><br><span class="line">                        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                            isMatch = <span class="literal">false</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">if</span> (isMatch) &#123;</span><br><span class="line">                            matchCount++;</span><br><span class="line">                            str += <span class="string">&#x27;&lt;li&gt;&lt;h3&gt;&lt;a target = &quot;_blank&quot; href=&quot;&#x27;</span> + data_url + <span class="string">&#x27;&quot; class=&quot;search-result-title&quot;&gt;&#x27;</span> + data_title + <span class="string">&#x27;&lt;/a&gt;&lt;/h3&gt;&#x27;</span>;</span><br><span class="line">                            <span class="keyword">var</span> content = data.content.trim().replace(<span class="regexp">/&lt;[^&gt;]+&gt;/g</span>, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line">                            <span class="keyword">if</span> (first_occur &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                                <span class="comment">// cut out 100 characters</span></span><br><span class="line">                                <span class="keyword">var</span> start = first_occur - <span class="number">20</span>;</span><br><span class="line">                                <span class="keyword">var</span> end = first_occur + <span class="number">80</span>;</span><br><span class="line"></span><br><span class="line">                                <span class="keyword">if</span> (start &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                                    start = <span class="number">0</span>;</span><br><span class="line">                                &#125;</span><br><span class="line"></span><br><span class="line">                                <span class="keyword">if</span> (start === <span class="number">0</span>) &#123;</span><br><span class="line">                                    end = <span class="number">100</span>;</span><br><span class="line">                                &#125;</span><br><span class="line"></span><br><span class="line">                                <span class="keyword">if</span> (end &gt; content.length) &#123;</span><br><span class="line">                                    end = content.length;</span><br><span class="line">                                &#125;</span><br><span class="line"></span><br><span class="line">                                <span class="keyword">var</span> match_content = content.substr(start, end);</span><br><span class="line"></span><br><span class="line">                                <span class="comment">// highlight all keywords</span></span><br><span class="line">                                keywords.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">keyword</span>) </span>&#123;</span><br><span class="line">                                    <span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(keyword, <span class="string">&#x27;gi&#x27;</span>);</span><br><span class="line">                                    match_content = match_content.replace(reg, <span class="function"><span class="keyword">function</span> (<span class="params">str</span>) </span>&#123;</span><br><span class="line">                                        <span class="keyword">return</span> <span class="string">&#x27;&lt;em class=&quot;search-keyword&quot;&gt;&#x27;</span> + str + <span class="string">&#x27;&lt;/em&gt;&#x27;</span>;</span><br><span class="line">                                    &#125;)</span><br><span class="line">                                &#125;);</span><br><span class="line"></span><br><span class="line">                                str += <span class="string">&#x27;&lt;p class=&quot;search-result&quot;&gt;&#x27;</span> + match_content + <span class="string">&#x27;...&lt;/p&gt;&#x27;</span>;</span><br><span class="line">                            &#125;</span><br><span class="line">                            str += <span class="string">&#x27;&lt;/li&gt;&#x27;</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;);</span><br><span class="line">                    $input.attr(<span class="string">&#x27;results&#x27;</span>, matchCount);</span><br><span class="line">                    str += <span class="string">&#x27;&lt;/ul&gt;&#x27;</span>;</span><br><span class="line">                    <span class="keyword">var</span> title = matchCount ? <span class="string">&#x27;&lt;h1&gt;找到&lt;em&gt;&#x27;</span> + $this.value.trim() + <span class="string">&#x27;&lt;/em&gt;相关内容&#x27;</span> + matchCount + <span class="string">&#x27;个&lt;/h1&gt;&#x27;</span> : <span class="string">&#x27;&lt;h1 class=&quot;empty-title&quot;&gt;没有找到&lt;em&gt;&#x27;</span> + $this.value.trim() + <span class="string">&#x27;&lt;/em&gt;相关内容&lt;/h1&gt;&#x27;</span>;</span><br><span class="line">                    str = title + str;</span><br><span class="line">                    $(<span class="string">&#x27;#content&#x27;</span>).css(&#123;</span><br><span class="line">                        display: <span class="string">&#x27;none&#x27;</span></span><br><span class="line">                    &#125;);</span><br><span class="line"></span><br><span class="line">                    $resultContent.css(&#123;</span><br><span class="line">                        display: <span class="string">&#x27;block&#x27;</span></span><br><span class="line">                    &#125;);</span><br><span class="line">                    $resultContent[<span class="number">0</span>].innerHTML = str;</span><br><span class="line">                &#125;, <span class="number">0</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="将搜索功能添加如页面"><a href="#将搜索功能添加如页面" class="headerlink" title="将搜索功能添加如页面"></a>将搜索功能添加如页面</h3><p>将如下代码添加到合适的地方,一般为layout.ejs 最下方  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (config.search) &#123; %&gt;</span><br><span class="line">    &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;&#x2F;js&#x2F;search.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">        var search_path &#x3D; &quot;&lt;%&#x3D; config.search.path %&gt;&quot;;</span><br><span class="line">            if (search_path.length &#x3D;&#x3D; 0) &#123;</span><br><span class="line">            search_path &#x3D; &quot;search.xml&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        var path &#x3D; &quot;&lt;%&#x3D; config.root %&gt;&quot; + search_path;</span><br><span class="line">        searchFunc(path, &#39;search-box&#39;, &#39;search-result&#39;);</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="git-diff-lt-commit-lt-commit"><a href="#git-diff-lt-commit-lt-commit" class="headerlink" title="git diff &lt;commit> &lt;commit>"></a>git diff &lt;commit> &lt;commit></h3><p>所属区域： <code>本地版本库</code><br>显示两个提交之间的不同。  </p>
+<h3 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h3><p>所属区域： <code>本地版本库</code><br>显示所有（本地）存在的分支。参数 -r 显示远程追踪分支，参数 -a 显示全部。  </p>
+<h3 id="git-branch-d-lt-branch"><a href="#git-branch-d-lt-branch" class="headerlink" title="git branch -d &lt;branch>"></a>git branch -d &lt;branch></h3><p>所属区域： <code>本地版本库</code><br>删除某个分支，使用—D来强制删除。  </p>
+<h3 id="git-branch-track-lt-new-lt-remote-branch"><a href="#git-branch-track-lt-new-lt-remote-branch" class="headerlink" title="git branch - -track &lt;new> &lt;remote/branch>"></a>git branch - -track &lt;new> &lt;remote/branch></h3><p>所属区域： 从 <code>上游版本库</code> 到 <code>本地版本库</code><br>添加一个本地分支来跟踪某个远程分支。  </p>
+<h3 id="git-fetch-lt-remote-lt-refspec"><a href="#git-fetch-lt-remote-lt-refspec" class="headerlink" title="git fetch &lt;remote> &lt;refspec>"></a>git fetch &lt;remote> &lt;refspec></h3><p>所属区域： 从 <code>上游版本库</code> 到 <code>本地版本库</code><br>从远端版本库下载对象和引用(即版本信息)。  </p>
+<h3 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>上游版本库</code><br>从本地提交推送分支改变到远程，分支为所有推送过的分支。  </p>
+<h3 id="git-push-lt-remote-lt-branch"><a href="#git-push-lt-remote-lt-branch" class="headerlink" title="git push &lt;remote> &lt;branch>"></a>git push &lt;remote> &lt;branch></h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>上游版本库</code><br>向远端版本库推送新的(已存在的)分支。  </p>
+<h3 id="git-push-lt-remote-lt-branch-lt-branch"><a href="#git-push-lt-remote-lt-branch-lt-branch" class="headerlink" title="git push &lt;remote> &lt;branch>:&lt;branch>"></a>git push &lt;remote> &lt;branch>:&lt;branch></h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>上游版本库</code><br>向远端版本库推送分支，但是从不同的（本地）分支名。  </p>
+<h3 id="git-branch-r"><a href="#git-branch-r" class="headerlink" title="git branch -r"></a>git branch -r</h3><p>所属区域： <code>上游版本库</code><br>显示远程端分支。  </p>
+<h3 id="git-push-lt-remote-lt-branch-1"><a href="#git-push-lt-remote-lt-branch-1" class="headerlink" title="git push &lt;remote>:&lt;branch>"></a>git push &lt;remote>:&lt;branch></h3><p>所属区域： <code>上游版本库</code><br>删除一个远程分支，通过向远程分支推送空内容。  </p>
+<h3 id="git-config-lt-options"><a href="#git-config-lt-options" class="headerlink" title="git config [&lt;options>]"></a>git config [&lt;options>]</h3><p>Git 配置相关信息</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>- -global</td>
+<td>使用全局配置文件</td>
+</tr>
+<tr>
+<td>- -system</td>
+<td>使用系统配置文件</td>
+</tr>
+<tr>
+<td>- -local</td>
+<td>使用版本库配置文件</td>
+</tr>
+<tr>
+<td>-f, - -file &lt;file></td>
+<td>使用给定路径的配置文件</td>
+</tr>
+<tr>
+<td>- -get</td>
+<td>获取Git配置的值</td>
+</tr>
+<tr>
+<td>-l, - -list</td>
+<td>列出所有的配置</td>
+</tr>
+</tbody>
+</table>
+<p>可以通过 <code>git config alias.&lt;command alias&gt; &lt;command&gt;</code> 设置别名  </p>
+<h2 id="其它注意事项"><a href="#其它注意事项" class="headerlink" title="其它注意事项"></a>其它注意事项</h2><p>平常我会使用 SourceTree 来省却自己手打git命令的烦恼，但有时在提交到 Github 的时候，会在 Github 的 commit history 里看到如下一句  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mangon authored and Xiang committed 16 minutes ago</span><br></pre></td></tr></table></figure>
+<p>其实在SourceTree 的提交历史中也能看到类似如下信息  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">fix: fix desc error</span><br><span class="line">提交：</span><br><span class="line">1bcf9d0d3c9df73e52b38a71402d4b3943698287 [1bcf9d0]</span><br><span class="line">父级：</span><br><span class="line">371e1e0379</span><br><span class="line">作者：</span><br><span class="line">Mangon &lt;*************@***.com&gt;</span><br><span class="line">日期：</span><br><span class="line">2019年2月14日 GMT+8 下午1:57:33</span><br><span class="line">提交者：</span><br><span class="line">Xiang &lt;**********@*****.com&gt;</span><br><span class="line">提交日期：</span><br><span class="line">2019年2月14日 GMT+8 下午2:06:47</span><br><span class="line">标签：</span><br><span class="line">HEAD -&gt; develop origin&#x2F;develop</span><br></pre></td></tr></table></figure>
+<p>显然是作者与提交者不一致导致的。经查阅，Git中一个commit有作者和提交者的差别。作者（author）指的是实际作出修改的人，提交者(committer)指的是最后将此工作成果提交到仓库的人。所以，当你为某个项目发布补丁，然后某个核心成员将你的补丁并入项目时，你就是作者，而那个核心成员就是提交者。  </p>
+<p>在SourceTree中，可以在提交时 commit message 输入框左上方改变自己的 Author 属性，在当前项目窗口的右上角设置里选择高级，然后修改用户信息“全名”及“电子邮件地址”来改变 committer 属性。  </p>
+<p>将两者改为一致的自己想要用的Github账户名就可以保证在Github提交历史中显示正确的名字。  </p>
+
         
     </section>
     
@@ -437,7 +343,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2018/09/03/CSS%E9%80%89%E6%8B%A9%E5%99%A8%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/">css选择器参考手册</a>
+            <a href="/blog/2019/01/21/HTML-head%E4%B8%AD%E7%9A%84meta/">head中的meta</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -445,13 +351,13 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2018-09-03T11:32:59.000Z" itemprop="datePublished">2018-09-03</time>
+    <time datetime="2019-01-21T12:53:30.000Z" itemprop="datePublished">2019-01-21</time>
 </span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+    <a class="article-tag-link" href="/blog/tags/html/" rel="tag">html</a>
 </div>
 
 
@@ -460,283 +366,409 @@
     
     <section class="article-body markdown-body">
         
-        <table>
+        <p>meta指的是html元素中存在与head中的meta元素<br>它长这样  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="meta的含义"><a href="#meta的含义" class="headerlink" title="meta的含义"></a>meta的含义</h2><p>HTML <meta> 元素表示那些不能由其它HTML元相关元素 (&lt;base>, &lt;link>, &lt;script>, &lt;style> 或 &lt;title>) 之一表示的任何元数据信息.  </p>
+<h2 id="meta的属性"><a href="#meta的属性" class="headerlink" title="meta的属性"></a>meta的属性</h2><h3 id="charset"><a href="#charset" class="headerlink" title="charset"></a>charset</h3><p>此特性声明当前文档所使用的字符编码，但该声明可以被任何一个元素(通常是html)的 lang 特性的值覆盖。此特性的值必须是一个符合由IANA所定义的字符编码首选MIME 名称（preferred MIME name ）之一。</p>
+<p>有几点需要注意：</p>
+<ol>
+<li>推荐使用 UTF-8；  </li>
+<li><meta> 元素必须包含在 <head> 元素中并且在HTML代码的前1024个字节内，因为某些浏览器在选择编码之前只查看前面这些字节。  </li>
+<li>meta charset元素并不能决定字符集，网页采用何种字符是由 <a target="_blank" rel="noopener" href="https://html.spec.whatwg.org/multipage/parsing.html#encoding-sniffing-algorithm">网页字符算法</a> 决定的  </li>
+<li>强烈建议使用该属性定义字符编码. 如果未定义，某些跨脚本技术可能危害网页， 例如 <a target="_blank" rel="noopener" href="http://code.google.com/p/doctype-mirror/wiki/ArticleUtf7">UTF-7 降级XSS攻击</a>  </li>
+</ol>
+<h3 id="http-equiv"><a href="#http-equiv" class="headerlink" title="http-equiv"></a>http-equiv</h3><p>这个枚举属性定义了能改变服务器和用户引擎行为的编译行为。值使用 content 来定义，如下：  </p>
+<table>
 <thead>
 <tr>
-<th style="text-align:left">选择器</th>
-<th style="text-align:left">例子</th>
-<th style="text-align:left">例子描述</th>
-<th style="text-align:left">css</th>
+<th>值</th>
+<th>含义</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">.class</td>
-<td style="text-align:left">.intro</td>
-<td style="text-align:left">选择 class=”intro” 的所有元素。</td>
-<td style="text-align:left">1</td>
+<td>content-security-policy</td>
+<td>它允许页面作者定义当前页的内容策略。 内容策略主要指定允许的服务器源和脚本端点，这有助于防止跨站点脚本攻击。</td>
 </tr>
 <tr>
-<td style="text-align:left">#id</td>
-<td style="text-align:left">#firstname</td>
-<td style="text-align:left">选择 id=”firstname” 的所有元素。</td>
-<td style="text-align:left">1</td>
+<td>default-style</td>
+<td>这个属性指定了在页面上使用的首选样式表. content属性必须包含 <code>&lt;link&gt;</code> 元素的标题, href属性链接到CSS样式表或包含CSS样式表的 <code>&lt;style&gt;</code> 元素的标题.</td>
 </tr>
 <tr>
-<td style="text-align:left">*</td>
-<td style="text-align:left">*</td>
-<td style="text-align:left">选择所有元素。</td>
-<td style="text-align:left">2</td>
+<td>refresh</td>
+<td>这个属性规定了重新载入页面或跳转到指定链接的时间间隔（正整数）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="name-amp-content"><a href="#name-amp-content" class="headerlink" title="name &amp; content"></a>name &amp; content</h3><p>全局属性 name 在 <meta> 元素中具有特殊的语义；<br>另外， 在同一个 <meta> 标签中，name、http-equiv 或者 charset 三者中任何一个属性存在时，itemprop 属性不能被使用。  </p>
+<p>定义文档级元数据的名称 与 内容  </p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>application-name</td>
+<td>定义正运行在该网页上的网络应用名称</td>
 </tr>
 <tr>
-<td style="text-align:left">element</td>
-<td style="text-align:left">p</td>
-<td style="text-align:left">选择所有 &lt;p> 元素。</td>
-<td style="text-align:left">1</td>
+<td>author</td>
+<td>这个文档的作者名称</td>
 </tr>
 <tr>
-<td style="text-align:left">element,element</td>
-<td style="text-align:left">div,p</td>
-<td style="text-align:left">选择所有 &lt;div> 元素和所有 &lt;p> 元素。</td>
-<td style="text-align:left">1</td>
+<td>description</td>
+<td>其中包含页面内容的简短和精确的描述。 一些浏览器，如Firefox和Opera，将其用作书签页面的默认描述</td>
 </tr>
 <tr>
-<td style="text-align:left">element element</td>
-<td style="text-align:left">div p</td>
-<td style="text-align:left">选择 &lt;div> 元素内部的所有 &lt;p> 元素。</td>
-<td style="text-align:left">1</td>
+<td>generator</td>
+<td>包含生成页面的软件的标识符</td>
 </tr>
 <tr>
-<td style="text-align:left">element>element</td>
-<td style="text-align:left">div>p</td>
-<td style="text-align:left">选择父元素为 &lt;div> 元素的所有 &lt;p> 元素。</td>
-<td style="text-align:left">2</td>
+<td>keywords</td>
+<td>包含与逗号分隔的页面内容相关的单词（关键词）</td>
 </tr>
 <tr>
-<td style="text-align:left">element+element</td>
-<td style="text-align:left">div+p</td>
-<td style="text-align:left">选择紧接在 &lt;div> 元素之后的所有 &lt;p> 元素。</td>
-<td style="text-align:left">2</td>
+<td>referrer</td>
+<td>控制所有从该文档发出的 HTTP 请求中HTTP Referer 首部的内容</td>
+</tr>
+</tbody>
+</table>
+<p>name 为 referrer 时 content 的可选值</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no-referrer</td>
+<td>不要发送 HTTP Referer 首部</td>
 </tr>
 <tr>
-<td style="text-align:left">[attribute]</td>
-<td style="text-align:left">[target]</td>
-<td style="text-align:left">选择带有 target 属性所有元素。</td>
-<td style="text-align:left">2</td>
+<td>origin</td>
+<td>发送当前文档的 origin。</td>
 </tr>
 <tr>
-<td style="text-align:left">[attribute=value]</td>
-<td style="text-align:left">[target=_blank]</td>
-<td style="text-align:left">选择 target=”_blank” 的所有元素。</td>
-<td style="text-align:left">2</td>
+<td>no-referrer-when-downgrade</td>
+<td>当目的地是先验安全的(https-&gt;https)则发送 origin 作为 referrer ，但是当目的地是较不安全的 (https-&gt;http)时则不发送 referrer 。这个是默认的行为。</td>
 </tr>
 <tr>
-<td style="text-align:left">[attribute~=value]</td>
-<td style="text-align:left">[title~=flower]</td>
-<td style="text-align:left">选择 title 属性包含单词 “flower” 的所有元素。</td>
-<td style="text-align:left">2</td>
+<td>origin-when-crossorigin</td>
+<td>在同源请求下，发送完整的URL (不含查询参数) ，其他情况下则仅发送当前文档的 origin。</td>
 </tr>
 <tr>
-<td style="text-align:left">[attribute&#124;=value]</td>
-<td style="text-align:left">[lang&#124;=en]</td>
-<td style="text-align:left">选择 lang 属性值以 “en” 开头的所有元素。</td>
-<td style="text-align:left">2</td>
+<td>unsafe-URL</td>
+<td>在同源请求下，发送完整的URL (不含查询参数)。</td>
+</tr>
+</tbody>
+</table>
+<p>有些name虽然没有被正式承认，但是也被广泛使用，<a target="_blank" rel="noopener" href="https://wiki.whatwg.org/wiki/MetaExtensions">这个网站</a> 列举了所有存在的meta值。以下列举一些常用的。</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>creator</td>
+<td>文档的创建者</td>
 </tr>
 <tr>
-<td style="text-align:left">:link</td>
-<td style="text-align:left">a:link</td>
-<td style="text-align:left">选择所有未被访问的链接。</td>
-<td style="text-align:left">1</td>
+<td>publisher</td>
+<td>文档的发布者</td>
 </tr>
 <tr>
-<td style="text-align:left">:visited</td>
-<td style="text-align:left">a:visited</td>
-<td style="text-align:left">选择所有已被访问的链接。</td>
-<td style="text-align:left">1</td>
+<td>robots</td>
+<td>定义了合理的被允许的爬虫行为，注意只有搜索引擎爬虫会遵循此规则所以并不能阻止个人的爬虫程序，而且爬虫能读取到该属性说明已经在读取此网页了，所以最好使用robots.txt来阻止搜索引擎爬虫</td>
 </tr>
 <tr>
-<td style="text-align:left">:active</td>
-<td style="text-align:left">a:active</td>
-<td style="text-align:left">选择活动链接。</td>
-<td style="text-align:left">1</td>
+<td>viewport</td>
+<td>视口，提供有关视口初始大小的提示，仅供移动设备使用，虽然目前标准化程度不高，还处于草案(work in progress)的进度，但由于事实上的几个浏览器的支配地位，大多数移动浏览器都尊重这一声明，更多有关viewport的解释参见<a target="_blank" rel="noopener" href="https://drafts.csswg.org/css-device-adapt/#viewport-meta">文档</a></td>
+</tr>
+</tbody>
+</table>
+<p>有关viewport的相关内容，参见 <a href="/2019/01/21/浅谈viewport/">浅谈viewport</a></p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2019/01/21/HTML-viewport/">viewport</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-01-21T11:53:30.000Z" itemprop="datePublished">2019-01-21</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/html/" rel="tag">html</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="viewport来源"><a href="#viewport来源" class="headerlink" title="viewport来源"></a>viewport来源</h2><p>通常为了使得网页能够成为响应式的，我们需要在head内声名有关viewport的meta。<br>它长这样  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width,initial-scale=1,user-scalable=no&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>viewport的设计是由于pc互联网向移动互联网的过渡。在过去，多数文档被设计用来在pc上进行阅读，而pc的设备通常比较宽，同样的网页不进行任何改变放到移动端的话，内容就会变得无法辨认。</p>
+<p>例如，新浪网在移动端的显示：<br><img src="/blog/static/imgs/viewport/web_page.png" alt="新浪网桌面版在移动端的显示"></p>
+<p>为了避免这个问题，浏览器通常使用一个固定的初始区域宽度来模拟桌面浏览器窗口大小（通常980px-1024px)。而移动端的宽度是小于这个值的，于是内容便看起来像自动放大了一般，同样的，移动端当前的屏幕也只会显示文档的一部分。<br><img src="/blog/static/imgs/viewport/layout_viewport.png" alt="布局视口"><br><img src="/blog/static/imgs/viewport/visual_viewport.png" alt="视觉视口"></p>
+<p><code>document.documentElement.clientWidth/Height</code> 返回的即是当前布局视口的尺寸<br><code>window.innerWidth/Height</code> 返回的即是当前视觉视口的尺寸  </p>
+<p>由上述描述所知，其实视觉视口的大小和文档缩放程度是逆相关的：放得越大，视觉视口越小  </p>
+<p>浏览器对viewport也有默认布局视口宽度  </p>
+<table>
+<thead>
+<tr>
+<th>iPhone</th>
+<th>iPad</th>
+<th>Android Samsung</th>
+<th>Chrome</th>
+<th>Opera</th>
+<th>BlackBerry</th>
+<th>IE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>980</td>
+<td>980</td>
+<td>980</td>
+<td>980</td>
+<td>980</td>
+<td>1024</td>
+<td>1024</td>
+</tr>
+</tbody>
+</table>
+<p>即使如此，对于一个用户而言，还是不甚理想，在狭窄的屏幕上更适合一个狭窄的网站而不是需要用户来缩放的桌面网站。于是Safari引入了meta标签viewport以及理想视口的概念，其它浏览器厂商也纷纷跟进。  </p>
+<p>只有当网站是为移动端准备的时候才应该使用理想视口。<br>只有主动地往页面里添加meta视口标签时理想视口才会生效。<br>如果没有meta视口标签声明，那么布局视口将会维持它的默认宽度，理想视口只有当显式地使用它的时候才会产生影响。<br>理想视口只和设备有关，由浏览器定义，因此同一设备上的不同浏览器拥有不同的理想视口。<br>以下代码告之浏览器，布局视口的宽度应该与理想视口的宽度一致：  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;device&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>screen.width/height</code> 返回的是理想视口的尺寸  </p>
+<h2 id="viewport取值"><a href="#viewport取值" class="headerlink" title="viewport取值"></a>viewport取值</h2><table>
+<thead>
+<tr>
+<th>值</th>
+<th>可能值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>width</td>
+<td>一个正整数或者字符串 device-width</td>
+<td>以pixels（像素）为单位， 定义viewport（视口）的宽度。</td>
 </tr>
 <tr>
-<td style="text-align:left">:hover</td>
-<td style="text-align:left">a:hover</td>
-<td style="text-align:left">选择鼠标指针位于其上的链接。</td>
-<td style="text-align:left">1</td>
+<td>height</td>
+<td>一个正整数或者字符串 device-height</td>
+<td>以pixels（像素）为单位， 定义viewport（视口）的高度。</td>
 </tr>
 <tr>
-<td style="text-align:left">:focus</td>
-<td style="text-align:left">input:focus</td>
-<td style="text-align:left">选择获得焦点的 input 元素。</td>
-<td style="text-align:left">2</td>
+<td>initial-scale</td>
+<td>一个0.0 到10.0之间的正数</td>
+<td>定义设备宽度（纵向模式下的设备宽度或横向模式下的设备高度）与视口大小之间的缩放比率。</td>
 </tr>
 <tr>
-<td style="text-align:left">:first-letter</td>
-<td style="text-align:left">p:first-letter</td>
-<td style="text-align:left">选择每个 &lt;p> 元素的首字母。</td>
-<td style="text-align:left">1</td>
+<td>maximum-scale</td>
+<td>一个0.0 到10.0之间的正数</td>
+<td>定义缩放的最大值；它必须大于或等于minimum-scale的值，不然会导致不确定的行为发生。</td>
 </tr>
 <tr>
-<td style="text-align:left">:first-line</td>
-<td style="text-align:left">p:first-line</td>
-<td style="text-align:left">选择每个 &lt;p> 元素的首行。</td>
-<td style="text-align:left">1</td>
+<td>minimum-scale</td>
+<td>一个0.0 到10.0之间的正数</td>
+<td>定义缩放的最小值；它必须小于或等于maximum-scale的值，不然会导致不确定的行为发生。</td>
 </tr>
 <tr>
-<td style="text-align:left">:first-child</td>
-<td style="text-align:left">p:first-child</td>
-<td style="text-align:left">选择属于父元素的第一个子元素的每个 &lt;p> 元素。</td>
-<td style="text-align:left">2</td>
-</tr>
-<tr>
-<td style="text-align:left">:before</td>
-<td style="text-align:left">p:before</td>
-<td style="text-align:left">在每个 &lt;p> 元素的内容之前插入内容。</td>
-<td style="text-align:left">2</td>
-</tr>
-<tr>
-<td style="text-align:left">:after</td>
-<td style="text-align:left">p:after</td>
-<td style="text-align:left">在每个 &lt;p> 元素的内容之后插入内容。</td>
-<td style="text-align:left">2</td>
-</tr>
-<tr>
-<td style="text-align:left">:lang(language)</td>
-<td style="text-align:left">p:lang(it)</td>
-<td style="text-align:left">选择带有以 “it” 开头的 lang 属性值的每个 &lt;p> 元素。</td>
-<td style="text-align:left">2</td>
-</tr>
-<tr>
-<td style="text-align:left">element1~element2</td>
-<td style="text-align:left">p~ul</td>
-<td style="text-align:left">选择前面有 &lt;p> 元素的每个 &lt;ul> 元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">[attribute^=value]</td>
-<td style="text-align:left">a[src^=”https”]</td>
-<td style="text-align:left">选择其 src 属性值以 “https” 开头的每个 &lt;a> 元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">[attribute$=value]</td>
-<td style="text-align:left">a[src$=”.pdf”]</td>
-<td style="text-align:left">选择其 src 属性以 “.pdf” 结尾的所有 &lt;a> 元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">[attribute*=value]</td>
-<td style="text-align:left">a[src*=”abc”]</td>
-<td style="text-align:left">选择其 src 属性中包含 “abc” 子串的每个 &lt;a> 元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:first-of-type</td>
-<td style="text-align:left">p:first-of-type</td>
-<td style="text-align:left">选择属于其父元素的首个 &lt;p> 元素的每个 &lt;p> 元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:last-of-type</td>
-<td style="text-align:left">p:last-of-type</td>
-<td style="text-align:left">选择属于其父元素的最后 &lt;p> 元素的每个 &lt;p> 元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:only-of-type</td>
-<td style="text-align:left">p:only-of-type</td>
-<td style="text-align:left">选择属于其父元素唯一的 &lt;p> 元素的每个 &lt;p> 元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:only-child</td>
-<td style="text-align:left">p:only-child</td>
-<td style="text-align:left">选择属于其父元素的唯一子元素的每个 &lt;p> 元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:nth-child(n)</td>
-<td style="text-align:left">p:nth-child(2)</td>
-<td style="text-align:left">选择属于其父元素的第二个子元素的每个 &lt;p> 元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:nth-last-child(n)</td>
-<td style="text-align:left">p:nth-last-child(2)</td>
-<td style="text-align:left">同上，从最后一个子元素开始计数。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:nth-of-type(n)</td>
-<td style="text-align:left">p:nth-of-type(2)</td>
-<td style="text-align:left">选择属于其父元素第二个 &lt;p> 元素的每个 &lt;p> 元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:nth-last-of-type(n)</td>
-<td style="text-align:left">p:nth-last-of-type(2)</td>
-<td style="text-align:left">同上，但是从最后一个子元素开始计数。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:last-child</td>
-<td style="text-align:left">p:last-child</td>
-<td style="text-align:left">选择属于其父元素最后一个子元素每个 &lt;p> 元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:root</td>
-<td style="text-align:left">:root</td>
-<td style="text-align:left">选择文档的根元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:empty</td>
-<td style="text-align:left">p:empty</td>
-<td style="text-align:left">选择没有子元素的每个 &lt;p> 元素（包括文本节点）。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:target</td>
-<td style="text-align:left">#news:target</td>
-<td style="text-align:left">选择当前活动的 #news 元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:enabled</td>
-<td style="text-align:left">input:enabled</td>
-<td style="text-align:left">选择每个启用的 &lt;input> 元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:disabled</td>
-<td style="text-align:left">input:disabled</td>
-<td style="text-align:left">选择每个禁用的 &lt;input> 元素</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:checked</td>
-<td style="text-align:left">input:checked</td>
-<td style="text-align:left">选择每个被选中的 &lt;input> 元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">:not(selector)</td>
-<td style="text-align:left">:not(p)</td>
-<td style="text-align:left">选择非 &lt;p> 元素的每个元素。</td>
-<td style="text-align:left">3</td>
-</tr>
-<tr>
-<td style="text-align:left">::selection</td>
-<td style="text-align:left">::selection</td>
-<td style="text-align:left">选择被用户选取的元素部分。</td>
-<td style="text-align:left">3</td>
+<td>user-scalable</td>
+<td>一个布尔值（yes 或者no）</td>
+<td>如果设置为 no，用户将不能放大或缩小网页。默认值为 yes。</td>
 </tr>
 </tbody>
 </table>
 
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2019/01/09/TIPS-Ionic4-vue%E6%90%AD%E5%BB%BA%E8%B7%A8%E5%B9%B3%E5%8F%B0%E7%A7%BB%E5%8A%A8%E5%BA%94%E7%94%A8%E6%A1%86%E6%9E%B6/">ionic4+vue搭建跨平台移动应用框架</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-01-09T07:09:36.000Z" itemprop="datePublished">2019-01-09</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/Vue/" rel="tag">Vue</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="ionic4及vue介绍"><a href="#ionic4及vue介绍" class="headerlink" title="ionic4及vue介绍"></a>ionic4及vue介绍</h2><p>ionic是一款混合移动应用开发框架，可以用来构建跨平台（Android &amp; iOS）的移动应用程序，而且还可以基于Sass和AngularJS进行构建，是目前跨平台移动应用开发的一个翘楚。这个框架的目的是从web的角度开发手机应用，基于PhoneGap的编译平台，可以实现编译成各个平台的应用程序。<br>Vue.js是一个MVVM驱动的 web 界面的渐进式框架，学习简单并且十分灵活。ionic3之前一般默认和Angular“绑定”在了一起，从ionic4开始，Ionic Team宣布将会逐渐采用<a target="_blank" rel="noopener" href="https://github.com/ionic-team/stencil">Stencil</a>来实现标准Web Components，使用ionic将不再必须使用Angular，可以使用React，Vue，Jquery或者什么框架都不使用。  </p>
+<h2 id="准备环境"><a href="#准备环境" class="headerlink" title="准备环境"></a>准备环境</h2><p>Vue提供了CLI工具来方便的创建Vue应用，首先我们需要  </p>
+<ol>
+<li>安装Vue CLI：  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g vue-cli</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建vue项目</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init webpack ionic-vue</span><br></pre></td></tr></table></figure>
+<p>随后一路enter</p>
+<ol start="3">
+<li>打开项目</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ionic-vue</span><br><span class="line">npm install</span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+<h2 id="引入Ionic"><a href="#引入Ionic" class="headerlink" title="引入Ionic"></a>引入Ionic</h2><ol>
+<li>在 index.html 引入 Ionic</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;format-detection&quot;</span> <span class="attr">content</span>=<span class="string">&quot;telephone=no&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;msapplication-tap-highlight&quot;</span> <span class="attr">content</span>=<span class="string">&quot;no&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/@ionic/core@0.0.2-20/dist/ionic.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>在 src/main.js 中添加ignoredElements</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Vue.config.ignoredElements = [</span><br><span class="line">    <span class="string">&#x27;ion-app&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;ion-header&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;ion-navbar&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;ion-title&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;ion-content&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;ion-button&#x27;</span>,</span><br><span class="line">    ··· ···</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<h2 id="开发应用"><a href="#开发应用" class="headerlink" title="开发应用"></a>开发应用</h2><ol>
+<li>创建两个新页面</li>
+</ol>
+<p>我们希望演示如何在两个页面之间跳转</p>
+<p>例如 src/pages/HelloWorld.vue<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ion-app</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ion-header</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ion-navbar</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ion-title</span>&gt;</span>Ionic<span class="tag">&lt;/<span class="name">ion-title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ion-navbar</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ion-header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ion-content</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ion-button</span> @<span class="attr">click</span>=<span class="string">&quot;goToDetail&quot;</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">ion-button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ion-content</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ion-app</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">  name: <span class="string">&#x27;HelloWorld&#x27;</span>,</span></span><br><span class="line">  data () &#123;</span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">      msg: <span class="string">&#x27;Welcome to Your Vue.js App&#x27;</span></span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    goToDetail () &#123;</span><br><span class="line"><span class="javascript">      <span class="built_in">this</span>.$router.push(<span class="string">&#x27;detail&#x27;</span>)</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>src/pages/Detail.vue<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ion-app</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ion-header</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ion-navbar</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ion-title</span>&gt;</span>Ionic<span class="tag">&lt;/<span class="name">ion-title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ion-navbar</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ion-header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ion-content</span> <span class="attr">padding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">&quot;/&quot;</span>&gt;</span>Go home<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ion-content</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ion-app</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">  name: <span class="string">&#x27;Detail&#x27;</span>,</span></span><br><span class="line">  data () &#123;</span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">      msg: <span class="string">&#x27;Welcome to Your Ionic App&#x27;</span></span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<ol start="2">
+<li>添加路由</li>
+</ol>
+<p>router/index.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">&#x27;vue-router&#x27;</span></span><br><span class="line"><span class="keyword">import</span> HelloWorld <span class="keyword">from</span> <span class="string">&#x27;@/pages/HelloWorld&#x27;</span></span><br><span class="line"><span class="keyword">import</span> Detail <span class="keyword">from</span> <span class="string">&#x27;@/pages/Detail&#x27;</span></span><br><span class="line"></span><br><span class="line">Vue.use(Router)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">&#x27;/&#x27;</span>,</span><br><span class="line">      component: HelloWorld</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">&#x27;/detail&#x27;</span>,</span><br><span class="line">      component: Detail</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<ol start="3">
+<li>添加全局过渡动画效果</li>
+</ol>
+<p>src/App.vue<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=<span class="string">&quot;app&quot;</span>&gt;</span><br><span class="line">    &lt;transition name=<span class="string">&quot;slide-fade&quot;</span>&gt;</span><br><span class="line">      &lt;router-view/&gt;</span><br><span class="line">    &lt;/transition&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">&#x27;app&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">#app &#123;</span><br><span class="line">  font-family: <span class="string">&#x27;Avenir&#x27;</span>, Helvetica, Arial, sans-serif;</span><br><span class="line">  -webkit-font-smoothing: antialiased;</span><br><span class="line">  -moz-osx-font-smoothing: grayscale;</span><br><span class="line">  text-align: center;</span><br><span class="line">  color: #2c3e50;</span><br><span class="line">  margin-top: 60px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.slide-fade-enter-active &#123;</span><br><span class="line">  transition: all .3s ease;</span><br><span class="line">&#125;</span><br><span class="line">.slide-fade-leave-active &#123;</span><br><span class="line">  transition: all .8s cubic-bezier(<span class="number">1.0</span>, <span class="number">0.5</span>, <span class="number">0.8</span>, <span class="number">1.0</span>);</span><br><span class="line">&#125;</span><br><span class="line">.slide-fade-enter, .slide-fade-leave-to</span><br><span class="line"><span class="comment">/* .slide-fade-leave-active below version 2.1.8 */</span> &#123;</span><br><span class="line">  transform: translateX(10px);</span><br><span class="line">  opacity: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="打包成应用"><a href="#打包成应用" class="headerlink" title="打包成应用"></a>打包成应用</h2><ol>
+<li>添加cordova 到项目</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cordova</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建cordova项目</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova create my-project-name</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>创建/移动vue项目</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init webpack my-app</span><br></pre></td></tr></table></figure>
+<p>将my-app里的内容剪切到my-project-name下，同名覆盖</p>
+<ol start="4">
+<li>修改打包路径<br>修改config/index.js文件下的build属性，将dist改为www，绝对路径改为相对路径</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">build: &#123;</span><br><span class="line">  index: path.resolve(__dirname, <span class="string">&#x27;../www/index.html&#x27;</span>),</span><br><span class="line"></span><br><span class="line">  assetsRoot: path.resolve(__dirname, <span class="string">&#x27;../www&#x27;</span>),</span><br><span class="line">  assetsSubDirectory: <span class="string">&#x27;static&#x27;</span>,</span><br><span class="line">  assetsPublicPath: <span class="string">&#x27;./&#x27;</span>,</span><br><span class="line"></span><br><span class="line">  productionSourceMap: <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">  devtool: <span class="string">&#x27;#source-map&#x27;</span>,</span><br><span class="line"></span><br><span class="line">  productionGzip: <span class="literal">false</span>,</span><br><span class="line">  productionGzipExtensions: [<span class="string">&#x27;js&#x27;</span>, <span class="string">&#x27;css&#x27;</span>],</span><br><span class="line"></span><br><span class="line">  bundleAnalyzerReport: process.env.npm_config_report</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>5.vue项目中添加cordova.js</p>
+<p>在index.html body中添加cordova.js<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;cordova.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><br>同时在 head 中添加 移动端meta信息</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;self&#x27; data: gap: https://ssl.gstatic.com &#x27;unsafe-eval&#x27;; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;; media-src *; img-src &#x27;self&#x27; data: content:;&quot;--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;format-detection&quot;</span> <span class="attr">content</span>=<span class="string">&quot;telephone=no,email=no&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;msapplication-tap-highlight&quot;</span> <span class="attr">content</span>=<span class="string">&quot;no&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>运行项目</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+<ol start="7">
+<li>编译成 iOS &amp; Android 项目</li>
+</ol>
+<p>安装 cordova iOS &amp; Android 平台</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova platform add ios android --save</span><br></pre></td></tr></table></figure>
+<p>编译</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+<p>运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cordova run ios --device</span><br><span class="line">cordova run android --device</span><br></pre></td></tr></table></figure>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2019/01/04/TIPS-%E5%9C%A8%E7%BA%BF%E7%BB%98%E5%9B%BE%E5%B0%8F%E5%B7%A5%E5%85%B7/">在线绘图小工具</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-01-04T10:49:24.000Z" itemprop="datePublished">2019-01-04</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/tools/" rel="tag">tools</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <section><br>    <div class="paint-area"><br>        <p>移动端无法使用</p><br>        <canvas></canvas><br>    </div><br>    <script type="text/javascript" src="/blog/static/js/painter.js"></script><br></section>
         
     </section>
     
@@ -753,7 +785,7 @@
 
 
 <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/blog/page/9/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/8/">8</a><a class="page-number" href="/blog/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/blog/page/11/">11</a><a class="page-number" href="/blog/page/12/">12</a><a class="extend next" rel="next" href="/blog/page/11/">Next &gt;&gt;</a>
+    <a class="extend prev" rel="prev" href="/blog/page/9/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/8/">8</a><a class="page-number" href="/blog/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/blog/page/11/">11</a><a class="page-number" href="/blog/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/17/">17</a><a class="extend next" rel="next" href="/blog/page/11/">Next &gt;&gt;</a>
 </nav>
 
 

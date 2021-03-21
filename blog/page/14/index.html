@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.0.3" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="Mangon&#39;s Technology Blog" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item active">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://mangon.cn/blog"></form> -->
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+
+        
+            <div class="author-meta">
+                
+                <div class="author-avatar">
+                    <a href="/blog/">
+                        <img src="/blog/images/avatar.jpeg" title="Mangon">
+                    </a>
+                </div>
+                
+                <div class="author-name">Mangon</div>
+                <div class="author-work">Front-End Software Engineer</div>
+                <div class="author-location">
+                    <i class="icon-location vm"></i>
+                    <span class="vm">Beijing, China</span>
+                </div>
+                
+                <div class="author-thread-wrap">
+                    <div class="author-threads clearfix">
+                        
+                        <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
+                        
+                        
+                        
+                    </div>
+                </div>
+                
+            </div>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/15/Hexo-%E4%B9%9F%E8%83%BD%E6%9E%84%E5%BB%BASPA/">Hexo也能构建SPA</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-15T08:45:26.000Z" itemprop="datePublished">2018-09-15</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/Hexo/" rel="tag">Hexo</a>, <a class="article-tag-link" href="/blog/tags/spa/" rel="tag">spa</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="SPA"><a href="#SPA" class="headerlink" title="SPA"></a>SPA</h2><p>单页Web应用（single page web application，SPA），就是只有一张Web页面的应用，是加载单个HTML页面并在用户与应用程序交互时动态更新该页面的Web应用程序。<br>单页面应用的好处是不必使得用户在加载新页面时感觉到闪烁刷新的效果，有更好的用户体验。当然，单页面应用也有其问题，例如首屏渲染问题以及SEO问题，但如果构建的是类似于应用型的web页面的话，SPA的好处是远远大于其弊端的。  </p>
+<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><p><a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo">Hexo</a> 是一个静态页面生成框架，一般用来其来搭建博客或者文档型的网站。  </p>
+<h2 id="Hexo-gt-SPA"><a href="#Hexo-gt-SPA" class="headerlink" title="Hexo =&gt; SPA"></a>Hexo =&gt; SPA</h2><p>如何在Hexo的基础上转换为SPA呢？基本的思路就是，监管所有的点击跳转链接，阻止默认行为采用ajax调用的方式获取文档然后替换当前页面。为了使替换时的影响较小，当前文档中数据没有变化的元素就不用替换了，只替换变化的部分。例如，一个采用Hexo的文档型的网站，一般而言包括三个部分header，nav，以及article，header及nav部分是不用变的，只需要替换article部分即可。需要注意的事，在替换后需要注意article内部的事件，需要重新绑定一遍，同时也需要处理nav部分的一些事件，比如focus的变化及样式上的变化，以及其它的一些变化，比如页面title的变化。这样当用户点击左侧nav时，只有article内部内容的替换，看起来就像一个应用一样。但这样修改还有两个问题，一是当用户点击后退时，浏览器不能很好的处理，我们希望记录每一次用户的点击跳转，当用户点击后退时能够回到上一次点击时的页面，另外一个问题是地址栏的没有变化，我们希望每一次用户点击跳转时地址栏也显示相应页面的URL。这时就需要用到History API了.  </p>
+<p>History 对象包含用户（在浏览器窗口中）访问过的 URL。<br>History 对象是 window 对象的一部分，可通过 window.history 属性对其进行访问。  </p>
+<p>属性<br>History.length 只读<br>History.scrollRestoration<br>允许Web应用程序在历史导航上显式地设置默认滚动恢复行为。此属性可以是自动的（auto）或者手动的（manual）。<br>History.state 只读<br>返回一个表示历史堆栈顶部的状态的值。这是一种可以不必等待popstate 事件而查看状态而的方式。  </p>
+<p>方法<br>History.back()<br>前往上一页, 用户可点击浏览器左上角的返回按钮模拟此方法. 等价于 history.go(-1).<br>History.forward()<br>在浏览器历史记录里前往下一页，用户可点击浏览器左上角的前进按钮模拟此方法. 等价于 history.go(1).<br>History.go()<br>通过当前页面的相对位置从浏览器历史记录( 会话记录 )加载页面。<br>History.pushState()<br>按指定的名称和URL（如果提供该参数）将数据push进会话历史栈，数据被DOM进行不透明处理；你可以指定任何可以被序列化的javascript对象。<br>History.replaceState()<br>按指定的数据，名称和URL(如果提供该参数)，更新历史栈上最新的入口。这个数据被DOM 进行了不透明处理。  </p>
+<p>这里我们需要用到History.pushState()<br>这个方法接收三个参数，第一个state，记录页面状态，第二个title，并不是页面title，感觉没有什么用，第三个是页面URL。在页面变化时执行History.pushState()把将要跳转的页面记录到history中，地址栏中的地址就会同时改变。同时，需要在window.onpopstate中监听后退事件，在后退时也通过ajax方法获取article内容。如果想要减少请求，还可以将ajax获取到的文档缓存下来，当用户点击新URL时再去获取，如果用户点击的是一个已经访问过的URL时，从本地获取。  </p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>让我们总结一下，我们需要改变的是如下几个部分(代码中引入了jQuery)：  </p>
+<ol>
+<li>阻止点击链接的默认行为  </li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e.preventDefault();</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>ajax获取文档内容  </li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// href 跳转url</span></span><br><span class="line">$.ajax(&#123;</span><br><span class="line">    url: href,</span><br><span class="line">    dataType: <span class="string">&#x27;html&#x27;</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> article = $(res).find(<span class="string">&#x27;#article&#x27;</span>).html();</span><br><span class="line">        $(<span class="string">&#x27;#article&#x27;</span>).html(article);</span><br><span class="line">    &#125;,</span><br><span class="line">    error: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">window</span>.location.href = href;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>成功替换文章内容之后需要重新绑定文章内部的事件，同时对一些样式（例如选中的样式）进行改变。<br>ajax失败则直接通过改变url的方式刷新页面。  </p>
+<ol start="3">
+<li>页面title变化  </li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">doc.title = $(res).filter(<span class="string">&#x27;title&#x27;</span>).html();</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>window.history.pushState() <ol>
+<li>页面url变化</li>
+<li>记录跳转页面信息到历史记录中，当用户点击后退时能够正确响应 </li>
+</ol>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">win.history.pushState(href, <span class="string">&#x27;&#x27;</span>, href);</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>window.onpopstate() 处理用户点击后退/前进时的逻辑</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">window</span>).on(<span class="string">&#x27;popstate&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (e.state) &#123;</span><br><span class="line">        <span class="keyword">var</span> href = e.state ? e.state : win.location.href;</span><br><span class="line">        <span class="built_in">this</span>.getArticle(href, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">// ...</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>如上代码中，getArticle封装了获取文章的action，加入callback是考虑到获取文章内容之后如果url中包含锚点，页面应该滑动到锚点所在处。  </p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/12/CSS-%E6%8A%98%E8%A1%8C/">CSS 折行</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-12T10:46:39.000Z" itemprop="datePublished">2018-09-12</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>与折行有关的样式有三个<code>white-space</code>，<code>word-wrap</code>，<code>word-break</code>。  </p>
+<h2 id="css-white-space-属性"><a href="#css-white-space-属性" class="headerlink" title="css white-space 属性"></a>css white-space 属性</h2><p>white-space 属性设置如何处理元素内的空白。  </p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>normal</td>
+<td>默认。空白会被浏览器忽略。</td>
+</tr>
+<tr>
+<td>pre</td>
+<td>空白会被浏览器保留。其行为方式类似 HTML 中的 &lt;pre> 标签。</td>
+</tr>
+<tr>
+<td>nowrap</td>
+<td>文本不会换行，文本会在在同一行上继续，直到遇到 &lt;br> 标签为止。</td>
+</tr>
+<tr>
+<td>pre-wrap</td>
+<td>保留空白符序列，但是正常地进行换行。</td>
+</tr>
+<tr>
+<td>pre-line</td>
+<td>合并空白符序列，但是保留换行符。</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>规定应该从父元素继承 white-space 属性的值。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="CSS3-word-wrap-属性"><a href="#CSS3-word-wrap-属性" class="headerlink" title="CSS3 word-wrap 属性"></a>CSS3 word-wrap 属性</h2><p>word-wrap 属性允许长单词或 URL 地址换行到下一行。  </p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>normal</td>
+<td>只在允许的断字点换行（浏览器保持默认处理）。</td>
+</tr>
+<tr>
+<td>break-word</td>
+<td>在长单词或 URL 地址内部进行换行。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="CSS3-word-break-属性"><a href="#CSS3-word-break-属性" class="headerlink" title="CSS3 word-break 属性"></a>CSS3 word-break 属性</h2><p>word-break 属性规定自动换行的处理方法。  </p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>normal</td>
+<td>使用浏览器默认的换行规则。</td>
+</tr>
+<tr>
+<td>break-all</td>
+<td>允许在单词内换行。</td>
+</tr>
+<tr>
+<td>keep-all</td>
+<td>只能在半角空格或连字符处换行。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="常用设置"><a href="#常用设置" class="headerlink" title="常用设置"></a>常用设置</h2><p>不折行，可以左右滑动：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">white-space</span>: nowrap;</span><br><span class="line"><span class="attribute">overflow-x</span>: scroll;</span><br></pre></td></tr></table></figure></p>
+<p>每行长度固定，到长度即折行：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">white-space</span>: normal;</span><br><span class="line"><span class="attribute">word-wrap</span>: break-word;</span><br><span class="line"><span class="attribute">word-break</span>: break-all;</span><br></pre></td></tr></table></figure></p>
+<p>每行长度固定，到长度即折行，但标点字符不在首位：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">white-space</span>: normal;</span><br><span class="line"><span class="attribute">word-wrap</span>: break-word;</span><br><span class="line"><span class="attribute">word-break</span>: normal;</span><br></pre></td></tr></table></figure></p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/12/HTML-querySelectorAll%E4%B8%80%E4%B8%AA%E5%B0%8F%E5%9D%91/">querySelectorAll一个小坑</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-12T08:44:45.000Z" itemprop="datePublished">2018-09-12</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/bug/" rel="tag">bug</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>首先查看一下querySelectorAll的文档：  </p>
+<h2 id="querySelectorAll"><a href="#querySelectorAll" class="headerlink" title="querySelectorAll"></a>querySelectorAll</h2><p>返回与指定的选择器组匹配的文档中的元素列表 (使用深度优先的先序遍历文档的节点)。返回的对象是 <code>NodeList</code> 。  </p>
+<p>用法：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> elementList = <span class="built_in">document</span>.querySelectorAll(selectors);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>elementList 是一个静态的 NodeList 类型的对象.</li>
+<li>selectors 是一个由逗号连接的包含一个或多个CSS选择器的字符串.</li>
+<li>如果 selectors参数中包含 <code>CSS伪元素</code>,则返回一个空的elementList.</li>
+<li>如果指定的选择器不合法,则抛出一个<code>SYNTAX_ERR</code> 异常.</li>
+</ul>
+<h2 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h2><p>如下一个element  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;123&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;test&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>document.getElementById(‘123’)可以正常获取到该元素<br>document.querySelectorAll(‘#123’)则报错  </p>
+<p>我们看下Zepto中选择器的实现</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// `$.zepto.qsa` is Zepto&#x27;s css selector implementation which</span></span><br><span class="line"><span class="comment">// uses `document.querySelectorAll` and optimizes for some special cases, like `#id`.</span></span><br><span class="line"><span class="comment">// This method can be overridden in plugins.</span></span><br><span class="line">zepto.qsa = <span class="function"><span class="keyword">function</span>(<span class="params">element, selector</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> found,</span><br><span class="line">      maybeID = selector[<span class="number">0</span>] == <span class="string">&#x27;#&#x27;</span>,</span><br><span class="line">      maybeClass = !maybeID &amp;&amp; selector[<span class="number">0</span>] == <span class="string">&#x27;.&#x27;</span>,</span><br><span class="line">      nameOnly = maybeID || maybeClass ? selector.slice(<span class="number">1</span>) : selector, <span class="comment">// Ensure that a 1 char tag name still gets checked</span></span><br><span class="line">      isSimple = <span class="regexp">/^[\w-]*$/</span>.test(nameOnly)</span><br><span class="line">  <span class="keyword">return</span> (element.getElementById &amp;&amp; isSimple &amp;&amp; maybeID) ? <span class="comment">// Safari DocumentFragment doesn&#x27;t have getElementById</span></span><br><span class="line">    ( (found = element.getElementById(nameOnly)) ? [found] : [] ) :</span><br><span class="line">    (element.nodeType !== <span class="number">1</span> &amp;&amp; element.nodeType !== <span class="number">9</span> &amp;&amp; element.nodeType !== <span class="number">11</span>) ? [] :</span><br><span class="line">    slice.call(</span><br><span class="line">      isSimple &amp;&amp; !maybeID &amp;&amp; element.getElementsByClassName ? <span class="comment">// DocumentFragment doesn&#x27;t have getElementsByClassName/TagName</span></span><br><span class="line">        maybeClass ? element.getElementsByClassName(nameOnly) : <span class="comment">// If it&#x27;s simple, it could be a class</span></span><br><span class="line">        element.getElementsByTagName(selector) : <span class="comment">// Or a tag</span></span><br><span class="line">        element.querySelectorAll(selector) <span class="comment">// Or it&#x27;s not simple, and we need to query all</span></span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>同样的，zepto中的选择器用的就是querySelectorAll，但是对于简单情况，又可能使用getElementById/getElementsByClassName/getElementsByTagName，<br>所以对于上面的元素，$(‘#123’)可以获取到元素， $(‘#123 .test’)却会报错，$(‘#123’).find(‘.sddd’)可以正常获取到。<br>对于如下这种元素使用$(‘#1.2.3-标题’)也会报错<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;1.2.3-标题&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure><br>报错信息：  </p>
+<blockquote>
+<p><em>VM238:1 Uncaught DOMException: Failed to execute ‘querySelectorAll’ on ‘Document’: ‘#123’ is not a valid selector</em>.</p>
+</blockquote>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/11/CSS-%E6%88%AA%E6%96%AD/">CSS 截断</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-11T11:46:53.000Z" itemprop="datePublished">2018-09-11</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>有时，我们需要对某段文字进行截断处理，多余的字符显示…  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;words&quot;</span>&gt;</span>For a long time it seemed to me that life was about to begin , real life. But, there was always some obsacle in the way, something to be gotten through first, some unfinnished business, time still to be served or a debt to be paid. Then life would begin.<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="单行"><a href="#单行" class="headerlink" title="单行"></a>单行</h2><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.words</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;  <span class="comment">/*超过部分不显示*/</span></span><br><span class="line">    <span class="attribute">text-overflow</span>: ellipsis;  <span class="comment">/*超过部分用点点表示*/</span></span><br><span class="line">    <span class="attribute">white-space</span>: nowrap; <span class="comment">/*不换行*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p><div class="words1">For a long time it seemed to me that life was about to begin , real life. But, there was always some obsacle in the way, something to be gotten through first, some unfinnished business, time still to be served or a debt to be paid. Then life would begin.</div></p>
+<style type="text/css">
+.words1 {
+    width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+</style>
+
+
+<h2 id="多行"><a href="#多行" class="headerlink" title="多行"></a>多行</h2><h3 id="webkit-代码"><a href="#webkit-代码" class="headerlink" title="-webkit 代码"></a>-webkit 代码</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webkit</span></span><br><span class="line"><span class="selector-class">.words</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">    <span class="attribute">overflow </span>: hidden;</span><br><span class="line">    <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">    <span class="attribute">display</span>: -webkit-box;</span><br><span class="line">    -webkit-line-clamp: 2; <span class="comment">/*规定超过两行的部分截断*/</span></span><br><span class="line">    -webkit-box-orient: vertical;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="webkit-效果"><a href="#webkit-效果" class="headerlink" title="-webkit 效果"></a>-webkit 效果</h3><p><div class="words2">For a long time it seemed to me that life was about to begin , real life. But, there was always some obsacle in the way, something to be gotten through first, some unfinnished business, time still to be served or a debt to be paid. Then life would begin.</div></p>
+<style type="text/css">
+.words2 {
+    width: 400px;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+</style>
+
+<h3 id="兼容代码"><a href="#兼容代码" class="headerlink" title="兼容代码"></a>兼容代码</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 兼容其它内核 <span class="attribute">padding</span>需要根据实际情况计算</span><br><span class="line"><span class="selector-class">.words</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">1.4em</span>;</span><br><span class="line">    <span class="comment">/* 高度=2倍的行高 */</span></span><br><span class="line">    <span class="attribute">height</span>: <span class="number">2.8em</span>;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.words</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">&quot;...&quot;</span>;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">35px</span> <span class="number">1px</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="兼容代码效果"><a href="#兼容代码效果" class="headerlink" title="兼容代码效果"></a>兼容代码效果</h3><p><div class="words3">For a long time it seemed to me that life was about to begin , real life. But, there was always some obsacle in the way, something to be gotten through first, some unfinnished business, time still to be served or a debt to be paid. Then life would begin.</div></p>
+<style type="text/css">
+.words3 {
+    width: 400px;
+    position: relative;
+    line-height: 1.4em;
+    height: 2.8em;
+    overflow: hidden;
+}
+.words3::after {
+    content: "...";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0 35px 1px 0;
+}
+</style>
+
+
+
+<h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><p>也有一些通过js实现的截断插件，例如 <a target="_blank" rel="noopener" href="https://github.com/FrDH/jQuery.dotdotdot">jQuery.dotdotdot</a>，<a target="_blank" rel="noopener" href="https://github.com/josephschmitt/Clamp.js">Clamp.js</a></p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/10/HACK-CSRF%E6%94%BB%E5%87%BB/">CSRF攻击</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-10T11:18:43.000Z" itemprop="datePublished">2018-09-10</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/csrf/" rel="tag">csrf</a>, <a class="article-tag-link" href="/blog/tags/security/" rel="tag">security</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>CSRF（Cross-site request forgery）跨站请求伪造，也被称为“One Click Attack”或者Session Riding，通常缩写为CSRF或者XSRF，是一种通过伪造用户请求破坏网站的攻击方式。  </p>
+<h2 id="CSRF攻击原理"><a href="#CSRF攻击原理" class="headerlink" title="CSRF攻击原理"></a>CSRF攻击原理</h2><p>当你访问 xxx.com 黑客页面的时候，页面上放了一个按钮或者一个表单，URL/action 为 <a href="">http://you.com/delete-myself</a> ,<br>这样引导或迫使甚至伪造用户触发按钮或表单。在浏览器发出 GET 或 POST 请求的时候，它会带上 you.com 的 cookie，如果网站 you.com 没有做 CSRF 防御措施，那么这次请求在 you.com 看来会是完全合法的，这样就会对 you.com 的数据产生破坏。</p>
+<h2 id="CSRF防范"><a href="#CSRF防范" class="headerlink" title="CSRF防范"></a>CSRF防范</h2><p>对于用户：<br>通过在浏览其它站点前登出站点或者在浏览器会话结束后清理浏览器的cookie。</p>
+<p>对于网站拥有者：  </p>
+<h3 id="验证-HTTP-Referer-字段"><a href="#验证-HTTP-Referer-字段" class="headerlink" title="验证 HTTP Referer 字段"></a>验证 HTTP Referer 字段</h3><p>根据 HTTP 协议，在 HTTP 头中有一个字段叫 Referer，它记录了该 HTTP 请求的来源地址。在通常情况下，访问一个安全受限页面的请求来自于同一个网站，比如需要访问 <a href="">http://bank.example/withdraw?account=bob&amp;amount=1000000&amp;for=Mallory</a> ，用户必须先登陆 bank.example，然后通过点击页面上的按钮来触发转账事件。这时，该转帐请求的 Referer 值就会是转账按钮所在的页面的 URL，通常是以 bank.example 域名开头的地址。而如果黑客要对银行网站实施 CSRF 攻击，他只能在他自己的网站构造请求，当用户通过黑客的网站发送请求到银行时，该请求的 Referer 是指向黑客自己的网站。因此，要防御 CSRF 攻击，银行网站只需要对于每一个转账请求验证其 Referer 值，如果是以 bank.example 开头的域名，则说明该请求是来自银行网站自己的请求，是合法的。如果 Referer 是其他网站的话，则有可能是黑客的 CSRF 攻击，拒绝该请求。  </p>
+<p>这种方法的显而易见的好处就是简单易行，网站的普通开发人员不需要操心 CSRF 的漏洞，只需要在最后给所有安全敏感的请求统一增加一个拦截器来检查 Referer 的值就可以。特别是对于当前现有的系统，不需要改变当前系统的任何已有代码和逻辑，没有风险，非常便捷。  </p>
+<p>然而，这种方法并非万无一失。Referer 的值是由浏览器提供的，虽然 HTTP 协议上有明确的要求，但是每个浏览器对于 Referer 的具体实现可能有差别，并不能保证浏览器自身没有安全漏洞。使用验证 Referer 值的方法，就是把安全性都依赖于第三方（即浏览器）来保障，从理论上来讲，这样并不安全。事实上，对于某些浏览器，比如 IE6 或 FF2，目前已经有一些方法可以篡改 Referer 值。如果 bank.example 网站支持 IE6 浏览器，黑客完全可以把用户浏览器的 Referer 值设为以 bank.example 域名开头的地址，这样就可以通过验证，从而进行 CSRF 攻击。  </p>
+<p>即便是使用最新的浏览器，黑客无法篡改 Referer 值，这种方法仍然有问题。因为 Referer 值会记录下用户的访问来源，有些用户认为这样会侵犯到他们自己的隐私权，特别是有些组织担心 Referer 值会把组织内网中的某些信息泄露到外网中。因此，用户自己可以设置浏览器使其在发送请求时不再提供 Referer。当他们正常访问银行网站时，网站会因为请求没有 Referer 值而认为是 CSRF 攻击，拒绝合法用户的访问。  </p>
+<h3 id="在请求地址中添加-token-并验证"><a href="#在请求地址中添加-token-并验证" class="headerlink" title="在请求地址中添加 token 并验证"></a>在请求地址中添加 token 并验证</h3><p>CSRF 攻击之所以能够成功，是因为黑客可以完全伪造用户的请求，该请求中所有的用户验证信息都是存在于 cookie 中，因此黑客可以在不知道这些验证信息的情况下直接利用用户自己的 cookie 来通过安全验证。要抵御 CSRF，关键在于在请求中放入黑客所不能伪造的信息，并且该信息不存在于 cookie 之中。可以在 HTTP 请求中以参数的形式加入一个随机产生的 token，并在服务器端建立一个拦截器来验证这个 token，如果请求中没有 token 或者 token 内容不正确，则认为可能是 CSRF 攻击而拒绝该请求。  </p>
+<p>这种方法要比检查 Referer 要安全一些，token 可以在用户登陆后产生并放于 session 之中，然后在每次请求时把 token 从 session 中拿出，与请求中的 token 进行比对，但这种方法的难点在于如何把 token 以参数的形式加入请求。对于 GET 请求，token 将附在请求地址之后，这样 URL 就变成 <a href="">http://url?csrftoken=tokenvalue</a> 。 而对于 POST 请求来说，要在 form 的最后加上 <code>&lt;input type=”hidden” name=”csrftoken” value=”tokenvalue”/&gt;</code>，这样就把 token 以参数的形式加入请求了。但是，在一个网站中，可以接受请求的地方非常多，要对于每一个请求都加上 token 是很麻烦的，并且很容易漏掉，通常使用的方法就是在每次页面加载时，使用 javascript 遍历整个 dom 树，对于 dom 中所有的 a 和 form 标签后加入 token。这样可以解决大部分的请求，但是对于在页面加载之后动态生成的 html 代码，这种方法就没有作用，还需要程序员在编码时手动添加 token。  </p>
+<p>该方法还有一个缺点是难以保证 token 本身的安全。特别是在一些论坛之类支持用户自己发表内容的网站，黑客可以在上面发布自己个人网站的地址。由于系统也会在这个地址后面加上 token，黑客可以在自己的网站上得到这个 token，并马上就可以发动 CSRF 攻击。为了避免这一点，系统可以在添加 token 的时候增加一个判断，如果这个链接是链到自己本站的，就在后面添加 token，如果是通向外网则不加。不过，即使这个 csrftoken 不以参数的形式附加在请求之中，黑客的网站也同样可以通过 Referer 来得到这个 token 值以发动 CSRF 攻击。这也是一些用户喜欢手动关闭浏览器 Referer 功能的原因。  </p>
+<h3 id="在-HTTP-头中自定义属性并验证"><a href="#在-HTTP-头中自定义属性并验证" class="headerlink" title="在 HTTP 头中自定义属性并验证"></a>在 HTTP 头中自定义属性并验证</h3><p>这种方法也是使用 token 并进行验证，和上一种方法不同的是，这里并不是把 token 以参数的形式置于 HTTP 请求之中，而是把它放到 HTTP 头中自定义的属性里。通过 XMLHttpRequest 这个类，可以一次性给所有该类请求加上 csrftoken 这个 HTTP 头属性，并把 token 值放入其中。这样解决了上种方法在请求中加入 token 的不便，同时，通过 XMLHttpRequest 请求的地址不会被记录到浏览器的地址栏，也不用担心 token 会透过 Referer 泄露到其他网站中去。  </p>
+<p>然而这种方法的局限性非常大。XMLHttpRequest 请求通常用于 Ajax 方法中对于页面局部的异步刷新，并非所有的请求都适合用这个类来发起，而且通过该类请求得到的页面不能被浏览器所记录下，从而进行前进，后退，刷新，收藏等操作，给用户带来不便。另外，对于没有进行 CSRF 防护的遗留系统来说，要采用这种方法来进行防护，要把所有请求都改为 XMLHttpRequest 请求，这样几乎是要重写整个网站，这代价无疑是不能接受的。  </p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+
+
+<nav class="page-nav">
+    <a class="extend prev" rel="prev" href="/blog/page/13/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/12/">12</a><a class="page-number" href="/blog/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/blog/page/15/">15</a><a class="page-number" href="/blog/page/16/">16</a><a class="page-number" href="/blog/page/17/">17</a><a class="extend next" rel="next" href="/blog/page/15/">Next &gt;&gt;</a>
+</nav>
+
+
+</div>
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明：
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>
