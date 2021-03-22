@@ -108,6 +108,188 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/blog/2020/05/22/FE-Javascript%E6%A8%A1%E5%9D%97%E5%8C%96/">Javascript模块化</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2020-05-22T07:09:51.000Z" itemprop="datePublished">2020-05-22</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/Javascript/" rel="tag">Javascript</a>, <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><h3 id="什么是模块化？"><a href="#什么是模块化？" class="headerlink" title="什么是模块化？"></a>什么是模块化？</h3><p>Javascript在最初的时候没有自己的模块化标准和引入外部模块的方法，类似于 c 的 <code>#include</code> java 的 <code>package</code> ，一个完备的编程语言会考虑一个工程在运行时各个模块的引用和依赖关系。但显然Javascript在设计之初只是被当作了一个网页端的脚本语言，既然 HTML 中可以引用js，为什么还要设计 js 中引入 js 的方法呢。可是 Javascript 的发展实在是太快了，我们知道现在 Javascript 不仅在网页中使用，服务器(Nodejs)，PC客户端(Electron)甚至移动客户端都有Js的程序。如何更好的定义模块并进行模块间的引用成了Javascript的当务之重。<br>模块化是一种将系统分离成独立功能部分的方法，可将系统分割成独立的功能部分，严格定义模块接口、模块间具有透明性。  </p>
+<h3 id="为什么模块化？"><a href="#为什么模块化？" class="headerlink" title="为什么模块化？"></a>为什么模块化？</h3><ul>
+<li>可以解决命名冲突</li>
+<li>更好的管理依赖</li>
+<li>提高代码的可读性</li>
+<li>代码解耦，提高代码的复用性</li>
+</ul>
+<h3 id="目前常见的模块化规范？"><a href="#目前常见的模块化规范？" class="headerlink" title="目前常见的模块化规范？"></a>目前常见的模块化规范？</h3><p><strong>CommonJS规范</strong> 是在服务器端模块的规范，是同步加载的。应用有Nodejs。<br><strong>AMD规范</strong>（ Asynchronous Module Definition）是 RequireJS 在推广过程中对模块定义的规范化产出，也是主要用于浏览器端。其特点是：依赖前置，需要在定义时就写好需要的依赖，提前执行依赖，应用有require.js<br><strong>CMD规范</strong> （Common Module Definition）是sea.js在推广过程中对模块定义的规范化产出，主要用于浏览器端。它主要特点是：对于依赖的模块是延迟执行，依赖可以就近书写，等到需要用这个依赖的时候再引入这个依赖，应用有sea.js<br><strong>ES6 module</strong> 在 ES6 中定义了js语言的模块化的规范。从此AMD和CMD退出了历史舞台。</p>
+<h2 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h2><p>CommonJS规范参见 <a target="_blank" rel="noopener" href="http://wiki.commonjs.org/wiki/CommonJS">http://wiki.commonjs.org/wiki/CommonJS</a><br>Nodejs采用了CommonJS的模块化规范，下面我列出了CommonJS中模块部分相关的变量，并以 Nodejs 的实现来解释含义和用法。  </p>
+<h3 id="require"><a href="#require" class="headerlink" title="require"></a>require</h3><p>require 方法用于加载模块文件。require 方法的基本功能是，接受一个模块标示符，返回外部模块的 exports 对象或方法。如果没有发现指定模块，会报错。如果有循环调用，require 返回的对象必须至少包含外部模块在调用 require 之前准备好的导出，该调用导致当前模块的执行。<br>模块标示符是指由正斜杠分隔的特殊字符串。这些字符串需要是驼峰化的，或者 . (代表当前路径)或者 .. (代表上一个路径)。可以省略文件后缀（例如.js）。顶层标识符从模块名称空间根解析。相对标识符是相对于写入和调用 require 的模块的位置来解析。  </p>
+<p>在 Nodejs 中，require 方法有以下方法 &amp; 属性  </p>
+<ul>
+<li><p>resolve 方法<br>使用内部的 require 机制查询模块的位置，此操作只返回解析后的文件名，不会加载该模块。</p>
+</li>
+<li><p>resolve.paths 方法<br>返回一个数组，其中包含解析 request 过程中被查询的路径，如果 request 字符串指向核心模块（例如 http 或 fs）则返回 null。</p>
+</li>
+<li><p>main 对象<br>Module 对象实例，表示当 Node.js 进程启动时加载的入口脚本。</p>
+</li>
+<li><p>extensions 对象<br>可以加载的文件类型及方法，node中默认支持 <code>.js</code> <code>.json</code> <code>.node</code> 文件，如果省略后缀，也会按照这三种的次序依次补足扩展名然后尝试加载。可以通过例如以下方法来让node加载不同的文件后缀。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>.extensions[<span class="string">&#x27;.sjs&#x27;</span>] = <span class="built_in">require</span>.extensions[<span class="string">&#x27;.js&#x27;</span>];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>cache 对象<br>require缓存，文件的绝对路径和 Module 对象实例的健值对数组。当再次require时，会返回缓存的模块。从此对象中删除键值对将会导致下一次 require 重新加载被删除的模块。</p>
+</li>
+</ul>
+<p>和标准稍微有些不同的是：<br>如果模块标志符是 Nodejs 默认携带的核心模块，会加载响应的核心模块，例如<code>fs</code>、<code>net</code>，或者一个位于各级 <code>node_modules</code> 目录的已安装模块。<br>如果 <code>require</code> 通过分析文件扩展名之后，可能没有查找到对应文件，但却得到一个目录，Nodejs 会将目录当做一个 Nodejs 包来处理，首先，Nodejs 在当前目录下查找 package.json (CommonJS包规范定义的包描述文件)，通过 <code>JSON.parse()</code> 解析出包描述对象，从中取出 <code>main</code> 属性指定的文件名进行定位。如果文件名缺少扩展名，将会进入扩展名分析的步骤。而如果 <code>main</code> 属性指定的文件名错误，或者压根没有 package.json 文件，Nodejs 会将 index 当做默认文件名，然后依次查找 index.js、index.json、index.node。</p>
+<h3 id="module"><a href="#module" class="headerlink" title="module"></a>module</h3><p>module 指加载后的模块。CommonJS 规范中，module 中应包括变量 require 指向 require 方法，变量 exports 指向当外部其它模块导入时可以引用的对，变量 module 对象 包括唯一的可被追溯的 id 属性以及 uri 属性指向模块的资源位置。</p>
+<p>在 Node.js 中，稍微有些不同，module对象是一个 Module 类的实例，这个对象包括以下属性 &amp; 方法：</p>
+<ul>
+<li>id<br>模块的标识符。 通常是完全解析后的文件名。</li>
+<li>exports<br>将期望导出的对象赋值给 module.exports 可以让其它模块使用</li>
+<li>parent<br>最先引用该模块的模块。</li>
+<li>filename<br>模块的完全解析后的文件名。<br>相当于 require.resolve(\/<em>模块标志符</em>\/)</li>
+<li>loaded<br>模块是否已经加载完成，或正在加载中。</li>
+<li>children<br>被该模块引用的模块对象。</li>
+<li>paths<br>模块的搜索路径。<br>相当于 require.resolve.paths(module.filenname)</li>
+<li>require 方法<br>和require方法类似，也是引入其它模块，但是相对path是当前的module</li>
+</ul>
+<h3 id="exports"><a href="#exports" class="headerlink" title="exports"></a>exports</h3><p>exports 变量是在模块的文件级作用域内可用的，且在模块执行之前赋值给 module.exports。<br>它允许使用快捷方式，因此 <code>module.exports.f = ...</code> 可以更简洁地写成 <code>exports.f = ...</code> 。 但是，就像任何变量一样，如果为 exports 赋予了新值，则它将不再绑定到 module.exports。<br>当 module.exports 属性被新对象完全替换时，通常也会重新赋值 exports。</p>
+<h2 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a>AMD</h2><p>实现了AMD的 <a target="_blank" rel="noopener" href="https://github.com/requirejs/requirejs">RequireJS</a></p>
+<h2 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h2><p>实现了CMD的 <a target="_blank" rel="noopener" href="https://github.com/seajs/seajs">Sea.js</a><br>作者 <a target="_blank" rel="noopener" href="https://github.com/lifesinger">王保平 玉伯 阿里p10</a> <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/lifesinger">知乎达人</a></p>
+<h2 id="ES6-module"><a href="#ES6-module" class="headerlink" title="ES6 module"></a>ES6 module</h2><p><a target="_blank" rel="noopener" href="http://www.ecma-international.org/ecma-262/6.0/#sec-modules">ES6 module</a> 为Javascript 引入了模块化的标准。模块功能主要由两个关键字构成： export 和 import 。 export 关键字用于规定模块的对外接口， import 关键字用于输入其他模块提供的功能。  </p>
+<h3 id="export"><a href="#export" class="headerlink" title="export"></a>export</h3><p>一个模块就是一个独立的文件。该文件内部的所有变量，外部无法获取。如果你希望外部能够读取模块内部的某个变量，就必须使用 export 关键字输出该变量。<br>可以导出变量、方法和类。可以直接导出，也可以在文件中将待导出的变量、方法或类作为对象的属性导出。<br>export 关键字可以出现在模块的任何位置，但不能处于块级作用域内。<br>使用 export default 关键字，为模块指定默认输出。一个模块只能有一个默认输出，因此 export default 命令只能使用一次  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// profile.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">var</span> firstName = <span class="string">&#x27;Michael&#x27;</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">var</span> lastName = <span class="string">&#x27;Jackson&#x27;</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">var</span> year = <span class="number">1958</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">multiply</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x * y;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// profile1.js</span></span><br><span class="line"><span class="keyword">var</span> firstName = <span class="string">&#x27;Michael&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> lastName = <span class="string">&#x27;Jackson&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> year = <span class="number">1958</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123;firstName, lastName, year&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// export-default.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;foo&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="import"><a href="#import" class="headerlink" title="import"></a>import</h3><p>使用 export 命令定义了模块的对外接口以后，其他 JS 文件就可以通过 import 命令加载这个模块。<br>import 命令接受一对大括号，里面指定要从其他模块导入的变量名。大括号里面的变量名，必须与被导入模块对外接口的名称相同。<br>import 后面的 from 指定模块文件的位置，可以是相对路径，也可以是绝对路径，.js 路径可以省略。如果只是模块名，不带有路径，那么必须有配置文件，告诉 JavaScript 引擎该模块的位置。<br>import 命令是编译阶段执行的，在代码运行之前。由于 import 是静态执行，所以不能使用表达式和变量，这些只有在运行时才能得到结果的语法结构。<br>import 语句会执行所加载的模块。<br>如果多次重复执行同一句 import 语句，那么只会执行一次，而不会执行多次。<br>除了指定加载某个输出值，还可以使用整体加载，即用星号（*）指定一个对象，所有输出值都加载在这个对象上面。<br>当用到 export default 命令，为模块指定默认输出时，其他模块加载该模块时，import 命令可以为该匿名函数指定任意名字(此时不使用{})。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">import</span> &#123;firstName, lastName, year&#125; <span class="keyword">from</span> <span class="string">&#x27;./profile&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setName</span>(<span class="params">element</span>) </span>&#123;</span><br><span class="line">  element.textContent = firstName + <span class="string">&#x27; &#x27;</span> + lastName;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// circle.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">area</span>(<span class="params">radius</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.PI * radius * radius;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">circumference</span>(<span class="params">radius</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">2</span> * <span class="built_in">Math</span>.PI * radius;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// calculate.js</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> circle <span class="keyword">from</span> <span class="string">&#x27;./circle&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;圆面积：&#x27;</span> + circle.area(<span class="number">4</span>));</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;圆周长：&#x27;</span> + circle.circumference(<span class="number">14</span>));</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// import-default.js</span></span><br><span class="line"><span class="keyword">import</span> customName <span class="keyword">from</span> <span class="string">&#x27;./export-default&#x27;</span>;</span><br><span class="line">customName(); <span class="comment">// &#x27;foo&#x27;</span></span><br></pre></td></tr></table></figure>
+<h3 id="as"><a href="#as" class="headerlink" title="as"></a>as</h3><p>可以使用as关键字重命名导出或导入的变量。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; lastName <span class="keyword">as</span> surname &#125; <span class="keyword">from</span> <span class="string">&#x27;./profile&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">v1</span>(<span class="params"></span>) </span>&#123; ... &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">v2</span>(<span class="params"></span>) </span>&#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123;</span><br><span class="line">  v1 <span class="keyword">as</span> streamV1,</span><br><span class="line">  v2 <span class="keyword">as</span> streamV2,</span><br><span class="line">  v2 <span class="keyword">as</span> streamLatestVersion</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2020/05/12/FE-Javascript%E5%BC%95%E6%93%8E/">Javascript引擎介绍</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2020-05-12T06:40:22.000Z" itemprop="datePublished">2020-05-12</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/Javascript/" rel="tag">Javascript</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="Javascript历史"><a href="#Javascript历史" class="headerlink" title="Javascript历史"></a>Javascript历史</h2><p>ECMAScript 最初是由网景的 Brendan Eich 开发的一种脚本语言的标准化规范；一开始命名为Mocha，后来改名为LiveScript，最后重命名为JavaScript。1995年12月，Sun 与 Netscape 联合发表了JavaScript。1996年11月，网景公司将 JavaScript 提交给欧洲计算机制造商协会进行标准化。ECMA-262的第一个版本于1997年6月被Ecma组织采纳。ECMA Script是ECMA-262标准化的脚本语言的名称。尽管JavaScript和JScript与ECMAScript兼容，但包含超出ECMA Script的功能。  </p>
+<p>ECMAScript是一种可以在宿主环境中执行计算并能操作可计算对象的基于对象的程序设计语言。ECMAScript最先被设计成一种Web脚本语言，用来支持Web页面的动态表现以及为基于Web的客户机—服务器架构提供服务器端的计算能力。但作为一种脚本语言， ECMAScript具备同其他脚本语言一样的性质，即“用来操纵、定制一个已存在系统所提供的功能，以及对其进行自动化”。  </p>
+<p>1999年12月，ECMAScript 3.0版发布，成为JavaScript的通行标准，得到了广泛支持。<br>2009年12月，ECMAScript 5.0版正式发布。<br>2015年6月17日，ECMAScript 6发布正式版本，即ECMAScript 2015。</p>
+<p>ECMA的第39号技术专家委员会（Technical Committee 39，简称TC39）负责制订ECMAScript标准，成员包括Microsoft、Mozilla、Google等大公司。</p>
+<p>Javascript 语言规范 <a target="_blank" rel="noopener" href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMA-262</a>。</p>
+<p>理论上，实现了上述规范能够提供执行JavaScript代码的运行环境都可以称为Javascript引擎，下面我们来了解下比较流行的Javascript引擎。  </p>
+<table>
+<thead>
+<tr>
+<th>主流浏览器</th>
+<th>js引擎</th>
+<th>浏览器内核</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IE -&gt; Edge</td>
+<td>JScript（IE3.0-IE8.0） / ChakraCore（IE9+之后）</td>
+<td>Trident-&gt;EdgeHTML-&gt;Chromium</td>
+</tr>
+<tr>
+<td>Chrome</td>
+<td>V8</td>
+<td>Chromium(Webkit-&gt;Blink)</td>
+</tr>
+<tr>
+<td>Safari</td>
+<td>Nitro（4-）</td>
+<td>Webkit</td>
+</tr>
+<tr>
+<td>Firefox</td>
+<td>SpiderMonkey（1.0-3.0）/ TraceMonkey（3.5-3.6）/ JaegerMonkey（4.0-）</td>
+<td>Gecko</td>
+</tr>
+<tr>
+<td>Opera</td>
+<td>Linear A（4.0-6.1）/ Linear B（7.0-9.2）/ Futhark（9.5-10.2）/ Carakan（10.5-）</td>
+<td>Elektra(4-6)-&gt;Presto(7.0-12.18)-&gt;WebKit-&gt;Blink</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ChakraCore"><a href="#ChakraCore" class="headerlink" title="ChakraCore"></a>ChakraCore</h2><p><a target="_blank" rel="noopener" href="https://github.com/Microsoft/ChakraCore">ChakraCore</a> 是 Micosoft Edge 所使用的Javascript引擎。支持JIT，垃圾回收机制。</p>
+<h2 id="JavaScriptCore"><a href="#JavaScriptCore" class="headerlink" title="JavaScriptCore"></a>JavaScriptCore</h2><p>Apple 开发的开源 JavaScript 引擎，<a target="_blank" rel="noopener" href="https://github.com/WebKit/webkit/tree/master/Source/JavaScriptCore">JavaScriptCore</a> 引擎是 WebKit 中默认的引擎。2008 年重写了，叫做 SquirrelFish，后来是 SquirrelFish Extreme，又叫 Nitro。它主要是将源代码翻译成抽象语法树，之后是平台无关的字节码，在最初的版本中，字节码会被 JavaScriptCore 引擎解释执行。在后面的版本中，逐渐加入了JIT编译器，将热点函数生成本地代码。</p>
+<h2 id="v8"><a href="#v8" class="headerlink" title="v8"></a>v8</h2><p>Google 开发的开源 JavaScript 引擎，以高性能著称。 <a target="_blank" rel="noopener" href="https://github.com/v8/v8">v8</a>最开始是一帮语言方面的专家设计出来的，之后被 Google 收购，成为了 JavaScript 引擎和众多相关技术的引领者。为了达到高性能的 JavaScript 代码执行效率从而获得更好的网页浏览效果，V8 采用直接将 JavaScript 编译成本地代码的方式。V8 支持众多的操作系统，包括但是不限于 Windows、Linux、Android、Mac OS X 等。同时它也是能够支持众多的硬件架构，例如 IA32、X64、ARM、MIPS 等。</p>
+<h2 id="SpiderMonkey"><a href="#SpiderMonkey" class="headerlink" title="SpiderMonkey"></a>SpiderMonkey</h2><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Mozilla/Projects/SpiderMonkey/Releases">SpiderMonkey</a> 是 Mozilla 使用C/C++编写的 JavaScript 引擎。它被用于包括 Firefox 在内的多个 Mozilla 产品中，使用的是 MPL 2 授权协议.</p>
+<h2 id="Rhino"><a href="#Rhino" class="headerlink" title="Rhino"></a>Rhino</h2><p><a target="_blank" rel="noopener" href="https://github.com/mozilla/rhino">Rhino</a> 是一个完全使用Java语言编写的开源JavaScript实现，由 Mozilla 开发。<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Mozilla/Projects/Rhino/Download_Rhino">Rhino</a> 通常用于在Java程序中，为最终用户提供脚本化能力。它被作为J2SE 6上的默认Java脚本化引擎。</p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/blog/2020/03/31/JS-Javascript%E4%B8%ADcall,apply,bind%E7%9A%84%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0/">Javascript中call,apply,bind的作用&amp;模拟实现</a>
         </h1>
         
@@ -321,233 +503,10 @@
 </article>
 
 
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2019/12/04/CS-%E5%A6%82%E4%BD%95%E6%B2%9F%E9%80%9A/">如何沟通</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-12-04T11:22:46.000Z" itemprop="datePublished">2019-12-04</time>
-</span>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/communication/" rel="tag">communication</a>, <a class="article-tag-link" href="/blog/tags/learn/" rel="tag">learn</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>与机器沟通是容易的，与人沟通却不是那么容易。每个人都有自己的一套规则，在符合沟通双方的规则下的沟通才会更加有效和让人感到舒适。以下是我的沟通规则，你不一定必须遵循这些规则，但如果你遵循了这些规则，我们之间的沟通会更加高效和舒适。  </p>
-<h2 id="我的信息"><a href="#我的信息" class="headerlink" title="我的信息"></a>我的信息</h2><p>请参见 <a target="_blank" rel="noopener" href="https://github.com/Mangon">Github</a> 上个人信息</p>
-<h2 id="称呼"><a href="#称呼" class="headerlink" title="称呼"></a>称呼</h2><ul>
-<li>请勿拼写错误我的名字，拼写错误是对我的不尊重，恕不回应。</li>
-<li>无论职级，你可以直接称呼我的名字，不需要加任何后缀或前缀。</li>
-<li>在称呼你时，如果你的姓名是三个字，我会默认称呼你的名字，即后两个字，如果你的姓名是两个字，我会默认称呼你的姓名。如果这不是你常用的被称呼的方式，或者这种称呼让你感到不快，请告知我。</li>
-</ul>
-<h2 id="会议邀请"><a href="#会议邀请" class="headerlink" title="会议邀请"></a>会议邀请</h2><ul>
-<li>邀请参加非routine会议请首先和我确定我的时间是OK的，并提前一天发会议邀请，任何当天发出邀请的会议，尤其是要求我立即参与的会议可能会被我拒绝，因为我有我的时间安排。</li>
-<li>任何会议，我会尽量提前到达，如果我是会议邀请者，我会提前5分钟，如果我是被邀请者，我会提前2分钟。</li>
-<li>任何会议，如果除我之外的邀请者或重要的被邀请者迟到10分钟及以上，我可能会取消参与。</li>
-<li>我理解的站会（standup meeting）是不需要携带电脑的，10-15分钟的会议。与会者需要站着参加，反馈自己的产出、计划及block issue。</li>
-<li>迭代kick-off会议请提前告知我icafe地址，需求评审会请提前告知我icafe地址，review会议请提前告知我icode地址，分享会请提前传输给我分享的材料。其它会议也请提前传输我会议相关材料。</li>
-<li>任何会议，除了没有目的讨论、分享会或者review会议，应当有结论。通常会由会议记录来记录与会者达成的共识及存在的分歧，还有待办项(todolist)。通常由会议邀请者记录或会议邀请者指定的人员记录，并在会后发邮件告知与会者，与会者采用邮件列表跟踪问题。</li>
-</ul>
-<h2 id="提问"><a href="#提问" class="headerlink" title="提问"></a>提问</h2><ul>
-<li>提问题前请确保你已经进行了有效的尝试，以及告知我你进行了什么尝试。</li>
-<li>无需问“在吗”“有时间吗”之类的问题，直接提出你的诉求。</li>
-<li><p>提defect请确定包括以下内容</p>
-<ol>
-<li>错误截图</li>
-<li>重现步骤</li>
-<li>期望的正常结果</li>
-<li>浏览器环境</li>
-<li>可能的原因（非必须，如果包含会很感激）</li>
-</ol>
-</li>
-<li><p>提feature请确定包括以下内容</p>
-<ol>
-<li>icafe地址</li>
-<li>背景&amp;收益</li>
-<li>原型图</li>
-<li>UE稿（包括视觉及交互，我只需要一份产出，请勿给多份），或UE交付日期</li>
-<li>接口文档交付日期</li>
-<li>是否需要打点记录</li>
-</ol>
-</li>
-</ul>
-<ul>
-<li>提问不属于我负责的或我不擅长的技术问题时，我会尽可能的回答你的问题，但我不能保证给你充足的时间也不能保证给你的是正确的答案，最正确的做法应该是向你的技术主管寻求帮助。</li>
-<li>未经我允许请不要将你与我之间的通过任何通讯软件p2p的对话截图发送给第三方，我不认为p2p的对话是我的保证或能作为任何质问时的证据，如果需要正式的保证请向我发邮件。</li>
-</ul>
-<h2 id="沟通方式"><a href="#沟通方式" class="headerlink" title="沟通方式"></a>沟通方式</h2><ul>
-<li>请根据事情的紧急程度决定沟通的方式，对你而言重要且紧急的事情对我而言不一定也是重要且紧急的。  </li>
-<li>去工位找我之前请先在通讯软件上沟通，确保我在工位而且有时间而且知道我们沟通的主题。</li>
-<li>打电话沟通请确保要沟通的事情的确是紧急高优的事情，通常是线上问题，或者是某项计划的截止日期将至而我还未给出答复。</li>
-<li>我会在每个工作日早上查看一次电子邮箱，下班前查看一次电子邮箱，以及在有人提醒我查看邮箱时查看邮箱，其它时间给我发送的邮件或邀请我不能实时查看。</li>
-<li>大部分的通讯软件群被我设置了接收但不提醒，工作时间我会每间隔约一小时查看一次，非工作时间我会不定时查看，重要事情或需要我特别关注的事情可以@我，我看到了会回复。</li>
-<li>如果我在假期，那么请优先联系我的backup，通常我会在假期之前给出backup人员，如果没有或你不清楚，请联系我的上级。</li>
-</ul>
-<h2 id="紧急情况"><a href="#紧急情况" class="headerlink" title="紧急情况"></a>紧急情况</h2><ul>
-<li>线上问题：就目前而言，线上问题首先会经过我的上级然后再指派给我，所以请勿在通讯软件群里直接@我，请直接联系我的上级。</li>
-<li>紧急上线：如果feature/defect需要紧急上线，请确保你已经得到了经理许可，就目前而言，紧急上线需要 开发人员/测试人员/运维人员 三方的经理邮件确认，同时上线时也需要测试人员确认效果。</li>
-</ul>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2019/08/21/HACK-Python%E7%88%AC%E8%99%ABScrapy/">Python爬虫Scrapy</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-08-21T07:16:45.000Z" itemprop="datePublished">2019-08-21</time>
-</span>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/crawler/" rel="tag">crawler</a>, <a class="article-tag-link" href="/blog/tags/python/" rel="tag">python</a>, <a class="article-tag-link" href="/blog/tags/scrapy/" rel="tag">scrapy</a>, <a class="article-tag-link" href="/blog/tags/spider/" rel="tag">spider</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="Scrapy简介"><a href="#Scrapy简介" class="headerlink" title="Scrapy简介"></a>Scrapy简介</h2><p><a target="_blank" rel="noopener" href="https://scrapy.org/">Scrapy</a> 是一个开源的Python网络爬虫框架。源码在github上开源，<a target="_blank" rel="noopener" href="https://github.com/scrapy/scrapy">地址</a>。Scrapy简单易学而且非常好用，支持配置、代理分布式爬取、容易扩展而且官方也很活跃。截止目前（2019年8月21日）最新版本为 v1.7.3 。  </p>
-<h2 id="Scrapy-安装"><a href="#Scrapy-安装" class="headerlink" title="Scrapy 安装"></a>Scrapy 安装</h2><p>你需要先安装Python，Scrapy需要 Python 2.7 或者 Python 3.5+ ，通常MacOS会自带Python，其它系统需要自己安装，Python安装不再赘述。  </p>
-<p>Scrapy由纯Python语言实现，但是需要依赖一些Python包，包括  </p>
-<ul>
-<li><a href="lxml.de">lxml</a>：一种高效的XML和HTML解析器，</li>
-<li><a target="_blank" rel="noopener" href="https://pypi.python.org/pypi/parsel">parsel</a>：一个HTML / XML数据提取库，基于上面的lxml，</li>
-<li><a target="_blank" rel="noopener" href="https://pypi.org/project/w3lib/">w3lib</a>：一种处理URL和网页编码多功能辅助</li>
-<li><a target="_blank" rel="noopener" href="https://twistedmatrix.com/trac/">twisted</a>：一个异步网络框架</li>
-<li><a target="_blank" rel="noopener" href="https://cryptography.io">cryptography</a> and <a target="_blank" rel="noopener" href="https://pypi.org/project/pyOpenSSL/">pyOpenSSL</a>：处理各种网络级安全需求</li>
-</ul>
-<p>由于包依赖版本问题，建议首先安装 <a target="_blank" rel="noopener" href="https://virtualenv.pypa.io">virtualenv</a> ，这是一个独立Python运行环境包。</p>
-<ol>
-<li>全局安装 virtualenv</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pip install virtualenv</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>创建独立Python运行环境</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ virtualenv ENV</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>安装Scrapy</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install scrapy</span><br></pre></td></tr></table></figure>
-<p><strong> 在不同的平台上的安装步骤不尽相同，某些平台需要安装平台依赖包，具体请 <a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/intro/install.html#intro-install-platform-notes">查看</a> </strong> </p>
-<h2 id="Scrapy项目创建"><a href="#Scrapy项目创建" class="headerlink" title="Scrapy项目创建"></a>Scrapy项目创建</h2><ol>
-<li>创建项目&amp;生成爬虫</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ scrapy startproject [PROJECT_NAME]</span><br><span class="line">$ cd [PROJECT_NAME]</span><br><span class="line">$ scrapy genspider [SPIDER_NAME] [START_SITE_NAME]</span><br></pre></td></tr></table></figure>
-<p>[PROJECT_NAME] 是待创建的爬虫项目名<br>[SPIDER_NAME] 是爬虫名<br>[SITE_NAME] 是待爬取的初始站点地址</p>
-<p>例如我们创建了一个名为 tutorial 的项目，并添加爬虫 top  </p>
-<p>项目目录如下  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">tutorial&#x2F;</span><br><span class="line">|___scrapy.cfg            # 配置文件</span><br><span class="line">|___tutorial&#x2F;             # 项目的 Python 模块，代码存在这里</span><br><span class="line">    |___ __init__.py</span><br><span class="line">    |___items.py          # 项目 items 定义文件</span><br><span class="line">    |___middlewares.py    # 项目 middlewares 文件</span><br><span class="line">    |___pipelines.py      # 项目 pipelines 文件</span><br><span class="line">    |___settings.py       # 项目 settings 文件</span><br><span class="line">    |___spiders&#x2F;          # 爬虫文件目录</span><br><span class="line">        |___ __init__.py</span><br><span class="line">        |___top.py        # 爬虫文件</span><br></pre></td></tr></table></figure>
-<p>打开 top.py 可以看到 Scrapy 爬虫文件结构  </p>
-<ul>
-<li><strong>name</strong> 爬虫名  </li>
-<li><strong>allowed_domains</strong> 是允许爬取的域名  </li>
-<li><strong>start_urls</strong> 开始爬取的链接  </li>
-<li><strong>start_requests()</strong> 开始爬取的链接方法，需要返回 Requests 对象的遍历器或者 Reqeusts 数组  </li>
-<li><strong>parse()</strong> 爬取后的处理方法  </li>
-</ul>
-<h2 id="settings-修改"><a href="#settings-修改" class="headerlink" title="settings 修改"></a>settings 修改</h2><p>可以在 settings.py 文件中看到常用设置: </p>
-<ul>
-<li><strong>USER_AGENT</strong> request的 <code>user-agent</code> header 中的 user-agent 参数  </li>
-<li><strong>ROBOTSTXT_OBEY</strong> 是否遵守robots.txt协议，默认 <code>True</code>  </li>
-<li><strong>CONCURRENT_REQUESTS</strong> 最大并发请求数量  </li>
-<li><strong>DEFAULT_REQUEST_HEADERS</strong> 覆盖默认请求header 参数</li>
-<li><strong>SPIDER_MIDDLEWARES</strong> 爬虫中间件  </li>
-<li><strong>DOWNLOADER_MIDDLEWARES</strong> 下载中间件  </li>
-<li><strong>ITEM_PIPELINES</strong> 设置pipeline调用顺序  </li>
-</ul>
-<h2 id="使用-shell-命令分析待爬取网站"><a href="#使用-shell-命令分析待爬取网站" class="headerlink" title="使用 shell 命令分析待爬取网站"></a>使用 shell 命令分析待爬取网站</h2><p>shell命令是Scrapy提供的交互式页面分析工具，类似于一个debug工具，你可以先使用shell分析待爬取的页面然后再执行爬虫。  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy shell [SITE_NAME]</span><br></pre></td></tr></table></figure>
-<p>shell命令将会采用settings里的配置来请求地址 [SITE_NAME] ，以下列出一些常用分析命令  </p>
-<ul>
-<li><strong>scrapy</strong> scrapy模块，包括scrapy.Request, scrapy.Selector等  </li>
-<li><strong>crawler</strong> scrapy.crawler.Crawler object  </li>
-<li><strong>response</strong> 返回的响应object</li>
-<li><strong>request</strong> 请求的object</li>
-<li><strong>settings</strong> 请求的设置</li>
-<li><strong>view(response)</strong> 在浏览器中查看获取到页面  </li>
-<li><strong>fetch(url[, redicrect=True])</strong> 重新获取url内容并更新当前object</li>
-<li><strong>fetch(req)</strong> 获取一个 scrapy.Request 并更新当前object</li>
-</ul>
-<p><code>view(response)</code> 可以在浏览器中查看页面结构。<br>如果返回的结构和我们期待的有所不同，可以通过 <code>request.replace()</code> 进行修改，例如修改请求方法 <code>request.replace(method=&#39;POST&#39;)</code><br><code>fetch(req)</code> 常用在对request或settings进行了修改然后重新请求。<br><code>response</code> 是返回的响应体，这通常是我们需要分析的东西，如果分析的是html，首先最好先执行 <code>view(response)</code> 在浏览器中查看页面结构，找到我们需要获取的 文本/链接 位置。<br>然后使用 xpath选择器 或者 css选择器 定位我们需要获取的 文本/链接 位置。<br>例如采用 css选择器 且我们需要获取页面中的所有链接，则可以执行<br> <code>response.css(&#39;a::attr(href).getall()&#39;)</code><br>如果获取title文本则可以执行<br> <code>response.css(&#39;title::text&#39;).get(default=&#39;&#39;)</code><br><code>fetch(url)</code> 常用来获取下一个待分析的链接<br>这样就构成了一个完整闭环  </p>
-<p>另外我们也可以通过<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from pprint import pprint</span><br><span class="line">pprint(response.headers)</span><br></pre></td></tr></table></figure><br>来打印相应object  </p>
-<h2 id="Scrapy-Items"><a href="#Scrapy-Items" class="headerlink" title="Scrapy Items"></a>Scrapy Items</h2><p>通常我们需要爬取的都是结构化的数据，在 Scrapy 中被称为 Item，在 items.py 中我们需要定义需要爬取的字段，类似 Python dict</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name = scrapy.Field()</span><br></pre></td></tr></table></figure>
-<h2 id="Scrapy-Item-Pipeline"><a href="#Scrapy-Item-Pipeline" class="headerlink" title="Scrapy Item Pipeline"></a>Scrapy Item Pipeline</h2><p>Scrapy支持pipeline来对爬取到的数据进行类似于管道一样的一系列操作。<br>管道类一般用来进行以下几类操作：  </p>
-<ul>
-<li>清洗 HTML 数据</li>
-<li>验证爬取到的数据（检查items包括特定的field）</li>
-<li>检查重复数据</li>
-<li>将爬取到的数据存储于数据库中</li>
-</ul>
-<p>包括以下几分方法</p>
-<p><code>process_item(self, item, spider)</code></p>
-<p>处理item，需要返回处理后的 data dict</p>
-<p><code>open_spider(self, spider)</code></p>
-<p>spider开始时触发的钩子</p>
-<p><code>close_spider(self, spider)</code></p>
-<p>spider结束时触发的钩子</p>
-<p><code>from_crawler(cls, crawler)</code></p>
-<p>类方法，可以通过 crawler.settings 获取 settings.py 里的配置信息</p>
-<h2 id="运行爬虫"><a href="#运行爬虫" class="headerlink" title="运行爬虫"></a>运行爬虫</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ scrapy crawl [SPIDER_NAME] [-o [FILE_NAME]]</span><br></pre></td></tr></table></figure>
-<p>可以添加 <code>-o</code> 参数来输出为不同的文件例如 xml, csv, json 文件<br>爬取后的文件默认放到项目根目录下  </p>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
 
 
 <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/blog/page/7/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/6/">6</a><a class="page-number" href="/blog/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/blog/page/9/">9</a><a class="page-number" href="/blog/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/17/">17</a><a class="extend next" rel="next" href="/blog/page/9/">Next &gt;&gt;</a>
+    <a class="extend prev" rel="prev" href="/blog/page/7/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/6/">6</a><a class="page-number" href="/blog/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/blog/page/9/">9</a><a class="page-number" href="/blog/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/18/">18</a><a class="extend next" rel="next" href="/blog/page/9/">Next &gt;&gt;</a>
 </nav>
 
 

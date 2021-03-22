@@ -108,6 +108,143 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/blog/2021/03/19/CSS-display%E5%B1%9E%E6%80%A7/">CSS display属性</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-19T13:12:39.000Z" itemprop="datePublished">2021-03-19</time>
+</span>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="display-属性的含义"><a href="#display-属性的含义" class="headerlink" title="display 属性的含义"></a>display 属性的含义</h2><p><code>display</code> 属性可以设置元素的内部和外部显示类型。元素的外部显示类型将决定该元素在流式布局中的表现。元素的内部显示类型可以控制其子元素的布局。  </p>
+<p>CSS3规范详细说明了 <code>display</code> 属性的两个值—显式地启用外部和内部显示类型的规，但是浏览器还没有很好地支持这一点。</p>
+<h2 id="display-属性语法"><a href="#display-属性语法" class="headerlink" title="display 属性语法"></a>display 属性语法</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* legacy values */</span></span><br><span class="line"><span class="attribute">display</span>: block;</span><br><span class="line"><span class="attribute">display</span>: inline;</span><br><span class="line"><span class="attribute">display</span>: inline-block;</span><br><span class="line"><span class="attribute">display</span>: flex;</span><br><span class="line"><span class="attribute">display</span>: inline-flex;</span><br><span class="line"><span class="attribute">display</span>: grid;</span><br><span class="line"><span class="attribute">display</span>: inline-grid;</span><br><span class="line"><span class="attribute">display</span>: flow-root;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* box generation */</span></span><br><span class="line"><span class="attribute">display</span>: none;</span><br><span class="line"><span class="attribute">display</span>: contents;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* two-value syntax */</span></span><br><span class="line"><span class="attribute">display</span>: block flow;</span><br><span class="line"><span class="attribute">display</span>: inline flow;</span><br><span class="line"><span class="attribute">display</span>: inline flow-root;</span><br><span class="line"><span class="attribute">display</span>: block flex;</span><br><span class="line"><span class="attribute">display</span>: inline-flex;</span><br><span class="line"><span class="attribute">display</span>: block grid;</span><br><span class="line"><span class="attribute">display</span>: inline grid;</span><br><span class="line"><span class="attribute">display</span>: block flow-root;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* other values */</span></span><br><span class="line"><span class="attribute">display</span>: table;</span><br><span class="line"><span class="attribute">display</span>: table-row; <span class="comment">/* all table elements have an equivalent CSS display value */</span></span><br><span class="line"><span class="attribute">display</span>: list-item;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Global values */</span></span><br><span class="line"><span class="attribute">display</span>: inherit;</span><br><span class="line"><span class="attribute">display</span>: initial;</span><br><span class="line"><span class="attribute">display</span>: unset;</span><br></pre></td></tr></table></figure>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><h3 id="外部显示类型"><a href="#外部显示类型" class="headerlink" title="外部显示类型"></a>外部显示类型</h3><p>这些关键字指定元素的外部显示类型，它本质上是元素在流布局中的角色。  </p>
+<h4 id="block"><a href="#block" class="headerlink" title="block"></a>block</h4><p>元素生成块元素框，在正常流中生成元素前后的换行符。  </p>
+<h4 id="inline"><a href="#inline" class="headerlink" title="inline"></a>inline</h4><p>元素生成一个或多个内联元素框，这些内联元素框不会在它们之前或之后生成换行符。在正常流中，如果有空间，下一个元素将在同一行上。  </p>
+<h3 id="内部显示类型"><a href="#内部显示类型" class="headerlink" title="内部显示类型"></a>内部显示类型</h3><h4 id="flow-root"><a href="#flow-root" class="headerlink" title="flow-root"></a>flow-root</h4><p>元素生成一个块元素框，该框建立一个新的块格式化上下文（BFC），定义格式化根所在的位置。  </p>
+<h4 id="table"><a href="#table" class="headerlink" title="table"></a>table</h4><p>这些元素的行为类似于HTML <code>&lt;table&gt;</code> 元素。它定义了一个块级框。  </p>
+<h4 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h4><p>元素的行为类似于块元素，并根据弹性盒子（flexbox）模型布局其内容。  </p>
+<h4 id="grid"><a href="#grid" class="headerlink" title="grid"></a>grid</h4><p>元素的行为类似于块元素，并根据网格模型（grid model）布局其内容。  </p>
+<h3 id="列表项"><a href="#列表项" class="headerlink" title="列表项"></a>列表项</h3><h4 id="list-item"><a href="#list-item" class="headerlink" title="list-item"></a>list-item</h4><p>使元素表现的像一个列表项。  </p>
+<h3 id="内部选项"><a href="#内部选项" class="headerlink" title="内部选项"></a>内部选项</h3><p>一些标签的默认display属性</p>
+<table>
+<thead>
+<tr>
+<th>display</th>
+<th>html标签</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>table-row-group</td>
+<td><code>&lt;tbody&gt;</code></td>
+</tr>
+<tr>
+<td>table-header-group</td>
+<td><code>&lt;thead&gt;</code></td>
+</tr>
+<tr>
+<td>table-footer-group</td>
+<td><code>&lt;tfoot&gt;</code></td>
+</tr>
+<tr>
+<td>table-row</td>
+<td><code>&lt;tr&gt;</code></td>
+</tr>
+<tr>
+<td>table-cell</td>
+<td><code>&lt;td&gt;</code></td>
+</tr>
+<tr>
+<td>table-column-group</td>
+<td><code>&lt;colgroup&gt;</code></td>
+</tr>
+<tr>
+<td>table-column</td>
+<td><code>&lt;col&gt;</code></td>
+</tr>
+<tr>
+<td>table-caption</td>
+<td><code>&lt;caption&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="盒"><a href="#盒" class="headerlink" title="盒"></a>盒</h3><h4 id="contents"><a href="#contents" class="headerlink" title="contents"></a>contents</h4><p>伪元素</p>
+<h4 id="none"><a href="#none" class="headerlink" title="none"></a>none</h4><p>关闭元素的显示，使其对布局没有影响。  </p>
+<h3 id="遗留"><a href="#遗留" class="headerlink" title="遗留"></a>遗留</h3><p>由于CSS2对display属性采用了单关键字语法，对于相同布局模式的块级和内联级变体，需要单独的关键字。</p>
+<h4 id="inline-block"><a href="#inline-block" class="headerlink" title="inline-block"></a>inline-block</h4><p>相当于 <code>inline flow-root</code></p>
+<h4 id="inline-table"><a href="#inline-table" class="headerlink" title="inline-table"></a>inline-table</h4><p>相当于 <code>inline table</code></p>
+<h4 id="inline-flex"><a href="#inline-flex" class="headerlink" title="inline-flex"></a>inline-flex</h4><p>相当于 <code>inline flex</code></p>
+<h4 id="inline-grid"><a href="#inline-grid" class="headerlink" title="inline-grid"></a>inline-grid</h4><p>相当于 <code>inline grid</code></p>
+<h3 id="全局"><a href="#全局" class="headerlink" title="全局"></a>全局</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">/* Global values */</span></span><br><span class="line">    <span class="attribute">display</span>: inherit;</span><br><span class="line">    <span class="attribute">display</span>: initial;</span><br><span class="line">    <span class="attribute">display</span>: unset;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/03/19/HTML-%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0-%E5%9D%97%E7%8A%B6%E5%85%83%E7%B4%A0/">HTML 行内元素&amp;块状元素</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-19T13:09:58.000Z" itemprop="datePublished">2021-03-19</time>
+</span>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="行内元素与块状元素有什么区别"><a href="#行内元素与块状元素有什么区别" class="headerlink" title="行内元素与块状元素有什么区别?"></a>行内元素与块状元素有什么区别?</h2><p>行内元素：会在水平方向排列，不能包含块级元素，设置width无效，height无效（可以设置line-height），margin上下无效，padding上下无效<br>块级元素：各占据一行，垂直方向排列。从新行开始结束接着一个断行  </p>
+<h2 id="列举常用行内与块状元素"><a href="#列举常用行内与块状元素" class="headerlink" title="列举常用行内与块状元素"></a>列举常用行内与块状元素</h2><p>块级元素：div, p, h1-h5, form, ul, li<br>行内元素：span, a, label, input, img, strong, em  </p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/blog/2021/03/19/HTML-html5%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/">HTML html5常用标签</a>
         </h1>
         
@@ -224,93 +361,10 @@
 </article>
 
 
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/03/19/JS-%E5%AE%9E%E8%B7%B5/">JS 实践</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-03-19T08:10:10.000Z" itemprop="datePublished">2021-03-19</time>
-</span>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="书写一个数组去重的方法"><a href="#书写一个数组去重的方法" class="headerlink" title="书写一个数组去重的方法"></a>书写一个数组去重的方法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 利用ES6 Set数据结构去重</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deduplication</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(array));</span><br><span class="line">    <span class="comment">// return [...new Set(array)];</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历一遍 利用对象的属性不能相同的特点去重</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deduplication</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> obj = &#123;&#125;, result = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i&lt; array.length; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!obj[array[i]])&#123; <span class="comment">//如果能查找到，证明数组元素重复了</span></span><br><span class="line">            obj[array[i]] = <span class="number">1</span>;</span><br><span class="line">            result.push(array[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 双层遍历，内层遍历改用indexOf</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deduplication</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = [];</span><br><span class="line">    array.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item, index ,arr</span>)</span>&#123;  <span class="comment">//这里利用map，filter方法也可以实现外层遍历</span></span><br><span class="line">        <span class="keyword">if</span>(arr.indexOf(item, index + <span class="number">1</span>) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            result.push(item);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 双层遍历, 遇到重复则跳过，不重复的插入到新数组</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deduplication</span>(<span class="params">array</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> result = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; array.length; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(array[i] === array[j])&#123;</span><br><span class="line">                j = ++i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        result.push(array[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 双层遍历，删除重复，返回原数组 *对原数组有修改</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deduplication</span>(<span class="params">array</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> len = array.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; len; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(array[i] == array[j])&#123;</span><br><span class="line">                array.splice(j, <span class="number">1</span>);</span><br><span class="line">                len--;</span><br><span class="line">                j--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> array;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="书写将数组打乱顺序的方法"><a href="#书写将数组打乱顺序的方法" class="headerlink" title="书写将数组打乱顺序的方法"></a>书写将数组打乱顺序的方法</h2><h2 id="书写一个方法将一个字符串倒序输出"><a href="#书写一个方法将一个字符串倒序输出" class="headerlink" title="书写一个方法将一个字符串倒序输出"></a>书写一个方法将一个字符串倒序输出</h2><h2 id="书写一个方法使用reduce模拟map-使用map来模拟reduce"><a href="#书写一个方法使用reduce模拟map-使用map来模拟reduce" class="headerlink" title="书写一个方法使用reduce模拟map/使用map来模拟reduce"></a>书写一个方法使用reduce模拟map/使用map来模拟reduce</h2><p>使用reduce模拟map<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype._map = <span class="function"><span class="keyword">function</span>(<span class="params">fn, callbackThis</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 最终返回的新数组</span></span><br><span class="line">    <span class="keyword">let</span> res = [];</span><br><span class="line">    <span class="comment">// 定义回调函数的执行环境</span></span><br><span class="line">    <span class="comment">// call第一个参数传入null，则 this指向全局对象，同 map的规则</span></span><br><span class="line">    <span class="keyword">let</span> CBThis = callbackThis || <span class="literal">null</span>;</span><br><span class="line">    <span class="built_in">this</span>.reduce(<span class="function">(<span class="params">brfore, after, idx, arr</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 传入map回调函数拥有的参数</span></span><br><span class="line">        <span class="comment">// 把每一项的执行结果push进res中</span></span><br><span class="line">        res.push(fn.call(CBThis, after, idx, arr));</span><br><span class="line">    &#125;, <span class="literal">null</span>);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<h2 id="解析url，将url中的参数转化为对象"><a href="#解析url，将url中的参数转化为对象" class="headerlink" title="解析url，将url中的参数转化为对象"></a>解析url，将url中的参数转化为对象</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getQueryString</span>(<span class="params">name</span>) </span>&#123; </span><br><span class="line">    <span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">&quot;(^|&amp;)&quot;</span> + name + <span class="string">&quot;=([^&amp;]*)(&amp;|$)&quot;</span>, <span class="string">&quot;i&quot;</span>); </span><br><span class="line">    <span class="keyword">var</span> r = <span class="built_in">window</span>.location.search.substr(<span class="number">1</span>).match(reg); </span><br><span class="line">    <span class="keyword">if</span> (r != <span class="literal">null</span>) <span class="keyword">return</span> <span class="built_in">unescape</span>(r[<span class="number">2</span>]); <span class="keyword">return</span> <span class="literal">null</span>; </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">GetRequest</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> url = location.search; <span class="comment">//获取url中&quot;?&quot;符后的字串</span></span><br><span class="line">    <span class="keyword">var</span> theRequest = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">    <span class="keyword">if</span> (url.indexOf(<span class="string">&quot;?&quot;</span>) != -<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> str = url.substr(<span class="number">1</span>);</span><br><span class="line">        strs = str.split(<span class="string">&quot;&amp;&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; strs.length; i ++) &#123;</span><br><span class="line">            theRequest[strs[i].split(<span class="string">&quot;=&quot;</span>)[<span class="number">0</span>]] = <span class="built_in">unescape</span>(strs[i].split(<span class="string">&quot;=&quot;</span>)[<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> theRequest;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="循环体中不含有break语句时使用while循环来模拟for循环"><a href="#循环体中不含有break语句时使用while循环来模拟for循环" class="headerlink" title="循环体中不含有break语句时使用while循环来模拟for循环"></a>循环体中不含有break语句时使用while循环来模拟for循环</h2><p>for循环：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(initialize; test; increment)body;</span><br></pre></td></tr></table></figure></p>
-<p>while循环：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">initialize;</span><br><span class="line"><span class="keyword">while</span> (test) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123; body;&#125;</span><br><span class="line">    <span class="keyword">finally</span> &#123; increment;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="试写出-bind-的-polyfill-方法"><a href="#试写出-bind-的-polyfill-方法" class="headerlink" title="试写出 bind() 的 polyfill 方法"></a>试写出 bind() 的 polyfill 方法</h2><p>MDN上的实现：  </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Does not work with `new funcA.bind(thisArg, args)`</span></span><br><span class="line"><span class="keyword">if</span> (!<span class="built_in">Function</span>.prototype.bind) (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> slice = <span class="built_in">Array</span>.prototype.slice;</span><br><span class="line">  <span class="built_in">Function</span>.prototype.bind = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> thatFunc = <span class="built_in">this</span>, thatArg = <span class="built_in">arguments</span>[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">var</span> args = slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> thatFunc !== <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">      <span class="comment">// closest thing possible to the ECMAScript 5</span></span><br><span class="line">      <span class="comment">// internal IsCallable function</span></span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">&#x27;Function.prototype.bind - &#x27;</span> +</span><br><span class="line">             <span class="string">&#x27;what is trying to be bound is not callable&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">var</span> funcArgs = args.concat(slice.call(<span class="built_in">arguments</span>))</span><br><span class="line">      <span class="keyword">return</span> thatFunc.apply(thatArg, funcArgs);</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-<h2 id="实现-emit-on-观察者模式-发布-订阅模式"><a href="#实现-emit-on-观察者模式-发布-订阅模式" class="headerlink" title="实现 emit/on 观察者模式 发布/订阅模式"></a>实现 emit/on 观察者模式 发布/订阅模式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Event = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> list = &#123;&#125;,</span><br><span class="line">        on,</span><br><span class="line">        emit,</span><br><span class="line">        remove;</span><br><span class="line">    on = <span class="function"><span class="keyword">function</span>(<span class="params">key,fn</span>)</span>&#123; <span class="comment">//监听事件函数</span></span><br><span class="line">        <span class="keyword">if</span>(!list[key])&#123;</span><br><span class="line">            list[key] = []; <span class="comment">//如果事件列表中还没有key值命名空间，创建</span></span><br><span class="line">        &#125;</span><br><span class="line">        list[key].push(fn); <span class="comment">//将回调函数推入对象的“键”对应的“值”回调数组</span></span><br><span class="line">    &#125;;</span><br><span class="line">    emit = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">//触发事件函数</span></span><br><span class="line">        <span class="keyword">var</span> key = <span class="built_in">Array</span>.prototype.shift.call(<span class="built_in">arguments</span>); <span class="comment">//第一个参数指定“键”</span></span><br><span class="line">        msg = list[key];</span><br><span class="line">        <span class="keyword">if</span>(!msg || msg.length === <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">//如果回调数组不存在或为空则返回false</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; msg.length; i++)&#123;</span><br><span class="line">            msg[i].apply(<span class="built_in">this</span>, <span class="built_in">arguments</span>); <span class="comment">//循环回调数组执行回调函数</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    remove = <span class="function"><span class="keyword">function</span>(<span class="params">key, fn</span>)</span>&#123; <span class="comment">//移除事件函数</span></span><br><span class="line">        <span class="keyword">var</span> msg = list[key];</span><br><span class="line">        <span class="keyword">if</span>(!msg)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">//事件不存在直接返回false</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(!fn)&#123;</span><br><span class="line">            <span class="keyword">delete</span> list[key]; <span class="comment">//如果没有后续参数，则删除整个回调数组</span></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; msg.length; i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(fn === msg[i])&#123;</span><br><span class="line">                    msg.splice(i, <span class="number">1</span>); <span class="comment">//删除特定回调数组中的回调函数</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        on: on,</span><br><span class="line">        emit: emit,</span><br><span class="line">        remove: remove</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="keyword">var</span> fn = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data + <span class="string">&#x27;的推送消息：xxxxxx......&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line">Event.on(<span class="string">&#x27;action&#x27;</span>, fn);</span><br><span class="line">Event.emit(<span class="string">&#x27;action&#x27;</span>, <span class="string">&#x27;2016.11.26&#x27;</span>);</span><br><span class="line">Event.remove(<span class="string">&#x27;action&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/03/19/JS-%E9%97%AD%E5%8C%85/">JS 闭包</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-03-19T07:56:35.000Z" itemprop="datePublished">2021-03-19</time>
-</span>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p>和其他大多数现代编程语言一样，JavaScript也采用词法作用域(lexical scoping)。也就是，函数的执行依赖于变量作用域，这个作用域是函数定义时决定的。而不是函数执行时决定的。为了实现这种词法作用域，JavaScript函数对象的内部状态不仅包含函数的代码逻辑，还必须引用当前的作用域链(scope chain)。函数可以通过作用域链(scope chain)相互关联起来，函数内部的变量都可以保存在函数作用域内，这种特性称为”闭包”。  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    n = <span class="number">999</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(n);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> f2;<span class="comment">// f2就是一个闭包</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> result = f1();</span><br><span class="line">result(); <span class="comment">// 999</span></span><br></pre></td></tr></table></figure>
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
 
 
 <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/blog/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><a class="page-number" href="/blog/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/blog/page/4/">4</a><a class="page-number" href="/blog/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/17/">17</a><a class="extend next" rel="next" href="/blog/page/4/">Next &gt;&gt;</a>
+    <a class="extend prev" rel="prev" href="/blog/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><a class="page-number" href="/blog/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/blog/page/4/">4</a><a class="page-number" href="/blog/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/18/">18</a><a class="extend next" rel="next" href="/blog/page/4/">Next &gt;&gt;</a>
 </nav>
 
 

@@ -108,6 +108,82 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/blog/2021/03/21/JS-this/">JS this</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-21T03:24:26.000Z" itemprop="datePublished">2021-03-21</time>
+</span>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p><code>this</code> 是一个关键字。和变量不同，关键字 <code>this</code> 没有作用域限制，如果嵌套函数作为方法调用，其 <code>this</code> 的值指向调用它的对象，如果嵌套函数作为函数调用，其 <code>this</code> 的值是全局对象（非严格模式）或者 <code>undefined</code>（严格模式）。<br>如果希望在嵌套函数中调用外层函数的上下文，需要将外层函数的 <code>this</code> 值保存到一个变量（例如self、context或者_this）里，这个变量和内部函数都在同一个作用域里。</p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/03/21/JS-%E5%A3%B0%E6%98%8E%E6%8F%90%E5%89%8D/">JS 声明提前</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-21T03:23:55.000Z" itemprop="datePublished">2021-03-21</time>
+</span>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>var命令声明函数中的变量，不管在函数中什么位置，由于其函数作用域的特性，变量在函数中任何位置始终可见，相当于变量声明被”提升”到函数体的头部。“声明提前”这步操作是在JavaScript引擎的“预编译”时进行的。</p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/blog/2021/03/21/JS-%E4%BD%9C%E7%94%A8%E5%9F%9F-%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/">JS 作用域&amp;作用域链</a>
         </h1>
         
@@ -241,147 +317,10 @@
 </article>
 
 
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/03/19/CSS-display%E5%B1%9E%E6%80%A7/">CSS display属性</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-03-19T13:12:39.000Z" itemprop="datePublished">2021-03-19</time>
-</span>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="display-属性的含义"><a href="#display-属性的含义" class="headerlink" title="display 属性的含义"></a>display 属性的含义</h2><p><code>display</code> 属性可以设置元素的内部和外部显示类型。元素的外部显示类型将决定该元素在流式布局中的表现。元素的内部显示类型可以控制其子元素的布局。  </p>
-<p>CSS3规范详细说明了 <code>display</code> 属性的两个值—显式地启用外部和内部显示类型的规，但是浏览器还没有很好地支持这一点。</p>
-<h2 id="display-属性语法"><a href="#display-属性语法" class="headerlink" title="display 属性语法"></a>display 属性语法</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* legacy values */</span></span><br><span class="line"><span class="attribute">display</span>: block;</span><br><span class="line"><span class="attribute">display</span>: inline;</span><br><span class="line"><span class="attribute">display</span>: inline-block;</span><br><span class="line"><span class="attribute">display</span>: flex;</span><br><span class="line"><span class="attribute">display</span>: inline-flex;</span><br><span class="line"><span class="attribute">display</span>: grid;</span><br><span class="line"><span class="attribute">display</span>: inline-grid;</span><br><span class="line"><span class="attribute">display</span>: flow-root;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* box generation */</span></span><br><span class="line"><span class="attribute">display</span>: none;</span><br><span class="line"><span class="attribute">display</span>: contents;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* two-value syntax */</span></span><br><span class="line"><span class="attribute">display</span>: block flow;</span><br><span class="line"><span class="attribute">display</span>: inline flow;</span><br><span class="line"><span class="attribute">display</span>: inline flow-root;</span><br><span class="line"><span class="attribute">display</span>: block flex;</span><br><span class="line"><span class="attribute">display</span>: inline-flex;</span><br><span class="line"><span class="attribute">display</span>: block grid;</span><br><span class="line"><span class="attribute">display</span>: inline grid;</span><br><span class="line"><span class="attribute">display</span>: block flow-root;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* other values */</span></span><br><span class="line"><span class="attribute">display</span>: table;</span><br><span class="line"><span class="attribute">display</span>: table-row; <span class="comment">/* all table elements have an equivalent CSS display value */</span></span><br><span class="line"><span class="attribute">display</span>: list-item;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Global values */</span></span><br><span class="line"><span class="attribute">display</span>: inherit;</span><br><span class="line"><span class="attribute">display</span>: initial;</span><br><span class="line"><span class="attribute">display</span>: unset;</span><br></pre></td></tr></table></figure>
-<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><h3 id="外部显示类型"><a href="#外部显示类型" class="headerlink" title="外部显示类型"></a>外部显示类型</h3><p>这些关键字指定元素的外部显示类型，它本质上是元素在流布局中的角色。  </p>
-<h4 id="block"><a href="#block" class="headerlink" title="block"></a>block</h4><p>元素生成块元素框，在正常流中生成元素前后的换行符。  </p>
-<h4 id="inline"><a href="#inline" class="headerlink" title="inline"></a>inline</h4><p>元素生成一个或多个内联元素框，这些内联元素框不会在它们之前或之后生成换行符。在正常流中，如果有空间，下一个元素将在同一行上。  </p>
-<h3 id="内部显示类型"><a href="#内部显示类型" class="headerlink" title="内部显示类型"></a>内部显示类型</h3><h4 id="flow-root"><a href="#flow-root" class="headerlink" title="flow-root"></a>flow-root</h4><p>元素生成一个块元素框，该框建立一个新的块格式化上下文（BFC），定义格式化根所在的位置。  </p>
-<h4 id="table"><a href="#table" class="headerlink" title="table"></a>table</h4><p>这些元素的行为类似于HTML <code>&lt;table&gt;</code> 元素。它定义了一个块级框。  </p>
-<h4 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h4><p>元素的行为类似于块元素，并根据弹性盒子（flexbox）模型布局其内容。  </p>
-<h4 id="grid"><a href="#grid" class="headerlink" title="grid"></a>grid</h4><p>元素的行为类似于块元素，并根据网格模型（grid model）布局其内容。  </p>
-<h3 id="列表项"><a href="#列表项" class="headerlink" title="列表项"></a>列表项</h3><h4 id="list-item"><a href="#list-item" class="headerlink" title="list-item"></a>list-item</h4><p>使元素表现的像一个列表项。  </p>
-<h3 id="内部选项"><a href="#内部选项" class="headerlink" title="内部选项"></a>内部选项</h3><p>一些标签的默认display属性</p>
-<table>
-<thead>
-<tr>
-<th>display</th>
-<th>html标签</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>table-row-group</td>
-<td><code>&lt;tbody&gt;</code></td>
-</tr>
-<tr>
-<td>table-header-group</td>
-<td><code>&lt;thead&gt;</code></td>
-</tr>
-<tr>
-<td>table-footer-group</td>
-<td><code>&lt;tfoot&gt;</code></td>
-</tr>
-<tr>
-<td>table-row</td>
-<td><code>&lt;tr&gt;</code></td>
-</tr>
-<tr>
-<td>table-cell</td>
-<td><code>&lt;td&gt;</code></td>
-</tr>
-<tr>
-<td>table-column-group</td>
-<td><code>&lt;colgroup&gt;</code></td>
-</tr>
-<tr>
-<td>table-column</td>
-<td><code>&lt;col&gt;</code></td>
-</tr>
-<tr>
-<td>table-caption</td>
-<td><code>&lt;caption&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="盒"><a href="#盒" class="headerlink" title="盒"></a>盒</h3><h4 id="contents"><a href="#contents" class="headerlink" title="contents"></a>contents</h4><p>伪元素</p>
-<h4 id="none"><a href="#none" class="headerlink" title="none"></a>none</h4><p>关闭元素的显示，使其对布局没有影响。  </p>
-<h3 id="遗留"><a href="#遗留" class="headerlink" title="遗留"></a>遗留</h3><p>由于CSS2对display属性采用了单关键字语法，对于相同布局模式的块级和内联级变体，需要单独的关键字。</p>
-<h4 id="inline-block"><a href="#inline-block" class="headerlink" title="inline-block"></a>inline-block</h4><p>相当于 <code>inline flow-root</code></p>
-<h4 id="inline-table"><a href="#inline-table" class="headerlink" title="inline-table"></a>inline-table</h4><p>相当于 <code>inline table</code></p>
-<h4 id="inline-flex"><a href="#inline-flex" class="headerlink" title="inline-flex"></a>inline-flex</h4><p>相当于 <code>inline flex</code></p>
-<h4 id="inline-grid"><a href="#inline-grid" class="headerlink" title="inline-grid"></a>inline-grid</h4><p>相当于 <code>inline grid</code></p>
-<h3 id="全局"><a href="#全局" class="headerlink" title="全局"></a>全局</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">/* Global values */</span></span><br><span class="line">    <span class="attribute">display</span>: inherit;</span><br><span class="line">    <span class="attribute">display</span>: initial;</span><br><span class="line">    <span class="attribute">display</span>: unset;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/03/19/HTML-%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0-%E5%9D%97%E7%8A%B6%E5%85%83%E7%B4%A0/">HTML 行内元素&amp;块状元素</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-03-19T13:09:58.000Z" itemprop="datePublished">2021-03-19</time>
-</span>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="行内元素与块状元素有什么区别"><a href="#行内元素与块状元素有什么区别" class="headerlink" title="行内元素与块状元素有什么区别?"></a>行内元素与块状元素有什么区别?</h2><p>行内元素：会在水平方向排列，不能包含块级元素，设置width无效，height无效（可以设置line-height），margin上下无效，padding上下无效<br>块级元素：各占据一行，垂直方向排列。从新行开始结束接着一个断行  </p>
-<h2 id="列举常用行内与块状元素"><a href="#列举常用行内与块状元素" class="headerlink" title="列举常用行内与块状元素"></a>列举常用行内与块状元素</h2><p>块级元素：div, p, h1-h5, form, ul, li<br>行内元素：span, a, label, input, img, strong, em  </p>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
 
 
 <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/blog/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="page-number current">2</span><a class="page-number" href="/blog/page/3/">3</a><a class="page-number" href="/blog/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/17/">17</a><a class="extend next" rel="next" href="/blog/page/3/">Next &gt;&gt;</a>
+    <a class="extend prev" rel="prev" href="/blog/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="page-number current">2</span><a class="page-number" href="/blog/page/3/">3</a><a class="page-number" href="/blog/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/18/">18</a><a class="extend next" rel="next" href="/blog/page/3/">Next &gt;&gt;</a>
 </nav>
 
 

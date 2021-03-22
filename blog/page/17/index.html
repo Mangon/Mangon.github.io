@@ -108,6 +108,232 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/blog/2018/09/02/TIPS-Visual-Studio-Code-%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/">Visual Studio Code 常用快捷键</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-02T15:14:07.000Z" itemprop="datePublished">2018-09-02</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/VScode/" rel="tag">VScode</a>, <a class="article-tag-link" href="/blog/tags/learn/" rel="tag">learn</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>以下的Ctrl键指的是Windows系统下的Ctrl键，在Mac上对应Command键。  </p>
+<h2 id="主命令框"><a href="#主命令框" class="headerlink" title="主命令框"></a>主命令框</h2><p>F1 或 Ctrl+Shift+P: 打开命令面板。在打开的输入框内，可以输入任何命令，例如：  </p>
+<ol>
+<li>按一下 Backspace 会进入到 Ctrl+P 模式</li>
+<li>在 Ctrl+P 下输入 &gt; 可以进入 Ctrl+Shift+P 模式</li>
+</ol>
+<p>在 Ctrl+P 窗口下还可以:</p>
+<ol>
+<li>直接输入文件名，跳转到文件</li>
+<li>? 列出当前可执行的动作</li>
+<li>! 显示 Errors或 Warnings，也可以 Ctrl+Shift+M</li>
+<li>: 跳转到行数，也可以 Ctrl+G 直接进入</li>
+<li>@ 跳转到 symbol（搜索变量或者函数），也可以 Ctrl+Shift+O 直接进入</li>
+<li>@ 根据分类跳转 symbol，查找属性或函数，也可以 Ctrl+Shift+O 后输入:进入</li>
+<li># 根据名字查找 symbol，也可以 Ctrl+T</li>
+</ol>
+<h2 id="编辑器与窗口管理"><a href="#编辑器与窗口管理" class="headerlink" title="编辑器与窗口管理"></a>编辑器与窗口管理</h2><ol>
+<li>打开一个新窗口： Ctrl+Shift+N</li>
+<li>关闭窗口： Ctrl+Shift+W</li>
+<li>同时打开多个编辑器（查看多个文件）</li>
+<li>新建文件 Ctrl+N</li>
+<li>文件之间切换 Ctrl+Tab</li>
+<li>切出一个新的编辑器（最多 3 个） Ctrl+\，也可以按住 Ctrl 鼠标点击 Explorer 里的文件名</li>
+<li>左中右 3 个编辑器的快捷键 Ctrl+1 Ctrl+2 Ctrl+3</li>
+<li>3 个编辑器之间循环切换 Ctrl+</li>
+<li>编辑器换位置， Ctrl+k然后按 Left或 Right</li>
+</ol>
+<h2 id="代码格式调整"><a href="#代码格式调整" class="headerlink" title="代码格式调整"></a>代码格式调整</h2><ol>
+<li>代码行缩进 Ctrl+[ 、 Ctrl+]</li>
+<li>Ctrl+C 、 Ctrl+V 复制或剪切当前行/当前选中内容</li>
+<li>代码格式化： Shift+Alt+F，或 Ctrl+Shift+P 后输入 format code</li>
+<li>上下移动一行： Alt+Up 或 Alt+Down</li>
+<li>向上向下复制一行： Shift+Alt+Up 或 Shift+Alt+Down</li>
+<li>在当前行下边插入一行 Ctrl+Enter</li>
+<li>在当前行上方插入一行 Ctrl+Shift+Enter</li>
+</ol>
+<h2 id="光标相关"><a href="#光标相关" class="headerlink" title="光标相关"></a>光标相关</h2><ol>
+<li>移动到行首： Home</li>
+<li>移动到行尾： End</li>
+<li>移动到文件结尾： Ctrl+End</li>
+<li>移动到文件开头： Ctrl+Home</li>
+<li>移动到定义处： F12</li>
+<li>定义处缩略图：只看一眼而不跳转过去 Alt+F12</li>
+<li>移动到后半个括号： Ctrl+Shift+]</li>
+<li>选择从光标到行尾： Shift+End</li>
+<li>选择从行首到光标处： Shift+Home</li>
+<li>删除光标右侧的所有字： Ctrl+Delete</li>
+<li>扩展/缩小选取范围： Shift+Alt+Left 和 Shift+Alt+Right</li>
+<li>多行编辑(列编辑)：Alt+Shift+鼠标左键，Ctrl+Alt+Down/Up</li>
+<li>同时选中所有匹配： Ctrl+Shift+L</li>
+<li>Ctrl+D 下一个匹配的也被选中 (在 sublime 中是删除当前行，后面自定义快键键中，设置与 Ctrl+Shift+K 互换了)</li>
+<li>回退上一个光标操作： Ctrl+U</li>
+</ol>
+<h2 id="修改代码格式"><a href="#修改代码格式" class="headerlink" title="修改代码格式"></a>修改代码格式</h2><ol>
+<li>找到所有的引用： Shift+F12</li>
+<li>同时修改本文件中所有匹配的： Ctrl+F12</li>
+<li>重命名：比如要修改一个方法名，可以选中后按 F2，输入新的名字，回车，会发现所有的文件都修改了</li>
+<li>跳转到下一个 Error 或 Warning：当有多个错误时可以按 F8 逐个跳转</li>
+<li>查看 diff： 在 explorer 里选择文件右键 Set file to compare，然后需要对比的文件上右键选择 Compare with file_name_you_chose</li>
+</ol>
+<h2 id="查找替换"><a href="#查找替换" class="headerlink" title="查找替换"></a>查找替换</h2><ol>
+<li>查找 Ctrl+F</li>
+<li>查找替换 Ctrl+H</li>
+<li>整个文件夹中查找 Ctrl+Shift+F</li>
+</ol>
+<h2 id="显示相关"><a href="#显示相关" class="headerlink" title="显示相关"></a>显示相关</h2><ol>
+<li>全屏：F11</li>
+<li>zoomIn/zoomOut：Ctrl +/-</li>
+<li>侧边栏显/隐：Ctrl+B</li>
+<li>显示资源管理器 Ctrl+Shift+E</li>
+<li>显示搜索 Ctrl+Shift+F</li>
+<li>显示 Git Ctrl+Shift+G</li>
+<li>显示 Debug Ctrl+Shift+D</li>
+<li>显示 Output Ctrl+Shift+U</li>
+</ol>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>自动保存：<br>    File -&gt; AutoSave ，或者 Ctrl+Shift+P，输入 auto<br>修改默认快捷键：  </p>
+<ol>
+<li>打开默认键盘快捷方式设置：File -&gt; Preferences -&gt; Keyboard Shortcuts，或者：Alt+F -&gt; p -&gt; k  </li>
+<li>修改 keybindings.json：  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Place your key bindings in this file to overwrite the defaults</span></span><br><span class="line">[</span><br><span class="line">    <span class="comment">// ctrl+space 被切换输入法快捷键占用</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;key&quot;</span>: <span class="string">&quot;ctrl+alt+space&quot;</span>,</span><br><span class="line">        <span class="string">&quot;command&quot;</span>: <span class="string">&quot;editor.action.triggerSuggest&quot;</span>,</span><br><span class="line">        <span class="string">&quot;when&quot;</span>: <span class="string">&quot;editorTextFocus&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// ctrl+d 删除一行</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;key&quot;</span>: <span class="string">&quot;ctrl+d&quot;</span>,</span><br><span class="line">        <span class="string">&quot;command&quot;</span>: <span class="string">&quot;editor.action.deleteLines&quot;</span>,</span><br><span class="line">        <span class="string">&quot;when&quot;</span>: <span class="string">&quot;editorTextFocus&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 与删除一行的快捷键互换</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;key&quot;</span>: <span class="string">&quot;ctrl+shift+k&quot;</span>,</span><br><span class="line">        <span class="string">&quot;command&quot;</span>: <span class="string">&quot;editor.action.addSelectionToNextFindMatch&quot;</span>,</span><br><span class="line">        <span class="string">&quot;when&quot;</span>: <span class="string">&quot;editorFocus&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// ctrl+shift+/多行注释</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;key&quot;</span>:<span class="string">&quot;ctrl+shift+/&quot;</span>,</span><br><span class="line">        <span class="string">&quot;command&quot;</span>: <span class="string">&quot;editor.action.blockComment&quot;</span>,</span><br><span class="line">        <span class="string">&quot;when&quot;</span>: <span class="string">&quot;editorTextFocus&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 定制与 sublime 相同的大小写转换快捷键，需安装 TextTransform 插件</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;key&quot;</span>: <span class="string">&quot;ctrl+k ctrl+u&quot;</span>,</span><br><span class="line">        <span class="string">&quot;command&quot;</span>: <span class="string">&quot;uppercase&quot;</span>,</span><br><span class="line">        <span class="string">&quot;when&quot;</span>: <span class="string">&quot;editorTextFocus&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;key&quot;</span>: <span class="string">&quot;ctrl+k ctrl+l&quot;</span>,</span><br><span class="line">        <span class="string">&quot;command&quot;</span>: <span class="string">&quot;lowercase&quot;</span>,</span><br><span class="line">        <span class="string">&quot;when&quot;</span>: <span class="string">&quot;editorTextFocus&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/01/CS-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84javascript%E5%AE%9E%E7%8E%B0/">排序算法的javascript实现</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-01T15:19:21.000Z" itemprop="datePublished">2018-09-01</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/algorithm/" rel="tag">algorithm</a>, <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="时间空间复杂度"><a href="#时间空间复杂度" class="headerlink" title="时间空间复杂度"></a>时间空间复杂度</h2><p>排序是算法中最经典的问题，以下表格对插入排序、冒泡排序、选择排序、希尔排序、快速排序、归并排序这几种排序进行了比较。  </p>
+<table>
+<thead>
+<tr>
+<th>排序算法</th>
+<th>平均时间复杂度</th>
+<th>最坏时间复杂度</th>
+<th>空间复杂度</th>
+<th>是否稳定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>插入排序</td>
+<td>O（n2）</td>
+<td>O（n2）</td>
+<td>O（1）</td>
+<td>是</td>
+</tr>
+<tr>
+<td>冒泡排序</td>
+<td>O（n2）</td>
+<td>O（n2）</td>
+<td>O（1）</td>
+<td>是</td>
+</tr>
+<tr>
+<td>选择排序</td>
+<td>O（n2）</td>
+<td>O（n2）</td>
+<td>O（1）</td>
+<td>不是</td>
+</tr>
+<tr>
+<td>希尔排序</td>
+<td>O(nlogn)</td>
+<td>O（n2）</td>
+<td>O（1）</td>
+<td>不是</td>
+</tr>
+<tr>
+<td>快速排序</td>
+<td>O(nlogn)</td>
+<td>O（n2）</td>
+<td>O（logn）</td>
+<td>不是</td>
+</tr>
+<tr>
+<td>归并排序</td>
+<td>O(nlogn)</td>
+<td>O(nlogn)</td>
+<td>O（n）</td>
+<td>是</td>
+</tr>
+</tbody>
+</table>
+<p>下面是具体的javascript实现：  </p>
+<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> insertSort = <span class="function"><span class="keyword">function</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> len = arr.length, key;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">var</span> j = i;</span><br><span class="line">            key = arr[j];</span><br><span class="line">            <span class="keyword">while</span> (--j &gt; -<span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (arr[j] &gt; key) &#123;</span><br><span class="line">                    arr[j + <span class="number">1</span>] = arr[j];</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            arr[j + <span class="number">1</span>] = key;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bubbleSort = <span class="function"><span class="keyword">function</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> flag = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">var</span> len = arr.length;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        flag = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; len - <span class="number">1</span> - i; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">var</span> temp = arr[j + <span class="number">1</span>];</span><br><span class="line">                arr[j + <span class="number">1</span>] = arr[j];</span><br><span class="line">                arr[j] = temp;</span><br><span class="line">                flag = <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> selectSort = <span class="function"><span class="keyword">function</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> min;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        min = i;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> j = i + <span class="number">1</span>; j &lt; arr.length; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[min] &gt; arr[j]) &#123;</span><br><span class="line">                min = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (i != min) &#123;</span><br><span class="line">            swap(arr, i, min);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">swap</span>(<span class="params">arr, index1, index2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> temp = arr[index1];</span><br><span class="line">    arr[index1] = arr[index2];</span><br><span class="line">    arr[index2] = temp;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> shellSort = <span class="function"><span class="keyword">function</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> gaps = [<span class="number">5</span>, <span class="number">3</span>, <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> g = <span class="number">0</span>; g &lt; gaps.length; ++g) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = gaps[g]; i &lt; arr.length; ++i) &#123;</span><br><span class="line">            <span class="keyword">var</span> temp = arr[i];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">var</span> j = i; j &gt;= gaps[g] &amp;&amp; arr[j - gaps[g]] &gt; temp; j -= gaps[g])&#123;</span><br><span class="line">                arr[j] = arr[j - gaps[g]];</span><br><span class="line">            &#125;</span><br><span class="line">            arr[j] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> quickSort = <span class="function"><span class="keyword">function</span>(<span class="params">arr, left, right</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> i, j, t, pivot;</span><br><span class="line">    <span class="keyword">if</span> (left &gt;= right) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    pivot = arr[left];</span><br><span class="line">    i = left;</span><br><span class="line">    j = right;</span><br><span class="line">    <span class="keyword">while</span> (i != j) &#123;</span><br><span class="line">        <span class="keyword">while</span> (arr[j] &gt;= pivot &amp;&amp; i &lt; j) &#123;</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (arr[i] &lt;= pivot &amp;&amp; i &lt; j) &#123;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; j) &#123;</span><br><span class="line">            t = arr[i];</span><br><span class="line">            arr[i] = arr[j];</span><br><span class="line">            arr[j] = t;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    arr[left] = arr[j];</span><br><span class="line">    arr[j] = pivot;</span><br><span class="line">    quickSort(arr, left, i - <span class="number">1</span>);</span><br><span class="line">    quickSort(arr, i + <span class="number">1</span>, right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (arr.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> step = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">var</span> left, right;</span><br><span class="line">    <span class="keyword">while</span> (step &lt; arr.length) &#123;</span><br><span class="line">        left = <span class="number">0</span>;</span><br><span class="line">        right = step;</span><br><span class="line">        <span class="keyword">while</span> (right + step &lt;= arr.length) &#123;</span><br><span class="line">            mergeArrays(arr, left, left + step, right, right + step);</span><br><span class="line">            left = right + step;</span><br><span class="line">            right = left + step;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (right &lt; arr.length) &#123;</span><br><span class="line">            mergeArrays(arr, left, left + step, right, arr.length);</span><br><span class="line">        &#125;</span><br><span class="line">        step *= <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeArrays</span>(<span class="params">arr, startLeft, stopLeft, startRight, stopRight</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> rightArr = <span class="keyword">new</span> <span class="built_in">Array</span>(stopRight - startRight + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">var</span> leftArr = <span class="keyword">new</span> <span class="built_in">Array</span>(stopLeft - startLeft + <span class="number">1</span>);</span><br><span class="line">    k = startRight;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; (rightArr.length - <span class="number">1</span>); ++i) &#123;</span><br><span class="line">        rightArr[i] = arr[k];</span><br><span class="line">        ++k;</span><br><span class="line">    &#125;</span><br><span class="line">    k = startLeft;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; (leftArr.length - <span class="number">1</span>); ++i) &#123;</span><br><span class="line">        leftArr[i] = arr[k];</span><br><span class="line">        ++k;</span><br><span class="line">    &#125;</span><br><span class="line">    rightArr[rightArr.length - <span class="number">1</span>] = <span class="literal">Infinity</span>; <span class="comment">// 哨兵值</span></span><br><span class="line">    leftArr[leftArr.length - <span class="number">1</span>] = <span class="literal">Infinity</span>; <span class="comment">// 哨兵值</span></span><br><span class="line">    <span class="keyword">var</span> m = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> n = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> k = startLeft; k &lt; stopRight; ++k) &#123;</span><br><span class="line">        <span class="keyword">if</span> (leftArr[m] &lt;= rightArr[n]) &#123;</span><br><span class="line">            arr[k] = leftArr[m];</span><br><span class="line">            m++;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            arr[k] = rightArr[n];</span><br><span class="line">            n++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/blog/2018/08/31/JS-%E9%98%B2%E6%8A%96%E4%B8%8E%E6%88%AA%E6%B5%81/">debounce &amp; throttle</a>
         </h1>
         
@@ -279,536 +505,10 @@
 </article>
 
 
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2018/07/13/CS-%E5%89%8D%E7%AB%AF%E7%AE%80%E5%8D%95%E9%9D%A2%E8%AF%95%E9%A2%98/">前端简单面试题</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-07-12T19:37:10.000Z" itemprop="datePublished">2018-07-13</time>
-</span>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>, <a class="article-tag-link" href="/blog/tags/learn/" rel="tag">learn</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h1 id="基础-基本概念"><a href="#基础-基本概念" class="headerlink" title="基础(基本概念)"></a>基础(基本概念)</h1><h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><h3 id="display-none-与-visibility-hidden-的区别是什么？还有哪些隐藏元素的方法？"><a href="#display-none-与-visibility-hidden-的区别是什么？还有哪些隐藏元素的方法？" class="headerlink" title="display:none 与 visibility:hidden 的区别是什么？还有哪些隐藏元素的方法？"></a>display:none 与 visibility:hidden 的区别是什么？还有哪些隐藏元素的方法？</h3><p><code>display:none;</code> 使用该属性后，HTML元素（对象）的宽度，高度等各种属性值都将“丢失”；<br><code>visibility:hidden;</code> 使用该属性后，HTML元素（对象）仅仅是在视觉上看不见（完全透明），而它所占据的空间位置仍然存在，也就是说它仍然具有高度，宽度等属性值。<br>tips: 还有两种隐藏元素的方法：可以把元素移动到屏幕以外，或设置透明度 <code>opacity:0;</code> 为透明，也可以使用透明度滤镜 <code>filter:opacity(0)</code>  </p>
-<h3 id="CSS选择器都有哪些？内联和-important-哪个优先级高？"><a href="#CSS选择器都有哪些？内联和-important-哪个优先级高？" class="headerlink" title="CSS选择器都有哪些？内联和 important 哪个优先级高？"></a>CSS选择器都有哪些？内联和 <code>important</code> 哪个优先级高？</h3><ol>
-<li>标签选择器(如：body,div,p,ul,li)  </li>
-<li>类选择器(如：class=”head”,class=”head_logo”)  </li>
-<li>ID选择器(如：id=”name”,id=”name_txt”)  </li>
-<li>全局选择器(如：*号)  </li>
-<li>组合选择器(如：.head .head_logo,注意两选择器用空格键分开)  </li>
-<li>后代选择器 (如：#head .nav ul li 从父集到子孙集的选择器)  </li>
-<li>群组选择器 div,span,img {color:Red} 即具有相同样式的标签分组显示  </li>
-<li>继承选择器(如：div p,注意两选择器用空格键分开)  </li>
-<li>伪类选择器(如：就是链接样式,a元素的伪类，4种不同的状态：link、visited、active、hover。)  </li>
-<li>字符串匹配的属性选择符(^ $ *三种，分别对应开始、结尾、包含)  </li>
-<li>子选择器 (如：div&gt;p ,带大于号&gt;)  </li>
-<li>css 相邻兄弟选择器器 (如：h1+p,带加号+)  </li>
-</ol>
-<p>具体参见 <a href="/blog/2018/09/03/CSS选择器参考手册/">css选择器参考手册</a>  </p>
-<h3 id="CSS选择器优先级计算规则是什么？"><a href="#CSS选择器优先级计算规则是什么？" class="headerlink" title="CSS选择器优先级计算规则是什么？"></a>CSS选择器优先级计算规则是什么？</h3><p>不同级别  </p>
-<ol>
-<li>在属性后面使用 !important 会覆盖页面内任何位置定义的元素样式。  </li>
-<li>作为style属性写在元素内的样式  </li>
-<li>id选择器  </li>
-<li>类选择器 class  </li>
-<li>标签选择器 body div a  </li>
-<li>通配符选择器 *  </li>
-<li>浏览器自定义或继承  </li>
-</ol>
-<p>同一级别<br>同一级别中后写的会覆盖先写的样式  </p>
-<h3 id="如何通过a标签批量下载文件？"><a href="#如何通过a标签批量下载文件？" class="headerlink" title="如何通过a标签批量下载文件？"></a>如何通过a标签批量下载文件？</h3><p>&lt;a> 标签的download属性指示浏览器下载而不是导航，参见 <a href="/blog/2019/01/03/a-的用法/#download-HTML5">a标签的属性download</a> ，然而该属性只适用于同源URLs，我们可以通过将地址转换为 <code>blob:URL</code> 的形式然后下载。  </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xhr.open(<span class="string">&quot;get&quot;</span>, <span class="string">&quot;https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1593106255,4245861836&amp;fm=26&amp;gp=0.jpg&quot;</span>, <span class="literal">true</span>);</span><br><span class="line">xhr.responseType = <span class="string">&quot;blob&quot;</span>;</span><br><span class="line">xhr.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.status == <span class="number">200</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> blob = <span class="built_in">this</span>.response;</span><br><span class="line">        <span class="keyword">const</span> ele = <span class="built_in">document</span>.createElement(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">        ele.download = name;</span><br><span class="line">        ele.style.display = <span class="string">&#x27;none&#x27;</span>;</span><br><span class="line">        ele.href = URL.createObjectURL(blob);</span><br><span class="line">        ele.onload= <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">            URL.revokeObjectURL(ele.href);</span><br><span class="line">            <span class="built_in">document</span>.body.removeChild(ele);</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="built_in">document</span>.body.appendChild(eleLink);</span><br><span class="line">        ele.click();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">xhr.send();</span><br></pre></td></tr></table></figure>
-<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><h3 id="什么是-“立即调用的函数表达式（IIFE）”-IIFE？"><a href="#什么是-“立即调用的函数表达式（IIFE）”-IIFE？" class="headerlink" title="什么是 “立即调用的函数表达式（IIFE）” IIFE？"></a>什么是 “立即调用的函数表达式（IIFE）” IIFE？</h3><p>参见<br><a target="_blank" rel="noopener" href="https://wangdoc.com/javascript/types/function.html#%E7%AB%8B%E5%8D%B3%E8%B0%83%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%88iife%EF%BC%89">https://wangdoc.com/javascript/types/function.html#%E7%AB%8B%E5%8D%B3%E8%B0%83%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%88iife%EF%BC%89</a></p>
-<p>以下就是一个立即调用函数表达式  </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;)(</span><br><span class="line"><span class="comment">/* code */</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p>通常情况下，只对匿名函数使用这种“立即执行的函数表达式”。它的目的有两个：一是不必为函数命名，避免了污染全局变量；二是 IIFE 内部形成了一个单独的作用域，可以封装一些外部无法读取的私有变量。</p>
-<h3 id="为什么使用delete操作符删除对象时需要遍历属性中的属性，依次删除？"><a href="#为什么使用delete操作符删除对象时需要遍历属性中的属性，依次删除？" class="headerlink" title="为什么使用delete操作符删除对象时需要遍历属性中的属性，依次删除？"></a>为什么使用delete操作符删除对象时需要遍历属性中的属性，依次删除？</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;<span class="attr">p</span>:&#123;<span class="attr">x</span>:<span class="number">1</span>&#125;&#125;;</span><br><span class="line">b=a.p;</span><br><span class="line"><span class="keyword">delete</span> a.p;</span><br></pre></td></tr></table></figure>
-<p> 执行这段代码后b.x的值依然是1。由于已经删除的属性的引用依然存在，因此在JavaScript的某些实现中，可能因为这种不严谨的代码而造成内存泄漏。所以在销毁对象的时候，要遍历属性中的属性，依次删除。  </p>
-<h3 id="解释-null-和-undefined-的区别"><a href="#解释-null-和-undefined-的区别" class="headerlink" title="解释 null 和 undefined 的区别"></a>解释 null 和 undefined 的区别</h3><p>undefined 表示系统级的、出乎意料的或类似错误的值的空缺，null表示程序级的、正常的或在意料之中的值的空缺。  </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="literal">null</span> <span class="comment">// &#x27;object&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">undefined</span> <span class="comment">// &#x27;undefined&#x27;</span></span><br></pre></td></tr></table></figure>
-<h3 id="解释-与-的区别"><a href="#解释-与-的区别" class="headerlink" title="解释 == 与 === 的区别"></a>解释 == 与 === 的区别</h3><p>“===”叫做严格相等运算符（恒等运算符），”==”叫做相等运算符。<br>严格相等运算符的运算规则如下，  </p>
-<ul>
-<li>不同类型值<br>  如果两个值的类型不同，直接返回false。</li>
-<li>同一类的原始类型值<br>  同一类型的原始类型的值（数值、字符串、布尔值）比较时，值相同就返回true，值不同就返回false。</li>
-<li>同一类的复合类型值<br>  两个复合类型（对象、数组、函数）的数据比较时，不是比较它们的值是否相等，而是比较它们是否指向同一个对象。</li>
-<li>undefined和null<br>  undefined 和 null 与自身严格相等。</li>
-</ul>
-<h3 id="创建对象的三个方法是什么？"><a href="#创建对象的三个方法是什么？" class="headerlink" title="创建对象的三个方法是什么？"></a>创建对象的三个方法是什么？</h3><ol>
-<li>对象直接量</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = &#123;&#125;;</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>通过关键字 <code>new</code> 创建对象</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="keyword">new</span> <span class="built_in">Object</span>()</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>通过 <code>Object.create()</code> 创建对象</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="built_in">Object</span>.create(<span class="built_in">Object</span>.prototype);</span><br></pre></td></tr></table></figure>
-<h3 id="Array-of-和-new-Array-创建的数组有什么不同？"><a href="#Array-of-和-new-Array-创建的数组有什么不同？" class="headerlink" title="Array.of() 和 new Array() 创建的数组有什么不同？"></a>Array.of() 和 new Array() 创建的数组有什么不同？</h3><p><code>Array.of()</code> 和 <code>Array</code> 构造函数之间的区别在于处理整数参数：<code>Array.of(7)</code> 创建一个具有单个元素 7 的数组，而 <code>new Array(7)</code> 创建一个长度为7的空数组（注意：这是指一个有7个空位(empty)的数组，而不是由7个undefined组成的数组）。  </p>
-<h3 id="解释js原型链-prototype-chain-含义"><a href="#解释js原型链-prototype-chain-含义" class="headerlink" title="解释js原型链(prototype chain)含义"></a>解释js原型链(prototype chain)含义</h3><p><code>TODO: 解释js原型链(prototype chain)含义</code></p>
-<h3 id="描述你所了解的ES6特性"><a href="#描述你所了解的ES6特性" class="headerlink" title="描述你所了解的ES6特性"></a>描述你所了解的ES6特性</h3><p>参见<a href="/blog/2020/08/28/ES6特性/">ES6常见特性</a></p>
-<h3 id="解释-var-let-const-的区别"><a href="#解释-var-let-const-的区别" class="headerlink" title="解释 var let const 的区别"></a>解释 <code>var</code> <code>let</code> <code>const</code> 的区别</h3><p><code>var</code> :</p>
-<ol>
-<li>默认声明变量形式</li>
-<li>全局作用域/函数作用域</li>
-<li>存在变量提升</li>
-<li>声明的全局对象同时为顶层对象的属性</li>
-<li>可以重复声明，相当于赋值</li>
-</ol>
-<p><code>let</code> :</p>
-<ol>
-<li>块级作用域</li>
-<li>不存在变量提升</li>
-<li>会在当前区域形成暂时性死区</li>
-<li>不允许重复声明</li>
-<li><ul>
-<li>块级作用域的出现，实际上使得获得广泛应用的立即执行函数表达式（IIFE）不再必要了</li>
-</ul>
-</li>
-</ol>
-<p><code>const</code> :</p>
-<ol>
-<li>const声明一个只读的常量。一旦声明，常量的值就不能改变。</li>
-<li>const必须在声明时初始化</li>
-<li>块级作用域</li>
-<li>不存在变量提升</li>
-<li>会在当前区域形成暂时性死区</li>
-<li>不允许重复声明</li>
-<li>const实际上保证的，并不是变量的值不得改动，而是变量指向的那个内存地址不得改动。对于简单类型的数据（数值、字符串、布尔值），值就保存在变量指向的那个内存地址，因此等同于常量。但对于复合类型的数据（主要是对象和数组），变量指向的内存地址，保存的只是一个指针，const只能保证这个指针是固定的，至于它指向的数据结构是不是可变的，就完全不能控制了。</li>
-</ol>
-<h3 id="解释-gt-箭头函数的作用"><a href="#解释-gt-箭头函数的作用" class="headerlink" title="解释 ()=&gt;{} 箭头函数的作用"></a>解释 <code>()=&gt;&#123;&#125;</code> 箭头函数的作用</h3><ol>
-<li>函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。</li>
-<li>不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。</li>
-<li>不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用 rest 参数代替。</li>
-<li>不可以使用yield命令，因此箭头函数不能用作 Generator 函数。</li>
-</ol>
-<h3 id="解释-扩展运算符的作用"><a href="#解释-扩展运算符的作用" class="headerlink" title="解释 ... 扩展运算符的作用"></a>解释 <code>...</code> 扩展运算符的作用</h3><p>将一个数组转为用逗号分隔的参数序列。</p>
-<h3 id="解释-字符串模板-的作用"><a href="#解释-字符串模板-的作用" class="headerlink" title="解释 字符串模板 的作用"></a>解释 字符串模板 的作用</h3><h3 id="Promise-有哪些方法？"><a href="#Promise-有哪些方法？" class="headerlink" title="Promise 有哪些方法？"></a><code>Promise</code> 有哪些方法？</h3><h3 id="字符串的方法-amp-属性有哪些？"><a href="#字符串的方法-amp-属性有哪些？" class="headerlink" title="字符串的方法&amp;属性有哪些？"></a>字符串的方法&amp;属性有哪些？</h3><p><code>length</code>    返回字符串的长度<br><code>trim()</code>    删除字符串两端空白字符<br><code>charAt()</code>    返回指定位置的字符<br><code>charCodeAt()</code>    返回表示给定索引的字符的Unicode的值<br><code>split()</code>    把字符串分割为字符串数组<br><code>concat()</code>    将一个或多个字符串连接并返回新字符串<br><code>startWith()</code>    判断是否以给定字符串开始，返回布尔值<br><code>endsWith()</code>    判断是否以给定字符串结尾，返回布尔值<br><code>includes()</code>    判断是否包含给定字符串，返回布尔值<br><code>indexOf()</code>    返回给定字符串在原字符串中的位置，如果没有返回-1<br><code>lastIndexOf()</code>    从字符串对象中返回最后一个被发现的给定值的索引值，如果没有找到则返回-1<br><code>match()</code>    返回匹配正则表达式的结果<br><code>replace()</code>    替换与正则表达式匹配的子串<br><code>slice()</code>    提取字符串的一部分并返回一个新字符串<br><code>substr()</code>    从起始索引号提取字符串中指定数目的字符 （遗留函数，避免使用）<br><code>substring()</code>    提取字符串中两个指定的索引号之间的字符<br><code>normalize()</code>    返回调用字符串值的Unicode标准化形式<br><code>padStart()</code>    在当前字符串头部填充指定的字符串， 直到达到指定的长度。 返回一个新的字符串<br><code>padEnd()</code>    在当前字符串尾部填充指定的字符串， 直到达到指定的长度。 返回一个新的字符串<br><code>repeat()</code>    返回指定重复次数的由元素组成的字符串对象</p>
-<h3 id="简述JS函数柯里化是什么，有什么意义？"><a href="#简述JS函数柯里化是什么，有什么意义？" class="headerlink" title="简述JS函数柯里化是什么，有什么意义？"></a>简述JS函数柯里化是什么，有什么意义？</h3><p>柯里化是函数式编程的一个过程，在这个过程中我们能把一个带有多个参数的函数转换成一系列的嵌套函数。它返回一个新函数，这个新函数期望传入下一个参数。</p>
-<h2 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h2><h3 id="解释-offsetLeft-offsetTop-等参数含义"><a href="#解释-offsetLeft-offsetTop-等参数含义" class="headerlink" title="解释 offsetLeft offsetTop 等参数含义"></a>解释 offsetLeft offsetTop 等参数含义</h3><p><code>HTMLElement.offsetLeft</code> 是一个只读属性，返回当前元素左上角相对于  <code>HTMLElement.offsetParent</code> 节点的左边界偏移的像素值。<br><code>HTMLElement.offsetTop</code> 是一个只读属性，它返回当前元素相对于其 <code>HTMLElement.offsetParent</code> 元素的顶部内边距的距离。<br><code>HTMLElement.offsetWidth</code> 是一个只读属性，返回一个元素的布局宽度。<br><code>HTMLElement.offsetHeight</code> 是一个只读属性，它返回该元素的像素高度，高度包含该元素的垂直内边距和边框，且是一个整数。  </p>
-<h3 id="常用正则表达式如何书写？"><a href="#常用正则表达式如何书写？" class="headerlink" title="常用正则表达式如何书写？"></a>常用正则表达式如何书写？</h3><p>（手机号）（邮箱地址）（url地址）</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 手机号</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPhoneAvailable</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> myreg = <span class="regexp">/^1[3,4,5,7,8]\d&#123;9&#125;$/</span>;</span><br><span class="line">    <span class="keyword">if</span> (!myreg.test(str)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 邮箱</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isMailAvailable</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> myreg = <span class="regexp">/^([\w\-\.]+)@([\w\-]+)\.([a-zA-Z]&#123;2,4&#125;)$/</span>;</span><br><span class="line">    <span class="keyword">if</span> (!myreg.test(str)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// url</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isUrlAvailable</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> myreg = <span class="regexp">/[a-zA-Z]+:/</span><span class="regexp">/[^\s]+/</span>;</span><br><span class="line">    <span class="keyword">if</span> (!myreg.test(str)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="解释-http-https-http2-含义"><a href="#解释-http-https-http2-含义" class="headerlink" title="解释 http https http2 含义"></a>解释 http https http2 含义</h3><p><code>TODO: 解释 http https http2 含义</code></p>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/67c541a421f9">https://www.jianshu.com/p/67c541a421f9</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e57ca4fec26f">https://www.jianshu.com/p/e57ca4fec26f</a></p>
-<h3 id="http2有哪些特性？"><a href="#http2有哪些特性？" class="headerlink" title="http2有哪些特性？"></a>http2有哪些特性？</h3><ol>
-<li><p>二进制分帧层 (Binary Framing Layer)<br>帧是数据传输的最小单位，以二进制传输代替原本的明文传输，原本的报文消息被划分为更小的数据帧</p>
-</li>
-<li><p>多路复用 (MultiPlexing)<br>在一个 TCP 连接上，我们可以向对方不断发送帧，每帧的 stream identifier 的标明这一帧属于哪个流，然后在对方接收时，根据 stream identifier 拼接每个流的所有帧组成一整块数据。<br>把 HTTP/1.1 每个请求都当作一个流，那么多个请求变成多个流，请求响应数据分成多个帧，不同流中的帧交错地发送给对方，这就是 HTTP/2 中的多路复用。</p>
-</li>
-<li><p>服务端推送 (Server Push)<br>浏览器发送一个请求，服务器主动向浏览器推送与这个请求相关的资源，这样浏览器就不用发起后续请求。</p>
-</li>
-<li><p>Header 压缩 (HPACK)<br>使用 HPACK 算法来压缩首部内容</p>
-</li>
-<li><p>应用层的重置连接<br>对于 HTTP/1 来说，是通过设置 tcp segment 里的 reset flag 来通知对端关闭连接的。这种方式会直接断开连接，下次再发请求就必须重新建立连接。HTTP/2 引入 RST_STREAM 类型的 frame，可以在不断开连接的前提下取消某个 request 的 stream，表现更好。</p>
-</li>
-<li><p>请求优先级设置<br>HTTP/2 里的每个 stream 都可以设置依赖 (Dependency) 和权重，可以按依赖树分配优先级，解决了关键请求被阻塞的问题</p>
-</li>
-<li><p>流量控制<br>每个 http2 流都拥有自己的公示的流量窗口，它可以限制另一端发送数据。对于每个流来说，两端都必须告诉对方自己还有足够的空间来处理新的数据，而在该窗口被扩大前，另一端只被允许发送这么多数据。</p>
-</li>
-</ol>
-<p>以下优化方法在HTTP2中不再适用：  </p>
-<ol>
-<li>域名分片</li>
-</ol>
-<p>HTTP/2 对于同一域名使用一个 TCP 连接足矣，过多 TCP 连接浪费资源而且效果不见得一定好而且资源分域会破坏 HTTP/2 的优先级特性，还会降低头部压缩效果</p>
-<ol start="2">
-<li>资源合并</li>
-</ol>
-<p>资源合并会不利于缓存机制，而且单文件过大对于 HTTP/2 的传输不好，尽量做到细粒化更有利于 HTTP2 传输</p>
-<ol start="3">
-<li>资源内联</li>
-</ol>
-<p>HTTP/2 支持 Server-Push，相比较内联优势更大效果更好，而且内联的资源不能有效缓存，如果有共用，多页面内联也会造成浪费</p>
-<h3 id="为什么js在html尾部引入，CSS在头部引入比较合适？"><a href="#为什么js在html尾部引入，CSS在头部引入比较合适？" class="headerlink" title="为什么js在html尾部引入，CSS在头部引入比较合适？"></a>为什么js在html尾部引入，CSS在头部引入比较合适？</h3><p>网站加载的整个完整过程</p>
-<ol>
-<li>首先浏览器从服务器接收到html代码，然后开始解析html</li>
-<li>构建DOM树（根据html代码自顶向下进行构建），并且在同时构建渲染树</li>
-<li>遇到js文件加载执行，将阻塞DOM树的构建；遇到CSS文件，将阻塞渲染树的构建<br>（script标签中的defer属性：构建DOM树的过程和js文件的加载异步（并行）进行，但是js文件执行需要在DOM树构建完成之后 script标签中的async属性：构建DOM树、渲染树的过程和js文件的加载和执行异步（并行）进行）</li>
-</ol>
-<p>综上所述，script标签最好放在</body>标签的前面，因为放在所有body中的标签后面就不会出现网页加载时出现空白的情况，可以持续的给用户提供视觉反馈，同时在有些情况下，会降低错误的发生。<br>而CSS标签应该放在<head></head>标签之间，因为如果放在</body>标签的前面，那么当DOM树构建完成了，渲染树才构建，那么当渲染树构建完成，浏览器不得不再重新渲染整个页面，这样造成了资源的浪费。效率也不高。如果放在<head></head>之间，浏览器边构建边渲染，效率要高的多。</p>
-<h3 id="如何做前后端分离？"><a href="#如何做前后端分离？" class="headerlink" title="如何做前后端分离？"></a>如何做前后端分离？</h3><p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000009329474?_ea=2038402">https://segmentfault.com/a/1190000009329474?_ea=2038402</a></p>
-<h3 id="PV、UV指的是什么？"><a href="#PV、UV指的是什么？" class="headerlink" title="PV、UV指的是什么？"></a>PV、UV指的是什么？</h3><p>page view 页面访问量<br>unique view 独立ip访问量</p>
-<h1 id="中级（初级编程题及深入基础知识）"><a href="#中级（初级编程题及深入基础知识）" class="headerlink" title="中级（初级编程题及深入基础知识）"></a>中级（初级编程题及深入基础知识）</h1><h2 id="编程"><a href="#编程" class="headerlink" title="编程"></a>编程</h2><h3 id="描述面向对象编程的23种设计模式"><a href="#描述面向对象编程的23种设计模式" class="headerlink" title="描述面向对象编程的23种设计模式"></a>描述面向对象编程的23种设计模式</h3><p><a target="_blank" rel="noopener" href="http://www.runoob.com/design-pattern/design-pattern-tutorial.html">http://www.runoob.com/design-pattern/design-pattern-tutorial.html</a></p>
-<p>创建型模式(Creational Patterns):  </p>
-<ul>
-<li>工厂模式（Factory Pattern）</li>
-<li>抽象工厂模式（Abstract Factory Pattern）</li>
-<li>单例模式（Singleton Pattern）</li>
-<li>建造者模式（Builder Pattern）</li>
-<li>原型模式（Prototype Pattern）</li>
-</ul>
-<p>结构型模式(Structural Patterns):  </p>
-<ul>
-<li>适配器模式（Adapter Pattern）</li>
-<li>桥接模式（Bridge Pattern）</li>
-<li>过滤器模式（Filter、Criteria Pattern）</li>
-<li>组合模式（Composite Pattern）</li>
-<li>装饰器模式（Decorator Pattern）</li>
-<li>外观模式（Facade Pattern）</li>
-<li>享元模式（Flyweight Pattern）</li>
-<li>代理模式（Proxy Pattern）</li>
-</ul>
-<p>行为型模式(Behavioral Patterns):  </p>
-<ul>
-<li>责任链模式（Chain of Responsibility Pattern）</li>
-<li>命令模式（Command Pattern）</li>
-<li>解释器模式（Interpreter Pattern）</li>
-<li>迭代器模式（Iterator Pattern）</li>
-<li>中介者模式（Mediator Pattern）</li>
-<li>备忘录模式（Memento Pattern）</li>
-<li>观察者模式（Observer Pattern）</li>
-<li>状态模式（State Pattern）</li>
-<li>空对象模式（Null Object Pattern）</li>
-<li>策略模式（Strategy Pattern）</li>
-<li>模板模式（Template Pattern）</li>
-<li>访问者模式（Visitor Pattern）</li>
-</ul>
-<h3 id="遍历对象属性的方法有哪些？"><a href="#遍历对象属性的方法有哪些？" class="headerlink" title="遍历对象属性的方法有哪些？"></a>遍历对象属性的方法有哪些？</h3><p>（1）for…in</p>
-<p>for…in循环遍历对象自身的和继承的可枚举属性（不含 Symbol 属性）。</p>
-<p>（2）Object.keys(obj)</p>
-<p>Object.keys返回一个数组，包括对象自身的（不含继承的）所有可枚举属性（不含 Symbol 属性）的键名。</p>
-<p>（3）Object.getOwnPropertyNames(obj)</p>
-<p>Object.getOwnPropertyNames返回一个数组，包含对象自身的所有属性（不含 Symbol 属性，但是包括不可枚举属性）的键名。</p>
-<p>（4）Object.getOwnPropertySymbols(obj)</p>
-<p>Object.getOwnPropertySymbols返回一个数组，包含对象自身的所有 Symbol 属性的键名。</p>
-<p>（5）Reflect.ownKeys(obj)</p>
-<p>Reflect.ownKeys返回一个数组，包含对象自身的（不含继承的）所有键名，不管键名是 Symbol 或字符串，也不管是否可枚举。</p>
-<p>以上的 5 种方法遍历对象的键名，都遵守同样的属性遍历的次序规则。</p>
-<p>首先遍历所有数值键，按照数值升序排列。<br>其次遍历所有字符串键，按照加入时间升序排列。<br>最后遍历所有 Symbol 键，按照加入时间升序排列。</p>
-<h3 id="数组的遍历方法有哪些？"><a href="#数组的遍历方法有哪些？" class="headerlink" title="数组的遍历方法有哪些？"></a>数组的遍历方法有哪些？</h3><p>遍历数组 arr</p>
-<p>第一种: 普通 <code>for</code> 循环<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(j = <span class="number">0</span>; j &lt; arr.length; j++) &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>第二种: 优化版 <code>for</code> 循环<br>当数组的长度非常大时，缓存长度会带来略微的性能提升<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> len = arr.length;</span><br><span class="line"><span class="keyword">for</span>(j = <span class="number">0</span>; j &lt; len; j++) &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>第三种: 利用数组的 <code>forEach</code> 方法<br>forEach() 方法对数组的每个元素执行一次提供的函数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr.forEach(<span class="function">(<span class="params">item, index, array</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><br>第四种: 利用 <code>for in</code> 来遍历数组的可枚举属性<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(index <span class="keyword">in</span> arr) &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>第五种: 利用数组的 <code>map</code> 方法遍历<br>map() 方法创建一个新数组，其结果是该数组中的每个元素都调用一个提供的函数后返回的结果。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr.map((item, index, array) &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><br>第六种: 利用 <code>for of</code> 遍历数组值<br>for…of语句在可迭代对象（包括 Array，Map，Set，String，TypedArray，arguments 对象等等）上创建一个迭代循环，调用自定义迭代钩子，并为每个不同属性的值执行语句。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(item <span class="keyword">of</span> arr) &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><br>第七种: 利用数组的 <code>every</code> 方法遍历<br>every() 方法测试数组的所有元素是否都通过了指定函数的测试。<br>当返回false时会由于没有通过测试而中止，所以为了遍历，必须返回true。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">arr.every(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><br>第八种: 利用数组的 <code>filter</code> 方法遍历<br>filter() 方法创建一个新数组, 其包含通过所提供函数实现的测试的所有元素。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr.filter(<span class="function">(<span class="params">item, index, array</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><br>第九种: 利用数组的 <code>some</code> 方法遍历<br>some() 方法测试是否至少有一个元素通过由提供的函数实现的测试。<br>当返回true时会由于已经找到一个元素通过测试而中止，所以为了遍历，必须返回false。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">arr.some(<span class="function">(<span class="params">item, index, array</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><br>第十种: 利用数组的 <code>reduce</code> 方法遍历<br>reduce() 方法对数组中的每个元素执行一个reducer函数(升序执行)，将其结果汇总为单个返回值。<br>如果没有提供initialValue，reduce 会从索引1的地方开始执行 callback 方法，跳过第一个索引。如果提供initialValue，从索引0开始。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr.reduce(<span class="function">(<span class="params">result, item, index, array</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;, initialValue);</span><br></pre></td></tr></table></figure></p>
-<h3 id="数组的原型方法中哪些方法改变了原数组？"><a href="#数组的原型方法中哪些方法改变了原数组？" class="headerlink" title="数组的原型方法中哪些方法改变了原数组？"></a>数组的原型方法中哪些方法改变了原数组？</h3><p>// TODO: 数组的原型方法中哪些方法改变了原数组？</p>
-<h3 id="书写sass／less-mixin的例子"><a href="#书写sass／less-mixin的例子" class="headerlink" title="书写sass／less mixin的例子"></a>书写sass／less mixin的例子</h3><blockquote>
-<p>Saas</p>
-</blockquote>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$link-color: blue;</span><br><span class="line">$hover-color: red;</span><br><span class="line">$visited-color: green;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@mixin</span> link-colors($normal, $<span class="attribute">hover</span>, $visited) &#123;</span><br><span class="line">    <span class="attribute">color</span>: $normal;</span><br><span class="line">    &amp;<span class="selector-pseudo">:hover</span> &#123; <span class="attribute">color</span>: $hover; &#125;</span><br><span class="line">    &amp;<span class="selector-pseudo">:visited</span> &#123; <span class="attribute">color</span>: $visited; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="keyword">@include</span> link-colors($link-color, $hover-color, $visited-color);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Less</p>
-</blockquote>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@link-color:</span> blue;</span><br><span class="line"><span class="variable">@hover-color:</span> red;</span><br><span class="line"><span class="variable">@visited-color:</span> green;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.link-colors</span> (<span class="variable">@normal</span>:<span class="variable">@link-color</span>; <span class="variable">@hover</span>:<span class="variable">@hover-color</span>; <span class="variable">@visited</span>:<span class="variable">@visited-color</span>) &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="variable">@normal</span>;</span><br><span class="line">    <span class="selector-tag">&amp;</span><span class="selector-pseudo">:hover</span> &#123; <span class="attribute">color</span>: <span class="variable">@hover</span>; &#125;</span><br><span class="line">    <span class="selector-tag">&amp;</span><span class="selector-pseudo">:visited</span> &#123; <span class="attribute">color</span>: <span class="variable">@visited</span>; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="selector-class">.link-colors</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>编译后</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span> &#123; <span class="attribute">color</span>: blue; &#125;</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123; <span class="attribute">color</span>: red; &#125;</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span> &#123; <span class="attribute">color</span>: green; &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="解释Event对象-currentTarget-preventDefault-stopProtogation-含义"><a href="#解释Event对象-currentTarget-preventDefault-stopProtogation-含义" class="headerlink" title="解释Event对象 currentTarget preventDefault() stopProtogation()含义"></a>解释Event对象 <code>currentTarget</code> <code>preventDefault()</code> <code>stopProtogation()</code>含义</h3><p><code>currentTarget</code>: 事件属性返回其监听器触发事件的节点，即当前处理该事件的元素、文档或窗口。<br><code>preventDefault</code>: 该方法将通知 Web 浏览器不要执行与事件关联的默认动作（如果存在这样的动作）。<br><code>stopPropagation</code>： 终止事件在传播过程的捕获、目标处理或起泡阶段进一步传播。调用该方法后，该节点上处理该事件的处理程序将被调用，事件不再被分派到其他节点。  </p>
-<h3 id="实现获取指定范围的随机整数"><a href="#实现获取指定范围的随机整数" class="headerlink" title="实现获取指定范围的随机整数"></a>实现获取指定范围的随机整数</h3><p><code>Math.random()</code>: 获取[0-1)范围的小数<br><code>Math.floor(num)</code>: num取整数<br>取[1-100]范围内一个随机整数值: <code>Math.floor(Math.random() * 100 + 1)</code>  </p>
-<h3 id="解释你熟悉的js常见类库-jquery-js-zepto-js-prototype-js-backbone-js-underscore-js-axios-js-的作用"><a href="#解释你熟悉的js常见类库-jquery-js-zepto-js-prototype-js-backbone-js-underscore-js-axios-js-的作用" class="headerlink" title="解释你熟悉的js常见类库 jquery.js/zepto.js (prototype.js) backbone.js underscore.js axios.js 的作用"></a>解释你熟悉的js常见类库 jquery.js/zepto.js (prototype.js) backbone.js underscore.js axios.js 的作用</h3><p>jQuery:<br>jQuery 是一个高效、精简并且功能丰富的 JavaScript 工具库。它提供的 API 易于使用且兼容众多浏览器，这让诸如 HTML 文档遍历和操作、事件处理、动画和 Ajax 操作更加简单。<br>Zepto:<br>Zepto是一个轻量级的针对现代高级浏览器的JavaScript库， 它与jquery有着类似的api。<br>Underscore:<br>一个JavaScript实用库，提供了一整套函数式编程的实用功能，但是没有扩展任何JavaScript内置对象。它弥补了部分jQuery没有实现的功能,同时又是Backbone.js必不可少的部分。<br>Backbone:<br>Backbone.js为复杂WEB应用程序提供模型(models)、集合(collections)、视图(views)的结构。<br>Axios:<br>Axios 是一个基于 promise 的 HTTP 库,可以用在浏览器和 node.js 中。<br>…</p>
-<h3 id="实现行内元素与块状元素的相互转换"><a href="#实现行内元素与块状元素的相互转换" class="headerlink" title="实现行内元素与块状元素的相互转换"></a>实现行内元素与块状元素的相互转换</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attribute">display</span>: inline/block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="解释CSS3动画-过渡效果-transition-transform-animation-keyframe"><a href="#解释CSS3动画-过渡效果-transition-transform-animation-keyframe" class="headerlink" title="解释CSS3动画/过渡效果 transition:transform animation:@keyframe"></a>解释CSS3动画/过渡效果 transition:transform animation:@keyframe</h3><p>transform: 定义转换<br>常用值：<br>translateX(xdeg) 沿X轴旋转x度<br>translateY(ydeg) 沿Y轴旋转y度<br>scale(x, y) 缩放 X轴放大到x倍数，Y轴放大到y倍<br>rotate(ndeg) 旋转 顺时针倾斜n角度<br>skew(x, y) 倾斜 沿X轴旋转x度，沿Y轴旋转y度</p>
-<h3 id="解释模块化编程-及commonJS-AMD-CMD-ES6import"><a href="#解释模块化编程-及commonJS-AMD-CMD-ES6import" class="headerlink" title="解释模块化编程 及commonJS AMD CMD ES6import"></a>解释模块化编程 及commonJS AMD CMD ES6import</h3><p>模块化是指把一个复杂的系统分解到多个模块以方便编码。<br>CommonJS 是一种使用广泛的 JavaScript 模块化规范，核心思想是通过 require 方法来同步地加载依赖的其他模块，通过 module.exports 导出需要暴露的接口。 CommonJS 规范的流行得益于 Node.js 采用了这种方式，后来这种方式被引入到了网页开发中。<br>采用 CommonJS 导入及导出时的代码如下：  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 导入</span></span><br><span class="line"><span class="keyword">const</span> moduleA = <span class="built_in">require</span>(<span class="string">&#x27;./moduleA&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 导出</span></span><br><span class="line"><span class="built_in">module</span>.exports = moduleA.someFunc;</span><br></pre></td></tr></table></figure>
-<p>CommonJS 的优点在于:  </p>
-<ul>
-<li>代码可复用于 Node.js 环境下并运行，例如做同构应用；</li>
-<li>通过 NPM 发布的很多第三方模块都采用了 CommonJS 规范。</li>
-</ul>
-<p>CommonJS 的缺点在于:  </p>
-<ul>
-<li>这样的代码无法直接运行在浏览器环境下，必须通过工具转换成标准的 ES5。</li>
-</ul>
-<p>AMD 也是一种 JavaScript 模块化规范，与 CommonJS 最大的不同在于它采用异步的方式去加载依赖的模块。 AMD 规范主要是为了解决针对浏览器环境的模块化问题，最具代表性的实现是 requirejs。<br>采用 AMD 导入及导出时的代码如下：  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 定义一个模块</span></span><br><span class="line">    define(<span class="string">&#x27;module&#x27;</span>, [<span class="string">&#x27;dep&#x27;</span>], <span class="function"><span class="keyword">function</span>(<span class="params">dep</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">exports</span>;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 导入和使用</span></span><br><span class="line">    <span class="built_in">require</span>([<span class="string">&#x27;module&#x27;</span>], <span class="function"><span class="keyword">function</span>(<span class="params"><span class="built_in">module</span></span>) </span>&#123;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>AMD 的优点在于：  </p>
-<ul>
-<li>可在不转换代码的情况下直接在浏览器中运行；</li>
-<li>可异步加载依赖；</li>
-<li>可并行加载多个依赖；</li>
-<li>代码可运行在浏览器环境和 Node.js 环境下。</li>
-</ul>
-<p>AMD 的缺点在于:  </p>
-<ul>
-<li>JavaScript 运行环境没有原生支持 AMD，需要先导入实现了 AMD 的库后才能正常使用。</li>
-</ul>
-<p>ES6 模块化是欧洲计算机制造联合会 ECMA 提出的 JavaScript 模块化规范，它在语言的层面上实现了模块化。  </p>
-<p>采用 ES6 模块化导入及导出时的代码如下：  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 导入</span></span><br><span class="line"><span class="keyword">import</span> &#123; readFile &#125; <span class="keyword">from</span> <span class="string">&#x27;fs&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="comment">// 导出</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>ES6模块虽然是终极模块化方案，但它的缺点在于目前无法直接运行在大部分 JavaScript 运行环境下，必须通过工具转换成标准的 ES5 后才能正常运行。  </p>
-<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><h3 id="试解释强缓存和协商缓存的区别"><a href="#试解释强缓存和协商缓存的区别" class="headerlink" title="试解释强缓存和协商缓存的区别"></a>试解释强缓存和协商缓存的区别</h3><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9c95db596df5">https://www.jianshu.com/p/9c95db596df5</a></p>
-<h2 id="数据结构和算法"><a href="#数据结构和算法" class="headerlink" title="数据结构和算法"></a>数据结构和算法</h2><h1 id="高级（框架，底层，扩展）"><a href="#高级（框架，底层，扩展）" class="headerlink" title="高级（框架，底层，扩展）"></a>高级（框架，底层，扩展）</h1><h2 id="Basic"><a href="#Basic" class="headerlink" title="Basic"></a>Basic</h2><h3 id="实现-define"><a href="#实现-define" class="headerlink" title="实现 define"></a>实现 define</h3><h3 id="实现-Promise-异步编程"><a href="#实现-Promise-异步编程" class="headerlink" title="实现 Promise 异步编程"></a>实现 Promise 异步编程</h3><p>Promise的解释：<br><a target="_blank" rel="noopener" href="http://bruce-xu.github.io/blogs/js/promise">http://bruce-xu.github.io/blogs/js/promise</a><br>两个优秀的Promise的实现：<br><a target="_blank" rel="noopener" href="https://github.com/bruce-xu/Promise/blob/master/Promise.js">https://github.com/bruce-xu/Promise/blob/master/Promise.js</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/yibingxiong1/article/details/68075416">https://blog.csdn.net/yibingxiong1/article/details/68075416</a></p>
-<h3 id="从输入url到window-onload-结束，这中间发生了什么？（计算机网络）"><a href="#从输入url到window-onload-结束，这中间发生了什么？（计算机网络）" class="headerlink" title="从输入url到window.onload()结束，这中间发生了什么？（计算机网络）"></a>从输入url到window.onload()结束，这中间发生了什么？（计算机网络）</h3><ol>
-<li>预处理</li>
-<li>读取cache</li>
-<li>查询DNS</li>
-<li>建立连接</li>
-<li>发送请求</li>
-<li>等待响应</li>
-<li>接收数据</li>
-<li>处理渲染</li>
-</ol>
-<h3 id="前端性能优化从哪几方面入手？有哪些方法？"><a href="#前端性能优化从哪几方面入手？有哪些方法？" class="headerlink" title="前端性能优化从哪几方面入手？有哪些方法？"></a>前端性能优化从哪几方面入手？有哪些方法？</h3><ol>
-<li>性能优化=》减少从用户输入网址到用户看到期望内容的时间</li>
-<li>从用户输入url到 window.onload 发生了什么<ul>
-<li>预处理 本地</li>
-<li>读取cache 本地</li>
-<li>查询DNS 网络</li>
-<li>建立连接 网络</li>
-<li>发送请求 网络</li>
-<li>等待响应 网络</li>
-<li>接收数据 本地</li>
-<li>处理渲染 本地</li>
-</ul>
-</li>
-<li>本地 =》 缩短渲染时间<br>网络 =》 减少请求次数 减小请求体积 加快请求速度</li>
-<li>基本原则<ul>
-<li>建立监控机制 （监控）</li>
-<li>日志分析 （分析）</li>
-<li>针对监控暴露的弱点优化 （优化）</li>
-</ul>
-</li>
-<li>监控节点 window.performance.timing<ul>
-<li>白屏时间 &lt;\/head&gt;结束 domLoading - fetchStart</li>
-<li>首屏时间 首屏加载结束</li>
-<li>用户可操作时间 DOMReady&amp;核心js加载完毕 domContentLoadedEventEnd - fetchStart</li>
-<li>总下载时间 onload/异步渲染完毕 loadEventEnd - fetchStart</li>
-</ul>
-</li>
-<li>常用的性能优化方法</li>
-</ol>
-<ul>
-<li>减少http请求内容</li>
-<li>使用cdn</li>
-<li>添加 expires/ cache-control header</li>
-<li>使用gzip</li>
-<li>将css放到html顶部加载</li>
-<li>将js放到底部加载</li>
-<li>外部引用js &amp; css</li>
-<li>uglify js &amp; css</li>
-<li>避免重定向</li>
-<li>移除重复js</li>
-<li>配置Etags</li>
-<li>缓存ajax数据</li>
-<li>预先加载组件</li>
-<li>减少dom元素个数</li>
-<li>减少iframes</li>
-<li>避免404错误</li>
-<li>减少cookie大小</li>
-<li>对于不需要cookie的组件/请求，使用单独的域名</li>
-<li>减少dom操作</li>
-<li>采用事件委托</li>
-<li>减少 @import 动态导入</li>
-<li>优化图像大小</li>
-<li>使用css图像拼合</li>
-<li>不要缩放图像</li>
-<li>favicon.icon 尽量小&amp;缓存</li>
-<li>组件小于25k</li>
-<li>避免空image src</li>
-<li>采用 渐进式jpeg</li>
-</ul>
-<h3 id="解释-MVVM，MVC"><a href="#解释-MVVM，MVC" class="headerlink" title="解释 MVVM，MVC"></a>解释 MVVM，MVC</h3><p>MVVM: Model View View-Model<br>MVC: Model View Controller</p>
-<h3 id="解释-SSR、SEO、SPA"><a href="#解释-SSR、SEO、SPA" class="headerlink" title="解释 SSR、SEO、SPA"></a>解释 SSR、SEO、SPA</h3><p>SSR: Server side render 服务器渲染<br>SEO: Search engine optimize 搜索引擎优化<br>SPA: Single page application 单页面应用</p>
-<h2 id="vue相关"><a href="#vue相关" class="headerlink" title="vue相关"></a>vue相关</h2><h2 id="react相关"><a href="#react相关" class="headerlink" title="react相关"></a>react相关</h2><h2 id="Webpack相关"><a href="#Webpack相关" class="headerlink" title="Webpack相关"></a>Webpack相关</h2><h2 id="node相关"><a href="#node相关" class="headerlink" title="node相关"></a>node相关</h2><p>框架：express koa</p>
-<p>具体请查阅 <a target="_blank" rel="noopener" href="https://github.com/ElemeFE/node-interview/tree/master/sections/zh-cn">node-interview</a></p>
-<h2 id="shell相关"><a href="#shell相关" class="headerlink" title="shell相关"></a>shell相关</h2><p>具体请查阅 <a target="_blank" rel="noopener" href="https://github.com/jlevy/the-art-of-command-line/blob/master/README-zh.md">命令行的艺术</a></p>
-<h2 id="git相关"><a href="#git相关" class="headerlink" title="git相关"></a>git相关</h2><p>具体请查阅<a target="_blank" rel="noopener" href="https://git-scm.com/book/zh/v2">Pro Git book</a></p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="什么是material-design？"><a href="#什么是material-design？" class="headerlink" title="什么是material design？"></a>什么是material design？</h3><p>具体请查阅<a target="_blank" rel="noopener" href="http://www.google.com/design/spec/material-design/introduction.html">material-design</a><br>中文版：<a target="_blank" rel="noopener" href="http://wiki.jikexueyuan.com/project/material-design/animation/responsive-interaction.html">material-design</a></p>
-<h2 id="Database-数据库"><a href="#Database-数据库" class="headerlink" title="Database(数据库)"></a>Database(数据库)</h2><h3 id="解释数据库事务的4个基本特征ACID"><a href="#解释数据库事务的4个基本特征ACID" class="headerlink" title="解释数据库事务的4个基本特征ACID"></a>解释数据库事务的4个基本特征ACID</h3><p>Atomic 原子性<br>Consistency 一致性<br>Isolation 隔离性<br>Duration 持久性</p>
-<h3 id="解释数据库隔离级别"><a href="#解释数据库隔离级别" class="headerlink" title="解释数据库隔离级别"></a>解释数据库隔离级别</h3><p>Read uncommitted 未提交读 =&gt; 脏读，不可重复读，幻读<br>Read commited 读写提交 =&gt; 不可重复读，幻读<br>Repeatable read 可重复读 =&gt; 幻读<br>Serializable 串行化</p>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2018/07/13/CS-%E4%B8%AD%E6%96%87%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99/">中文前端学习网站</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-07-12T19:37:09.000Z" itemprop="datePublished">2018-07-13</time>
-</span>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/learn/" rel="tag">learn</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>收录了一些前端工程师会用到的语言、框架、工具，进行了一句话的解释，并收录了官网、Github地址及一些中文学习网站。  </p>
-<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><p>超文本标记语言(HyperText Markup Language)，它定义了网页内容的含义和结构<br>官网：<a target="_blank" rel="noopener" href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/whatwg/html">https://github.com/whatwg/html</a>  </p>
-<h3 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h3><p>最新的HTML标准</p>
-<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><p>层叠样式表(Cascading Style Sheets)，是一种 样式表 语言，用来描述 HTML 或 XML（包括如 SVG、MathML、XHTML 之类的 XML 分支语言）文档的呈现。<br>官网： <a target="_blank" rel="noopener" href="https://www.w3.org/Style/CSS/#specs">https://www.w3.org/Style/CSS/#specs</a>  </p>
-<h3 id="CSS3"><a href="#CSS3" class="headerlink" title="CSS3"></a>CSS3</h3><p>最新的CSS标准</p>
-<h2 id="Javascript"><a href="#Javascript" class="headerlink" title="Javascript"></a>Javascript</h2><p>JavaScript一种直译式脚本语言，是一种动态类型、弱类型、基于原型的<font color=red>编程语言</font>。<br>官网：<br><a target="_blank" rel="noopener" href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">http://www.ecma-international.org/publications/standards/Ecma-262.htm</a><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/JavaScript">https://developer.mozilla.org/en-US/docs/JavaScript</a><br>中文学习网站：<br><a target="_blank" rel="noopener" href="https://wangdoc.com/javascript/index.html">https://wangdoc.com/javascript/index.html</a><br><a target="_blank" rel="noopener" href="http://www.w3school.com.cn/js/">http://www.w3school.com.cn/js/</a><br><a target="_blank" rel="noopener" href="http://www.runoob.com/js/js-tutorial.html">http://www.runoob.com/js/js-tutorial.html</a><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript</a>  </p>
-<h3 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h3><p>最新的Javascript标准</p>
-<h2 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h2><p>TypeScript 是由微软开源的<font color=red>编程语言</font>。它是 JavaScript 的一个超集，而且本质上向这个语言添加了可选的静态类型和基于类的面向对象编程。<br>官网： <a target="_blank" rel="noopener" href="http://www.typescriptlang.org/">http://www.typescriptlang.org/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/Microsoft/TypeScript">https://github.com/Microsoft/TypeScript</a><br>中文学习网站：<br><a target="_blank" rel="noopener" href="https://www.tslang.cn/">https://www.tslang.cn/</a><br><a target="_blank" rel="noopener" href="https://typescript.bootcss.com/">https://typescript.bootcss.com/</a>  </p>
-<h2 id="CoffeeScript"><a href="#CoffeeScript" class="headerlink" title="CoffeeScript"></a>CoffeeScript</h2><p>CoffeeScript 是一门将类Ruby语言编译到 JavaScript 的小巧<font color=red>编程语言</font>。<br>官网： <a target="_blank" rel="noopener" href="http://coffeescript.org/">http://coffeescript.org/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/jashkenas/coffeescript">https://github.com/jashkenas/coffeescript</a><br>中文学习网站： <a target="_blank" rel="noopener" href="http://coffee-script.org/">http://coffee-script.org/</a>  </p>
-<h2 id="React"><a href="#React" class="headerlink" title="React"></a>React</h2><p>React 起源于 Facebook 的内部项目，是一个声明性的、高效的、灵活的JavaScript<font color=red>框架</font>，用于构建用户界面。<br>cli <a href="create-react-app">create-react-app</a>  </p>
-<p>官网：<a target="_blank" rel="noopener" href="https://reactjs.org/">https://reactjs.org/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/facebook/react">https://github.com/facebook/react</a><br>中文学习网站：<br><a target="_blank" rel="noopener" href="https://www.reactjscn.com/">https://www.reactjscn.com/</a><br><a target="_blank" rel="noopener" href="http://www.runoob.com/react/react-tutorial.html">http://www.runoob.com/react/react-tutorial.html</a>  </p>
-<h2 id="Preact"><a href="#Preact" class="headerlink" title="Preact"></a>Preact</h2><p>Preact - 一个只有 3kB 大小的 React 替代<font color=red>框架</font>，拥有与 React 相同的 API、组件和虚拟 DOM。<br>官网： <a target="_blank" rel="noopener" href="https://preactjs.com/">https://preactjs.com/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/developit/preact">https://github.com/developit/preact</a><br>中文学习网站：<br><a target="_blank" rel="noopener" href="https://preactjs.com/">https://preactjs.com/</a><br><a target="_blank" rel="noopener" href="https://preact.bootcss.com/">https://preact.bootcss.com/</a>  </p>
-<h2 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h2><p>Vue.js - 一个先进的、渐进式的的JavaScript<font color=red>框架</font>，用来构建用户界面。<br>常用的Vue UI库有 Element UI、Vuetify、iview、Vue Bootstrap、Vue Material、Buefy、Quasar等。<br>常用的Vue 移动 UI库有 vux、mint-ui、vant等。<br>cli <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-cli">vue-cli</a><br>状态管理库 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vuex">vuex</a><br>前端路由库 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-router">vue-router</a><br>小程序开发框架 <a target="_blank" rel="noopener" href="https://github.com/Meituan-Dianping/mpvue">mpvue</a>、<a target="_blank" rel="noopener" href="https://github.com/dcloudio/uni-app">uni-app</a><br>官网： <a target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/">https://cn.vuejs.org/v2/guide/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue">https://github.com/vuejs/vue</a><br>中文学习网站： <a target="_blank" rel="noopener" href="https://cn.vuejs.org/index.html">https://cn.vuejs.org/index.html</a>  </p>
-<h2 id="Angular"><a href="#Angular" class="headerlink" title="Angular"></a>Angular</h2><p>增强Web应用程序的HTML<font color=red>框架</font>。<br>官网： <a target="_blank" rel="noopener" href="https://angularjs.org/">https://angularjs.org/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/angular/angular.js">https://github.com/angular/angular.js</a><br>中文学习网站： <a target="_blank" rel="noopener" href="https://www.runoob.com/angularjs/angularjs-tutorial.html">https://www.runoob.com/angularjs/angularjs-tutorial.html</a>  </p>
-<h2 id="Inferno"><a href="#Inferno" class="headerlink" title="Inferno"></a>Inferno</h2><p>类react，性能优秀的js<font color=red>框架</font><br>官网：<a target="_blank" rel="noopener" href="https://infernojs.org">https://infernojs.org</a><br>Github:<a target="_blank" rel="noopener" href="https://github.com/infernojs/inferno">https://github.com/infernojs/inferno</a>  </p>
-<h2 id="Dojo"><a href="#Dojo" class="headerlink" title="Dojo"></a>Dojo</h2><p>基于Typescript开发的前端<font color=red>框架</font><br>官网：<a target="_blank" rel="noopener" href="https://dojo.io">https://dojo.io</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/dojo/framework">https://github.com/dojo/framework</a>  </p>
-<h2 id="Ember-js"><a href="#Ember-js" class="headerlink" title="Ember.js"></a>Ember.js</h2><p>JavaScript<font color=red>框架</font><br>官网：<a target="_blank" rel="noopener" href="https://emberjs.com">https://emberjs.com</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/emberjs/ember.js">https://github.com/emberjs/ember.js</a>  </p>
-<h2 id="Auerlia"><a href="#Auerlia" class="headerlink" title="Auerlia"></a>Auerlia</h2><p>Aurelia是一款用来构建浏览器移动桌面应用的现代前端Javascript<font color=red>框架</font>。<br>官网： <a target="_blank" rel="noopener" href="https://www.auerlia.io">https://www.auerlia.io</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/aurelia/framework">https://github.com/aurelia/framework</a>  </p>
-<h2 id="San"><a href="#San" class="headerlink" title="San"></a>San</h2><p>一款高性能、小体积、高兼容性的 mvvm <font color=red>框架</font><br>官网：<a target="_blank" rel="noopener" href="https://baidu.github.io/san/">https://baidu.github.io/san/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/baidu/san">https://github.com/baidu/san</a>  </p>
-<h2 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h2><p>Webpack 是当下最流行的前端资源<font color=red>模块化管理和打包工具</font>。它可以将许多松散的模块按照依赖和规则转换并打包成符合生产环境部署的前端资源。<br>官网： <a target="_blank" rel="noopener" href="https://webpack.js.org/">https://webpack.js.org/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/webpack/webpack">https://github.com/webpack/webpack</a><br>中文学习网站： <a target="_blank" rel="noopener" href="https://www.webpackjs.com/concepts/">https://www.webpackjs.com/concepts/</a><br>学习文档：<a href="/blog/2021/01/19/webpack小全/">webpack小全</a></p>
-<h2 id="Rollup"><a href="#Rollup" class="headerlink" title="Rollup"></a>Rollup</h2><p>Rollup 是一个 JavaScript <font color=red>模块打包器</font>，可以将小块代码编译成大块复杂的代码，例如库或应用程序。支持按需打包。<br>官网： <a target="_blank" rel="noopener" href="https://rollupjs.org">https://rollupjs.org</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/rollup/rollup">https://github.com/rollup/rollup</a><br>中文学习网站：<br><a target="_blank" rel="noopener" href="http://www.rollupjs.com/">http://www.rollupjs.com/</a>  </p>
-<h2 id="Gulp"><a href="#Gulp" class="headerlink" title="Gulp"></a>Gulp</h2><p>JavaScript自动化工作流<font color=red>构建工具</font>，使用流式方法来进行打包。<br>官网： <a target="_blank" rel="noopener" href="https://gulpjs.com/">https://gulpjs.com/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/gulpjs/gulp">https://github.com/gulpjs/gulp</a><br>中文学习网站： <a target="_blank" rel="noopener" href="https://www.gulpjs.com.cn/">https://www.gulpjs.com.cn/</a>  </p>
-<h2 id="Grunt"><a href="#Grunt" class="headerlink" title="Grunt"></a>Grunt</h2><p>JavaScript任务自动化<font color=red>构建工具</font>，通过配置来进行打包。<br>官网： <a target="_blank" rel="noopener" href="https://gruntjs.com/">https://gruntjs.com/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/gruntjs/grunt">https://github.com/gruntjs/grunt</a><br>中文学习网站： <a target="_blank" rel="noopener" href="http://www.gruntjs.net/">http://www.gruntjs.net/</a>  </p>
-<h2 id="Parcel"><a href="#Parcel" class="headerlink" title="Parcel"></a>Parcel</h2><p>Parcel 是一个 web 应用<font color=red>打包工具</font>, 与其他工具的区别在于开发者的使用体验。它利用多核处理器提供了极快的速度, 并且不需要任何配置。采用模块化的思想进行打包。<br>官网： <a target="_blank" rel="noopener" href="https://parceljs.org">https://parceljs.org</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/parcel-bundler/parcel">https://github.com/parcel-bundler/parcel</a><br>中文学习网站：<br><a target="_blank" rel="noopener" href="https://www.parceljs.cn/getting_started.html">https://www.parceljs.cn/getting_started.html</a><br><a target="_blank" rel="noopener" href="http://www.css88.com/doc/parcel/">http://www.css88.com/doc/parcel/</a><br><a target="_blank" rel="noopener" href="http://www.parceljs.io/">http://www.parceljs.io/</a>  </p>
-<h2 id="jQuery"><a href="#jQuery" class="headerlink" title="jQuery"></a>jQuery</h2><p>jQuery 是一个高效、精简并且功能丰富的 <font color=red>JavaScript 工具库</font>。它提供的 API 易于使用且兼容众多浏览器，这让诸如 HTML 文档遍历和操作、事件处理、动画和 Ajax 操作更加简单。<br>官网： <a target="_blank" rel="noopener" href="https://jquery.com/">https://jquery.com/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/jquery/jquery">https://github.com/jquery/jquery</a><br>中文学习文档： <a target="_blank" rel="noopener" href="https://www.jquery123.com/">https://www.jquery123.com/</a>  </p>
-<h2 id="Zepto"><a href="#Zepto" class="headerlink" title="Zepto"></a>Zepto</h2><p>Zepto 是一个轻量级的、针对现代高级浏览器的<font color=red> JavaScript 工具库</font>，它兼容 jQuery 的 API 。<br>官网： <a target="_blank" rel="noopener" href="http://zeptojs.com">http://zeptojs.com</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/madrobby/zepto">https://github.com/madrobby/zepto</a><br>中文学习文档： <a target="_blank" rel="noopener" href="https://zeptojs.bootcss.com/">https://zeptojs.bootcss.com/</a>  </p>
-<h2 id="Lodash"><a href="#Lodash" class="headerlink" title="Lodash"></a>Lodash</h2><p>Lodash是一个一致性、模块化、高性能的 <font color=red>JavaScript 实用工具库</font>。<br>官网： <a target="_blank" rel="noopener" href="https://lodash.com/">https://lodash.com/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/lodash/lodash">https://github.com/lodash/lodash</a><br><a target="_blank" rel="noopener" href="https://www.lodashjs.com/">https://www.lodashjs.com/</a>  </p>
-<h2 id="Underscore"><a href="#Underscore" class="headerlink" title="Underscore"></a>Underscore</h2><p>Underscore一个<font color=red>JavaScript实用库</font>，提供了一整套函数式编程的实用功能，但是没有扩展任何JavaScript内置对象。<br>官网： <a target="_blank" rel="noopener" href="http://underscorejs.org">http://underscorejs.org</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/jashkenas/underscore">https://github.com/jashkenas/underscore</a><br><a target="_blank" rel="noopener" href="http://www.css88.com/doc/underscore/">http://www.css88.com/doc/underscore/</a>  </p>
-<h2 id="Axios"><a href="#Axios" class="headerlink" title="Axios"></a>Axios</h2><p>axios是一个基于Promise的可以运行在浏览器和nodejs中的HTTP客户端<br>Github: <a target="_blank" rel="noopener" href="https://github.com/axios/axios">https://github.com/axios/axios</a><br>中文学习网站： <a target="_blank" rel="noopener" href="http://www.axios-js.com/">http://www.axios-js.com/</a>  </p>
-<h2 id="Bootstrap"><a href="#Bootstrap" class="headerlink" title="Bootstrap"></a>Bootstrap</h2><p>Bootstrap 是最流行的 HTML、CSS 和 JS 框架，用于开发响应式布局、移动设备优先的 WEB 项目。<br>官网： <a target="_blank" rel="noopener" href="http://getbootstrap.com">http://getbootstrap.com</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/twbs/bootstrap">https://github.com/twbs/bootstrap</a><br><a target="_blank" rel="noopener" href="https://v3.bootcss.com/">https://v3.bootcss.com/</a><br>中文学习网站： <a target="_blank" rel="noopener" href="http://www.bootcss.com/">http://www.bootcss.com/</a>  </p>
-<h2 id="Material-UI"><a href="#Material-UI" class="headerlink" title="Material-UI"></a>Material-UI</h2><p>符合 Material Design 的 React 组件库<br>官网： <a target="_blank" rel="noopener" href="https://material-ui.com/">https://material-ui.com/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/mui-org/material-ui">https://github.com/mui-org/material-ui</a>  </p>
-<h2 id="Vuetify"><a href="#Vuetify" class="headerlink" title="Vuetify"></a>Vuetify</h2><p>符合 Material Design 的 Vue 组件库<br>官网：<a target="_blank" rel="noopener" href="https://vuetifyjs.com/">https://vuetifyjs.com/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/vuetifyjs/vuetify">https://github.com/vuetifyjs/vuetify</a><br>中文官网： <a target="_blank" rel="noopener" href="https://vuetifyjs.com/zh-Hans/">https://vuetifyjs.com/zh-Hans/</a>  </p>
-<h2 id="Element-UI"><a href="#Element-UI" class="headerlink" title="Element-UI"></a>Element-UI</h2><p>基于 Vue2.0 的 UI组件库<br>官网： <a target="_blank" rel="noopener" href="https://element.eleme.io/">https://element.eleme.io/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/ElemeFE/element">https://github.com/ElemeFE/element</a>  </p>
-<h2 id="iView"><a href="#iView" class="headerlink" title="iView"></a>iView</h2><p>基于 Vue 的 UI组件库<br>官网： <a target="_blank" rel="noopener" href="http://iview.talkingdata.com/">http://iview.talkingdata.com/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/iview/iview">https://github.com/iview/iview</a>  </p>
-<h2 id="Next-js"><a href="#Next-js" class="headerlink" title="Next.js"></a>Next.js</h2><p>基于 React 的服务端渲染框架<br>官网： <a target="_blank" rel="noopener" href="https://nextjs.org">https://nextjs.org</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/zeit/next.js">https://github.com/zeit/next.js</a>  </p>
-<h2 id="Nuxt-js"><a href="#Nuxt-js" class="headerlink" title="Nuxt.js"></a>Nuxt.js</h2><p>基于 Vue 的服务端渲染框架<br>官网： <a target="_blank" rel="noopener" href="https://nuxtjs.org">https://nuxtjs.org</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/nuxt/nuxt.js">https://github.com/nuxt/nuxt.js</a>  </p>
-<h2 id="mpvue"><a href="#mpvue" class="headerlink" title="mpvue"></a>mpvue</h2><p>基于 Vue.js 的小程序开发框架，从底层支持 Vue.js 语法和构建工具体系。<br>官网： <a target="_blank" rel="noopener" href="http://mpvue.com">http://mpvue.com</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/Meituan-Dianping/mpvue">https://github.com/Meituan-Dianping/mpvue</a>  </p>
-<h2 id="Layui"><a href="#Layui" class="headerlink" title="Layui"></a>Layui</h2><p>Layui 是一款采用自身模块规范编写的前端 UI 框架<br>官网： <a target="_blank" rel="noopener" href="https://www.layui.com">https://www.layui.com</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/sentsin/layui">https://github.com/sentsin/layui</a>  </p>
-<h2 id="Tailwind"><a href="#Tailwind" class="headerlink" title="Tailwind"></a>Tailwind</h2><p>一个用于快速 UI 开发的实用工具集 css 框架。<br>官网： <a target="_blank" rel="noopener" href="https://tailwindcss.com/">https://tailwindcss.com/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/tailwindcss/tailwindcss">https://github.com/tailwindcss/tailwindcss</a><br><a target="_blank" rel="noopener" href="https://www.tailwindcss.cn/">https://www.tailwindcss.cn/</a><br>中文学习文档： <a target="_blank" rel="noopener" href="https://www.tailwindcss.cn/">https://www.tailwindcss.cn/</a>  </p>
-<h2 id="ChakraCore"><a href="#ChakraCore" class="headerlink" title="ChakraCore"></a>ChakraCore</h2><p>Micosoft 开发的Javascript引擎。被用于 Micosoft Edge 浏览器中。<br>Github: <a target="_blank" rel="noopener" href="https://github.com/Microsoft/ChakraCore">https://github.com/Microsoft/ChakraCore</a>  </p>
-<h2 id="JavaScriptCore"><a href="#JavaScriptCore" class="headerlink" title="JavaScriptCore"></a>JavaScriptCore</h2><p>Apple 开发的开源 JavaScript 引擎。Safari浏览器的内在引擎。<br>Github: <a target="_blank" rel="noopener" href="https://github.com/WebKit/webkit/tree/master/Source/JavaScriptCore">https://github.com/WebKit/webkit/tree/master/Source/JavaScriptCore</a>  </p>
-<h2 id="SpiderMonkey"><a href="#SpiderMonkey" class="headerlink" title="SpiderMonkey"></a>SpiderMonkey</h2><p>Mozilla 使用C/C++编写的 JavaScript 引擎。它被用于包括 Firefox 在内的多个 Mozilla 产品中。<br>官网： <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Mozilla/Projects/SpiderMonkey/Releases">https://developer.mozilla.org/zh-CN/docs/Mozilla/Projects/SpiderMonkey/Releases</a>  </p>
-<h2 id="v8"><a href="#v8" class="headerlink" title="v8"></a>v8</h2><p>Google 开发的开源 JavaScript 引擎，以高性能著称。被用于Chrome浏览器。<br><a target="_blank" rel="noopener" href="https://github.com/v8/v8">https://github.com/v8/v8</a>  </p>
-<h2 id="Rhino"><a href="#Rhino" class="headerlink" title="Rhino"></a>Rhino</h2><p>是一个完全使用Java语言编写的开源JavaScript实现，由 Mozilla 开发。是J2SE 6上的默认Java脚本化引擎。<br>Github: <a target="_blank" rel="noopener" href="https://github.com/mozilla/rhino">https://github.com/mozilla/rhino</a>  </p>
-<h2 id="JerryScript"><a href="#JerryScript" class="headerlink" title="JerryScript"></a>JerryScript</h2><p>JerryScript 是一款轻量级的 JavaScript 引擎，主要用于限制资源的微型设备。由三星开发。<br>Github: <a target="_blank" rel="noopener" href="https://github.com/jerryscript-project/jerryscript">https://github.com/jerryscript-project/jerryscript</a>  </p>
-<h2 id="Chromium"><a href="#Chromium" class="headerlink" title="Chromium"></a>Chromium</h2><p>Chromium是一款基于v8的开源浏览器。<br>官网： <a target="_blank" rel="noopener" href="https://chromium.googlesource.com/chromium/">https://chromium.googlesource.com/chromium/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/chromium/chromium">https://github.com/chromium/chromium</a>  </p>
-<h2 id="Nodejs"><a href="#Nodejs" class="headerlink" title="Nodejs"></a>Nodejs</h2><p>Node.js 是一个基于 Chrome V8 引擎的 <font color=red>JavaScript 运行环境</font>。<br>官网： <a target="_blank" rel="noopener" href="https://nodejs.org">https://nodejs.org</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/nodejs/node">https://github.com/nodejs/node</a><br>中文学习网站： <a target="_blank" rel="noopener" href="http://nodejs.cn/">http://nodejs.cn/</a><br>书籍：<br><a target="_blank" rel="noopener" href="https://github.com/alsotang/node-lessons">https://github.com/alsotang/node-lessons</a><br><a target="_blank" rel="noopener" href="http://book.douban.com/subject/25768396/">《深入浅出Node.js》</a>  </p>
-<h2 id="Express"><a href="#Express" class="headerlink" title="Express"></a>Express</h2><p>Express是一个流行的<font color=red>Node.js web开发框架</font>。<br>官网： <a target="_blank" rel="noopener" href="http://expressjs.com/">http://expressjs.com/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/expressjs/express">https://github.com/expressjs/express</a><br>中文学习网站： <a target="_blank" rel="noopener" href="http://www.expressjs.com.cn/">http://www.expressjs.com.cn/</a>  </p>
-<h2 id="Koa"><a href="#Koa" class="headerlink" title="Koa"></a>Koa</h2><p>使用ES6 async 方法来构建的有表现力的<font color=red>Node.js web开发框架</font>。<br>官网： <a target="_blank" rel="noopener" href="https://koajs.com/">https://koajs.com/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/koajs/koa">https://github.com/koajs/koa</a><br>中文学习网站： <a target="_blank" rel="noopener" href="https://koa.bootcss.com/">https://koa.bootcss.com/</a>  </p>
-<h2 id="Yarn"><a href="#Yarn" class="headerlink" title="Yarn"></a>Yarn</h2><p>快速、可靠、安全的<font color=red>依赖管理工具</font>。<br>官网： <a target="_blank" rel="noopener" href="https://yarnpkg.com">https://yarnpkg.com</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/yarnpkg/yarn">https://github.com/yarnpkg/yarn</a><br>中文学习网站： <a target="_blank" rel="noopener" href="https://yarn.bootcss.com/">https://yarn.bootcss.com/</a>  </p>
-<h2 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h2><p>最流行的js<font color=red>依赖管理工具</font>。<br>官网： <a target="_blank" rel="noopener" href="https://npm.community">https://npm.community</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/npm/cli">https://github.com/npm/cli</a><br>中文学习网站： <a target="_blank" rel="noopener" href="https://www.npmjs.com.cn/">https://www.npmjs.com.cn/</a>  </p>
-<p>有关常用server npm库，可查看 <a href="/blog/2019/08/12/node-server常用npm库/">常用npm库</a></p>
-<h2 id="nvm"><a href="#nvm" class="headerlink" title="nvm"></a>nvm</h2><p>node版本管理器<br>Github: <a target="_blank" rel="noopener" href="https://github.com/nvm-sh/nvm">https://github.com/nvm-sh/nvm</a>  </p>
-<h2 id="Ghost"><a href="#Ghost" class="headerlink" title="Ghost"></a>Ghost</h2><p>nodejs CMS框架<br>官网： <a target="_blank" rel="noopener" href="https://ghost.org">https://ghost.org</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/TryGhost/Ghost">https://github.com/TryGhost/Ghost</a>  </p>
-<h2 id="pm2"><a href="#pm2" class="headerlink" title="pm2"></a>pm2</h2><p>nodejs 生产环境自带负载均衡的进程管理器<br>官网： <a target="_blank" rel="noopener" href="https://pm2.keymetrics.io">https://pm2.keymetrics.io</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/Unitech/pm2">https://github.com/Unitech/pm2</a>  </p>
-<h2 id="Standard-Style-Guide"><a href="#Standard-Style-Guide" class="headerlink" title="Standard Style Guide"></a>Standard Style Guide</h2><p>js 样式规范&amp;代码自动对齐规范<br>官网：<a target="_blank" rel="noopener" href="https://standardjs.com">https://standardjs.com</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/standard/standard">https://github.com/standard/standard</a>  </p>
-<h2 id="Airbnb-JavaScript-Style-Guide"><a href="#Airbnb-JavaScript-Style-Guide" class="headerlink" title="Airbnb JavaScript Style Guide"></a>Airbnb JavaScript Style Guide</h2><p>Airbnb js样式规范<br>Github: <a target="_blank" rel="noopener" href="https://github.com/airbnb/javascript">https://github.com/airbnb/javascript</a>  </p>
-<h2 id="Google-Style-Guide"><a href="#Google-Style-Guide" class="headerlink" title="Google Style Guide"></a>Google Style Guide</h2><p>Google js样式规范<br>官网：<a target="_blank" rel="noopener" href="https://google.github.io/styleguide/jsguide.html">https://google.github.io/styleguide/jsguide.html</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/google/eslint-config-google">https://github.com/google/eslint-config-google</a></p>
-<h2 id="Babel"><a href="#Babel" class="headerlink" title="Babel"></a>Babel</h2><p>将特定Javascript先进语法进行编译的JavaScript <font color=red>编译器</font>。<br>官网： <a target="_blank" rel="noopener" href="https://github.com/babel/babel">https://github.com/babel/babel</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/babel/babel">https://github.com/babel/babel</a><br>中文学习网站：<br><a target="_blank" rel="noopener" href="https://babel.bootcss.com/">https://babel.bootcss.com/</a>  </p>
-<h2 id="Prettier"><a href="#Prettier" class="headerlink" title="Prettier"></a>Prettier</h2><p>代码格式化工具<br>官网： <a target="_blank" rel="noopener" href="https://prettier.io">https://prettier.io</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/prettier/prettier">https://github.com/prettier/prettier</a>  </p>
-<h2 id="JSlint"><a href="#JSlint" class="headerlink" title="JSlint"></a>JSlint</h2><p>Js 代码格式化工具 由 Douglas Crockford 开发<br>Github: <a target="_blank" rel="noopener" href="https://github.com/douglascrockford/JSLint">https://github.com/douglascrockford/JSLint</a></p>
-<h2 id="JSHint"><a href="#JSHint" class="headerlink" title="JSHint"></a>JSHint</h2><p>Js 静态代码分析工具 由 Anton Kovalyov 在 JSLint的基础上开发<br>官网：jshint.com<br>Github: <a target="_blank" rel="noopener" href="https://github.com/jshint/jshint">https://github.com/jshint/jshint</a></p>
-<h2 id="ESLint"><a href="#ESLint" class="headerlink" title="ESLint"></a>ESLint</h2><p>一个完全插件化的<font color=red>代码识别及格式报告工具</font>，支持jsx。由 Nicholas Zakas 开发<br>官网： <a target="_blank" rel="noopener" href="https://eslint.org">https://eslint.org</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/eslint/eslint">https://github.com/eslint/eslint</a><br>中文学习网站： <a target="_blank" rel="noopener" href="http://eslint.cn/">http://eslint.cn/</a>  </p>
-<h2 id="Esprima"><a href="#Esprima" class="headerlink" title="Esprima"></a>Esprima</h2><p>一款高性能，符合标准的 ECMAscript 解析器, 采用 ECMAscript 编写<br>官网：<a target="_blank" rel="noopener" href="https://esprima.org/">https://esprima.org/</a></p>
-<h2 id="Espree"><a href="#Espree" class="headerlink" title="Espree"></a>Espree</h2><p>语言解析工具，可以将js解析为AST（抽象语法树）,由Esprima 发展而来, 支持ES6, ESLint采用该解析工具<br>Github: <a target="_blank" rel="noopener" href="https://github.com/eslint/espree">https://github.com/eslint/espree</a></p>
-<h2 id="Acorn"><a href="#Acorn" class="headerlink" title="Acorn"></a>Acorn</h2><p>一款小巧、快速的 Javascript 语言解析器，由 Javascript 编写<br>Github: <a target="_blank" rel="noopener" href="https://github.com/acornjs/acorn">https://github.com/acornjs/acorn</a></p>
-<h2 id="terser"><a href="#terser" class="headerlink" title="terser"></a>terser</h2><p>Github: <a target="_blank" rel="noopener" href="https://github.com/terser/terser">https://github.com/terser/terser</a><br>一款支持ES6+的 Javascript 解析器/压缩工具集  </p>
-<h2 id="LinkChecker"><a href="#LinkChecker" class="headerlink" title="LinkChecker"></a>LinkChecker</h2><p>死链接检查工具<br>Github: <a target="_blank" rel="noopener" href="http://wummel.github.io/linkchecker/">http://wummel.github.io/linkchecker/</a></p>
-<h2 id="Travis"><a href="#Travis" class="headerlink" title="Travis"></a>Travis</h2><p>持续集成服务器解决方案<br>Github: <a target="_blank" rel="noopener" href="https://github.com/travis-ci/travis-ci">https://github.com/travis-ci/travis-ci</a><br>官网： <a target="_blank" rel="noopener" href="https://travis-ci.com/">https://travis-ci.com/</a>  </p>
-<h2 id="Jenkins"><a href="#Jenkins" class="headerlink" title="Jenkins"></a>Jenkins</h2><p>持续集成服务器解决方案，使用Java部署<br>Github: <a target="_blank" rel="noopener" href="https://github.com/jenkinsci/jenkins">https://github.com/jenkinsci/jenkins</a><br>官网： <a target="_blank" rel="noopener" href="https://www.jenkins.io/">https://www.jenkins.io/</a>  </p>
-<h2 id="TeamCity"><a href="#TeamCity" class="headerlink" title="TeamCity"></a>TeamCity</h2><p>JetBrains提供的持续集成服务器解决方案<br>官网：<a target="_blank" rel="noopener" href="https://www.jetbrains.com/teamcity/">https://www.jetbrains.com/teamcity/</a></p>
-<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><p><font color=red>代码版本管理工具</font>。<br>官网： <a target="_blank" rel="noopener" href="https://git-scm.com/">https://git-scm.com/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/git/git">https://github.com/git/git</a><br>中文学习网站：<br><a target="_blank" rel="noopener" href="https://progit.bootcss.com/">https://progit.bootcss.com/</a><br>学习文档：[Git小全(/blog/2019/02/01/Git小全/)</p>
-<h2 id="storybook"><a href="#storybook" class="headerlink" title="storybook"></a>storybook</h2><p>UI组件开发与测试环境<br>官网： <a target="_blank" rel="noopener" href="https://storybook.js.org">https://storybook.js.org</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/storybookjs/storybook">https://github.com/storybookjs/storybook</a>  </p>
-<h2 id="Electron"><a href="#Electron" class="headerlink" title="Electron"></a>Electron</h2><p>使用 JavaScript, HTML 和 css 构建跨平台的<font color=red>桌面应用框架</font>。<br>官网： <a target="_blank" rel="noopener" href="https://electronjs.org/">https://electronjs.org/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/electron/electron">https://github.com/electron/electron</a><br>中文学习网站： <a target="_blank" rel="noopener" href="https://www.electronjs.cn/">https://www.electronjs.cn/</a>  </p>
-<h2 id="nw-js"><a href="#nw-js" class="headerlink" title="nw.js"></a>nw.js</h2><p>使用 JavaScript, HTML 和 css 构建跨平台的<font color=red>桌面应用框架</font>。<br>官网： <a target="_blank" rel="noopener" href="https://nwjs.io">https://nwjs.io</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/nwjs/nw.js">https://github.com/nwjs/nw.js</a>  </p>
-<h2 id="Meteor"><a href="#Meteor" class="headerlink" title="Meteor"></a>Meteor</h2><p>Meteor 是一个用以采用纯 JavaScript 开发 web 和移动应用的完全开源的平台。<br>官网： <a target="_blank" rel="noopener" href="https://www.meteor.com/">https://www.meteor.com/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/meteor/meteor">https://github.com/meteor/meteor</a>  </p>
-<h2 id="Cordova"><a href="#Cordova" class="headerlink" title="Cordova"></a>Cordova</h2><p>采用 HTML，CSS&amp;JS 开发跨平台移动应用的开发框架<br>官网： <a target="_blank" rel="noopener" href="https://cordova.apache.org/">https://cordova.apache.org/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/apache/cordova-android">https://github.com/apache/cordova-android</a><br><a target="_blank" rel="noopener" href="https://github.com/apache/cordova-ios">https://github.com/apache/cordova-ios</a>  </p>
-<h2 id="Ionic"><a href="#Ionic" class="headerlink" title="Ionic"></a>Ionic</h2><p>Ionic是一款开源的移动应用开发框架。AngularJS移动端解决方案。<br>官网： <a target="_blank" rel="noopener" href="https://ionicframework.com/">https://ionicframework.com/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/ionic-team/ionic-framework">https://github.com/ionic-team/ionic-framework</a>  </p>
-<h2 id="NativeScript"><a href="#NativeScript" class="headerlink" title="NativeScript"></a>NativeScript</h2><p>NativeScript是一个开源框架，用于使用JavaScript构建真正的本机移动应用程序。使用web技能，比如Angular和Vue.js、FlexBox和CSS，在iOS和Android上获得本地UI和性能。<br>官网： <a target="_blank" rel="noopener" href="https://www.nativescript.org">https://www.nativescript.org</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/NativeScript/NativeScript">https://github.com/NativeScript/NativeScript</a>  </p>
-<h2 id="React-Native-RN"><a href="#React-Native-RN" class="headerlink" title="React Native(RN)"></a>React Native(RN)</h2><p>由facebook公司开发，支持使用React来构建原生移动应用的框架<br>官网：<a target="_blank" rel="noopener" href="https://reactnative.dev">https://reactnative.dev</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/facebook/react-native">https://github.com/facebook/react-native</a>  </p>
-<h2 id="Flutter"><a href="#Flutter" class="headerlink" title="Flutter"></a>Flutter</h2><p>由 Google 采用 Dart 语言开发，用于创建高性能、跨平台的移动应用。<br>官网： <a target="_blank" rel="noopener" href="https://flutter.io">https://flutter.io</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/flutter/flutter">https://github.com/flutter/flutter</a></p>
-<h2 id="Weex"><a href="#Weex" class="headerlink" title="Weex"></a>Weex</h2><p>由 Alibaba 开发，用来创建移动端跨平台应用的框架<br>官网： <a target="_blank" rel="noopener" href="https://weex.apache.org">https://weex.apache.org</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/apache/incubator-weex">https://github.com/apache/incubator-weex</a></p>
-<h2 id="Sass"><a href="#Sass" class="headerlink" title="Sass"></a>Sass</h2><p>css 扩展语言解析器<br>官网： <a target="_blank" rel="noopener" href="http://sass-lang.com">http://sass-lang.com</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/sass/sass">https://github.com/sass/sass</a><br>中文学习网站： <a target="_blank" rel="noopener" href="https://www.sasscss.com/">https://www.sasscss.com/</a>  </p>
-<h2 id="Less"><a href="#Less" class="headerlink" title="Less"></a>Less</h2><p>css 预处理解析器<br>官网： <a target="_blank" rel="noopener" href="http://lesscss.org">http://lesscss.org</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/less/less.js">https://github.com/less/less.js</a><br>中文学习网站：<br><a target="_blank" rel="noopener" href="http://lesscss.cn/">http://lesscss.cn/</a><br><a target="_blank" rel="noopener" href="http://www.bootcss.com/p/lesscss/">http://www.bootcss.com/p/lesscss/</a><br><a target="_blank" rel="noopener" href="https://less.bootcss.com/">https://less.bootcss.com/</a>  </p>
-<h2 id="Stylus"><a href="#Stylus" class="headerlink" title="Stylus"></a>Stylus</h2><p>css 预编译解析器<br>官网： <a target="_blank" rel="noopener" href="http://stylus-lang.com/">http://stylus-lang.com/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/stylus/stylus">https://github.com/stylus/stylus</a><br>中文学习网站： <a target="_blank" rel="noopener" href="https://stylus.bootcss.com/">https://stylus.bootcss.com/</a>  </p>
-<h2 id="Handlebars"><a href="#Handlebars" class="headerlink" title="Handlebars"></a>Handlebars</h2><p>html语义模板<br>官网： <a target="_blank" rel="noopener" href="http://handlebarsjs.com">http://handlebarsjs.com</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/wycats/handlebars.js">https://github.com/wycats/handlebars.js</a><br>中文学习网站： <a target="_blank" rel="noopener" href="https://handlebars.bootcss.com/">https://handlebars.bootcss.com/</a>  </p>
-<h2 id="Pug"><a href="#Pug" class="headerlink" title="Pug"></a>Pug</h2><p>html语义模板<br>官网： <a target="_blank" rel="noopener" href="https://pugjs.org">https://pugjs.org</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/pugjs/pug">https://github.com/pugjs/pug</a><br>中文学习网站： <a target="_blank" rel="noopener" href="https://pug.bootcss.com/api/getting-started.html">https://pug.bootcss.com/api/getting-started.html</a>  </p>
-<h2 id="Liquid"><a href="#Liquid" class="headerlink" title="Liquid"></a>Liquid</h2><p>html语义模板<br>官网： <a target="_blank" rel="noopener" href="http://liquidmarkup.org/">http://liquidmarkup.org/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/Shopify/liquid">https://github.com/Shopify/liquid</a><br>中文学习网站： <a target="_blank" rel="noopener" href="https://liquid.bootcss.com/">https://liquid.bootcss.com/</a>  </p>
-<h2 id="EJS"><a href="#EJS" class="headerlink" title="EJS"></a>EJS</h2><p>JavaScript 模板引擎<br>官网： <a target="_blank" rel="noopener" href="http://www.embeddedjs.com/">http://www.embeddedjs.com/</a><br>github： <a target="_blank" rel="noopener" href="https://github.com/tj/ejs">https://github.com/tj/ejs</a><br>中文学习网站： <a target="_blank" rel="noopener" href="https://ejs.bootcss.com/">https://ejs.bootcss.com/</a>  </p>
-<h2 id="Jekyll"><a href="#Jekyll" class="headerlink" title="Jekyll"></a>Jekyll</h2><p>Jekyll是一个Ruby书写的博客流静态站点生成器。<br>官网: <a target="_blank" rel="noopener" href="https://jekyllrb.com">https://jekyllrb.com</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/jekyll/jekyll">https://github.com/jekyll/jekyll</a><br>中文学习网站： <a target="_blank" rel="noopener" href="https://www.jekyll.com.cn/">https://www.jekyll.com.cn/</a>  </p>
-<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><p>一个快速、简单及强力的博客框架，由Nodejs支持<br>官网： <a target="_blank" rel="noopener" href="https://hexo.io">https://hexo.io</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo">https://github.com/hexojs/hexo</a><br>中文学习网站： <a target="_blank" rel="noopener" href="https://hexo.bootcss.com/">https://hexo.bootcss.com/</a>  </p>
-<h2 id="Vuepress"><a href="#Vuepress" class="headerlink" title="Vuepress"></a>Vuepress</h2><p>极简的vue驱动的静态站点生成器<br>官网：<a target="_blank" rel="noopener" href="https://vuepress.vuejs.org/">https://vuepress.vuejs.org/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/vuejs/vuepress">https://github.com/vuejs/vuepress</a><br>中文学习网站： <a target="_blank" rel="noopener" href="https://vuepress.vuejs.org/zh/">https://vuepress.vuejs.org/zh/</a>  </p>
-<h2 id="docsify"><a href="#docsify" class="headerlink" title="docsify"></a>docsify</h2><p>文档站点生成器<br>官网：<a target="_blank" rel="noopener" href="https://docsify.js.org">https://docsify.js.org</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/docsifyjs/docsify">https://github.com/docsifyjs/docsify</a>  </p>
-<h2 id="WordPress"><a href="#WordPress" class="headerlink" title="WordPress"></a>WordPress</h2><p>静态网站和博客生成框架<br>官网： <a target="_blank" rel="noopener" href="https://wordpress.org/">https://wordpress.org/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/WordPress/WordPress">https://github.com/WordPress/WordPress</a>  </p>
-<h2 id="jsdoc"><a href="#jsdoc" class="headerlink" title="jsdoc"></a>jsdoc</h2><p>一款 JavaScript API 文档生成器<br>Github: <a target="_blank" rel="noopener" href="https://github.com/jsdoc/jsdoc">https://github.com/jsdoc/jsdoc</a></p>
-<h2 id="PostCSS"><a href="#PostCSS" class="headerlink" title="PostCSS"></a>PostCSS</h2><p>用 JavaScript 工具和插件转换 css 代码的工具，autoprefixer 是它的插件<br>官网： <a target="_blank" rel="noopener" href="https://postcss.org/">https://postcss.org/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/postcss/postcss">https://github.com/postcss/postcss</a><br>中文学习网站： <a target="_blank" rel="noopener" href="https://www.postcss.com.cn/">https://www.postcss.com.cn/</a>  </p>
-<h2 id="Terser"><a href="#Terser" class="headerlink" title="Terser"></a>Terser</h2><p>Js压缩混淆工具<br>Github: <a target="_blank" rel="noopener" href="https://github.com/terser">https://github.com/terser</a>  </p>
-<h2 id="Font-Awesome"><a href="#Font-Awesome" class="headerlink" title="Font-Awesome"></a>Font-Awesome</h2><p>Font Awesome 字体提供可缩放矢量图标,它可以被定制大小、颜色、阴影以及任何可以用CSS的样式。<br>官网： <a target="_blank" rel="noopener" href="https://fontawesome.com">https://fontawesome.com</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/FortAwesome/Font-Awesome">https://github.com/FortAwesome/Font-Awesome</a><br>中文学习网站： <a target="_blank" rel="noopener" href="http://www.fontawesome.com.cn/">http://www.fontawesome.com.cn/</a>  </p>
-<h2 id="normalize-css"><a href="#normalize-css" class="headerlink" title="normalize.css"></a>normalize.css</h2><p>针对浏览器的CSS重制样式以减少不同浏览器之间的样式差异<br>官网： <a target="_blank" rel="noopener" href="http://necolas.github.io/normalize.css/">http://necolas.github.io/normalize.css/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/necolas/normalize.css">https://github.com/necolas/normalize.css</a>  </p>
-<h2 id="three-js"><a href="#three-js" class="headerlink" title="three.js"></a>three.js</h2><p>使用默认 WebGL 渲染的 javascript 3d 库<br>官网： <a target="_blank" rel="noopener" href="https://threejs.org/">https://threejs.org/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/mrdoob/three.js">https://github.com/mrdoob/three.js</a>  </p>
-<h2 id="Chart-js"><a href="#Chart-js" class="headerlink" title="Chart.js"></a>Chart.js</h2><p>基于 <code>&lt;canvas/&gt;</code> 的简单的HTML5图表库<br>官网： <a target="_blank" rel="noopener" href="https://www.chartjs.org/">https://www.chartjs.org/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/chartjs/Chart.js">https://github.com/chartjs/Chart.js</a>  </p>
-<h2 id="Echarts"><a href="#Echarts" class="headerlink" title="Echarts"></a>Echarts</h2><p>一款图表与可视化的库<br>官网：<a target="_blank" rel="noopener" href="https://echarts.apache.org/zh/index.html">https://echarts.apache.org/zh/index.html</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/apache/echarts">https://github.com/apache/echarts</a></p>
-<h2 id="Highcharts"><a href="#Highcharts" class="headerlink" title="Highcharts"></a>Highcharts</h2><p>一款基于 SVG 的 JavaScript 图表库<br>官网：<a target="_blank" rel="noopener" href="http://www.highcharts.com">www.highcharts.com</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/highcharts/highcharts">https://github.com/highcharts/highcharts</a>  </p>
-<p>##</p>
-<h2 id="video-js"><a href="#video-js" class="headerlink" title="video.js"></a>video.js</h2><p>video.js是一款开源的 HTML5&amp;Flash 音频播放器组件<br>官网： <a target="_blank" rel="noopener" href="https://videojs.com">https://videojs.com</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/videojs/video.js">https://github.com/videojs/video.js</a>  </p>
-<h2 id="sheet-js"><a href="#sheet-js" class="headerlink" title="sheet.js"></a>sheet.js</h2><p>sheetjs是一个各种电子表格格式的解析器和编写器组件<br>官网： <a target="_blank" rel="noopener" href="https://sheetjs.com/">https://sheetjs.com/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/SheetJS/sheetjs">https://github.com/SheetJS/sheetjs</a>  </p>
-<h2 id="handsontable"><a href="#handsontable" class="headerlink" title="handsontable"></a>handsontable</h2><p>handsontable 是一款 JavaScript/HTML5数据网格与电子表格的组件。可用于React、Vue和Angular。<br>官网： <a target="_blank" rel="noopener" href="https://handsontable.com">https://handsontable.com</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/handsontable/handsontable">https://github.com/handsontable/handsontable</a>  </p>
-<h2 id="intro-js"><a href="#intro-js" class="headerlink" title="intro.js"></a>intro.js</h2><p>introjs是一个新功能介绍和步进用户指导的组件<br>官网： <a target="_blank" rel="noopener" href="https://introjs.com/">https://introjs.com/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/usablica/intro.js">https://github.com/usablica/intro.js</a>  </p>
-<h2 id="timesheet-js"><a href="#timesheet-js" class="headerlink" title="timesheet.js"></a>timesheet.js</h2><p>timesheetjs是一个时间线组件<br>官网： <a target="_blank" rel="noopener" href="https://sbstjn.github.io/timesheet.js">https://sbstjn.github.io/timesheet.js</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/sbstjn/timesheet.js">https://github.com/sbstjn/timesheet.js</a>  </p>
-<!--
-## Sketch
-Sketch 是一款适用于所有设计师的矢量绘图应用。  
-http://www.sketchcn.com/sketch-chinese-user-manual.html  
-
-## Axure rp
-Axure 是一款快速原型工具  
-https://www.axure.com.cn/  
--->
-<h2 id="Sentry"><a href="#Sentry" class="headerlink" title="Sentry"></a>Sentry</h2><p>前端错误监控服务<br>官网： <a target="_blank" rel="noopener" href="https://sentry.io/">https://sentry.io/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/getsentry/sentry">https://github.com/getsentry/sentry</a><br>中文学习文档： <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/161276192">https://zhuanlan.zhihu.com/p/161276192</a>  </p>
-<h2 id="Yapi"><a href="#Yapi" class="headerlink" title="Yapi"></a>Yapi</h2><p>接口管理平台<br>官网：<a target="_blank" rel="noopener" href="https://hellosean1025.github.io/yapi">https://hellosean1025.github.io/yapi</a><br>Github:<a target="_blank" rel="noopener" href="https://github.com/YMFE/yapi">https://github.com/YMFE/yapi</a>  </p>
-<h2 id="Swagger"><a href="#Swagger" class="headerlink" title="Swagger"></a>Swagger</h2><p>接口管理平台<br>官网：<a target="_blank" rel="noopener" href="https://swagger.io/">https://swagger.io/</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/swagger-api">https://github.com/swagger-api</a>  </p>
-<h2 id="strapi"><a href="#strapi" class="headerlink" title="strapi"></a>strapi</h2><p>接口管理平台<br>官网：<a target="_blank" rel="noopener" href="https://strapi.io">https://strapi.io</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/strapi/strapi">https://github.com/strapi/strapi</a>  </p>
-<h2 id="postman"><a href="#postman" class="headerlink" title="postman"></a>postman</h2><p>接口调试工具<br>官网：<a target="_blank" rel="noopener" href="https://www.postman.com/">https://www.postman.com/</a>  </p>
-<h2 id="sourcetree"><a href="#sourcetree" class="headerlink" title="sourcetree"></a>sourcetree</h2><p>免费的Git GUI工具<br>官网：<a target="_blank" rel="noopener" href="https://www.sourcetreeapp.com">https://www.sourcetreeapp.com</a></p>
-<h2 id="vscode"><a href="#vscode" class="headerlink" title="vscode"></a>vscode</h2><p>由Microsoft开发的开源集成开发环境<br>官网：<a target="_blank" rel="noopener" href="https://code.visualstudio.com">https://code.visualstudio.com</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/microsoft/vscode">https://github.com/microsoft/vscode</a>  </p>
-<h2 id="atom"><a href="#atom" class="headerlink" title="atom"></a>atom</h2><p>基于Electron开发的开源文本编辑器<br>官网：<a target="_blank" rel="noopener" href="https://atom.io">https://atom.io</a><br>Github: <a target="_blank" rel="noopener" href="https://github.com/atom/atom">https://github.com/atom/atom</a></p>
-<h2 id="charles"><a href="#charles" class="headerlink" title="charles"></a>charles</h2><p>网络调试代理工具<br>官网： <a target="_blank" rel="noopener" href="https://www.charlesproxy.com">https://www.charlesproxy.com</a><br>学习文档：<a href="/blog/2018/09/27/Charles使用说明/">Charles使用说明</a></p>
-<h2 id="Fiddler"><a href="#Fiddler" class="headerlink" title="Fiddler"></a>Fiddler</h2><p>网络调试代理工具<br>官网： <a target="_blank" rel="noopener" href="https://www.telerik.com/fiddler">https://www.telerik.com/fiddler</a>  </p>
-<h2 id="leetcode"><a href="#leetcode" class="headerlink" title="leetcode"></a>leetcode</h2><p>编程题网站<br>官网: <a target="_blank" rel="noopener" href="https://leetcode.com">https://leetcode.com</a></p>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
 
 
 <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/blog/page/16/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/15/">15</a><a class="page-number" href="/blog/page/16/">16</a><span class="page-number current">17</span>
+    <a class="extend prev" rel="prev" href="/blog/page/16/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/15/">15</a><a class="page-number" href="/blog/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/blog/page/18/">18</a><a class="extend next" rel="next" href="/blog/page/18/">Next &gt;&gt;</a>
 </nav>
 
 

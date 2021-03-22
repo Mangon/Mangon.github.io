@@ -108,6 +108,89 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/blog/2021/03/19/JS-%E5%AE%9E%E8%B7%B5/">JS 实践</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-19T08:10:10.000Z" itemprop="datePublished">2021-03-19</time>
+</span>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="书写一个数组去重的方法"><a href="#书写一个数组去重的方法" class="headerlink" title="书写一个数组去重的方法"></a>书写一个数组去重的方法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 利用ES6 Set数据结构去重</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deduplication</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(array));</span><br><span class="line">    <span class="comment">// return [...new Set(array)];</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历一遍 利用对象的属性不能相同的特点去重</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deduplication</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> obj = &#123;&#125;, result = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i&lt; array.length; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!obj[array[i]])&#123; <span class="comment">//如果能查找到，证明数组元素重复了</span></span><br><span class="line">            obj[array[i]] = <span class="number">1</span>;</span><br><span class="line">            result.push(array[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 双层遍历，内层遍历改用indexOf</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deduplication</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = [];</span><br><span class="line">    array.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item, index ,arr</span>)</span>&#123;  <span class="comment">//这里利用map，filter方法也可以实现外层遍历</span></span><br><span class="line">        <span class="keyword">if</span>(arr.indexOf(item, index + <span class="number">1</span>) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            result.push(item);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 双层遍历, 遇到重复则跳过，不重复的插入到新数组</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deduplication</span>(<span class="params">array</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> result = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; array.length; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(array[i] === array[j])&#123;</span><br><span class="line">                j = ++i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        result.push(array[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 双层遍历，删除重复，返回原数组 *对原数组有修改</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deduplication</span>(<span class="params">array</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> len = array.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; len; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(array[i] == array[j])&#123;</span><br><span class="line">                array.splice(j, <span class="number">1</span>);</span><br><span class="line">                len--;</span><br><span class="line">                j--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> array;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="书写将数组打乱顺序的方法"><a href="#书写将数组打乱顺序的方法" class="headerlink" title="书写将数组打乱顺序的方法"></a>书写将数组打乱顺序的方法</h2><h2 id="书写一个方法将一个字符串倒序输出"><a href="#书写一个方法将一个字符串倒序输出" class="headerlink" title="书写一个方法将一个字符串倒序输出"></a>书写一个方法将一个字符串倒序输出</h2><h2 id="书写一个方法使用reduce模拟map-使用map来模拟reduce"><a href="#书写一个方法使用reduce模拟map-使用map来模拟reduce" class="headerlink" title="书写一个方法使用reduce模拟map/使用map来模拟reduce"></a>书写一个方法使用reduce模拟map/使用map来模拟reduce</h2><p>使用reduce模拟map<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype._map = <span class="function"><span class="keyword">function</span>(<span class="params">fn, callbackThis</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 最终返回的新数组</span></span><br><span class="line">    <span class="keyword">let</span> res = [];</span><br><span class="line">    <span class="comment">// 定义回调函数的执行环境</span></span><br><span class="line">    <span class="comment">// call第一个参数传入null，则 this指向全局对象，同 map的规则</span></span><br><span class="line">    <span class="keyword">let</span> CBThis = callbackThis || <span class="literal">null</span>;</span><br><span class="line">    <span class="built_in">this</span>.reduce(<span class="function">(<span class="params">brfore, after, idx, arr</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 传入map回调函数拥有的参数</span></span><br><span class="line">        <span class="comment">// 把每一项的执行结果push进res中</span></span><br><span class="line">        res.push(fn.call(CBThis, after, idx, arr));</span><br><span class="line">    &#125;, <span class="literal">null</span>);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="解析url，将url中的参数转化为对象"><a href="#解析url，将url中的参数转化为对象" class="headerlink" title="解析url，将url中的参数转化为对象"></a>解析url，将url中的参数转化为对象</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getQueryString</span>(<span class="params">name</span>) </span>&#123; </span><br><span class="line">    <span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">&quot;(^|&amp;)&quot;</span> + name + <span class="string">&quot;=([^&amp;]*)(&amp;|$)&quot;</span>, <span class="string">&quot;i&quot;</span>); </span><br><span class="line">    <span class="keyword">var</span> r = <span class="built_in">window</span>.location.search.substr(<span class="number">1</span>).match(reg); </span><br><span class="line">    <span class="keyword">if</span> (r != <span class="literal">null</span>) <span class="keyword">return</span> <span class="built_in">unescape</span>(r[<span class="number">2</span>]); <span class="keyword">return</span> <span class="literal">null</span>; </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">GetRequest</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> url = location.search; <span class="comment">//获取url中&quot;?&quot;符后的字串</span></span><br><span class="line">    <span class="keyword">var</span> theRequest = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">    <span class="keyword">if</span> (url.indexOf(<span class="string">&quot;?&quot;</span>) != -<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> str = url.substr(<span class="number">1</span>);</span><br><span class="line">        strs = str.split(<span class="string">&quot;&amp;&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; strs.length; i ++) &#123;</span><br><span class="line">            theRequest[strs[i].split(<span class="string">&quot;=&quot;</span>)[<span class="number">0</span>]] = <span class="built_in">unescape</span>(strs[i].split(<span class="string">&quot;=&quot;</span>)[<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> theRequest;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="循环体中不含有break语句时使用while循环来模拟for循环"><a href="#循环体中不含有break语句时使用while循环来模拟for循环" class="headerlink" title="循环体中不含有break语句时使用while循环来模拟for循环"></a>循环体中不含有break语句时使用while循环来模拟for循环</h2><p>for循环：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(initialize; test; increment)body;</span><br></pre></td></tr></table></figure></p>
+<p>while循环：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">initialize;</span><br><span class="line"><span class="keyword">while</span> (test) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123; body;&#125;</span><br><span class="line">    <span class="keyword">finally</span> &#123; increment;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="试写出-bind-的-polyfill-方法"><a href="#试写出-bind-的-polyfill-方法" class="headerlink" title="试写出 bind() 的 polyfill 方法"></a>试写出 bind() 的 polyfill 方法</h2><p>MDN上的实现：  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Does not work with `new funcA.bind(thisArg, args)`</span></span><br><span class="line"><span class="keyword">if</span> (!<span class="built_in">Function</span>.prototype.bind) (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> slice = <span class="built_in">Array</span>.prototype.slice;</span><br><span class="line">  <span class="built_in">Function</span>.prototype.bind = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> thatFunc = <span class="built_in">this</span>, thatArg = <span class="built_in">arguments</span>[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">var</span> args = slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> thatFunc !== <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">      <span class="comment">// closest thing possible to the ECMAScript 5</span></span><br><span class="line">      <span class="comment">// internal IsCallable function</span></span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">&#x27;Function.prototype.bind - &#x27;</span> +</span><br><span class="line">             <span class="string">&#x27;what is trying to be bound is not callable&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">var</span> funcArgs = args.concat(slice.call(<span class="built_in">arguments</span>))</span><br><span class="line">      <span class="keyword">return</span> thatFunc.apply(thatArg, funcArgs);</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<h2 id="实现-emit-on-观察者模式-发布-订阅模式"><a href="#实现-emit-on-观察者模式-发布-订阅模式" class="headerlink" title="实现 emit/on 观察者模式 发布/订阅模式"></a>实现 emit/on 观察者模式 发布/订阅模式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Event = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> list = &#123;&#125;,</span><br><span class="line">        on,</span><br><span class="line">        emit,</span><br><span class="line">        remove;</span><br><span class="line">    on = <span class="function"><span class="keyword">function</span>(<span class="params">key,fn</span>)</span>&#123; <span class="comment">//监听事件函数</span></span><br><span class="line">        <span class="keyword">if</span>(!list[key])&#123;</span><br><span class="line">            list[key] = []; <span class="comment">//如果事件列表中还没有key值命名空间，创建</span></span><br><span class="line">        &#125;</span><br><span class="line">        list[key].push(fn); <span class="comment">//将回调函数推入对象的“键”对应的“值”回调数组</span></span><br><span class="line">    &#125;;</span><br><span class="line">    emit = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">//触发事件函数</span></span><br><span class="line">        <span class="keyword">var</span> key = <span class="built_in">Array</span>.prototype.shift.call(<span class="built_in">arguments</span>); <span class="comment">//第一个参数指定“键”</span></span><br><span class="line">        msg = list[key];</span><br><span class="line">        <span class="keyword">if</span>(!msg || msg.length === <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">//如果回调数组不存在或为空则返回false</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; msg.length; i++)&#123;</span><br><span class="line">            msg[i].apply(<span class="built_in">this</span>, <span class="built_in">arguments</span>); <span class="comment">//循环回调数组执行回调函数</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    remove = <span class="function"><span class="keyword">function</span>(<span class="params">key, fn</span>)</span>&#123; <span class="comment">//移除事件函数</span></span><br><span class="line">        <span class="keyword">var</span> msg = list[key];</span><br><span class="line">        <span class="keyword">if</span>(!msg)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">//事件不存在直接返回false</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(!fn)&#123;</span><br><span class="line">            <span class="keyword">delete</span> list[key]; <span class="comment">//如果没有后续参数，则删除整个回调数组</span></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; msg.length; i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(fn === msg[i])&#123;</span><br><span class="line">                    msg.splice(i, <span class="number">1</span>); <span class="comment">//删除特定回调数组中的回调函数</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        on: on,</span><br><span class="line">        emit: emit,</span><br><span class="line">        remove: remove</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="keyword">var</span> fn = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data + <span class="string">&#x27;的推送消息：xxxxxx......&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line">Event.on(<span class="string">&#x27;action&#x27;</span>, fn);</span><br><span class="line">Event.emit(<span class="string">&#x27;action&#x27;</span>, <span class="string">&#x27;2016.11.26&#x27;</span>);</span><br><span class="line">Event.remove(<span class="string">&#x27;action&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/03/19/JS-%E9%97%AD%E5%8C%85/">JS 闭包</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-19T07:56:35.000Z" itemprop="datePublished">2021-03-19</time>
+</span>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p>和其他大多数现代编程语言一样，JavaScript也采用词法作用域(lexical scoping)。也就是，函数的执行依赖于变量作用域，这个作用域是函数定义时决定的。而不是函数执行时决定的。为了实现这种词法作用域，JavaScript函数对象的内部状态不仅包含函数的代码逻辑，还必须引用当前的作用域链(scope chain)。函数可以通过作用域链(scope chain)相互关联起来，函数内部的变量都可以保存在函数作用域内，这种特性称为”闭包”。  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    n = <span class="number">999</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(n);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> f2;<span class="comment">// f2就是一个闭包</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> result = f1();</span><br><span class="line">result(); <span class="comment">// 999</span></span><br></pre></td></tr></table></figure>
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/blog/2021/03/19/JS-js-event-loop%E6%9C%BA%E5%88%B6-microtask-macrotask/">JS js event loop机制 microtask&amp;macrotask</a>
         </h1>
         
@@ -280,107 +363,10 @@
 </article>
 
 
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/03/19/HTML-cookie%E3%80%81sessionStorage%E3%80%81localStorage%E5%8C%BA%E5%88%AB%E4%B8%8E%E4%BD%9C%E7%94%A8/">HTML cookie、sessionStorage、localStorage区别与作用</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-03-19T07:36:17.000Z" itemprop="datePublished">2021-03-19</time>
-</span>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>相同点：  </p>
-<ol>
-<li>都是客户端临时信息对象</li>
-<li>只能存储字符串类型对象</li>
-</ol>
-<p>不同点：   </p>
-<ol>
-<li>生命周期不同，cookie可以设置过期时间，localStorage始终有效，sessionStorage在关闭窗口后失效</li>
-<li>cookie的主要内容包括：名字、值、过期时间、路径和域,有路径的概念，可以限制cookie只属于某个路径下</li>
-<li>存储大小限制不同，cookie 4k localStorage/sessionStorage 5M</li>
-<li>cookie始终在http请求中携带，Web Storage仅在本地保存</li>
-<li>作用域不同，sessionStorage在不同的浏览器窗口中不共享，即使是同一个页面，localStorage/cookie在所有同源的窗口中是共享的。</li>
-<li>Web Storage 有API setItem getItem removeItem clear， cookie需要自己解析</li>
-<li>document.cookie window.localStorage window.sessionStorage</li>
-<li>web storage是html5引入的，部分老旧浏览器不支持</li>
-</ol>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/03/19/FE-%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93html%E7%9A%84%E8%BF%87%E7%A8%8B/">FE 页面渲染html的过程</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-03-19T07:34:27.000Z" itemprop="datePublished">2021-03-19</time>
-</span>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>浏览器渲染页面的一般过程：</p>
-<p>1.浏览器解析html源码，然后创建一个 DOM树。并行请求 css/image/js在DOM树中，每一个HTML标签都有一个对应的节点，并且每一个文本也都会有一个对应的文本节点。DOM树的根节点就是 documentElement，对应的是html标签。</p>
-<p>2.浏览器解析CSS代码，计算出最终的样式数据。构建CSSOM树。对CSS代码中非法的语法它会直接忽略掉。解析CSS的时候会按照如下顺序来定义优先级：浏览器默认设置 &lt; 用户设置 &lt; 外链样式 &lt; 内联样式 &lt; html中的style。</p>
-<p>3.DOM Tree + CSSOM –&gt; 渲染树（rendering tree）。渲染树和DOM树有点像，但是是有区别的。</p>
-<p>DOM树完全和html标签一一对应，但是渲染树会忽略掉不需要渲染的元素，比如head、display:none的元素等。而且一大段文本中的每一个行在渲染树中都是独立的一个节点。渲染树中的每一个节点都存储有对应的css属性。</p>
-<p>4.一旦渲染树创建好了，浏览器就可以根据渲染树直接把页面绘制到屏幕上。</p>
-<p>以上四个步骤并不是一次性顺序完成的。如果DOM或者CSSOM被修改，以上过程会被重复执行。实际上，CSS和JavaScript往往会多次修改DOM或者CSSOM。</p>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
 
 
 <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/blog/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><a class="page-number" href="/blog/page/2/">2</a><a class="page-number" href="/blog/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/blog/page/5/">5</a><a class="page-number" href="/blog/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/17/">17</a><a class="extend next" rel="next" href="/blog/page/5/">Next &gt;&gt;</a>
+    <a class="extend prev" rel="prev" href="/blog/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><a class="page-number" href="/blog/page/2/">2</a><a class="page-number" href="/blog/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/blog/page/5/">5</a><a class="page-number" href="/blog/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/18/">18</a><a class="extend next" rel="next" href="/blog/page/5/">Next &gt;&gt;</a>
 </nav>
 
 

@@ -6,7 +6,7 @@
 
     
     <title>
-        
+        FE 前端工程化 | 
         Gblog
     </title>
     <meta name="author" content="Mangon" />
@@ -15,7 +15,7 @@
     <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
     
     
-    <meta name="description" content="Mangon&#39;s Technology Blog" />
+    <meta name="description" content="前端工程化是使用软件工程的技术和方法来对前端项目的开发、测试、上线和维护进行管理的方法。前端工程化的目的是为了提升开发效率，提高产品质量。主要包括以下几个方面：模块化前端模块化是指前端项目中包括Javascript、css、HTML和图片、字体、文本、声音等各种资源文件的编译、拆分、合并和引用的过程。  js 模块化 &amp;amp; 编译在ES6之前，JavaScript一直没有模块系统，这对开发大型复杂的前端工程造成了巨大的障碍。对此社区制定了一些模块加载方案，如 CommonJS 、 AMD" />
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
@@ -40,7 +40,7 @@
     <nav class="nav-inner">
         
             
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="/blog/">主页</a>
                 </li>
             
@@ -67,34 +67,11 @@
     </form>
 </div>        
         
+            
+        
 
         
-            <div class="author-meta">
-                
-                <div class="author-avatar">
-                    <a href="/blog/">
-                        <img src="/blog/images/avatar.jpeg" title="Mangon">
-                    </a>
-                </div>
-                
-                <div class="author-name">Mangon</div>
-                <div class="author-work">Front-End Software Engineer</div>
-                <div class="author-location">
-                    <i class="icon-location vm"></i>
-                    <span class="vm">Beijing, China</span>
-                </div>
-                
-                <div class="author-thread-wrap">
-                    <div class="author-threads clearfix">
-                        
-                        <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
-                        
-                        
-                        
-                    </div>
-                </div>
-                
-            </div>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text">模块化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#js-%E6%A8%A1%E5%9D%97%E5%8C%96-amp-%E7%BC%96%E8%AF%91"><span class="toc-number">1.1.</span> <span class="toc-text">js 模块化 &amp; 编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#css-%E6%A8%A1%E5%9D%97%E5%8C%96-amp-%E9%A2%84%E7%BC%96%E8%AF%91"><span class="toc-number">1.2.</span> <span class="toc-text">css 模块化 &amp; 预编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML-%E6%A8%A1%E6%9D%BF"><span class="toc-number">1.3.</span> <span class="toc-text">HTML 模板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="toc-number">1.4.</span> <span class="toc-text">资源模块化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E5%8C%96"><span class="toc-number">2.</span> <span class="toc-text">组件化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%84%E8%8C%83%E5%8C%96"><span class="toc-number">3.</span> <span class="toc-text">规范化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83"><span class="toc-number">3.1.</span> <span class="toc-text">编码规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E8%A7%84%E8%8C%83"><span class="toc-number">3.2.</span> <span class="toc-text">其他规范</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%8C%96"><span class="toc-number">4.</span> <span class="toc-text">自动化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA"><span class="toc-number">4.1.</span> <span class="toc-text">自动化构建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95"><span class="toc-number">4.2.</span> <span class="toc-text">自动化测试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-UT"><span class="toc-number">4.2.1.</span> <span class="toc-text">单元测试(UT)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AB%AF%E5%88%B0%E7%AB%AF%E6%B5%8B%E8%AF%95-E2E"><span class="toc-number">4.2.2.</span> <span class="toc-text">端到端测试(E2E)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%EF%BC%88CI%EF%BC%89"><span class="toc-number">4.3.</span> <span class="toc-text">持续集成（CI）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E4%B8%8A%E7%9B%91%E6%8E%A7"><span class="toc-number">4.4.</span> <span class="toc-text">线上监控</span></a></li></ol></li></ol>
         
         <div id="coffee-content"></div>
     </div>
@@ -102,13 +79,12 @@
 
 </header>
 
-        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
-    <article class="article" itemscope itemprop="blogPost">
+        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content"><article class="article" itemscope itemprop="blogPost">
     
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2021/03/22/FE-%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/">FE 前端工程化</a>
+            FE 前端工程化
         </h1>
         
         <div class="article-meta clearfix">
@@ -168,195 +144,6 @@
     
 </article>
 
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/03/22/JS-%E6%AF%94%E8%BE%83Vue%E5%92%8CReact/">JS-比较Vue和React</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-03-22T08:04:20.000Z" itemprop="datePublished">2021-03-22</time>
-</span>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="相同之处"><a href="#相同之处" class="headerlink" title="相同之处"></a>相同之处</h2><ol>
-<li>使用 Virtual DOM</li>
-<li>提供了响应式 (Reactive) 和组件化 (Composable) 的视图组件。</li>
-<li>将注意力集中保持在核心库，而将其他功能如路由（react-router、vue-router）和全局状态管理（redux、vuex）交给相关的库。</li>
-<li>都有自己的cli，React 是 Create React App， Vue 是 vue-cli。</li>
-<li>都有自己的跨端解决方案 React Native 与 weex</li>
-</ol>
-<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><ol>
-<li>React中组件的渲染功能依赖JSX，可扩展性更好。Vue中使用了Templates，易于从HTML迁移，学习成本低。</li>
-<li>对于 “组件作用域内的 CSS” React通过 CSS-in-JS 的方案实现的，Vue 设置样式的默认方法是单文件组件里类似 style 的标签。</li>
-<li>在跨端支持上，ReactNative 由</li>
-</ol>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/03/21/JS-%E6%95%B0%E7%BB%84/">JS 数组</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-03-21T08:41:38.000Z" itemprop="datePublished">2021-03-21</time>
-</span>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="数组的属性-amp-方法有哪些？"><a href="#数组的属性-amp-方法有哪些？" class="headerlink" title="数组的属性&amp;方法有哪些？"></a>数组的属性&amp;方法有哪些？</h2><p><code>length</code>    设置或返回数组中元素的数目。<br><code>unshift()</code>    将一个或多个元素添加到数组的开头，并返回该数组的新长度<br><code>shift()</code>    从数组中删除第一个元素，并返回该元素的值<br><code>push()</code>    将新元素添加到一个数组中，并返回数组的新长度值。<br><code>pop()</code>    从数组中删除最后一个元素，并返回该元素的值<br><code>splice(start[, deleteCount[, item1[, item2[, ...]]]])</code>    通过删除或替换现有元素或者原地添加新的元素来修改数组,并以数组形式返回被修改的内容<br><code>reverse()</code>    将数组中元素的位置颠倒，并返回该数组<br><code>sort([compareFunction])</code>    用原地算法对数组的元素进行排序，并返回数组  </p>
-<p><code>slice([begin[, end]])</code>    返回一个新的数组对象，这一对象是一个由 begin 和 end 决定的原数组的浅拷贝（包括 begin，不包括 end）<br><code>join(separator)</code>    将数组的元素组起一个字符串，以separator为分隔符，省略的话则用默认用逗号为分隔符<br><code>concat(value1[, value2[, ...[, valueN]]])</code>    用于合并两个或多个数组<br><code>includes(valueToFind[, fromIndex])</code>    用来判断一个数组是否包含一个指定的值<br><code>indexOf(searchElement[, fromIndex])</code>    返回在数组中可以找到一个给定元素的第一个索引<br><code>lastIndexOf(searchElement[, fromIndex])</code>    返回指定元素（也即有效的 JavaScript 值或变量）在数组中的最后一个的索引<br><code>copyWithin(target[, start[, end]])</code>    浅复制数组的一部分到同一数组中的另一个位置，并返回它，不会改变原数组的长度<br><code>fill(value[, start[, end]])</code>    用一个固定值填充一个数组中从起始索引到终止索引内的全部元素<br><code>flat([depth])</code>    按照一个可指定的深度递归遍历数组，并将所有元素与遍历到的子数组中的元素合并为一个新数组返回<br><code>flatMap(function callback(currentValue[, index[, array]]) &#123;/* return element for new_array */&#125;[, thisArg])</code>    首先使用映射函数映射每个元素，然后将结果压缩成一个新数组  </p>
-<p><code>entries()</code>    返回一个新的 Array Iterator 对象，该对象包含数组中每个索引的键/值对<br><code>keys()</code>    返回一个包含数组中每个索引键的 Array Iterator 对象<br><code>values()</code>    返回一个新的 Array Iterator 对象，该对象包含数组每个索引的值  </p>
-<p><code>toLocaleString([locales[,options]])</code>    返回一个字符串表示数组中的元素。数组中的元素将使用各自的 toLocaleString 方法转成字符串<br><code>toString()</code>    返回一个字符串，表示指定的数组及其元素  </p>
-<p><code>forEach(callback(currentValue [, index [, array]])[, thisArg])</code>    方法对数组的每个元素执行一次给定的函数<br><code>map(function callback(currentValue[, index[, array]]) &#123;/* Return element for new_array */&#125;[, thisArg])</code>    创建一个新数组，其结果是该数组中的每个元素是调用一次提供的函数后的返回值<br><code>reduce(callback(accumulator, currentValue[, index[, array]])[, initialValue])</code>    对数组中的每个元素执行一个由你提供的 reducer 函数(升序执行)，将其结果汇总为单个返回值。<br><code>reduceRight(callback(accumulator, currentValue[, index[, array]])[, initialValue])</code>    和 <code>reduce</code> 相似，降序执行<br><code>some(callback(element[, index[, array]])[, thisArg])</code>    测试数组中是不是至少有1个元素通过了被提供的函数测试<br><code>every(callback(element[, index[, array]])[, thisArg])</code>    测试一个数组内的所有元素是否都能通过某个指定函数的测试<br><code>filter(callback(element[, index[, array]])[, thisArg])</code>    创建一个新数组, 其包含通过所提供函数实现的测试的所有元素<br><code>find(callback[, thisArg])</code>    返回数组中满足提供的测试函数的第一个元素的值<br><code>findIndex(callback[, thisArg])</code>    返回数组中满足提供的测试函数的第一个元素的索引  </p>
-<p><code>Array.from()</code>    从一个类似数组或可迭代对象创建一个新的，浅拷贝的数组实例<br><code>Array.of()</code>    创建一个具有可变数量参数的新数组实例，而不考虑参数的数量或类型<br><code>Array.isArray()</code>    用于确定传递的值是否是一个 <code>Array</code></p>
-<p>其中 <code>shift</code>、<code>unshift</code>、<code>push</code>、<code>pop</code>、<code>reverse</code>、<code>sort</code>、<code>splice</code> 这些方法会改变原数组<br><code>forEach</code>、<code>map</code>、<code>reduce</code>、<code>reduceRight</code>、<code>some</code>、<code>every</code>、<code>filter</code>、<code>find</code>、<code>findIndex</code> 可以用来遍历  </p>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/03/21/JS-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%AF%B9%E8%B1%A1%E7%89%B9%E6%80%A7/">JS 对象的对象特性</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-03-21T03:27:48.000Z" itemprop="datePublished">2021-03-21</time>
-</span>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h3 id="对象特性（object-attribute）有哪些？分别有什么含义？"><a href="#对象特性（object-attribute）有哪些？分别有什么含义？" class="headerlink" title="对象特性（object attribute）有哪些？分别有什么含义？"></a>对象特性（object attribute）有哪些？分别有什么含义？</h3><p>对象除了包含属性外还拥有三个相关的对象特性：  </p>
-<ol>
-<li>原型 prototype: 指向另外一个对象，本对象的属性继承自它的原型对象<br>通过 <code>Object.getPropertyOf($object)</code> 可以获取对象的原型对象，或者通过非正式的 <code>$object.__proto__</code> 获取对象的原型对象  </li>
-<li>类 class: 标志对象类型的字符串<br>通过toString方法获取第8到倒数第二个位置之间的字符可以获取  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">classof</span>(<span class="params">o</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (o === <span class="literal">null</span>) <span class="keyword">return</span> <span class="string">&#x27;Null&#x27;</span>;</span><br><span class="line">    <span class="keyword">if</span> (o === <span class="literal">undefined</span>) <span class="keyword">return</span> <span class="string">&#x27;Undefined&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(o).slice(<span class="number">8</span>, -<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>扩展标记 extensible flag: 指明了是否可以向该对象添加新属性<br>通过 <code>Object.isExtensible($object)</code> 来判断该对象是否可扩展，通过 <code>Object.preventExtensions($object)</code> 来将对象设置成不可扩展的。  </li>
-</ol>
-<p>tips:<br><code>Object.seal($object)</code> 可以将对象设置为不可扩展且所有自有（非继承）属性不能删除与配置。<br>通过 <code>Object.isSealed($object)</code> 来判断对象是否被封闭。  </p>
-<p><code>Object.freeze($object)</code> 可以将对象设置为不可扩展、不可配置且所有自有（非继承）属性设置为只读。<br>通过 <code>Object.isFrozen($object)</code> 排判断对象是否冻结。  </p>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/03/21/JS-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B1%9E%E6%80%A7%E7%89%B9%E6%80%A7/">JS 对象的属性特性</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-03-21T03:26:32.000Z" itemprop="datePublished">2021-03-21</time>
-</span>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h3 id="对象的属性特性（property-attribute）有哪些？分别有什么含义？"><a href="#对象的属性特性（property-attribute）有哪些？分别有什么含义？" class="headerlink" title="对象的属性特性（property attribute）有哪些？分别有什么含义？"></a>对象的属性特性（property attribute）有哪些？分别有什么含义？</h3><ol>
-<li>可写 writeable attribute: 表明是否可以设置该属性的值  </li>
-<li>可枚举 enumerable attribute: 表明是否可以通过for/in循环返回该属性  </li>
-<li>可配置 configurable attribute: 表明是否可以删除或修改该属性  </li>
-</ol>
-<p><code>Object.getOwnPropertyDescriptor($object, $property)</code> 可以获取对象的属性特性  </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.defineProperty($object, $property, &#123;</span><br><span class="line">    value: $value,</span><br><span class="line">    writable: $boolean,</span><br><span class="line">    enumerable; $boolean,</span><br><span class="line">    configurable: $boolean</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">Object</span>.definePropertys($object, &#123;</span><br><span class="line">    $property1: &#123;</span><br><span class="line">        value: $value,</span><br><span class="line">        writable: $boolean,</span><br><span class="line">        enumerable; $boolean,</span><br><span class="line">        configurable: $boolean</span><br><span class="line">    &#125;,</span><br><span class="line">    $property2: &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>可以设置对象的属性特性  </p>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-
-
-<nav class="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="page-number" href="/blog/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/18/">18</a><a class="extend next" rel="next" href="/blog/page/2/">Next &gt;&gt;</a>
-</nav>
 
 
 </div>
@@ -428,6 +215,11 @@
             searchFunc(path, 'search-box', 'search-result');
         </script>
     
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        </script>
     
     
         <script>
