@@ -108,6 +108,51 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/blog/2021/03/21/JS-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B1%9E%E6%80%A7%E7%89%B9%E6%80%A7/">JS 对象的属性特性</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-21T03:26:32.000Z" itemprop="datePublished">2021-03-21</time>
+</span>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h3 id="对象的属性特性（property-attribute）有哪些？分别有什么含义？"><a href="#对象的属性特性（property-attribute）有哪些？分别有什么含义？" class="headerlink" title="对象的属性特性（property attribute）有哪些？分别有什么含义？"></a>对象的属性特性（property attribute）有哪些？分别有什么含义？</h3><ol>
+<li>可写 writeable attribute: 表明是否可以设置该属性的值  </li>
+<li>可枚举 enumerable attribute: 表明是否可以通过for/in循环返回该属性  </li>
+<li>可配置 configurable attribute: 表明是否可以删除或修改该属性  </li>
+</ol>
+<p><code>Object.getOwnPropertyDescriptor($object, $property)</code> 可以获取对象的属性特性  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.defineProperty($object, $property, &#123;</span><br><span class="line">    value: $value,</span><br><span class="line">    writable: $boolean,</span><br><span class="line">    enumerable; $boolean,</span><br><span class="line">    configurable: $boolean</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">Object</span>.definePropertys($object, &#123;</span><br><span class="line">    $property1: &#123;</span><br><span class="line">        value: $value,</span><br><span class="line">        writable: $boolean,</span><br><span class="line">        enumerable; $boolean,</span><br><span class="line">        configurable: $boolean</span><br><span class="line">    &#125;,</span><br><span class="line">    $property2: &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>可以设置对象的属性特性  </p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/blog/2021/03/21/JS-this/">JS this</a>
         </h1>
         
@@ -264,46 +309,6 @@
 </li>
 </ul>
 
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/03/20/JS-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">JS 数据类型</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-03-19T16:27:16.000Z" itemprop="datePublished">2021-03-20</time>
-</span>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="js-有哪些数据类型"><a href="#js-有哪些数据类型" class="headerlink" title="js 有哪些数据类型"></a>js 有哪些数据类型</h2><p>js有七种数据类型： 数值number（包括整数和浮点数），字符串string，布尔值boolean，undefined，null，对象object，symbol(ES6添加)<br>其中除对象外都是基本数据类型（primitive data type），没有方法。<br>对象又分为三种 object array function<br>除了 null 和 undefined之外，所有基本类型都有其对应的包装对象：</p>
-<p><code>String</code> 为字符串基本类型的包装对象。<br><code>Number</code> 为数值基本类型的包装对象。<br><code>Boolean</code> 为布尔基本类型的包装对象。<br><code>Symbol</code> 为字面量基本类型(不支持 new Symbol())的包装对象。<br>一个包装对象的valueOf()方法将会返回它的基本类型值。  </p>
-<h2 id="如何区分属于哪种数据类型"><a href="#如何区分属于哪种数据类型" class="headerlink" title="如何区分属于哪种数据类型"></a>如何区分属于哪种数据类型</h2><p><code>typeof</code> 运算符: <code>typeof</code> 操作符返回一个字符串，表示未经计算的操作数的类型。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="number">123</span> <span class="comment">// &#x27;number&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">Infinity</span> <span class="comment">// &#x27;number&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">NaN</span> <span class="comment">// &#x27;number&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="string">&#x27;123&#x27;</span> <span class="comment">// &#x27;string&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">false</span> <span class="comment">// &#x27;boolean&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">true</span> <span class="comment">// &#x27;boolean&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">undefined</span> <span class="comment">// &#x27;undefined&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">null</span> <span class="comment">// &#x27;object&#x27; 历史原因，可以通过恒等 === 来区分</span></span><br><span class="line"><span class="literal">null</span> == <span class="literal">undefined</span> <span class="comment">// true</span></span><br><span class="line"><span class="keyword">typeof</span> &#123;&#125; <span class="comment">// &#x27;object&#x27;</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="keyword">typeof</span> f <span class="comment">// &#x27;function&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> [] <span class="comment">// &#x27;object&#x27;</span></span><br><span class="line">[] <span class="keyword">instanceof</span> <span class="built_in">Array</span> <span class="comment">// true</span></span><br><span class="line"><span class="keyword">const</span> symbol = <span class="built_in">Symbol</span>();</span><br><span class="line"><span class="keyword">typeof</span> symbol <span class="comment">// &#x27;symbol&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="built_in">String</span> <span class="comment">// &#x27;function&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="built_in">String</span>() <span class="comment">// &#x27;string&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="keyword">new</span> <span class="built_in">String</span>() <span class="comment">// &#x27;object&#x27;</span></span><br></pre></td></tr></table></figure>
         
     </section>
     

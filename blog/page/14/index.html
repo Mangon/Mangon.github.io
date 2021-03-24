@@ -108,6 +108,51 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/blog/2018/09/25/TIPS-%E5%A4%B1%E6%95%88%E9%93%BE%E6%8E%A5%E6%9B%BF%E6%8D%A2%E6%96%B9%E6%A1%88/">失效链接替换方案</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-25T08:05:17.000Z" itemprop="datePublished">2018-09-25</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/Javascript/" rel="tag">Javascript</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>有些时候，尤其在文档型的网站中，页面链接经常变化调整。通常的做法即搜索网站中的所有相应页面进行url替换，但是即使这样做了，还是有一定风险，用户可能已经收藏了链接，在用户点击收藏链接跳转的时候，会发现页面不存在。这时，我们可以通过设置404页面来引导用户跳转到其它的可能符合用户期望的页面（比如主页）。同样的，如果其它网站引用了该失效链接，同时不希望此网站的引用失效（或者没有修改此网站的权限），就只能在落地页网站做一下兼容，在跳转的时候重新定向一下，具体代码如下：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">!<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> path = location.pathname + location.hash;</span><br><span class="line">    <span class="keyword">var</span> urlMap = &#123;</span><br><span class="line">        <span class="string">&#x27;xxx&#x27;</span>: <span class="string">&#x27;xxxx&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;xxx/media#live-player&#x27;</span>: <span class="string">&#x27;xxx/media_live-player/&#x27;</span></span><br><span class="line">    &#125;;</span><br><span class="line">    urlMap[path] &amp;&amp; location.replace(urlMap[path]);</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
+<p>这是一种治标不治本的改动，最好的改动还是移除失效的链接。  </p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/blog/2018/09/18/CSS-%E9%95%BF%E5%BA%A6%E5%8D%95%E4%BD%8D/">CSS长度单位</a>
         </h1>
         
@@ -462,67 +507,6 @@
 <h2 id="常用设置"><a href="#常用设置" class="headerlink" title="常用设置"></a>常用设置</h2><p>不折行，可以左右滑动：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">white-space</span>: nowrap;</span><br><span class="line"><span class="attribute">overflow-x</span>: scroll;</span><br></pre></td></tr></table></figure></p>
 <p>每行长度固定，到长度即折行：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">white-space</span>: normal;</span><br><span class="line"><span class="attribute">word-wrap</span>: break-word;</span><br><span class="line"><span class="attribute">word-break</span>: break-all;</span><br></pre></td></tr></table></figure></p>
 <p>每行长度固定，到长度即折行，但标点字符不在首位：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">white-space</span>: normal;</span><br><span class="line"><span class="attribute">word-wrap</span>: break-word;</span><br><span class="line"><span class="attribute">word-break</span>: normal;</span><br></pre></td></tr></table></figure></p>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2018/09/12/HTML-querySelectorAll%E4%B8%80%E4%B8%AA%E5%B0%8F%E5%9D%91/">querySelectorAll一个小坑</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-09-12T08:44:45.000Z" itemprop="datePublished">2018-09-12</time>
-</span>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/bug/" rel="tag">bug</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>首先查看一下querySelectorAll的文档：  </p>
-<h2 id="querySelectorAll"><a href="#querySelectorAll" class="headerlink" title="querySelectorAll"></a>querySelectorAll</h2><p>返回与指定的选择器组匹配的文档中的元素列表 (使用深度优先的先序遍历文档的节点)。返回的对象是 <code>NodeList</code> 。  </p>
-<p>用法：  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> elementList = <span class="built_in">document</span>.querySelectorAll(selectors);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>elementList 是一个静态的 NodeList 类型的对象.</li>
-<li>selectors 是一个由逗号连接的包含一个或多个CSS选择器的字符串.</li>
-<li>如果 selectors参数中包含 <code>CSS伪元素</code>,则返回一个空的elementList.</li>
-<li>如果指定的选择器不合法,则抛出一个<code>SYNTAX_ERR</code> 异常.</li>
-</ul>
-<h2 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h2><p>如下一个element  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;123&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;test&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>document.getElementById(‘123’)可以正常获取到该元素<br>document.querySelectorAll(‘#123’)则报错  </p>
-<p>我们看下Zepto中选择器的实现</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// `$.zepto.qsa` is Zepto&#x27;s css selector implementation which</span></span><br><span class="line"><span class="comment">// uses `document.querySelectorAll` and optimizes for some special cases, like `#id`.</span></span><br><span class="line"><span class="comment">// This method can be overridden in plugins.</span></span><br><span class="line">zepto.qsa = <span class="function"><span class="keyword">function</span>(<span class="params">element, selector</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> found,</span><br><span class="line">      maybeID = selector[<span class="number">0</span>] == <span class="string">&#x27;#&#x27;</span>,</span><br><span class="line">      maybeClass = !maybeID &amp;&amp; selector[<span class="number">0</span>] == <span class="string">&#x27;.&#x27;</span>,</span><br><span class="line">      nameOnly = maybeID || maybeClass ? selector.slice(<span class="number">1</span>) : selector, <span class="comment">// Ensure that a 1 char tag name still gets checked</span></span><br><span class="line">      isSimple = <span class="regexp">/^[\w-]*$/</span>.test(nameOnly)</span><br><span class="line">  <span class="keyword">return</span> (element.getElementById &amp;&amp; isSimple &amp;&amp; maybeID) ? <span class="comment">// Safari DocumentFragment doesn&#x27;t have getElementById</span></span><br><span class="line">    ( (found = element.getElementById(nameOnly)) ? [found] : [] ) :</span><br><span class="line">    (element.nodeType !== <span class="number">1</span> &amp;&amp; element.nodeType !== <span class="number">9</span> &amp;&amp; element.nodeType !== <span class="number">11</span>) ? [] :</span><br><span class="line">    slice.call(</span><br><span class="line">      isSimple &amp;&amp; !maybeID &amp;&amp; element.getElementsByClassName ? <span class="comment">// DocumentFragment doesn&#x27;t have getElementsByClassName/TagName</span></span><br><span class="line">        maybeClass ? element.getElementsByClassName(nameOnly) : <span class="comment">// If it&#x27;s simple, it could be a class</span></span><br><span class="line">        element.getElementsByTagName(selector) : <span class="comment">// Or a tag</span></span><br><span class="line">        element.querySelectorAll(selector) <span class="comment">// Or it&#x27;s not simple, and we need to query all</span></span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>同样的，zepto中的选择器用的就是querySelectorAll，但是对于简单情况，又可能使用getElementById/getElementsByClassName/getElementsByTagName，<br>所以对于上面的元素，$(‘#123’)可以获取到元素， $(‘#123 .test’)却会报错，$(‘#123’).find(‘.sddd’)可以正常获取到。<br>对于如下这种元素使用$(‘#1.2.3-标题’)也会报错<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;1.2.3-标题&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure><br>报错信息：  </p>
-<blockquote>
-<p><em>VM238:1 Uncaught DOMException: Failed to execute ‘querySelectorAll’ on ‘Document’: ‘#123’ is not a valid selector</em>.</p>
-</blockquote>
 
         
     </section>

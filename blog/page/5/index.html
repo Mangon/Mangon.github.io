@@ -108,6 +108,68 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/blog/2021/03/19/FE-%E8%B7%A8%E5%9F%9F/">FE 跨域</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-19T07:37:31.000Z" itemprop="datePublished">2021-03-19</time>
+</span>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h3 id="什么是跨域"><a href="#什么是跨域" class="headerlink" title="什么是跨域?"></a>什么是跨域?</h3><p>只要协议、域名、端口有任何一个不同，都被当作是不同的域，浏览器的同源策略导致无法直接跨域发送请求。<br>DOM同源策略：禁止对不同源页面DOM进行操作。这里主要场景是iframe跨域的情况，不同域名的iframe是限制互相访问的。<br>XmlHttpRequest同源策略：禁止使用XHR对象向不同源的服务器地址发起HTTP请求</p>
+<h3 id="跨域的方法有哪些？"><a href="#跨域的方法有哪些？" class="headerlink" title="跨域的方法有哪些？"></a>跨域的方法有哪些？</h3><p>跨域的方法：</p>
+<ol>
+<li>CORS-跨域资源共享<br>CORS是一个W3C标准，全称是”跨域资源共享”（Cross-origin resource sharing).<br>客户端： <code>xhr.withCredentials = true;</code><br>服务器端：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Access-Control-Allow-Origin: http:&#x2F;&#x2F;www.yourhost.com</span><br><span class="line">Access-Control-Allow-Credentials:true</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>jsonp<br>jsonp就是利用 <code>&lt;script\&gt;</code> 标签没有跨域限制的要求来达到与第三方通讯的目的。当需要通讯时，本站脚本创建一个 <code>&lt;script\&gt;</code> 元素，地址指向第三方的API网址，形如：</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;http://www.example.net/api?param1=1&amp;param2=2&amp;func=callback&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>并提供一个回调函数来接收数据（函数名可约定，或通过地址参数传递）。<br>第三方产生的响应为json数据的包装（故称之为jsonp，即json padding），形如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">callback(&#123;<span class="string">&quot;name&quot;</span>:<span class="string">&quot;hax&quot;</span>,<span class="string">&quot;gender&quot;</span>:<span class="string">&quot;Male&quot;</span>&#125;)</span><br></pre></td></tr></table></figure>
+<p>这样浏览器会调用 callback 函数，并传递解析后 json 对象作为参数。本站脚本可在 callback 函数里处理所传入的数据。</p>
+<p>客户端实现：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> url=<span class="string">&quot;http://www.x.com/test?a=1&amp;callback=test&quot;</span>;</span><br><span class="line"><span class="comment">// 然后前端通过script标签去访问并执行，上面的东西</span></span><br><span class="line"><span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">&#x27;script&#x27;</span>);</span><br><span class="line">script.setAttribute(<span class="string">&#x27;src&#x27;</span>, url);</span><br><span class="line"><span class="comment">// 把script标签加入head，此时调用开始</span></span><br><span class="line"><span class="built_in">document</span>.getElementsByTagName(<span class="string">&#x27;head&#x27;</span>)[<span class="number">0</span>].appendChild(script); </span><br><span class="line"><span class="comment">// 然后就会调用页面的test方法</span></span><br><span class="line"><span class="comment">// test(&#123;&#125;)</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p>服务器代理<br>浏览器有跨域限制，但是服务器不存在跨域问题，所以可以由服务器请求所要域的资源再返回给客户端。</p>
+</li>
+<li><p><code>document.domain</code> 来跨子域<br>对于主域名相同，而子域名不同的情况，可以使用 <code>document.domain</code> 来跨域</p>
+</li>
+<li><p>使用 <code>window.name</code> 来进行跨域<br>window对象有个name属性，该属性有个特征：即在一个窗口(window)的生命周期内,窗口载入的所有的页面都是共享一个window.name的，每个页面对window.name都有读写的权限，window.name是持久存在一个窗口载入过的所有页面中的</p>
+</li>
+<li><p>使用 postMessage 实现页面之间通信<br>window.postMessage是一个HTML5的api，允许两个窗口之间进行跨域发送消息。</p>
+</li>
+</ol>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/blog/2021/03/19/HTML-cookie%E3%80%81sessionStorage%E3%80%81localStorage%E5%8C%BA%E5%88%AB%E4%B8%8E%E4%BD%9C%E7%94%A8/">HTML cookie、sessionStorage、localStorage区别与作用</a>
         </h1>
         
@@ -277,46 +339,6 @@
 <p>其一，通过在浮动元素的末尾添加一个空元素，设置 <code>clear：both</code> 属性，<code>after</code> 伪元素其实也是通过 <code>content</code> 在元素的后面生成了内容为一个点的块级元素；  </p>
 <p>其二，通过设置父元素 <code>overflow</code> 或者 <code>display：table</code> 属性来闭合浮动。  </p>
 
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/03/19/CSS-%E5%AE%9E%E8%B7%B5/">CSS 实践</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-03-19T06:39:39.000Z" itemprop="datePublished">2021-03-19</time>
-</span>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="画一条0-5px的直线"><a href="#画一条0-5px的直线" class="headerlink" title="画一条0.5px的直线"></a>画一条0.5px的直线</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">1px</span>;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">scale</span>(<span class="number">0.5</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="画一个三角形"><a href="#画一个三角形" class="headerlink" title="画一个三角形"></a>画一个三角形</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">border-width</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">border-style</span>: solid;</span><br><span class="line">    <span class="attribute">border-color</span>: transparent <span class="number">#0099CC</span> transparent transparent;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">90deg</span>); <span class="comment">/*顺时针旋转90°*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="实现元素吸底，dom固定显示在浏览器底部"><a href="#实现元素吸底，dom固定显示在浏览器底部" class="headerlink" title="实现元素吸底，dom固定显示在浏览器底部"></a>实现元素吸底，dom固定显示在浏览器底部</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attribute">position</span>: fixed; <span class="comment">/* 相对浏览器定位 */</span></span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="如何打码？"><a href="#如何打码？" class="headerlink" title="如何打码？"></a>如何打码？</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attribute">filter</span>: <span class="built_in">blur</span>(<span class="number">2px</span>); <span class="comment">/* 高斯模糊 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         
     </section>
     

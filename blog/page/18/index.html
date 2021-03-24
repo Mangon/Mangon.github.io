@@ -108,6 +108,60 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/blog/2018/08/24/Hexo-%E4%BD%BF%E7%94%A8Hexo%E5%8F%91%E5%B8%83%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%88%B0GithubPages/">使用Hexo发布个人博客到Github Pages</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-08-24T05:11:29.000Z" itemprop="datePublished">2018-08-24</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/Hexo/" rel="tag">Hexo</a>, <a class="article-tag-link" href="/blog/tags/blog/" rel="tag">blog</a>, <a class="article-tag-link" href="/blog/tags/github/" rel="tag">github</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p><a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
+<h2 id="安装前提"><a href="#安装前提" class="headerlink" title="安装前提"></a>安装前提</h2><p>安装 Hexo 相当简单。然而在安装前，您必须检查电脑中是否已安装下列应用程序：</p>
+<p><a href="nodejs.org">Node.js</a><br><a href="git-scm.com">Git</a>  </p>
+<h2 id="安装Hexo-cli"><a href="#安装Hexo-cli" class="headerlink" title="安装Hexo-cli"></a>安装Hexo-cli</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<h2 id="在github中创建仓库"><a href="#在github中创建仓库" class="headerlink" title="在github中创建仓库"></a>在github中创建仓库</h2><p>仓库需要以<code>.github.io</code>结尾<br><img src="/blog/static/imgs/create-repo.png" alt="create-repo"></p>
+<h2 id="建站"><a href="#建站" class="headerlink" title="建站"></a>建站</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init &lt;folder&gt;</span><br><span class="line">$ <span class="built_in">cd</span> &lt;folder&gt;</span><br><span class="line">$ npm install</span><br><span class="line">$ npm install hexo-deployer-git --save</span><br><span class="line">$ hexo g</span><br></pre></td></tr></table></figure>
+<h2 id="配置发布参数"><a href="#配置发布参数" class="headerlink" title="配置发布参数"></a>配置发布参数</h2><p>在 _config.yml 中修改参数</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/username/username.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">&lt;username&gt;</span></span><br><span class="line">  <span class="attr">email:</span> <span class="string">&lt;useremail&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
+<h2 id="本地预览"><a href="#本地预览" class="headerlink" title="本地预览"></a>本地预览</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server -p 5000</span><br></pre></td></tr></table></figure>
+<p>可以在 <a target="_blank" rel="noopener" href="http://localhost:5000/">http://localhost:5000/</a> 预览效果  </p>
+<h2 id="完成"><a href="#完成" class="headerlink" title="完成"></a>完成</h2><p>访问 https://&lt;username>.github.io 即可</p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/blog/2018/07/13/CS-%E5%89%8D%E7%AB%AF%E7%AE%80%E5%8D%95%E9%9D%A2%E8%AF%95%E9%A2%98/">前端简单面试题</a>
         </h1>
         
@@ -320,7 +374,6 @@
 <p>首先遍历所有数值键，按照数值升序排列。<br>其次遍历所有字符串键，按照加入时间升序排列。<br>最后遍历所有 Symbol 键，按照加入时间升序排列。</p>
 <h3 id="数组的遍历方法有哪些？"><a href="#数组的遍历方法有哪些？" class="headerlink" title="数组的遍历方法有哪些？"></a>数组的遍历方法有哪些？</h3><p>遍历数组 arr</p>
 <p>第一种: 普通 <code>for</code> 循环<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(j = <span class="number">0</span>; j &lt; arr.length; j++) &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>第二种: 优化版 <code>for</code> 循环<br>当数组的长度非常大时，缓存长度会带来略微的性能提升<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> len = arr.length;</span><br><span class="line"><span class="keyword">for</span>(j = <span class="number">0</span>; j &lt; len; j++) &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>第三种: 利用数组的 <code>forEach</code> 方法<br>forEach() 方法对数组的每个元素执行一次提供的函数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr.forEach(<span class="function">(<span class="params">item, index, array</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><br>第四种: 利用 <code>for in</code> 来遍历数组的可枚举属性<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(index <span class="keyword">in</span> arr) &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>第五种: 利用数组的 <code>map</code> 方法遍历<br>map() 方法创建一个新数组，其结果是该数组中的每个元素都调用一个提供的函数后返回的结果。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr.map((item, index, array) &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><br>第六种: 利用 <code>for of</code> 遍历数组值<br>for…of语句在可迭代对象（包括 Array，Map，Set，String，TypedArray，arguments 对象等等）上创建一个迭代循环，调用自定义迭代钩子，并为每个不同属性的值执行语句。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(item <span class="keyword">of</span> arr) &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><br>第七种: 利用数组的 <code>every</code> 方法遍历<br>every() 方法测试数组的所有元素是否都通过了指定函数的测试。<br>当返回false时会由于没有通过测试而中止，所以为了遍历，必须返回true。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">arr.every(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><br>第八种: 利用数组的 <code>filter</code> 方法遍历<br>filter() 方法创建一个新数组, 其包含通过所提供函数实现的测试的所有元素。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr.filter(<span class="function">(<span class="params">item, index, array</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><br>第九种: 利用数组的 <code>some</code> 方法遍历<br>some() 方法测试是否至少有一个元素通过由提供的函数实现的测试。<br>当返回true时会由于已经找到一个元素通过测试而中止，所以为了遍历，必须返回false。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">arr.some(<span class="function">(<span class="params">item, index, array</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><br>第十种: 利用数组的 <code>reduce</code> 方法遍历<br>reduce() 方法对数组中的每个元素执行一个reducer函数(升序执行)，将其结果汇总为单个返回值。<br>如果没有提供initialValue，reduce 会从索引1的地方开始执行 callback 方法，跳过第一个索引。如果提供initialValue，从索引0开始。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr.reduce(<span class="function">(<span class="params">result, item, index, array</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;, initialValue);</span><br></pre></td></tr></table></figure></p>
-<h3 id="数组的原型方法中哪些方法改变了原数组？"><a href="#数组的原型方法中哪些方法改变了原数组？" class="headerlink" title="数组的原型方法中哪些方法改变了原数组？"></a>数组的原型方法中哪些方法改变了原数组？</h3><p>// TODO: 数组的原型方法中哪些方法改变了原数组？</p>
 <h3 id="书写sass／less-mixin的例子"><a href="#书写sass／less-mixin的例子" class="headerlink" title="书写sass／less mixin的例子"></a>书写sass／less mixin的例子</h3><blockquote>
 <p>Saas</p>
 </blockquote>

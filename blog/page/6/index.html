@@ -108,6 +108,46 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/blog/2021/03/19/CSS-%E5%AE%9E%E8%B7%B5/">CSS 实践</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-19T06:39:39.000Z" itemprop="datePublished">2021-03-19</time>
+</span>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="画一条0-5px的直线"><a href="#画一条0-5px的直线" class="headerlink" title="画一条0.5px的直线"></a>画一条0.5px的直线</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">1px</span>;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">scale</span>(<span class="number">0.5</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="画一个三角形"><a href="#画一个三角形" class="headerlink" title="画一个三角形"></a>画一个三角形</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">border-width</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">border-style</span>: solid;</span><br><span class="line">    <span class="attribute">border-color</span>: transparent <span class="number">#0099CC</span> transparent transparent;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">90deg</span>); <span class="comment">/*顺时针旋转90°*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="实现元素吸底，dom固定显示在浏览器底部"><a href="#实现元素吸底，dom固定显示在浏览器底部" class="headerlink" title="实现元素吸底，dom固定显示在浏览器底部"></a>实现元素吸底，dom固定显示在浏览器底部</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attribute">position</span>: fixed; <span class="comment">/* 相对浏览器定位 */</span></span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="如何打码？"><a href="#如何打码？" class="headerlink" title="如何打码？"></a>如何打码？</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attribute">filter</span>: <span class="built_in">blur</span>(<span class="number">2px</span>); <span class="comment">/* 高斯模糊 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/blog/2021/03/19/CSS-%E7%9B%92%E6%A8%A1%E5%9E%8B/">CSS 盒模型</a>
         </h1>
         
@@ -267,75 +307,6 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@supports</span> (<span class="attribute">display</span>: table-cell) <span class="keyword">and</span> (<span class="attribute">display</span>: list-item) &#123;&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="or操作符"><a href="#or操作符" class="headerlink" title="or操作符"></a>or操作符</h2><p><code>or</code> 操作符用来将两个原始的表达式做逻辑或后生成一个新的表达式，如果两个原始表达式的值有一个或者都为真，则生成的表达式也为真。  </p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@supports</span> (<span class="attribute">transform-style</span>: preserve) <span class="keyword">or</span> (<span class="attribute">-moz-transform-style</span>: preserve) &#123;&#125;</span><br></pre></td></tr></table></figure>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/03/16/CSS-transition%E5%B1%9E%E6%80%A7/">CSS transition属性</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-03-16T07:39:04.000Z" itemprop="datePublished">2021-03-16</time>
-</span>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="transition"><a href="#transition" class="headerlink" title="transition"></a>transition</h2><p>transition 属性是 transition-property，transition-duration，transition-timing-function 和 transition-delay 的一个简写属性。transition 可以为一个元素在不同状态之间切换的时候定义不同的过渡效果。</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>transition-property</td>
-<td>指定应用过渡属性的名称</td>
-</tr>
-<tr>
-<td>transition-duration</td>
-<td>以秒或毫秒为单位指定过渡动画所需的时间，默认为0s</td>
-</tr>
-<tr>
-<td>transition-timing-function</td>
-<td>用来描述 <code>transition-property</code> 中间值是怎样计算的, 默认 ease, 可选 ease-in，ease-out，ease-in-out，linear，step-start，step-end，steps(4, end)，inherit，cubic-bezier(0.1, 0.7, 1.0, 0.1)</td>
-</tr>
-<tr>
-<td>transition-delay</td>
-<td>规定了在过渡效果开始作用之前需要等待的时间, 默认0s</td>
-</tr>
-</tbody>
-</table>
 
         
     </section>
