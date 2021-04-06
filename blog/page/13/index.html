@@ -108,7 +108,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2018/11/02/HTTP-%E7%8A%B6%E6%80%81%E7%A0%81/">HTTP状态码</a>
+            <a href="/blog/2019/01/21/HTML-viewport/">viewport</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -116,13 +116,13 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2018-11-02T01:55:42.000Z" itemprop="datePublished">2018-11-02</time>
+    <time datetime="2019-01-21T11:53:30.000Z" itemprop="datePublished">2019-01-21</time>
 </span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/Web/" rel="tag">Web</a>
+    <a class="article-tag-link" href="/blog/tags/html/" rel="tag">html</a>
 </div>
 
 
@@ -131,347 +131,80 @@
     
     <section class="article-body markdown-body">
         
-        <div><style type="text/css">th {white-space: nowrap;}</style></div>
-
-<p>HTTP状态码（HTTP Status Code）是用以表示网页服务器HTTP响应状态的3位数字代码。它由 RFC 2616 规范定义的，并得到RFC 2518、RFC 2817、RFC 2295、RFC 2774、RFC 4918等规范扩展。  </p>
-<p>常见状态码以<font color='red'>红色</font>显示。</p>
-<h2 id="消息"><a href="#消息" class="headerlink" title="消息"></a>消息</h2><p>这一类型的状态码，代表请求已被接受，需要继续处理。这类响应是临时响应，只包含状态行和某些可选的响应头信息，并以空行结束。由于 HTTP/1.0 协议中没有定义任何 1xx 状态码，所以除非在某些试验条件下，服务器禁止向此类客户端发送 1xx 响应。  </p>
+        <h2 id="viewport来源"><a href="#viewport来源" class="headerlink" title="viewport来源"></a>viewport来源</h2><p>通常为了使得网页能够成为响应式的，我们需要在head内声名有关viewport的meta。<br>它长这样  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width,initial-scale=1,user-scalable=no&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>viewport的设计是由于pc互联网向移动互联网的过渡。在过去，多数文档被设计用来在pc上进行阅读，而pc的设备通常比较宽，同样的网页不进行任何改变放到移动端的话，内容就会变得无法辨认。</p>
+<p>例如，新浪网在移动端的显示：<br><img src="/blog/static/imgs/viewport/web_page.png" alt="新浪网桌面版在移动端的显示"></p>
+<p>为了避免这个问题，浏览器通常使用一个固定的初始区域宽度来模拟桌面浏览器窗口大小（通常980px-1024px)。而移动端的宽度是小于这个值的，于是内容便看起来像自动放大了一般，同样的，移动端当前的屏幕也只会显示文档的一部分。<br><img src="/blog/static/imgs/viewport/layout_viewport.png" alt="布局视口"><br><img src="/blog/static/imgs/viewport/visual_viewport.png" alt="视觉视口"></p>
+<p><code>document.documentElement.clientWidth/Height</code> 返回的即是当前布局视口的尺寸<br><code>window.innerWidth/Height</code> 返回的即是当前视觉视口的尺寸  </p>
+<p>由上述描述所知，其实视觉视口的大小和文档缩放程度是逆相关的：放得越大，视觉视口越小  </p>
+<p>浏览器对viewport也有默认布局视口宽度  </p>
 <table>
 <thead>
 <tr>
-<th>状态码</th>
-<th>含义</th>
-<th>解释</th>
+<th>iPhone</th>
+<th>iPad</th>
+<th>Android Samsung</th>
+<th>Chrome</th>
+<th>Opera</th>
+<th>BlackBerry</th>
+<th>IE</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>100</td>
-<td>Continue</td>
-<td>客户端应当继续发送请求。这个临时响应是用来通知客户端它的部分请求已经被服务器接收，且仍未被拒绝。客户端应当继续发送请求的剩余部分，或者如果请求已经完成，忽略这个响应。服务器必须在请求完成后向客户端发送一个最终响应</td>
-</tr>
-<tr>
-<td>101</td>
-<td>Switching Protocols</td>
-<td>服务器已经理解了客户端的请求，并将通过Upgrade 消息头通知客户端采用不同的协议来完成这个请求。在发送完这个响应最后的空行后，服务器将会切换到在Upgrade 消息头中定义的那些协议</td>
-</tr>
-<tr>
-<td>102</td>
-<td>Processing</td>
-<td>由WebDAV（RFC 2518）扩展的状态码，代表处理将被继续执行</td>
+<td>980</td>
+<td>980</td>
+<td>980</td>
+<td>980</td>
+<td>980</td>
+<td>1024</td>
+<td>1024</td>
 </tr>
 </tbody>
 </table>
-<h2 id="成功"><a href="#成功" class="headerlink" title="成功"></a>成功</h2><p>这一类型的状态码，代表请求已成功被服务器接收、理解、并接受。  </p>
-<table>
+<p>即使如此，对于一个用户而言，还是不甚理想，在狭窄的屏幕上更适合一个狭窄的网站而不是需要用户来缩放的桌面网站。于是Safari引入了meta标签viewport以及理想视口的概念，其它浏览器厂商也纷纷跟进。  </p>
+<p>只有当网站是为移动端准备的时候才应该使用理想视口。<br>只有主动地往页面里添加meta视口标签时理想视口才会生效。<br>如果没有meta视口标签声明，那么布局视口将会维持它的默认宽度，理想视口只有当显式地使用它的时候才会产生影响。<br>理想视口只和设备有关，由浏览器定义，因此同一设备上的不同浏览器拥有不同的理想视口。<br>以下代码告之浏览器，布局视口的宽度应该与理想视口的宽度一致：  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;device&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>screen.width/height</code> 返回的是理想视口的尺寸  </p>
+<h2 id="viewport取值"><a href="#viewport取值" class="headerlink" title="viewport取值"></a>viewport取值</h2><table>
 <thead>
 <tr>
-<th>状态码</th>
-<th>含义</th>
-<th>解释</th>
+<th>值</th>
+<th>可能值</th>
+<th>描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><font color='red'>200</font></td>
-<td><font color='red'>OK</font></td>
-<td>请求已成功，请求所希望的响应头或数据体将随此响应返回。出现此状态码是表示正常状态</td>
+<td>width</td>
+<td>一个正整数或者字符串 device-width</td>
+<td>以pixels（像素）为单位， 定义viewport（视口）的宽度。</td>
 </tr>
 <tr>
-<td>201</td>
-<td>Created</td>
-<td>请求已经被实现，而且有一个新的资源已经依据请求的需要而建立，且其 URI 已经随Location 头信息返回。假如需要的资源无法及时建立的话，应当返回 ‘202 Accepted’</td>
+<td>height</td>
+<td>一个正整数或者字符串 device-height</td>
+<td>以pixels（像素）为单位， 定义viewport（视口）的高度。</td>
 </tr>
 <tr>
-<td>202</td>
-<td>Accepted</td>
-<td>服务器已接受请求，但尚未处理。正如它可能被拒绝一样，最终该请求可能会也可能不会被执行。在异步操作的场合下，没有比发送这个状态码更方便的做法了<br>返回202状态码的响应的目的是允许服务器接受其他过程的请求（例如某个每天只执行一次的基于批处理的操作），而不必让客户端一直保持与服务器的连接直到批处理操作全部完成。在接受请求处理并返回202状态码的响应应当在返回的实体中包含一些指示处理当前状态的信息，以及指向处理状态监视器或状态预测的指针，以便用户能够估计操作是否已经完成</td>
+<td>initial-scale</td>
+<td>一个0.0 到10.0之间的正数</td>
+<td>定义设备宽度（纵向模式下的设备宽度或横向模式下的设备高度）与视口大小之间的缩放比率。</td>
 </tr>
 <tr>
-<td>203</td>
-<td>Non-Authoritative Information</td>
-<td>服务器已成功处理了请求，但返回的实体头部元信息不是在原始服务器上有效的确定集合，而是来自本地或者第三方的拷贝。当前的信息可能是原始版本的子集或者超集。例如，包含资源的元数据可能导致原始服务器知道元信息的超集。使用此状态码不是必须的，而且只有在响应不使用此状态码便会返回200 OK的情况下才是合适的</td>
+<td>maximum-scale</td>
+<td>一个0.0 到10.0之间的正数</td>
+<td>定义缩放的最大值；它必须大于或等于minimum-scale的值，不然会导致不确定的行为发生。</td>
 </tr>
 <tr>
-<td>204</td>
-<td>No Content</td>
-<td>服务器成功处理了请求，但不需要返回任何实体内容，并且希望返回更新了的元信息。响应可能通过实体头部的形式，返回新的或更新后的元信息。如果存在这些头部信息，则应当与所请求的变量相呼应。<br>如果客户端是浏览器的话，那么用户浏览器应保留发送了该请求的页面，而不产生任何文档视图上的变化，即使按照规范新的或更新后的元信息应当被应用到用户浏览器活动视图中的文档。<br>由于204响应被禁止包含任何消息体，因此它始终以消息头后的第一个空行结尾。</td>
+<td>minimum-scale</td>
+<td>一个0.0 到10.0之间的正数</td>
+<td>定义缩放的最小值；它必须小于或等于maximum-scale的值，不然会导致不确定的行为发生。</td>
 </tr>
 <tr>
-<td>205</td>
-<td>Reset Content</td>
-<td>服务器成功处理了请求，且没有返回任何内容。但是与204响应不同，返回此状态码的响应要求请求者重置文档视图。该响应主要是被用于接受用户输入后，立即重置表单，以便用户能够轻松地开始另一次输入。<br>与204响应一样，该响应也被禁止包含任何消息体，且以消息头后的第一个空行结束。</td>
-</tr>
-<tr>
-<td>206</td>
-<td>Partial Content</td>
-<td>服务器已经成功处理了部分 GET 请求。类似于 FlashGet 或者迅雷这类的 HTTP下载工具都是使用此类响应实现断点续传或者将一个大文档分解为多个下载段同时下载。</td>
-</tr>
-<tr>
-<td>207</td>
-<td>Multi-Status</td>
-<td>由WebDAV(RFC 2518)扩展的状态码，代表之后的消息体将是一个XML消息，并且可能依照之前子请求数量的不同，包含一系列独立的响应代码。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h2><p>这类状态码代表需要客户端采取进一步的操作才能完成请求。通常，这些状态码用来重定向，后续的请求地址（重定向目标）在本次响应的 Location 域中指明。<br>当且仅当后续的请求所使用的方法是 GET 或者 HEAD 时，用户浏览器才可以在没有用户介入的情况下自动提交所需要的后续请求。客户端应当自动监测无限循环重定向（例如：A-&gt;A，或者A-&gt;B-&gt;C-&gt;A），因为这会导致服务器和客户端大量不必要的资源消耗。按照 HTTP/1.0 版规范的建议，浏览器不应自动访问超过5次的重定向。</p>
-<table>
-<thead>
-<tr>
-<th>状态码</th>
-<th>含义</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>300</td>
-<td>Multiple Choices</td>
-<td>被请求的资源有一系列可供选择的回馈信息，每个都有自己特定的地址和浏览器驱动的商议信息。用户或浏览器能够自行选择一个首选的地址进行重定向。<br>除非这是一个 HEAD 请求，否则该响应应当包括一个资源特性及地址的列表的实体，以便用户或浏览器从中选择最合适的重定向地址。这个实体的格式由 Content-Type 定义的格式所决定。浏览器可能根据响应的格式以及浏览器自身能力，自动作出最合适的选择。当然，RFC 2616规范并没有规定这样的自动选择该如何进行。<br>如果服务器本身已经有了首选的回馈选择，那么在 Location 中应当指明这个回馈的 URI；浏览器可能会将这个 Location 值作为自动重定向的地址。此外，除非额外指定，否则这个响应也是可缓存的。</td>
-</tr>
-<tr>
-<td><font color='red'>301</font></td>
-<td><font color='red'>Moved Permanently</font></td>
-<td>被请求的资源已永久移动到新位置，并且将来任何对此资源的引用都应该使用本响应返回的若干个 URI 之一。如果可能，拥有链接编辑功能的客户端应当自动把请求的地址修改为从服务器反馈回来的地址。除非额外指定，否则这个响应也是可缓存的。<br>新的永久性的URI 应当在响应的 Location 域中返回。除非这是一个 HEAD 请求，否则响应的实体中应当包含指向新的 URI 的超链接及简短说明。<br>如果这不是一个 GET 或者 HEAD 请求，因此浏览器禁止自动进行重定向，除非得到用户的确认，因为请求的条件可能因此发生变化。</td>
-</tr>
-<tr>
-<td><font color='red'>302<font></td>
-<td><font color='red'>Move temporarily</font></td>
-<td>请求的资源临时从不同的 URI响应请求。由于这样的重定向是临时的，客户端应当继续向原有地址发送以后的请求。只有在Cache-Control或Expires中进行了指定的情况下，这个响应才是可缓存的。</td>
-</tr>
-<tr>
-<td>303</td>
-<td>See Other</td>
-<td>对应当前请求的响应可以在另一个 URI 上被找到，而且客户端应当采用 GET 的方式访问那个资源。这个方法的存在主要是为了允许由脚本激活的POST请求输出重定向到一个新的资源。这个新的 URI 不是原始资源的替代引用。同时，303响应禁止被缓存。当然，第二个请求（重定向）可能被缓存。</td>
-</tr>
-<tr>
-<td>304</td>
-<td>Not Modified</td>
-<td>如果客户端发送了一个带条件的 GET 请求且该请求已被允许，而文档的内容（自上次访问以来或者根据请求的条件）并没有改变，则服务器应当返回这个状态码。304响应禁止包含消息体，因此始终以消息头后的第一个空行结尾。</td>
-</tr>
-<tr>
-<td>305</td>
-<td>Use Proxy</td>
-<td>被请求的资源必须通过指定的代理才能被访问。Location 域中将给出指定的代理所在的 URI 信息，接收者需要重复发送一个单独的请求，通过这个代理才能访问相应资源。只有原始服务器才能建立305响应。</td>
-</tr>
-<tr>
-<td>306</td>
-<td>Switch Proxy</td>
-<td>在最新版的规范中，306状态码已经不再被使用</td>
-</tr>
-<tr>
-<td>307</td>
-<td>Temporary Redirect</td>
-<td>请求的资源临时从不同的URI 响应请求。<br>新的临时性的URI 应当在响应的 Location 域中返回。除非这是一个HEAD 请求，否则响应的实体中应当包含指向新的URI 的超链接及简短说明。因为部分浏览器不能识别307响应，因此需要添加上述必要信息以便用户能够理解并向新的 URI 发出访问请求。<br>如果这不是一个GET 或者 HEAD 请求，那么浏览器禁止自动进行重定向，除非得到用户的确认，因为请求的条件可能因此发生变化。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="请求错误"><a href="#请求错误" class="headerlink" title="请求错误"></a>请求错误</h2><p>这类的状态码代表了客户端看起来可能发生了错误，妨碍了服务器的处理。除非响应的是一个 HEAD 请求，否则服务器就应该返回一个解释当前错误状况的实体，以及这是临时的还是永久性的状况。这些状态码适用于任何请求方法。浏览器应当向用户显示任何包含在此类错误响应中的实体内容。<br>如果错误发生时客户端正在传送数据，那么使用TCP的服务器实现应当仔细确保在关闭客户端与服务器之间的连接之前，客户端已经收到了包含错误信息的数据包。如果客户端在收到错误信息后继续向服务器发送数据，服务器的TCP栈将向客户端发送一个重置数据包，以清除该客户端所有还未识别的输入缓冲，以免这些数据被服务器上的应用程序读取并干扰后者。  </p>
-<table>
-<thead>
-<tr>
-<th>状态码</th>
-<th>含义</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>400</td>
-<td>Bad Request</td>
-<td>1、语义有误，当前请求无法被服务器理解。除非进行修改，否则客户端不应该重复提交这个请求。<br>2、请求参数有误。</td>
-</tr>
-<tr>
-<td><font color='red'>401</font></td>
-<td><font color='red'>Unauthorized</font></td>
-<td>当前请求需要用户验证。该响应必须包含一个适用于被请求资源的 WWW-Authenticate 信息头用以询问用户信息。客户端可以重复提交一个包含恰当的 Authorization 头信息的请求。如果当前请求已经包含了 Authorization 证书，那么401响应代表着服务器验证已经拒绝了那些证书。如果401响应包含了与前一个响应相同的身份验证询问，且浏览器已经至少尝试了一次验证，那么浏览器应当向用户展示响应中包含的实体信息，因为这个实体信息中可能包含了相关诊断信息。参见RFC 2617。</td>
-</tr>
-<tr>
-<td>402</td>
-<td>Payment Required</td>
-<td>该状态码是为了将来可能的需求而预留的。</td>
-</tr>
-<tr>
-<td><font color='red'>403</font></td>
-<td><font color='red'>Forbidden</font></td>
-<td>服务器已经理解请求，但是拒绝执行它。与401响应不同的是，身份验证并不能提供任何帮助，而且这个请求也不应该被重复提交。如果这不是一个 HEAD 请求，而且服务器希望能够讲清楚为何请求不能被执行，那么就应该在实体内描述拒绝的原因。当然服务器也可以返回一个404响应，假如它不希望让客户端获得任何信息。</td>
-</tr>
-<tr>
-<td><font color='red'>404</font></td>
-<td><font color='red'>Not Found</font></td>
-<td>请求失败，请求所希望得到的资源未被在服务器上发现。没有信息能够告诉用户这个状况到底是暂时的还是永久的。假如服务器知道情况的话，应当使用410状态码来告知旧资源因为某些内部的配置机制问题，已经永久的不可用，而且没有任何可以跳转的地址。404这个状态码被广泛应用于当服务器不想揭示到底为何请求被拒绝或者没有其他适合的响应可用的情况下。出现这个错误的最有可能的原因是服务器端没有这个页面。</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed</td>
-<td>请求行中指定的请求方法不能被用于请求相应的资源。该响应必须返回一个Allow 头信息用以表示出当前资源能够接受的请求方法的列表。<br>鉴于 PUT，DELETE 方法会对服务器上的资源进行写操作，因而绝大部分的网页服务器都不支持或者在默认配置下不允许上述请求方法，对于此类请求均会返回405错误。</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable</td>
-<td>请求的资源的内容特性无法满足请求头中的条件，因而无法生成响应实体。<br>除非这是一个 HEAD 请求，否则该响应就应当返回一个包含可以让用户或者浏览器从中选择最合适的实体特性以及地址列表的实体。实体的格式由 Content-Type 头中定义的媒体类型决定。浏览器可以根据格式及自身能力自行作出最佳选择。但是，规范中并没有定义任何作出此类自动选择的标准。</td>
-</tr>
-<tr>
-<td>407</td>
-<td>Proxy Authentication Required</td>
-<td>与401响应类似，只不过客户端必须在代理服务器上进行身份验证。代理服务器必须返回一个 Proxy-Authenticate 用以进行身份询问。客户端可以返回一个 Proxy-Authorization 信息头用以验证。</td>
-</tr>
-<tr>
-<td>408</td>
-<td>Request Timeout</td>
-<td>请求超时。客户端没有在服务器预备等待的时间内完成一个请求的发送。客户端可以随时再次提交这一请求而无需进行任何更改。</td>
-</tr>
-<tr>
-<td>409</td>
-<td>Conflict</td>
-<td>由于和被请求的资源的当前状态之间存在冲突，请求无法完成。这个代码只允许用在这样的情况下才能被使用：用户被认为能够解决冲突，并且会重新提交新的请求。该响应应当包含足够的信息以便用户发现冲突的源头。</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone</td>
-<td>被请求的资源在服务器上已经不再可用，而且没有任何已知的转发地址。这样的状况应当被认为是永久性的。如果可能，拥有链接编辑功能的客户端应当在获得用户许可后删除所有指向这个地址的引用。如果服务器不知道或者无法确定这个状况是否是永久的，那么就应该使用404状态码。除非额外说明，否则这个响应是可缓存的。</td>
-</tr>
-<tr>
-<td>411</td>
-<td>Length Required</td>
-<td>服务器拒绝在没有定义 Content-Length 头的情况下接受请求。在添加了表明请求消息体长度的有效 Content-Length 头之后，客户端可以再次提交该请求。</td>
-</tr>
-<tr>
-<td>412</td>
-<td>Precondition Failed</td>
-<td>服务器在验证在请求的头字段中给出先决条件时，没能满足其中的一个或多个。这个状态码允许客户端在获取资源时在请求的元信息（请求头字段数据）中设置先决条件，以此避免该请求方法被应用到其希望的内容以外的资源上。</td>
-</tr>
-<tr>
-<td>413</td>
-<td>Request Entity Too Large</td>
-<td>服务器拒绝处理当前请求，因为该请求提交的实体数据大小超过了服务器愿意或者能够处理的范围。此种情况下，服务器可以关闭连接以免客户端继续发送此请求。<br>如果这个状况是临时的，服务器应当返回一个 Retry-After 的响应头，以告知客户端可以在多少时间以后重新尝试。</td>
-</tr>
-<tr>
-<td>414</td>
-<td>Request-URI Too Long</td>
-<td>请求的URI 长度超过了服务器能够解释的长度，因此服务器拒绝对该请求提供服务。这比较少见，通常的情况包括：<br>本应使用POST方法的表单提交变成了GET方法，导致查询字符串（Query String）过长。<br>重定向URI “黑洞”，例如每次重定向把旧的 URI 作为新的 URI 的一部分，导致在若干次重定向后 URI 超长。<br>客户端正在尝试利用某些服务器中存在的安全漏洞攻击服务器。这类服务器使用固定长度的缓冲读取或操作请求的 URI，当 GET 后的参数超过某个数值后，可能会产生缓冲区溢出，导致任意代码被执行[1]。没有此类漏洞的服务器，应当返回414状态码。</td>
-</tr>
-<tr>
-<td>415</td>
-<td>Unsupported Media Type</td>
-<td>对于当前请求的方法和所请求的资源，请求中提交的实体并不是服务器中所支持的格式，因此请求被拒绝。</td>
-</tr>
-<tr>
-<td>416</td>
-<td>Requested Range Not Satisfiable</td>
-<td>如果请求中包含了 Range 请求头，并且 Range 中指定的任何数据范围都与当前资源的可用范围不重合，同时请求中又没有定义 If-Range 请求头，那么服务器就应当返回416状态码。<br>假如 Range 使用的是字节范围，那么这种情况就是指请求指定的所有数据范围的首字节位置都超过了当前资源的长度。服务器也应当在返回416状态码的同时，包含一个 Content-Range 实体头，用以指明当前资源的长度。这个响应也被禁止使用 multipart/byteranges 作为其 Content-Type。</td>
-</tr>
-<tr>
-<td>417</td>
-<td>Expectation Failed</td>
-<td>在请求头 Expect 中指定的预期内容无法被服务器满足，或者这个服务器是一个代理服务器，它有明显的证据证明在当前路由的下一个节点上，Expect 的内容无法被满足。</td>
-</tr>
-<tr>
-<td>421</td>
-<td>too many connections</td>
-<td>从当前客户端所在的IP地址到服务器的连接数超过了服务器许可的最大范围。通常，这里的IP地址指的是从服务器上看到的客户端地址（比如用户的网关或者代理服务器地址）。在这种情况下，连接数的计算可能涉及到不止一个终端用户。</td>
-</tr>
-<tr>
-<td>422</td>
-<td>Unprocessable Entity</td>
-<td>请求格式正确，但是由于含有语义错误，无法响应。（RFC 4918 WebDAV）</td>
-</tr>
-<tr>
-<td>423</td>
-<td>Locked</td>
-<td>当前资源被锁定。（RFC 4918 WebDAV）</td>
-</tr>
-<tr>
-<td>424</td>
-<td>Failed Dependency</td>
-<td>由于之前的某个请求发生的错误，导致当前请求失败，例如 PROPPATCH。（RFC 4918 WebDAV）</td>
-</tr>
-<tr>
-<td>425</td>
-<td>Unordered Collection</td>
-<td>在WebDav Advanced Collections 草案中定义，但是未出现在《WebDAV 顺序集协议》（RFC 3658）中。</td>
-</tr>
-<tr>
-<td>426</td>
-<td>Upgrade Required</td>
-<td>客户端应当切换到TLS/1.0。（RFC 2817）</td>
-</tr>
-<tr>
-<td>449</td>
-<td>Retry With</td>
-<td>由微软扩展，代表请求应当在执行完适当的操作后进行重试。</td>
-</tr>
-<tr>
-<td>451</td>
-<td>Unavailable For Legal Reasons</td>
-<td>该请求因法律原因不可用。（RFC 7725）</td>
-</tr>
-</tbody>
-</table>
-<h2 id="服务器错误"><a href="#服务器错误" class="headerlink" title="服务器错误"></a>服务器错误</h2><p>这类状态码代表了服务器在处理请求的过程中有错误或者异常状态发生，也有可能是服务器意识到以当前的软硬件资源无法完成对请求的处理。除非这是一个HEAD 请求，否则服务器应当包含一个解释当前错误状态以及这个状况是临时的还是永久的解释信息实体。浏览器应当向用户展示任何在当前响应中被包含的实体。<br>这些状态码适用于任何响应方法。  </p>
-<table>
-<thead>
-<tr>
-<th>状态码</th>
-<th>含义</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><font color='red'>500</font></td>
-<td><font color='red'>Internal Server Error</font></td>
-<td>服务器遇到了一个未曾预料的状况，导致了它无法完成对请求的处理。一般来说，这个问题都会在服务器端的源代码出现错误时出现。</td>
-</tr>
-<tr>
-<td>501</td>
-<td>Not Implemented</td>
-<td>服务器不支持当前请求所需要的某个功能。当服务器无法识别请求的方法，并且无法支持其对任何资源的请求。</td>
-</tr>
-<tr>
-<td>502</td>
-<td>Bad Gateway</td>
-<td>作为网关或者代理工作的服务器尝试执行请求时，从上游服务器接收到无效的响应。</td>
-</tr>
-<tr>
-<td><font color='red'>503</font></td>
-<td><font color='red'>Service Unavailable</font></td>
-<td>由于临时的服务器维护或者过载，服务器当前无法处理请求。这个状况是临时的，并且将在一段时间以后恢复。如果能够预计延迟时间，那么响应中可以包含一个 Retry-After 头用以标明这个延迟时间。如果没有给出这个 Retry-After 信息，那么客户端应当以处理500响应的方式处理它。</td>
-</tr>
-<tr>
-<td>504</td>
-<td>Gateway Timeout</td>
-<td>作为网关或者代理工作的服务器尝试执行请求时，未能及时从上游服务器（URI标识出的服务器，例如HTTP、FTP、LDAP）或者辅助服务器（例如DNS）收到响应。</td>
-</tr>
-<tr>
-<td>505</td>
-<td>HTTP Version Not Supported</td>
-<td>服务器不支持，或者拒绝支持在请求中使用的 HTTP 版本。这暗示着服务器不能或不愿使用与客户端相同的版本。响应中应当包含一个描述了为何版本不被支持以及服务器支持哪些协议的实体。</td>
-</tr>
-<tr>
-<td>506</td>
-<td>Variant Also Negotiates</td>
-<td>由《透明内容协商协议》（RFC 2295）扩展，代表服务器存在内部配置错误：被请求的协商变元资源被配置为在透明内容协商中使用自己，因此在一个协商处理中不是一个合适的重点。</td>
-</tr>
-<tr>
-<td>507</td>
-<td>Insufficient Storage</td>
-<td>服务器无法存储完成请求所必须的内容。这个状况被认为是临时的。WebDAV (RFC 4918)</td>
-</tr>
-<tr>
-<td>509</td>
-<td>Bandwidth Limit Exceeded</td>
-<td>服务器达到带宽限制。这不是一个官方的状态码，但是仍被广泛使用。</td>
-</tr>
-<tr>
-<td>510</td>
-<td>Not Extended</td>
-<td>获取资源所需要的策略并没有被满足。（RFC 2774）</td>
-</tr>
-<tr>
-<td>600</td>
-<td>Unparseable Response Headers</td>
-<td>源站没有返回响应头部，只返回实体内容</td>
+<td>user-scalable</td>
+<td>一个布尔值（yes 或者no）</td>
+<td>如果设置为 no，用户将不能放大或缩小网页。默认值为 yes。</td>
 </tr>
 </tbody>
 </table>
@@ -494,7 +227,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2018/10/12/Vue-%E7%BB%84%E4%BB%B6%E9%97%B4%E9%80%9A%E4%BF%A1/">Vue2组件间通信</a>
+            <a href="/blog/2019/01/09/TIPS-Ionic4-vue%E6%90%AD%E5%BB%BA%E8%B7%A8%E5%B9%B3%E5%8F%B0%E7%A7%BB%E5%8A%A8%E5%BA%94%E7%94%A8%E6%A1%86%E6%9E%B6/">ionic4+vue搭建跨平台移动应用框架</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -502,7 +235,7 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2018-10-12T06:44:35.000Z" itemprop="datePublished">2018-10-12</time>
+    <time datetime="2019-01-09T07:09:36.000Z" itemprop="datePublished">2019-01-09</time>
 </span>
 
             
@@ -517,45 +250,76 @@
     
     <section class="article-body markdown-body">
         
-        <p>本篇主要讲述Vue2中组件间通信。目前 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue">Vue</a> 最新版本为<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/vue"><img src="https://img.shields.io/npm/v/vue.svg" alt="Version" style="width:auto !important;margin:auto;margin-left: 5px;"></a>。</p>
-<h2 id="props与自定义事件"><a href="#props与自定义事件" class="headerlink" title="props与自定义事件"></a>props与自定义事件</h2><p>这是Vue推荐使用的通信方法</p>
-<h3 id="Vue中通过props属性可以实现父组件向子组件的参数传递。"><a href="#Vue中通过props属性可以实现父组件向子组件的参数传递。" class="headerlink" title="Vue中通过props属性可以实现父组件向子组件的参数传递。"></a>Vue中通过props属性可以实现父组件向子组件的参数传递。</h3><p>所有的 prop 都使得其父子之间形成了一个 <em>单向下行绑定</em> ：父级 prop 的更新会向下流动到子组件中，但是反过来则不行。这样会防止从子组件意外改变父级组件的状态，从而导致你的应用的数据流向难以理解。每次父级组件发生更新时，子组件中所有的 prop 都将会刷新为最新的值。</p>
-<p>在子组件中定义props属性<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">&#x27;blog-post&#x27;</span>, &#123;</span><br><span class="line">  <span class="comment">// 在 JavaScript 中是 camelCase 的</span></span><br><span class="line">  props: [<span class="string">&#x27;postTitle&#x27;</span>],</span><br><span class="line">  template: <span class="string">&#x27;&lt;h3&gt;&#123;&#123; postTitle &#125;&#125;&lt;/h3&gt;&#x27;</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<p>在父组件中传入对应的props属性<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 在 HTML 中是 kebab-case 的 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">blog-post</span> <span class="attr">post-title</span>=<span class="string">&quot;hello!&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">blog-post</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>在 JavaScript 中对象和数组是通过引用传入的，所以对于一个数组或对象类型的 prop 来说，在子组件中改变这个对象或数组本身将会影响到父组件的状态。  </p>
-</blockquote>
-<h3 id="Vue中通过自定义事件可以实现子组件向父组件的参数传递。"><a href="#Vue中通过自定义事件可以实现子组件向父组件的参数传递。" class="headerlink" title="Vue中通过自定义事件可以实现子组件向父组件的参数传递。"></a>Vue中通过自定义事件可以实现子组件向父组件的参数传递。</h3><p>在子组件中触发事件<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.$emit(<span class="string">&#x27;myEvent&#x27;</span>, data)</span><br></pre></td></tr></table></figure></p>
-<p>在父组件中接受事件并进行处理<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">my-component</span> <span class="attr">v-on:my-event</span>=<span class="string">&quot;doSomething&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">my-component</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="provide与inject"><a href="#provide与inject" class="headerlink" title="provide与inject"></a>provide与inject</h2><p>2.2.0+ 新增  </p>
-<p>这对选项需要一起使用，以允许一个祖先组件向其所有子孙后代组件注入一个依赖，不论组件层次有多深，并在起上下游关系成立的时间里始终生效。祖先组件中通过provide来提供变量，然后在子孙后代组件中通过inject来注入变量。不论子孙后代有多深，只要调用了inject那么就可以注入provide中的数据。而不是局限于只能从当前父组件的prop属性来获取数据，只要在祖先组件的生命周期内，子孙后代组件都可以调用。  </p>
-<blockquote>
-<p>provide 和 inject 绑定并不是可响应的。这是刻意为之的。然而，如果你传入了一个可监听的对象，那么其对象的属性还是可响应的。</p>
-</blockquote>
-<blockquote>
-<p>provide 和 inject 主要为高阶插件/组件库提供用例。并不推荐直接用于应用程序代码中。</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">&#x27;child&#x27;</span>, &#123;</span><br><span class="line">    inject: [<span class="string">&#x27;somedata&#x27;</span>], <span class="comment">//得到父组件传递过来的数据</span></span><br><span class="line">    <span class="function"><span class="title">data</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            mymessage: <span class="built_in">this</span>.somedata</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    template:<span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;input type=&quot;tet&quot; v-model=&quot;mymessage&quot;&gt; </span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">        `</span></span><br><span class="line">&#125;)</span><br><span class="line">Vue.component(<span class="string">&#x27;parent&#x27;</span>, &#123;</span><br><span class="line">    provide:&#123;</span><br><span class="line">        somedata: <span class="string">&#x27;test&#x27;</span> <span class="comment">//提供给子组件的数据</span></span><br><span class="line">    &#125;,</span><br><span class="line">    template:<span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;p&gt;this is parent compoent!&lt;/p&gt;</span></span><br><span class="line"><span class="string">            &lt;child&gt;&lt;/child&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="props与-sync"><a href="#props与-sync" class="headerlink" title="props与.sync"></a>props与.sync</h2><p>2.3.0+ 新增</p>
-<p>.sync 是一个自定义事件修饰符，可以实现对props的“双向绑定”<br>实际上sync只是props&amp;自定义事件的一个语法糖  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">text-document</span> <span class="attr">v-bind:title.sync</span>=<span class="string">&quot;doc.title&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">text-document</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>实际上是以下写法的一个缩写  </p>
-<p>父组件<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;text-document</span><br><span class="line">  v-bind:title=&quot;doc.title&quot;</span><br><span class="line">  v-on:update:title=&quot;doc.title = $event&quot;</span><br><span class="line">&gt;<span class="tag">&lt;/<span class="name">text-document</span>&gt;</span></span><br></pre></td></tr></table></figure><br>子组件<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.$emit(<span class="string">&#x27;update:title&#x27;</span>, newTitle)</span><br></pre></td></tr></table></figure></p>
-<h2 id="v-model"><a href="#v-model" class="headerlink" title="v-model"></a>v-model</h2><p>一个组件上的 <code>v-model</code> 默认会利用名为 value 的 prop 和名为 input 的事件<br>所以可以在父组件中使用  <code>v-model=&quot;message&quot;</code> 然后在子组件中通过 <code>$emit(&#39;input&#39;, newMessage)</code> 来改变父组件上v-model绑定的值message。<br>但是像单选框、复选框等类型的输入控件可能会将 <code>value</code> 特性用于不同的目的。  </p>
-<h2 id="parent与-children-refs"><a href="#parent与-children-refs" class="headerlink" title="$parent与$children/$refs"></a>$parent与$children/$refs</h2><p>不推荐使用  </p>
-<p>在子组件中可以直接通过 <code>this.$parent.$data</code> 来访问和修改父组件的值，<br>在父组件中也可以通过 <code>this.$children[0].$data</code> 来访问和修改子组件的值<br>也可以在引用子组件时通过添加ref来使得父组件中可以通过 <code>this.$refs.child.$data</code> 来访问和修改子组件的值  </p>
-<h2 id="attr与-listener"><a href="#attr与-listener" class="headerlink" title="$attr与$listener"></a>$attr与$listener</h2><p>2.4.0+新增  </p>
-<p>$attr与$listener实现了一种跨父子的参数传递方法  </p>
-<p>$attr包含了父作用域中不作为 prop 被识别 (且获取) 的特性绑定 (class 和 style 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 v-bind=”$attrs” 传入内部组件。  </p>
-<p>$listener包含了父作用域中的 (不含 .native 修饰器的) v-on 事件监听器。它可以通过 v-on=”$listeners” 传入内部组件</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">&#x27;C&#x27;</span>, &#123;</span><br><span class="line">    template:<span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;input type=&quot;text&quot;</span></span><br><span class="line"><span class="string">                v-model=&quot;$attrs.messagec&quot;</span></span><br><span class="line"><span class="string">                @input=&quot;passCData($attrs.messagec)&quot;&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;`</span>,</span><br><span class="line"></span><br><span class="line">    methods: &#123;</span><br><span class="line">        <span class="function"><span class="title">passCData</span>(<span class="params">val</span>)</span>&#123;</span><br><span class="line">            <span class="comment">//触发父组件A中的事件</span></span><br><span class="line">            <span class="built_in">this</span>.$emit(<span class="string">&#x27;getCData&#x27;</span>, val)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">Vue.component(<span class="string">&#x27;B&#x27;</span>, &#123;</span><br><span class="line">    <span class="function"><span class="title">data</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            mymessage: <span class="built_in">this</span>.message</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    template:<span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;input type=&quot;text&quot; v-model=&quot;mymessage&quot; @input=&quot;passData(mymessage)&quot;&gt; </span></span><br><span class="line"><span class="string">            &lt;!-- C组件中能直接触发getCData的原因在于 B组件调用C组件时 使用 v-on 绑定了$listeners 属性 --&gt;</span></span><br><span class="line"><span class="string">            &lt;!-- 通过v-bind 绑定$attrs属性，C组件可以直接获取到A组件中传递下来的props（除了B组件中props声明的） --&gt;</span></span><br><span class="line"><span class="string">            &lt;C v-bind=&quot;$attrs&quot; v-on=&quot;$listeners&quot;&gt;&lt;/C&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span>,</span><br><span class="line">    props:[<span class="string">&#x27;message&#x27;</span>], <span class="comment">//得到父组件传递过来的数据</span></span><br><span class="line">    methods:&#123;</span><br><span class="line">        <span class="function"><span class="title">passData</span>(<span class="params">val</span>)</span>&#123;</span><br><span class="line">            <span class="comment">//触发父组件中的事件</span></span><br><span class="line">            <span class="built_in">this</span>.$emit(<span class="string">&#x27;getChildData&#x27;</span>,val)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">Vue.component(<span class="string">&#x27;A&#x27;</span>, &#123;</span><br><span class="line">    <span class="function"><span class="title">data</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            message:<span class="string">&#x27;hello b&#x27;</span>, <span class="comment">//传递给子组件的数据</span></span><br><span class="line">            messagec:<span class="string">&#x27;hello c&#x27;</span> <span class="comment">//传递给c组件的数据</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    template:<span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;p&gt;this is parent compoent!&lt;/p&gt;</span></span><br><span class="line"><span class="string">            &lt;B :message=&quot;message&quot; @getChildData=&quot;getChildData&quot;</span></span><br><span class="line"><span class="string">                v-bind=&quot;$attrs&quot; v-on=&quot;$listeners&quot; &gt;&lt;/B&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span>,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        <span class="comment">//执行子组件触发的事件</span></span><br><span class="line">        <span class="function"><span class="title">getChildData</span>(<span class="params">val</span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;这是来自B组件的数据&#x27;</span>)</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">//执行C组件触发的事件</span></span><br><span class="line">        <span class="function"><span class="title">getCData</span>(<span class="params">val</span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&quot;这是来自C组件的数据：&quot;</span> + val)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="中央事件总栈-emit-on"><a href="#中央事件总栈-emit-on" class="headerlink" title="中央事件总栈 $emit $on"></a>中央事件总栈 $emit $on</h2><p>为了实现非父子间的通信，我们可以通过通过使用一个空的Vue实例作为中央事件总线来处理所有的事件，通过Vue自带的$emit $on来进行组件间通信。  </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> bus = <span class="keyword">new</span> Vue()</span><br><span class="line">Vue.prototype.bus = bus</span><br></pre></td></tr></table></figure>
-<p>甚至可以用app.js中的Vue实例来处理  </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* app.js*/</span></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">&#x27;#app&#x27;</span>,</span><br><span class="line">  router,</span><br><span class="line">  template: <span class="string">&#x27;&lt;App/&gt;&#x27;</span>,</span><br><span class="line">  components: &#123; App &#125;,</span><br><span class="line">  beforeCreate () &#123;</span><br><span class="line">    Vue.prototype.bus = <span class="built_in">this</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>这样在组件中我们就可以通过以下方式处理  </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.bus.$emit(<span class="string">&#x27;some-event&#x27;</span>, data)</span><br><span class="line"><span class="built_in">this</span>.bus.$on(<span class="string">&#x27;some-event&#x27;</span>, <span class="function">()=&gt;</span>&#123;&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="vuex"><a href="#vuex" class="headerlink" title="vuex"></a>vuex</h2><p><a target="_blank" rel="noopener" href="https://github.com/vuejs/vuex">vuex</a></p>
+        <h2 id="ionic4及vue介绍"><a href="#ionic4及vue介绍" class="headerlink" title="ionic4及vue介绍"></a>ionic4及vue介绍</h2><p>ionic是一款混合移动应用开发框架，可以用来构建跨平台（Android &amp; iOS）的移动应用程序，而且还可以基于Sass和AngularJS进行构建，是目前跨平台移动应用开发的一个翘楚。这个框架的目的是从web的角度开发手机应用，基于PhoneGap的编译平台，可以实现编译成各个平台的应用程序。<br>Vue.js是一个MVVM驱动的 web 界面的渐进式框架，学习简单并且十分灵活。ionic3之前一般默认和Angular“绑定”在了一起，从ionic4开始，Ionic Team宣布将会逐渐采用<a target="_blank" rel="noopener" href="https://github.com/ionic-team/stencil">Stencil</a>来实现标准Web Components，使用ionic将不再必须使用Angular，可以使用React，Vue，Jquery或者什么框架都不使用。  </p>
+<h2 id="准备环境"><a href="#准备环境" class="headerlink" title="准备环境"></a>准备环境</h2><p>Vue提供了CLI工具来方便的创建Vue应用，首先我们需要  </p>
+<ol>
+<li>安装Vue CLI：  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g vue-cli</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建vue项目</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init webpack ionic-vue</span><br></pre></td></tr></table></figure>
+<p>随后一路enter</p>
+<ol start="3">
+<li>打开项目</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ionic-vue</span><br><span class="line">npm install</span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+<h2 id="引入Ionic"><a href="#引入Ionic" class="headerlink" title="引入Ionic"></a>引入Ionic</h2><ol>
+<li>在 index.html 引入 Ionic</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;format-detection&quot;</span> <span class="attr">content</span>=<span class="string">&quot;telephone=no&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;msapplication-tap-highlight&quot;</span> <span class="attr">content</span>=<span class="string">&quot;no&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/@ionic/core@0.0.2-20/dist/ionic.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>在 src/main.js 中添加ignoredElements</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Vue.config.ignoredElements = [</span><br><span class="line">    <span class="string">&#x27;ion-app&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;ion-header&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;ion-navbar&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;ion-title&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;ion-content&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;ion-button&#x27;</span>,</span><br><span class="line">    ··· ···</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<h2 id="开发应用"><a href="#开发应用" class="headerlink" title="开发应用"></a>开发应用</h2><ol>
+<li>创建两个新页面</li>
+</ol>
+<p>我们希望演示如何在两个页面之间跳转</p>
+<p>例如 src/pages/HelloWorld.vue<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ion-app</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ion-header</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ion-navbar</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ion-title</span>&gt;</span>Ionic<span class="tag">&lt;/<span class="name">ion-title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ion-navbar</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ion-header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ion-content</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ion-button</span> @<span class="attr">click</span>=<span class="string">&quot;goToDetail&quot;</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">ion-button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ion-content</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ion-app</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">  name: <span class="string">&#x27;HelloWorld&#x27;</span>,</span></span><br><span class="line">  data () &#123;</span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">      msg: <span class="string">&#x27;Welcome to Your Vue.js App&#x27;</span></span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    goToDetail () &#123;</span><br><span class="line"><span class="javascript">      <span class="built_in">this</span>.$router.push(<span class="string">&#x27;detail&#x27;</span>)</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>src/pages/Detail.vue<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ion-app</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ion-header</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ion-navbar</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ion-title</span>&gt;</span>Ionic<span class="tag">&lt;/<span class="name">ion-title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ion-navbar</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ion-header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ion-content</span> <span class="attr">padding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">&quot;/&quot;</span>&gt;</span>Go home<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ion-content</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ion-app</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">  name: <span class="string">&#x27;Detail&#x27;</span>,</span></span><br><span class="line">  data () &#123;</span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">      msg: <span class="string">&#x27;Welcome to Your Ionic App&#x27;</span></span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<ol start="2">
+<li>添加路由</li>
+</ol>
+<p>router/index.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">&#x27;vue-router&#x27;</span></span><br><span class="line"><span class="keyword">import</span> HelloWorld <span class="keyword">from</span> <span class="string">&#x27;@/pages/HelloWorld&#x27;</span></span><br><span class="line"><span class="keyword">import</span> Detail <span class="keyword">from</span> <span class="string">&#x27;@/pages/Detail&#x27;</span></span><br><span class="line"></span><br><span class="line">Vue.use(Router)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">&#x27;/&#x27;</span>,</span><br><span class="line">      component: HelloWorld</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">&#x27;/detail&#x27;</span>,</span><br><span class="line">      component: Detail</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<ol start="3">
+<li>添加全局过渡动画效果</li>
+</ol>
+<p>src/App.vue<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=<span class="string">&quot;app&quot;</span>&gt;</span><br><span class="line">    &lt;transition name=<span class="string">&quot;slide-fade&quot;</span>&gt;</span><br><span class="line">      &lt;router-view/&gt;</span><br><span class="line">    &lt;/transition&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">&#x27;app&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">#app &#123;</span><br><span class="line">  font-family: <span class="string">&#x27;Avenir&#x27;</span>, Helvetica, Arial, sans-serif;</span><br><span class="line">  -webkit-font-smoothing: antialiased;</span><br><span class="line">  -moz-osx-font-smoothing: grayscale;</span><br><span class="line">  text-align: center;</span><br><span class="line">  color: #2c3e50;</span><br><span class="line">  margin-top: 60px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.slide-fade-enter-active &#123;</span><br><span class="line">  transition: all .3s ease;</span><br><span class="line">&#125;</span><br><span class="line">.slide-fade-leave-active &#123;</span><br><span class="line">  transition: all .8s cubic-bezier(<span class="number">1.0</span>, <span class="number">0.5</span>, <span class="number">0.8</span>, <span class="number">1.0</span>);</span><br><span class="line">&#125;</span><br><span class="line">.slide-fade-enter, .slide-fade-leave-to</span><br><span class="line"><span class="comment">/* .slide-fade-leave-active below version 2.1.8 */</span> &#123;</span><br><span class="line">  transform: translateX(10px);</span><br><span class="line">  opacity: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="打包成应用"><a href="#打包成应用" class="headerlink" title="打包成应用"></a>打包成应用</h2><ol>
+<li>添加cordova 到项目</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cordova</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建cordova项目</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova create my-project-name</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>创建/移动vue项目</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init webpack my-app</span><br></pre></td></tr></table></figure>
+<p>将my-app里的内容剪切到my-project-name下，同名覆盖</p>
+<ol start="4">
+<li>修改打包路径<br>修改config/index.js文件下的build属性，将dist改为www，绝对路径改为相对路径</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">build: &#123;</span><br><span class="line">  index: path.resolve(__dirname, <span class="string">&#x27;../www/index.html&#x27;</span>),</span><br><span class="line"></span><br><span class="line">  assetsRoot: path.resolve(__dirname, <span class="string">&#x27;../www&#x27;</span>),</span><br><span class="line">  assetsSubDirectory: <span class="string">&#x27;static&#x27;</span>,</span><br><span class="line">  assetsPublicPath: <span class="string">&#x27;./&#x27;</span>,</span><br><span class="line"></span><br><span class="line">  productionSourceMap: <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">  devtool: <span class="string">&#x27;#source-map&#x27;</span>,</span><br><span class="line"></span><br><span class="line">  productionGzip: <span class="literal">false</span>,</span><br><span class="line">  productionGzipExtensions: [<span class="string">&#x27;js&#x27;</span>, <span class="string">&#x27;css&#x27;</span>],</span><br><span class="line"></span><br><span class="line">  bundleAnalyzerReport: process.env.npm_config_report</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>5.vue项目中添加cordova.js</p>
+<p>在index.html body中添加cordova.js<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;cordova.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><br>同时在 head 中添加 移动端meta信息</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;self&#x27; data: gap: https://ssl.gstatic.com &#x27;unsafe-eval&#x27;; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;; media-src *; img-src &#x27;self&#x27; data: content:;&quot;--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;format-detection&quot;</span> <span class="attr">content</span>=<span class="string">&quot;telephone=no,email=no&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;msapplication-tap-highlight&quot;</span> <span class="attr">content</span>=<span class="string">&quot;no&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>运行项目</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+<ol start="7">
+<li>编译成 iOS &amp; Android 项目</li>
+</ol>
+<p>安装 cordova iOS &amp; Android 平台</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova platform add ios android --save</span><br></pre></td></tr></table></figure>
+<p>编译</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+<p>运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cordova run ios --device</span><br><span class="line">cordova run android --device</span><br></pre></td></tr></table></figure>
 
         
     </section>
@@ -575,7 +339,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2018/09/28/TIPS-%E6%B8%85%E9%99%A4%E7%BD%91%E7%AB%99%E4%B8%AD%E7%9A%84%E6%97%A0%E6%95%88%E9%93%BE%E6%8E%A5/">清除网站中的无效链接</a>
+            <a href="/blog/2019/01/04/TIPS-%E5%9C%A8%E7%BA%BF%E7%BB%98%E5%9B%BE%E5%B0%8F%E5%B7%A5%E5%85%B7/">在线绘图小工具</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -583,13 +347,13 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2018-09-28T08:32:55.000Z" itemprop="datePublished">2018-09-28</time>
+    <time datetime="2019-01-04T10:49:24.000Z" itemprop="datePublished">2019-01-04</time>
 </span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/SEO/" rel="tag">SEO</a>
+    <a class="article-tag-link" href="/blog/tags/tools/" rel="tag">tools</a>
 </div>
 
 
@@ -598,19 +362,186 @@
     
     <section class="article-body markdown-body">
         
-        <p>网站上有大量的无效链接（返回404或域名不存在）会使网站的总体质量下降，所以清除网站中的无效链接也是提升网站质量，优化用户体验的一种方法。  </p>
-<p>通常而言，链接有链接向外部的也有在网站内部跳转的链接，链接向外部的网站尽量希望链接到一些稳定的网站，有些地址是很容易被移除的，比如链接到文章或评论的，链接到个人网站的，链接到下载页的。时常注意一些大的域名变动，比如有些产品可能已经下线或更换地址，如果自己的网站中有引用，也需要同步的改变。链接到内部的网站时可以做一次引用记录，当记录的链接修改时同步修改所有的地方。  </p>
-<p>同时介绍一个可以查看页面内链接情况的 Chrome extension  </p>
-<p><a target="_blank" rel="noopener" href="https://github.com/ocodia/Check-My-Links">Check-My-Links</a>  </p>
-<div class="check-my-links"><style>.check-my-links img {width:auto;}</style><img src="/blog/static/imgs/check_my_links.png" alt="Check-My-Links"></div>
+        <section><br>    <div class="paint-area"><br>        <p>移动端无法使用</p><br>        <canvas></canvas><br>    </div><br>    <script type="text/javascript" src="/blog/static/js/painter.js"></script><br></section>
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
 
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2019/01/03/HTML-a-%E7%9A%84%E7%94%A8%E6%B3%95/">链接a标签的用法</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-01-03T12:16:31.000Z" itemprop="datePublished">2019-01-03</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/html/" rel="tag">html</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="样式"><a href="#样式" class="headerlink" title="样式"></a>样式</h2><p>&lt;a> 标签定义超链接，用于从一张页面链接到另一张页面。</p>
+<p>在所有浏览器中，链接的默认外观是：  </p>
+<ul><li style="text-decoration: underline; color:blue;">未被访问的链接带有下划线而且是蓝色的</li><li style="text-decoration: underline; color:red;">活动链接带有下划线而且是红色的</li><li style="text-decoration: underline; color:purple;">已被访问的链接带有下划线而且是紫色的</li></ul>
+
+<p>链接默认样式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span> &#123;<span class="attribute">color</span>: blue;<span class="attribute">text-decoration</span>: underline;&#125;    <span class="comment">/* 未访问的链接 */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;<span class="attribute">color</span>: blue;<span class="attribute">text-decoration</span>: underline;&#125;    <span class="comment">/* 鼠标移动到链接上 */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:active</span> &#123;<span class="attribute">color</span>: red;<span class="attribute">text-decoration</span>: underline;&#125;     <span class="comment">/* 鼠标按下但还未收起时的链接 */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span> &#123;<span class="attribute">color</span>: purple;<span class="attribute">text-decoration</span>: underline;&#125;    <span class="comment">/* 已访问的链接 */</span></span><br></pre></td></tr></table></figure>
+<p>&lt;a>不能自闭合，必须有开始标识与结束标识。  </p>
+<h2 id="href"><a href="#href" class="headerlink" title="href"></a>href</h2><p>&lt;a> 元素最重要的属性是 href 属性，它指示链接的目标。  </p>
+<p>如果没有href属性，&lt;a> 标签会表现的像是一个行内元素&lt;span>标签，甚至没有默认的样式。如果href属性没有值或者值为空字符串则点击 &lt;a> 标签会刷新当前页面。  </p>
+<p>href 属性的值可以是任何URL或URL片段。如果用户选择了 &lt;a> 标签中的内容，那么浏览器会尝试检索并显示 href 属性指定的 URL 所表示的文档，或者执行 JavaScript 表达式、方法和函数的列表。  </p>
+<p>href的值可以有很多种：  </p>
 <ul>
-<li>Valid links: 通过的链接</li>
-<li>Valid redirecting links: 通过的链接</li>
-<li>Warnings: 警告</li>
-<li>invalid links: 503/404 或其它无效链接</li>
+<li>绝对 URL - 指向另一个站点（<code>href=&quot;http://www.example.com/index.html&quot;</code>）</li>
+<li>相对 URL - 指向站点内的某个文件（<code>href=&quot;index.html&quot;</code>）</li>
+<li>锚 URL - 指向页面中的锚（<code>href=&quot;#top&quot;</code>）</li>
+<li>javascript代码 - 执行javascript代码(<code>href=&quot;javascript:alert(&#39;a is clicked&#39;);&quot;</code>)</li>
+<li>本地文件地址 - 在浏览器中打开本地文件(<code>href=&quot;file:///Users/work/Desktop/test.txt&quot;</code>)</li>
+<li>邮件地址 - 发送邮件(<code>href=&quot;mailto://somebody@example.com&quot;</code>)</li>
+<li>电话号码 - 打电话(<code>href=&quot;tel:+86-10010&quot;</code>)</li>
 </ul>
-<p>Check-My-Links 会将当前页面中所有的http/https链接的background改为与上面四种情况对应的颜色。值得注意的是，有时候一些可用的链接可能由于某种原因而被标注为 Invalid links ，所以在 Invalid links 里的链接最好被重新手工测试一下。Warnings 的链接会被在console中显示出来，什么样的链接会被标为warning是可配置的，一般链接的href为空或“#”或者没有href或者表示为hashtag形式却无法在落地页找到时可以标注为warning。可用的链接可以被cache起来，这样就不用相同的链接也发多次请求验证其正确性。如果不想要验证链接的正确性，比如一些退出账户（log out）的链接，可以在链接上加上属性 <code>rel=&quot;nofollow&quot;</code> 来让Check-My-Links跳过对他的验证。具体配置可以在 Check-My-Links 的 <a href="chrome-extension://ojkcdipcgfaekbeaelaapakgnjflfglf/options.html">配置页</a> 查看。有一个问题是当请求返回状态是302，然后跳转到一个下载时，此链接会一直在Queue中，这算是一个bug吧。</p>
+<p>⚠️注意事项</p>
+<ul>
+<li><p>除了相对URL和锚点，其它的表现都和在地址栏中输入相应href类似。<br>亦和<code>window.location.href=?</code>差不多，值得注意的是，在console执行 <code>window.location.href=&quot;file:///Users/work/Desktop/test.txt&quot;</code> 时会报错 <code>Not allowed to load local resource:file:///Users/work/Desktop/test.txt</code> 而执行 <code>window.location.href=&quot;tel:+86-10010&quot;</code> 则根本没反应</p>
+</li>
+<li><p>如果不是采用hash方式进行页面内导航的话，可以使用 <code>href=&quot;#top&quot;</code> 或者 <code>href=&quot;#&quot;</code> 链接返回到页面顶部 <span class="tag">HTML5<span/></p>
+</li>
+</ul>
+<h2 id="target"><a href="#target" class="headerlink" title="target"></a>target</h2><p>&lt;a> 标签的 target 属性规定在何处打开链接文档。  </p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>_blank</td>
+<td>浏览器总在一个新打开、未命名的窗口中载入目标文档。</td>
+</tr>
+<tr>
+<td>_self</td>
+<td>默认值，它使得目标文档载入并显示在相同的frame或者window中作为源文档。</td>
+</tr>
+<tr>
+<td>_parent</td>
+<td>这个目标使得文档载入父窗口或者包含来超链接引用的框架的框架集。如果这个引用是在窗口或者在顶级框架中，那么它与目标 _self 等效。</td>
+</tr>
+<tr>
+<td>_top</td>
+<td>这个目标使得文档载入包含这个超链接的窗口，用 _top 目标将会清除所有被包含的框架并将文档载入整个浏览器窗口。</td>
+</tr>
+<tr>
+<td>&lt;framename></td>
+<td>在指定的frame中打开被链接文档。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rel"><a href="#rel" class="headerlink" title="rel"></a>rel</h2><p>&lt;a> 标签的 rel 属性用于指定当前文档与被链接文档的关系。与 &lt;link> 标签的 rel 属性类似，事实上许多值两者通用。<br>搜索引擎可以利用该属性获得更多有关链接的信息，在跳转的时候某些值也有特殊的用处。  </p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>alternate</td>
+<td>文档的可选版本（例如打印页、翻译页或镜像）</td>
+</tr>
+<tr>
+<td>author</td>
+<td>作者链接</td>
+</tr>
+<tr>
+<td>bookmark</td>
+<td>表明这个超链接是当前页面的一个永久链接（可被加入书签的）</td>
+</tr>
+<tr>
+<td>external</td>
+<td>表明指向外部链接</td>
+</tr>
+<tr>
+<td>licence</td>
+<td>描述版权信息</td>
+</tr>
+<tr>
+<td>next</td>
+<td>集合中的下一个文档</td>
+</tr>
+<tr>
+<td>nofollow</td>
+<td>Google 使用 “nofollow”用于指定 Google 搜索引擎不要跟踪链接</td>
+</tr>
+<tr>
+<td>noopener</td>
+<td>防止新打开的页面通过window.opener访问父级页面</td>
+</tr>
+<tr>
+<td>noreferrer</td>
+<td>防止新打开页面时在http请求的header添加referrer字段</td>
+</tr>
+<tr>
+<td>prev</td>
+<td>集合中的前一个文档</td>
+</tr>
+<tr>
+<td>help</td>
+<td>指向帮助文档</td>
+</tr>
+<tr>
+<td>tag</td>
+<td>描述当前页面标识的页面</td>
+</tr>
+</tbody>
+</table>
+<p>⚠️注意事项</p>
+<ul>
+<li>使用target时，考虑添加 <code>rel=&quot;external noopener noreferrer&quot;</code> 以防止针对 window.opener API 的恶意行为。</li>
+</ul>
+<h2 id="download-HTML5"><a href="#download-HTML5" class="headerlink" title="download HTML5"></a>download <span class="self-tag">HTML5<span/></h2><p>&lt;a> 标签的 download 属性指示浏览器下载URL而不是导航到它，因此将提示用户将链接（href）指向地址保存为本地文件。如果属性有一个值，那么它将在Save提示符中作为预填充的文件名使用（如果用户需要，仍然可以更改文件名）。此属性对允许的值没有限制，但是/和\会被转换为下划线。大多数文件系统限制了文件名中的标点符号，故此，浏览器将相应地调整建议的文件名。  </p>
+<p>⚠️注意事项</p>
+<ul>
+<li>此属性仅适用于同源 URLs。</li>
+<li>尽管HTTP URL需要位于同一源中，但是可以使用 <code>blob: URLs</code> 和 <code>data: URLs</code> ，以方便用户下载 JavaScript 方式生成的内容（例如使用在线绘图的Web应用创建的照片）。</li>
+<li>如果HTTP头的Content-Disposition赋予了一个不同于此属性的文件名，HTTP头属性Content-Disposition优先于此属性。</li>
+<li>如果HTTP头属性Content-Disposition被设置为inline(即Content-Disposition=’inline’)，那么Firefox优先考虑HTTP头Content-Disposition属性，就像文件名的情况，而Chrome优先考虑download属性。</li>
+</ul>
+<h2 id="type"><a href="#type" class="headerlink" title="type"></a>type</h2><p>该属性指定在一个 MIME type 链接目标的形式的媒体类型。其仅提供建议，并没有内置的功能。  </p>
+<h2 id="废弃属性"><a href="#废弃属性" class="headerlink" title="废弃属性"></a>废弃属性</h2><p>以下属性在HTML5中已废弃，不推荐使用  </p>
+<ul>
+<li>charset</li>
+<li>coords</li>
+<li>name</li>
+<li>rev</li>
+<li>shape</li>
+</ul>
 
         
     </section>
@@ -630,7 +561,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2018/09/27/FE-Charles%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">Charles使用说明</a>
+            <a href="/blog/2018/12/14/FE-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B-%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/">面向对象编程&amp;函数式编程</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -638,13 +569,13 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2018-09-27T06:34:26.000Z" itemprop="datePublished">2018-09-27</time>
+    <time datetime="2018-12-14T08:06:59.000Z" itemprop="datePublished">2018-12-14</time>
 </span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/charles/" rel="tag">charles</a>, <a class="article-tag-link" href="/blog/tags/proxy/" rel="tag">proxy</a>
+    <a class="article-tag-link" href="/blog/tags/algorithm/" rel="tag">algorithm</a>, <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>
 </div>
 
 
@@ -653,156 +584,32 @@
     
     <section class="article-body markdown-body">
         
-        <p>在前端开发过程中我们常常要用到代理工具来处理一些诸如改变请求参数，代理请求地址，以及抓包的问题。目前最流行的代理工具有两种 <a target="_blank" rel="noopener" href="https://www.telerik.com/fiddler">Fiddler</a> &amp; <a target="_blank" rel="noopener" href="https://www.charlesproxy.com/">Charles</a>。Fiddler是免费的，一直以来只提供了Windows版本，2016年10月之后也提供了Mac OSX版本，不过需要安装跨平台方案Mono。Charles是付费的，20$/license，不过Charles是java swing编写的，网上可以找到很多破解的方案，这里不再赘述。Charles的好处在于功能齐全，界面简单，提供了几乎所有可以用到的代理功能，在MacOS下十分好用，2018年3月之后甚至提供了IOS的版本。下面主要来讲一下Charles的使用。</p>
-<h2 id="Charles是什么"><a href="#Charles是什么" class="headerlink" title="Charles是什么"></a>Charles是什么</h2><p>Charles是一个提供了HTTP代理/HTTP监控/反向代理的工具，通过这个工具，开发者可以查看本机与网络之间的所有HTTP以及SSL/HTTPS通信，包括请求与返回以及HTTP头部信息（包含cookie和缓存信息）。</p>
-<div><style type="text/css">img {box-shadow:none !important;</style><img src="/blog/static/imgs/charles-macosx.png" alt="charles-macosx"></div>
-
-<h2 id="Charles主要功能"><a href="#Charles主要功能" class="headerlink" title="Charles主要功能"></a>Charles主要功能</h2><p>Charles主要功能如下：  </p>
+        <h2 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h2><p>函数式编程（英语：Functional programming）或称函数程序设计，又称泛函编程，是一种编程范型，它将电脑运算视为数学上的函数计算，并且避免使用程序状态以及易变对象。函数编程语言最重要的基础是λ演算（lambda calculus）。而且λ演算的函数可以接受函数当作输入（引数）和输出（传出值）。</p>
+<p>函数式编程优点：  </p>
 <ol>
-<li>记录了本机与网络之间的所有通信流量</li>
-<li>展示了所有的请求，返回数据，cookie和头部信息的内容</li>
-<li>支持SSL和HTTPS</li>
-<li>模拟慢网速环境</li>
-<li>下载静态资源</li>
-<li>请求高度可配置</li>
+<li>没有并发编程的问题，是多线程安全的</li>
+<li>函数式编程的表达方式更加符合人类日常生活中的语法，代码可读性更强，实现同样的功能函数式编程所需要的代码比面向对象编程要少很多，代码更加简洁明晰</li>
 </ol>
-<h2 id="Charles-安装"><a href="#Charles-安装" class="headerlink" title="Charles 安装"></a>Charles 安装</h2><p>点击<a target="_blank" rel="noopener" href="https://www.charlesproxy.com/download/">这里</a>可以跳转到下载页面。<br>截止北京时间2018年9月27日16:09 最新的版本为4.2.7  </p>
-<p>Charles提供了以下版本</p>
-<ul>
-<li><p>Windows</p>
-<blockquote>
-<p>Windows 64 bit (msi, 64.7 MB)<br>Windows 32 bit (msi, 63.9 MB)</p>
-</blockquote>
-</li>
-<li><p>macOS</p>
-<blockquote>
-<p>macOS (dmg, 58 MB) (兼容 macOS 10.7 - 10.13)</p>
-</blockquote>
-</li>
-<li><p>Linux</p>
-<blockquote>
-<p>Linux 64 bit (tar.gz, 56.1 MB)<br>Linux 32 bit (tar.gz, 55.6 MB)</p>
-</blockquote>
-</li>
-</ul>
-<p>Firefox浏览器下还提供了一个add-on来支持Charles.</p>
-<h2 id="Charles配置"><a href="#Charles配置" class="headerlink" title="Charles配置"></a>Charles配置</h2><p>在Windows及 MacOS系统中，只要赋予权限Charles会自动将自己配置为代理服务器，不过还有一些比较通用的设置，以MacOS为例  </p>
-<ul>
-<li>打开 Charles &gt; Preference &gt; Startup ，关掉Start throttling，Check for updates。  </li>
-<li>点击 Proxy &gt; Mac OS X Proxy 启用系统代理。  </li>
-</ul>
-<p>在IOS中需要自己在wifi配置中手动设置。配置步骤如下：  </p>
+<p>函数式编程缺点：  </p>
 <ol>
-<li>打开 设置 &gt; Wifi ，找到自己连接的网络然后打开</li>
-<li>滑动到 HTTP代理设置，选择 手动 ，输入运行Charles server的IP与端口号（通常是8888）。</li>
+<li>所有的变量在程序运行期间都是一直存在的，资源利用率低</li>
+<li>大型项目中工程化不足，使得代码易读性降低</li>
 </ol>
-<h2 id="Charles-用法"><a href="#Charles-用法" class="headerlink" title="Charles 用法"></a>Charles 用法</h2><p>以Charles 3.9.1为例，Charles的常用功能如下：  </p>
-<h3 id="查看请求内容（抓包）"><a href="#查看请求内容（抓包）" class="headerlink" title="查看请求内容（抓包）"></a>查看请求内容（抓包）</h3><p>首先点击 File &gt; New 或者 菜单栏的New Session创建一个session，然后点击 Proxy &gt; Start Recording 开始记录请求。 在浏览器中发送请求，就可以在Charles中查看请求的相关信息。Charles支持以结构化（Structure）或者序列（Sequence）的方式展示请求，结构化展示会把同地址端口的请求汇总，序列化则会按照请求顺序展示请求。<br>可以在Proxy &gt; Recording Setting设置记录的相关信息  </p>
-<p>支持：</p>
+<h2 id="面向对象编程"><a href="#面向对象编程" class="headerlink" title="面向对象编程"></a>面向对象编程</h2><p>面向对象程序设计（英语：Object-oriented programming，缩写：OOP）是种具有对象概念的程序编程范型，同时也是一种程序开发的方法。它可能包含数据、属性、代码与方法。对象则指的是类的实例。它将对象作为程序的基本单元，将程序和数据封装其中，以提高软件的重用性、灵活性和扩展性，对象里的程序可以访问及经常修改对象相关连的数据。在面向对象程序编程里，计算机程序会被设计成彼此相关的对象。</p>
+<p>面向对象编程优点：  </p>
 <ol>
-<li>限制请求数量与大小</li>
-<li>仅记录固定地址列表</li>
-<li>记录时排除某些地址</li>
+<li>灵活，可维护，易拓展，在大型项目设计中广为应用</li>
+<li>由于继承、封装、多态的特性，自然设计出高内聚、低耦合的系统结构，使得系统更灵活、更容易扩展，而且成本较低。</li>
+<li>23种设计模式广泛应用</li>
 </ol>
-<p>记录的信息是存储在内存中的，所以如果不需要记录的请求最好能够过滤掉，记录的数据过多时Charles也会提醒并关闭记录。记录的数据可以通过 File &gt; Export 导出，也可以通过 File &gt; Save as 保存为Charles可识别的.chls文件。</p>
-<h3 id="代理请求"><a href="#代理请求" class="headerlink" title="代理请求"></a>代理请求</h3><p>打开 Tools &gt; Map Remote/Map Local &gt; Enable Map Remote/Enable Map Local ，点击 Add 可以添加新的代理映射<br>代理的作用是将请求的地址转向一个新的网络地址/本地地址，有些情况下可以用到  </p>
+<p>面向对象编程缺点：  </p>
 <ol>
-<li>在生产环境测试时发现了问题，可以将请求的资源映射到本地资源，然后通过修改本地的代码预览修改后的效果。</li>
-<li>可以配置生产环境，测试环境，开发环境的地址，通过在 Map remote 中切换环境地址来切换环境而不用修改访问的地址。</li>
-<li>某些已发布的客户端请求的地址时固定的，可以通过 Map remote 来修改请求的地址。</li>
+<li>在多线程并发编程中，多个线程同时操作数据的时候可能会导致数据修改的不确定性。</li>
+<li>为了写可重用的代码而产生了很多无用的代码，导致代码膨胀</li>
+<li>为了面向对象而面向对象，使得代码易读性降低</li>
+<li>代码的运行效率比起面向过程要低很多</li>
 </ol>
-<h3 id="查看HTTPS"><a href="#查看HTTPS" class="headerlink" title="查看HTTPS"></a>查看HTTPS</h3><p>通常情况下HTTPS请求是加密并无法被查看的，但是通过替换正常证书为Charles颁发的证书可以做到查看HTTPS请求。<br>打开 Proxy &gt; Proxy Settings &gt; SSL &gt; Enable SSL proxying ，点击Add添加地址，通常端口号为443(HTTPS的端口号)。<br>然后打开网址，以Chrome为例，需要点击 高级 &gt; 允许 来访问地址，这时就可以在Charles中查看HTTPS请求内容。<br>通过将Charles证书添加到“受信任的证书”可以避免浏览器的不信任阻塞。<br>如何将Charles证书添加到“受信任的证书”的方法根据操作系统及浏览器的不同而不同。<br>Windows/IE</p>
-<blockquote>
-<p>Help &gt; SSL Proxying &gt; Install Charles Root Certificate &gt; Install Certificate</p>
-</blockquote>
-<p>MacOS</p>
-<blockquote>
-<p>Help &gt; SSL Proxying &gt; Install Charles Root Certificate 打开钥匙串，搜索 Charles Proxy，双击打开，然后将 信任 &gt; 使用此证书时 下拉框选择为“始终信任”<br>根据官网文档，如上步骤操作就行了，实际上因为Charles certficate 采用的SHA1加密算法，仍旧会被Chrome提示不安全，Safari不再提示不安全</p>
-</blockquote>
-<h3 id="截流"><a href="#截流" class="headerlink" title="截流"></a>截流</h3><p>打开 Proxy &gt; Throttle Settings &gt; Enable Throttling ，可以模仿弱网环境下的请求。  </p>
-<p>支持：  </p>
-<ol>
-<li>对指定host截流</li>
-<li>限制上传下载带宽，利用率，往返延迟，最大传输单元（MTU）</li>
-</ol>
-<h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><p>Charles还提供了其它的一些功能：  </p>
-<ol>
-<li>请求内容的结构化展示</li>
-<li>请求的断点与内容修改/重写</li>
-<li>反向代理，将请求向本机的资源转发到远端的 web server 上</li>
-<li>TCP/UDP 端口转发</li>
-<li>IP访问控制</li>
-<li>外部 HTTP/HTTPS/SOCKS 代理服务器连接</li>
-<li>Charles web化管理</li>
-<li>SSL连接</li>
-<li>no cache连接，包括特定地址的 no cache 连接</li>
-<li>block cookie连接，包括特定地址的 block cookie 连接</li>
-<li>DNS欺骗</li>
-<li>发布Gist</li>
-</ol>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2018/09/26/JS-%E5%88%97%E8%A1%A8%E6%8B%96%E6%8B%BD%E6%8E%92%E5%BA%8Fsortablejs/">列表拖拽排序sortablejs</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-09-26T12:47:08.000Z" itemprop="datePublished">2018-09-26</time>
-</span>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/Javascript/" rel="tag">Javascript</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="简单的拖拽交换"><a href="#简单的拖拽交换" class="headerlink" title="简单的拖拽交换"></a>简单的拖拽交换</h2><p>实现列表拖拽排序，最简单的方法就是将想要拖拽的元素设置为dragable=“true”，然后利用drag事件处理元素位置变换。  </p>
-<p>拖拽的时候主要有以下几个事件  </p>
-<ul>
-<li>ondragstart 事件：当拖拽元素开始被拖拽的时候触发的事件，此事件作用在被拖曳元素上  </li>
-<li>ondragenter 事件：当拖曳元素进入目标元素的时候触发的事件，此事件作用在目标元素上  </li>
-<li>ondragover 事件：拖拽元素在目标元素上移动的时候触发的事件，此事件作用在目标元素上  </li>
-<li>ondrop 事件：被拖拽的元素在目标元素上同时鼠标放开触发的事件，此事件作用在目标元素上  </li>
-<li>ondragend 事件：当拖拽完成后触发的事件，此事件作用在被拖曳元素上  </li>
-</ul>
-<p>实现一个最简单的拖拽交换顺序，可以通过以下步骤来实现</p>
-<ol>
-<li>ondragstart 记录初始拖拽元素，需要注意的是在Firefox浏览器中必须调用 <code>dataTransfer.setData()</code> 设置拖拽的值否则无法拖拽</li>
-<li>ondragover e.preventDefault() 阻止ondragover可能导致ondrop无法触发</li>
-<li>ondrop 记录目标元素，并交换初始元素与目标元素</li>
-</ol>
-<h2 id="Sortable用法"><a href="#Sortable用法" class="headerlink" title="Sortable用法"></a>Sortable用法</h2><p>实现更顺滑的拖拽排序可以通过<a target="_blank" rel="noopener" href="https://github.com/RubaXa/Sortable">Sortable</a> 来实现。<br>Sortable采用的是MIT协议，不依赖任何其它的库，使用原生html5 DnD来实现，并且只有1500行。<br>查看<a target="_blank" rel="noopener" href="http://rubaxa.github.io/Sortable/">Demo</a>  </p>
-<p>用法：  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">Sortable.create(<span class="built_in">document</span>.getElementById(<span class="string">&#x27;foo&#x27;</span>), &#123;</span><br><span class="line">    group: <span class="string">&quot;name&quot;</span>,  <span class="comment">// 列表名，在多列表中互相交换时为Object,形如&#123;name:&quot;...&quot;,pull:true,put:false，revertClone:false&#125;多列表需要设置相同的name，pull和put表示拖拽入和出的各种情况</span></span><br><span class="line">    sort: <span class="literal">true</span>,  <span class="comment">// 是否在列表中排序</span></span><br><span class="line">    delay: <span class="number">0</span>, <span class="comment">// 毫秒值，定义何时排序开始</span></span><br><span class="line">    touchStartThreshold: <span class="number">0</span>, <span class="comment">// px, how many pixels the point should move before cancelling a delayed drag event</span></span><br><span class="line">    disabled: <span class="literal">false</span>, <span class="comment">// 设定为true则禁止排序</span></span><br><span class="line">    store: <span class="literal">null</span>,  <span class="comment">// @see Store</span></span><br><span class="line">    animation: <span class="number">150</span>,  <span class="comment">// 毫秒值，移动的动画时间，设置为0则没有动画效果</span></span><br><span class="line">    <span class="comment">// 以下都是一些元素选择器命名</span></span><br><span class="line">    handle: <span class="string">&quot;.my-handle&quot;</span>,  <span class="comment">// Drag handle selector within list items</span></span><br><span class="line">    filter: <span class="string">&quot;.ignore-elements&quot;</span>,  <span class="comment">// Selectors that do not lead to dragging (String or Function)</span></span><br><span class="line">    preventOnFilter: <span class="literal">true</span>, <span class="comment">// Call `event.preventDefault()` when triggered `filter`</span></span><br><span class="line">    draggable: <span class="string">&quot;.item&quot;</span>,  <span class="comment">// Specifies which items inside the element should be draggable</span></span><br><span class="line">    ghostClass: <span class="string">&quot;sortable-ghost&quot;</span>,  <span class="comment">// Class name for the drop placeholder</span></span><br><span class="line">    chosenClass: <span class="string">&quot;sortable-chosen&quot;</span>,  <span class="comment">// Class name for the chosen item</span></span><br><span class="line">    dragClass: <span class="string">&quot;sortable-drag&quot;</span>,  <span class="comment">// Class name for the dragging item</span></span><br><span class="line">    dataIdAttr: <span class="string">&#x27;data-id&#x27;</span>,</span><br><span class="line"></span><br><span class="line">    forceFallback: <span class="literal">false</span>,  <span class="comment">// 是否忽略HTML5 原生dnd行为</span></span><br><span class="line"></span><br><span class="line">    fallbackClass: <span class="string">&quot;sortable-fallback&quot;</span>,  <span class="comment">// Class name for the cloned DOM Element when using forceFallback</span></span><br><span class="line">    fallbackOnBody: <span class="literal">false</span>,  <span class="comment">// Appends the cloned DOM Element into the Document&#x27;s Body</span></span><br><span class="line">    fallbackTolerance: <span class="number">0</span>, <span class="comment">// Specify in pixels how far the mouse should move before it&#x27;s considered as a drag.</span></span><br><span class="line"></span><br><span class="line">    scroll: <span class="literal">true</span>, <span class="comment">// or HTMLElement</span></span><br><span class="line">    scrollFn: <span class="function"><span class="keyword">function</span>(<span class="params">offsetX, offsetY, originalEvent, touchEvt, hoverTargetEl</span>) </span>&#123; ... &#125;, <span class="comment">// if you have custom scrollbar scrollFn may be used for autoscrolling</span></span><br><span class="line">    scrollSensitivity: <span class="number">30</span>, <span class="comment">// px, how near the mouse must be to an edge to start scrolling.</span></span><br><span class="line">    scrollSpeed: <span class="number">10</span>, <span class="comment">// px</span></span><br><span class="line"></span><br><span class="line">    setData: <span class="function"><span class="keyword">function</span> (<span class="params"><span class="comment">/** DataTransfer */</span>dataTransfer, <span class="comment">/** HTMLElement*/</span>dragEl</span>) </span>&#123;</span><br><span class="line">        dataTransfer.setData(<span class="string">&#x27;Text&#x27;</span>, dragEl.textContent); <span class="comment">// `dataTransfer` object of HTML5 DragEvent</span></span><br><span class="line">    &#125;,</span><br><span class="line">    onChoose: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;  <span class="comment">// 元素被选择时触发该事件</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;onChoose.foo:&#x27;</span>, [evt.item]);</span><br><span class="line">    &#125;,</span><br><span class="line">    onStart:<span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;  <span class="comment">//开始拖拽触发该事件</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;onStart.foo:&#x27;</span>, [evt.item]);</span><br><span class="line">    &#125;,</span><br><span class="line">    onEnd: <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123; <span class="comment">//拖拽完毕之后触发该事件</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;onEnd.foo:&#x27;</span>, [evt.item, evt.from, evt.to, evt.oldIndex, evt.newIndex]);</span><br><span class="line">    &#125;</span><br><span class="line">    onAdd: <span class="function"><span class="keyword">function</span> (<span class="params">evt</span>)</span>&#123;   <span class="comment">//从另外一个列表拖找到当前列表时触发该事件</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;onAdd.foo:&#x27;</span>, [evt.item]);</span><br><span class="line">    &#125;,</span><br><span class="line">    onUpdate: <span class="function"><span class="keyword">function</span> (<span class="params">evt</span>)</span>&#123;  <span class="comment">//在列表内更新位置时触发该事件</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;onUpdate.foo:&#x27;</span>, [evt.item]);</span><br><span class="line">    &#125;,</span><br><span class="line">    onSort:<span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;  <span class="comment">//发生排序时触发该事件</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;onSort.foo:&#x27;</span>, [evt.item]);</span><br><span class="line">    &#125;</span><br><span class="line">    onRemove: <span class="function"><span class="keyword">function</span> (<span class="params">evt</span>)</span>&#123;  <span class="comment">//从当前列表删除时触发该事件（被拖拽到另一个列表）</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;onRemove.foo:&#x27;</span>, [evt.item]);</span><br><span class="line">    &#125;,</span><br><span class="line">    onFilter: <span class="function"><span class="keyword">function</span> (<span class="params">evt</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;onFilter.foo:&#x27;</span>, [evt.item]);</span><br><span class="line">    &#125;,</span><br><span class="line">    onMove: <span class="function"><span class="keyword">function</span> (<span class="params">evt, originalEvent</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;onMove.foo:&#x27;</span>, [evt.dragged,evt.draggedRect, evt.related, evt.relatedRect, originalEvent.clientY]);</span><br><span class="line">    &#125;,</span><br><span class="line">    onClone: <span class="function"><span class="keyword">function</span> (<span class="params">evt</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;onClone.foo:&#x27;</span>, [evt.item, evt.clone]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h2 id="Sortable在React中的用法示例"><a href="#Sortable在React中的用法示例" class="headerlink" title="Sortable在React中的用法示例"></a>Sortable在React中的用法示例</h2><p>React中的示例：<br><figure class="highlight javascript"><figcaption><span>react</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Sortable.create(<span class="built_in">document</span>.getElementsByClassName(<span class="string">&#x27;ul-container&#x27;</span>)[<span class="number">0</span>], &#123;</span><br><span class="line">    animation: <span class="number">150</span>,</span><br><span class="line">    onSort: <span class="function"><span class="params">evt</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> newOrderItem = <span class="built_in">this</span>.state.orderItem;</span><br><span class="line">        <span class="keyword">let</span> dragedItem = newOrderItem.splice(evt.oldIndex, <span class="number">1</span>)[<span class="number">0</span>];</span><br><span class="line">        newOrderItem.splice(evt.newIndex, <span class="number">0</span>, dragedItem);</span><br><span class="line">        <span class="built_in">this</span>.setState(&#123; <span class="attr">orderItem</span>: newOrderItem &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p>通常，还需要将拖拽的item的样式设置为不可见<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ul</span> <span class="selector-tag">li</span> &#123;</span><br><span class="line">    <span class="attribute">cursor</span>: move;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.sortable-ghost</span> &#123;</span><br><span class="line">    <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="其它版本的Sortable"><a href="#其它版本的Sortable" class="headerlink" title="其它版本的Sortable"></a>其它版本的Sortable</h2><p>Sortable由于只采用了原生的HTML5来实现拖拽，所以可以被轻松地移植到几乎所有的框架中，例如<a target="_blank" rel="noopener" href="https://github.com/SortableJS/Vue.Draggable">Vue版本的Sortable</a>，<a target="_blank" rel="noopener" href="https://github.com/SortableJS/angular-sortablejs">Angular2版本的Sortable</a>.</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>函数式编程和面向对象编程各有利弊，一个语法更加自由，一个健壮性更好，作为编程者应该对两种编程方式都有所了解，不管是哪种方式，只要能够很好的解决当前的问题就是正确的方式。对于编程者来说，编程范式并没有重要到一定要遵循的地步，重要的是解决问题的思想。</p>
 
         
     </section>
@@ -820,7 +627,7 @@
 
 
 <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/blog/page/12/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/11/">11</a><a class="page-number" href="/blog/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/blog/page/14/">14</a><a class="page-number" href="/blog/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/18/">18</a><a class="extend next" rel="next" href="/blog/page/14/">Next &gt;&gt;</a>
+    <a class="extend prev" rel="prev" href="/blog/page/12/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/11/">11</a><a class="page-number" href="/blog/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/blog/page/14/">14</a><a class="page-number" href="/blog/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/20/">20</a><a class="extend next" rel="next" href="/blog/page/14/">Next &gt;&gt;</a>
 </nav>
 
 

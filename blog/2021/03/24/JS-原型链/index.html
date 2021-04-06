@@ -6,7 +6,7 @@
 
     
     <title>
-        CSS transition属性 | 
+        JS 原型链 | 
         Gblog
     </title>
     <meta name="author" content="Mangon" />
@@ -15,7 +15,7 @@
     <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
     
     
-    <meta name="description" content="transitiontransition 属性是 transition-property，transition-duration，transition-timing-function 和 transition-delay 的一个简写属性。transition 可以为一个元素在不同状态之间切换的时候定义不同的过渡效果。属性含义transition-property指定应用过渡属性的名称transition-duration以秒或毫秒为单位指定过渡动画所需的时间，默认为" />
+    <meta name="description" content="什么是原型链原型链是实现继承的主要方法。其基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法。每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。这时，如果我们让原型对象等于另一个类型的实例，此时的原型对象将包含一个指向另一个原型的指针，相应的，另一个原型中也包含着一个指向另一个构造函数的指针。假如一个原型又是另一个类型的实例，那么上述关系依然成立，如此层层递进，就构成了实例与原形的链条。这就是所谓原型链的基本概念。  利用原" />
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
@@ -71,7 +71,7 @@
         
 
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#transition"><span class="toc-number">1.</span> <span class="toc-text">transition</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%8E%9F%E5%9E%8B%E9%93%BE"><span class="toc-number">1.</span> <span class="toc-text">什么是原型链</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E5%8E%9F%E5%9E%8B%E9%93%BE%E5%AE%9E%E7%8E%B0%E7%BB%A7%E6%89%BF"><span class="toc-number">2.</span> <span class="toc-text">利用原型链实现继承</span></a></li></ol>
         
         <div id="coffee-content"></div>
     </div>
@@ -84,7 +84,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            CSS transition属性
+            JS 原型链
         </h1>
         
         <div class="article-meta clearfix">
@@ -92,49 +92,18 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2021-03-16T07:39:04.000Z" itemprop="datePublished">2021-03-16</time>
+    <time datetime="2021-03-24T12:49:22.000Z" itemprop="datePublished">2021-03-24</time>
 </span>
 
             
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
-</div>
-
 
         </div>
     </header>
     
     <section class="article-body markdown-body">
         
-        <h2 id="transition"><a href="#transition" class="headerlink" title="transition"></a>transition</h2><p>transition 属性是 transition-property，transition-duration，transition-timing-function 和 transition-delay 的一个简写属性。transition 可以为一个元素在不同状态之间切换的时候定义不同的过渡效果。</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>transition-property</td>
-<td>指定应用过渡属性的名称</td>
-</tr>
-<tr>
-<td>transition-duration</td>
-<td>以秒或毫秒为单位指定过渡动画所需的时间，默认为0s</td>
-</tr>
-<tr>
-<td>transition-timing-function</td>
-<td>用来描述 <code>transition-property</code> 中间值是怎样计算的, 默认 ease, 可选 ease-in，ease-out，ease-in-out，linear，step-start，step-end，steps(4, end)，inherit，cubic-bezier(0.1, 0.7, 1.0, 0.1)</td>
-</tr>
-<tr>
-<td>transition-delay</td>
-<td>规定了在过渡效果开始作用之前需要等待的时间, 默认0s</td>
-</tr>
-</tbody>
-</table>
-
+        <h2 id="什么是原型链"><a href="#什么是原型链" class="headerlink" title="什么是原型链"></a>什么是原型链</h2><p>原型链是实现继承的主要方法。其基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法。每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。这时，如果我们让原型对象等于另一个类型的实例，此时的原型对象将包含一个指向另一个原型的指针，相应的，另一个原型中也包含着一个指向另一个构造函数的指针。假如一个原型又是另一个类型的实例，那么上述关系依然成立，如此层层递进，就构成了实例与原形的链条。这就是所谓原型链的基本概念。  </p>
+<h2 id="利用原型链实现继承"><a href="#利用原型链实现继承" class="headerlink" title="利用原型链实现继承"></a>利用原型链实现继承</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.property = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.getSuperValue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.property;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.subproperty = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 继承了SuperType</span></span><br><span class="line">SubType.prototype = <span class="keyword">new</span> SuperType();</span><br><span class="line"><span class="comment">// 添加新方法</span></span><br><span class="line">SubType.prototype.getSubValue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.subproperty;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 重写超类中的方法</span></span><br><span class="line">SubType.prototype.getSuperValue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> instance = <span class="keyword">new</span> SubType();</span><br><span class="line"><span class="built_in">console</span>.log(instance.getSuperValue()); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
         
     </section>
     

@@ -108,7 +108,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2018/09/25/TIPS-%E5%A4%B1%E6%95%88%E9%93%BE%E6%8E%A5%E6%9B%BF%E6%8D%A2%E6%96%B9%E6%A1%88/">失效链接替换方案</a>
+            <a href="/blog/2018/12/10/CSS-%E5%A4%B4%E5%83%8F%E7%9A%84%E6%98%BE%E7%A4%BA/">头像的显示</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -116,7 +116,318 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2018-09-25T08:05:17.000Z" itemprop="datePublished">2018-09-25</time>
+    <time datetime="2018-12-10T10:37:19.000Z" itemprop="datePublished">2018-12-10</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>在项目中遇到了上传头像图片的需求，包括两个部分，一个是头像的上传。另一个是上传后头像图片的显示。</p>
+<h2 id="头像的上传"><a href="#头像的上传" class="headerlink" title="头像的上传"></a>头像的上传</h2><p>头像的上传和普通的图片上传几乎没有不同，但通常需要对上传的图片进行限制，例如限制图片格式为png/jpg，图片大小的限制，图片像素的限制等。</p>
+<h3 id="图片格式的限制"><a href="#图片格式的限制" class="headerlink" title="图片格式的限制"></a>图片格式的限制</h3><p>限制为图片格式[‘jpg’, ‘jpeg’, ‘png’, ‘bmp’]，如果头像允许显示动态图，也可以允许gif，不过考虑到大小，一般不允许。最好给予用户提示文案，限定一种最友好的图片格式，例如png。</p>
+<h3 id="图片大小的限制"><a href="#图片大小的限制" class="headerlink" title="图片大小的限制"></a>图片大小的限制</h3><p>头像一般不允许过大的图片，因为引用的页面可能比较多，所以一般限制在百k的级别。例如120k。</p>
+<h3 id="图片像素的限制"><a href="#图片像素的限制" class="headerlink" title="图片像素的限制"></a>图片像素的限制</h3><p>头像一般为正方形，所以最好有文案提示用户上传正方形的图片，而且给予限定范围，例如“尺寸需小于256px*256px且大于120px*120px”，同时给出最佳的头像显示像素，采用此种像素，在应用中大部分情况下既不压缩也不拉伸。由于大部分情况下用户不会上传完全正方形的图片，所以在一定的宽高比例内，也应该允许上传。</p>
+<h3 id="提示语"><a href="#提示语" class="headerlink" title="提示语"></a>提示语</h3><p>包括：  </p>
+<pre><code>1. 默认提示语
+2. 默认上传失败提示语
+3. 上传成功提示语
+4. 图片格式不正确
+5. 图片大小超过限制
+6. 图片宽高比例不正确
+</code></pre><h3 id="上传进度"><a href="#上传进度" class="headerlink" title="上传进度"></a>上传进度</h3><p>有时也需要显示上传进度，不过一般而言图片文件不会很大，如果单单只是图片的上传，也可以使用loading图。</p>
+<h3 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h3><p>最简单的上传头像图片的逻辑代码如下：  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;input</span><br><span class="line">    class=&quot;upload-example&quot;</span><br><span class="line">    type=&quot;file&quot;</span><br><span class="line">    placeholder=&quot;选择图片&quot;</span><br><span class="line">    onchange=&quot;onChange&quot;/&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">onChange</span>(<span class="params">e</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> file = e.target.files[<span class="number">0</span>];</span></span><br><span class="line"><span class="javascript">    check(file); <span class="comment">// 检查待上传文件是否符合要求</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> formData = <span class="keyword">new</span> FormData();</span></span><br><span class="line"><span class="javascript">    formData.append(<span class="string">&#x27;file&#x27;</span>, file, file.name);</span></span><br><span class="line">    upload(formData);</span><br><span class="line">&#125;</span><br><span class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">upload</span>(<span class="params">formData</span>) </span>&#123;</span></span><br><span class="line">    axios.request(&#123;</span><br><span class="line"><span class="javascript">            method: <span class="string">&#x27;post&#x27;</span>,</span></span><br><span class="line">            url: uploadUrl,</span><br><span class="line">            data: formData,</span><br><span class="line">            headers: &#123;</span><br><span class="line"><span class="javascript">                <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;multipart/form-data&#x27;</span></span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).then(</span><br><span class="line">            ...</span><br><span class="line">        )</span><br><span class="line">&#125;</span><br><span class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">check</span>(<span class="params">file</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// file.type in [typeLimit]</span></span></span><br><span class="line"><span class="javascript">    <span class="comment">// file.size &lt; sizeLimit</span></span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="头像的显示"><a href="#头像的显示" class="headerlink" title="头像的显示"></a>头像的显示</h2><p>头像的显示也有两种方案，一种是显示为img，另一种是显示为div，然后通过将背景设置为头像图片来显示。两种都需要设置 <code>border-radiu: 50%;</code> 。下面演示下两种显示方案。我们假设头像的区域范围为120px*120px。用户上传了几种头像，一种是实际图片大小为400px*400px，另一种为800px*400px，还有一种为120px*60px。</p>
+<h3 id="用img标签显示"><a href="#用img标签显示" class="headerlink" title="用img标签显示"></a>用img标签显示</h3><p>设置图片的宽和高，通常长度相同，然后设置 <code>border-radiu: 50%;</code> 即可，这样如果用户上传的图片不是正方形的话，在相应的方向上会有拉伸或压缩的效果，如下图二，因为宽度大于高度，且大于120px所以产生了在宽度上压缩的效果。下图三因为高度小于宽度，且小于120px，所以在高度上产生了拉伸的效果。</p>
+<p>效果图：  </p>
+<div><style type="text/css">img.avator-example-1 {height: 120px;width: 120px;border-radius: 50%;box-shadow:none;}</style></div><div><img class="avator-example-1" src="/blog/static/imgs/avator/400_400.jpg"></img><img class="avator-example-1" src="/blog/static/imgs/avator/800_400.jpg"></img><img class="avator-example-1" src="/blog/static/imgs/avator/120_60.jpg"></img></div>
+
+<p>代码：  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">img</span><span class="selector-class">.avator-example-1</span> &#123;</span></span><br><span class="line"><span class="css">        <span class="attribute">height</span>: <span class="number">120px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">width</span>: <span class="number">120px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">&quot;avator-example-1&quot;</span> <span class="attr">src</span>=<span class="string">&quot;/blog/static/imgs/avator/400_400.jpg&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">img</span>&gt;</span><span class="comment">&lt;!-- 图一 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">&quot;avator-example-1&quot;</span> <span class="attr">src</span>=<span class="string">&quot;/blog/static/imgs/avator/800_400.jpg&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">img</span>&gt;</span><span class="comment">&lt;!-- 图二 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">&quot;avator-example-1&quot;</span> <span class="attr">src</span>=<span class="string">&quot;/blog/static/imgs/avator/120_60.jpg&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">img</span>&gt;</span><span class="comment">&lt;!-- 图三 --&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="用div标签的background-image来显示"><a href="#用div标签的background-image来显示" class="headerlink" title="用div标签的background-image来显示"></a>用div标签的background-image来显示</h3><p>设置区域的 <code>background-image</code> 为用户上传的图片然后设置 <code>background-size</code> 属性即可，例如设置 <code>background-size: 120px 120px;</code> 则会在相应的方向上压缩或拉伸，如下图三。如果设置 <code>background-size: auto 120px;</code> 则图像的高度会占满空间，宽度会取120px，如下图二。这和设置成 <code>background-size: cover;</code> 的效果是相同的，如下图四，五。注意，因为此处举例的图片为宽度大于高度，所以设置 <code>background-size: auto 120px;</code> 会呈现圆形，如果高度大于宽度，则应当设置 <code>backgounrd-size: 120px auto;</code> 。</p>
+<p>效果图：  </p>
+<div><style type="text/css">div.avator-example-2,div.avator-example-3,div.avator-example-4,div.avator-example-5,div.avator-example-6 {height: 120px;width: 120px;margin: 10px 25px;border-radius: 50%;background-color: #fff;background-size: 120px 120px;background-repeat: no-repeat;background-image: url(/blog/static/imgs/avator/800_400.jpg);}div.avator-example-2 {background-image: url(/blog/static/imgs/avator/400_400.jpg);}div.avator-example-3 {background-size: auto 120px;}div.avator-example-5,div.avator-example-6 {background-size: cover;}div.avator-example-6 {background-image:url(/blog/static/imgs/avator/120_60.jpg);}</style></div><div style="display:flex; flex-wrap: wrap;"><div class="avator-example-2"></div><div class="avator-example-3"></div><div class="avator-example-4"></div><div class="avator-example-5"></div><div class="avator-example-6"></div></div>
+
+<p>代码：  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-2</span>,</span></span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-3</span>,</span></span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-4</span>,</span></span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-5</span> &#123;</span></span><br><span class="line"><span class="css">        <span class="attribute">height</span>: <span class="number">120px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">width</span>: <span class="number">120px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">background-color</span>: <span class="number">#fff</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">background-size</span>: <span class="number">120px</span> <span class="number">120px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">background-repeat</span>: no-repeat;</span></span><br><span class="line"><span class="css">        <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">/blog/static/imgs/avator/800_400.jpg</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-2</span> &#123;</span></span><br><span class="line"><span class="css">        <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">/blog/static/imgs/avator/400_400.jpg</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-3</span> &#123;</span></span><br><span class="line"><span class="css">        <span class="attribute">background-size</span>: auto <span class="number">120px</span>;</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-5</span>,</span></span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-6</span> &#123;</span></span><br><span class="line"><span class="css">        <span class="attribute">background-size</span>: cover;</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-tag">div</span><span class="selector-class">.avator-example-6</span> &#123;</span></span><br><span class="line"><span class="css">        <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">/blog/static/imgs/avator/120_60.jpg</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;avator-example-2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="comment">&lt;!-- 图一 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;avator-example-3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="comment">&lt;!-- 图二 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;avator-example-4&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="comment">&lt;!-- 图三 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;avator-example-5&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="comment">&lt;!-- 图四 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;avator-example-6&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="comment">&lt;!-- 图五 --&gt;</span></span><br></pre></td></tr></table></figure>
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/12/06/CSS-Flex%E5%B8%83%E5%B1%80/">CSS-Flex布局</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-12-06T12:34:55.000Z" itemprop="datePublished">2018-12-06</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>, <a class="article-tag-link" href="/blog/tags/flex/" rel="tag">flex</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="Flex布局"><a href="#Flex布局" class="headerlink" title="Flex布局"></a>Flex布局</h2><p>Flex是Flexible Box的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性，设为Flex布局以后，子元素的float、clear和vertical-align属性无效。  </p>
+<p>任何一个容器都可以指定为flex布局</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: -webkit-flex;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>flex布局由父子元素共同组成，父元素被称为flex container，子元素被称为flex item。</p>
+<div><style type="text/css">img {box-shadow:none !important;</style><img src="/blog/static/imgs/flex.png" alt="flex"></div>
+
+<p>容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。主轴的开始位置（与边框的交叉点）叫做main start，结束位置叫做main end；交叉轴的开始位置叫做cross start，结束位置叫做cross end。  </p>
+<p>项目默认沿主轴排列。单个项目占据的主轴空间叫做main size，占据的交叉轴空间叫做cross size。  </p>
+<h2 id="flex-container-属性"><a href="#flex-container-属性" class="headerlink" title="flex container 属性"></a>flex container 属性</h2><p>flex container包含以下属性  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">flex</span>-container &#123; // <span class="attribute">flex</span>容器</span><br><span class="line">    <span class="attribute">display</span>: flex; // 设置容器为弹性布局</span><br><span class="line">    <span class="attribute">flex-direction</span>: <span class="built_in">row</span>(default) | row-reverse | column | column-reverse; // 主轴方向</span><br><span class="line">    <span class="attribute">flex-wrap</span>: <span class="built_in">nowrap</span>(default) | wrap | wrap-reverse; //换行</span><br><span class="line">    <span class="attribute">flex-flow</span>: &lt;flex-direction&gt;||&lt;flex-wrap&gt;; //以上两属性的缩写形式</span><br><span class="line">    justify-centent: flex-start | flex-end | center | space-between | space-around; //主轴对齐方式</span><br><span class="line">    <span class="attribute">align-items</span>: flex-start | flex-end | center | baseline | stretch; // 交叉轴对齐方式</span><br><span class="line">    <span class="attribute">align-content</span>: flex-start | flex-end | center | space-between | space-around | stretch; // 轴有多个时（<span class="attribute">flex-wrap</span>:wrap），多根轴线的对齐方式</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="flex-item-属性"><a href="#flex-item-属性" class="headerlink" title="flex item 属性"></a>flex item 属性</h2><p>flex item 包含以下属性  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">flex</span>-item &#123; // <span class="attribute">flex</span> item</span><br><span class="line">    <span class="attribute">order</span>: &lt;integer&gt;(default <span class="number">0</span>); //顺序</span><br><span class="line">    <span class="attribute">flex-grow</span>:&lt;number&gt;(default <span class="number">0</span>); //项目放大比例 默认存在剩余空间也不放大</span><br><span class="line">    <span class="attribute">flex-shrink</span>: &lt;number&gt;(default <span class="number">1</span>); //项目缩小比例 默认空间不足时，当前项目缩小</span><br><span class="line">    <span class="attribute">flex-basis</span>: &lt;length&gt;|<span class="built_in">auto</span>(default auto); // 在分配多余空间之前，项目占据主轴的空间</span><br><span class="line">    <span class="attribute">flex</span>:&lt;flex-grow&gt; || &lt;flex-shrink&gt; || &lt;flex-basis&gt;; //<span class="attribute">flex-grow</span> <span class="attribute">flex-shrink</span> <span class="attribute">flex-basis</span> 缩写</span><br><span class="line">    <span class="attribute">align-self</span>: auto | flex-start | flex-end | center | baseline | stretch;//该项目交叉轴对齐方式， 覆盖container的<span class="attribute">align-items</span>属性</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/11/30/TIPS-Mac-%E4%B8%8BEclipse%E5%BF%AB%E6%8D%B7%E9%94%AE/">Mac下Eclipse快捷键</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-11-30T10:29:17.000Z" itemprop="datePublished">2018-11-30</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/eclipse/" rel="tag">eclipse</a>, <a class="article-tag-link" href="/blog/tags/learn/" rel="tag">learn</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="快捷操作"><a href="#快捷操作" class="headerlink" title="快捷操作"></a>快捷操作</h2><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>快捷键</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>全选</td>
+<td>command A</td>
+</tr>
+<tr>
+<td>复制</td>
+<td>command C</td>
+</tr>
+<tr>
+<td>粘贴</td>
+<td>command V</td>
+</tr>
+<tr>
+<td>查找</td>
+<td>command F</td>
+</tr>
+<tr>
+<td>回退</td>
+<td>command Z</td>
+</tr>
+<tr>
+<td>剪切</td>
+<td>command X</td>
+</tr>
+<tr>
+<td>退出</td>
+<td>command Q</td>
+</tr>
+<tr>
+<td>删除当前行</td>
+<td>command D</td>
+</tr>
+<tr>
+<td>放大字体</td>
+<td>command +</td>
+</tr>
+<tr>
+<td>缩小字体</td>
+<td>command -</td>
+</tr>
+<tr>
+<td>注释/反注释</td>
+<td>command /</td>
+</tr>
+<tr>
+<td>打开preference</td>
+<td>command ,</td>
+</tr>
+<tr>
+<td>代码补全提示</td>
+<td>option /</td>
+</tr>
+<tr>
+<td>最大化/还原</td>
+<td>control M</td>
+</tr>
+<tr>
+<td>格式化代码</td>
+<td>command shift F</td>
+</tr>
+<tr>
+<td>自动导入包</td>
+<td>command shift O</td>
+</tr>
+</tbody>
+</table>
+<h2 id="便利设置"><a href="#便利设置" class="headerlink" title="便利设置"></a>便利设置</h2><p>Preference -&gt; General -&gt; Editors -&gt; Text Editors</p>
+<p><input type="checkbox" checked></input> Show line numbers<br><input type="checkbox" checked></input> Show white space charactors</p>
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/11/29/CSS-position%E5%B1%9E%E6%80%A7/">CSS postion属性</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-11-29T11:29:20.000Z" itemprop="datePublished">2018-11-29</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="position四个属性"><a href="#position四个属性" class="headerlink" title="position四个属性"></a>position四个属性</h2><table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>absolute</td>
+<td>生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。<br/>此元素的位置可通过 “left”、”top”、”right” 以及 “bottom” 属性来规定。</td>
+</tr>
+<tr>
+<td>relative</td>
+<td>生成相对定位的元素，相对于其正常位置进行定位。</td>
+</tr>
+<tr>
+<td>fixed</td>
+<td>生成绝对定位的元素，相对于浏览器窗口进行定位。<br/>元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。</td>
+</tr>
+<tr>
+<td>static</td>
+<td>默认值。static 元素会忽略任何 top、bottom、left、right 和z-index 声明</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>规定应该从父元素继承 position 属性的值。</td>
+</tr>
+</tbody>
+</table>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/11/26/JS-%E4%B8%8B%E8%BD%BDcsv%E6%96%87%E4%BB%B6/">下载csv文件</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-11-26T11:07:31.000Z" itemprop="datePublished">2018-11-26</time>
 </span>
 
             
@@ -131,382 +442,12 @@
     
     <section class="article-body markdown-body">
         
-        <p>有些时候，尤其在文档型的网站中，页面链接经常变化调整。通常的做法即搜索网站中的所有相应页面进行url替换，但是即使这样做了，还是有一定风险，用户可能已经收藏了链接，在用户点击收藏链接跳转的时候，会发现页面不存在。这时，我们可以通过设置404页面来引导用户跳转到其它的可能符合用户期望的页面（比如主页）。同样的，如果其它网站引用了该失效链接，同时不希望此网站的引用失效（或者没有修改此网站的权限），就只能在落地页网站做一下兼容，在跳转的时候重新定向一下，具体代码如下：  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">!<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> path = location.pathname + location.hash;</span><br><span class="line">    <span class="keyword">var</span> urlMap = &#123;</span><br><span class="line">        <span class="string">&#x27;xxx&#x27;</span>: <span class="string">&#x27;xxxx&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;xxx/media#live-player&#x27;</span>: <span class="string">&#x27;xxx/media_live-player/&#x27;</span></span><br><span class="line">    &#125;;</span><br><span class="line">    urlMap[path] &amp;&amp; location.replace(urlMap[path]);</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
-<p>这是一种治标不治本的改动，最好的改动还是移除失效的链接。  </p>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2018/09/18/CSS-%E9%95%BF%E5%BA%A6%E5%8D%95%E4%BD%8D/">CSS长度单位</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-09-18T12:15:59.000Z" itemprop="datePublished">2018-09-18</time>
-</span>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>下面将会讲解一下CSS中常用到的几个长度单位。包含px、em、rem、vh、vw、rpx、in、cm、mm、ex、pt、pc。</p>
-<h2 id="px"><a href="#px" class="headerlink" title="px"></a>px</h2><p>px(Pixel)像素。相对长度单位。1px等于计算机屏幕上的一个点像素的宽度。px是相对于显示器屏幕分辨率而言的。  </p>
-<h2 id="em"><a href="#em" class="headerlink" title="em"></a>em</h2><p>em是相对长度单位。相对于当前对象内文本的字体尺寸。如当前行内文本的字体尺寸未被人为设置，则相当于浏览器的默认字体尺寸。  </p>
-<p>em特点  </p>
-<ol>
-<li>em的值并不是固定的</li>
-<li>em会继承父级元素的字体大小</li>
-</ol>
-<p>注意：任意浏览器的默认字体高都是16px。所有未经调整的浏览器都符合: 1em = 16px。那么12px = 0.75em，10px = 0.625em。<br>如果使用em作为当前项目的单位，为了简化font-size的换算，需要在CSS中的body选择器中声明font-size=62.5%，这就使em值变为 16px * 62.5% = 10px，这样12px = 1.2em，10px=1em，也就是说只需要将你的原来的px数值除以10，然后换上em作为单位就行了。  </p>
-<h2 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h2><p>rem(Font size of the root element)是CSS3新增的一个相对单位，指相对于根元素（即html元素）的字体大小的单位。  </p>
-<p>rem特点  </p>
-<ol>
-<li>可以做到只修改根元素就成比例地调整所有字体大小</li>
-<li>避免px em混用导致的字体复数计算</li>
-</ol>
-<p>如果使用rem作为当前项目的单位，可以设置<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>那么<code>10px</code>就可以表示为<code>.1rem</code></p>
-<h2 id="vh-vw"><a href="#vh-vw" class="headerlink" title="vh/vw"></a>vh/vw</h2><p>vh(Viewport height)相对于视口的高度。视口被均分为100单位的vh，通过vh可以在不知道视口高度的情况下设置一个相对视口的高度。同理，vw指相对于视口的宽度。</p>
-<p>用法<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.banner</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100vh</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100vw</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="rpx"><a href="#rpx" class="headerlink" title="rpx"></a>rpx</h2><p>rpx(Relative pixcel) 相对像素。只有在小程序中采用的长度计算值。以屏幕宽度恒为750rpx来计算。以iPhone6来讲，屏幕宽度为375px，所以在iPhone6中，375px = 750rpx，也就是1rpx = 0.5px。</p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>多是一些绝对长度单位<br>1in = 2.54cm = 25.4 mm = 101.6q = 72pt = 6pc = 96px</p>
-<table>
-<thead>
-<tr>
-<th>单位</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>in</td>
-<td>英寸</td>
-</tr>
-<tr>
-<td>pt</td>
-<td>磅 (1pt =  1/72 in)</td>
-</tr>
-<tr>
-<td>cm</td>
-<td>厘米</td>
-</tr>
-<tr>
-<td>mm</td>
-<td>毫米</td>
-</tr>
-<tr>
-<td>q</td>
-<td>1/4毫米 (1q = 1/4mm)</td>
-</tr>
-<tr>
-<td>pc</td>
-<td>派卡（Picas）(1pc = 12px)</td>
-</tr>
-<tr>
-<td>ex</td>
-<td>相对长度单位 ex 代表了字符 x 的高度(通常是字体尺寸的一半)</td>
-</tr>
-<tr>
-<td>ch</td>
-<td>相对长度单位 ch 代表了字符 0 的宽度</td>
-</tr>
-</tbody>
-</table>
-<h2 id="一些坑"><a href="#一些坑" class="headerlink" title="一些坑"></a>一些坑</h2><p>PC chrome有12px最小字号限制，若使用10px会造成pc调试困难带来不必要的麻烦，所以可以设置字号为12px，然后通过 <code>transform: scale(.8)</code> 来达到同样的效果。  </p>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2018/09/17/HACK-DDOS%E6%94%BB%E5%87%BB/">DDOS攻击</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-09-17T11:42:50.000Z" itemprop="datePublished">2018-09-17</time>
-</span>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/ddos/" rel="tag">ddos</a>, <a class="article-tag-link" href="/blog/tags/security/" rel="tag">security</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>分布式拒绝服务(DDoS:Distributed Denial of Service)攻击指借助于客户/服务器技术，将多个计算机联合起来作为攻击平台，对一个或多个目标发动DoS攻击，从而成倍地提高拒绝服务攻击威力的一种攻击方式。</p>
-<h2 id="攻击方式"><a href="#攻击方式" class="headerlink" title="攻击方式"></a>攻击方式</h2><p>DDoS攻击通过大量的请求占用网络资源，以达到瘫痪网络的目的。 这种攻击方式大致可分为以下几种：</p>
-<ul>
-<li>通过使网络过载来干扰甚至阻断正常的网络通讯；</li>
-<li>通过向服务器提交大量请求，使服务器超负荷；</li>
-<li>阻断某一用户访问服务器；</li>
-<li>阻断某服务与特定系统或个人的通讯。</li>
-</ul>
-<p>下面列举一些常见的DDos/Dos攻击方式：  </p>
-<h3 id="SYN-flood"><a href="#SYN-flood" class="headerlink" title="SYN flood"></a>SYN flood</h3><p>该攻击以多个随机的源主机地址向意图主机发送SYN包，而在收到意图主机的SYN ACK后并不回应，这么，意图主机就为这些源主机树立了很多的衔接行列，而且因为没有收到ACK一直维护着这些行列，形成了资源的很多耗费而不能向正常请求供给服务。</p>
-<h3 id="ACK-flood"><a href="#ACK-flood" class="headerlink" title="ACK flood"></a>ACK flood</h3><p>ACK Flood攻击是在TCP连接建立之后，所有的数据传输TCP报文都是带有ACK标志位的，主机在接收到一个带有ACK标志位的数据包的时候，需要检查该数据包所表示的连接四元组是否存在，如果存在则检查该数据包所表示的状态是否合法，然后再向应用层传递该数据包。如果在检查中发现该数据包不合法，例如该数据包所指向的目的端口在本机并未开放，则主机操作系统协议栈会回应RST包告诉对方此端口不存在。</p>
-<h3 id="UDP-flood"><a href="#UDP-flood" class="headerlink" title="UDP flood"></a>UDP flood</h3><p>如今在Internet上UDP（用户数据包协议）的应用比较广泛，很多提供WWW和Mail等服务设备通常是使用Unix的服务器，它们默认打开一些被黑客恶意利用的UDP服务。如echo服务会显示接收到的每一个数据包，而原本作为测试功能的chargen服务会在收到每一个数据包时随机反馈一些字符。UDP flood攻击就是利用这两个简单的TCP/IP服务的漏洞进行恶意攻击，通过伪造与某一主机的Chargen服务之间的一次的UDP连接，回复地址指向开着Echo服务的一台主机，通过将Chargen和Echo服务互指，来回传送毫无用处且占满带宽的垃圾数据，在两台主机之间生成足够多的无用数据流，这一拒绝服务攻击飞快地导致网络可用带宽耗尽。</p>
-<h3 id="Ping-of-Death"><a href="#Ping-of-Death" class="headerlink" title="Ping of Death"></a>Ping of Death</h3><p>ICMP(Internet Control Message Protocol，Internet控制信息协议)在Internet上用于错误处理和传递控制信息。最普通的ping程序就是这个功能。而在TCP/IP的RFC文档中对包的最大尺寸都有严格限制规定，许多操作系统的TCP/IP协议栈都规定ICMP包大小为64KB，且在对包的标题头进行读取之后，要根据该标题头里包含的信息来为有效载荷生成缓冲区。”Ping of Death”就是故意产生畸形的测试Ping（Packet Internet Groper）包，声称自己的尺寸超过ICMP上限，也就是加载的尺寸超过64KB上限，使未采取保护措施的网络系统出现内存分配错误，导致TCP/IP协议栈崩溃，最终接收方宕机。</p>
-<h3 id="Teardrop"><a href="#Teardrop" class="headerlink" title="Teardrop"></a>Teardrop</h3><p>Teardrop攻击利用在TCP/IP协议栈实现中信任IP碎片中的包的标题头所包含的信息来实现自己的攻击。IP分段含有指示该分段所包含的是原包的哪一段的信息，某些TCP/IP协议栈（例如NT在servicepack4以前）在收到含有重叠偏移的伪造分段时将崩溃。</p>
-<h3 id="Smurf"><a href="#Smurf" class="headerlink" title="Smurf"></a>Smurf</h3><p>该攻击向一个子网的广播地址发一个带有特定请求(如ICMP回应请求)的包，并且将源地址伪装成想要攻击的主机地址。子网上所有主机都回应广播包请求而向被攻击主机发包，使该主机受到攻击。</p>
-<h3 id="IP-Spoofing"><a href="#IP-Spoofing" class="headerlink" title="IP Spoofing"></a>IP Spoofing</h3><p>IP欺骗攻击是一种黑客通过向服务端发送虚假的包以欺骗服务器的做法。具体说，就是将包中的源IP地址设置为不存在或不合法的值。服务器一旦接受到该包便会返回接受请求包，但实际上这个包永远返回不到来源处的计算机。这种做法使服务器必需开启自己的监听端口不断等待，也就浪费了系统各方面的资源。</p>
-<h3 id="Land-Attack"><a href="#Land-Attack" class="headerlink" title="Land Attack"></a>Land Attack</h3><p>在Land攻击中，黑客利用一个特别打造的SYN包–它的原地址和目标地址都被设置成某一个服务器地址进行攻击。此举将导致接受服务器向它自己的地址发送SYN-ACK消息，结果这个地址又发回ACK消息并创建一个空连接，每一个这样的连接都将保留直到超时，在Land攻击下，许多UNIX将崩溃，NT变得极其缓慢（大约持续五分钟）。</p>
-<h3 id="ICMP-flood"><a href="#ICMP-flood" class="headerlink" title="ICMP flood"></a>ICMP flood</h3><p>ICMP flood是通过向未良好设置的路由器发送广播信息占用系统资源的做法。</p>
-<h3 id="Application-level-flood"><a href="#Application-level-flood" class="headerlink" title="Application level flood"></a>Application level flood</h3><p>与前面叙说的攻击方式不同，Application level flood主要是针对应用软件层的，也就是高于OSI的。它同样是以大量消耗系统资源为目的，通过向IIS这样的网络服务程序提出无节制的资源申请来迫害正常的网络服务。</p>
-<h2 id="防御措施"><a href="#防御措施" class="headerlink" title="防御措施"></a>防御措施</h2><p>可参考措施如下：  </p>
-<ol>
-<li>采用高性能的网络设备引<br>首先要保证网络设备不能成为瓶颈，因此选择路由器、交换机、硬件防火墙等设备的时候要尽量选用知名度高、 口碑好的产品。 再就是假如和网络提供商有特殊关系或协议的话就更好了，当大量攻击发生的时候请他们在网络接点处做一下流量限制来对抗某些种类的DDOS 攻击是非常有效的。</li>
-<li>尽量避免 NAT 的使用<br>无论是路由器还是硬件防护墙设备要尽量避免采用网络地址转换 NAT 的使用， 因为采用此技术会较大降低网络通信能力，其实原因很简单，因为 NAT 需要对地址来回转换，转换过程中需要对网络包的校验和进行计算，因此浪费了很多 CPU 的时间，但有些时候必须使用 NAT，那就没有好办法了。</li>
-<li>充足的网络带宽保证<br>网络带宽直接决定了能抗受攻击的能力， 假若仅仅有 10M 带宽的话， 无论采取什么措施都很难对抗当今的 SYNFlood 攻击， 至少要选择 100M 的共享带宽，最好的当然是挂在1000M 的主干上了。但需要注意的是，主机上的网卡是 1000M 的并不意味着它的网络带宽就是千兆的， 若把它接在 100M 的交换机上， 它的实际带宽不会超过 100M， 再就是接在 100M的带宽上也不等于就有了百兆的带宽， 因为网络服务商很可能会在交换机上限制实际带宽为10M，这点一定要搞清楚。</li>
-<li>升级主机服务器硬件<br>在有网络带宽保证的前提下，请尽量提升硬件配置，要有效对抗每秒 10 万个 SYN 攻击包，服务器的配置至少应该为：P4 2.4G/DDR512M/SCSI-HD，起关键作用的主要是 CPU 和内存， 内存一定要选择 DDR 的高速内存， 硬盘要尽量选择SCSI 的，别只贪 IDE 价格不贵量还足的便宜，否则会付出高昂的性能代价，再就是网卡一定要选用 3COM 或 Intel 等名牌的，若是 Realtek 的还是用在自己的 PC 上吧。</li>
-<li>把网站做成静态页面<br>大量事实证明，把网站尽可能做成静态页面，不仅能大大提高抗攻击能力，而且还给黑客入侵带来不少麻烦，至少到为止关于 HTML 的溢出还没出现，新浪、搜狐、网易等门户网站主要都是静态页面， 若你非需要动态脚本调用， 那就把它弄到另外一台单独主机去，免的遭受攻击时连累主服务器， 当然， 适当放一些不做数据库调用脚本还是可以的， 此外，最好在需要调用数据库的脚本中拒绝使用代理的访问， 因为经验表明使用代理访问你网站的80%属于恶意行为。</li>
-</ol>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2018/09/15/Hexo-%E4%B9%9F%E8%83%BD%E6%9E%84%E5%BB%BASPA/">Hexo也能构建SPA</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-09-15T08:45:26.000Z" itemprop="datePublished">2018-09-15</time>
-</span>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/Hexo/" rel="tag">Hexo</a>, <a class="article-tag-link" href="/blog/tags/spa/" rel="tag">spa</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="SPA"><a href="#SPA" class="headerlink" title="SPA"></a>SPA</h2><p>单页Web应用（single page web application，SPA），就是只有一张Web页面的应用，是加载单个HTML页面并在用户与应用程序交互时动态更新该页面的Web应用程序。<br>单页面应用的好处是不必使得用户在加载新页面时感觉到闪烁刷新的效果，有更好的用户体验。当然，单页面应用也有其问题，例如首屏渲染问题以及SEO问题，但如果构建的是类似于应用型的web页面的话，SPA的好处是远远大于其弊端的。  </p>
-<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><p><a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo">Hexo</a> 是一个静态页面生成框架，一般用来其来搭建博客或者文档型的网站。  </p>
-<h2 id="Hexo-gt-SPA"><a href="#Hexo-gt-SPA" class="headerlink" title="Hexo =&gt; SPA"></a>Hexo =&gt; SPA</h2><p>如何在Hexo的基础上转换为SPA呢？基本的思路就是，监管所有的点击跳转链接，阻止默认行为采用ajax调用的方式获取文档然后替换当前页面。为了使替换时的影响较小，当前文档中数据没有变化的元素就不用替换了，只替换变化的部分。例如，一个采用Hexo的文档型的网站，一般而言包括三个部分header，nav，以及article，header及nav部分是不用变的，只需要替换article部分即可。需要注意的事，在替换后需要注意article内部的事件，需要重新绑定一遍，同时也需要处理nav部分的一些事件，比如focus的变化及样式上的变化，以及其它的一些变化，比如页面title的变化。这样当用户点击左侧nav时，只有article内部内容的替换，看起来就像一个应用一样。但这样修改还有两个问题，一是当用户点击后退时，浏览器不能很好的处理，我们希望记录每一次用户的点击跳转，当用户点击后退时能够回到上一次点击时的页面，另外一个问题是地址栏的没有变化，我们希望每一次用户点击跳转时地址栏也显示相应页面的URL。这时就需要用到History API了.  </p>
-<p>History 对象包含用户（在浏览器窗口中）访问过的 URL。<br>History 对象是 window 对象的一部分，可通过 window.history 属性对其进行访问。  </p>
-<p>属性<br>History.length 只读<br>History.scrollRestoration<br>允许Web应用程序在历史导航上显式地设置默认滚动恢复行为。此属性可以是自动的（auto）或者手动的（manual）。<br>History.state 只读<br>返回一个表示历史堆栈顶部的状态的值。这是一种可以不必等待popstate 事件而查看状态而的方式。  </p>
-<p>方法<br>History.back()<br>前往上一页, 用户可点击浏览器左上角的返回按钮模拟此方法. 等价于 history.go(-1).<br>History.forward()<br>在浏览器历史记录里前往下一页，用户可点击浏览器左上角的前进按钮模拟此方法. 等价于 history.go(1).<br>History.go()<br>通过当前页面的相对位置从浏览器历史记录( 会话记录 )加载页面。<br>History.pushState()<br>按指定的名称和URL（如果提供该参数）将数据push进会话历史栈，数据被DOM进行不透明处理；你可以指定任何可以被序列化的javascript对象。<br>History.replaceState()<br>按指定的数据，名称和URL(如果提供该参数)，更新历史栈上最新的入口。这个数据被DOM 进行了不透明处理。  </p>
-<p>这里我们需要用到History.pushState()<br>这个方法接收三个参数，第一个state，记录页面状态，第二个title，并不是页面title，感觉没有什么用，第三个是页面URL。在页面变化时执行History.pushState()把将要跳转的页面记录到history中，地址栏中的地址就会同时改变。同时，需要在window.onpopstate中监听后退事件，在后退时也通过ajax方法获取article内容。如果想要减少请求，还可以将ajax获取到的文档缓存下来，当用户点击新URL时再去获取，如果用户点击的是一个已经访问过的URL时，从本地获取。  </p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>让我们总结一下，我们需要改变的是如下几个部分(代码中引入了jQuery)：  </p>
-<ol>
-<li>阻止点击链接的默认行为  </li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e.preventDefault();</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>ajax获取文档内容  </li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// href 跳转url</span></span><br><span class="line">$.ajax(&#123;</span><br><span class="line">    url: href,</span><br><span class="line">    dataType: <span class="string">&#x27;html&#x27;</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> article = $(res).find(<span class="string">&#x27;#article&#x27;</span>).html();</span><br><span class="line">        $(<span class="string">&#x27;#article&#x27;</span>).html(article);</span><br><span class="line">    &#125;,</span><br><span class="line">    error: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">window</span>.location.href = href;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>成功替换文章内容之后需要重新绑定文章内部的事件，同时对一些样式（例如选中的样式）进行改变。<br>ajax失败则直接通过改变url的方式刷新页面。  </p>
-<ol start="3">
-<li>页面title变化  </li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">doc.title = $(res).filter(<span class="string">&#x27;title&#x27;</span>).html();</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>window.history.pushState() <ol>
-<li>页面url变化</li>
-<li>记录跳转页面信息到历史记录中，当用户点击后退时能够正确响应 </li>
-</ol>
-</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">win.history.pushState(href, <span class="string">&#x27;&#x27;</span>, href);</span><br></pre></td></tr></table></figure>
-<ol start="5">
-<li>window.onpopstate() 处理用户点击后退/前进时的逻辑</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">window</span>).on(<span class="string">&#x27;popstate&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (e.state) &#123;</span><br><span class="line">        <span class="keyword">var</span> href = e.state ? e.state : win.location.href;</span><br><span class="line">        <span class="built_in">this</span>.getArticle(href, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">// ...</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>如上代码中，getArticle封装了获取文章的action，加入callback是考虑到获取文章内容之后如果url中包含锚点，页面应该滑动到锚点所在处。  </p>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2018/09/12/CSS-%E6%8A%98%E8%A1%8C/">CSS 折行</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-09-12T10:46:39.000Z" itemprop="datePublished">2018-09-12</time>
-</span>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>与折行有关的样式有三个<code>white-space</code>，<code>word-wrap</code>，<code>word-break</code>。  </p>
-<h2 id="css-white-space-属性"><a href="#css-white-space-属性" class="headerlink" title="css white-space 属性"></a>css white-space 属性</h2><p>white-space 属性设置如何处理元素内的空白。  </p>
-<table>
-<thead>
-<tr>
-<th>值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>normal</td>
-<td>默认。空白会被浏览器忽略。</td>
-</tr>
-<tr>
-<td>pre</td>
-<td>空白会被浏览器保留。其行为方式类似 HTML 中的 &lt;pre> 标签。</td>
-</tr>
-<tr>
-<td>nowrap</td>
-<td>文本不会换行，文本会在在同一行上继续，直到遇到 &lt;br> 标签为止。</td>
-</tr>
-<tr>
-<td>pre-wrap</td>
-<td>保留空白符序列，但是正常地进行换行。</td>
-</tr>
-<tr>
-<td>pre-line</td>
-<td>合并空白符序列，但是保留换行符。</td>
-</tr>
-<tr>
-<td>inherit</td>
-<td>规定应该从父元素继承 white-space 属性的值。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="CSS3-word-wrap-属性"><a href="#CSS3-word-wrap-属性" class="headerlink" title="CSS3 word-wrap 属性"></a>CSS3 word-wrap 属性</h2><p>word-wrap 属性允许长单词或 URL 地址换行到下一行。  </p>
-<table>
-<thead>
-<tr>
-<th>值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>normal</td>
-<td>只在允许的断字点换行（浏览器保持默认处理）。</td>
-</tr>
-<tr>
-<td>break-word</td>
-<td>在长单词或 URL 地址内部进行换行。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="CSS3-word-break-属性"><a href="#CSS3-word-break-属性" class="headerlink" title="CSS3 word-break 属性"></a>CSS3 word-break 属性</h2><p>word-break 属性规定自动换行的处理方法。  </p>
-<table>
-<thead>
-<tr>
-<th>值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>normal</td>
-<td>使用浏览器默认的换行规则。</td>
-</tr>
-<tr>
-<td>break-all</td>
-<td>允许在单词内换行。</td>
-</tr>
-<tr>
-<td>keep-all</td>
-<td>只能在半角空格或连字符处换行。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="常用设置"><a href="#常用设置" class="headerlink" title="常用设置"></a>常用设置</h2><p>不折行，可以左右滑动：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">white-space</span>: nowrap;</span><br><span class="line"><span class="attribute">overflow-x</span>: scroll;</span><br></pre></td></tr></table></figure></p>
-<p>每行长度固定，到长度即折行：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">white-space</span>: normal;</span><br><span class="line"><span class="attribute">word-wrap</span>: break-word;</span><br><span class="line"><span class="attribute">word-break</span>: break-all;</span><br></pre></td></tr></table></figure></p>
-<p>每行长度固定，到长度即折行，但标点字符不在首位：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">white-space</span>: normal;</span><br><span class="line"><span class="attribute">word-wrap</span>: break-word;</span><br><span class="line"><span class="attribute">word-break</span>: normal;</span><br></pre></td></tr></table></figure></p>
+        <p>在B端项目中，经常遇到报表类的需求。即一个表单，然后查询出多种数据，最后导出为excel文件。<br>这里就需要遇到文件下载类的开发。通常，有以下几种方式：  </p>
+<h2 id="打开一个文件地址"><a href="#打开一个文件地址" class="headerlink" title="打开一个文件地址"></a>打开一个文件地址</h2><p>前端传递表单参数，后端生成文件，然后返回静态文件地址，然后前端可以在空白页面打开这个地址，文件就会被下载。  </p>
+<h2 id="下载文件流"><a href="#下载文件流" class="headerlink" title="下载文件流"></a>下载文件流</h2><p>前端传递表单参数，后端生成文件，然后返回文件流，最后前端将文件流保存。  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// <span class="doctag">TODO:</span> 前后端采用不同的编码格式会使文件名乱码，暂未解决，work around:可以前端直接定义文件名而不从content-disposition获取</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line">axios.request(&#123;</span><br><span class="line">    method: <span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">    url: url,</span><br><span class="line">    params: params,</span><br><span class="line">    responseType: <span class="string">&#x27;blob&#x27;</span></span><br><span class="line">&#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> filename = res.headers[<span class="string">&#x27;content-disposition&#x27;</span>];</span><br><span class="line">    <span class="keyword">let</span> filetype = res.headers[<span class="string">&#x27;content-type&#x27;</span>];</span><br><span class="line">    <span class="keyword">const</span> blob = <span class="keyword">new</span> Blob([res.data], &#123;<span class="attr">type</span>: filetype&#125;);</span><br><span class="line">    <span class="comment">// IE hack; see http://msdn.microsoft.com/en-us/library/ie/hh779016.aspx</span></span><br><span class="line">    <span class="keyword">const</span> result = filename.split(<span class="string">&#x27;;filename=&#x27;</span>)[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span> (result &amp;&amp; result.endsWith(<span class="string">&#x27;.csv&#x27;</span>)) &#123;</span><br><span class="line">        filename = result;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        filename = <span class="string">`<span class="subst">$&#123;result || filename&#125;</span>.csv`</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.navigator.msSaveOrOpenBlob) &#123;</span><br><span class="line">        <span class="built_in">window</span>.navigator.msSaveBlob(blob, filename);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> a = <span class="built_in">window</span>.document.createElement(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">        a.href = <span class="built_in">window</span>.URL.createObjectURL(blob, &#123;<span class="attr">type</span>: <span class="string">&#x27;text/plain&#x27;</span>&#125;);</span><br><span class="line">        a.download = filename;</span><br><span class="line">        <span class="built_in">document</span>.body.appendChild(a);</span><br><span class="line">        <span class="comment">// IE: &quot;Access is denied&quot;; see: https://connect.microsoft.com/IE/feedback/details/797361/ie-10-treats-blob-url-as-cross-origin-and-denies-access</span></span><br><span class="line">        a.click();</span><br><span class="line">        <span class="built_in">document</span>.body.removeChild(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// error handle</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="传递数据，由前端生成文件"><a href="#传递数据，由前端生成文件" class="headerlink" title="传递数据，由前端生成文件"></a>传递数据，由前端生成文件</h2><p>前端post传递表单参数，后端返回数据（data）,前端根据返回的数据生成excel文件。<br>这里需要用到 <a target="_blank" rel="noopener" href="https://github.com/SheetJS/js-xlsx">js-xlsx</a><br> <a target="_blank" rel="noopener" href="https://github.com/SheetJS/js-xlsx">js-xlsx</a> 是一个方便操作xlsx文件的js工具库, node环境及客户端环境都可以用。  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> XLSX <span class="keyword">from</span> <span class="string">&#x27;xlsx&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line">axios.post(url, params).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> result = res.data.list; <span class="comment">// result should be array of arrays</span></span><br><span class="line">    <span class="keyword">const</span> ws = XLSX.utils.aoa_to_sheet(result);</span><br><span class="line">    <span class="keyword">const</span> wb = XLSX.utils.book_new();</span><br><span class="line">    XLSX.utils.book_append_sheet(wb, ws, <span class="string">&quot;tabname&quot;</span>);</span><br><span class="line">    XLSX.writeFile(wb, <span class="string">&#x27;filename.xlsx&#x27;</span>);</span><br><span class="line">&#125;).catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// error handle</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
         
     </section>
@@ -524,7 +465,7 @@
 
 
 <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/blog/page/13/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/12/">12</a><a class="page-number" href="/blog/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/blog/page/15/">15</a><a class="page-number" href="/blog/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/18/">18</a><a class="extend next" rel="next" href="/blog/page/15/">Next &gt;&gt;</a>
+    <a class="extend prev" rel="prev" href="/blog/page/13/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/12/">12</a><a class="page-number" href="/blog/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/blog/page/15/">15</a><a class="page-number" href="/blog/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/20/">20</a><a class="extend next" rel="next" href="/blog/page/15/">Next &gt;&gt;</a>
 </nav>
 
 

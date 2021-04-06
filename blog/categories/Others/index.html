@@ -1273,7 +1273,21 @@
     
     <section class="article-body markdown-body">
         
-        <h1 id="基础-基本概念"><a href="#基础-基本概念" class="headerlink" title="基础(基本概念)"></a>基础(基本概念)</h1><h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><h3 id="display-none-与-visibility-hidden-的区别是什么？还有哪些隐藏元素的方法？"><a href="#display-none-与-visibility-hidden-的区别是什么？还有哪些隐藏元素的方法？" class="headerlink" title="display:none 与 visibility:hidden 的区别是什么？还有哪些隐藏元素的方法？"></a>display:none 与 visibility:hidden 的区别是什么？还有哪些隐藏元素的方法？</h3><p><code>display:none;</code> 使用该属性后，HTML元素（对象）的宽度，高度等各种属性值都将“丢失”；<br><code>visibility:hidden;</code> 使用该属性后，HTML元素（对象）仅仅是在视觉上看不见（完全透明），而它所占据的空间位置仍然存在，也就是说它仍然具有高度，宽度等属性值。<br>tips: 还有两种隐藏元素的方法：可以把元素移动到屏幕以外，或设置透明度 <code>opacity:0;</code> 为透明，也可以使用透明度滤镜 <code>filter:opacity(0)</code>  </p>
+        <h1 id="基础-基本概念"><a href="#基础-基本概念" class="headerlink" title="基础(基本概念)"></a>基础(基本概念)</h1><h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><h3 id="display-none-与-visibility-hidden-的区别是什么？还有哪些隐藏元素的方法？"><a href="#display-none-与-visibility-hidden-的区别是什么？还有哪些隐藏元素的方法？" class="headerlink" title="display:none 与 visibility:hidden 的区别是什么？还有哪些隐藏元素的方法？"></a>display:none 与 visibility:hidden 的区别是什么？还有哪些隐藏元素的方法？</h3><p>区别：</p>
+<ol>
+<li><code>display:none;</code> 会让元素完全从渲染树中消失，渲染的时候不占据任何空间；<code>visibility: hidden;</code> 不会让元素从渲染树消失，渲染时元素继续占据空间，只是内容不可见  </li>
+<li><code>display: none;</code> 是非继承属性，子孙节点消失由于元素从渲染树消失造成，通过修改子孙节点属性无法显示；<code>visibility: hidden;</code> 是继承属性，子孙节点消失由于继承了hidden，通过设置 <code>visibility: visible;</code> 可以让子孙节点显式。  </li>
+<li>修改常规流中元素的 display 通常会造成文档重排。修改 visibility 属性只会造成本元素的重绘。  </li>
+<li>读屏器不会读取 <code>display: none;</code> 元素内容；会读取 <code>visibility: hidden;</code> 元素内容。  </li>
+</ol>
+<p>tips: 还有两种隐藏元素的方法：可以把元素移动到屏幕以外，或设置透明度 <code>opacity:0;</code> 为透明，也可以使用透明度滤镜 <code>filter:opacity(0)</code>  </p>
+<h3 id="link-与-import-都可以引入样式，有什么区别？"><a href="#link-与-import-都可以引入样式，有什么区别？" class="headerlink" title="link 与 @import 都可以引入样式，有什么区别？"></a>link 与 @import 都可以引入样式，有什么区别？</h3><ol>
+<li>link 是 HTML 方式， @import 是 CSS 方式</li>
+<li>link 最大限度支持并行下载，@import 过多嵌套导致串行下载，出现FOUC（Flash Of Unstyled Content）页面闪烁</li>
+<li>link 可以通过 <code>rel=&quot;alternate stylesheet&quot;</code> 指定候选样式</li>
+<li>浏览器对 link 支持早于 @import ，可以使用 @import 对老浏览器隐藏样式</li>
+<li>@import 必须在样式规则之前，可以在 css 文件中引用其他文件</li>
+</ol>
 <h3 id="CSS选择器都有哪些？内联和-important-哪个优先级高？"><a href="#CSS选择器都有哪些？内联和-important-哪个优先级高？" class="headerlink" title="CSS选择器都有哪些？内联和 important 哪个优先级高？"></a>CSS选择器都有哪些？内联和 <code>important</code> 哪个优先级高？</h3><ol>
 <li>标签选择器(如：body,div,p,ul,li)  </li>
 <li>类选择器(如：class=”head”,class=”head_logo”)  </li>
@@ -1292,7 +1306,7 @@
 <h3 id="CSS选择器优先级计算规则是什么？"><a href="#CSS选择器优先级计算规则是什么？" class="headerlink" title="CSS选择器优先级计算规则是什么？"></a>CSS选择器优先级计算规则是什么？</h3><p>不同级别  </p>
 <ol>
 <li>在属性后面使用 !important 会覆盖页面内任何位置定义的元素样式。  </li>
-<li>作为style属性写在元素内的样式  </li>
+<li>作为style属性写在元素内的样式（内联样式）  </li>
 <li>id选择器  </li>
 <li>类选择器 class  </li>
 <li>标签选择器 body div a  </li>
@@ -1300,9 +1314,45 @@
 <li>浏览器自定义或继承  </li>
 </ol>
 <p>同一级别<br>同一级别中后写的会覆盖先写的样式  </p>
-<h3 id="如何通过a标签批量下载文件？"><a href="#如何通过a标签批量下载文件？" class="headerlink" title="如何通过a标签批量下载文件？"></a>如何通过a标签批量下载文件？</h3><p>&lt;a> 标签的download属性指示浏览器下载而不是导航，参见 <a href="/blog/2019/01/03/a-的用法/#download-HTML5">a标签的属性download</a> ，然而该属性只适用于同源URLs，我们可以通过将地址转换为 <code>blob:URL</code> 的形式然后下载。  </p>
+<h3 id="css-sprite是什么-有什么优缺点？"><a href="#css-sprite是什么-有什么优缺点？" class="headerlink" title="css sprite是什么,有什么优缺点？"></a>css sprite是什么,有什么优缺点？</h3><p>概念：将多个小图片拼接到一个图片中。通过background-position和元素尺寸调节需要显示的背景图案。  </p>
+<p>优点：  </p>
+<ol>
+<li>减少HTTP请求数，极大地提高页面加载速度</li>
+<li>增加图片信息重复度，提高压缩比，减少图片大小</li>
+<li>更换风格方便，只需在一张或几张图片上修改颜色或样式即可实现</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>图片合并麻烦</li>
+<li>维护麻烦，修改一个图片可能需要从新布局整个图片，样式</li>
+</ol>
+<h3 id="为什么要初始化CSS样式"><a href="#为什么要初始化CSS样式" class="headerlink" title="为什么要初始化CSS样式?"></a>为什么要初始化CSS样式?</h3><p>因为浏览器的兼容问题，不同浏览器对有些标签的默认值是不同的，如果没对CSS初始化往往会出现浏览器之间的页面显示差异。  </p>
+<h3 id="PNG-GIF-JPG的区别及如何选"><a href="#PNG-GIF-JPG的区别及如何选" class="headerlink" title="PNG,GIF,JPG的区别及如何选"></a>PNG,GIF,JPG的区别及如何选</h3><p>GIF</p>
+<ol>
+<li>8位像素，256色</li>
+<li>无损压缩</li>
+<li>支持简单动画</li>
+<li>支持boolean透明</li>
+<li>适合简单动画</li>
+</ol>
+<p>JPG/JPEG</p>
+<ol>
+<li>颜色限于256</li>
+<li>有损压缩</li>
+<li>可控制压缩质量</li>
+<li>不支持透明</li>
+<li>适合照片</li>
+</ol>
+<p>PNG</p>
+<ol>
+<li>有PNG8和truecolor PNG</li>
+<li>PNG8类似GIF颜色上限为256，文件小，支持alpha透明度，无动画</li>
+<li>适合图标、背景、按钮<h3 id="如何通过a标签批量下载文件？"><a href="#如何通过a标签批量下载文件？" class="headerlink" title="如何通过a标签批量下载文件？"></a>如何通过a标签批量下载文件？</h3></li>
+</ol>
+<p>&lt;a> 标签的download属性指示浏览器下载而不是导航，参见 <a href="/blog/2019/01/03/a-的用法/#download-HTML5">a标签的属性download</a> ，然而该属性只适用于同源URLs，我们可以通过将地址转换为 <code>blob:URL</code> 的形式然后下载。  </p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xhr.open(<span class="string">&quot;get&quot;</span>, <span class="string">&quot;https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1593106255,4245861836&amp;fm=26&amp;gp=0.jpg&quot;</span>, <span class="literal">true</span>);</span><br><span class="line">xhr.responseType = <span class="string">&quot;blob&quot;</span>;</span><br><span class="line">xhr.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.status == <span class="number">200</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> blob = <span class="built_in">this</span>.response;</span><br><span class="line">        <span class="keyword">const</span> ele = <span class="built_in">document</span>.createElement(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">        ele.download = name;</span><br><span class="line">        ele.style.display = <span class="string">&#x27;none&#x27;</span>;</span><br><span class="line">        ele.href = URL.createObjectURL(blob);</span><br><span class="line">        ele.onload= <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">            URL.revokeObjectURL(ele.href);</span><br><span class="line">            <span class="built_in">document</span>.body.removeChild(ele);</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="built_in">document</span>.body.appendChild(eleLink);</span><br><span class="line">        ele.click();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">xhr.send();</span><br></pre></td></tr></table></figure>
-<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><h3 id="什么是-“立即调用的函数表达式（IIFE）”-IIFE？"><a href="#什么是-“立即调用的函数表达式（IIFE）”-IIFE？" class="headerlink" title="什么是 “立即调用的函数表达式（IIFE）” IIFE？"></a>什么是 “立即调用的函数表达式（IIFE）” IIFE？</h3><p>参见<br><a target="_blank" rel="noopener" href="https://wangdoc.com/javascript/types/function.html#%E7%AB%8B%E5%8D%B3%E8%B0%83%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%88iife%EF%BC%89">https://wangdoc.com/javascript/types/function.html#%E7%AB%8B%E5%8D%B3%E8%B0%83%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%88iife%EF%BC%89</a></p>
+<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><h3 id="Object-keys-和-for-…-in-遍历对象属性有什么不同？"><a href="#Object-keys-和-for-…-in-遍历对象属性有什么不同？" class="headerlink" title="Object.keys() 和 for … in 遍历对象属性有什么不同？"></a>Object.keys() 和 for … in 遍历对象属性有什么不同？</h3><p> for-in 循环还会枚举原型链中的属性  </p>
+<h3 id="什么是-“立即调用的函数表达式（IIFE）”-IIFE？"><a href="#什么是-“立即调用的函数表达式（IIFE）”-IIFE？" class="headerlink" title="什么是 “立即调用的函数表达式（IIFE）” IIFE？"></a>什么是 “立即调用的函数表达式（IIFE）” IIFE？</h3><p>参见<br><a target="_blank" rel="noopener" href="https://wangdoc.com/javascript/types/function.html#%E7%AB%8B%E5%8D%B3%E8%B0%83%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%88iife%EF%BC%89">https://wangdoc.com/javascript/types/function.html#%E7%AB%8B%E5%8D%B3%E8%B0%83%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%88iife%EF%BC%89</a></p>
 <p>以下就是一个立即调用函数表达式  </p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;)(</span><br><span class="line"><span class="comment">/* code */</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 <p>通常情况下，只对匿名函数使用这种“立即执行的函数表达式”。它的目的有两个：一是不必为函数命名，避免了污染全局变量；二是 IIFE 内部形成了一个单独的作用域，可以封装一些外部无法读取的私有变量。</p>

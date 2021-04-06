@@ -108,7 +108,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2021/03/21/JS-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B1%9E%E6%80%A7%E7%89%B9%E6%80%A7/">JS 对象的属性特性</a>
+            <a href="/blog/2021/03/30/Vue-Vue3%E6%96%B0%E5%8A%9F%E8%83%BD%E5%92%8C%E4%BD%9C%E7%94%A8/">Vue-Vue3新功能和作用</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -116,7 +116,7 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2021-03-21T03:26:32.000Z" itemprop="datePublished">2021-03-21</time>
+    <time datetime="2021-03-30T07:46:58.000Z" itemprop="datePublished">2021-03-30</time>
 </span>
 
             
@@ -126,14 +126,65 @@
     
     <section class="article-body markdown-body">
         
-        <h3 id="对象的属性特性（property-attribute）有哪些？分别有什么含义？"><a href="#对象的属性特性（property-attribute）有哪些？分别有什么含义？" class="headerlink" title="对象的属性特性（property attribute）有哪些？分别有什么含义？"></a>对象的属性特性（property attribute）有哪些？分别有什么含义？</h3><ol>
-<li>可写 writeable attribute: 表明是否可以设置该属性的值  </li>
-<li>可枚举 enumerable attribute: 表明是否可以通过for/in循环返回该属性  </li>
-<li>可配置 configurable attribute: 表明是否可以删除或修改该属性  </li>
+        <h2 id="Composition-API"><a href="#Composition-API" class="headerlink" title="Composition API"></a>Composition API</h2><p>新增 setup 组件选项，是一个接受 props 和 context 的函数，使用 <code>toRefs</code> 对props进行响应式解构，可以通过 context 获取组件的 attrs slots emit 属性。返回一个可以在组件模板中使用其属性的对象，或者返回一个渲染函数，该函数可以直接使用在同一作用域中声明的响应式状态。  </p>
+<p>通过一个新的 ref/reactive 函数使任何响应式变量在任何地方起作用。  </p>
+<p>在 setup 中注册生命周期钩子，因为 setup 是围绕 beforeCreate 和 created 生命周期钩子运行的，所以不需要显式地定义它们，在vue3中只有如下钩子：<code>onBeforeMount</code>、<code>onMounted</code>、<code>onBeforeUpdate</code>、<code>onUpdated</code>、<code>onBeforeUnmount</code>、<code>onUnmounted</code>、<code>onErrorCaptured</code>、<code>onRenderTracked</code>、<code>onRenderTriggered</code>。  </p>
+<p>从 Vue 导入的 watch 函数执行相同的操作</p>
+<p>从 Vue 导入的 computed 函数在 Vue 组件外部创建计算属性</p>
+<p>从 Vue 导入的 provide/inject 函数进行深度传值</p>
+<p>…</p>
+<h3 id="Composition-API-好处"><a href="#Composition-API-好处" class="headerlink" title="Composition API 好处"></a>Composition API 好处</h3><ol>
+<li>同功能代码组织结构放到一起，代码可读性更强</li>
+<li>让相同的代码逻辑在不同的组件中可以复用</li>
 </ol>
-<p><code>Object.getOwnPropertyDescriptor($object, $property)</code> 可以获取对象的属性特性  </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.defineProperty($object, $property, &#123;</span><br><span class="line">    value: $value,</span><br><span class="line">    writable: $boolean,</span><br><span class="line">    enumerable; $boolean,</span><br><span class="line">    configurable: $boolean</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">Object</span>.definePropertys($object, &#123;</span><br><span class="line">    $property1: &#123;</span><br><span class="line">        value: $value,</span><br><span class="line">        writable: $boolean,</span><br><span class="line">        enumerable; $boolean,</span><br><span class="line">        configurable: $boolean</span><br><span class="line">    &#125;,</span><br><span class="line">    $property2: &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>可以设置对象的属性特性  </p>
+<h2 id="Teleport"><a href="#Teleport" class="headerlink" title="Teleport"></a>Teleport</h2><p>Teleport 提供了一种干净的方法，允许我们控制在 DOM 中哪个父节点下渲染了 HTML，而不必求助于全局状态或将其拆分为两个组件。一个典型的用法就是模态框组件的实现。  </p>
+<h2 id="Fragments"><a href="#Fragments" class="headerlink" title="Fragments"></a>Fragments</h2><p>也就是多根节点的组件，可以通过 <code>v-bind=&quot;$attrs&quot;</code> 将外部 attribute 显式的应用于子节点。  </p>
+<h2 id="Emits-组件选项"><a href="#Emits-组件选项" class="headerlink" title="Emits 组件选项"></a>Emits 组件选项</h2><p>可以通过 emits 选项在组件上定义已发出的事件，当在 emits 选项中定义了原生事件 (如 click) 时，将使用组件中的事件替代原生事件侦听器，如果使用对象语法而不是数组语法定义发出的事件，则可以验证事件选项是否符合要求。  </p>
+<h2 id="来自-vue-runtime-core-的-createRenderer-API-创建自定义渲染器"><a href="#来自-vue-runtime-core-的-createRenderer-API-创建自定义渲染器" class="headerlink" title="来自 @vue/runtime-core 的 createRenderer API 创建自定义渲染器"></a>来自 <code>@vue/runtime-core</code> 的 <code>createRenderer</code> API 创建自定义渲染器</h2><h2 id="单文件组件-Composition-API-语法糖（-lt-script-setup-gt-）"><a href="#单文件组件-Composition-API-语法糖（-lt-script-setup-gt-）" class="headerlink" title="单文件组件 Composition API 语法糖（&lt;script setup&gt;）"></a>单文件组件 Composition API 语法糖（<code>&lt;script setup&gt;</code>）</h2><h2 id="单文件组件状态驱动的-CSS-变量-lt-style-vars-gt"><a href="#单文件组件状态驱动的-CSS-变量-lt-style-vars-gt" class="headerlink" title="单文件组件状态驱动的 CSS 变量 (&lt;style vars&gt;)"></a>单文件组件状态驱动的 CSS 变量 (<code>&lt;style vars&gt;</code>)</h2><h2 id="单文件组件-lt-style-scoped-gt-现在可以包含全局规则或只针对插槽内容的规则"><a href="#单文件组件-lt-style-scoped-gt-现在可以包含全局规则或只针对插槽内容的规则" class="headerlink" title="单文件组件 &lt;style scoped&gt; 现在可以包含全局规则或只针对插槽内容的规则"></a>单文件组件 <code>&lt;style scoped&gt;</code> 现在可以包含全局规则或只针对插槽内容的规则</h2>
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/03/29/CSS-%E6%B8%90%E5%8F%98/">CSS-gradient渐变</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-29T11:52:38.000Z" itemprop="datePublished">2021-03-29</time>
+</span>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="线性渐变"><a href="#线性渐变" class="headerlink" title="线性渐变"></a>线性渐变</h2><p>CSS linear-gradient() 函数用于创建一个表示两种或多种颜色线性渐变的图片。其结果属于 &lt;gradient> 数据类型，是一种特别的 &lt;image> 数据类型。  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 渐变轴为45度，从蓝色渐变到红色 */</span></span><br><span class="line"><span class="attribute">background-image</span>: <span class="built_in">linear-gradient</span>(<span class="number">45deg</span>, blue, red);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 从右下到左上、从蓝色渐变到红色 */</span></span><br><span class="line"><span class="attribute">background-image</span>: <span class="built_in">linear-gradient</span>(to left top, blue, red);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 从下到上，从蓝色开始渐变、到高度40%位置是绿色渐变开始、最后以红色结束 */</span></span><br><span class="line"><span class="attribute">background-image</span>: <span class="built_in">linear-gradient</span>(<span class="number">0deg</span>, blue, green <span class="number">40%</span>, red);</span><br></pre></td></tr></table></figure>
+<p>语法：<code>linear-gradient([ [ [ &lt;angle&gt; | to [top | bottom] || [left | right] ],]? &lt;color-stop&gt;[, &lt;color-stop&gt;]+);</code></p>
+<p>第一个参数 angle 代表了渐变的角度，可以使用 <code>to [top|bottom|left|right]</code> 代表向上下左右，<code>top top</code> 相当于 0deg，角度顺时针增加。 color-stop 由一个 &lt;color> 值组成，并且跟随着一个可选的终点位置（可以是一个百分比值或者是沿着渐变轴的 &lt;length> ）。  </p>
+<h2 id="径向渐变"><a href="#径向渐变" class="headerlink" title="径向渐变"></a>径向渐变</h2><p>CSS radial-gradient() CSS函数创建了一个图像，该图像是由从原点发出的两种或者多种颜色之间的逐步过渡组成。它的形状可以是圆形（circle）或椭圆形（ellipse）。这个方法得到的是一个CSS &lt;gradient> 数据类型的对象，其是 &lt;image> 的一种。  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background</span>: <span class="built_in">radial-gradient</span>(<span class="number">#e66465</span>, <span class="number">#9198e5</span>);</span><br><span class="line"><span class="attribute">background</span>: <span class="built_in">radial-gradient</span>(closest-side, <span class="number">#3f87a6</span>, <span class="number">#ebf8e1</span>, <span class="number">#f69d3c</span>);</span><br><span class="line"><span class="attribute">background</span>: <span class="built_in">radial-gradient</span>(circle at <span class="number">100%</span>, <span class="number">#333</span>, <span class="number">#333</span> <span class="number">50%</span>, <span class="number">#eee</span> <span class="number">75%</span>, <span class="number">#333</span> <span class="number">75%</span>);</span><br><span class="line"><span class="attribute">background</span>: <span class="built_in">radial-gradient</span>(ellipse at top, <span class="number">#e66465</span>, transparent),</span><br><span class="line">            <span class="built_in">radial-gradient</span>(ellipse at bottom, <span class="number">#4d9f0c</span>, transparent);</span><br></pre></td></tr></table></figure>
+<h2 id="重复渐变"><a href="#重复渐变" class="headerlink" title="重复渐变"></a>重复渐变</h2><p>重复多次渐变图案直到足够填满指定元素。由 repeating-linear-gradient() 和 repeating-radial-gradient() 函数产生。  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.linear-repeat</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">repeating-linear-gradient</span>(to top left,</span><br><span class="line">      lightpink, lightpink <span class="number">5px</span>, white <span class="number">5px</span>, white <span class="number">10px</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.radial-repeat</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">repeating-radial-gradient</span>(powderblue, powderblue <span class="number">8px</span>, white <span class="number">8px</span>, white <span class="number">16px</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
         
     </section>
@@ -153,7 +204,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2021/03/21/JS-this/">JS this</a>
+            <a href="/blog/2021/03/26/CSS-CSS3%E7%89%B9%E6%80%A7/">CSS CSS3特性</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -161,7 +212,7 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2021-03-21T03:24:26.000Z" itemprop="datePublished">2021-03-21</time>
+    <time datetime="2021-03-26T06:35:26.000Z" itemprop="datePublished">2021-03-26</time>
 </span>
 
             
@@ -171,7 +222,19 @@
     
     <section class="article-body markdown-body">
         
-        <p><code>this</code> 是一个关键字。和变量不同，关键字 <code>this</code> 没有作用域限制，如果嵌套函数作为方法调用，其 <code>this</code> 的值指向调用它的对象，如果嵌套函数作为函数调用，其 <code>this</code> 的值是全局对象（非严格模式）或者 <code>undefined</code>（严格模式）。<br>如果希望在嵌套函数中调用外层函数的上下文，需要将外层函数的 <code>this</code> 值保存到一个变量（例如self、context或者_this）里，这个变量和内部函数都在同一个作用域里。</p>
+        <p>CSS3 是层叠样式表（Cascading Style Sheets）语言的最新版本，旨在扩展CSS2.1。  </p>
+<p>它带来了许多期待已久的新特性，例如 border-radius(圆角)、box-shadow(阴影)、gradients(渐变) 、transitions(过渡) 与 animations(动画) 。以及新的布局方式，如 multi-columns 、 flexible box 与 grid layouts。  </p>
+<p><a target="_blank" rel="noopener" href="https://www.w3.org/">W3C</a> 的 CSS Working Group(CSS 工作组)  作出了一项被称为 Beijing doctrine 的决定，将 CSS 划分为许多小组件，称之为模块。这些模块彼此独立，按照各自的进度来进行标准化。  </p>
+<h2 id="新增css选择器"><a href="#新增css选择器" class="headerlink" title="新增css选择器"></a>新增css选择器</h2><p>参见 <a href="/blog/2018/09/03/CSS-选择器/">css选择器</a>  </p>
+<p>CSS3新增多个伪类选择器<br><code>:first-of-type</code> <code>:last-of-type</code> <code>:only-of-type</code> <code>:nth-of-type(n)</code> <code>:nth-last-of-type(n)</code> <code>:last-child</code> <code>:only-child</code> <code>:nth-child(n)</code> <code>:nth-last-child(n)</code><br><code>:root</code> <code>:epmty</code> <code>:target</code> <code>:enabled</code> <code>:disabled</code> <code>:checked</code> <code>:not(selector)</code> </p>
+<p>新增了后兄弟选择<br><code>element1~element2</code></p>
+<p>新增了属性选择<br><code>[attribute^=value]</code>、<code>[attribute$=value]</code>、<code>[attribute*=value]</code></p>
+<h2 id="border-radius-圆角"><a href="#border-radius-圆角" class="headerlink" title="border-radius 圆角"></a>border-radius 圆角</h2><p><code>border-radius</code> 允许设置元素的外边框圆角，该属性是一个 简写属性，是为了将这四个属性 <code>border-top-left-radius</code>、<code>border-top-right-radius</code>、<code>border-bottom-right-radius</code> 和 <code>border-bottom-left-radius</code> 简写为一个属性。即使元素没有 border，圆角也可以用到 background 上面。<br>可以使用 &lt;length> &lt;percentage> 类型，&lt;length> 定义圆形半径或椭圆的半长轴，半短轴。&lt;percentage> 定义圆形半径或椭圆的半长轴，半短轴。水平半轴相对于盒模型的宽度；垂直半轴相对于盒模型的高度</p>
+<h2 id="columns-分列"><a href="#columns-分列" class="headerlink" title="columns 分列"></a>columns 分列</h2><p><code>columns</code> 用来设置元素的列宽和列数。它是一个简写属性，可在单个方便的声明中设置 <code>column-width</code> 和 <code>column-count</code> 属性。可以通过 <code>column-gap</code> 设置列间距。可以通过 <code>column-rule</code> 设置列间隔样式，该属性是 <code>column-rule-width</code> 、 <code>column-rule-style</code> 、 <code>column-rule-color</code> 三个属性的简写。  </p>
+<h2 id="新增布局-flexible-box-grid"><a href="#新增布局-flexible-box-grid" class="headerlink" title="新增布局 flexible-box grid"></a>新增布局 flexible-box grid</h2><p>参见 <a href="/blog/2018/12/06/CSS-Flex布局/">flex</a>、<a href="/blog/2021/03/31/CSS-Grid布局/">grid</a></p>
+<h2 id="box-shadow-阴影-text-shadow-文字阴影"><a href="#box-shadow-阴影-text-shadow-文字阴影" class="headerlink" title="box-shadow 阴影 text-shadow 文字阴影"></a>box-shadow 阴影 text-shadow 文字阴影</h2><p>参见 <a href="/blog/2021/03/31/CSS-阴影/">阴影</a></p>
+<h2 id="gradients-渐变"><a href="#gradients-渐变" class="headerlink" title="gradients 渐变"></a>gradients 渐变</h2><p>参见 <a href="/blog/2021/03/29/CSS-渐变/">gradients</a>  </p>
+<h2 id="transform-变换-transition-过渡-animation-动画"><a href="#transform-变换-transition-过渡-animation-动画" class="headerlink" title="transform 变换 transition 过渡 animation 动画"></a>transform 变换 transition 过渡 animation 动画</h2><p>参见 <a href="/blog/2021/03/16/CSS-transform-transition-animation/">transform &amp; transition &amp; animation</a>  </p>
 
         
     </section>
@@ -191,7 +254,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2021/03/21/JS-%E5%A3%B0%E6%98%8E%E6%8F%90%E5%89%8D/">JS 声明提前</a>
+            <a href="/blog/2021/03/25/HTML-HTML5%E7%89%B9%E6%80%A7/">HTML HTML5特性</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -199,7 +262,7 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2021-03-21T03:23:55.000Z" itemprop="datePublished">2021-03-21</time>
+    <time datetime="2021-03-25T09:14:29.000Z" itemprop="datePublished">2021-03-25</time>
 </span>
 
             
@@ -209,106 +272,211 @@
     
     <section class="article-body markdown-body">
         
-        <p>var命令声明函数中的变量，不管在函数中什么位置，由于其函数作用域的特性，变量在函数中任何位置始终可见，相当于变量声明被”提升”到函数体的头部。“声明提前”这步操作是在JavaScript引擎的“预编译”时进行的。</p>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/03/21/JS-%E4%BD%9C%E7%94%A8%E5%9F%9F-%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/">JS 作用域&amp;作用域链</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-03-21T03:22:43.000Z" itemprop="datePublished">2021-03-21</time>
-</span>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>一个变量的作用域（scope）指的是程序源代码中定义这个变量的区域。<br>JavaScript只有两种作用域，全局作用域、函数作用域（ES6中新增了块级作用域）。<br>函数执行时所在的作用域，是定义时的作用域，而不是调用时所在的作用域。每一段JavaScript代码（全局代码或者函数）都有一个与之关联的作用域链（scope chain）。这个作用域链是一个对象列表或者链表，这组对象定义了这段代码“作用域中”的变量。当JavaScript需要查找变量x的值的时候（这个过程被称为“变量解析”（variable resolution）），它会从链中的第一个对象开始查找，如果这个对象有一个名为x的属性，则会直接使用这个属性的值，如果第一个对象中不存在名为x的属性，JavaScript会继续查找链上的下一个对象，以此类推。如果作用域链上没有任何一个对象含有属性x，那么就会抛出一个引用错误（ReferenceError）的异常。</p>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/03/20/React-%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">React 组件生命周期</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-03-19T17:03:54.000Z" itemprop="datePublished">2021-03-20</time>
-</span>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>组件的生命周期可分成三个状态：  </p>
+        <p>HTML5 是定义 HTML 标准的最新的版本。<a target="_blank" rel="noopener" href="https://whatwg.org/">WHATWG</a> 致力于 web 表单和应用程序，而 <a target="_blank" rel="noopener" href="https://www.w3.org/">W3C</a> 专注于 XHTML 2.0。在 2006 年，双方决定进行合作，来创建一个新版本的 HTML，这就是HTML5。  </p>
+<h2 id="语义"><a href="#语义" class="headerlink" title="语义"></a>语义</h2><h3 id="新增元素"><a href="#新增元素" class="headerlink" title="新增元素"></a>新增元素</h3><p>HTML5新增了区块与段落元素：</p>
+<table>
+<thead>
+<tr>
+<th>元素名</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>section</td>
+<td>表示一个包含在HTML文档中的独立部分，它没有更具体的语义元素来表示，一般来说会有包含一个标题</td>
+</tr>
+<tr>
+<td>article</td>
+<td>表示文档、页面、应用或网站中的独立结构，其意在成为可独立分配的或可复用的结构</td>
+</tr>
+<tr>
+<td>nav</td>
+<td>表示页面的一部分，其目的是在当前文档或其他文档中提供导航链接</td>
+</tr>
+<tr>
+<td>header</td>
+<td>用于展示介绍性内容，通常包含一组介绍性的或是辅助导航的实用元素</td>
+</tr>
+<tr>
+<td>footer</td>
+<td>表示最近一个章节内容(Sectioning content)或者根节点（Sectioning root）元素的页脚</td>
+</tr>
+<tr>
+<td>aside</td>
+<td>表示一个和其余页面内容几乎无关的部分，被认为是独立于该内容的一部分并且可以被单独的拆分出来而不会使整体受影响</td>
+</tr>
+<tr>
+<td>main</td>
+<td>呈现了文档的 &lt;body> 或应用的主体部分</td>
+</tr>
+<tr>
+<td>hgroup</td>
+<td>代表文档章节所属的多级别的目录</td>
+</tr>
+<tr>
+<td>template</td>
+<td>表示一种用于保存客户端内容的机制，该内容在加载页面时不会呈现，但随后可以在运行时使用JavaScript实例化</td>
+</tr>
+<tr>
+<td>figure</td>
+<td>代表一段独立的内容, 经常与说明（caption） &lt;figcaption> 配合使用, 并且作为一个独立的引用单元。</td>
+</tr>
+<tr>
+<td>figcaption</td>
+<td>是与其相关联的图片的说明/标题，用于描述其父节点 &lt;figure> 元素里的其他数据</td>
+</tr>
+</tbody>
+</table>
+<p>新增了音频与视频元素：</p>
+<table>
+<thead>
+<tr>
+<th>元素名</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>audio</td>
+<td>元素用于在文档中嵌入音频内容</td>
+</tr>
+<tr>
+<td>video</td>
+<td>用于在HTML或者XHTML文档中嵌入媒体播放器，用于支持文档内的视频播放</td>
+</tr>
+<tr>
+<td>source</td>
+<td>为 &lt;video> 或 &lt;audio> 这类媒体元素指定媒体源</td>
+</tr>
+<tr>
+<td>track</td>
+<td>为 &lt;video> 或 &lt;audio> 这类媒体元素指定文本轨道（字幕）</td>
+</tr>
+</tbody>
+</table>
+<p>图表&amp;公式等嵌入内容：</p>
+<table>
+<thead>
+<tr>
+<th>元素名</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>canvas</td>
+<td>代表位图区域 ，可以通过脚本在它上面实时呈现图形，如图表、游戏绘图等</td>
+</tr>
+<tr>
+<td>svg</td>
+<td>定义一个嵌入式矢量图</td>
+</tr>
+<tr>
+<td>math</td>
+<td>定义一段数学公式</td>
+</tr>
+<tr>
+<td>embed</td>
+<td>代表一个嵌入的外部资源，如应用程序或交互内容</td>
+</tr>
+</tbody>
+</table>
+<h3 id="iframe上的改进"><a href="#iframe上的改进" class="headerlink" title="iframe上的改进"></a>iframe上的改进</h3><p>新增了一些属性：  </p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sandbox</td>
+<td>属性对呈现在 iframe 框架中的内容启用一些额外的限制条件</td>
+</tr>
+<tr>
+<td>seamless</td>
+<td>规定了 &lt;iframe> 看上去像是包含文档的一部分（无边框或滚动条）</td>
+</tr>
+<tr>
+<td>srcdoc</td>
+<td>该属性是一段HTML代码，这些代码会被渲染到 iframe 中。如果浏览器不支持 srcdoc 属性，则会渲染 src 属性表示的内容</td>
+</tr>
+</tbody>
+</table>
+<h3 id="支持-MathML"><a href="#支持-MathML" class="headerlink" title="支持 MathML"></a>支持 MathML</h3><p>Mathematical Markup Language (MathML) 是一个用于描述数学公式、符号的一种 XML 标记语言。</p>
+<h3 id="其他对于HTML4-1的优化"><a href="#其他对于HTML4-1的优化" class="headerlink" title="其他对于HTML4.1的优化"></a>其他对于HTML4.1的优化</h3><h4 id="doctype-声明"><a href="#doctype-声明" class="headerlink" title="doctype 声明"></a>doctype 声明</h4><p>HTML5的 doctype 非常简单</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="字符集声明"><a href="#字符集声明" class="headerlink" title="字符集声明"></a>字符集声明</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="通信"><a href="#通信" class="headerlink" title="通信"></a>通信</h2><h3 id="支持-WebSockets"><a href="#支持-WebSockets" class="headerlink" title="支持 WebSockets"></a>支持 WebSockets</h3><p>WebSockets 是一种先进的技术。它可以在用户的浏览器和服务器之间打开交互式通信会话。使用此API，您可以向服务器发送消息并接收事件驱动的响应，而无需通过轮询服务器的方式以获得响应。  </p>
+<h3 id="支持-Server-sent-events"><a href="#支持-Server-sent-events" class="headerlink" title="支持 Server-sent events"></a>支持 Server-sent events</h3><p>允许服务器向客户端推送事件，而不是仅在响应客户端请求时服务器才能发送数据的传统范式。  </p>
+<h3 id="支持-WebRTC"><a href="#支持-WebRTC" class="headerlink" title="支持 WebRTC"></a>支持 WebRTC</h3><p>这项技术，其中的 RTC 代表的是即时通信，允许连接到其他人，直接在浏览器中控制视频会议，而不需要一个插件或是外部的应用程序。WebRTC作为一项标准,使得所有浏览器无需安装插件或第三方软件，就可以点对点地分享应用数据和进行电话会议。  </p>
+<h2 id="离线-amp-存储"><a href="#离线-amp-存储" class="headerlink" title="离线 &amp; 存储"></a>离线 &amp; 存储</h2><h3 id="支持-onLine-和-offline-事件"><a href="#支持-onLine-和-offline-事件" class="headerlink" title="支持 onLine 和 offline 事件"></a>支持 onLine 和 offline 事件</h3><p><code>navigator.onLine</code> 是一个值为 true/false  (true 表示在线， false 表示离线) 的属性。  </p>
+<p>你可以使用几种熟悉的方式来注册事件：</p>
 <ul>
-<li>Mounting：已插入真实 DOM</li>
-<li>Updating：正在被重新渲染</li>
-<li>Unmounting：已移出真实 DOM</li>
+<li>在 window，document，或 document.body 上使用 addEventListener</li>
+<li>将 document 或 document.body 的 .ononline 或 .onoffline 属性设置为一个 JavaScript Function 对象。(注意：由于兼容性原因，不能使用 window.ononline 或 window.onoffline。)</li>
+<li>在 HTML 标记中的 &lt;body> 标签上指定 ononline=”…” 或 onoffline=”…” 特性。</li>
 </ul>
-<p>生命周期的方法有：  </p>
-<ul>
-<li><p><code>componentWillMount</code> 在渲染前调用,在客户端也在服务端。</p>
-</li>
-<li><p><code>componentDidMount</code> 在第一次渲染后调用，只在客户端。之后组件已经生成了对应的DOM结构，可以通过this.getDOMNode()来进行访问。 如果你想和其他JavaScript框架一起使用，可以在这个方法中调用setTimeout, setInterval或者发送AJAX请求等操作(防止异部操作阻塞UI)。</p>
-</li>
-<li><p><code>componentWillReceiveProps</code> 在组件接收到一个新的 prop (更新后)时被调用。这个方法在初始化render时不会被调用。</p>
-</li>
-<li><p><code>shouldComponentUpdate</code> 返回一个布尔值。在组件接收到新的props或者state时被调用。在初始化时或者使用forceUpdate时不被调用。<br>可以在你确认不需要更新组件时使用。</p>
-</li>
-<li><p><code>componentWillUpdate</code> 在组件接收到新的props或者state但还没有render时被调用。在初始化时不会被调用。</p>
-</li>
-<li><p><code>componentDidUpdate</code> 在组件完成更新后立即调用。在初始化时不会被调用。</p>
-</li>
-<li><p><code>componentWillUnmount</code> 在组件从 DOM 中移除的时候立刻被调用。</p>
-</li>
-</ul>
+<h3 id="支持-Web-Storage（sessionStorage-amp-localStorage）"><a href="#支持-Web-Storage（sessionStorage-amp-localStorage）" class="headerlink" title="支持 Web Storage（sessionStorage &amp; localStorage）"></a>支持 Web Storage（sessionStorage &amp; localStorage）</h3><p>sessionStorage 和 localStorage 让 web 应用程序能够在客户端存储结构化数据。  </p>
+<h3 id="支持-IndexedDB"><a href="#支持-IndexedDB" class="headerlink" title="支持 IndexedDB"></a>支持 IndexedDB</h3><p>IndexedDB 是一个为了能够在浏览器中存储大量结构化数据，并且能够在这些数据上使用索引进行高性能检索的 Web 标准。  </p>
+<h3 id="支持-FileReader"><a href="#支持-FileReader" class="headerlink" title="支持 FileReader"></a>支持 FileReader</h3><p>FileReader 对象允许Web应用程序异步读取存储在用户计算机上的文件（或原始数据缓冲区）的内容，使用 File 或 Blob 对象指定要读取的文件或数据。  </p>
+<p>其中File对象可以是来自用户在一个&lt;input>元素上选择文件后返回的 FileList 对象,也可以来自拖放操作生成的 DataTransfer 对象,还可以是来自在一个HTMLCanvasElement 上执行 mozGetAsFile() 方法后返回结果。  </p>
+<h3 id="支持使用Camera-API"><a href="#支持使用Camera-API" class="headerlink" title="支持使用Camera API"></a>支持使用Camera API</h3><p>通过Camera API,你可以使用手机的摄像头拍照，然后把拍到的照片发送给当前网页.这些操作主要是通过一个input元素来实现的，其中该元素的type属性必须为”file”，accept属性要允许图片格式，这样才能知道这个文件选择框是用来选择图片的。  </p>
+<h2 id="性能-amp-集成"><a href="#性能-amp-集成" class="headerlink" title="性能 &amp; 集成"></a>性能 &amp; 集成</h2><h3 id="支持-Web-Workers"><a href="#支持-Web-Workers" class="headerlink" title="支持 Web Workers"></a>支持 Web Workers</h3><p>能够把 JavaScript 计算委托给后台线程，通过允许这些活动以防止使交互型事件变得缓慢。  </p>
+<h3 id="XMLHttpRequest-Level-2"><a href="#XMLHttpRequest-Level-2" class="headerlink" title="XMLHttpRequest Level 2"></a>XMLHttpRequest Level 2</h3><p>允许异步读取页面的某些部分，允许其显示动态内容，根据时间和用户行为而有所不同。这是在 Ajax 背后的技术。  </p>
+<h3 id="History-API"><a href="#History-API" class="headerlink" title="History API"></a>History API</h3><p>允许对浏览器历史记录进行操作。这对于那些交互地加载新信息的页面尤其有用。<br>通过 <code>window.history</code> 可以获取浏览器历史记录相关信息。使用 <code>back()</code>, <code>forward()</code> 和 <code>go()</code> 方法来完成在用户历史记录中向后和向前的跳转。<code>window.history.length</code> 来确定的历史堆栈中页面的数量。  </p>
+<h3 id="contentEditable-属性"><a href="#contentEditable-属性" class="headerlink" title="contentEditable 属性"></a>contentEditable 属性</h3><p>在HTML中，任何元素都可以被编辑。通过使用一些JavaScript事件处理程序，您可以将您的网页转换为完整且快速的富文本编辑器。  </p>
+<h3 id="Drag-amp-Drop-API"><a href="#Drag-amp-Drop-API" class="headerlink" title="Drag &amp; Drop API"></a>Drag &amp; Drop API</h3><p>HTML5 的拖放 API 能够支持在网站内部和网站之间拖放项目。  </p>
+<h3 id="Web-based-protocol-handlers"><a href="#Web-based-protocol-handlers" class="headerlink" title="Web-based protocol handlers"></a>Web-based protocol handlers</h3><p>可以使用 navigator.registerProtocolHandler() 方法把 web 应用程序注册成一个协议处理程序。  </p>
+<h3 id="requestAnimationFrame"><a href="#requestAnimationFrame" class="headerlink" title="requestAnimationFrame"></a>requestAnimationFrame</h3><p>允许控制动画渲染以获得更优性能。  </p>
+<h3 id="Fullscreen-API"><a href="#Fullscreen-API" class="headerlink" title="Fullscreen API"></a>Fullscreen API</h3><p>全屏 API 为使用用户的整个屏幕展现网络内容提供了一种简单的方式，并且在不需要时退出全屏模式。通过 <code>Element.requestFullscreen()</code> 请求浏览器（user agent）将特定元素（甚至延伸到它的后代元素）置为全屏模式。<code>Document.exitFullscreen()</code> 用于请求从全屏模式切换到窗口模式。<code>document.fullscreen</code> 可以获取当前是否是全屏模式，<code>document.fullscreenElement</code> 可以获取到当前全屏的元素。  </p>
+<button type="button" class="appreciate-btn" onclick="javascript:document.querySelector('.content').requestFullscreen();">将此页面全屏展示</button>
 
+<h3 id="Pointer-Lock-API"><a href="#Pointer-Lock-API" class="headerlink" title="Pointer Lock API"></a>Pointer Lock API</h3><p>允许锁定到内容的指针，这样游戏或者类似的应用程序在指针到达窗口限制时也不会失去焦点。  </p>
+<h2 id="设备访问"><a href="#设备访问" class="headerlink" title="设备访问"></a>设备访问</h2><h3 id="支持触摸事件"><a href="#支持触摸事件" class="headerlink" title="支持触摸事件"></a>支持触摸事件</h3><p>对用户按下触控屏的事件做出反应的处理程序。即 <code>ontouchstart</code>、<code>ontouchmove</code>、<code>ontouchend</code>、<code>ontouchcancel</code> 事件 和 <code>TouchEvent</code> 。   </p>
+<h3 id="Geolocation-API"><a href="#Geolocation-API" class="headerlink" title="Geolocation API"></a>Geolocation API</h3><p>让浏览器使用地理位置服务定位用户的位置。<br>地理位置 API 通过 <code>navigator.geolocation</code> 提供，可以通过 <code>navigator.geolocation.getCurrentPosition(success, error, options)</code> 来获取设备当前位置。  </p>
+<h3 id="检测设备方向"><a href="#检测设备方向" class="headerlink" title="检测设备方向"></a>检测设备方向</h3><p>让用户在运行浏览器的设备变更方向时能够得到信息。<br>主要是在 window 对象添加事件监听器来实现，其中 <code>deviceorientation</code> 接收设备方向变化信息，<code>devicemotion</code> 接收设备移动信息。  </p>
+
+        
+    </section>
+    
+    <div class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</div>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/03/24/JS-%E5%8E%9F%E5%9E%8B%E9%93%BE/">JS 原型链</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-24T12:49:22.000Z" itemprop="datePublished">2021-03-24</time>
+</span>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="什么是原型链"><a href="#什么是原型链" class="headerlink" title="什么是原型链"></a>什么是原型链</h2><p>原型链是实现继承的主要方法。其基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法。每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。这时，如果我们让原型对象等于另一个类型的实例，此时的原型对象将包含一个指向另一个原型的指针，相应的，另一个原型中也包含着一个指向另一个构造函数的指针。假如一个原型又是另一个类型的实例，那么上述关系依然成立，如此层层递进，就构成了实例与原形的链条。这就是所谓原型链的基本概念。  </p>
+<h2 id="利用原型链实现继承"><a href="#利用原型链实现继承" class="headerlink" title="利用原型链实现继承"></a>利用原型链实现继承</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.property = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.getSuperValue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.property;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.subproperty = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 继承了SuperType</span></span><br><span class="line">SubType.prototype = <span class="keyword">new</span> SuperType();</span><br><span class="line"><span class="comment">// 添加新方法</span></span><br><span class="line">SubType.prototype.getSubValue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.subproperty;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 重写超类中的方法</span></span><br><span class="line">SubType.prototype.getSuperValue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> instance = <span class="keyword">new</span> SubType();</span><br><span class="line"><span class="built_in">console</span>.log(instance.getSuperValue()); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
         
     </section>
     
@@ -325,7 +493,7 @@
 
 
 <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/blog/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="page-number current">2</span><a class="page-number" href="/blog/page/3/">3</a><a class="page-number" href="/blog/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/18/">18</a><a class="extend next" rel="next" href="/blog/page/3/">Next &gt;&gt;</a>
+    <a class="extend prev" rel="prev" href="/blog/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="page-number current">2</span><a class="page-number" href="/blog/page/3/">3</a><a class="page-number" href="/blog/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/20/">20</a><a class="extend next" rel="next" href="/blog/page/3/">Next &gt;&gt;</a>
 </nav>
 
 
