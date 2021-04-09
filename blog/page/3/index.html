@@ -108,6 +108,44 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/blog/2021/03/24/JS-%E5%8E%9F%E5%9E%8B%E9%93%BE/">JS 原型链</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-24T12:49:22.000Z" itemprop="datePublished">2021-03-24</time>
+</span>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="什么是原型链"><a href="#什么是原型链" class="headerlink" title="什么是原型链"></a>什么是原型链</h2><p>原型链是实现继承的主要方法。其基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法。每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。这时，如果我们让原型对象等于另一个类型的实例，此时的原型对象将包含一个指向另一个原型的指针，相应的，另一个原型中也包含着一个指向另一个构造函数的指针。假如一个原型又是另一个类型的实例，那么上述关系依然成立，如此层层递进，就构成了实例与原形的链条。这就是所谓原型链的基本概念。  </p>
+<h2 id="利用原型链实现继承"><a href="#利用原型链实现继承" class="headerlink" title="利用原型链实现继承"></a>利用原型链实现继承</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.property = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.getSuperValue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.property;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.subproperty = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 继承了SuperType</span></span><br><span class="line">SubType.prototype = <span class="keyword">new</span> SuperType();</span><br><span class="line"><span class="comment">// 添加新方法</span></span><br><span class="line">SubType.prototype.getSubValue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.subproperty;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 重写超类中的方法</span></span><br><span class="line">SubType.prototype.getSuperValue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> instance = <span class="keyword">new</span> SubType();</span><br><span class="line"><span class="built_in">console</span>.log(instance.getSuperValue()); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+        
+    </section>
+    
+    <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/blog/2021/03/23/JS-Promise/">JS 实现Promise</a>
         </h1>
         
@@ -126,7 +164,7 @@
     
     <section class="article-body markdown-body">
         
-        <p>实现一个 <a target="_blank" rel="noopener" href="https://promisesaplus.com/">PromiseA+</a> 规范的Promise  </p>
+        <p>实现一个遵循 <a target="_blank" rel="noopener" href="https://promisesaplus.com/">PromiseA+</a> 规范的 Promise  </p>
 <h2 id="实现基础框架-new-Promise-resolve-reject-gt"><a href="#实现基础框架-new-Promise-resolve-reject-gt" class="headerlink" title="实现基础框架 new Promise((resolve, reject) =&gt;{})"></a>实现基础框架 <code>new Promise((resolve, reject) =&gt;&#123;&#125;)</code></h2><p><code>new Promise()</code> 时接收一个 executor 函数作为参数，该函数会立即执行，函数中有两个参数，它们也是函数，分别是 resolve 和 reject ，函数同步执行一定要放在 try…catch 中，否则无法进行错误捕获。  </p>
 <figure class="highlight js"><figcaption><span>MyPromise.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyPromise</span>(<span class="params">executor</span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">resolve</span>(<span class="params">value</span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">reject</span>(<span class="params">reason</span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    executor(resolve, reject);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (reason) &#123;</span><br><span class="line">    reject(reason);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = MyPromise;</span><br></pre></td></tr></table></figure>
 <p>resolve() 接收 Promise 成功值 value ， reject 接收 Promise 失败原因 reason 。</p>
@@ -182,12 +220,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -250,12 +288,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -299,12 +337,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -343,57 +381,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/03/21/JS-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%AF%B9%E8%B1%A1%E7%89%B9%E6%80%A7/">JS 对象的对象特性</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-03-21T03:27:48.000Z" itemprop="datePublished">2021-03-21</time>
-</span>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h3 id="对象特性（object-attribute）有哪些？分别有什么含义？"><a href="#对象特性（object-attribute）有哪些？分别有什么含义？" class="headerlink" title="对象特性（object attribute）有哪些？分别有什么含义？"></a>对象特性（object attribute）有哪些？分别有什么含义？</h3><p>对象除了包含属性外还拥有三个相关的对象特性：  </p>
-<ol>
-<li>原型 prototype: 指向另外一个对象，本对象的属性继承自它的原型对象<br>通过 <code>Object.getPropertyOf($object)</code> 可以获取对象的原型对象，或者通过非正式的 <code>$object.__proto__</code> 获取对象的原型对象  </li>
-<li>类 class: 标志对象类型的字符串<br>通过toString方法获取第8到倒数第二个位置之间的字符可以获取  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">classof</span>(<span class="params">o</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (o === <span class="literal">null</span>) <span class="keyword">return</span> <span class="string">&#x27;Null&#x27;</span>;</span><br><span class="line">    <span class="keyword">if</span> (o === <span class="literal">undefined</span>) <span class="keyword">return</span> <span class="string">&#x27;Undefined&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(o).slice(<span class="number">8</span>, -<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>扩展标记 extensible flag: 指明了是否可以向该对象添加新属性<br>通过 <code>Object.isExtensible($object)</code> 来判断该对象是否可扩展，通过 <code>Object.preventExtensions($object)</code> 来将对象设置成不可扩展的。  </li>
-</ol>
-<p>tips:<br><code>Object.seal($object)</code> 可以将对象设置为不可扩展且所有自有（非继承）属性不能删除与配置。<br>通过 <code>Object.isSealed($object)</code> 来判断对象是否被封闭。  </p>
-<p><code>Object.freeze($object)</code> 可以将对象设置为不可扩展、不可配置且所有自有（非继承）属性设置为只读。<br>通过 <code>Object.isFrozen($object)</code> 排判断对象是否冻结。  </p>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
+</footer>
     
 </article>
 

@@ -302,12 +302,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -371,12 +371,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -424,12 +424,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -496,12 +496,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -601,12 +601,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -724,12 +724,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -815,60 +815,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2018/09/07/HTML-%E9%A1%B5%E9%9D%A2%E7%A6%81%E6%AD%A2%E9%80%89%E4%B8%AD%E5%A4%8D%E5%88%B6/">页面禁止选中复制</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-09-07T15:12:46.000Z" itemprop="datePublished">2018-09-07</time>
-</span>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>有时，为了防止用户随意的获取页面内的内容，我们需要禁止用户选中和拷贝，下面介绍两种禁止的方法  </p>
-<h2 id="javascript"><a href="#javascript" class="headerlink" title="javascript"></a>javascript</h2><p>可以在需要禁止的元素内监听选中和拷贝的事件，当用户如此操作时予以禁止。  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 禁止右键菜单</span></span><br><span class="line"><span class="built_in">document</span>.oncontextmenu = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;;</span><br><span class="line"><span class="comment">// 禁止文字选择</span></span><br><span class="line"><span class="built_in">document</span>.onselectstart = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;;</span><br><span class="line"><span class="comment">// 禁止复制</span></span><br><span class="line"><span class="built_in">document</span>.oncopy = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;;</span><br><span class="line"><span class="comment">// 禁止剪切</span></span><br><span class="line"><span class="built_in">document</span>.oncut = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;;</span><br><span class="line"><span class="comment">// 禁止粘贴</span></span><br><span class="line"><span class="built_in">document</span>.onpaste = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;;</span><br><span class="line"><span class="comment">// 禁止打印</span></span><br><span class="line"><span class="built_in">document</span>.onbeforeprint = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="css"><a href="#css" class="headerlink" title="css"></a>css</h2><p>在支持use-select属性的浏览器中，设置user-select: none来禁止选中行为。<br>Opera12.5中支持私有的标签属性 unselectable=”on”来实现相同的行为  </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">* &#123; </span><br><span class="line">    -webkit-user-select: none;</span><br><span class="line">       -moz-user-select: none;</span><br><span class="line">        -ms-user-select: none;</span><br><span class="line">            user-select: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="如何破解"><a href="#如何破解" class="headerlink" title="如何破解"></a>如何破解</h2><p>如上所述，如果想要可以选中复制，可以在开发者工具F12中勾选<code>禁止Javascript</code> 并将想要复制的内容的<code>element.style</code><br>改为<code>user-select:none</code>即可。当然，其实什么样的内容都可以在开发者工具的Element中复制得到。</p>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
+</footer>
     
 </article>
 
@@ -1015,12 +967,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -1062,12 +1014,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -1380,12 +1332,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -1435,12 +1387,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 

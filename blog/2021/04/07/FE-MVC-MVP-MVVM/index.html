@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        FE-MVC MVP MVVM | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.0.3" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="MVCMVC最初是在研究Smalltalk-80（1979年）期间设计出来的，恐怕没有一本书能够回到计算机石器时代介绍一下Smalltalk的代码是如何实现MVC的，不仅如此，连想搞清楚当时的应用场景都很难了，都要追溯到80后出生以前的事了。在1995年出版的《设计模式：可复用面向对象软件的基础》对MVC进行了深入的阐述，在推广使用方面发挥了重要作用。  MVC包括三类对象，将他们分离以提高灵活性和复用性。模型 model 用于封装与应用程序的业务逻辑相关的数据以及对数据的处理方法，会" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://mangon.cn/blog"></form> -->
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC"><span class="toc-number">1.</span> <span class="toc-text">MVC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC-for-Javascript"><span class="toc-number">2.</span> <span class="toc-text">MVC for Javascript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVP"><span class="toc-number">3.</span> <span class="toc-text">MVP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVVM"><span class="toc-number">4.</span> <span class="toc-text">MVVM</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            FE-MVC MVP MVVM
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-04-07T04:00:56.000Z" itemprop="datePublished">2021-04-07</time>
+</span>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <link rel="stylesheet" href="/blog/static/css/common.css"></link>
+
+<h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>MVC最初是在研究Smalltalk-80（1979年）期间设计出来的，恐怕没有一本书能够回到计算机石器时代介绍一下Smalltalk的代码是如何实现MVC的，不仅如此，连想搞清楚当时的应用场景都很难了，都要追溯到80后出生以前的事了。在1995年出版的《设计模式：可复用面向对象软件的基础》对MVC进行了深入的阐述，在推广使用方面发挥了重要作用。  </p>
+<p>MVC包括三类对象，将他们分离以提高灵活性和复用性。</p>
+<ul>
+<li><p>模型 model 用于封装与应用程序的业务逻辑相关的数据以及对数据的处理方法，会有一个或多个视图监听此模型。一旦模型的数据发生变化，模型将通知有关的视图。</p>
+</li>
+<li><p>视图 view 是它在屏幕上的表示，描绘的是model的当前状态。当模型的数据发生变化，视图相应地得到刷新自己的机会。</p>
+</li>
+<li><p>控制器 controller 定义用户界面对用户输入的响应方式，起到不同层面间的组织作用，用于控制应用程序的流程，它处理用户的行为和数据model上的改变。</p>
+</li>
+</ul>
+<p><img src="/blog/static/imgs/typicalMVC.png" alt="经典MVC模式inner"></p>
+<p class="caption">经典MVC模式</p>
+
+<p>实线：方法调用 虚线：事件通知</p>
+<p>其中涉及两种设计模式：  </p>
+<ul>
+<li>view和model之间的观察者模式，view观察model，事先在此model上注册，以便view可以了解在数据model上发生的改变</li>
+<li>view和controller之间的策略模式</li>
+</ul>
+<p>一个策略是一个表述算法的对象，MVC允许在不改变视图外观的情况下改变视图对用户输入的响应方式。例如，你可能希望改变视图对键盘的响应方式，或希望使用弹出菜单而不是原来的命令键方式。MVC将响应机制封装在controller对象中。存在着一个controller的类层次结构，使得可以方便地对原有的controller做适当改变而创建新的controller。  </p>
+<p>view使用controller子类的实例来实现一个特定的响应策略。要实现不同的响应的策略只要用不同种类的controller实例替换即可。甚至可以在运行时刻通过改变view的controller来改变用户输入的响应方式。例如，一个view可以被禁止接受任何输入，只需给他一个忽略输入事件的controller。  </p>
+<h2 id="MVC-for-Javascript"><a href="#MVC-for-Javascript" class="headerlink" title="MVC for Javascript"></a>MVC for Javascript</h2><p><img src="/blog/static/imgs/javascriptMVC.png" alt="javascript MVC模式inner"></p>
+<p class="caption">javascript MVC模式</p>
+
+<p>如图所示，view承接了部分controller的功能，负责处理用户输入，但是不必了解下一步做什么。它依赖于一个controller为她做决定或处理用户事件。事实上，前端的view已经具备了独立处理用户事件的能力，如果每个事件都要流经controller，势必增加复杂性。同时，view也可以委托controller处理model的更改。model数据变化后通知view进行更新，显示给用户。这个过程是一个圆，一个循环的过程。  </p>
+<p>这种从经典MVC到Javascript MVC的1对1转化，导致控制器的角色有点尴尬。MVC这样的结构的正确性在于，任何界面都需要面对一个用户，而controller “是用户和系统之间的链接”。在经典MVC中，controller要做的事情多数是派发用户输入给不同的view，并且在必要的时候从view中获取用户输入来更改model，而Web以及绝大多数现在的UI系统中，controller的职责已经被系统实现了。由于某种原因，控制器和视图的分界线越来越模糊，也有认为，view启动了action理论上应该把view归属于controller。比如在Backbone中，Backbone.View和Backbone.Router一起承担了controller的责任。这就为MVC中controller的衍变埋下了伏笔。  </p>
+<h2 id="MVP"><a href="#MVP" class="headerlink" title="MVP"></a>MVP</h2><p>MVP（model-view-Presenter）是经典MVC设计模式的一种衍生模式，是在1990年代Taligent公司创造的，一个用于C++ CommonPoint的模型。背景上不再考证，直接上图看一下与MVC的不同。  </p>
+<p><img src="/blog/static/imgs/mvp.png" alt="MVP模式inner"></p>
+<p class="caption">MVP模式</p>
+
+<p>经典MVC中，一对controller-view捆绑起来表示一个ui组件，controller直接接受用户输入，并将输入转为相应命令来调用model的接口，对model的状态进行修改，最后通过观察者模式对view进行重新渲染。  </p>
+<p>进化为MVP的切入点是修改controller-view的捆绑关系，为了解决controller-view的捆绑关系，将进行改造，使view不仅拥有UI组件的结构，还拥有处理用户事件的能力，这样就能将controller独立出来。为了对用户事件进行统一管理，view只负责将用户产生的事件传递给controller，由controller来统一处理，这样的好处是多个view可共用同一个controller。此时的controller也由组件级别上升到了应用级别，然而更新view的方式仍然与经典MVC一样：通过Presenter更新model，通过观察者模式更新view。  </p>
+<p>另一个显而易见的不同在于，MVC是一个圆，一个循环的过程，但MVP不是，依赖Presenter作为核心，负责从model中拿数据，填充到view中。常见的MVP的实现是被动视图(passive view),Presenter观察model，不再是view观察model，一旦model发生变化，就会更新view。Presenter有效地绑定了model到view。view暴露了setters接口以便Presenter可以设置数据。对于这种被动视图的结构，没有直接数据绑定的概念。但是他的好处是在view和model直接提供更清晰的分离。但是由于缺乏数据绑定支持，意味着不得不单独关注某个任务。在MVP里，应用程序的逻辑主要在Presenter来实现，其中的view是很薄的一层。  </p>
+<h2 id="MVVM"><a href="#MVVM" class="headerlink" title="MVVM"></a>MVVM</h2><p>MVVM，Model-View-ViewModel，最初是由微软在使用Windows Presentation Foundation和SilverLight时定义的，2005年John Grossman在一篇关于Avalon（WPF 的代号）的博客文章中正式宣布了它的存在。其中最重要的特性之一就是数据绑定，Data-binding。  </p>
+<p><img src="/blog/static/imgs/mvvm.png" alt="MVVM模式inner"></p>
+<p class="caption">MVVM模式</p>
+
+<p>首先，view和model是不知道彼此存在的，同MVP一样，将view和model清晰地分离开来。 其次，view是对viewmodel的外在显示，与viewmodel保持同步，viewmodel对象可以看作是view的上下文。view绑定到viewmodel的属性上，如果viewmodel中的属性值变化了，这些新值通过数据绑定会自动传递给view。反过来viewmodel会暴露model中的数据和特定状态给view。 所以，view不知道model的存在，viewmodel和model也觉察不到view。事实上，model也完全忽略viewmodel和view的存在。这是一个非常松散耦合的设计。  </p>
+
+        
+    </section>
+    
+    <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+</div>
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明：
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

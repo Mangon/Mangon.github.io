@@ -108,6 +108,61 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/blog/2018/08/30/CSS-calc-%E5%87%BD%E6%95%B0/">CSS calc 函数</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-08-30T12:30:10.000Z" itemprop="datePublished">2018-08-30</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>CSS函数之一，可以在CSS中执行计算操作<br>使用 calc() 函数计算 &lt;div> 元素的宽度，实现div距离左右边界各50px:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#div1</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="built_in">calc</span>(<span class="number">100%</span> - <span class="number">100px</span>);</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid black;</span><br><span class="line">    <span class="attribute">background-color</span>: yellow;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">5px</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="定义与用法"><a href="#定义与用法" class="headerlink" title="定义与用法"></a>定义与用法</h2><p>calc() 函数用于动态计算长度值，CSS3支持。</p>
+<ul>
+<li>需要注意的是，运算符前后都需要保留一个空格，例如：<code>width: calc(100% - 10px)；</code>  </li>
+<li>任何长度值都可以使用calc()函数进行计算；  </li>
+<li>calc()函数支持 “+”, “-“, “*”, “/“ 运算；  </li>
+<li>calc()函数使用标准的数学运算优先级规则；  </li>
+</ul>
+<h2 id="在LESS中"><a href="#在LESS中" class="headerlink" title="在LESS中"></a>在LESS中</h2><p>在LESS中 <code>calc(100% - 40px)</code> 等带单位混合运算会被LESS解析忽略单位，全部按照百分比计算，此例中的计算被LESS编译成 <code>calc(60%)</code>。  </p>
+<p>解决方案：<br>结合LESS使用特点，将计算放到LESS中解决。如上例 <code>calc(100% - 40px)</code>在LESS中可写为 <code>calc(~&quot;100% - 40px&quot;)</code>  </p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@height:</span> <span class="number">40px</span>;</span><br><span class="line"><span class="variable">@borderHeight:</span> <span class="number">1px</span>;</span><br><span class="line"><span class="variable">@marginHeight:</span> <span class="number">10px</span>;</span><br><span class="line"><span class="attribute">margin-bottom</span>: calc(<span class="string">~&quot;@&#123;height&#125;&quot;</span> );</span><br><span class="line"><span class="attribute">margin-bottom</span>: calc(<span class="string">~&quot;@&#123;height&#125; + @&#123;borderHeight&#125; * 3 + @&#123;marginHeight&#125; * 2&quot;</span> );</span><br></pre></td></tr></table></figure>
+<h2 id="在Stylus中"><a href="#在Stylus中" class="headerlink" title="在Stylus中"></a>在Stylus中</h2><p>在Stylus中 calc 也可以使用，在使用变量时，需要用 <code>%s</code> 替代，然后在行尾 <code>%</code> 之后赋值</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">headHeight=<span class="number">50px</span>  <span class="comment">/* stylus语法中定义一个变量 */</span></span><br><span class="line">footerHeight = <span class="number">50px</span></span><br><span class="line"><span class="attribute">height</span> <span class="string">&#x27;calc(100%  - %s - %s)&#x27;</span> % (headHeight footerHeight)</span><br></pre></td></tr></table></figure>
+        
+    </section>
+    
+    <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/blog/2018/08/24/Hexo-%E4%BD%BF%E7%94%A8Hexo%E5%8F%91%E5%B8%83%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%88%B0GithubPages/">使用Hexo发布个人博客到Github Pages</a>
         </h1>
         
@@ -135,7 +190,7 @@
 <h2 id="安装前提"><a href="#安装前提" class="headerlink" title="安装前提"></a>安装前提</h2><p>安装 Hexo 相当简单。然而在安装前，您必须检查电脑中是否已安装下列应用程序：</p>
 <p><a href="nodejs.org">Node.js</a><br><a href="git-scm.com">Git</a>  </p>
 <h2 id="安装Hexo-cli"><a href="#安装Hexo-cli" class="headerlink" title="安装Hexo-cli"></a>安装Hexo-cli</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<h2 id="在github中创建仓库"><a href="#在github中创建仓库" class="headerlink" title="在github中创建仓库"></a>在github中创建仓库</h2><p>仓库需要以<code>.github.io</code>结尾<br><img src="/blog/static/imgs/create-repo.png" alt="create-repo"></p>
+<h2 id="在Github中创建仓库"><a href="#在Github中创建仓库" class="headerlink" title="在Github中创建仓库"></a>在Github中创建仓库</h2><p>仓库需要以<code>.github.io</code>结尾<br><img src="/blog/static/imgs/create-repo.png" alt="create-repo"></p>
 <h2 id="建站"><a href="#建站" class="headerlink" title="建站"></a>建站</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init &lt;folder&gt;</span><br><span class="line">$ <span class="built_in">cd</span> &lt;folder&gt;</span><br><span class="line">$ npm install</span><br><span class="line">$ npm install hexo-deployer-git --save</span><br><span class="line">$ hexo g</span><br></pre></td></tr></table></figure>
 <h2 id="配置发布参数"><a href="#配置发布参数" class="headerlink" title="配置发布参数"></a>配置发布参数</h2><p>在 _config.yml 中修改参数</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/username/username.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">&lt;username&gt;</span></span><br><span class="line">  <span class="attr">email:</span> <span class="string">&lt;useremail&gt;</span></span><br></pre></td></tr></table></figure>
@@ -147,12 +202,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -332,7 +387,7 @@
 <h3 id="解释-扩展运算符的作用"><a href="#解释-扩展运算符的作用" class="headerlink" title="解释 ... 扩展运算符的作用"></a>解释 <code>...</code> 扩展运算符的作用</h3><p>将一个数组转为用逗号分隔的参数序列。</p>
 <h3 id="解释-字符串模板-的作用"><a href="#解释-字符串模板-的作用" class="headerlink" title="解释 字符串模板 的作用"></a>解释 字符串模板 的作用</h3><h3 id="Promise-有哪些方法？"><a href="#Promise-有哪些方法？" class="headerlink" title="Promise 有哪些方法？"></a><code>Promise</code> 有哪些方法？</h3><h3 id="字符串的方法-amp-属性有哪些？"><a href="#字符串的方法-amp-属性有哪些？" class="headerlink" title="字符串的方法&amp;属性有哪些？"></a>字符串的方法&amp;属性有哪些？</h3><p><code>length</code>    返回字符串的长度<br><code>trim()</code>    删除字符串两端空白字符<br><code>charAt()</code>    返回指定位置的字符<br><code>charCodeAt()</code>    返回表示给定索引的字符的Unicode的值<br><code>split()</code>    把字符串分割为字符串数组<br><code>concat()</code>    将一个或多个字符串连接并返回新字符串<br><code>startWith()</code>    判断是否以给定字符串开始，返回布尔值<br><code>endsWith()</code>    判断是否以给定字符串结尾，返回布尔值<br><code>includes()</code>    判断是否包含给定字符串，返回布尔值<br><code>indexOf()</code>    返回给定字符串在原字符串中的位置，如果没有返回-1<br><code>lastIndexOf()</code>    从字符串对象中返回最后一个被发现的给定值的索引值，如果没有找到则返回-1<br><code>match()</code>    返回匹配正则表达式的结果<br><code>replace()</code>    替换与正则表达式匹配的子串<br><code>slice()</code>    提取字符串的一部分并返回一个新字符串<br><code>substr()</code>    从起始索引号提取字符串中指定数目的字符 （遗留函数，避免使用）<br><code>substring()</code>    提取字符串中两个指定的索引号之间的字符<br><code>normalize()</code>    返回调用字符串值的Unicode标准化形式<br><code>padStart()</code>    在当前字符串头部填充指定的字符串， 直到达到指定的长度。 返回一个新的字符串<br><code>padEnd()</code>    在当前字符串尾部填充指定的字符串， 直到达到指定的长度。 返回一个新的字符串<br><code>repeat()</code>    返回指定重复次数的由元素组成的字符串对象</p>
 <h3 id="简述JS函数柯里化是什么，有什么意义？"><a href="#简述JS函数柯里化是什么，有什么意义？" class="headerlink" title="简述JS函数柯里化是什么，有什么意义？"></a>简述JS函数柯里化是什么，有什么意义？</h3><p>柯里化是函数式编程的一个过程，在这个过程中我们能把一个带有多个参数的函数转换成一系列的嵌套函数。它返回一个新函数，这个新函数期望传入下一个参数。</p>
-<h2 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h2><h3 id="解释-offsetLeft-offsetTop-等参数含义"><a href="#解释-offsetLeft-offsetTop-等参数含义" class="headerlink" title="解释 offsetLeft offsetTop 等参数含义"></a>解释 offsetLeft offsetTop 等参数含义</h3><p><code>HTMLElement.offsetLeft</code> 是一个只读属性，返回当前元素左上角相对于  <code>HTMLElement.offsetParent</code> 节点的左边界偏移的像素值。<br><code>HTMLElement.offsetTop</code> 是一个只读属性，它返回当前元素相对于其 <code>HTMLElement.offsetParent</code> 元素的顶部内边距的距离。<br><code>HTMLElement.offsetWidth</code> 是一个只读属性，返回一个元素的布局宽度。<br><code>HTMLElement.offsetHeight</code> 是一个只读属性，它返回该元素的像素高度，高度包含该元素的垂直内边距和边框，且是一个整数。  </p>
+<h2 id="others"><a href="#others" class="headerlink" title="others"></a>others</h2><h3 id="解释-offsetLeft-offsetTop-等参数含义"><a href="#解释-offsetLeft-offsetTop-等参数含义" class="headerlink" title="解释 offsetLeft offsetTop 等参数含义"></a>解释 offsetLeft offsetTop 等参数含义</h3><p><code>HTMLElement.offsetLeft</code> 是一个只读属性，返回当前元素左上角相对于  <code>HTMLElement.offsetParent</code> 节点的左边界偏移的像素值。<br><code>HTMLElement.offsetTop</code> 是一个只读属性，它返回当前元素相对于其 <code>HTMLElement.offsetParent</code> 元素的顶部内边距的距离。<br><code>HTMLElement.offsetWidth</code> 是一个只读属性，返回一个元素的布局宽度。<br><code>HTMLElement.offsetHeight</code> 是一个只读属性，它返回该元素的像素高度，高度包含该元素的垂直内边距和边框，且是一个整数。  </p>
 <h3 id="常用正则表达式如何书写？"><a href="#常用正则表达式如何书写？" class="headerlink" title="常用正则表达式如何书写？"></a>常用正则表达式如何书写？</h3><p>（手机号）（邮箱地址）（url地址）</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 手机号</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPhoneAvailable</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> myreg = <span class="regexp">/^1[3,4,5,7,8]\d&#123;9&#125;$/</span>;</span><br><span class="line">    <span class="keyword">if</span> (!myreg.test(str)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 邮箱</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isMailAvailable</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> myreg = <span class="regexp">/^([\w\-\.]+)@([\w\-]+)\.([a-zA-Z]&#123;2,4&#125;)$/</span>;</span><br><span class="line">    <span class="keyword">if</span> (!myreg.test(str)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// url</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isUrlAvailable</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> myreg = <span class="regexp">/[a-zA-Z]+:/</span><span class="regexp">/[^\s]+/</span>;</span><br><span class="line">    <span class="keyword">if</span> (!myreg.test(str)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="解释-http-https-http2-含义"><a href="#解释-http-https-http2-含义" class="headerlink" title="解释 http https http2 含义"></a>解释 http https http2 含义</h3><p><code>TODO: 解释 http https http2 含义</code></p>
@@ -538,7 +593,6 @@
 <li>避免空image src</li>
 <li>采用 渐进式jpeg</li>
 </ul>
-<h3 id="解释-MVVM，MVC"><a href="#解释-MVVM，MVC" class="headerlink" title="解释 MVVM，MVC"></a>解释 MVVM，MVC</h3><p>MVVM: Model View View-Model<br>MVC: Model View Controller</p>
 <h3 id="解释-SSR、SEO、SPA"><a href="#解释-SSR、SEO、SPA" class="headerlink" title="解释 SSR、SEO、SPA"></a>解释 SSR、SEO、SPA</h3><p>SSR: Server side render 服务器渲染<br>SEO: Search engine optimize 搜索引擎优化<br>SPA: Single page application 单页面应用</p>
 <h2 id="vue相关"><a href="#vue相关" class="headerlink" title="vue相关"></a>vue相关</h2><h2 id="react相关"><a href="#react相关" class="headerlink" title="react相关"></a>react相关</h2><h2 id="Webpack相关"><a href="#Webpack相关" class="headerlink" title="Webpack相关"></a>Webpack相关</h2><h2 id="node相关"><a href="#node相关" class="headerlink" title="node相关"></a>node相关</h2><p>框架：express koa</p>
 <p>具体请查阅 <a target="_blank" rel="noopener" href="https://github.com/ElemeFE/node-interview/tree/master/sections/zh-cn">node-interview</a></p>
@@ -551,12 +605,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -722,12 +776,12 @@ https://www.axure.com.cn/
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 

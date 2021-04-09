@@ -108,7 +108,130 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2018/09/12/HTML-querySelectorAll%E4%B8%80%E4%B8%AA%E5%B0%8F%E5%9D%91/">querySelectorAll一个小坑</a>
+            <a href="/blog/2018/09/12/CSS-%E6%8A%98%E8%A1%8C/">CSS 折行</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-12T10:46:39.000Z" itemprop="datePublished">2018-09-12</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>与折行有关的样式有三个<code>white-space</code>，<code>word-wrap</code>，<code>word-break</code>。  </p>
+<h2 id="css-white-space-属性"><a href="#css-white-space-属性" class="headerlink" title="css white-space 属性"></a>css white-space 属性</h2><p>white-space 属性设置如何处理元素内的空白。  </p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>normal</td>
+<td>默认。空白会被浏览器忽略。</td>
+</tr>
+<tr>
+<td>pre</td>
+<td>空白会被浏览器保留。其行为方式类似 HTML 中的 &lt;pre> 标签。</td>
+</tr>
+<tr>
+<td>nowrap</td>
+<td>文本不会换行，文本会在在同一行上继续，直到遇到 &lt;br> 标签为止。</td>
+</tr>
+<tr>
+<td>pre-wrap</td>
+<td>保留空白符序列，但是正常地进行换行。</td>
+</tr>
+<tr>
+<td>pre-line</td>
+<td>合并空白符序列，但是保留换行符。</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>规定应该从父元素继承 white-space 属性的值。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="CSS3-word-wrap-属性"><a href="#CSS3-word-wrap-属性" class="headerlink" title="CSS3 word-wrap 属性"></a>CSS3 word-wrap 属性</h2><p>word-wrap 属性允许长单词或 URL 地址换行到下一行。  </p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>normal</td>
+<td>只在允许的断字点换行（浏览器保持默认处理）。</td>
+</tr>
+<tr>
+<td>break-word</td>
+<td>在长单词或 URL 地址内部进行换行。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="CSS3-word-break-属性"><a href="#CSS3-word-break-属性" class="headerlink" title="CSS3 word-break 属性"></a>CSS3 word-break 属性</h2><p>word-break 属性规定自动换行的处理方法。  </p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>normal</td>
+<td>使用浏览器默认的换行规则。</td>
+</tr>
+<tr>
+<td>break-all</td>
+<td>允许在单词内换行。</td>
+</tr>
+<tr>
+<td>keep-all</td>
+<td>只能在半角空格或连字符处换行。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="常用设置"><a href="#常用设置" class="headerlink" title="常用设置"></a>常用设置</h2><p>不折行，可以左右滑动：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">white-space</span>: nowrap;</span><br><span class="line"><span class="attribute">overflow-x</span>: scroll;</span><br></pre></td></tr></table></figure></p>
+<p>每行长度固定，到长度即折行：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">white-space</span>: normal;</span><br><span class="line"><span class="attribute">word-wrap</span>: break-word;</span><br><span class="line"><span class="attribute">word-break</span>: break-all;</span><br></pre></td></tr></table></figure></p>
+<p>每行长度固定，到长度即折行，但标点字符不在首位：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">white-space</span>: normal;</span><br><span class="line"><span class="attribute">word-wrap</span>: break-word;</span><br><span class="line"><span class="attribute">word-break</span>: normal;</span><br></pre></td></tr></table></figure></p>
+
+        
+    </section>
+    
+    <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/12/TIPS-querySelectorAll%E4%B8%80%E4%B8%AA%E5%B0%8F%E5%9D%91/">querySelectorAll一个小坑</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -154,12 +277,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -245,12 +368,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -300,12 +423,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -379,60 +502,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2018/09/07/HTML-%E9%A1%B5%E9%9D%A2%E7%A6%81%E6%AD%A2%E9%80%89%E4%B8%AD%E5%A4%8D%E5%88%B6/">页面禁止选中复制</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-09-07T15:12:46.000Z" itemprop="datePublished">2018-09-07</time>
-</span>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>有时，为了防止用户随意的获取页面内的内容，我们需要禁止用户选中和拷贝，下面介绍两种禁止的方法  </p>
-<h2 id="javascript"><a href="#javascript" class="headerlink" title="javascript"></a>javascript</h2><p>可以在需要禁止的元素内监听选中和拷贝的事件，当用户如此操作时予以禁止。  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 禁止右键菜单</span></span><br><span class="line"><span class="built_in">document</span>.oncontextmenu = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;;</span><br><span class="line"><span class="comment">// 禁止文字选择</span></span><br><span class="line"><span class="built_in">document</span>.onselectstart = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;;</span><br><span class="line"><span class="comment">// 禁止复制</span></span><br><span class="line"><span class="built_in">document</span>.oncopy = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;;</span><br><span class="line"><span class="comment">// 禁止剪切</span></span><br><span class="line"><span class="built_in">document</span>.oncut = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;;</span><br><span class="line"><span class="comment">// 禁止粘贴</span></span><br><span class="line"><span class="built_in">document</span>.onpaste = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;;</span><br><span class="line"><span class="comment">// 禁止打印</span></span><br><span class="line"><span class="built_in">document</span>.onbeforeprint = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="css"><a href="#css" class="headerlink" title="css"></a>css</h2><p>在支持use-select属性的浏览器中，设置user-select: none来禁止选中行为。<br>Opera12.5中支持私有的标签属性 unselectable=”on”来实现相同的行为  </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">* &#123; </span><br><span class="line">    -webkit-user-select: none;</span><br><span class="line">       -moz-user-select: none;</span><br><span class="line">        -ms-user-select: none;</span><br><span class="line">            user-select: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="如何破解"><a href="#如何破解" class="headerlink" title="如何破解"></a>如何破解</h2><p>如上所述，如果想要可以选中复制，可以在开发者工具F12中勾选<code>禁止Javascript</code> 并将想要复制的内容的<code>element.style</code><br>改为<code>user-select:none</code>即可。当然，其实什么样的内容都可以在开发者工具的Element中复制得到。</p>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
+</footer>
     
 </article>
 

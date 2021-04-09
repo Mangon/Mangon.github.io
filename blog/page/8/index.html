@@ -108,6 +108,54 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/blog/2021/03/19/CSS-%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/">CSS 清除（闭合）浮动</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-19T06:42:46.000Z" itemprop="datePublished">2021-03-19</time>
+</span>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="什么是浮动？"><a href="#什么是浮动？" class="headerlink" title="什么是浮动？"></a>什么是浮动？</h2><p><code>float</code> CSS属性指定一个元素应沿其容器的左侧或右侧放置，允许文本和内联元素环绕它。该元素从网页的正常流动(normal flow)中移除，尽管仍然保持部分的流动性。<br>本属于普通流中的元素，在使用 <code>float</code> 属性后，包含框内部由于不存在其他普通流元素了，也就表现出高度为0的情况。在实际布局中，往往这并不是我们所希望的，所以需要闭合浮动元素，使其包含框表现出正常的高，也就是让浮动内容和周围的内容等高。  </p>
+<h2 id="清除浮动的方法"><a href="#清除浮动的方法" class="headerlink" title="清除浮动的方法"></a>清除浮动的方法</h2><h3 id="添加额外标签"><a href="#添加额外标签" class="headerlink" title="添加额外标签"></a>添加额外标签</h3><p>通过在浮动元素末尾添加一个空的标签例如 <code>&lt;div style=”clear:both”&gt;&lt;/div&gt;</code> 。  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span> <span class="attr">id</span>=<span class="string">&quot;float&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>1）添加额外标签<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span>.main&#123;float:left;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;side&quot;</span>&gt;</span>.side&#123;float:right;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;clear:both;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;footer&quot;</span>&gt;</span>.footer<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="使用br标签和其自身的html属性"><a href="#使用br标签和其自身的html属性" class="headerlink" title="使用br标签和其自身的html属性"></a>使用br标签和其自身的html属性</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span> <span class="attr">id</span>=<span class="string">&quot;float&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>2）使用 br标签和其自身的 html属性<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span>.main&#123;float:left;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;side&quot;</span>&gt;</span>.side&#123;float:right;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span> <span class="attr">clear</span>=<span class="string">&quot;all&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;footer&quot;</span>&gt;</span>.footer<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="父元素设置-overflow：hidden"><a href="#父元素设置-overflow：hidden" class="headerlink" title="父元素设置 overflow：hidden"></a>父元素设置 <code>overflow：hidden</code></h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span> <span class="attr">id</span>=<span class="string">&quot;float&quot;</span> <span class="attr">style</span>=<span class="string">&quot;overflow:hidden; *zoom:1;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>3)父元素设置 overflow: hidden <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span>.main&#123;float:left;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;side&quot;</span>&gt;</span>.side&#123;float:right;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;footer&quot;</span>&gt;</span>.footer<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="父元素设置-overflow：auto"><a href="#父元素设置-overflow：auto" class="headerlink" title="父元素设置 overflow：auto"></a>父元素设置 <code>overflow：auto</code></h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span> <span class="attr">id</span>=<span class="string">&quot;float3&quot;</span> <span class="attr">style</span>=<span class="string">&quot;overflow:auto;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>4)父元素设置 overflow: auto <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span>.main&#123;float:left;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;side&quot;</span>&gt;</span>.side&#123;float:right;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;footer&quot;</span>&gt;</span>.footer<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="父元素也设置浮动"><a href="#父元素也设置浮动" class="headerlink" title="父元素也设置浮动"></a>父元素也设置浮动</h3><h3 id="父元素设置-display-table"><a href="#父元素设置-display-table" class="headerlink" title="父元素设置 display: table"></a>父元素设置 <code>display: table</code></h3><h3 id="父元素设置-display-flow-root"><a href="#父元素设置-display-flow-root" class="headerlink" title="父元素设置 display: flow-root"></a>父元素设置 <code>display: flow-root</code></h3><h3 id="使用-after-伪元素"><a href="#使用-after-伪元素" class="headerlink" title="使用 :after 伪元素"></a>使用 <code>:after</code> 伪元素</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span></span><br><span class="line">.clearfix:after &#123;</span><br><span class="line"><span class="css">    <span class="attribute">content</span>: <span class="string">&quot;.&quot;</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">display</span>: block;</span></span><br><span class="line"><span class="css">    <span class="attribute">height</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">clear</span>: both;</span></span><br><span class="line"><span class="css">    <span class="attribute">visibility</span>: hidden;</span></span><br><span class="line">&#125;</span><br><span class="line">.clearfix &#123;</span><br><span class="line"><span class="css">    <span class="attribute">display</span>: inline-block;</span></span><br><span class="line"><span class="css">&#125;  <span class="comment">/* for IE/Mac */</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--[if IE]&gt;</span></span><br><span class="line"><span class="comment">&lt;style type=&quot;text/css&quot;&gt;</span></span><br><span class="line"><span class="comment">.clearfix &#123;</span></span><br><span class="line"><span class="comment">    zoom: 1;/* triggers hasLayout */</span></span><br><span class="line"><span class="comment">    display: block;/* resets display for IE/Win */</span></span><br><span class="line"><span class="comment">&#125; &lt;/style&gt;</span></span><br><span class="line"><span class="comment">&lt;![endif]--&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="BDF是什么？"><a href="#BDF是什么？" class="headerlink" title="BDF是什么？"></a>BDF是什么？</h2><p>BFC （Block Formatting Context 块级格式化上下文），是一个独立的渲染区域，让处于 BFC 内部的元素与外部的元素相互隔离，使内外元素的定位不会相互影响。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上列举的方法，无非有两类：  </p>
+<p>其一，通过在浮动元素的末尾添加一个空元素，设置 <code>clear：both</code> 属性，<code>after</code> 伪元素其实也是通过 <code>content</code> 在元素的后面生成了内容为一个点的块级元素；  </p>
+<p>其二，通过设置父元素 <code>overflow</code> 或者 <code>display：table</code> 属性来闭合浮动。  </p>
+
+        
+    </section>
+    
+    <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/blog/2021/03/19/CSS-%E5%AE%9E%E8%B7%B5/">CSS 实践</a>
         </h1>
         
@@ -168,12 +216,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -214,12 +262,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -255,12 +303,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -297,61 +345,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/03/19/CSS-supoprts-%E7%89%B9%E6%80%A7%E6%9F%A5%E8%AF%A2/">css @supoprts 作用</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-03-19T06:00:11.000Z" itemprop="datePublished">2021-03-19</time>
-</span>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p><code>@supports</code> 可以指定依赖于浏览器中的一个或多个特定的CSS功能的支持声明，这被称为特性查询。  </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@supports</span> (<span class="attribute">display</span>: <span class="attribute">grid</span>) &#123;</span><br><span class="line">  <span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: grid;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@supports</span> <span class="keyword">not</span> (<span class="attribute">display</span>: <span class="attribute">grid</span>) &#123;</span><br><span class="line">  <span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">float</span>: right;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="声明语法"><a href="#声明语法" class="headerlink" title="声明语法"></a>声明语法</h2><p>最基本的支持条件就是 CSS 声明，也就是一个 CSS 属性后跟一个值，中间用冒号分开。  </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@supports</span> (<span class="attribute">transform-origin</span>: <span class="number">5%</span> <span class="number">5%</span>) &#123;&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="函数语法"><a href="#函数语法" class="headerlink" title="函数语法"></a>函数语法</h2><p>测试浏览器是否支持经过测试的选择器语法。  </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@supports</span> selector(A &gt; B) &#123;&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="not操作符"><a href="#not操作符" class="headerlink" title="not操作符"></a>not操作符</h2><p>将 <code>not</code> 操作符放在任何表达式之前就能否定一条表达式。  </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@supports</span> <span class="keyword">not</span> (<span class="attribute">transform-origin</span>: <span class="number">10em</span> <span class="number">10em</span> <span class="number">10em</span>) &#123;&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="and操作符"><a href="#and操作符" class="headerlink" title="and操作符"></a>and操作符</h2><p><code>and</code> 操作符用来将两个原始的表达式做逻辑与后生成一个新的表达式，如果两个原始表达式的值都为真，则生成的表达式也为真。  </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@supports</span> (<span class="attribute">display</span>: table-cell) <span class="keyword">and</span> (<span class="attribute">display</span>: list-item) &#123;&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="or操作符"><a href="#or操作符" class="headerlink" title="or操作符"></a>or操作符</h2><p><code>or</code> 操作符用来将两个原始的表达式做逻辑或后生成一个新的表达式，如果两个原始表达式的值有一个或者都为真，则生成的表达式也为真。  </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@supports</span> (<span class="attribute">transform-style</span>: preserve) <span class="keyword">or</span> (<span class="attribute">-moz-transform-style</span>: preserve) &#123;&#125;</span><br></pre></td></tr></table></figure>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
+</footer>
     
 </article>
 

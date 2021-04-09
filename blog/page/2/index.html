@@ -108,6 +108,101 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/blog/2021/03/31/CSS-Grid%E5%B8%83%E5%B1%80/">CSS-Grid布局</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-31T07:32:46.000Z" itemprop="datePublished">2021-03-31</time>
+</span>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="Grid-布局"><a href="#Grid-布局" class="headerlink" title="Grid 布局"></a>Grid 布局</h2><p>CSS 网格布局擅长于将一个页面划分为几个主要区域，以及定义这些区域的大小、位置、层次等关系。  </p>
+<h2 id="网格布局样例"><a href="#网格布局样例" class="headerlink" title="网格布局样例"></a>网格布局样例</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrapper&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;one&quot;</span>&gt;</span>One<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;two&quot;</span>&gt;</span>Two<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;three&quot;</span>&gt;</span>Three<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;four&quot;</span>&gt;</span>Four<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;five&quot;</span>&gt;</span>Five<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;six&quot;</span>&gt;</span>Six<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wrapper</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: grid;</span><br><span class="line">  grid-template-<span class="attribute">columns</span>: <span class="built_in">repeat</span>(<span class="number">3</span>, <span class="number">1</span>fr);</span><br><span class="line">  grid-gap: <span class="number">10px</span>;</span><br><span class="line">  grid-<span class="attribute">auto</span>-rows: <span class="built_in">minmax</span>(<span class="number">100px</span>, auto);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.one</span> &#123;</span><br><span class="line">  grid-column: <span class="number">1</span> / <span class="number">3</span>;</span><br><span class="line">  grid-row: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.two</span> &#123;</span><br><span class="line">  grid-column: <span class="number">2</span> / <span class="number">4</span>;</span><br><span class="line">  grid-row: <span class="number">1</span> / <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.three</span> &#123;</span><br><span class="line">  grid-row: <span class="number">2</span> / <span class="number">5</span>;</span><br><span class="line">  grid-column: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.four</span> &#123;</span><br><span class="line">  grid-column: <span class="number">3</span>;</span><br><span class="line">  grid-row: <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.five</span> &#123;</span><br><span class="line">  grid-column: <span class="number">2</span>;</span><br><span class="line">  grid-row: <span class="number">4</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.six</span> &#123;</span><br><span class="line">  grid-column: <span class="number">3</span>;</span><br><span class="line">  grid-row: <span class="number">4</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><div class="wrapper"><div class="one">One</div><div class="two" >Two</div><div class="three">Three</div><div class="four" >Four</div><div class="five">Five</div><div class="six">Six</div></div></p>
+<style type="text/css">
+.wrapper>div {
+    border: 2px solid rgb(233,171,88);
+    border-radius: 5px;
+    background-color: rgba(233,171,88,.5);
+    padding: 1em;
+    color: #d9480f;
+}
+.wrapper {
+  max-width: 940px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+.one {
+  grid-column: 1 / 3;
+  grid-row: 1;
+}
+.two {
+  grid-column: 2 / 4;
+  grid-row: 1 / 3;
+}
+.three {
+  grid-row: 2 / 5;
+  grid-column: 1;
+}
+.four {
+  grid-column: 3;
+  grid-row: 3;
+}
+.five {
+  grid-column: 2;
+  grid-row: 4;
+}
+.six {
+  grid-column: 3;
+  grid-row: 4;
+}
+</style>
+
+<h2 id="网格容器-amp-网格元素"><a href="#网格容器-amp-网格元素" class="headerlink" title="网格容器&amp;网格元素"></a>网格容器&amp;网格元素</h2><p>我们通过在元素上声明 <code>display：grid</code> 或 <code>display：inline-grid</code> 来创建一个网格容器。一旦我们这样做，这个元素的所有直系子元素将成为网格元素。  </p>
+<h2 id="网格轨道"><a href="#网格轨道" class="headerlink" title="网格轨道"></a>网格轨道</h2><p>我们通过 <code>grid-template-columns</code> 和 <code>grid-template-rows</code> 属性来定义网格中的行和列。这些属性定义了网格的轨道。  </p>
+<p>网格还引入了一个另外的长度单位来帮助我们创建灵活的网格轨道。新的 <code>fr</code> 单位代表网格容器中可用空间的一等份。  </p>
+<p>有着多轨道的大型网格可使用 <code>repeat()</code> 标记来重复部分或整个轨道列表。  </p>
+<p>你也可以在隐式网格中用 <code>grid-auto-rows</code> 和 <code>grid-auto-columns</code> 属性来定义一个设置大小尺寸的轨道。  </p>
+<p>在设置一个显式的网格或者定义自动创建的行和列的大小的时候，可以通过 <code>minmax()</code> 函数来给网格轨道一个最小/最大尺寸</p>
+<h2 id="网格线"><a href="#网格线" class="headerlink" title="网格线"></a>网格线</h2><p>当我们定义网格时，我们定义的是网格轨道，而不是网格线。网格轨道两边的线即是网格线。一个三列两行的网格中有三条横向的网格线，四条纵向的网格线。当放置元素时，我们使用网格线定位。  </p>
+<p>网格元素中的 <code>grid-column-start</code>, <code>grid-column-end</code>, <code>grid-row-start</code> 和 <code>grid-row-end</code> 属性分别代表了网格线的横向开始、横向结束、纵向开始和纵向结束。  </p>
+<h2 id="网格单元"><a href="#网格单元" class="headerlink" title="网格单元"></a>网格单元</h2><p>一个网格单元是在一个网格元素中最小的单位。  </p>
+<h2 id="网格区域"><a href="#网格区域" class="headerlink" title="网格区域"></a>网格区域</h2><p>网格元素可以向行或着列的方向扩展一个或多个单元，并且会创建一个网格区域。网格区域的形状应该是一个矩形。  </p>
+<h2 id="网格间距"><a href="#网格间距" class="headerlink" title="网格间距"></a>网格间距</h2><p>在两个网格单元之间的 <em>网格横向间距</em>  或 <em>网格纵向间距</em>  可使用 <code>grid-column-gap</code> 和 <code>grid-row-gap</code> 属性来创建，或者直接使用两个合并的缩写形式 <code>grid-gap</code>。  </p>
+<h2 id="嵌套网格"><a href="#嵌套网格" class="headerlink" title="嵌套网格"></a>嵌套网格</h2><p>一个网格元素可以也成为一个网格容器。如果元素不是网格容器的直接子级元素，它们不会参与到网格布局中，并显示为正常的文档流。  </p>
+<h2 id="使用-z-index-控制层级"><a href="#使用-z-index-控制层级" class="headerlink" title="使用 z-index 控制层级"></a>使用 z-index 控制层级</h2><p>多个网格项目可以占用同一个网格单位。默认覆盖顺序遵循文档流的原始顺序（后来居上）。可以使用 z-index 属性控制层级。  </p>
+
+        
+    </section>
+    
+    <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/blog/2021/03/30/Vue-Vue3%E6%96%B0%E5%8A%9F%E8%83%BD%E5%92%8C%E4%BD%9C%E7%94%A8/">Vue-Vue3新功能和作用</a>
         </h1>
         
@@ -120,6 +215,11 @@
 </span>
 
             
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/vue/" rel="tag">vue</a>, <a class="article-tag-link" href="/blog/tags/vue3/" rel="tag">vue3</a>
+</div>
+
 
         </div>
     </header>
@@ -144,12 +244,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -189,12 +289,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -239,12 +339,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -442,50 +542,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/03/24/JS-%E5%8E%9F%E5%9E%8B%E9%93%BE/">JS 原型链</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-03-24T12:49:22.000Z" itemprop="datePublished">2021-03-24</time>
-</span>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="什么是原型链"><a href="#什么是原型链" class="headerlink" title="什么是原型链"></a>什么是原型链</h2><p>原型链是实现继承的主要方法。其基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法。每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。这时，如果我们让原型对象等于另一个类型的实例，此时的原型对象将包含一个指向另一个原型的指针，相应的，另一个原型中也包含着一个指向另一个构造函数的指针。假如一个原型又是另一个类型的实例，那么上述关系依然成立，如此层层递进，就构成了实例与原形的链条。这就是所谓原型链的基本概念。  </p>
-<h2 id="利用原型链实现继承"><a href="#利用原型链实现继承" class="headerlink" title="利用原型链实现继承"></a>利用原型链实现继承</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.property = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.getSuperValue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.property;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.subproperty = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 继承了SuperType</span></span><br><span class="line">SubType.prototype = <span class="keyword">new</span> SuperType();</span><br><span class="line"><span class="comment">// 添加新方法</span></span><br><span class="line">SubType.prototype.getSubValue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.subproperty;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 重写超类中的方法</span></span><br><span class="line">SubType.prototype.getSuperValue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> instance = <span class="keyword">new</span> SubType();</span><br><span class="line"><span class="built_in">console</span>.log(instance.getSuperValue()); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
+</footer>
     
 </article>
 

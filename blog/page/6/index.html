@@ -108,6 +108,45 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/blog/2021/03/19/HTML-%E8%AF%AD%E4%B9%89%E5%8C%96/">HTML 语义化</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-19T13:05:44.000Z" itemprop="datePublished">2021-03-19</time>
+</span>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="语义化"><a href="#语义化" class="headerlink" title="语义化"></a>语义化</h2><p>语义化就是根据内容选择标签。</p>
+<h2 id="语义化的好处"><a href="#语义化的好处" class="headerlink" title="语义化的好处"></a>语义化的好处</h2><p>语义化的好处是使代码结构清晰，便于阅读，同时充分利用了SEO。  </p>
+
+        
+    </section>
+    
+    <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/blog/2021/03/19/HTTP-get-post%E5%8C%BA%E5%88%AB/">HTTP get post区别</a>
         </h1>
         
@@ -137,12 +176,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -184,12 +223,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -222,12 +261,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -261,88 +300,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/03/19/HTML-%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A-%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/">HTML 事件绑定&amp;事件委托</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-03-19T07:45:56.000Z" itemprop="datePublished">2021-03-19</time>
-</span>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="如何给一个元素绑定事件，分别有几种方式？各有什么好处？"><a href="#如何给一个元素绑定事件，分别有几种方式？各有什么好处？" class="headerlink" title="如何给一个元素绑定事件，分别有几种方式？各有什么好处？"></a>如何给一个元素绑定事件，分别有几种方式？各有什么好处？</h2><ol>
-<li>监听方法绑定方式<br>事件冒泡 事件捕获<br>js事件流是先由window-&gt;document-&gt;body-&gt;div-&gt;(text)触发一遍捕获capture，<br>再由（text）-&gt;div-&gt;body-&gt;document-&gt;window触发一遍冒泡bubbling</li>
-</ol>
-<p>element.addEventListener(type, listener, useCapture);<br>type:事件类型<br>listener:监听方法<br>useCapture:是否捕获，默认false，即在冒泡时触发</p>
-<p>listener的入参event可以获取到event.target event.currentTarget<br>其中，target是真正发生事件的DOM元素，而currentTarget是当前事件发生在哪个DOM元素上。</p>
-<p>优点：</p>
-<ul>
-<li>同时支持捕获和冒泡</li>
-<li>可以同时绑定多个事件</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>旧的IE不支持，需要用attachEvent替代 element.attachEvent(‘onclick’, function(){})</li>
-<li>IE只支持冒泡</li>
-<li>在IE中，this指向window对象而不是当前元素，获取event需要获取window.event</li>
-</ul>
-<ol start="2">
-<li>直接绑定事件方式<br>target.onclick = function(){}<br>缺点：</li>
-</ol>
-<ul>
-<li>只会在事件冒泡中运行，</li>
-<li>一个元素一次只能绑定一个事件处理函数，</li>
-<li>新绑定的事件处理函数会覆盖旧的</li>
-<li>事件对象参数（event）仅非IE浏览器可用</li>
-</ul>
-<p>优点：</p>
-<ul>
-<li>在不同浏览器中表现一致</li>
-<li>this指向当前元素</li>
-</ul>
-<ol start="3">
-<li>直接在元素里使用事件属性<div onclick="func"/>
-
-</li>
-</ol>
-<h2 id="实现一个事件委托（事件代理）"><a href="#实现一个事件委托（事件代理）" class="headerlink" title="实现一个事件委托（事件代理）"></a>实现一个事件委托（事件代理）</h2><p>事件委托就是利用事件冒泡，只指定一个事件处理程序，就可以管理某一类型的所有事件。在JavaScript中，添加到页面上的事件处理程序数量将直接关系到页面的整体运行性能，因为需要不断的与dom节点进行交互，访问dom的次数越多，引起浏览器重绘与重排的次数也就越多，就会延长整个页面的交互就绪时间，这就是为什么性能优化的主要思想之一就是减少DOM操作的原因；如果要用事件委托，就会将所有的操作放到js程序里面，与dom的操作就只需要交互一次，这样就能大大的减少与dom的交互次数，提高性能。  </p>
-<p>事件委托示例：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">&quot;ul1&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;li1&quot;</span>&gt;</span>111<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;li2&quot;</span>&gt;</span>222<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;li3&quot;</span>&gt;</span>333<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;li4&quot;</span>&gt;</span>444<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 非事件委托</span></span></span><br><span class="line"><span class="javascript"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> oUl = <span class="built_in">document</span>.getElementById(<span class="string">&quot;ul1&quot;</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> aLi = oUl.getElementsByTagName(<span class="string">&#x27;li&#x27;</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;aLi.length;i++)&#123;</span></span><br><span class="line"><span class="javascript">        aLi[i].onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="comment">// do something</span></span></span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 事件委托</span></span></span><br><span class="line"><span class="javascript"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> oUl = <span class="built_in">document</span>.getElementById(<span class="string">&quot;ul1&quot;</span>);</span></span><br><span class="line"><span class="javascript">    oUl.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">ev</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> ev = ev || <span class="built_in">window</span>.event;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> target = ev.target || ev.srcElement;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span>(target.nodeName.toLowerCase() == <span class="string">&#x27;li&#x27;</span>)&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">switch</span>(target.id) &#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">case</span> <span class="string">&#x27;li1&#x27;</span>:</span></span><br><span class="line"><span class="javascript">                    <span class="comment">// do something</span></span></span><br><span class="line"><span class="javascript">                    <span class="keyword">break</span>;</span></span><br><span class="line">                    ...</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="event-中的-target-和-currentTarget-有什么区别？"><a href="#event-中的-target-和-currentTarget-有什么区别？" class="headerlink" title="event 中的 target 和 currentTarget 有什么区别？"></a>event 中的 target 和 currentTarget 有什么区别？</h2><p>currentTarget当前所绑定事件的元素</p>
-<p>target当前被点击的元素</p>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
+</footer>
     
 </article>
 

@@ -122,7 +122,7 @@
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/Vue/" rel="tag">Vue</a>, <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>
+    <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>, <a class="article-tag-link" href="/blog/tags/vue/" rel="tag">vue</a>
 </div>
 
 
@@ -183,12 +183,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -295,12 +295,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -310,7 +310,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2018/11/02/HTTP-%E7%8A%B6%E6%80%81%E7%A0%81/">HTTP状态码</a>
+            <a href="/blog/2018/12/14/FE-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B-%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/">面向对象编程&amp;函数式编程</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -318,13 +318,13 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2018-11-02T01:55:42.000Z" itemprop="datePublished">2018-11-02</time>
+    <time datetime="2018-12-14T08:06:59.000Z" itemprop="datePublished">2018-12-14</time>
 </span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/Web/" rel="tag">Web</a>
+    <a class="article-tag-link" href="/blog/tags/algorithm/" rel="tag">algorithm</a>, <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>
 </div>
 
 
@@ -333,360 +333,42 @@
     
     <section class="article-body markdown-body">
         
-        <div><style type="text/css">th {white-space: nowrap;}</style></div>
-
-<p>HTTP状态码（HTTP Status Code）是用以表示网页服务器HTTP响应状态的3位数字代码。它由 RFC 2616 规范定义的，并得到RFC 2518、RFC 2817、RFC 2295、RFC 2774、RFC 4918等规范扩展。  </p>
-<p>常见状态码以<font color='red'>红色</font>显示。</p>
-<h2 id="消息"><a href="#消息" class="headerlink" title="消息"></a>消息</h2><p>这一类型的状态码，代表请求已被接受，需要继续处理。这类响应是临时响应，只包含状态行和某些可选的响应头信息，并以空行结束。由于 HTTP/1.0 协议中没有定义任何 1xx 状态码，所以除非在某些试验条件下，服务器禁止向此类客户端发送 1xx 响应。  </p>
-<table>
-<thead>
-<tr>
-<th>状态码</th>
-<th>含义</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>100</td>
-<td>Continue</td>
-<td>客户端应当继续发送请求。这个临时响应是用来通知客户端它的部分请求已经被服务器接收，且仍未被拒绝。客户端应当继续发送请求的剩余部分，或者如果请求已经完成，忽略这个响应。服务器必须在请求完成后向客户端发送一个最终响应</td>
-</tr>
-<tr>
-<td>101</td>
-<td>Switching Protocols</td>
-<td>服务器已经理解了客户端的请求，并将通过Upgrade 消息头通知客户端采用不同的协议来完成这个请求。在发送完这个响应最后的空行后，服务器将会切换到在Upgrade 消息头中定义的那些协议</td>
-</tr>
-<tr>
-<td>102</td>
-<td>Processing</td>
-<td>由WebDAV（RFC 2518）扩展的状态码，代表处理将被继续执行</td>
-</tr>
-</tbody>
-</table>
-<h2 id="成功"><a href="#成功" class="headerlink" title="成功"></a>成功</h2><p>这一类型的状态码，代表请求已成功被服务器接收、理解、并接受。  </p>
-<table>
-<thead>
-<tr>
-<th>状态码</th>
-<th>含义</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><font color='red'>200</font></td>
-<td><font color='red'>OK</font></td>
-<td>请求已成功，请求所希望的响应头或数据体将随此响应返回。出现此状态码是表示正常状态</td>
-</tr>
-<tr>
-<td>201</td>
-<td>Created</td>
-<td>请求已经被实现，而且有一个新的资源已经依据请求的需要而建立，且其 URI 已经随Location 头信息返回。假如需要的资源无法及时建立的话，应当返回 ‘202 Accepted’</td>
-</tr>
-<tr>
-<td>202</td>
-<td>Accepted</td>
-<td>服务器已接受请求，但尚未处理。正如它可能被拒绝一样，最终该请求可能会也可能不会被执行。在异步操作的场合下，没有比发送这个状态码更方便的做法了<br>返回202状态码的响应的目的是允许服务器接受其他过程的请求（例如某个每天只执行一次的基于批处理的操作），而不必让客户端一直保持与服务器的连接直到批处理操作全部完成。在接受请求处理并返回202状态码的响应应当在返回的实体中包含一些指示处理当前状态的信息，以及指向处理状态监视器或状态预测的指针，以便用户能够估计操作是否已经完成</td>
-</tr>
-<tr>
-<td>203</td>
-<td>Non-Authoritative Information</td>
-<td>服务器已成功处理了请求，但返回的实体头部元信息不是在原始服务器上有效的确定集合，而是来自本地或者第三方的拷贝。当前的信息可能是原始版本的子集或者超集。例如，包含资源的元数据可能导致原始服务器知道元信息的超集。使用此状态码不是必须的，而且只有在响应不使用此状态码便会返回200 OK的情况下才是合适的</td>
-</tr>
-<tr>
-<td>204</td>
-<td>No Content</td>
-<td>服务器成功处理了请求，但不需要返回任何实体内容，并且希望返回更新了的元信息。响应可能通过实体头部的形式，返回新的或更新后的元信息。如果存在这些头部信息，则应当与所请求的变量相呼应。<br>如果客户端是浏览器的话，那么用户浏览器应保留发送了该请求的页面，而不产生任何文档视图上的变化，即使按照规范新的或更新后的元信息应当被应用到用户浏览器活动视图中的文档。<br>由于204响应被禁止包含任何消息体，因此它始终以消息头后的第一个空行结尾。</td>
-</tr>
-<tr>
-<td>205</td>
-<td>Reset Content</td>
-<td>服务器成功处理了请求，且没有返回任何内容。但是与204响应不同，返回此状态码的响应要求请求者重置文档视图。该响应主要是被用于接受用户输入后，立即重置表单，以便用户能够轻松地开始另一次输入。<br>与204响应一样，该响应也被禁止包含任何消息体，且以消息头后的第一个空行结束。</td>
-</tr>
-<tr>
-<td>206</td>
-<td>Partial Content</td>
-<td>服务器已经成功处理了部分 GET 请求。类似于 FlashGet 或者迅雷这类的 HTTP下载工具都是使用此类响应实现断点续传或者将一个大文档分解为多个下载段同时下载。</td>
-</tr>
-<tr>
-<td>207</td>
-<td>Multi-Status</td>
-<td>由WebDAV(RFC 2518)扩展的状态码，代表之后的消息体将是一个XML消息，并且可能依照之前子请求数量的不同，包含一系列独立的响应代码。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h2><p>这类状态码代表需要客户端采取进一步的操作才能完成请求。通常，这些状态码用来重定向，后续的请求地址（重定向目标）在本次响应的 Location 域中指明。<br>当且仅当后续的请求所使用的方法是 GET 或者 HEAD 时，用户浏览器才可以在没有用户介入的情况下自动提交所需要的后续请求。客户端应当自动监测无限循环重定向（例如：A-&gt;A，或者A-&gt;B-&gt;C-&gt;A），因为这会导致服务器和客户端大量不必要的资源消耗。按照 HTTP/1.0 版规范的建议，浏览器不应自动访问超过5次的重定向。</p>
-<table>
-<thead>
-<tr>
-<th>状态码</th>
-<th>含义</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>300</td>
-<td>Multiple Choices</td>
-<td>被请求的资源有一系列可供选择的回馈信息，每个都有自己特定的地址和浏览器驱动的商议信息。用户或浏览器能够自行选择一个首选的地址进行重定向。<br>除非这是一个 HEAD 请求，否则该响应应当包括一个资源特性及地址的列表的实体，以便用户或浏览器从中选择最合适的重定向地址。这个实体的格式由 Content-Type 定义的格式所决定。浏览器可能根据响应的格式以及浏览器自身能力，自动作出最合适的选择。当然，RFC 2616规范并没有规定这样的自动选择该如何进行。<br>如果服务器本身已经有了首选的回馈选择，那么在 Location 中应当指明这个回馈的 URI；浏览器可能会将这个 Location 值作为自动重定向的地址。此外，除非额外指定，否则这个响应也是可缓存的。</td>
-</tr>
-<tr>
-<td><font color='red'>301</font></td>
-<td><font color='red'>Moved Permanently</font></td>
-<td>被请求的资源已永久移动到新位置，并且将来任何对此资源的引用都应该使用本响应返回的若干个 URI 之一。如果可能，拥有链接编辑功能的客户端应当自动把请求的地址修改为从服务器反馈回来的地址。除非额外指定，否则这个响应也是可缓存的。<br>新的永久性的URI 应当在响应的 Location 域中返回。除非这是一个 HEAD 请求，否则响应的实体中应当包含指向新的 URI 的超链接及简短说明。<br>如果这不是一个 GET 或者 HEAD 请求，因此浏览器禁止自动进行重定向，除非得到用户的确认，因为请求的条件可能因此发生变化。</td>
-</tr>
-<tr>
-<td><font color='red'>302<font></td>
-<td><font color='red'>Move temporarily</font></td>
-<td>请求的资源临时从不同的 URI响应请求。由于这样的重定向是临时的，客户端应当继续向原有地址发送以后的请求。只有在Cache-Control或Expires中进行了指定的情况下，这个响应才是可缓存的。</td>
-</tr>
-<tr>
-<td>303</td>
-<td>See Other</td>
-<td>对应当前请求的响应可以在另一个 URI 上被找到，而且客户端应当采用 GET 的方式访问那个资源。这个方法的存在主要是为了允许由脚本激活的POST请求输出重定向到一个新的资源。这个新的 URI 不是原始资源的替代引用。同时，303响应禁止被缓存。当然，第二个请求（重定向）可能被缓存。</td>
-</tr>
-<tr>
-<td>304</td>
-<td>Not Modified</td>
-<td>如果客户端发送了一个带条件的 GET 请求且该请求已被允许，而文档的内容（自上次访问以来或者根据请求的条件）并没有改变，则服务器应当返回这个状态码。304响应禁止包含消息体，因此始终以消息头后的第一个空行结尾。</td>
-</tr>
-<tr>
-<td>305</td>
-<td>Use Proxy</td>
-<td>被请求的资源必须通过指定的代理才能被访问。Location 域中将给出指定的代理所在的 URI 信息，接收者需要重复发送一个单独的请求，通过这个代理才能访问相应资源。只有原始服务器才能建立305响应。</td>
-</tr>
-<tr>
-<td>306</td>
-<td>Switch Proxy</td>
-<td>在最新版的规范中，306状态码已经不再被使用</td>
-</tr>
-<tr>
-<td>307</td>
-<td>Temporary Redirect</td>
-<td>请求的资源临时从不同的URI 响应请求。<br>新的临时性的URI 应当在响应的 Location 域中返回。除非这是一个HEAD 请求，否则响应的实体中应当包含指向新的URI 的超链接及简短说明。因为部分浏览器不能识别307响应，因此需要添加上述必要信息以便用户能够理解并向新的 URI 发出访问请求。<br>如果这不是一个GET 或者 HEAD 请求，那么浏览器禁止自动进行重定向，除非得到用户的确认，因为请求的条件可能因此发生变化。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="请求错误"><a href="#请求错误" class="headerlink" title="请求错误"></a>请求错误</h2><p>这类的状态码代表了客户端看起来可能发生了错误，妨碍了服务器的处理。除非响应的是一个 HEAD 请求，否则服务器就应该返回一个解释当前错误状况的实体，以及这是临时的还是永久性的状况。这些状态码适用于任何请求方法。浏览器应当向用户显示任何包含在此类错误响应中的实体内容。<br>如果错误发生时客户端正在传送数据，那么使用TCP的服务器实现应当仔细确保在关闭客户端与服务器之间的连接之前，客户端已经收到了包含错误信息的数据包。如果客户端在收到错误信息后继续向服务器发送数据，服务器的TCP栈将向客户端发送一个重置数据包，以清除该客户端所有还未识别的输入缓冲，以免这些数据被服务器上的应用程序读取并干扰后者。  </p>
-<table>
-<thead>
-<tr>
-<th>状态码</th>
-<th>含义</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>400</td>
-<td>Bad Request</td>
-<td>1、语义有误，当前请求无法被服务器理解。除非进行修改，否则客户端不应该重复提交这个请求。<br>2、请求参数有误。</td>
-</tr>
-<tr>
-<td><font color='red'>401</font></td>
-<td><font color='red'>Unauthorized</font></td>
-<td>当前请求需要用户验证。该响应必须包含一个适用于被请求资源的 WWW-Authenticate 信息头用以询问用户信息。客户端可以重复提交一个包含恰当的 Authorization 头信息的请求。如果当前请求已经包含了 Authorization 证书，那么401响应代表着服务器验证已经拒绝了那些证书。如果401响应包含了与前一个响应相同的身份验证询问，且浏览器已经至少尝试了一次验证，那么浏览器应当向用户展示响应中包含的实体信息，因为这个实体信息中可能包含了相关诊断信息。参见RFC 2617。</td>
-</tr>
-<tr>
-<td>402</td>
-<td>Payment Required</td>
-<td>该状态码是为了将来可能的需求而预留的。</td>
-</tr>
-<tr>
-<td><font color='red'>403</font></td>
-<td><font color='red'>Forbidden</font></td>
-<td>服务器已经理解请求，但是拒绝执行它。与401响应不同的是，身份验证并不能提供任何帮助，而且这个请求也不应该被重复提交。如果这不是一个 HEAD 请求，而且服务器希望能够讲清楚为何请求不能被执行，那么就应该在实体内描述拒绝的原因。当然服务器也可以返回一个404响应，假如它不希望让客户端获得任何信息。</td>
-</tr>
-<tr>
-<td><font color='red'>404</font></td>
-<td><font color='red'>Not Found</font></td>
-<td>请求失败，请求所希望得到的资源未被在服务器上发现。没有信息能够告诉用户这个状况到底是暂时的还是永久的。假如服务器知道情况的话，应当使用410状态码来告知旧资源因为某些内部的配置机制问题，已经永久的不可用，而且没有任何可以跳转的地址。404这个状态码被广泛应用于当服务器不想揭示到底为何请求被拒绝或者没有其他适合的响应可用的情况下。出现这个错误的最有可能的原因是服务器端没有这个页面。</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed</td>
-<td>请求行中指定的请求方法不能被用于请求相应的资源。该响应必须返回一个Allow 头信息用以表示出当前资源能够接受的请求方法的列表。<br>鉴于 PUT，DELETE 方法会对服务器上的资源进行写操作，因而绝大部分的网页服务器都不支持或者在默认配置下不允许上述请求方法，对于此类请求均会返回405错误。</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable</td>
-<td>请求的资源的内容特性无法满足请求头中的条件，因而无法生成响应实体。<br>除非这是一个 HEAD 请求，否则该响应就应当返回一个包含可以让用户或者浏览器从中选择最合适的实体特性以及地址列表的实体。实体的格式由 Content-Type 头中定义的媒体类型决定。浏览器可以根据格式及自身能力自行作出最佳选择。但是，规范中并没有定义任何作出此类自动选择的标准。</td>
-</tr>
-<tr>
-<td>407</td>
-<td>Proxy Authentication Required</td>
-<td>与401响应类似，只不过客户端必须在代理服务器上进行身份验证。代理服务器必须返回一个 Proxy-Authenticate 用以进行身份询问。客户端可以返回一个 Proxy-Authorization 信息头用以验证。</td>
-</tr>
-<tr>
-<td>408</td>
-<td>Request Timeout</td>
-<td>请求超时。客户端没有在服务器预备等待的时间内完成一个请求的发送。客户端可以随时再次提交这一请求而无需进行任何更改。</td>
-</tr>
-<tr>
-<td>409</td>
-<td>Conflict</td>
-<td>由于和被请求的资源的当前状态之间存在冲突，请求无法完成。这个代码只允许用在这样的情况下才能被使用：用户被认为能够解决冲突，并且会重新提交新的请求。该响应应当包含足够的信息以便用户发现冲突的源头。</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone</td>
-<td>被请求的资源在服务器上已经不再可用，而且没有任何已知的转发地址。这样的状况应当被认为是永久性的。如果可能，拥有链接编辑功能的客户端应当在获得用户许可后删除所有指向这个地址的引用。如果服务器不知道或者无法确定这个状况是否是永久的，那么就应该使用404状态码。除非额外说明，否则这个响应是可缓存的。</td>
-</tr>
-<tr>
-<td>411</td>
-<td>Length Required</td>
-<td>服务器拒绝在没有定义 Content-Length 头的情况下接受请求。在添加了表明请求消息体长度的有效 Content-Length 头之后，客户端可以再次提交该请求。</td>
-</tr>
-<tr>
-<td>412</td>
-<td>Precondition Failed</td>
-<td>服务器在验证在请求的头字段中给出先决条件时，没能满足其中的一个或多个。这个状态码允许客户端在获取资源时在请求的元信息（请求头字段数据）中设置先决条件，以此避免该请求方法被应用到其希望的内容以外的资源上。</td>
-</tr>
-<tr>
-<td>413</td>
-<td>Request Entity Too Large</td>
-<td>服务器拒绝处理当前请求，因为该请求提交的实体数据大小超过了服务器愿意或者能够处理的范围。此种情况下，服务器可以关闭连接以免客户端继续发送此请求。<br>如果这个状况是临时的，服务器应当返回一个 Retry-After 的响应头，以告知客户端可以在多少时间以后重新尝试。</td>
-</tr>
-<tr>
-<td>414</td>
-<td>Request-URI Too Long</td>
-<td>请求的URI 长度超过了服务器能够解释的长度，因此服务器拒绝对该请求提供服务。这比较少见，通常的情况包括：<br>本应使用POST方法的表单提交变成了GET方法，导致查询字符串（Query String）过长。<br>重定向URI “黑洞”，例如每次重定向把旧的 URI 作为新的 URI 的一部分，导致在若干次重定向后 URI 超长。<br>客户端正在尝试利用某些服务器中存在的安全漏洞攻击服务器。这类服务器使用固定长度的缓冲读取或操作请求的 URI，当 GET 后的参数超过某个数值后，可能会产生缓冲区溢出，导致任意代码被执行[1]。没有此类漏洞的服务器，应当返回414状态码。</td>
-</tr>
-<tr>
-<td>415</td>
-<td>Unsupported Media Type</td>
-<td>对于当前请求的方法和所请求的资源，请求中提交的实体并不是服务器中所支持的格式，因此请求被拒绝。</td>
-</tr>
-<tr>
-<td>416</td>
-<td>Requested Range Not Satisfiable</td>
-<td>如果请求中包含了 Range 请求头，并且 Range 中指定的任何数据范围都与当前资源的可用范围不重合，同时请求中又没有定义 If-Range 请求头，那么服务器就应当返回416状态码。<br>假如 Range 使用的是字节范围，那么这种情况就是指请求指定的所有数据范围的首字节位置都超过了当前资源的长度。服务器也应当在返回416状态码的同时，包含一个 Content-Range 实体头，用以指明当前资源的长度。这个响应也被禁止使用 multipart/byteranges 作为其 Content-Type。</td>
-</tr>
-<tr>
-<td>417</td>
-<td>Expectation Failed</td>
-<td>在请求头 Expect 中指定的预期内容无法被服务器满足，或者这个服务器是一个代理服务器，它有明显的证据证明在当前路由的下一个节点上，Expect 的内容无法被满足。</td>
-</tr>
-<tr>
-<td>421</td>
-<td>too many connections</td>
-<td>从当前客户端所在的IP地址到服务器的连接数超过了服务器许可的最大范围。通常，这里的IP地址指的是从服务器上看到的客户端地址（比如用户的网关或者代理服务器地址）。在这种情况下，连接数的计算可能涉及到不止一个终端用户。</td>
-</tr>
-<tr>
-<td>422</td>
-<td>Unprocessable Entity</td>
-<td>请求格式正确，但是由于含有语义错误，无法响应。（RFC 4918 WebDAV）</td>
-</tr>
-<tr>
-<td>423</td>
-<td>Locked</td>
-<td>当前资源被锁定。（RFC 4918 WebDAV）</td>
-</tr>
-<tr>
-<td>424</td>
-<td>Failed Dependency</td>
-<td>由于之前的某个请求发生的错误，导致当前请求失败，例如 PROPPATCH。（RFC 4918 WebDAV）</td>
-</tr>
-<tr>
-<td>425</td>
-<td>Unordered Collection</td>
-<td>在WebDav Advanced Collections 草案中定义，但是未出现在《WebDAV 顺序集协议》（RFC 3658）中。</td>
-</tr>
-<tr>
-<td>426</td>
-<td>Upgrade Required</td>
-<td>客户端应当切换到TLS/1.0。（RFC 2817）</td>
-</tr>
-<tr>
-<td>449</td>
-<td>Retry With</td>
-<td>由微软扩展，代表请求应当在执行完适当的操作后进行重试。</td>
-</tr>
-<tr>
-<td>451</td>
-<td>Unavailable For Legal Reasons</td>
-<td>该请求因法律原因不可用。（RFC 7725）</td>
-</tr>
-</tbody>
-</table>
-<h2 id="服务器错误"><a href="#服务器错误" class="headerlink" title="服务器错误"></a>服务器错误</h2><p>这类状态码代表了服务器在处理请求的过程中有错误或者异常状态发生，也有可能是服务器意识到以当前的软硬件资源无法完成对请求的处理。除非这是一个HEAD 请求，否则服务器应当包含一个解释当前错误状态以及这个状况是临时的还是永久的解释信息实体。浏览器应当向用户展示任何在当前响应中被包含的实体。<br>这些状态码适用于任何响应方法。  </p>
-<table>
-<thead>
-<tr>
-<th>状态码</th>
-<th>含义</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><font color='red'>500</font></td>
-<td><font color='red'>Internal Server Error</font></td>
-<td>服务器遇到了一个未曾预料的状况，导致了它无法完成对请求的处理。一般来说，这个问题都会在服务器端的源代码出现错误时出现。</td>
-</tr>
-<tr>
-<td>501</td>
-<td>Not Implemented</td>
-<td>服务器不支持当前请求所需要的某个功能。当服务器无法识别请求的方法，并且无法支持其对任何资源的请求。</td>
-</tr>
-<tr>
-<td>502</td>
-<td>Bad Gateway</td>
-<td>作为网关或者代理工作的服务器尝试执行请求时，从上游服务器接收到无效的响应。</td>
-</tr>
-<tr>
-<td><font color='red'>503</font></td>
-<td><font color='red'>Service Unavailable</font></td>
-<td>由于临时的服务器维护或者过载，服务器当前无法处理请求。这个状况是临时的，并且将在一段时间以后恢复。如果能够预计延迟时间，那么响应中可以包含一个 Retry-After 头用以标明这个延迟时间。如果没有给出这个 Retry-After 信息，那么客户端应当以处理500响应的方式处理它。</td>
-</tr>
-<tr>
-<td>504</td>
-<td>Gateway Timeout</td>
-<td>作为网关或者代理工作的服务器尝试执行请求时，未能及时从上游服务器（URI标识出的服务器，例如HTTP、FTP、LDAP）或者辅助服务器（例如DNS）收到响应。</td>
-</tr>
-<tr>
-<td>505</td>
-<td>HTTP Version Not Supported</td>
-<td>服务器不支持，或者拒绝支持在请求中使用的 HTTP 版本。这暗示着服务器不能或不愿使用与客户端相同的版本。响应中应当包含一个描述了为何版本不被支持以及服务器支持哪些协议的实体。</td>
-</tr>
-<tr>
-<td>506</td>
-<td>Variant Also Negotiates</td>
-<td>由《透明内容协商协议》（RFC 2295）扩展，代表服务器存在内部配置错误：被请求的协商变元资源被配置为在透明内容协商中使用自己，因此在一个协商处理中不是一个合适的重点。</td>
-</tr>
-<tr>
-<td>507</td>
-<td>Insufficient Storage</td>
-<td>服务器无法存储完成请求所必须的内容。这个状况被认为是临时的。WebDAV (RFC 4918)</td>
-</tr>
-<tr>
-<td>509</td>
-<td>Bandwidth Limit Exceeded</td>
-<td>服务器达到带宽限制。这不是一个官方的状态码，但是仍被广泛使用。</td>
-</tr>
-<tr>
-<td>510</td>
-<td>Not Extended</td>
-<td>获取资源所需要的策略并没有被满足。（RFC 2774）</td>
-</tr>
-<tr>
-<td>600</td>
-<td>Unparseable Response Headers</td>
-<td>源站没有返回响应头部，只返回实体内容</td>
-</tr>
-</tbody>
-</table>
+        <h2 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h2><p>函数式编程（英语：Functional programming）或称函数程序设计，又称泛函编程，是一种编程范型，它将电脑运算视为数学上的函数计算，并且避免使用程序状态以及易变对象。函数编程语言最重要的基础是λ演算（lambda calculus）。而且λ演算的函数可以接受函数当作输入（引数）和输出（传出值）。</p>
+<p>函数式编程优点：  </p>
+<ol>
+<li>没有并发编程的问题，是多线程安全的</li>
+<li>函数式编程的表达方式更加符合人类日常生活中的语法，代码可读性更强，实现同样的功能函数式编程所需要的代码比面向对象编程要少很多，代码更加简洁明晰</li>
+</ol>
+<p>函数式编程缺点：  </p>
+<ol>
+<li>所有的变量在程序运行期间都是一直存在的，资源利用率低</li>
+<li>大型项目中工程化不足，使得代码易读性降低</li>
+</ol>
+<h2 id="面向对象编程"><a href="#面向对象编程" class="headerlink" title="面向对象编程"></a>面向对象编程</h2><p>面向对象程序设计（英语：Object-oriented programming，缩写：OOP）是种具有对象概念的程序编程范型，同时也是一种程序开发的方法。它可能包含数据、属性、代码与方法。对象则指的是类的实例。它将对象作为程序的基本单元，将程序和数据封装其中，以提高软件的重用性、灵活性和扩展性，对象里的程序可以访问及经常修改对象相关连的数据。在面向对象程序编程里，计算机程序会被设计成彼此相关的对象。</p>
+<p>面向对象编程优点：  </p>
+<ol>
+<li>灵活，可维护，易拓展，在大型项目设计中广为应用</li>
+<li>由于继承、封装、多态的特性，自然设计出高内聚、低耦合的系统结构，使得系统更灵活、更容易扩展，而且成本较低。</li>
+<li>23种设计模式广泛应用</li>
+</ol>
+<p>面向对象编程缺点：  </p>
+<ol>
+<li>在多线程并发编程中，多个线程同时操作数据的时候可能会导致数据修改的不确定性。</li>
+<li>为了写可重用的代码而产生了很多无用的代码，导致代码膨胀</li>
+<li>为了面向对象而面向对象，使得代码易读性降低</li>
+<li>代码的运行效率比起面向过程要低很多</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>函数式编程和面向对象编程各有利弊，一个语法更加自由，一个健壮性更好，作为编程者应该对两种编程方式都有所了解，不管是哪种方式，只要能够很好的解决当前的问题就是正确的方式。对于编程者来说，编程范式并没有重要到一定要遵循的地步，重要的是解决问题的思想。</p>
 
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -710,7 +392,7 @@
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/Vue/" rel="tag">Vue</a>
+    <a class="article-tag-link" href="/blog/tags/vue/" rel="tag">vue</a>
 </div>
 
 
@@ -762,12 +444,81 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
+</footer>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/17/HACK-DDOS%E6%94%BB%E5%87%BB/">DDOS攻击</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-17T11:42:50.000Z" itemprop="datePublished">2018-09-17</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/ddos/" rel="tag">ddos</a>, <a class="article-tag-link" href="/blog/tags/security/" rel="tag">security</a>
 </div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>分布式拒绝服务(DDoS:Distributed Denial of Service)攻击指借助于客户/服务器技术，将多个计算机联合起来作为攻击平台，对一个或多个目标发动DoS攻击，从而成倍地提高拒绝服务攻击威力的一种攻击方式。</p>
+<h2 id="攻击方式"><a href="#攻击方式" class="headerlink" title="攻击方式"></a>攻击方式</h2><p>DDoS攻击通过大量的请求占用网络资源，以达到瘫痪网络的目的。 这种攻击方式大致可分为以下几种：</p>
+<ul>
+<li>通过使网络过载来干扰甚至阻断正常的网络通讯；</li>
+<li>通过向服务器提交大量请求，使服务器超负荷；</li>
+<li>阻断某一用户访问服务器；</li>
+<li>阻断某服务与特定系统或个人的通讯。</li>
+</ul>
+<p>下面列举一些常见的DDos/Dos攻击方式：  </p>
+<h3 id="SYN-flood"><a href="#SYN-flood" class="headerlink" title="SYN flood"></a>SYN flood</h3><p>该攻击以多个随机的源主机地址向意图主机发送SYN包，而在收到意图主机的SYN ACK后并不回应，这么，意图主机就为这些源主机树立了很多的衔接行列，而且因为没有收到ACK一直维护着这些行列，形成了资源的很多耗费而不能向正常请求供给服务。</p>
+<h3 id="ACK-flood"><a href="#ACK-flood" class="headerlink" title="ACK flood"></a>ACK flood</h3><p>ACK Flood攻击是在TCP连接建立之后，所有的数据传输TCP报文都是带有ACK标志位的，主机在接收到一个带有ACK标志位的数据包的时候，需要检查该数据包所表示的连接四元组是否存在，如果存在则检查该数据包所表示的状态是否合法，然后再向应用层传递该数据包。如果在检查中发现该数据包不合法，例如该数据包所指向的目的端口在本机并未开放，则主机操作系统协议栈会回应RST包告诉对方此端口不存在。</p>
+<h3 id="UDP-flood"><a href="#UDP-flood" class="headerlink" title="UDP flood"></a>UDP flood</h3><p>如今在Internet上UDP（用户数据包协议）的应用比较广泛，很多提供WWW和Mail等服务设备通常是使用Unix的服务器，它们默认打开一些被黑客恶意利用的UDP服务。如echo服务会显示接收到的每一个数据包，而原本作为测试功能的chargen服务会在收到每一个数据包时随机反馈一些字符。UDP flood攻击就是利用这两个简单的TCP/IP服务的漏洞进行恶意攻击，通过伪造与某一主机的Chargen服务之间的一次的UDP连接，回复地址指向开着Echo服务的一台主机，通过将Chargen和Echo服务互指，来回传送毫无用处且占满带宽的垃圾数据，在两台主机之间生成足够多的无用数据流，这一拒绝服务攻击飞快地导致网络可用带宽耗尽。</p>
+<h3 id="Ping-of-Death"><a href="#Ping-of-Death" class="headerlink" title="Ping of Death"></a>Ping of Death</h3><p>ICMP(Internet Control Message Protocol，Internet控制信息协议)在Internet上用于错误处理和传递控制信息。最普通的ping程序就是这个功能。而在TCP/IP的RFC文档中对包的最大尺寸都有严格限制规定，许多操作系统的TCP/IP协议栈都规定ICMP包大小为64KB，且在对包的标题头进行读取之后，要根据该标题头里包含的信息来为有效载荷生成缓冲区。”Ping of Death”就是故意产生畸形的测试Ping（Packet Internet Groper）包，声称自己的尺寸超过ICMP上限，也就是加载的尺寸超过64KB上限，使未采取保护措施的网络系统出现内存分配错误，导致TCP/IP协议栈崩溃，最终接收方宕机。</p>
+<h3 id="Teardrop"><a href="#Teardrop" class="headerlink" title="Teardrop"></a>Teardrop</h3><p>Teardrop攻击利用在TCP/IP协议栈实现中信任IP碎片中的包的标题头所包含的信息来实现自己的攻击。IP分段含有指示该分段所包含的是原包的哪一段的信息，某些TCP/IP协议栈（例如NT在servicepack4以前）在收到含有重叠偏移的伪造分段时将崩溃。</p>
+<h3 id="Smurf"><a href="#Smurf" class="headerlink" title="Smurf"></a>Smurf</h3><p>该攻击向一个子网的广播地址发一个带有特定请求(如ICMP回应请求)的包，并且将源地址伪装成想要攻击的主机地址。子网上所有主机都回应广播包请求而向被攻击主机发包，使该主机受到攻击。</p>
+<h3 id="IP-Spoofing"><a href="#IP-Spoofing" class="headerlink" title="IP Spoofing"></a>IP Spoofing</h3><p>IP欺骗攻击是一种黑客通过向服务端发送虚假的包以欺骗服务器的做法。具体说，就是将包中的源IP地址设置为不存在或不合法的值。服务器一旦接受到该包便会返回接受请求包，但实际上这个包永远返回不到来源处的计算机。这种做法使服务器必需开启自己的监听端口不断等待，也就浪费了系统各方面的资源。</p>
+<h3 id="Land-Attack"><a href="#Land-Attack" class="headerlink" title="Land Attack"></a>Land Attack</h3><p>在Land攻击中，黑客利用一个特别打造的SYN包–它的原地址和目标地址都被设置成某一个服务器地址进行攻击。此举将导致接受服务器向它自己的地址发送SYN-ACK消息，结果这个地址又发回ACK消息并创建一个空连接，每一个这样的连接都将保留直到超时，在Land攻击下，许多UNIX将崩溃，NT变得极其缓慢（大约持续五分钟）。</p>
+<h3 id="ICMP-flood"><a href="#ICMP-flood" class="headerlink" title="ICMP flood"></a>ICMP flood</h3><p>ICMP flood是通过向未良好设置的路由器发送广播信息占用系统资源的做法。</p>
+<h3 id="Application-level-flood"><a href="#Application-level-flood" class="headerlink" title="Application level flood"></a>Application level flood</h3><p>与前面叙说的攻击方式不同，Application level flood主要是针对应用软件层的，也就是高于OSI的。它同样是以大量消耗系统资源为目的，通过向IIS这样的网络服务程序提出无节制的资源申请来迫害正常的网络服务。</p>
+<h2 id="防御措施"><a href="#防御措施" class="headerlink" title="防御措施"></a>防御措施</h2><p>可参考措施如下：  </p>
+<ol>
+<li>采用高性能的网络设备引<br>首先要保证网络设备不能成为瓶颈，因此选择路由器、交换机、硬件防火墙等设备的时候要尽量选用知名度高、 口碑好的产品。 再就是假如和网络提供商有特殊关系或协议的话就更好了，当大量攻击发生的时候请他们在网络接点处做一下流量限制来对抗某些种类的DDOS 攻击是非常有效的。</li>
+<li>尽量避免 NAT 的使用<br>无论是路由器还是硬件防护墙设备要尽量避免采用网络地址转换 NAT 的使用， 因为采用此技术会较大降低网络通信能力，其实原因很简单，因为 NAT 需要对地址来回转换，转换过程中需要对网络包的校验和进行计算，因此浪费了很多 CPU 的时间，但有些时候必须使用 NAT，那就没有好办法了。</li>
+<li>充足的网络带宽保证<br>网络带宽直接决定了能抗受攻击的能力， 假若仅仅有 10M 带宽的话， 无论采取什么措施都很难对抗当今的 SYNFlood 攻击， 至少要选择 100M 的共享带宽，最好的当然是挂在1000M 的主干上了。但需要注意的是，主机上的网卡是 1000M 的并不意味着它的网络带宽就是千兆的， 若把它接在 100M 的交换机上， 它的实际带宽不会超过 100M， 再就是接在 100M的带宽上也不等于就有了百兆的带宽， 因为网络服务商很可能会在交换机上限制实际带宽为10M，这点一定要搞清楚。</li>
+<li>升级主机服务器硬件<br>在有网络带宽保证的前提下，请尽量提升硬件配置，要有效对抗每秒 10 万个 SYN 攻击包，服务器的配置至少应该为：P4 2.4G/DDR512M/SCSI-HD，起关键作用的主要是 CPU 和内存， 内存一定要选择 DDR 的高速内存， 硬盘要尽量选择SCSI 的，别只贪 IDE 价格不贵量还足的便宜，否则会付出高昂的性能代价，再就是网卡一定要选用 3COM 或 Intel 等名牌的，若是 Realtek 的还是用在自己的 PC 上吧。</li>
+<li>把网站做成静态页面<br>大量事实证明，把网站尽可能做成静态页面，不仅能大大提高抗攻击能力，而且还给黑客入侵带来不少麻烦，至少到为止关于 HTML 的溢出还没出现，新浪、搜狐、网易等门户网站主要都是静态页面， 若你非需要动态脚本调用， 那就把它弄到另外一台单独主机去，免的遭受攻击时连累主服务器， 当然， 适当放一些不做数据库调用脚本还是可以的， 此外，最好在需要调用数据库的脚本中拒绝使用代理的访问， 因为经验表明使用代理访问你网站的80%属于恶意行为。</li>
+</ol>
+
+        
+    </section>
+    
+    <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
     
 </article>
 
@@ -817,12 +568,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -896,12 +647,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
+</footer>
     
 </article>
 
@@ -944,972 +695,12 @@
         
     </section>
     
-    <div class="appreciate">
+    <footer class="appreciate">
     <p>觉得本文不错？可以赞赏支持我创作！</p>
     <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
         <button type="button" class="appreciate-btn">赞赏支持</button>
     </a>
-</div>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2018/09/03/JS-jQuery-%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/">jQuery 常用方法</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-09-03T11:30:44.000Z" itemprop="datePublished">2018-09-03</time>
-</span>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/jQuery/" rel="tag">jQuery</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>jQuery 是一个高效、精简并且功能丰富的 JavaScript 工具库。它提供的 API 易于使用且兼容众多浏览器，这让诸如 HTML 文档遍历和操作、事件处理、动画和 Ajax 操作更加简单。  </p>
-<p>jQuery 使用 $ 符号作为 jQuery 的简写。如果你使用其它框架也使用 $ 符号作为简写，有可能导致脚本停止运行。为了防止这种情况，你可以使用jQuery noConflict()方法释放对 $ 标识符的控制并返回对 jQuery 的引用。  </p>
-<h2 id="jQuery-核心函数"><a href="#jQuery-核心函数" class="headerlink" title="jQuery 核心函数"></a>jQuery 核心函数</h2><table>
-<thead>
-<tr>
-<th>函数</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>jQuery()</td>
-<td>接受一个字符串，其中包含了用于匹配元素集合的 css 选择器。</td>
-</tr>
-<tr>
-<td>jQuery.noConflict()</td>
-<td>运行这个函数将变量 $ 的控制权让渡给第一个实现它的那个库。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="jQuery-选择器"><a href="#jQuery-选择器" class="headerlink" title="jQuery 选择器"></a>jQuery 选择器</h2><p>jQuery 使用 css 选择器来选取 HTML 元素。<br>jQuery 使用 XPath 表达式来选择带有给定属性的元素。<br>jQuery css 选择器可用于改变 HTML 元素的 css 属性。  </p>
-<table>
-<thead>
-<tr>
-<th>选择器</th>
-<th>实例</th>
-<th>选取</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>*</td>
-<td>$(“*”)</td>
-<td>所有元素</td>
-</tr>
-<tr>
-<td>#id</td>
-<td>$(“#lastname”)</td>
-<td>id=”lastname” 的元素</td>
-</tr>
-<tr>
-<td>.class</td>
-<td>$(“.intro”)</td>
-<td>所有 class=”intro” 的元素</td>
-</tr>
-<tr>
-<td>element</td>
-<td>$(“p”)</td>
-<td>所有 &lt;p> 元素</td>
-</tr>
-<tr>
-<td>.class.class</td>
-<td>$(“.intro.demo”)</td>
-<td>所有 class=”intro” 且 class=”demo” 的元素</td>
-</tr>
-<tr>
-<td>:first</td>
-<td>$(“p:first”)</td>
-<td>第一个 &lt;p> 元素</td>
-</tr>
-<tr>
-<td>:last</td>
-<td>$(“p:last”)</td>
-<td>最后一个 &lt;p> 元素</td>
-</tr>
-<tr>
-<td>:even</td>
-<td>$(“tr:even”)</td>
-<td>所有偶数 &lt;tr> 元素</td>
-</tr>
-<tr>
-<td>:odd</td>
-<td>$(“tr:odd”)</td>
-<td>所有奇数 &lt;tr> 元素</td>
-</tr>
-<tr>
-<td>:eq(index)</td>
-<td>$(“ul li:eq(3)”)</td>
-<td>列表中的第四个元素（index 从 0 开始）</td>
-</tr>
-<tr>
-<td>:gt(no)</td>
-<td>$(“ul li:gt(3)”)</td>
-<td>列出 index 大于 3 的元素</td>
-</tr>
-<tr>
-<td>:lt(no)</td>
-<td>$(“ul li:lt(3)”)</td>
-<td>列出 index 小于 3 的元素</td>
-</tr>
-<tr>
-<td>:not(selector)</td>
-<td>$(“input:not(:empty)”)</td>
-<td>所有不为空的 input 元素</td>
-</tr>
-<tr>
-<td>:header</td>
-<td>$(“:header”)</td>
-<td>所有标题元素 &lt;h1> - &lt;h6></td>
-</tr>
-<tr>
-<td>:animated</td>
-<td>$(“:animated”)</td>
-<td>所有动画元素</td>
-</tr>
-<tr>
-<td>:contains(text)</td>
-<td>$(“:contains(‘javascript’)”)</td>
-<td>包含指定字符串的所有元素</td>
-</tr>
-<tr>
-<td>:empty</td>
-<td>$(“:empty”)</td>
-<td>无子（元素）节点的所有元素</td>
-</tr>
-<tr>
-<td>:hidden</td>
-<td>$(“p:hidden”)</td>
-<td>所有隐藏的 &lt;p> 元素</td>
-</tr>
-<tr>
-<td>:visible</td>
-<td>$(“table:visible”)</td>
-<td>所有可见的表格</td>
-</tr>
-<tr>
-<td>s1,s2,s3</td>
-<td>$(“th,td,.intro”)</td>
-<td>所有带有匹配选择的元素</td>
-</tr>
-<tr>
-<td>[attribute]</td>
-<td>$(“[href]”)</td>
-<td>所有带有 href 属性的元素</td>
-</tr>
-<tr>
-<td>[attribute=value]</td>
-<td>$(“[href=’#’]”)</td>
-<td>所有 href 属性的值等于 “#” 的元素</td>
-</tr>
-<tr>
-<td>[attribute!=value]</td>
-<td>$(“[href!=’#’]”)</td>
-<td>所有 href 属性的值不等于 “#” 的元素</td>
-</tr>
-<tr>
-<td>[attribute$=value]</td>
-<td>$(“[href$=’.jpg’]”)</td>
-<td>所有 href 属性的值包含以 “.jpg” 结尾的元素</td>
-</tr>
-<tr>
-<td>:input</td>
-<td>$(“:input”)</td>
-<td>所有 &lt;input> 元素</td>
-</tr>
-<tr>
-<td>:text</td>
-<td>$(“:text”)</td>
-<td>所有 type=”text” 的 &lt;input> 元素</td>
-</tr>
-<tr>
-<td>:password</td>
-<td>$(“:password”)</td>
-<td>所有 type=”password” 的 &lt;input> 元素</td>
-</tr>
-<tr>
-<td>:radio</td>
-<td>$(“:radio”)</td>
-<td>所有 type=”radio” 的 &lt;input> 元素</td>
-</tr>
-<tr>
-<td>:checkbox</td>
-<td>$(“:checkbox”)</td>
-<td>所有 type=”checkbox” 的 &lt;input> 元素</td>
-</tr>
-<tr>
-<td>:submit</td>
-<td>$(“:submit”)</td>
-<td>所有 type=”submit” 的 &lt;input> 元素</td>
-</tr>
-<tr>
-<td>:reset</td>
-<td>$(“:reset”)</td>
-<td>所有 type=”reset” 的 &lt;input> 元素</td>
-</tr>
-<tr>
-<td>:button</td>
-<td>$(“:button”)</td>
-<td>所有 type=”button” 的 &lt;input> 元素</td>
-</tr>
-<tr>
-<td>:image</td>
-<td>$(“:image”)</td>
-<td>所有 type=”image” 的 &lt;input> 元素</td>
-</tr>
-<tr>
-<td>:file</td>
-<td>$(“:file”)</td>
-<td>所有 type=”file” 的 &lt;input> 元素</td>
-</tr>
-<tr>
-<td>:enabled</td>
-<td>$(“:enabled”)</td>
-<td>所有激活的 input 元素</td>
-</tr>
-<tr>
-<td>:disabled</td>
-<td>$(“:disabled”)</td>
-<td>所有禁用的 input 元素</td>
-</tr>
-<tr>
-<td>:selected</td>
-<td>$(“:selected”)</td>
-<td>所有被选取的 input 元素</td>
-</tr>
-<tr>
-<td>:checked</td>
-<td>$(“:checked”)</td>
-<td>所有被选中的 input 元素</td>
-</tr>
-</tbody>
-</table>
-<h2 id="jQuery-事件函数"><a href="#jQuery-事件函数" class="headerlink" title="jQuery 事件函数"></a>jQuery 事件函数</h2><p>事件处理程序指的是当 HTML 中发生某些事件时所调用的方法。术语由事件“触发”（或“激发”）经常会被使用。  </p>
-<p>例如：  </p>
-<p><code>$(&quot;button&quot;).click(function() &#123;..some code... &#125; )</code></p>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>bind()</td>
-<td>向匹配元素附加一个或更多事件处理器</td>
-</tr>
-<tr>
-<td>blur()</td>
-<td>触发、或将函数绑定到指定元素的 blur 事件</td>
-</tr>
-<tr>
-<td>change()</td>
-<td>触发、或将函数绑定到指定元素的 change 事件</td>
-</tr>
-<tr>
-<td>click()</td>
-<td>触发、或将函数绑定到指定元素的 click 事件</td>
-</tr>
-<tr>
-<td>dblclick()</td>
-<td>触发、或将函数绑定到指定元素的 double click 事件</td>
-</tr>
-<tr>
-<td>delegate()</td>
-<td>向匹配元素的当前或未来的子元素附加一个或多个事件处理器</td>
-</tr>
-<tr>
-<td>die()</td>
-<td>移除所有通过 live() 函数添加的事件处理程序。</td>
-</tr>
-<tr>
-<td>error()</td>
-<td>触发、或将函数绑定到指定元素的 error 事件</td>
-</tr>
-<tr>
-<td>event.isDefaultPrevented()</td>
-<td>返回 event 对象上是否调用了 event.preventDefault()。</td>
-</tr>
-<tr>
-<td>event.pageX</td>
-<td>相对于文档左边缘的鼠标位置。</td>
-</tr>
-<tr>
-<td>event.pageY</td>
-<td>相对于文档上边缘的鼠标位置。</td>
-</tr>
-<tr>
-<td>event.preventDefault()</td>
-<td>阻止事件的默认动作。</td>
-</tr>
-<tr>
-<td>event.result</td>
-<td>包含由被指定事件触发的事件处理器返回的最后一个值。</td>
-</tr>
-<tr>
-<td>event.target</td>
-<td>触发该事件的 DOM 元素。</td>
-</tr>
-<tr>
-<td>event.timeStamp</td>
-<td>该属性返回从 1970 年 1 月 1 日到事件发生时的毫秒数。</td>
-</tr>
-<tr>
-<td>event.type</td>
-<td>描述事件的类型。</td>
-</tr>
-<tr>
-<td>event.which</td>
-<td>指示按了哪个键或按钮。</td>
-</tr>
-<tr>
-<td>focus()</td>
-<td>触发、或将函数绑定到指定元素的 focus 事件</td>
-</tr>
-<tr>
-<td>keydown()</td>
-<td>触发、或将函数绑定到指定元素的 key down 事件</td>
-</tr>
-<tr>
-<td>keypress()</td>
-<td>触发、或将函数绑定到指定元素的 key press 事件</td>
-</tr>
-<tr>
-<td>keyup()</td>
-<td>触发、或将函数绑定到指定元素的 key up 事件</td>
-</tr>
-<tr>
-<td>live()</td>
-<td>为当前或未来的匹配元素添加一个或多个事件处理器</td>
-</tr>
-<tr>
-<td>load()</td>
-<td>触发、或将函数绑定到指定元素的 load 事件</td>
-</tr>
-<tr>
-<td>mousedown()</td>
-<td>触发、或将函数绑定到指定元素的 mouse down 事件</td>
-</tr>
-<tr>
-<td>mouseenter()</td>
-<td>触发、或将函数绑定到指定元素的 mouse enter 事件</td>
-</tr>
-<tr>
-<td>mouseleave()</td>
-<td>触发、或将函数绑定到指定元素的 mouse leave 事件</td>
-</tr>
-<tr>
-<td>mousemove()</td>
-<td>触发、或将函数绑定到指定元素的 mouse move 事件</td>
-</tr>
-<tr>
-<td>mouseout()</td>
-<td>触发、或将函数绑定到指定元素的 mouse out 事件</td>
-</tr>
-<tr>
-<td>mouseover()</td>
-<td>触发、或将函数绑定到指定元素的 mouse over 事件</td>
-</tr>
-<tr>
-<td>mouseup()</td>
-<td>触发、或将函数绑定到指定元素的 mouse up 事件</td>
-</tr>
-<tr>
-<td>one()</td>
-<td>向匹配元素添加事件处理器。每个元素只能触发一次该处理器。</td>
-</tr>
-<tr>
-<td>ready()</td>
-<td>文档就绪事件（当 HTML 文档就绪可用时）</td>
-</tr>
-<tr>
-<td>resize()</td>
-<td>触发、或将函数绑定到指定元素的 resize 事件</td>
-</tr>
-<tr>
-<td>scroll()</td>
-<td>触发、或将函数绑定到指定元素的 scroll 事件</td>
-</tr>
-<tr>
-<td>select()</td>
-<td>触发、或将函数绑定到指定元素的 select 事件</td>
-</tr>
-<tr>
-<td>submit()</td>
-<td>触发、或将函数绑定到指定元素的 submit 事件</td>
-</tr>
-<tr>
-<td>toggle()</td>
-<td>绑定两个或多个事件处理器函数，当发生轮流的 click 事件时执行。</td>
-</tr>
-<tr>
-<td>trigger()</td>
-<td>所有匹配元素的指定事件</td>
-</tr>
-<tr>
-<td>triggerHandler()</td>
-<td>第一个被匹配元素的指定事件</td>
-</tr>
-<tr>
-<td>unbind()</td>
-<td>从匹配元素移除一个被添加的事件处理器</td>
-</tr>
-<tr>
-<td>undelegate()</td>
-<td>从匹配元素移除一个被添加的事件处理器，现在或将来</td>
-</tr>
-<tr>
-<td>unload()</td>
-<td>触发、或将函数绑定到指定元素的 unload 事件</td>
-</tr>
-</tbody>
-</table>
-<h2 id="jQuery-效果函数"><a href="#jQuery-效果函数" class="headerlink" title="jQuery 效果函数"></a>jQuery 效果函数</h2><p>将CSS动画效果封装成Javascript函数。  </p>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>animate()</td>
-<td>对被选元素应用“自定义”的动画</td>
-</tr>
-<tr>
-<td>clearQueue()</td>
-<td>对被选元素移除所有排队的函数（仍未运行的）</td>
-</tr>
-<tr>
-<td>delay()</td>
-<td>对被选元素的所有排队函数（仍未运行）设置延迟</td>
-</tr>
-<tr>
-<td>dequeue()</td>
-<td>运行被选元素的下一个排队函数</td>
-</tr>
-<tr>
-<td>fadeIn()</td>
-<td>逐渐改变被选元素的不透明度，从隐藏到可见</td>
-</tr>
-<tr>
-<td>fadeOut()</td>
-<td>逐渐改变被选元素的不透明度，从可见到隐藏</td>
-</tr>
-<tr>
-<td>fadeTo()</td>
-<td>把被选元素逐渐改变至给定的不透明度</td>
-</tr>
-<tr>
-<td>hide()</td>
-<td>隐藏被选的元素</td>
-</tr>
-<tr>
-<td>queue()</td>
-<td>显示被选元素的排队函数</td>
-</tr>
-<tr>
-<td>show()</td>
-<td>显示被选的元素</td>
-</tr>
-<tr>
-<td>slideDown()</td>
-<td>通过调整高度来滑动显示被选元素</td>
-</tr>
-<tr>
-<td>slideToggle()</td>
-<td>对被选元素进行滑动隐藏和滑动显示的切换</td>
-</tr>
-<tr>
-<td>slideUp()</td>
-<td>通过调整高度来滑动隐藏被选元素</td>
-</tr>
-<tr>
-<td>stop()</td>
-<td>停止在被选元素上运行动画</td>
-</tr>
-<tr>
-<td>toggle()</td>
-<td>对被选元素进行隐藏和显示的切换</td>
-</tr>
-</tbody>
-</table>
-<h2 id="jQuery-遍历函数"><a href="#jQuery-遍历函数" class="headerlink" title="jQuery 遍历函数"></a>jQuery 遍历函数</h2><p>jQuery 遍历，意为“移动”，用于根据其相对于其他元素的关系来“查找”（或选取）HTML 元素。以某项选择开始，并沿着这个选择移动，直到抵达您期望的元素为止。  </p>
-<p>下图展示了一个家族树。通过 jQuery 遍历，您能够从被选（当前的）元素开始，轻松地在家族树中向上移动（祖先），向下移动（子孙），水平移动（同胞）。这种移动被称为对 DOM 进行遍历。  </p>
-<p><img src="/blog/static/imgs/dom_tree.gif" alt="dom_tree"></p>
-<ul>
-<li>&lt;div> 元素是 &lt;ul> 的父元素，同时是其中所有内容的祖先。</li>
-<li>&lt;ul> 元素是 &lt;li> 元素的父元素，同时是 &lt;div> 的子元素</li>
-<li>左边的 &lt;li> 元素是 &lt;span> 的父元素，&lt;ul> 的子元素，同时是 &lt;div> 的后代。</li>
-<li>&lt;span> 元素是 &lt;li> 的子元素，同时是 &lt;ul> 和 &lt;div> 的后代。</li>
-<li>两个 &lt;li> 元素是同胞（拥有相同的父元素）。</li>
-<li>右边的 &lt;li> 元素是 &lt;b> 的父元素，&lt;ul> 的子元素，同时是 &lt;div> 的后代。</li>
-<li>&lt;b> 元素是右边的 &lt;li> 的子元素，同时是 &lt;ul> 和 &lt;div> 的后代。</li>
-</ul>
-<p><font color='red'>提示：</font>祖先是父、祖父、曾祖父等等。后代是子、孙、曾孙等等。同胞拥有相同的父。  </p>
-<p>jQuery 遍历函数包括了用于筛选、查找和串联元素的方法。  </p>
-<table>
-<thead>
-<tr>
-<th>函数</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>.add()</td>
-<td>将元素添加到匹配元素的集合中。</td>
-</tr>
-<tr>
-<td>.andSelf()</td>
-<td>把堆栈中之前的元素集添加到当前集合中。</td>
-</tr>
-<tr>
-<td>.children()</td>
-<td>获得匹配元素集合中每个元素的所有子元素。</td>
-</tr>
-<tr>
-<td>.closest()</td>
-<td>从元素本身开始，逐级向上级元素匹配，并返回最先匹配的祖先元素。</td>
-</tr>
-<tr>
-<td>.contents()</td>
-<td>获得匹配元素集合中每个元素的子元素，包括文本和注释节点。</td>
-</tr>
-<tr>
-<td>.each()</td>
-<td>对 jQuery 对象进行迭代，为每个匹配元素执行函数。</td>
-</tr>
-<tr>
-<td>.end()</td>
-<td>结束当前链中最近的一次筛选操作，并将匹配元素集合返回到前一次的状态。</td>
-</tr>
-<tr>
-<td>.eq()</td>
-<td>将匹配元素集合缩减为位于指定索引的新元素。</td>
-</tr>
-<tr>
-<td>.filter()</td>
-<td>将匹配元素集合缩减为匹配选择器或匹配函数返回值的新元素。</td>
-</tr>
-<tr>
-<td>.find()</td>
-<td>获得当前匹配元素集合中每个元素的后代，由选择器进行筛选。</td>
-</tr>
-<tr>
-<td>.first()</td>
-<td>将匹配元素集合缩减为集合中的第一个元素。</td>
-</tr>
-<tr>
-<td>.has()</td>
-<td>将匹配元素集合缩减为包含特定元素的后代的集合。</td>
-</tr>
-<tr>
-<td>.is()</td>
-<td>根据选择器检查当前匹配元素集合，如果存在至少一个匹配元素，则返回 true。</td>
-</tr>
-<tr>
-<td>.last()</td>
-<td>将匹配元素集合缩减为集合中的最后一个元素。</td>
-</tr>
-<tr>
-<td>.map()</td>
-<td>把当前匹配集合中的每个元素传递给函数，产生包含返回值的新 jQuery 对象。</td>
-</tr>
-<tr>
-<td>.next()</td>
-<td>获得匹配元素集合中每个元素紧邻的同辈元素。</td>
-</tr>
-<tr>
-<td>.nextAll()</td>
-<td>获得匹配元素集合中每个元素之后的所有同辈元素，由选择器进行筛选（可选）。</td>
-</tr>
-<tr>
-<td>.nextUntil()</td>
-<td>获得每个元素之后所有的同辈元素，直到遇到匹配选择器的元素为止。</td>
-</tr>
-<tr>
-<td>.not()</td>
-<td>从匹配元素集合中删除元素。</td>
-</tr>
-<tr>
-<td>.offsetParent()</td>
-<td>获得用于定位的第一个父元素。</td>
-</tr>
-<tr>
-<td>.parent()</td>
-<td>获得当前匹配元素集合中每个元素的父元素，由选择器筛选（可选）。</td>
-</tr>
-<tr>
-<td>.parents()</td>
-<td>获得当前匹配元素集合中每个元素的祖先元素，由选择器筛选（可选）。</td>
-</tr>
-<tr>
-<td>.parentsUntil()</td>
-<td>获得当前匹配元素集合中每个元素的祖先元素，直到遇到匹配选择器的元素为止。</td>
-</tr>
-<tr>
-<td>.prev()</td>
-<td>获得匹配元素集合中每个元素紧邻的前一个同辈元素，由选择器筛选（可选）。</td>
-</tr>
-<tr>
-<td>.prevAll()</td>
-<td>获得匹配元素集合中每个元素之前的所有同辈元素，由选择器进行筛选（可选）。</td>
-</tr>
-<tr>
-<td>.prevUntil()</td>
-<td>获得每个元素之前所有的同辈元素，直到遇到匹配选择器的元素为止。</td>
-</tr>
-<tr>
-<td>.siblings()</td>
-<td>获得匹配元素集合中所有元素的同辈元素，由选择器筛选（可选）。</td>
-</tr>
-<tr>
-<td>.slice()</td>
-<td>将匹配元素集合缩减为指定范围的子集。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="jQuery-文档操作"><a href="#jQuery-文档操作" class="headerlink" title="jQuery 文档操作"></a>jQuery 文档操作</h2><p>对HTML元素进行操作。  </p>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>after()</td>
-<td>在匹配的元素之后插入内容。</td>
-</tr>
-<tr>
-<td>append()</td>
-<td>向匹配元素集合中的每个元素结尾插入由参数指定的内容。</td>
-</tr>
-<tr>
-<td>appendTo()</td>
-<td>向目标结尾插入匹配元素集合中的每个元素。</td>
-</tr>
-<tr>
-<td>attr()</td>
-<td>设置或返回匹配元素的属性和值。</td>
-</tr>
-<tr>
-<td>before()</td>
-<td>在每个匹配的元素之前插入内容。</td>
-</tr>
-<tr>
-<td>clone()</td>
-<td>创建匹配元素集合的副本。</td>
-</tr>
-<tr>
-<td>detach()</td>
-<td>从 DOM 中移除匹配元素集合。</td>
-</tr>
-<tr>
-<td>empty()</td>
-<td>删除匹配的元素集合中所有的子节点。</td>
-</tr>
-<tr>
-<td>html()</td>
-<td>设置或返回匹配的元素集合中的 HTML 内容。</td>
-</tr>
-<tr>
-<td>insertAfter()</td>
-<td>把匹配的元素插入到另一个指定的元素集合的后面。</td>
-</tr>
-<tr>
-<td>insertBefore()</td>
-<td>把匹配的元素插入到另一个指定的元素集合的前面。</td>
-</tr>
-<tr>
-<td>prepend()</td>
-<td>向匹配元素集合中的每个元素开头插入由参数指定的内容。</td>
-</tr>
-<tr>
-<td>prependTo()</td>
-<td>向目标开头插入匹配元素集合中的每个元素。</td>
-</tr>
-<tr>
-<td>remove()</td>
-<td>移除所有匹配的元素。</td>
-</tr>
-<tr>
-<td>replaceAll()</td>
-<td>用匹配的元素替换所有匹配到的元素。</td>
-</tr>
-<tr>
-<td>replaceWith()</td>
-<td>用新内容替换匹配的元素。</td>
-</tr>
-<tr>
-<td>text()</td>
-<td>设置或返回匹配元素的内容。</td>
-</tr>
-<tr>
-<td>unwrap()</td>
-<td>移除并替换指定元素的父元素。</td>
-</tr>
-<tr>
-<td>wrap()</td>
-<td>把匹配的元素用指定的内容或元素包裹起来。</td>
-</tr>
-<tr>
-<td>wrapAll()</td>
-<td>把所有匹配的元素用指定的内容或元素包裹起来。</td>
-</tr>
-<tr>
-<td>wrapinner()</td>
-<td>将每一个匹配的元素的子内容用指定的内容或元素包裹起来。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="jQuery-属性操作"><a href="#jQuery-属性操作" class="headerlink" title="jQuery 属性操作"></a>jQuery 属性操作</h2><p>下面列出的这些方法获得或设置元素的 DOM 属性。  </p>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>addClass()</td>
-<td>向匹配的元素添加指定的类名。</td>
-</tr>
-<tr>
-<td>attr()</td>
-<td>设置或返回匹配元素的属性和值。</td>
-</tr>
-<tr>
-<td>hasClass()</td>
-<td>检查匹配的元素是否拥有指定的类。</td>
-</tr>
-<tr>
-<td>html()</td>
-<td>设置或返回匹配的元素集合中的 HTML 内容。</td>
-</tr>
-<tr>
-<td>removeAttr()</td>
-<td>从所有匹配的元素中移除指定的属性。</td>
-</tr>
-<tr>
-<td>removeClass()</td>
-<td>从所有匹配的元素中删除全部或者指定的类。</td>
-</tr>
-<tr>
-<td>toggleClass()</td>
-<td>从匹配的元素中添加或删除一个类。</td>
-</tr>
-<tr>
-<td>val()</td>
-<td>设置或返回匹配元素的值。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="jQuery-css-操作函数"><a href="#jQuery-css-操作函数" class="headerlink" title="jQuery css 操作函数"></a>jQuery css 操作函数</h2><p>下面列出的这些方法设置或返回元素的 css 相关属性。  </p>
-<table>
-<thead>
-<tr>
-<th>css 属性</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>css()</td>
-<td>设置或返回匹配元素的样式属性。</td>
-</tr>
-<tr>
-<td>height()</td>
-<td>设置或返回匹配元素的高度。</td>
-</tr>
-<tr>
-<td>offset()</td>
-<td>返回第一个匹配元素相对于文档的位置。</td>
-</tr>
-<tr>
-<td>offsetParent()</td>
-<td>返回最近的定位祖先元素。</td>
-</tr>
-<tr>
-<td>position()</td>
-<td>返回第一个匹配元素相对于父元素的位置。</td>
-</tr>
-<tr>
-<td>scrollLeft()</td>
-<td>设置或返回匹配元素相对滚动条左侧的偏移。</td>
-</tr>
-<tr>
-<td>scrollTop()</td>
-<td>设置或返回匹配元素相对滚动条顶部的偏移。</td>
-</tr>
-<tr>
-<td>width()</td>
-<td>设置或返回匹配元素的宽度。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="jQuery-数据操作函数"><a href="#jQuery-数据操作函数" class="headerlink" title="jQuery 数据操作函数"></a>jQuery 数据操作函数</h2><p>这些方法允许我们将指定的 DOM 元素与任意数据相关联。  </p>
-<table>
-<thead>
-<tr>
-<th>函数</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>.clearQueue()</td>
-<td>从队列中删除所有未运行的项目。</td>
-</tr>
-<tr>
-<td>.data()</td>
-<td>存储与匹配元素相关的任意数据。</td>
-</tr>
-<tr>
-<td>jQuery.data()</td>
-<td>存储与指定元素相关的任意数据。</td>
-</tr>
-<tr>
-<td>.dequeue()</td>
-<td>从队列最前端移除一个队列函数，并执行它。</td>
-</tr>
-<tr>
-<td>jQuery.dequeue()</td>
-<td>从队列最前端移除一个队列函数，并执行它。</td>
-</tr>
-<tr>
-<td>jQuery.hasData()</td>
-<td>存储与匹配元素相关的任意数据。</td>
-</tr>
-<tr>
-<td>.queue()</td>
-<td>显示或操作匹配元素所执行函数的队列。</td>
-</tr>
-<tr>
-<td>jQuery.queue()</td>
-<td>显示或操作匹配元素所执行函数的队列。</td>
-</tr>
-<tr>
-<td>.removeData()</td>
-<td>移除之前存放的数据。</td>
-</tr>
-<tr>
-<td>jQuery.removeData()</td>
-<td>移除之前存放的数据。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="jQuery-AJAX"><a href="#jQuery-AJAX" class="headerlink" title="jQuery AJAX"></a>jQuery AJAX</h2><h3 id="什么是-AJAX？"><a href="#什么是-AJAX？" class="headerlink" title="什么是 AJAX？"></a>什么是 AJAX？</h3><p>AJAX = 异步 JavaScript 和 XML（Asynchronous JavaScript and XML）。  </p>
-<p>简短地说，在不重载整个网页的情况下，AJAX 通过后台加载数据，并在网页上进行显示。  </p>
-<h3 id="jQuery-AJAX方法"><a href="#jQuery-AJAX方法" class="headerlink" title="jQuery AJAX方法"></a>jQuery AJAX方法</h3><table>
-<thead>
-<tr>
-<th>函数</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>jQuery.ajax()</td>
-<td>执行异步 HTTP (Ajax) 请求。</td>
-</tr>
-<tr>
-<td>.ajaxComplete()</td>
-<td>当 Ajax 请求完成时注册要调用的处理程序。这是一个 Ajax 事件。</td>
-</tr>
-<tr>
-<td>.ajaxError()</td>
-<td>当 Ajax 请求完成且出现错误时注册要调用的处理程序。这是一个 Ajax 事件。</td>
-</tr>
-<tr>
-<td>.ajaxSend()</td>
-<td>在 Ajax 请求发送之前显示一条消息。</td>
-</tr>
-<tr>
-<td>jQuery.ajaxSetup()</td>
-<td>设置将来的 Ajax 请求的默认值。</td>
-</tr>
-<tr>
-<td>.ajaxStart()</td>
-<td>当首个 Ajax 请求完成开始时注册要调用的处理程序。这是一个 Ajax 事件。</td>
-</tr>
-<tr>
-<td>.ajaxStop()</td>
-<td>当所有 Ajax 请求完成时注册要调用的处理程序。这是一个 Ajax 事件。</td>
-</tr>
-<tr>
-<td>.ajaxSuccess()</td>
-<td>当 Ajax 请求成功完成时显示一条消息。</td>
-</tr>
-<tr>
-<td>jQuery.get()</td>
-<td>使用 HTTP GET 请求从服务器加载数据。</td>
-</tr>
-<tr>
-<td>jQuery.getJSON()</td>
-<td>使用 HTTP GET 请求从服务器加载 JSON 编码数据。</td>
-</tr>
-<tr>
-<td>jQuery.getScript()</td>
-<td>使用 HTTP GET 请求从服务器加载 JavaScript 文件，然后执行该文件。</td>
-</tr>
-<tr>
-<td>.load()</td>
-<td>从服务器加载数据，然后把返回到 HTML 放入匹配元素。</td>
-</tr>
-<tr>
-<td>jQuery.param()</td>
-<td>创建数组或对象的序列化表示，适合在 URL 查询字符串或 Ajax 请求中使用。</td>
-</tr>
-<tr>
-<td>jQuery.post()</td>
-<td>使用 HTTP POST 请求从服务器加载数据。</td>
-</tr>
-<tr>
-<td>.serialize()</td>
-<td>将表单内容序列化为字符串。</td>
-</tr>
-<tr>
-<td>.serializeArray()</td>
-<td>序列化表单元素，返回 JSON 数据结构数据。</td>
-</tr>
-</tbody>
-</table>
-
-        
-    </section>
-    
-    <div class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</div>
+</footer>
     
 </article>
 
