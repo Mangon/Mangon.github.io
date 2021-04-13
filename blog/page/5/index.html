@@ -40,13 +40,13 @@
     <nav class="nav-inner">
         
             
-                <li class="nav-item active">
+                <li class="nav-item  active ">
                     <a class="nav-link" href="/blog/">主页</a>
                 </li>
             
         
             
-                <li class="nav-item">
+                <li class="nav-item ">
                     <a class="nav-link" href="/blog/archives">目录</a>
                 </li>
             
@@ -67,34 +67,11 @@
     </form>
 </div>        
         
+            
+        
 
         
-            <div class="author-meta">
-                
-                <div class="author-avatar">
-                    <a href="/blog/">
-                        <img src="/blog/images/avatar.jpeg" title="Mangon">
-                    </a>
-                </div>
-                
-                <div class="author-name">Mangon</div>
-                <div class="author-work">Front-End Software Engineer</div>
-                <div class="author-location">
-                    <i class="icon-location vm"></i>
-                    <span class="vm">Beijing, China</span>
-                </div>
-                
-                <div class="author-thread-wrap">
-                    <div class="author-threads clearfix">
-                        
-                        <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
-                        
-                        
-                        
-                    </div>
-                </div>
-                
-            </div>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC"><span class="toc-number">1.</span> <span class="toc-text">MVC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC-for-Javascript"><span class="toc-number">2.</span> <span class="toc-text">MVC for Javascript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVP"><span class="toc-number">3.</span> <span class="toc-text">MVP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVVM"><span class="toc-number">4.</span> <span class="toc-text">MVVM</span></a></li></ol>
         
         <div id="coffee-content"></div>
     </div>
@@ -102,290 +79,23 @@
 
 </header>
 
-        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
         
-        <h1 itemprop="name">
-            <a href="/blog/2021/03/20/React-%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">React 组件生命周期</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-03-19T17:03:54.000Z" itemprop="datePublished">2021-03-20</time>
-</span>
-
-            
-
+            <div class="home">
+    <div class="bg-home">
+        <div class="realistic original">
+            <h1>青玉案</h1>
+            <p class="author">辛棄疾</p>
+            <p>東風夜放花千樹<br>更吹落<br>星如雨</p>
+            <p>寶馬雕車香滿路</p>
+            <p>鳳簫聲動<br>玉壺光轉<br>壹夜魚龍舞</p>
+            <p>蛾兒雪柳黃金縷<br>笑語盈盈暗香去</p>
+            <p>眾裏尋他千百度</p>
+            <p>驀然回首<br>那人卻在<br>燈火闌珊處</p>
         </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>组件的生命周期可分成三个状态：  </p>
-<ul>
-<li>Mounting：已插入真实 DOM</li>
-<li>Updating：正在被重新渲染</li>
-<li>Unmounting：已移出真实 DOM</li>
-</ul>
-<p>生命周期的方法有：  </p>
-<ul>
-<li><p><code>componentWillMount</code> 在渲染前调用,在客户端也在服务端。</p>
-</li>
-<li><p><code>componentDidMount</code> 在第一次渲染后调用，只在客户端。之后组件已经生成了对应的DOM结构，可以通过this.getDOMNode()来进行访问。 如果你想和其他JavaScript框架一起使用，可以在这个方法中调用setTimeout, setInterval或者发送AJAX请求等操作(防止异部操作阻塞UI)。</p>
-</li>
-<li><p><code>componentWillReceiveProps</code> 在组件接收到一个新的 prop (更新后)时被调用。这个方法在初始化render时不会被调用。</p>
-</li>
-<li><p><code>shouldComponentUpdate</code> 返回一个布尔值。在组件接收到新的props或者state时被调用。在初始化时或者使用forceUpdate时不被调用。<br>可以在你确认不需要更新组件时使用。</p>
-</li>
-<li><p><code>componentWillUpdate</code> 在组件接收到新的props或者state但还没有render时被调用。在初始化时不会被调用。</p>
-</li>
-<li><p><code>componentDidUpdate</code> 在组件完成更新后立即调用。在初始化时不会被调用。</p>
-</li>
-<li><p><code>componentWillUnmount</code> 在组件从 DOM 中移除的时候立刻被调用。</p>
-</li>
-</ul>
-
-        
-    </section>
-    
-    <footer class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</footer>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/03/20/JS-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">JS 数据类型</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-03-19T16:27:16.000Z" itemprop="datePublished">2021-03-20</time>
-</span>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="js-有哪些数据类型"><a href="#js-有哪些数据类型" class="headerlink" title="js 有哪些数据类型"></a>js 有哪些数据类型</h2><p>js有七种数据类型： 数值number（包括整数和浮点数），字符串string，布尔值boolean，undefined，null，对象object，symbol(ES6添加)<br>其中除对象外都是基本数据类型（primitive data type），没有方法。<br>对象又分为三种 object array function<br>除了 null 和 undefined之外，所有基本类型都有其对应的包装对象：</p>
-<p><code>String</code> 为字符串基本类型的包装对象。<br><code>Number</code> 为数值基本类型的包装对象。<br><code>Boolean</code> 为布尔基本类型的包装对象。<br><code>Symbol</code> 为字面量基本类型(不支持 new Symbol())的包装对象。<br>一个包装对象的valueOf()方法将会返回它的基本类型值。  </p>
-<h2 id="如何区分属于哪种数据类型"><a href="#如何区分属于哪种数据类型" class="headerlink" title="如何区分属于哪种数据类型"></a>如何区分属于哪种数据类型</h2><p><code>typeof</code> 运算符: <code>typeof</code> 操作符返回一个字符串，表示未经计算的操作数的类型。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="number">123</span> <span class="comment">// &#x27;number&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">Infinity</span> <span class="comment">// &#x27;number&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">NaN</span> <span class="comment">// &#x27;number&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="string">&#x27;123&#x27;</span> <span class="comment">// &#x27;string&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">false</span> <span class="comment">// &#x27;boolean&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">true</span> <span class="comment">// &#x27;boolean&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">undefined</span> <span class="comment">// &#x27;undefined&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">null</span> <span class="comment">// &#x27;object&#x27; 历史原因，可以通过恒等 === 来区分</span></span><br><span class="line"><span class="literal">null</span> == <span class="literal">undefined</span> <span class="comment">// true</span></span><br><span class="line"><span class="keyword">typeof</span> &#123;&#125; <span class="comment">// &#x27;object&#x27;</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="keyword">typeof</span> f <span class="comment">// &#x27;function&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> [] <span class="comment">// &#x27;object&#x27;</span></span><br><span class="line">[] <span class="keyword">instanceof</span> <span class="built_in">Array</span> <span class="comment">// true</span></span><br><span class="line"><span class="keyword">const</span> symbol = <span class="built_in">Symbol</span>();</span><br><span class="line"><span class="keyword">typeof</span> symbol <span class="comment">// &#x27;symbol&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="built_in">String</span> <span class="comment">// &#x27;function&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="built_in">String</span>() <span class="comment">// &#x27;string&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="keyword">new</span> <span class="built_in">String</span>() <span class="comment">// &#x27;object&#x27;</span></span><br></pre></td></tr></table></figure>
-        
-    </section>
-    
-    <footer class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</footer>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/03/19/CSS-display%E5%B1%9E%E6%80%A7/">CSS display属性</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-03-19T13:12:39.000Z" itemprop="datePublished">2021-03-19</time>
-</span>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="display-属性的含义"><a href="#display-属性的含义" class="headerlink" title="display 属性的含义"></a>display 属性的含义</h2><p><code>display</code> 属性可以设置元素的内部和外部显示类型。元素的外部显示类型将决定该元素在流式布局中的表现。元素的内部显示类型可以控制其子元素的布局。  </p>
-<p>CSS3规范详细说明了 <code>display</code> 属性的两个值—显式地启用外部和内部显示类型的规，但是浏览器还没有很好地支持这一点。</p>
-<h2 id="display-属性语法"><a href="#display-属性语法" class="headerlink" title="display 属性语法"></a>display 属性语法</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* legacy values */</span></span><br><span class="line"><span class="attribute">display</span>: block;</span><br><span class="line"><span class="attribute">display</span>: inline;</span><br><span class="line"><span class="attribute">display</span>: inline-block;</span><br><span class="line"><span class="attribute">display</span>: flex;</span><br><span class="line"><span class="attribute">display</span>: inline-flex;</span><br><span class="line"><span class="attribute">display</span>: grid;</span><br><span class="line"><span class="attribute">display</span>: inline-grid;</span><br><span class="line"><span class="attribute">display</span>: flow-root;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* box generation */</span></span><br><span class="line"><span class="attribute">display</span>: none;</span><br><span class="line"><span class="attribute">display</span>: contents;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* two-value syntax */</span></span><br><span class="line"><span class="attribute">display</span>: block flow;</span><br><span class="line"><span class="attribute">display</span>: inline flow;</span><br><span class="line"><span class="attribute">display</span>: inline flow-root;</span><br><span class="line"><span class="attribute">display</span>: block flex;</span><br><span class="line"><span class="attribute">display</span>: inline-flex;</span><br><span class="line"><span class="attribute">display</span>: block grid;</span><br><span class="line"><span class="attribute">display</span>: inline grid;</span><br><span class="line"><span class="attribute">display</span>: block flow-root;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* other values */</span></span><br><span class="line"><span class="attribute">display</span>: table;</span><br><span class="line"><span class="attribute">display</span>: table-row; <span class="comment">/* all table elements have an equivalent CSS display value */</span></span><br><span class="line"><span class="attribute">display</span>: list-item;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Global values */</span></span><br><span class="line"><span class="attribute">display</span>: inherit;</span><br><span class="line"><span class="attribute">display</span>: initial;</span><br><span class="line"><span class="attribute">display</span>: unset;</span><br></pre></td></tr></table></figure>
-<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><h3 id="外部显示类型"><a href="#外部显示类型" class="headerlink" title="外部显示类型"></a>外部显示类型</h3><p>这些关键字指定元素的外部显示类型，它本质上是元素在流布局中的角色。  </p>
-<h4 id="block"><a href="#block" class="headerlink" title="block"></a>block</h4><p>元素生成块元素框，在正常流中生成元素前后的换行符。  </p>
-<h4 id="inline"><a href="#inline" class="headerlink" title="inline"></a>inline</h4><p>元素生成一个或多个内联元素框，这些内联元素框不会在它们之前或之后生成换行符。在正常流中，如果有空间，下一个元素将在同一行上。  </p>
-<h3 id="内部显示类型"><a href="#内部显示类型" class="headerlink" title="内部显示类型"></a>内部显示类型</h3><h4 id="flow-root"><a href="#flow-root" class="headerlink" title="flow-root"></a>flow-root</h4><p>元素生成一个块元素框，该框建立一个新的块格式化上下文（BFC），定义格式化根所在的位置。  </p>
-<h4 id="table"><a href="#table" class="headerlink" title="table"></a>table</h4><p>这些元素的行为类似于HTML <code>&lt;table&gt;</code> 元素。它定义了一个块级框。  </p>
-<h4 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h4><p>元素的行为类似于块元素，并根据弹性盒子（flexbox）模型布局其内容。  </p>
-<h4 id="grid"><a href="#grid" class="headerlink" title="grid"></a>grid</h4><p>元素的行为类似于块元素，并根据网格模型（grid model）布局其内容。  </p>
-<h3 id="列表项"><a href="#列表项" class="headerlink" title="列表项"></a>列表项</h3><h4 id="list-item"><a href="#list-item" class="headerlink" title="list-item"></a>list-item</h4><p>使元素表现的像一个列表项。  </p>
-<h3 id="内部选项"><a href="#内部选项" class="headerlink" title="内部选项"></a>内部选项</h3><p>一些标签的默认display属性</p>
-<table>
-<thead>
-<tr>
-<th>display</th>
-<th>html标签</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>table-row-group</td>
-<td><code>&lt;tbody&gt;</code></td>
-</tr>
-<tr>
-<td>table-header-group</td>
-<td><code>&lt;thead&gt;</code></td>
-</tr>
-<tr>
-<td>table-footer-group</td>
-<td><code>&lt;tfoot&gt;</code></td>
-</tr>
-<tr>
-<td>table-row</td>
-<td><code>&lt;tr&gt;</code></td>
-</tr>
-<tr>
-<td>table-cell</td>
-<td><code>&lt;td&gt;</code></td>
-</tr>
-<tr>
-<td>table-column-group</td>
-<td><code>&lt;colgroup&gt;</code></td>
-</tr>
-<tr>
-<td>table-column</td>
-<td><code>&lt;col&gt;</code></td>
-</tr>
-<tr>
-<td>table-caption</td>
-<td><code>&lt;caption&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="盒"><a href="#盒" class="headerlink" title="盒"></a>盒</h3><h4 id="contents"><a href="#contents" class="headerlink" title="contents"></a>contents</h4><p>伪元素</p>
-<h4 id="none"><a href="#none" class="headerlink" title="none"></a>none</h4><p>关闭元素的显示，使其对布局没有影响。  </p>
-<h3 id="遗留"><a href="#遗留" class="headerlink" title="遗留"></a>遗留</h3><p>由于CSS2对display属性采用了单关键字语法，对于相同布局模式的块级和内联级变体，需要单独的关键字。</p>
-<h4 id="inline-block"><a href="#inline-block" class="headerlink" title="inline-block"></a>inline-block</h4><p>相当于 <code>inline flow-root</code></p>
-<h4 id="inline-table"><a href="#inline-table" class="headerlink" title="inline-table"></a>inline-table</h4><p>相当于 <code>inline table</code></p>
-<h4 id="inline-flex"><a href="#inline-flex" class="headerlink" title="inline-flex"></a>inline-flex</h4><p>相当于 <code>inline flex</code></p>
-<h4 id="inline-grid"><a href="#inline-grid" class="headerlink" title="inline-grid"></a>inline-grid</h4><p>相当于 <code>inline grid</code></p>
-<h3 id="全局"><a href="#全局" class="headerlink" title="全局"></a>全局</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">/* Global values */</span></span><br><span class="line">    <span class="attribute">display</span>: inherit;</span><br><span class="line">    <span class="attribute">display</span>: initial;</span><br><span class="line">    <span class="attribute">display</span>: unset;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-    </section>
-    
-    <footer class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</footer>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/03/19/HTML-%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0-%E5%9D%97%E7%8A%B6%E5%85%83%E7%B4%A0/">HTML 行内元素&amp;块状元素</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-03-19T13:09:58.000Z" itemprop="datePublished">2021-03-19</time>
-</span>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="行内元素与块状元素有什么区别"><a href="#行内元素与块状元素有什么区别" class="headerlink" title="行内元素与块状元素有什么区别?"></a>行内元素与块状元素有什么区别?</h2><p>行内元素：会在水平方向排列，不能包含块级元素，设置width无效，height无效（可以设置line-height），margin上下无效，padding上下无效<br>块级元素：各占据一行，垂直方向排列。从新行开始结束接着一个断行  </p>
-<h2 id="列举常用行内与块状元素"><a href="#列举常用行内与块状元素" class="headerlink" title="列举常用行内与块状元素"></a>列举常用行内与块状元素</h2><p>块级元素：div, p, h1-h5, form, ul, li<br>行内元素：span, a, label, input, img, strong, em  </p>
-
-        
-    </section>
-    
-    <footer class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</footer>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/03/19/HTML-html5%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/">HTML html5常用标签</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-03-19T13:08:57.000Z" itemprop="datePublished">2021-03-19</time>
-</span>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h3 id="html5新增的常用标签有哪些"><a href="#html5新增的常用标签有哪些" class="headerlink" title="html5新增的常用标签有哪些"></a>html5新增的常用标签有哪些</h3><p><code>header</code> 定义一个页面或一个区域的头部<br><code>footer</code> 定义一个页面或一个区域的底部<br><code>nav</code> 定义导航链接<br><code>aside</code> 定义页面内容部分的侧边栏<br><code>artical</code> 定义一篇文章<br><code>section</code> 定义一个区域<br><code>hgroup</code> 定义文件中一个区块的相关信息<br><code>figure</code> 定义一组媒体内容以及它们的标题<br><code>dialog</code> 定义一个对话框(会话框)类似微信<br><code>audio</code> 定义声音内容<br><code>video</code> 定义视频内容<br><code>canvas</code> 定义图形<br><code>embed</code> 定义外部交互内容或插件<br><code>mark</code> 定义有记号的文本  </p>
-
-        
-    </section>
-    
-    <footer class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</footer>
-    
-</article>
-
-
-
-
-<nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/blog/page/4/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/3/">3</a><a class="page-number" href="/blog/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/blog/page/6/">6</a><a class="page-number" href="/blog/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/20/">20</a><a class="extend next" rel="next" href="/blog/page/6/">Next &gt;&gt;</a>
-</nav>
-
-
+    </div>
 </div>
+
+        
         <article id="search-result" class="search-result content"></article>
         <footer class="footer">
     
@@ -417,6 +127,7 @@
     <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
     <script type="text/javascript" src="/blog/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
     <script type="text/javascript">
         $(function() {
             var nodes = {

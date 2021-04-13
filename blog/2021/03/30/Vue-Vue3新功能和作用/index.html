@@ -40,13 +40,13 @@
     <nav class="nav-inner">
         
             
-                <li class="nav-item">
+                <li class="nav-item ">
                     <a class="nav-link" href="/blog/">主页</a>
                 </li>
             
         
             
-                <li class="nav-item">
+                <li class="nav-item ">
                     <a class="nav-link" href="/blog/archives">目录</a>
                 </li>
             
@@ -71,7 +71,7 @@
         
 
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Composition-API"><span class="toc-number">1.</span> <span class="toc-text">Composition API</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Composition-API-%E5%A5%BD%E5%A4%84"><span class="toc-number">1.1.</span> <span class="toc-text">Composition API 好处</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Teleport"><span class="toc-number">2.</span> <span class="toc-text">Teleport</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fragments"><span class="toc-number">3.</span> <span class="toc-text">Fragments</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Emits-%E7%BB%84%E4%BB%B6%E9%80%89%E9%A1%B9"><span class="toc-number">4.</span> <span class="toc-text">Emits 组件选项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%A5%E8%87%AA-vue-runtime-core-%E7%9A%84-createRenderer-API-%E5%88%9B%E5%BB%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B2%E6%9F%93%E5%99%A8"><span class="toc-number">5.</span> <span class="toc-text">来自 @vue&#x2F;runtime-core 的 createRenderer API 创建自定义渲染器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E6%96%87%E4%BB%B6%E7%BB%84%E4%BB%B6-Composition-API-%E8%AF%AD%E6%B3%95%E7%B3%96%EF%BC%88-lt-script-setup-gt-%EF%BC%89"><span class="toc-number">6.</span> <span class="toc-text">单文件组件 Composition API 语法糖（&lt;script setup&gt;）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E6%96%87%E4%BB%B6%E7%BB%84%E4%BB%B6%E7%8A%B6%E6%80%81%E9%A9%B1%E5%8A%A8%E7%9A%84-CSS-%E5%8F%98%E9%87%8F-lt-style-vars-gt"><span class="toc-number">7.</span> <span class="toc-text">单文件组件状态驱动的 CSS 变量 (&lt;style vars&gt;)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E6%96%87%E4%BB%B6%E7%BB%84%E4%BB%B6-lt-style-scoped-gt-%E7%8E%B0%E5%9C%A8%E5%8F%AF%E4%BB%A5%E5%8C%85%E5%90%AB%E5%85%A8%E5%B1%80%E8%A7%84%E5%88%99%E6%88%96%E5%8F%AA%E9%92%88%E5%AF%B9%E6%8F%92%E6%A7%BD%E5%86%85%E5%AE%B9%E7%9A%84%E8%A7%84%E5%88%99"><span class="toc-number">8.</span> <span class="toc-text">单文件组件 &lt;style scoped&gt; 现在可以包含全局规则或只针对插槽内容的规则</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC"><span class="toc-number">1.</span> <span class="toc-text">MVC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC-for-Javascript"><span class="toc-number">2.</span> <span class="toc-text">MVC for Javascript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVP"><span class="toc-number">3.</span> <span class="toc-text">MVP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVVM"><span class="toc-number">4.</span> <span class="toc-text">MVVM</span></a></li></ol>
         
         <div id="coffee-content"></div>
     </div>
@@ -79,7 +79,10 @@
 
 </header>
 
-        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
     
     <header class="article-header">
         
@@ -136,7 +139,10 @@
 
 
 
-</div>
+
+        
+            </div>
+        
         <article id="search-result" class="search-result content"></article>
         <footer class="footer">
     
@@ -168,6 +174,7 @@
     <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
     <script type="text/javascript" src="/blog/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
     <script type="text/javascript">
         $(function() {
             var nodes = {

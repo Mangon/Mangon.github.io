@@ -40,13 +40,13 @@
     <nav class="nav-inner">
         
             
-                <li class="nav-item">
+                <li class="nav-item ">
                     <a class="nav-link" href="/blog/">主页</a>
                 </li>
             
         
             
-                <li class="nav-item">
+                <li class="nav-item ">
                     <a class="nav-link" href="/blog/archives">目录</a>
                 </li>
             
@@ -71,7 +71,7 @@
         
 
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSRF%E6%94%BB%E5%87%BB%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">CSRF攻击原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSRF%E9%98%B2%E8%8C%83"><span class="toc-number">2.</span> <span class="toc-text">CSRF防范</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81-HTTP-Referer-%E5%AD%97%E6%AE%B5"><span class="toc-number">2.1.</span> <span class="toc-text">验证 HTTP Referer 字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E8%AF%B7%E6%B1%82%E5%9C%B0%E5%9D%80%E4%B8%AD%E6%B7%BB%E5%8A%A0-token-%E5%B9%B6%E9%AA%8C%E8%AF%81"><span class="toc-number">2.2.</span> <span class="toc-text">在请求地址中添加 token 并验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8-HTTP-%E5%A4%B4%E4%B8%AD%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B1%9E%E6%80%A7%E5%B9%B6%E9%AA%8C%E8%AF%81"><span class="toc-number">2.3.</span> <span class="toc-text">在 HTTP 头中自定义属性并验证</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC"><span class="toc-number">1.</span> <span class="toc-text">MVC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC-for-Javascript"><span class="toc-number">2.</span> <span class="toc-text">MVC for Javascript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVP"><span class="toc-number">3.</span> <span class="toc-text">MVP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVVM"><span class="toc-number">4.</span> <span class="toc-text">MVVM</span></a></li></ol>
         
         <div id="coffee-content"></div>
     </div>
@@ -79,7 +79,10 @@
 
 </header>
 
-        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
     
     <header class="article-header">
         
@@ -135,7 +138,10 @@
 
 
 
-</div>
+
+        
+            </div>
+        
         <article id="search-result" class="search-result content"></article>
         <footer class="footer">
     
@@ -167,6 +173,7 @@
     <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
     <script type="text/javascript" src="/blog/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
     <script type="text/javascript">
         $(function() {
             var nodes = {

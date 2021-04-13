@@ -40,13 +40,13 @@
     <nav class="nav-inner">
         
             
-                <li class="nav-item">
+                <li class="nav-item ">
                     <a class="nav-link" href="/blog/">主页</a>
                 </li>
             
         
             
-                <li class="nav-item">
+                <li class="nav-item ">
                     <a class="nav-link" href="/blog/archives">目录</a>
                 </li>
             
@@ -71,7 +71,7 @@
         
 
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery-%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">jQuery 核心函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery-%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">2.</span> <span class="toc-text">jQuery 选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery-%E4%BA%8B%E4%BB%B6%E5%87%BD%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">jQuery 事件函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery-%E6%95%88%E6%9E%9C%E5%87%BD%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">jQuery 效果函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery-%E9%81%8D%E5%8E%86%E5%87%BD%E6%95%B0"><span class="toc-number">5.</span> <span class="toc-text">jQuery 遍历函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery-%E6%96%87%E6%A1%A3%E6%93%8D%E4%BD%9C"><span class="toc-number">6.</span> <span class="toc-text">jQuery 文档操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery-%E5%B1%9E%E6%80%A7%E6%93%8D%E4%BD%9C"><span class="toc-number">7.</span> <span class="toc-text">jQuery 属性操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery-css-%E6%93%8D%E4%BD%9C%E5%87%BD%E6%95%B0"><span class="toc-number">8.</span> <span class="toc-text">jQuery css 操作函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery-%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E5%87%BD%E6%95%B0"><span class="toc-number">9.</span> <span class="toc-text">jQuery 数据操作函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery-AJAX"><span class="toc-number">10.</span> <span class="toc-text">jQuery AJAX</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-AJAX%EF%BC%9F"><span class="toc-number">10.1.</span> <span class="toc-text">什么是 AJAX？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jQuery-AJAX%E6%96%B9%E6%B3%95"><span class="toc-number">10.2.</span> <span class="toc-text">jQuery AJAX方法</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC"><span class="toc-number">1.</span> <span class="toc-text">MVC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC-for-Javascript"><span class="toc-number">2.</span> <span class="toc-text">MVC for Javascript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVP"><span class="toc-number">3.</span> <span class="toc-text">MVP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVVM"><span class="toc-number">4.</span> <span class="toc-text">MVVM</span></a></li></ol>
         
         <div id="coffee-content"></div>
     </div>
@@ -79,7 +79,10 @@
 
 </header>
 
-        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
     
     <header class="article-header">
         
@@ -583,7 +586,7 @@
 </table>
 <h2 id="jQuery-遍历函数"><a href="#jQuery-遍历函数" class="headerlink" title="jQuery 遍历函数"></a>jQuery 遍历函数</h2><p>jQuery 遍历，意为“移动”，用于根据其相对于其他元素的关系来“查找”（或选取）HTML 元素。以某项选择开始，并沿着这个选择移动，直到抵达您期望的元素为止。  </p>
 <p>下图展示了一个家族树。通过 jQuery 遍历，您能够从被选（当前的）元素开始，轻松地在家族树中向上移动（祖先），向下移动（子孙），水平移动（同胞）。这种移动被称为对 DOM 进行遍历。  </p>
-<p><img src="/blog/static/imgs/dom_tree.gif" alt="dom_tree"></p>
+<p><img src="/blog/static/imgs/dom_tree.gif" alt="dom_tree_inner"></p>
 <ul>
 <li>&lt;div> 元素是 &lt;ul> 的父元素，同时是其中所有内容的祖先。</li>
 <li>&lt;ul> 元素是 &lt;li> 元素的父元素，同时是 &lt;div> 的子元素</li>
@@ -1040,7 +1043,10 @@
 
 
 
-</div>
+
+        
+            </div>
+        
         <article id="search-result" class="search-result content"></article>
         <footer class="footer">
     
@@ -1072,6 +1078,7 @@
     <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
     <script type="text/javascript" src="/blog/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
     <script type="text/javascript">
         $(function() {
             var nodes = {

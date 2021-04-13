@@ -40,13 +40,13 @@
     <nav class="nav-inner">
         
             
-                <li class="nav-item active">
+                <li class="nav-item  active ">
                     <a class="nav-link" href="/blog/">主页</a>
                 </li>
             
         
             
-                <li class="nav-item">
+                <li class="nav-item ">
                     <a class="nav-link" href="/blog/archives">目录</a>
                 </li>
             
@@ -67,34 +67,11 @@
     </form>
 </div>        
         
+            
+        
 
         
-            <div class="author-meta">
-                
-                <div class="author-avatar">
-                    <a href="/blog/">
-                        <img src="/blog/images/avatar.jpeg" title="Mangon">
-                    </a>
-                </div>
-                
-                <div class="author-name">Mangon</div>
-                <div class="author-work">Front-End Software Engineer</div>
-                <div class="author-location">
-                    <i class="icon-location vm"></i>
-                    <span class="vm">Beijing, China</span>
-                </div>
-                
-                <div class="author-thread-wrap">
-                    <div class="author-threads clearfix">
-                        
-                        <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
-                        
-                        
-                        
-                    </div>
-                </div>
-                
-            </div>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC"><span class="toc-number">1.</span> <span class="toc-text">MVC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC-for-Javascript"><span class="toc-number">2.</span> <span class="toc-text">MVC for Javascript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVP"><span class="toc-number">3.</span> <span class="toc-text">MVP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVVM"><span class="toc-number">4.</span> <span class="toc-text">MVVM</span></a></li></ol>
         
         <div id="coffee-content"></div>
     </div>
@@ -102,292 +79,23 @@
 
 </header>
 
-        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
         
-        <h1 itemprop="name">
-            <a href="/blog/2021/03/19/HTML-%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A-%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/">HTML 事件绑定&amp;事件委托</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-03-19T07:45:56.000Z" itemprop="datePublished">2021-03-19</time>
-</span>
-
-            
-
+            <div class="home">
+    <div class="bg-home">
+        <div class="realistic original">
+            <h1>青玉案</h1>
+            <p class="author">辛棄疾</p>
+            <p>東風夜放花千樹<br>更吹落<br>星如雨</p>
+            <p>寶馬雕車香滿路</p>
+            <p>鳳簫聲動<br>玉壺光轉<br>壹夜魚龍舞</p>
+            <p>蛾兒雪柳黃金縷<br>笑語盈盈暗香去</p>
+            <p>眾裏尋他千百度</p>
+            <p>驀然回首<br>那人卻在<br>燈火闌珊處</p>
         </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="如何给一个元素绑定事件，分别有几种方式？各有什么好处？"><a href="#如何给一个元素绑定事件，分别有几种方式？各有什么好处？" class="headerlink" title="如何给一个元素绑定事件，分别有几种方式？各有什么好处？"></a>如何给一个元素绑定事件，分别有几种方式？各有什么好处？</h2><ol>
-<li>监听方法绑定方式<br>事件冒泡 事件捕获<br>js事件流是先由window-&gt;document-&gt;body-&gt;div-&gt;(text)触发一遍捕获capture，<br>再由（text）-&gt;div-&gt;body-&gt;document-&gt;window触发一遍冒泡bubbling</li>
-</ol>
-<p>element.addEventListener(type, listener, useCapture);<br>type:事件类型<br>listener:监听方法<br>useCapture:是否捕获，默认false，即在冒泡时触发</p>
-<p>listener的入参event可以获取到event.target event.currentTarget<br>其中，target是真正发生事件的DOM元素，而currentTarget是当前事件发生在哪个DOM元素上。</p>
-<p>优点：</p>
-<ul>
-<li>同时支持捕获和冒泡</li>
-<li>可以同时绑定多个事件</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>旧的IE不支持，需要用attachEvent替代 element.attachEvent(‘onclick’, function(){})</li>
-<li>IE只支持冒泡</li>
-<li>在IE中，this指向window对象而不是当前元素，获取event需要获取window.event</li>
-</ul>
-<ol start="2">
-<li>直接绑定事件方式<br>target.onclick = function(){}<br>缺点：</li>
-</ol>
-<ul>
-<li>只会在事件冒泡中运行，</li>
-<li>一个元素一次只能绑定一个事件处理函数，</li>
-<li>新绑定的事件处理函数会覆盖旧的</li>
-<li>事件对象参数（event）仅非IE浏览器可用</li>
-</ul>
-<p>优点：</p>
-<ul>
-<li>在不同浏览器中表现一致</li>
-<li>this指向当前元素</li>
-</ul>
-<ol start="3">
-<li>直接在元素里使用事件属性<div onclick="func"/>
-
-</li>
-</ol>
-<h2 id="实现一个事件委托（事件代理）"><a href="#实现一个事件委托（事件代理）" class="headerlink" title="实现一个事件委托（事件代理）"></a>实现一个事件委托（事件代理）</h2><p>事件委托就是利用事件冒泡，只指定一个事件处理程序，就可以管理某一类型的所有事件。在JavaScript中，添加到页面上的事件处理程序数量将直接关系到页面的整体运行性能，因为需要不断的与dom节点进行交互，访问dom的次数越多，引起浏览器重绘与重排的次数也就越多，就会延长整个页面的交互就绪时间，这就是为什么性能优化的主要思想之一就是减少DOM操作的原因；如果要用事件委托，就会将所有的操作放到js程序里面，与dom的操作就只需要交互一次，这样就能大大的减少与dom的交互次数，提高性能。  </p>
-<p>事件委托示例：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">&quot;ul1&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;li1&quot;</span>&gt;</span>111<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;li2&quot;</span>&gt;</span>222<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;li3&quot;</span>&gt;</span>333<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;li4&quot;</span>&gt;</span>444<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 非事件委托</span></span></span><br><span class="line"><span class="javascript"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> oUl = <span class="built_in">document</span>.getElementById(<span class="string">&quot;ul1&quot;</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> aLi = oUl.getElementsByTagName(<span class="string">&#x27;li&#x27;</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;aLi.length;i++)&#123;</span></span><br><span class="line"><span class="javascript">        aLi[i].onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="comment">// do something</span></span></span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 事件委托</span></span></span><br><span class="line"><span class="javascript"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> oUl = <span class="built_in">document</span>.getElementById(<span class="string">&quot;ul1&quot;</span>);</span></span><br><span class="line"><span class="javascript">    oUl.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">ev</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> ev = ev || <span class="built_in">window</span>.event;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> target = ev.target || ev.srcElement;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span>(target.nodeName.toLowerCase() == <span class="string">&#x27;li&#x27;</span>)&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">switch</span>(target.id) &#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">case</span> <span class="string">&#x27;li1&#x27;</span>:</span></span><br><span class="line"><span class="javascript">                    <span class="comment">// do something</span></span></span><br><span class="line"><span class="javascript">                    <span class="keyword">break</span>;</span></span><br><span class="line">                    ...</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="event-中的-target-和-currentTarget-有什么区别？"><a href="#event-中的-target-和-currentTarget-有什么区别？" class="headerlink" title="event 中的 target 和 currentTarget 有什么区别？"></a>event 中的 target 和 currentTarget 有什么区别？</h2><p>currentTarget当前所绑定事件的元素</p>
-<p>target当前被点击的元素</p>
-
-        
-    </section>
-    
-    <footer class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</footer>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/03/19/FE-%E8%B7%A8%E5%9F%9F/">FE 跨域</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-03-19T07:37:31.000Z" itemprop="datePublished">2021-03-19</time>
-</span>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h3 id="什么是跨域"><a href="#什么是跨域" class="headerlink" title="什么是跨域?"></a>什么是跨域?</h3><p>只要协议、域名、端口有任何一个不同，都被当作是不同的域，浏览器的同源策略导致无法直接跨域发送请求。<br>DOM同源策略：禁止对不同源页面DOM进行操作。这里主要场景是iframe跨域的情况，不同域名的iframe是限制互相访问的。<br>XmlHttpRequest同源策略：禁止使用XHR对象向不同源的服务器地址发起HTTP请求</p>
-<h3 id="跨域的方法有哪些？"><a href="#跨域的方法有哪些？" class="headerlink" title="跨域的方法有哪些？"></a>跨域的方法有哪些？</h3><p>跨域的方法：</p>
-<ol>
-<li>CORS-跨域资源共享<br>CORS是一个W3C标准，全称是”跨域资源共享”（Cross-origin resource sharing).<br>客户端： <code>xhr.withCredentials = true;</code><br>服务器端：</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Access-Control-Allow-Origin: http:&#x2F;&#x2F;www.yourhost.com</span><br><span class="line">Access-Control-Allow-Credentials:true</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>jsonp<br>jsonp就是利用 <code>&lt;script\&gt;</code> 标签没有跨域限制的要求来达到与第三方通讯的目的。当需要通讯时，本站脚本创建一个 <code>&lt;script\&gt;</code> 元素，地址指向第三方的API网址，形如：</li>
-</ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;http://www.example.net/api?param1=1&amp;param2=2&amp;func=callback&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>并提供一个回调函数来接收数据（函数名可约定，或通过地址参数传递）。<br>第三方产生的响应为json数据的包装（故称之为jsonp，即json padding），形如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">callback(&#123;<span class="string">&quot;name&quot;</span>:<span class="string">&quot;hax&quot;</span>,<span class="string">&quot;gender&quot;</span>:<span class="string">&quot;Male&quot;</span>&#125;)</span><br></pre></td></tr></table></figure>
-<p>这样浏览器会调用 callback 函数，并传递解析后 json 对象作为参数。本站脚本可在 callback 函数里处理所传入的数据。</p>
-<p>客户端实现：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> url=<span class="string">&quot;http://www.x.com/test?a=1&amp;callback=test&quot;</span>;</span><br><span class="line"><span class="comment">// 然后前端通过script标签去访问并执行，上面的东西</span></span><br><span class="line"><span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">&#x27;script&#x27;</span>);</span><br><span class="line">script.setAttribute(<span class="string">&#x27;src&#x27;</span>, url);</span><br><span class="line"><span class="comment">// 把script标签加入head，此时调用开始</span></span><br><span class="line"><span class="built_in">document</span>.getElementsByTagName(<span class="string">&#x27;head&#x27;</span>)[<span class="number">0</span>].appendChild(script); </span><br><span class="line"><span class="comment">// 然后就会调用页面的test方法</span></span><br><span class="line"><span class="comment">// test(&#123;&#125;)</span></span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li><p>服务器代理<br>浏览器有跨域限制，但是服务器不存在跨域问题，所以可以由服务器请求所要域的资源再返回给客户端。</p>
-</li>
-<li><p><code>document.domain</code> 来跨子域<br>对于主域名相同，而子域名不同的情况，可以使用 <code>document.domain</code> 来跨域</p>
-</li>
-<li><p>使用 <code>window.name</code> 来进行跨域<br>window对象有个name属性，该属性有个特征：即在一个窗口(window)的生命周期内,窗口载入的所有的页面都是共享一个window.name的，每个页面对window.name都有读写的权限，window.name是持久存在一个窗口载入过的所有页面中的</p>
-</li>
-<li><p>使用 postMessage 实现页面之间通信<br>window.postMessage是一个HTML5的api，允许两个窗口之间进行跨域发送消息。</p>
-</li>
-</ol>
-
-        
-    </section>
-    
-    <footer class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</footer>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/03/19/HTML-cookie%E3%80%81sessionStorage%E3%80%81localStorage%E5%8C%BA%E5%88%AB%E4%B8%8E%E4%BD%9C%E7%94%A8/">HTML cookie、sessionStorage、localStorage区别与作用</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-03-19T07:36:17.000Z" itemprop="datePublished">2021-03-19</time>
-</span>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>相同点：  </p>
-<ol>
-<li>都是客户端临时信息对象</li>
-<li>只能存储字符串类型对象</li>
-</ol>
-<p>不同点：   </p>
-<ol>
-<li>生命周期不同，cookie可以设置过期时间，localStorage始终有效，sessionStorage在关闭窗口后失效</li>
-<li>cookie的主要内容包括：名字、值、过期时间、路径和域,有路径的概念，可以限制cookie只属于某个路径下</li>
-<li>存储大小限制不同，cookie 4k localStorage/sessionStorage 5M</li>
-<li>cookie始终在http请求中携带，Web Storage仅在本地保存</li>
-<li>作用域不同，sessionStorage在不同的浏览器窗口中不共享，即使是同一个页面，localStorage/cookie在所有同源的窗口中是共享的。</li>
-<li>Web Storage 有API setItem getItem removeItem clear， cookie需要自己解析</li>
-<li>document.cookie window.localStorage window.sessionStorage</li>
-<li>web storage是html5引入的，部分老旧浏览器不支持</li>
-</ol>
-
-        
-    </section>
-    
-    <footer class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</footer>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/03/19/FE-%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93html%E7%9A%84%E8%BF%87%E7%A8%8B/">FE 页面渲染html的过程</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-03-19T07:34:27.000Z" itemprop="datePublished">2021-03-19</time>
-</span>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>浏览器渲染页面的一般过程：</p>
-<p>1.浏览器解析html源码，然后创建一个 DOM树。并行请求 css/image/js在DOM树中，每一个HTML标签都有一个对应的节点，并且每一个文本也都会有一个对应的文本节点。DOM树的根节点就是 documentElement，对应的是html标签。</p>
-<p>2.浏览器解析CSS代码，计算出最终的样式数据。构建CSSOM树。对CSS代码中非法的语法它会直接忽略掉。解析CSS的时候会按照如下顺序来定义优先级：浏览器默认设置 &lt; 用户设置 &lt; 外链样式 &lt; 内联样式 &lt; html中的style。</p>
-<p>3.DOM Tree + CSSOM –&gt; 渲染树（rendering tree）。渲染树和DOM树有点像，但是是有区别的。</p>
-<p>DOM树完全和html标签一一对应，但是渲染树会忽略掉不需要渲染的元素，比如head、display:none的元素等。而且一大段文本中的每一个行在渲染树中都是独立的一个节点。渲染树中的每一个节点都存储有对应的css属性。</p>
-<p>4.一旦渲染树创建好了，浏览器就可以根据渲染树直接把页面绘制到屏幕上。</p>
-<p>以上四个步骤并不是一次性顺序完成的。如果DOM或者CSSOM被修改，以上过程会被重复执行。实际上，CSS和JavaScript往往会多次修改DOM或者CSSOM。</p>
-
-        
-    </section>
-    
-    <footer class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</footer>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/03/19/CSS-%E4%BC%AA%E5%85%83%E7%B4%A0-%E4%BC%AA%E7%B1%BB/">CSS 伪元素&amp;伪类</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-03-19T07:31:18.000Z" itemprop="datePublished">2021-03-19</time>
-</span>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="伪元素"><a href="#伪元素" class="headerlink" title="伪元素"></a>伪元素</h2><p>CSS伪元素(pseudo-elements)创建了一个有内容的虚拟容器，用于向某些选择器设置特殊效果<br>用法 <code>selector:pseudo-element &#123;property: value;&#125;</code>  </p>
-<p><code>::first-line</code> : 用于向文本的首行设置特殊样式<br><code>::first-letter</code> : 用于向文本的首字母设置特殊样式<br><code>::before</code> : 可以在元素的内容前面插入新内容<br><code>::after</code> : 可以在元素的内容之后插入新内容  </p>
-<h2 id="伪类"><a href="#伪类" class="headerlink" title="伪类"></a>伪类</h2><p>CSS伪类(pseudo-classes)为了弥补常规CSS选择器的不足，以便获取到更多信息，用于向某些选择器添加特殊的效果<br>用法 <code>selector:pseudo-class &#123;property: value;&#125;</code>  </p>
-<p><code>:active</code> : 向被激活的元素添加样式<br><code>:focus</code> : 向拥有键盘输入焦点的元素添加样式<br><code>:hover</code> : 当鼠标悬浮在元素上方时，向元素添加样式<br><code>:link</code> : 向未被访问的链接添加样式<br><code>:visited</code> : 向已被访问的链接添加样式<br><code>:first-child</code> : 向元素的第一个子元素添加样式<br><code>:lang(language)</code> : 向带有指定 lang 属性的元素添加样式  </p>
-<p>其它CSS3伪类参见 <a href="blog/2018/09/03/CSS选择器参考手册/">CSS选择器参考手册</a>  </p>
-
-        
-    </section>
-    
-    <footer class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</footer>
-    
-</article>
-
-
-
-
-<nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/blog/page/6/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/5/">5</a><a class="page-number" href="/blog/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/blog/page/8/">8</a><a class="page-number" href="/blog/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/20/">20</a><a class="extend next" rel="next" href="/blog/page/8/">Next &gt;&gt;</a>
-</nav>
-
-
+    </div>
 </div>
+
+        
         <article id="search-result" class="search-result content"></article>
         <footer class="footer">
     
@@ -419,6 +127,7 @@
     <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
     <script type="text/javascript" src="/blog/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
     <script type="text/javascript">
         $(function() {
             var nodes = {

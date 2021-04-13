@@ -40,13 +40,13 @@
     <nav class="nav-inner">
         
             
-                <li class="nav-item">
+                <li class="nav-item ">
                     <a class="nav-link" href="/blog/">主页</a>
                 </li>
             
         
             
-                <li class="nav-item">
+                <li class="nav-item ">
                     <a class="nav-link" href="/blog/archives">目录</a>
                 </li>
             
@@ -71,7 +71,7 @@
         
 
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4v-if-v-show%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">指令v-if v-show有什么不同？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E5%87%BA-normalizeProps-%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">写出 normalizeProps 方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-data-%E9%9C%80%E8%A6%81%E5%86%99%E6%88%90%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">为什么 data 需要写成一个函数？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%BB%AC%E8%83%BD%E5%A4%9F%E4%BD%BF%E7%94%A8-props-%E5%88%9D%E5%A7%8B%E5%8C%96-data-%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="toc-number">4.</span> <span class="toc-text">为什么我们能够使用 props 初始化 data 中的数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E5%86%99%E6%88%90%E6%95%B0%E7%BB%84%E5%BD%A2%E5%BC%8F%EF%BC%9F%E5%A6%82%E6%9E%9C%E5%8F%AF%E4%BB%A5%E9%82%A3%E4%B9%88%E5%B0%86%E4%BB%A5%E4%BB%80%E4%B9%88%E9%A1%BA%E5%BA%8F%E6%89%A7%E8%A1%8C%EF%BC%9F%E5%A6%82%E6%9E%9C%E4%B8%8D%E5%8F%AF%E4%BB%A5%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E5%8F%AF%E4%BB%A5%EF%BC%9F"><span class="toc-number">5.</span> <span class="toc-text">生命周期钩子是否可以写成数组形式？如果可以那么将以什么顺序执行？如果不可以为什么不可以？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vm-options-parent%E5%92%8C-vm-parent-%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F"><span class="toc-number">6.</span> <span class="toc-text">vm.$options.parent和 vm.$parent 有什么不同？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue%E6%BA%90%E7%A0%81%E4%B8%AD%E5%A4%A7%E9%87%8F%E7%94%A8%E5%88%B0%E4%BA%86-Object-create-null-%EF%BC%8CObject-create-null-%E5%92%8C-new-Object-%E5%8F%8A%E5%AF%B9%E8%B1%A1%E7%9B%B4%E6%8E%A5%E9%87%8F-%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F"><span class="toc-number">7.</span> <span class="toc-text">vue源码中大量用到了 Object.create(null)，Object.create(null) 和 new Object() 及对象直接量{}有什么不同？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue-%E6%98%AF%E9%80%9A%E8%BF%87%E4%BB%80%E4%B9%88%E6%96%B9%E6%B3%95%E6%9D%A5%E5%AE%9E%E7%8E%B0%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E7%B3%BB%E7%BB%9F%E7%9A%84%EF%BC%9F"><span class="toc-number">8.</span> <span class="toc-text">Vue 是通过什么方法来实现数据响应系统的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%AA%E4%BA%9B%E6%95%B0%E6%8D%AE%E5%8F%98%E5%8C%96%E6%83%85%E5%86%B5%E6%97%A0%E6%B3%95%E8%A2%AB-Vue-%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%A7%82%E6%B5%8B%E5%88%B0%EF%BC%8C%E5%BA%94%E8%AF%A5%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%EF%BC%9F"><span class="toc-number">9.</span> <span class="toc-text">哪些数据变化情况无法被 Vue 的响应式系统观测到，应该如何处理？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue%E4%B8%8D%E5%90%8C%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E5%A6%82%E4%BD%95%E9%80%9A%E4%BF%A1"><span class="toc-number">10.</span> <span class="toc-text">vue不同组件之间如何通信?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue3-%E5%92%8C-vue2-%E7%9B%B8%E6%AF%94%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F"><span class="toc-number">11.</span> <span class="toc-text">vue3 和 vue2 相比有什么不同？</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC"><span class="toc-number">1.</span> <span class="toc-text">MVC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC-for-Javascript"><span class="toc-number">2.</span> <span class="toc-text">MVC for Javascript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVP"><span class="toc-number">3.</span> <span class="toc-text">MVP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVVM"><span class="toc-number">4.</span> <span class="toc-text">MVVM</span></a></li></ol>
         
         <div id="coffee-content"></div>
     </div>
@@ -79,7 +79,10 @@
 
 </header>
 
-        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
     
     <header class="article-header">
         
@@ -170,7 +173,10 @@
 
 
 
-</div>
+
+        
+            </div>
+        
         <article id="search-result" class="search-result content"></article>
         <footer class="footer">
     
@@ -202,6 +208,7 @@
     <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
     <script type="text/javascript" src="/blog/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
     <script type="text/javascript">
         $(function() {
             var nodes = {

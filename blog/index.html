@@ -40,13 +40,13 @@
     <nav class="nav-inner">
         
             
-                <li class="nav-item active">
+                <li class="nav-item  active ">
                     <a class="nav-link" href="/blog/">主页</a>
                 </li>
             
         
             
-                <li class="nav-item">
+                <li class="nav-item ">
                     <a class="nav-link" href="/blog/archives">目录</a>
                 </li>
             
@@ -67,34 +67,11 @@
     </form>
 </div>        
         
+            
+        
 
         
-            <div class="author-meta">
-                
-                <div class="author-avatar">
-                    <a href="/blog/">
-                        <img src="/blog/images/avatar.jpeg" title="Mangon">
-                    </a>
-                </div>
-                
-                <div class="author-name">Mangon</div>
-                <div class="author-work">Front-End Software Engineer</div>
-                <div class="author-location">
-                    <i class="icon-location vm"></i>
-                    <span class="vm">Beijing, China</span>
-                </div>
-                
-                <div class="author-thread-wrap">
-                    <div class="author-threads clearfix">
-                        
-                        <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
-                        
-                        
-                        
-                    </div>
-                </div>
-                
-            </div>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC"><span class="toc-number">1.</span> <span class="toc-text">MVC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC-for-Javascript"><span class="toc-number">2.</span> <span class="toc-text">MVC for Javascript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVP"><span class="toc-number">3.</span> <span class="toc-text">MVP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVVM"><span class="toc-number">4.</span> <span class="toc-text">MVVM</span></a></li></ol>
         
         <div id="coffee-content"></div>
     </div>
@@ -102,498 +79,23 @@
 
 </header>
 
-        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
         
-        <h1 itemprop="name">
-            <a href="/blog/2021/04/07/FE-MVC-MVP-MVVM/">FE-MVC MVP MVVM</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-04-07T04:00:56.000Z" itemprop="datePublished">2021-04-07</time>
-</span>
-
-            
-
+            <div class="home">
+    <div class="bg-home">
+        <div class="realistic original">
+            <h1>青玉案</h1>
+            <p class="author">辛棄疾</p>
+            <p>東風夜放花千樹<br>更吹落<br>星如雨</p>
+            <p>寶馬雕車香滿路</p>
+            <p>鳳簫聲動<br>玉壺光轉<br>壹夜魚龍舞</p>
+            <p>蛾兒雪柳黃金縷<br>笑語盈盈暗香去</p>
+            <p>眾裏尋他千百度</p>
+            <p>驀然回首<br>那人卻在<br>燈火闌珊處</p>
         </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <link rel="stylesheet" href="/blog/static/css/common.css"></link>
-
-<h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>MVC最初是在研究Smalltalk-80（1979年）期间设计出来的，恐怕没有一本书能够回到计算机石器时代介绍一下Smalltalk的代码是如何实现MVC的，不仅如此，连想搞清楚当时的应用场景都很难了，都要追溯到80后出生以前的事了。在1995年出版的《设计模式：可复用面向对象软件的基础》对MVC进行了深入的阐述，在推广使用方面发挥了重要作用。  </p>
-<p>MVC包括三类对象，将他们分离以提高灵活性和复用性。</p>
-<ul>
-<li><p>模型 model 用于封装与应用程序的业务逻辑相关的数据以及对数据的处理方法，会有一个或多个视图监听此模型。一旦模型的数据发生变化，模型将通知有关的视图。</p>
-</li>
-<li><p>视图 view 是它在屏幕上的表示，描绘的是model的当前状态。当模型的数据发生变化，视图相应地得到刷新自己的机会。</p>
-</li>
-<li><p>控制器 controller 定义用户界面对用户输入的响应方式，起到不同层面间的组织作用，用于控制应用程序的流程，它处理用户的行为和数据model上的改变。</p>
-</li>
-</ul>
-<p><img src="/blog/static/imgs/typicalMVC.png" alt="经典MVC模式inner"></p>
-<p class="caption">经典MVC模式</p>
-
-<p>实线：方法调用 虚线：事件通知</p>
-<p>其中涉及两种设计模式：  </p>
-<ul>
-<li>view和model之间的观察者模式，view观察model，事先在此model上注册，以便view可以了解在数据model上发生的改变</li>
-<li>view和controller之间的策略模式</li>
-</ul>
-<p>一个策略是一个表述算法的对象，MVC允许在不改变视图外观的情况下改变视图对用户输入的响应方式。例如，你可能希望改变视图对键盘的响应方式，或希望使用弹出菜单而不是原来的命令键方式。MVC将响应机制封装在controller对象中。存在着一个controller的类层次结构，使得可以方便地对原有的controller做适当改变而创建新的controller。  </p>
-<p>view使用controller子类的实例来实现一个特定的响应策略。要实现不同的响应的策略只要用不同种类的controller实例替换即可。甚至可以在运行时刻通过改变view的controller来改变用户输入的响应方式。例如，一个view可以被禁止接受任何输入，只需给他一个忽略输入事件的controller。  </p>
-<h2 id="MVC-for-Javascript"><a href="#MVC-for-Javascript" class="headerlink" title="MVC for Javascript"></a>MVC for Javascript</h2><p><img src="/blog/static/imgs/javascriptMVC.png" alt="javascript MVC模式inner"></p>
-<p class="caption">javascript MVC模式</p>
-
-<p>如图所示，view承接了部分controller的功能，负责处理用户输入，但是不必了解下一步做什么。它依赖于一个controller为她做决定或处理用户事件。事实上，前端的view已经具备了独立处理用户事件的能力，如果每个事件都要流经controller，势必增加复杂性。同时，view也可以委托controller处理model的更改。model数据变化后通知view进行更新，显示给用户。这个过程是一个圆，一个循环的过程。  </p>
-<p>这种从经典MVC到Javascript MVC的1对1转化，导致控制器的角色有点尴尬。MVC这样的结构的正确性在于，任何界面都需要面对一个用户，而controller “是用户和系统之间的链接”。在经典MVC中，controller要做的事情多数是派发用户输入给不同的view，并且在必要的时候从view中获取用户输入来更改model，而Web以及绝大多数现在的UI系统中，controller的职责已经被系统实现了。由于某种原因，控制器和视图的分界线越来越模糊，也有认为，view启动了action理论上应该把view归属于controller。比如在Backbone中，Backbone.View和Backbone.Router一起承担了controller的责任。这就为MVC中controller的衍变埋下了伏笔。  </p>
-<h2 id="MVP"><a href="#MVP" class="headerlink" title="MVP"></a>MVP</h2><p>MVP（model-view-Presenter）是经典MVC设计模式的一种衍生模式，是在1990年代Taligent公司创造的，一个用于C++ CommonPoint的模型。背景上不再考证，直接上图看一下与MVC的不同。  </p>
-<p><img src="/blog/static/imgs/mvp.png" alt="MVP模式inner"></p>
-<p class="caption">MVP模式</p>
-
-<p>经典MVC中，一对controller-view捆绑起来表示一个ui组件，controller直接接受用户输入，并将输入转为相应命令来调用model的接口，对model的状态进行修改，最后通过观察者模式对view进行重新渲染。  </p>
-<p>进化为MVP的切入点是修改controller-view的捆绑关系，为了解决controller-view的捆绑关系，将进行改造，使view不仅拥有UI组件的结构，还拥有处理用户事件的能力，这样就能将controller独立出来。为了对用户事件进行统一管理，view只负责将用户产生的事件传递给controller，由controller来统一处理，这样的好处是多个view可共用同一个controller。此时的controller也由组件级别上升到了应用级别，然而更新view的方式仍然与经典MVC一样：通过Presenter更新model，通过观察者模式更新view。  </p>
-<p>另一个显而易见的不同在于，MVC是一个圆，一个循环的过程，但MVP不是，依赖Presenter作为核心，负责从model中拿数据，填充到view中。常见的MVP的实现是被动视图(passive view),Presenter观察model，不再是view观察model，一旦model发生变化，就会更新view。Presenter有效地绑定了model到view。view暴露了setters接口以便Presenter可以设置数据。对于这种被动视图的结构，没有直接数据绑定的概念。但是他的好处是在view和model直接提供更清晰的分离。但是由于缺乏数据绑定支持，意味着不得不单独关注某个任务。在MVP里，应用程序的逻辑主要在Presenter来实现，其中的view是很薄的一层。  </p>
-<h2 id="MVVM"><a href="#MVVM" class="headerlink" title="MVVM"></a>MVVM</h2><p>MVVM，Model-View-ViewModel，最初是由微软在使用Windows Presentation Foundation和SilverLight时定义的，2005年John Grossman在一篇关于Avalon（WPF 的代号）的博客文章中正式宣布了它的存在。其中最重要的特性之一就是数据绑定，Data-binding。  </p>
-<p><img src="/blog/static/imgs/mvvm.png" alt="MVVM模式inner"></p>
-<p class="caption">MVVM模式</p>
-
-<p>首先，view和model是不知道彼此存在的，同MVP一样，将view和model清晰地分离开来。 其次，view是对viewmodel的外在显示，与viewmodel保持同步，viewmodel对象可以看作是view的上下文。view绑定到viewmodel的属性上，如果viewmodel中的属性值变化了，这些新值通过数据绑定会自动传递给view。反过来viewmodel会暴露model中的数据和特定状态给view。 所以，view不知道model的存在，viewmodel和model也觉察不到view。事实上，model也完全忽略viewmodel和view的存在。这是一个非常松散耦合的设计。  </p>
-
-        
-    </section>
-    
-    <footer class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</footer>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/04/06/JS-%E5%A6%82%E4%BD%95%E5%9C%A8ES6%E4%B8%AD%E7%AE%A1%E7%90%86%E7%B1%BB%E7%9A%84%E7%A7%81%E6%9C%89%E6%95%B0%E6%8D%AE/">JS-如何在ES6中管理类的私有数据</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-04-06T10:49:11.000Z" itemprop="datePublished">2021-04-06</time>
-</span>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>原文：<a target="_blank" rel="noopener" href="http://www.2ality.com/2016/01/private-data-classes.html">http://www.2ality.com/2016/01/private-data-classes.html</a></p>
-<p>如何在ES6中管理类的私有数据？本文为你介绍四种方法：  </p>
-<ul>
-<li>在类的构造函数作用域中处理私有数据成员</li>
-<li>遵照命名约定（例如前置下划线）标记私有属性</li>
-<li>将私有数据保存在WeakMap中</li>
-<li>使用Symbol作为私有属性的键</li>
-</ul>
-<p>对构造函数来说，前两种方法在 ES5 中已经很常见了，后两种方法是 ES6 中新出现的。现在我们在同一个案例上分别用这四种方法来实践一下：  </p>
-<h2 id="1-在类的构造函数作用域中处理私有数据成员"><a href="#1-在类的构造函数作用域中处理私有数据成员" class="headerlink" title="1. 在类的构造函数作用域中处理私有数据成员"></a>1. 在类的构造函数作用域中处理私有数据成员</h2><p>我们要演示的这段代码是一个名为 <code>Countdown</code> 的类在 <code>counter</code>（初始值为 counter）变成0时触发一个名为 <code>action</code> 的回调函数。其中 <code>action</code> 和 <code>counter</code> 两个参数应被存储为私有数据。  </p>
-<p>在这个实现方案中，我们将 <code>action</code> 和 <code>counter</code> 存储在 <code>constructor</code> 这个类的环境里面。环境是指JS引擎存储参数和本地变量的内部数据结构，变量存在即可，无论是否进入一个新的作用域（例如通过一个函数调用或者一个类调用）。来看看代码：  </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Countdown</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">counter, action</span>)</span> &#123;</span><br><span class="line">        <span class="built_in">Object</span>.assign(<span class="built_in">this</span>, &#123;</span><br><span class="line">            <span class="function"><span class="title">dec</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (counter &lt; <span class="number">1</span>) <span class="keyword">return</span>;</span><br><span class="line">                counter--;</span><br><span class="line">                <span class="keyword">if</span> (counter === <span class="number">0</span>) &#123;</span><br><span class="line">                    action();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后这样使用 Countdown：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">let</span> c = <span class="keyword">new</span> Countdown(<span class="number">2</span>, <span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;DONE&#x27;</span>));</span><br><span class="line">&gt; c.dec();</span><br><span class="line">&gt; c.dec();</span><br><span class="line">DONE</span><br></pre></td></tr></table></figure>
-<p>优点：</p>
-<ul>
-<li>私有数据非常安全；</li>
-<li>私有属性的命名不会与其他父类或子类的私有属性命名冲突。</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>当你需要在构造函数内把所有方法（至少那些需要用到私有数据的方法）添加到实例的时候，代码看起来就没那么优雅了；</li>
-<li>作为实例方法，代码会浪费内存；如果作为原型方法，则会被共享。</li>
-</ul>
-<p>关于此方法的更多内容请参考：《Speaking Javascript》的 <a target="_blank" rel="noopener" href="http://speakingjs.com/es5/ch17.html#private_data_constructor_environment">Private Data in the Environment of a Constructor (Crockford Privacy Pattern)</a> (构造函数环境中的私有数据)章节。  </p>
-<h2 id="2-通过命名约定来标记私有属性"><a href="#2-通过命名约定来标记私有属性" class="headerlink" title="2. 通过命名约定来标记私有属性"></a>2. 通过命名约定来标记私有属性</h2><p>下面的代码将私有数据保存在添加了前置下划线命名的属性中：  </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Countdown</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">counter, action</span>)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>._counter = counter;</span><br><span class="line">        <span class="built_in">this</span>._action = action;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">dec</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>._counter &lt; <span class="number">1</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="built_in">this</span>._counter--;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>._counter === <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="built_in">this</span>._action();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>优点：</p>
-<ul>
-<li>代码比较美观；</li>
-<li>可以使用原型方法。</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>不够安全，只能用规范去约束用户代码；</li>
-<li>私有属性的命名容易冲突。</li>
-</ul>
-<h2 id="3-通过-WeakMaps-保存私有数据"><a href="#3-通过-WeakMaps-保存私有数据" class="headerlink" title="3. 通过 WeakMaps 保存私有数据"></a>3. 通过 WeakMaps 保存私有数据</h2><p>有一个利用 WeakMap 的小技巧，结合了方法一和方法二各自的优点：安全性和能够使用原型方法。可以参考以下代码：我们利用 <code>_counter</code> 和 <code>_action</code> 两个WeakMap来存储私有数据。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> _counter = <span class="keyword">new</span> <span class="built_in">WeakMap</span>();</span><br><span class="line"><span class="keyword">let</span> _action = <span class="keyword">new</span> <span class="built_in">WeakMap</span>();</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Countdown</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">counter, action</span>)</span> &#123;</span><br><span class="line">        _counter.set(<span class="built_in">this</span>, counter);</span><br><span class="line">        _action.set(<span class="built_in">this</span>, action);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">dec</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> counter = _counter.get(<span class="built_in">this</span>);</span><br><span class="line">        <span class="keyword">if</span> (counter &lt; <span class="number">1</span>) <span class="keyword">return</span>;</span><br><span class="line">        counter--;</span><br><span class="line">        _counter.set(<span class="built_in">this</span>, counter);</span><br><span class="line">        <span class="keyword">if</span> (counter === <span class="number">0</span>) &#123;</span><br><span class="line">            _action.get(<span class="built_in">this</span>)();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>_counter</code> 和 <code>_action</code> 这两个 WeakMap 都分别指向各自的私有数据。由于 WeakMap 的设计目的在于键名是对象的弱引用，其所对应的对象可能会被自动回收，只要不暴露 WeakMap ，私有数据就是安全的。如果想要更加保险一点，可以将 <code>WeakMap.prototype.get</code> 和 <code>WeakMap.prototype.set</code> 存储起来再调用（动态地代替方法）。这样即使有恶意代码篡改了可以窥探到私有数据的方法，我们的代码也不会受到影响。但是，我们只保护我们的代码不受在其之后执行的代码的干扰，并不能防御先于我们代码执行的代码。  </p>
-<p>优点：</p>
-<ul>
-<li>可以使用原型方法；</li>
-<li>比属性命名约定更加安全；</li>
-<li>私有属性命名不会冲突。</li>
-</ul>
-<p>缺点:</p>
-<ul>
-<li>代码不如命名约定优雅。</li>
-</ul>
-<h2 id="4-使用Symbol作为私有属性的键名"><a href="#4-使用Symbol作为私有属性的键名" class="headerlink" title="4. 使用Symbol作为私有属性的键名"></a>4. 使用Symbol作为私有属性的键名</h2><p>另外一个存储私有数据的方式是用 Symbol 作为其属性的键名：  </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> _counter = <span class="built_in">Symbol</span>(<span class="string">&#x27;counter&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> _action = <span class="built_in">Symbol</span>(<span class="string">&#x27;action&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Countdown</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">counter, action</span>)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>[_counter] = counter;</span><br><span class="line">        <span class="built_in">this</span>[_action] = action;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">dec</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>[_counter] &lt; <span class="number">1</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="built_in">this</span>[_counter]--;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>[_counter] === <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="built_in">this</span>[_action]();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>每一个 Symbol 都是唯一的，这就是为什么使用 Symbol 的属性键名之间不会冲突的原因。并且，Symbol 某种程度上来说是隐式的，但也并不完全是：  </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> c = <span class="keyword">new</span> Countdown(<span class="number">2</span>, <span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;DONE&#x27;</span>));</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.keys(c));</span><br><span class="line"><span class="comment">// []</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Reflect</span>.ownKeys(c));</span><br><span class="line"><span class="comment">// [Symbol(counter), Symbol(action)]</span></span><br></pre></td></tr></table></figure>
-<p>优点：</p>
-<ul>
-<li>可以使用原型方法；</li>
-<li>私有属性命名不会冲突。</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>代码不如命名约定优雅；</li>
-<li>不太安全：可以通过 Reflect.ownKeys() 列出一个对象所有的属性键名（即使用了 Symbol）。</li>
-</ul>
-<p>延伸阅读：  </p>
-<p>Sect. <a target="_blank" rel="noopener" href="http://speakingjs.com/es5/ch17.html#private_data_for_objects">“Keeping Data Private”</a> in “Speaking JavaScript” (covers ES5 techniques)<br>Chap. <a target="_blank" rel="noopener" href="http://exploringjs.com/es6/ch_classes.html">“Classes”</a> in “Exploring ES6”<br>Chap. <a target="_blank" rel="noopener" href="http://exploringjs.com/es6/ch_symbols.html">“Symbols”</a> in “Exploring ES6”</p>
-
-        
-    </section>
-    
-    <footer class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</footer>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/04/01/FE-Sass%E3%80%81Less%E5%92%8CStylus%E7%9A%84%E4%BD%9C%E7%94%A8%E5%92%8C%E5%8C%BA%E5%88%AB/">FE-Sass、Scss、Less和Stylus的作用和区别</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-04-01T12:37:20.000Z" itemprop="datePublished">2021-04-01</time>
-</span>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="CSS-预处理器"><a href="#CSS-预处理器" class="headerlink" title="CSS 预处理器"></a>CSS 预处理器</h2><p><a target="_blank" rel="noopener" href="https://github.com/sass/sass">Sass</a> (Syntactically Awesome StyleSheets)，是由Ruby语言编写的一款css预处理语言，诞生于2007年，有着严格的缩进风格。官方样式库为 <a target="_blank" rel="noopener" href="http://compass-style.org/">Compass</a>。  </p>
-<p>Scss (Sassy CSS)，一款css预处理语言，SCSS 是 Sass 3 引入新的语法，其语法完全兼容 CSS3，并且继承了 Sass 的强大功能。SCSS 需要使用分号和花括号而不是换行和缩进。SCSS 对空白符号不敏感。兼容CSS。  </p>
-<p><a target="_blank" rel="noopener" href="https://github.com/less/less.js">Less</a> 是由 <a target="_blank" rel="noopener" href="https://github.com/cloudhead">Alexis Sellier</a>于2009年编写的一个CSS 预处理器，最开始由 Ruby 书写，后来改为 JavaScript。Less 由 Sass 启发，语法更接近于CSS，完全兼容CSS。  </p>
-<p><a target="_blank" rel="noopener" href="https://github.com/stylus/stylus">Stylus</a> 是由 <a target="_blank" rel="noopener" href="https://github.com/tj">TJ Holowaychuk</a> 编写的一款CSS预处理器，诞生于2010年。官方样式库为 <a target="_blank" rel="noopener" href="https://github.com/stylus/nib">nib</a>  </p>
-<p>这些CSS预处理器都支持一些常用的CSS语法扩展，比如<br>变量 (variables)、嵌套 (nested rules)、混合 (mixins)、继承(extends)、导入 (imports)、函数（functions）<br>但在语法和功能性上有些许差异。  </p>
-<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><p>Scss 优点：功能更强大，文档丰富，缺点：在国内使用较少，安装不太方便<br>Less 优点：语法简单，国内使用量较多 缺点：功能支持上不丰富<br>Stylus 优点：功能强大，语法简洁，框架较新，社区活跃，缺点：与原生css语法差异较大</p>
-<h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><p>Less &amp; Scss：</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Sass &amp; Stylus:</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span></span><br><span class="line">  <span class="attribute">display</span>: block</span><br></pre></td></tr></table></figure>
-<h2 id="嵌套语法-nested-rule"><a href="#嵌套语法-nested-rule" class="headerlink" title="嵌套语法 nested rule"></a>嵌套语法 nested rule</h2><p>三者的嵌套语法都是一致的，引用父级选择器的标记均为 <code>&amp;</code> 以 less 为例。</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.a</span> &#123;</span><br><span class="line">  <span class="selector-tag">&amp;</span><span class="selector-class">.b</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Scss支持属性嵌套：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.funky</span> &#123;</span><br><span class="line">  <span class="attribute">font</span>: &#123;</span><br><span class="line">    family: fantasy;</span><br><span class="line">    size: <span class="number">30em</span>;</span><br><span class="line">    weight: bold;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="变量-variable"><a href="#变量-variable" class="headerlink" title="变量 variable"></a>变量 variable</h2><p>Less：使用 <code>@</code> 声明变量  </p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@red:</span> <span class="number">#c00</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">strong</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="variable">@red</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Scss：使用 <code>$</code> 声明变量  </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$red: #c00;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">strong</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: $red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Stylus：使用 <code>=</code> 声明变量</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">red = #c00</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">strong</span></span><br><span class="line">  <span class="attribute">color</span>: red</span><br></pre></td></tr></table></figure>
-<p><code>@</code> 该字符在css中是一种已经被多次使用的规则（例如 <code>@media</code> <code>@keyframes</code> <code>@supports</code>）,以后也可能被扩展，变量名用 <code>@</code> 开头很可能会和以后的新 <code>@</code> 规则冲突。  </p>
-<p>Scss 和 Stylus 提供了仅当变量不存在时才赋值的功能：  </p>
-<p>Scss:  </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$x: 1;</span><br><span class="line">$x: 5 !default;</span><br><span class="line">$y: 3 !default;</span><br><span class="line"></span><br><span class="line">// $x = 1, $y = 3</span><br></pre></td></tr></table></figure>
-<p>Stylus：  </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x = 1</span><br><span class="line">x := <span class="number">5</span> // or x ?= <span class="number">5</span></span><br><span class="line">y = <span class="number">3</span></span><br><span class="line"></span><br><span class="line">// x = <span class="number">1</span>, y = <span class="number">3</span></span><br></pre></td></tr></table></figure>
-<h2 id="混入-mixin"><a href="#混入-mixin" class="headerlink" title="混入 mixin"></a>混入 mixin</h2><p>混入（mixin）提供了样式层面的抽象。  </p>
-<p>混入有两种方式：  </p>
-<ol>
-<li>直接在目标位置混入另一个类样式（输出已经确定，无法使用参数）；  </li>
-<li>定义一个不输出的样式片段（可以输入参数），在目标位置输出。  </li>
-</ol>
-<p>Less支持无参和带参的混入，也支持对已有类样式的混入：  </p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.alert</span> &#123;</span><br><span class="line">  <span class="attribute">font-weight</span>: <span class="number">700</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.highlight</span>(<span class="variable">@color</span>: red) &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">1.2em</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="variable">@color</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.heads-up</span> &#123;</span><br><span class="line">  <span class="selector-class">.alert</span>;</span><br><span class="line">  <span class="selector-class">.highlight</span>(red);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Scss 用 <code>@mixin</code> 和 <code>@include</code> 两个指令表明了混入的声明和引用：  </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> large-text &#123;</span><br><span class="line">  <span class="attribute">font</span>: &#123;</span><br><span class="line">    family: Arial;</span><br><span class="line">    size: <span class="number">20px</span>;</span><br><span class="line">    weight: bold;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#ff0000</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.page-title</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> large-text;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">4px</span>;</span><br><span class="line">  <span class="attribute">margin-top</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Stylus 和 Sass 类似，但不用什么特殊的标记来引入：  </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">border-radius</span>(n)</span><br><span class="line">  -webkit-<span class="attribute">border-radius</span>: n</span><br><span class="line">  -moz-border-radius: n</span><br><span class="line">  border-radius: n</span><br><span class="line"></span><br><span class="line">.circle</span><br><span class="line">  <span class="built_in">border-radius</span>(<span class="number">50%</span>)</span><br></pre></td></tr></table></figure>
-<p>Stylus 支持像原生css语法一样使用 mixin 的功能：  </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.circle</span></span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">50%</span></span><br></pre></td></tr></table></figure>
-<h2 id="继承-extend"><a href="#继承-extend" class="headerlink" title="继承 extend"></a>继承 extend</h2><p>如果多个地方都混入同样的代码，会造成输出代码的多次重复。</p>
-<p>Less 使用类似伪类的方式 <code>:extend()</code> 来实现继承：  </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.message</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#eee</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.warning</span> &#123;</span><br><span class="line">  &amp;:<span class="built_in">extend</span>(.message);</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#e2e21e</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* Or:</span></span><br><span class="line"><span class="comment">.warning:extend(.message) &#123;</span></span><br><span class="line"><span class="comment">  color: #e2e21e;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-<p>同时，Less 默认只继承父类本身的样式，如果要同时继承嵌套定义在父类作用域下的样式，得使用关键字 all，例如 <code>&amp;:extend(.message all);</code> 。  </p>
-<p>Stylus 和 Scss 使用 <code>@extend</code> 来实现继承：  </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.message</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span></span><br><span class="line">  border: <span class="number">1px</span> solid <span class="number">#eee</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.warning</span> &#123;</span><br><span class="line">  <span class="keyword">@extend</span> .message</span><br><span class="line">  <span class="attribute">color</span>: #e2e21e</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="占位-placeholder"><a href="#占位-placeholder" class="headerlink" title="占位 placeholder"></a>占位 placeholder</h2><p>Scss 和 Stylus 支持占位操作符，Scss 的占位符为 <code>%</code> ，Stylus 的占位符为 <code>$</code>，占位只存在于预处理器的编译过程中（类似 mixin），但不同之处是它可以被继承。  </p>
-<p>Scss 中的占位如下：  </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">%red-card &#123;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#300</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#ecc</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#c00</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.alert</span> &#123;</span><br><span class="line">  <span class="keyword">@extend</span> %red-card;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Stylus 中的占位如下：  </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$red-card</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#300</span></span><br><span class="line">  background-color: <span class="number">#ecc</span></span><br><span class="line">  color: <span class="number">#c00</span></span><br><span class="line"></span><br><span class="line">.alert</span><br><span class="line">  @extend $red-card</span><br></pre></td></tr></table></figure>
-<h2 id="导入-import"><a href="#导入-import" class="headerlink" title="导入 import"></a>导入 import</h2><p>三种预处理器均支持 <code>@import</code> 导入样式文件，Stylus 还支持 <code>@require</code> 对同一个文件只导入一次  </p>
-<h2 id="函数-functions"><a href="#函数-functions" class="headerlink" title="函数 functions"></a>函数 functions</h2><p>三种预处理器都自带了很多内置函数，三者调用函数的方式几乎一致，不同之处在于 Sass 和 Stylus 支持直接指定参数名的方式传入参数。Scss 和 Stylus 都支持添加自定义函数，Scss 中自定义函数需要用到 <code>@function</code> <code>@return</code> 关键字，在 Stylus 中，这些都是隐含的，最后一个表达式的值会作为返回值  </p>
-<p>Stylus:  </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">subtract(<span class="selector-tag">a</span>, <span class="selector-tag">b</span>)</span><br><span class="line">  <span class="selector-tag">a</span> - <span class="selector-tag">b</span></span><br><span class="line"></span><br><span class="line">subtract(<span class="selector-tag">b</span>: <span class="number">10</span>, a: <span class="number">25</span>) // same as <span class="built_in">substract</span>(<span class="number">25</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-<p>Scss:  </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$grid-width: 40px;</span><br><span class="line">$gutter-width: 10px;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@function</span> grid-width($n) &#123;</span><br><span class="line">  <span class="keyword">@return</span> $n * $grid-width + ($n - <span class="number">1</span>) * $gutter-width;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#sidebar</span> &#123; <span class="attribute">width</span>: <span class="built_in">grid-width</span>($n: <span class="number">5</span>); &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="逻辑控制-control-directives-conditionals"><a href="#逻辑控制-control-directives-conditionals" class="headerlink" title="逻辑控制 control directives/conditionals"></a>逻辑控制 control directives/conditionals</h2><p>Scss 中通过常见的 @if、@else if、@else 实现条件分支，通过 @for、@each、@while 实现循环，配合 map 和 list 这两种数据类型可以轻松地实现多数编程语言提供的功能。  </p>
-<p>在 Stylus 中，不需要使用 @ 规则，提供了 if、else if、else、unless、for…in 来实现类似功能，语法比 Sass 更简洁灵活。  </p>
-<p>Less没有提供逻辑控制功能，可以通过 mixin 来模拟。  </p>
-<h2 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h2><p>使用 scss 需要安装 node-sass 这个npm包，在不设置镜像的情况下安装十分缓慢，容易失败。  </p>
-
-        
-    </section>
-    
-    <footer class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</footer>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/04/01/CSS-%E5%B8%B8%E8%A7%81%E5%B8%83%E5%B1%80/">CSS-三栏常见布局</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-04-01T12:01:56.000Z" itemprop="datePublished">2021-04-01</time>
-</span>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="为什么会有这篇"><a href="#为什么会有这篇" class="headerlink" title="为什么会有这篇"></a>为什么会有这篇</h2><p>有些面试题会有这些，实际上并没有什么作用，可以用 flex 布局轻松实现。<br>在老旧浏览器中不支持 flex ，为了实现常见的三栏布局，即分左中右三部分，左右两部分宽度固定，中间部分宽度随浏览器变化。  </p>
-<p>这些布局有以下特点：</p>
-<ol>
-<li>两侧宽度固定，中间宽度自适应</li>
-<li>中间部分在DOM结构上优先，以便先行渲染</li>
-<li>允许三列中的任意一列成为最高列</li>
-<li>只需要使用一个额外的<div>标签</li>
-</ol>
-<h2 id="流体布局"><a href="#流体布局" class="headerlink" title="流体布局"></a>流体布局</h2><p><div class="lt-container"><div class="left"></div><div class="right"></div><div class="main"></div></div></p>
-<style>
-.lt-container .left {
-        float: left;
-        width: 100px;
-        height: 200px;
-        background: red;
-    }
-.lt-container .right {
-    float: right;
-    width: 200px;
-    height: 200px;
-    background: blue;
-}
-.lt-container .main {
-    margin-left: 120px;
-    margin-right: 220px;
-    height: 200px;
-    background: green;
-}
-</style>
-
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">        <span class="attribute">float</span>: left;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">        <span class="attribute">background</span>: red;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="selector-class">.right</span> &#123;</span><br><span class="line">    <span class="attribute">float</span>: right;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background</span>: blue;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.main</span> &#123;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">120px</span>;</span><br><span class="line">    <span class="attribute">margin-right</span>: <span class="number">220px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background</span>: green;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="圣杯布局"><a href="#圣杯布局" class="headerlink" title="圣杯布局"></a>圣杯布局</h2><p>来源于 <a target="_blank" rel="noopener" href="https://alistapart.com/article/holygrail">In Search of the Holy Grail</a>  </p>
-<p><div class="sb-container"><div class="left"></div><div class="right"></div><div class="main"></div></div></p>
-<style>
-.sb-container {
-    height: 200px;
-    margin-left: 120px;
-    margin-right: 220px;
-}
-.sb-container .main {
-    float: left;
-    width: 100%;
-    height: 200px;
-    background: green;
-}
-.sb-container .left {
-    position: relative;
-    float: left;
-    height: 200px;
-    width: 100px;
-    margin-left: -120px;
-    background: red;
-}
-.sb-container .right {
-    position: relative;
-    right: -220px;
-    float: right;
-    height: 200px;
-    width: 200px;
-    margin-left: -200px;
-    background: blue;
-}
-</style>
-
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">120px</span>;</span><br><span class="line">    <span class="attribute">margin-right</span>: <span class="number">220px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.main</span> &#123;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background</span>: green;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">margin-left</span>: -<span class="number">120px</span>;</span><br><span class="line">    <span class="attribute">background</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">right</span>: -<span class="number">220px</span>;</span><br><span class="line">    <span class="attribute">float</span>: right;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">margin-left</span>: -<span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background</span>: blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="双飞翼布局"><a href="#双飞翼布局" class="headerlink" title="双飞翼布局"></a>双飞翼布局</h2><p><div class="sf-container"><div class="main"></div><br></div><div class="left"></div><div class="right"></div></p>
-<style>
-.sf-container {
-    float: left;
-    width: 100%;
-}
-.sf-container .main {
-    height: 200px;
-    margin-left: 120px;
-    margin-right: 220px;
-    background: green;
-}
-.sf-container .main::after {
-    content: '';
-    display: block;
-    font-size:0;
-    height: 0;
-    zoom: 1;
-    clear: both;
-}
-.sf-container~.left {
-    float:left;
-    height: 200px;
-    width: 100px;
-    margin-left: -100%;
-    background: red;
-}
-.sf-container~.left~.right {
-    float: right;
-    height: 200px;
-    width: 200px;
-    margin-left: -200px;
-    background: blue;
-}
-</style>
-
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.main</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">110px</span>;</span><br><span class="line">    <span class="attribute">margin-right</span>: <span class="number">220px</span>;</span><br><span class="line">    <span class="attribute">background</span>: green;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.main</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">    zoom: <span class="number">1</span>;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">    <span class="attribute">float</span><span class="selector-pseudo">:left</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">margin-left</span>: -<span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">background</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span> &#123;</span><br><span class="line">    <span class="attribute">float</span>: right;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">margin-left</span>: -<span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background</span>: blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-    </section>
-    
-    <footer class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</footer>
-    
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/blog/2021/03/31/CSS-%E9%98%B4%E5%BD%B1/">CSS-阴影</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <span class="article-date">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-03-31T11:47:20.000Z" itemprop="datePublished">2021-03-31</time>
-</span>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2 id="box-shadow-元素阴影"><a href="#box-shadow-元素阴影" class="headerlink" title="box-shadow 元素阴影"></a>box-shadow 元素阴影</h2><p>box-shadow 属性用于在元素的框架上添加阴影效果。你可以在同一个元素上设置多个阴影效果，并用逗号将他们分隔开。该属性可设置的值包括阴影的X轴偏移量、Y轴偏移量、模糊半径、扩散半径和颜色。可以使用 inset 表示是内阴影。  </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">blockquote</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">box-shadow</span>:</span><br><span class="line">       inset <span class="number">0</span> -<span class="number">3em</span> <span class="number">3em</span> <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.1</span>),</span><br><span class="line">             <span class="number">0</span> <span class="number">0</span>  <span class="number">0</span> <span class="number">2px</span> <span class="built_in">rgb</span>(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>),</span><br><span class="line">             <span class="number">0.3em</span> <span class="number">0.3em</span> <span class="number">1em</span> <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.3</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>渲染如下：  </p>
-<p><blockquote class="box-shadow-block"><q>You may shoot me with your words,<br/><br>You may cut me with your eyes,<br/><br>You may kill me with your hatefulness,<br/><br>But still, like air, I’ll rise.</q></p>
-<p><p>&mdash; Maya Angelou</p><br></blockquote></p>
-<style>
-blockquote.box-shadow-block {
-  border-left: revert;
-  color: revert;
-  padding: 20px;
-  box-shadow:
-       inset 0 -3em 3em rgba(0,0,0,0.1),
-             0 0  0 2px rgb(255,255,255),
-             0.3em 0.3em 1em rgba(0,0,0,0.3);
-}
-</style>
-
-<h2 id="text-shadow-文字阴影"><a href="#text-shadow-文字阴影" class="headerlink" title="text-shadow 文字阴影"></a>text-shadow 文字阴影</h2><p>text-shadow 为文字添加阴影。可以为文字与 text-decorations 添加多个阴影，阴影值之间用逗号隔开。每个阴影值由元素在X和Y方向的偏移量、模糊半径和颜色值组成。  </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.white-with-blue-shadow</span> &#123;</span><br><span class="line">   <span class="attribute">text-shadow</span>: <span class="number">1px</span> <span class="number">1px</span> <span class="number">2px</span> black, <span class="number">0</span> <span class="number">0</span> <span class="number">1em</span> blue, <span class="number">0</span> <span class="number">0</span> <span class="number">0.2em</span> blue;</span><br><span class="line">   <span class="attribute">color</span>: white;</span><br><span class="line">   <span class="attribute">font</span>: <span class="number">1.5em</span> Georgia, <span class="string">&quot;Bitstream Charter&quot;</span>, <span class="string">&quot;URW Bookman L&quot;</span>, <span class="string">&quot;Century Schoolbook L&quot;</span>, serif;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>渲染如下：  </p>
-<p><p class="white-with-blue-shadow"><br>   Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore<br>   veritatis et quasi architecto beatae vitae dicta sunt explicabo.<br></p></p>
-<style>
-.white-with-blue-shadow {
-   text-shadow: 1px 1px 2px black, 0 0 1em blue, 0 0 0.2em blue;
-   color: white;
-   font: 1.5em Georgia, "Bitstream Charter", "URW Bookman L", "Century Schoolbook L", serif;
-}
-</style>
-        
-    </section>
-    
-    <footer class="appreciate">
-    <p>觉得本文不错？可以赞赏支持我创作！</p>
-    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
-        <button type="button" class="appreciate-btn">赞赏支持</button>
-    </a>
-</footer>
-    
-</article>
-
-
-
-
-<nav class="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="page-number" href="/blog/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/20/">20</a><a class="extend next" rel="next" href="/blog/page/2/">Next &gt;&gt;</a>
-</nav>
-
-
+    </div>
 </div>
+
+        
         <article id="search-result" class="search-result content"></article>
         <footer class="footer">
     
@@ -625,6 +127,7 @@ blockquote.box-shadow-block {
     <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
     <script type="text/javascript" src="/blog/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
     <script type="text/javascript">
         $(function() {
             var nodes = {

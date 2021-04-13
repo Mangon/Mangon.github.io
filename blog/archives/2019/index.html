@@ -40,13 +40,13 @@
     <nav class="nav-inner">
         
             
-                <li class="nav-item">
+                <li class="nav-item ">
                     <a class="nav-link" href="/blog/">主页</a>
                 </li>
             
         
             
-                <li class="nav-item active">
+                <li class="nav-item  active ">
                     <a class="nav-link" href="/blog/archives">目录</a>
                 </li>
             
@@ -67,34 +67,11 @@
     </form>
 </div>        
         
+            
+        
 
         
-            <div class="author-meta">
-                
-                <div class="author-avatar">
-                    <a href="/blog/">
-                        <img src="/blog/images/avatar.jpeg" title="Mangon">
-                    </a>
-                </div>
-                
-                <div class="author-name">Mangon</div>
-                <div class="author-work">Front-End Software Engineer</div>
-                <div class="author-location">
-                    <i class="icon-location vm"></i>
-                    <span class="vm">Beijing, China</span>
-                </div>
-                
-                <div class="author-thread-wrap">
-                    <div class="author-threads clearfix">
-                        
-                        <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
-                        
-                        
-                        
-                    </div>
-                </div>
-                
-            </div>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC"><span class="toc-number">1.</span> <span class="toc-text">MVC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC-for-Javascript"><span class="toc-number">2.</span> <span class="toc-text">MVC for Javascript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVP"><span class="toc-number">3.</span> <span class="toc-text">MVP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVVM"><span class="toc-number">4.</span> <span class="toc-text">MVVM</span></a></li></ol>
         
         <div id="coffee-content"></div>
     </div>
@@ -102,7 +79,10 @@
 
 </header>
 
-        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            
 
     
     
@@ -387,7 +367,10 @@
 
 
 
-</div>
+
+        
+            </div>
+        
         <article id="search-result" class="search-result content"></article>
         <footer class="footer">
     
@@ -419,6 +402,7 @@
     <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
     <script type="text/javascript" src="/blog/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
     <script type="text/javascript">
         $(function() {
             var nodes = {

@@ -40,13 +40,13 @@
     <nav class="nav-inner">
         
             
-                <li class="nav-item">
+                <li class="nav-item ">
                     <a class="nav-link" href="/blog/">主页</a>
                 </li>
             
         
             
-                <li class="nav-item">
+                <li class="nav-item ">
                     <a class="nav-link" href="/blog/archives">目录</a>
                 </li>
             
@@ -71,7 +71,7 @@
         
 
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%9F%BA%E7%A1%80%E6%A1%86%E6%9E%B6-new-Promise-resolve-reject-gt"><span class="toc-number">1.</span> <span class="toc-text">实现基础框架 new Promise((resolve, reject) &#x3D;&gt;&amp;#123;&amp;#125;)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E7%8A%B6%E6%80%81%E6%9C%BA-pending-fulfilled-rejected"><span class="toc-number">2.</span> <span class="toc-text">添加状态机 pending fulfilled rejected</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0-then-%E6%96%B9%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">添加 then 方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8-resolve"><span class="toc-number">4.</span> <span class="toc-text">实现异步调用 resolve</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E5%BC%8F%E8%B0%83%E7%94%A8-then-%E8%BF%94%E5%9B%9E%E7%9A%84%E4%BB%8D%E6%98%AF-Promise"><span class="toc-number">5.</span> <span class="toc-text">链式调用 then 返回的仍是 Promise</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A9-then-%E6%96%B9%E6%B3%95%E7%9A%84%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E6%80%BB%E6%98%AF%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8"><span class="toc-number">6.</span> <span class="toc-text">让 then 方法的回调函数总是异步调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-catch-%E6%96%B9%E6%B3%95"><span class="toc-number">7.</span> <span class="toc-text">实现 catch 方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-finally-%E6%96%B9%E6%B3%95"><span class="toc-number">8.</span> <span class="toc-text">实现 finally 方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-done-%E6%96%B9%E6%B3%95"><span class="toc-number">9.</span> <span class="toc-text">实现 done 方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-Promise-all-%E6%96%B9%E6%B3%95"><span class="toc-number">10.</span> <span class="toc-text">实现 Promise.all 方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-Promise-race-%E6%96%B9%E6%B3%95"><span class="toc-number">11.</span> <span class="toc-text">实现 Promise.race 方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-Promise-resolve-%E6%96%B9%E6%B3%95"><span class="toc-number">12.</span> <span class="toc-text">实现 Promise.resolve 方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-Promise-reject-%E6%96%B9%E6%B3%95"><span class="toc-number">13.</span> <span class="toc-text">实现 Promise.reject 方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-Promise-deferred-%E6%96%B9%E6%B3%95"><span class="toc-number">14.</span> <span class="toc-text">实现 Promise.deferred 方法</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC"><span class="toc-number">1.</span> <span class="toc-text">MVC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC-for-Javascript"><span class="toc-number">2.</span> <span class="toc-text">MVC for Javascript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVP"><span class="toc-number">3.</span> <span class="toc-text">MVP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVVM"><span class="toc-number">4.</span> <span class="toc-text">MVVM</span></a></li></ol>
         
         <div id="coffee-content"></div>
     </div>
@@ -79,7 +79,10 @@
 
 </header>
 
-        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
     
     <header class="article-header">
         
@@ -169,7 +172,10 @@
 
 
 
-</div>
+
+        
+            </div>
+        
         <article id="search-result" class="search-result content"></article>
         <footer class="footer">
     
@@ -201,6 +207,7 @@
     <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
     <script type="text/javascript" src="/blog/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
     <script type="text/javascript">
         $(function() {
             var nodes = {

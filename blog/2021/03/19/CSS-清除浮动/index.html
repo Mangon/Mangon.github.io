@@ -40,13 +40,13 @@
     <nav class="nav-inner">
         
             
-                <li class="nav-item">
+                <li class="nav-item ">
                     <a class="nav-link" href="/blog/">主页</a>
                 </li>
             
         
             
-                <li class="nav-item">
+                <li class="nav-item ">
                     <a class="nav-link" href="/blog/archives">目录</a>
                 </li>
             
@@ -71,7 +71,7 @@
         
 
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%B5%AE%E5%8A%A8%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">什么是浮动？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">清除浮动的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E9%A2%9D%E5%A4%96%E6%A0%87%E7%AD%BE"><span class="toc-number">2.1.</span> <span class="toc-text">添加额外标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8br%E6%A0%87%E7%AD%BE%E5%92%8C%E5%85%B6%E8%87%AA%E8%BA%AB%E7%9A%84html%E5%B1%9E%E6%80%A7"><span class="toc-number">2.2.</span> <span class="toc-text">使用br标签和其自身的html属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%88%B6%E5%85%83%E7%B4%A0%E8%AE%BE%E7%BD%AE-overflow%EF%BC%9Ahidden"><span class="toc-number">2.3.</span> <span class="toc-text">父元素设置 overflow：hidden</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%88%B6%E5%85%83%E7%B4%A0%E8%AE%BE%E7%BD%AE-overflow%EF%BC%9Aauto"><span class="toc-number">2.4.</span> <span class="toc-text">父元素设置 overflow：auto</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%88%B6%E5%85%83%E7%B4%A0%E4%B9%9F%E8%AE%BE%E7%BD%AE%E6%B5%AE%E5%8A%A8"><span class="toc-number">2.5.</span> <span class="toc-text">父元素也设置浮动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%88%B6%E5%85%83%E7%B4%A0%E8%AE%BE%E7%BD%AE-display-table"><span class="toc-number">2.6.</span> <span class="toc-text">父元素设置 display: table</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%88%B6%E5%85%83%E7%B4%A0%E8%AE%BE%E7%BD%AE-display-flow-root"><span class="toc-number">2.7.</span> <span class="toc-text">父元素设置 display: flow-root</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-after-%E4%BC%AA%E5%85%83%E7%B4%A0"><span class="toc-number">2.8.</span> <span class="toc-text">使用 :after 伪元素</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BDF%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">BDF是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC"><span class="toc-number">1.</span> <span class="toc-text">MVC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC-for-Javascript"><span class="toc-number">2.</span> <span class="toc-text">MVC for Javascript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVP"><span class="toc-number">3.</span> <span class="toc-text">MVP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVVM"><span class="toc-number">4.</span> <span class="toc-text">MVVM</span></a></li></ol>
         
         <div id="coffee-content"></div>
     </div>
@@ -79,7 +79,10 @@
 
 </header>
 
-        <div data-spy="scroll" data-target="#aside-inner" id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
     
     <header class="article-header">
         
@@ -128,7 +131,10 @@
 
 
 
-</div>
+
+        
+            </div>
+        
         <article id="search-result" class="search-result content"></article>
         <footer class="footer">
     
@@ -160,6 +166,7 @@
     <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
     <script type="text/javascript" src="/blog/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
     <script type="text/javascript">
         $(function() {
             var nodes = {
