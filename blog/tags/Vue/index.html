@@ -6,7 +6,7 @@
 
     
     <title>
-        Tag: Vue | 
+        Tag: vue | 
         Gblog
     </title>
     <meta name="author" content="Mangon" />
@@ -88,7 +88,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2019/01/09/TIPS-Ionic4-vue%E6%90%AD%E5%BB%BA%E8%B7%A8%E5%B9%B3%E5%8F%B0%E7%A7%BB%E5%8A%A8%E5%BA%94%E7%94%A8%E6%A1%86%E6%9E%B6/">ionic4+vue搭建跨平台移动应用框架</a>
+            <a href="/blog/2021/03/30/Vue-Vue3%E6%96%B0%E5%8A%9F%E8%83%BD%E5%92%8C%E4%BD%9C%E7%94%A8/">Vue-Vue3新功能和作用</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -96,13 +96,13 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2019-01-09T07:09:36.000Z" itemprop="datePublished">2019-01-09</time>
+    <time datetime="2021-03-30T07:46:58.000Z" itemprop="datePublished">2021-03-30</time>
 </span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/Vue/" rel="tag">Vue</a>
+    <a class="article-tag-link" href="/blog/tags/vue/" rel="tag">vue</a>, <a class="article-tag-link" href="/blog/tags/vue3/" rel="tag">vue3</a>
 </div>
 
 
@@ -111,76 +111,110 @@
     
     <section class="article-body markdown-body">
         
-        <h2 id="ionic4及vue介绍"><a href="#ionic4及vue介绍" class="headerlink" title="ionic4及vue介绍"></a>ionic4及vue介绍</h2><p>ionic是一款混合移动应用开发框架，可以用来构建跨平台（Android &amp; iOS）的移动应用程序，而且还可以基于Sass和AngularJS进行构建，是目前跨平台移动应用开发的一个翘楚。这个框架的目的是从web的角度开发手机应用，基于PhoneGap的编译平台，可以实现编译成各个平台的应用程序。<br>Vue.js是一个MVVM驱动的 web 界面的渐进式框架，学习简单并且十分灵活。ionic3之前一般默认和Angular“绑定”在了一起，从ionic4开始，Ionic Team宣布将会逐渐采用<a target="_blank" rel="noopener" href="https://github.com/ionic-team/stencil">Stencil</a>来实现标准Web Components，使用ionic将不再必须使用Angular，可以使用React，Vue，Jquery或者什么框架都不使用。  </p>
-<h2 id="准备环境"><a href="#准备环境" class="headerlink" title="准备环境"></a>准备环境</h2><p>Vue提供了CLI工具来方便的创建Vue应用，首先我们需要  </p>
-<ol>
-<li>安装Vue CLI：  </li>
+        <h2 id="Composition-API"><a href="#Composition-API" class="headerlink" title="Composition API"></a>Composition API</h2><p>新增 setup 组件选项，是一个接受 props 和 context 的函数，使用 <code>toRefs</code> 对props进行响应式解构，可以通过 context 获取组件的 attrs slots emit 属性。返回一个可以在组件模板中使用其属性的对象，或者返回一个渲染函数，该函数可以直接使用在同一作用域中声明的响应式状态。  </p>
+<p>通过一个新的 ref/reactive 函数使任何响应式变量在任何地方起作用。  </p>
+<p>在 setup 中注册生命周期钩子，因为 setup 是围绕 beforeCreate 和 created 生命周期钩子运行的，所以不需要显式地定义它们，在vue3中只有如下钩子：<code>onBeforeMount</code>、<code>onMounted</code>、<code>onBeforeUpdate</code>、<code>onUpdated</code>、<code>onBeforeUnmount</code>、<code>onUnmounted</code>、<code>onErrorCaptured</code>、<code>onRenderTracked</code>、<code>onRenderTriggered</code>。  </p>
+<p>从 Vue 导入的 watch 函数执行相同的操作</p>
+<p>从 Vue 导入的 computed 函数在 Vue 组件外部创建计算属性</p>
+<p>从 Vue 导入的 provide/inject 函数进行深度传值</p>
+<p>…</p>
+<h3 id="Composition-API-好处"><a href="#Composition-API-好处" class="headerlink" title="Composition API 好处"></a>Composition API 好处</h3><ol>
+<li>同功能代码组织结构放到一起，代码可读性更强</li>
+<li>让相同的代码逻辑在不同的组件中可以复用</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g vue-cli</span><br></pre></td></tr></table></figure>
+<h2 id="Teleport"><a href="#Teleport" class="headerlink" title="Teleport"></a>Teleport</h2><p>Teleport 提供了一种干净的方法，允许我们控制在 DOM 中哪个父节点下渲染了 HTML，而不必求助于全局状态或将其拆分为两个组件。一个典型的用法就是模态框组件的实现。  </p>
+<h2 id="Fragments"><a href="#Fragments" class="headerlink" title="Fragments"></a>Fragments</h2><p>也就是多根节点的组件，可以通过 <code>v-bind=&quot;$attrs&quot;</code> 将外部 attribute 显式的应用于子节点。  </p>
+<h2 id="Emits-组件选项"><a href="#Emits-组件选项" class="headerlink" title="Emits 组件选项"></a>Emits 组件选项</h2><p>可以通过 emits 选项在组件上定义已发出的事件，当在 emits 选项中定义了原生事件 (如 click) 时，将使用组件中的事件替代原生事件侦听器，如果使用对象语法而不是数组语法定义发出的事件，则可以验证事件选项是否符合要求。  </p>
+<h2 id="来自-vue-runtime-core-的-createRenderer-API-创建自定义渲染器"><a href="#来自-vue-runtime-core-的-createRenderer-API-创建自定义渲染器" class="headerlink" title="来自 @vue/runtime-core 的 createRenderer API 创建自定义渲染器"></a>来自 <code>@vue/runtime-core</code> 的 <code>createRenderer</code> API 创建自定义渲染器</h2><h2 id="单文件组件-Composition-API-语法糖（-lt-script-setup-gt-）"><a href="#单文件组件-Composition-API-语法糖（-lt-script-setup-gt-）" class="headerlink" title="单文件组件 Composition API 语法糖（&lt;script setup&gt;）"></a>单文件组件 Composition API 语法糖（<code>&lt;script setup&gt;</code>）</h2><h2 id="单文件组件状态驱动的-CSS-变量-lt-style-vars-gt"><a href="#单文件组件状态驱动的-CSS-变量-lt-style-vars-gt" class="headerlink" title="单文件组件状态驱动的 CSS 变量 (&lt;style vars&gt;)"></a>单文件组件状态驱动的 CSS 变量 (<code>&lt;style vars&gt;</code>)</h2><h2 id="单文件组件-lt-style-scoped-gt-现在可以包含全局规则或只针对插槽内容的规则"><a href="#单文件组件-lt-style-scoped-gt-现在可以包含全局规则或只针对插槽内容的规则" class="headerlink" title="单文件组件 &lt;style scoped&gt; 现在可以包含全局规则或只针对插槽内容的规则"></a>单文件组件 <code>&lt;style scoped&gt;</code> 现在可以包含全局规则或只针对插槽内容的规则</h2>
+        
+    </section>
+    
+    <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2019/02/12/Vue-%E8%AF%BBVue%E6%BA%90%E7%A0%81%E6%89%80%E8%83%BD%E6%83%B3%E5%88%B0%E7%9A%84%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/">读Vue源码所能想到的面试问题</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-02-12T03:37:05.000Z" itemprop="datePublished">2019-02-12</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>, <a class="article-tag-link" href="/blog/tags/vue/" rel="tag">vue</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="指令v-if-v-show有什么不同？"><a href="#指令v-if-v-show有什么不同？" class="headerlink" title="指令v-if v-show有什么不同？"></a>指令v-if v-show有什么不同？</h2><p>v-if 和 v-show都是Vue中的指令而且都可以用来控制模板的渲染。  </p>
+<p>v-if 是“真正”的条件渲染，因为它会确保在切换过程中条件块内的事件监听器和子组件适当地被销毁和重建。  </p>
+<p>v-if 也是惰性的：如果在初始渲染时条件为假，则什么也不做——直到条件第一次变为真时，才会开始渲染条件块。  </p>
+<p>相比之下，v-show 就简单得多——不管初始条件是什么，元素总是会被渲染，并且只是简单地基于 CSS( <code>display:none</code>) 进行切换。  </p>
+<p>一般来说，v-if 有更高的切换开销，而 v-show 有更高的初始渲染开销。因此，如果需要非常频繁地切换，则使用 v-show 较好；如果在运行时条件很少改变，则使用 v-if 较好。  </p>
+<h2 id="写出-normalizeProps-方法"><a href="#写出-normalizeProps-方法" class="headerlink" title="写出 normalizeProps 方法"></a>写出 normalizeProps 方法</h2><p>在 Vue 中，我们在使用 props 的时候有两种写法，一种是使用字符串数组  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ChildComponent = &#123;</span><br><span class="line">  props: [<span class="string">&#x27;some-data1&#x27;</span>， <span class="string">&#x27;someData2&#x27;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另外一种是使用对象语法  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ChildComponent = &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    some-data1: <span class="built_in">Number</span>,</span><br><span class="line">    someData2: &#123;</span><br><span class="line">      type: <span class="built_in">String</span>,</span><br><span class="line">      <span class="keyword">default</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>请写出规范化props的方法 <code>normalizeProps (options, vm)</code>，将两种形式规范成同一种形式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ChildComponent = &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    someData1: &#123;</span><br><span class="line">      type: <span class="built_in">Number</span></span><br><span class="line">    &#125;,</span><br><span class="line">    someData2: &#123;</span><br><span class="line">      type: <span class="built_in">String</span>,</span><br><span class="line">      <span class="keyword">default</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>答案：  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">camelize</span> (<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> str.replace(<span class="regexp">/-(\w)/g</span>, <span class="function">(<span class="params">_, c</span>) =&gt;</span> c ? c.toUpperCase() : <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPlainObject</span> (<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(obj) === <span class="string">&#x27;[object Object]&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">toRawType</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span>  <span class="built_in">Object</span>.prototype.toString.call(value).slice(<span class="number">8</span>, -<span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">normalizeProps</span> (<span class="params">options, vm</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> props = options.props</span><br><span class="line">  <span class="keyword">if</span> (!props) <span class="keyword">return</span></span><br><span class="line">  <span class="keyword">const</span> res = &#123;&#125;</span><br><span class="line">  <span class="keyword">let</span> i, val, name</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(props)) &#123;</span><br><span class="line">    i = props.length</span><br><span class="line">    <span class="keyword">while</span> (i--) &#123;</span><br><span class="line">      val = props[i]</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> val === <span class="string">&#x27;string&#x27;</span>) &#123;</span><br><span class="line">        name = camelize(val)</span><br><span class="line">        res[name] = &#123; <span class="attr">type</span>: <span class="literal">null</span> &#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (process.env.NODE_ENV !== <span class="string">&#x27;production&#x27;</span>) &#123;</span><br><span class="line">        warn(<span class="string">&#x27;props must be strings when using array syntax.&#x27;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (isPlainObject(props)) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> props) &#123;</span><br><span class="line">      val = props[key]</span><br><span class="line">      name = camelize(key)</span><br><span class="line">      res[name] = isPlainObject(val)</span><br><span class="line">        ? val</span><br><span class="line">        : &#123; <span class="attr">type</span>: val &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (process.env.NODE_ENV !== <span class="string">&#x27;production&#x27;</span>) &#123;</span><br><span class="line">    warn(</span><br><span class="line">      <span class="string">`Invalid value for option &quot;props&quot;: expected an Array or an Object, `</span> +</span><br><span class="line">      <span class="string">`but got <span class="subst">$&#123;toRawType(props)&#125;</span>.`</span>,</span><br><span class="line">      vm</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">  options.props = res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="为什么-data-需要写成一个函数？"><a href="#为什么-data-需要写成一个函数？" class="headerlink" title="为什么 data 需要写成一个函数？"></a>为什么 data 需要写成一个函数？</h2><p>通过函数返回数据对象，保证了每个组件实例都有一个唯一的数据副本，避免了组件间数据互相影响。  </p>
+<h2 id="为什么我们能够使用-props-初始化-data-中的数据"><a href="#为什么我们能够使用-props-初始化-data-中的数据" class="headerlink" title="为什么我们能够使用 props 初始化 data 中的数据"></a>为什么我们能够使用 props 初始化 data 中的数据</h2><p>因为 data 选项是在初始化的时候才求值的，而 props 的初始化先于 data 选项的初始化。  </p>
+<h2 id="生命周期钩子是否可以写成数组形式？如果可以那么将以什么顺序执行？如果不可以为什么不可以？"><a href="#生命周期钩子是否可以写成数组形式？如果可以那么将以什么顺序执行？如果不可以为什么不可以？" class="headerlink" title="生命周期钩子是否可以写成数组形式？如果可以那么将以什么顺序执行？如果不可以为什么不可以？"></a>生命周期钩子是否可以写成数组形式？如果可以那么将以什么顺序执行？如果不可以为什么不可以？</h2><p>可以，因为在合并生命周期钩子函数 <code>mergeHook</code> 中判断了子组件钩子函数为数组的情况。钩子函数将按顺序执行。  </p>
+<h2 id="vm-options-parent和-vm-parent-有什么不同？"><a href="#vm-options-parent和-vm-parent-有什么不同？" class="headerlink" title="vm.$options.parent和 vm.$parent 有什么不同？"></a>vm.$options.parent和 vm.$parent 有什么不同？</h2><p>vm.$options.parent 指的是当前实例 components 下注册的子组件的父实例<br>vm.$parent指的是当前实例的非抽象父实例  </p>
+<h2 id="vue源码中大量用到了-Object-create-null-，Object-create-null-和-new-Object-及对象直接量-有什么不同？"><a href="#vue源码中大量用到了-Object-create-null-，Object-create-null-和-new-Object-及对象直接量-有什么不同？" class="headerlink" title="vue源码中大量用到了 Object.create(null)，Object.create(null) 和 new Object() 及对象直接量{}有什么不同？"></a>vue源码中大量用到了 Object.create(null)，Object.create(null) 和 new Object() 及对象直接量{}有什么不同？</h2><p> <code>Object.create()</code> 方法的内部实现简单来说是这样的：  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params">o</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> t = <span class="keyword">typeof</span> o;</span><br><span class="line">    <span class="keyword">if</span> (t != <span class="string">&quot;object&quot;</span> &amp;&amp; t != <span class="string">&quot;function&quot;</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="built_in">TypeError</span>();</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">    f.prototype = o;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> f();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样一来Object.create(null)创建的新对象的原型对象就是null，也就是说它没有任何原型方法；<br>而直接使用{}创建新对象，其实是等同于new Object()，它是继承了Object的，是有原型方法的。  </p>
+<h2 id="Vue-是通过什么方法来实现数据响应系统的？"><a href="#Vue-是通过什么方法来实现数据响应系统的？" class="headerlink" title="Vue 是通过什么方法来实现数据响应系统的？"></a>Vue 是通过什么方法来实现数据响应系统的？</h2><p>Vue 数据响应系统的原理的核心是通过 Object.defineProperty 函数将数据对象的属性转换为访问器(getter/setter)属性，从而使得我们能够拦截到属性的读取和设置。  </p>
+<h2 id="哪些数据变化情况无法被-Vue-的响应式系统观测到，应该如何处理？"><a href="#哪些数据变化情况无法被-Vue-的响应式系统观测到，应该如何处理？" class="headerlink" title="哪些数据变化情况无法被 Vue 的响应式系统观测到，应该如何处理？"></a>哪些数据变化情况无法被 Vue 的响应式系统观测到，应该如何处理？</h2><ol>
+<li>Vue 不能检测到以下变动的对象<ol>
+<li>当你添加或删除对象的属性时，例如：</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    a: <span class="number">1</span>,</span><br><span class="line">    items: [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>. <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// `vm.a` 现在是响应式的</span></span><br><span class="line"></span><br><span class="line">vm.b = <span class="number">2</span></span><br><span class="line"><span class="comment">// `vm.b` 不是响应式的</span></span><br></pre></td></tr></table></figure>
 <ol start="2">
-<li>创建vue项目</li>
+<li>Vue 不能检测到以下变动的数组<ol>
+<li>当你利用索引直接设置一个项时，例如：<code>vm.items[indexOfItem] = newValue</code></li>
+<li>当你修改数组的长度时，例如：<code>vm.items.length = newLength</code></li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init webpack ionic-vue</span><br></pre></td></tr></table></figure>
-<p>随后一路enter</p>
-<ol start="3">
-<li>打开项目</li>
+</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ionic-vue</span><br><span class="line">npm install</span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
-<h2 id="引入Ionic"><a href="#引入Ionic" class="headerlink" title="引入Ionic"></a>引入Ionic</h2><ol>
-<li>在 index.html 引入 Ionic</li>
+<p>可以使用全局方法 <code>Vue.set(target, key, value)</code> 方法向嵌套对象添加响应式属性/直接设置一个数组的值，或者使用实例方法 <code>vm.$set(target, key, value)</code>。  </p>
+<p>可以使用全局方法 <code>Vue.delete(target, key)</code> 方法向嵌套对象删除响应式属性/删除数组元素，或者使用实例方法 <code>vm.$delete(target, key)</code>。  </p>
+<p>修改数组的长度可以通过 <code>vm.items.splice(newLength)</code> 实现。  </p>
+<p>注意 <code>Vue.set(target, key, value)</code> 或  <code>Vue.delete(target, key)</code> 并不能为根数据对象添加/删除属性也不能为 Vue 实例添加/删除属性。  </p>
+<h2 id="vue不同组件之间如何通信"><a href="#vue不同组件之间如何通信" class="headerlink" title="vue不同组件之间如何通信?"></a>vue不同组件之间如何通信?</h2><p>可以通过使用一个空的Vue实例作为中间事件栈，然后使用 <code>$emit</code> <code>$on</code> 传递数据。  </p>
+<h2 id="vue3-和-vue2-相比有什么不同？"><a href="#vue3-和-vue2-相比有什么不同？" class="headerlink" title="vue3 和 vue2 相比有什么不同？"></a>vue3 和 vue2 相比有什么不同？</h2><ol>
+<li><p>Object.defineProperty -&gt; Proxy 使用 Proxy 替代 Object.defineProperty 来实现对数据的监听</p>
+</li>
+<li><p>Virtual Dom 重构</p>
+</li>
+<li><p>编译时优化</p>
+</li>
 </ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;format-detection&quot;</span> <span class="attr">content</span>=<span class="string">&quot;telephone=no&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;msapplication-tap-highlight&quot;</span> <span class="attr">content</span>=<span class="string">&quot;no&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/@ionic/core@0.0.2-20/dist/ionic.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>在 src/main.js 中添加ignoredElements</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Vue.config.ignoredElements = [</span><br><span class="line">    <span class="string">&#x27;ion-app&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;ion-header&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;ion-navbar&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;ion-title&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;ion-content&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;ion-button&#x27;</span>,</span><br><span class="line">    ··· ···</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
-<h2 id="开发应用"><a href="#开发应用" class="headerlink" title="开发应用"></a>开发应用</h2><ol>
-<li>创建两个新页面</li>
-</ol>
-<p>我们希望演示如何在两个页面之间跳转</p>
-<p>例如 src/pages/HelloWorld.vue<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ion-app</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ion-header</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ion-navbar</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ion-title</span>&gt;</span>Ionic<span class="tag">&lt;/<span class="name">ion-title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ion-navbar</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ion-header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ion-content</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ion-button</span> @<span class="attr">click</span>=<span class="string">&quot;goToDetail&quot;</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">ion-button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ion-content</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ion-app</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">  name: <span class="string">&#x27;HelloWorld&#x27;</span>,</span></span><br><span class="line">  data () &#123;</span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">      msg: <span class="string">&#x27;Welcome to Your Vue.js App&#x27;</span></span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    goToDetail () &#123;</span><br><span class="line"><span class="javascript">      <span class="built_in">this</span>.$router.push(<span class="string">&#x27;detail&#x27;</span>)</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>src/pages/Detail.vue<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ion-app</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ion-header</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ion-navbar</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ion-title</span>&gt;</span>Ionic<span class="tag">&lt;/<span class="name">ion-title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ion-navbar</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ion-header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ion-content</span> <span class="attr">padding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">&quot;/&quot;</span>&gt;</span>Go home<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ion-content</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ion-app</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">  name: <span class="string">&#x27;Detail&#x27;</span>,</span></span><br><span class="line">  data () &#123;</span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">      msg: <span class="string">&#x27;Welcome to Your Ionic App&#x27;</span></span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<ol start="2">
-<li>添加路由</li>
-</ol>
-<p>router/index.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">&#x27;vue-router&#x27;</span></span><br><span class="line"><span class="keyword">import</span> HelloWorld <span class="keyword">from</span> <span class="string">&#x27;@/pages/HelloWorld&#x27;</span></span><br><span class="line"><span class="keyword">import</span> Detail <span class="keyword">from</span> <span class="string">&#x27;@/pages/Detail&#x27;</span></span><br><span class="line"></span><br><span class="line">Vue.use(Router)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">&#x27;/&#x27;</span>,</span><br><span class="line">      component: HelloWorld</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">&#x27;/detail&#x27;</span>,</span><br><span class="line">      component: Detail</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<ol start="3">
-<li>添加全局过渡动画效果</li>
-</ol>
-<p>src/App.vue<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=<span class="string">&quot;app&quot;</span>&gt;</span><br><span class="line">    &lt;transition name=<span class="string">&quot;slide-fade&quot;</span>&gt;</span><br><span class="line">      &lt;router-view/&gt;</span><br><span class="line">    &lt;/transition&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">&#x27;app&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">#app &#123;</span><br><span class="line">  font-family: <span class="string">&#x27;Avenir&#x27;</span>, Helvetica, Arial, sans-serif;</span><br><span class="line">  -webkit-font-smoothing: antialiased;</span><br><span class="line">  -moz-osx-font-smoothing: grayscale;</span><br><span class="line">  text-align: center;</span><br><span class="line">  color: #2c3e50;</span><br><span class="line">  margin-top: 60px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.slide-fade-enter-active &#123;</span><br><span class="line">  transition: all .3s ease;</span><br><span class="line">&#125;</span><br><span class="line">.slide-fade-leave-active &#123;</span><br><span class="line">  transition: all .8s cubic-bezier(<span class="number">1.0</span>, <span class="number">0.5</span>, <span class="number">0.8</span>, <span class="number">1.0</span>);</span><br><span class="line">&#125;</span><br><span class="line">.slide-fade-enter, .slide-fade-leave-to</span><br><span class="line"><span class="comment">/* .slide-fade-leave-active below version 2.1.8 */</span> &#123;</span><br><span class="line">  transform: translateX(10px);</span><br><span class="line">  opacity: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure></p>
-<h2 id="打包成应用"><a href="#打包成应用" class="headerlink" title="打包成应用"></a>打包成应用</h2><ol>
-<li>添加cordova 到项目</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cordova</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>创建cordova项目</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova create my-project-name</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>创建/移动vue项目</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init webpack my-app</span><br></pre></td></tr></table></figure>
-<p>将my-app里的内容剪切到my-project-name下，同名覆盖</p>
-<ol start="4">
-<li>修改打包路径<br>修改config/index.js文件下的build属性，将dist改为www，绝对路径改为相对路径</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">build: &#123;</span><br><span class="line">  index: path.resolve(__dirname, <span class="string">&#x27;../www/index.html&#x27;</span>),</span><br><span class="line"></span><br><span class="line">  assetsRoot: path.resolve(__dirname, <span class="string">&#x27;../www&#x27;</span>),</span><br><span class="line">  assetsSubDirectory: <span class="string">&#x27;static&#x27;</span>,</span><br><span class="line">  assetsPublicPath: <span class="string">&#x27;./&#x27;</span>,</span><br><span class="line"></span><br><span class="line">  productionSourceMap: <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">  devtool: <span class="string">&#x27;#source-map&#x27;</span>,</span><br><span class="line"></span><br><span class="line">  productionGzip: <span class="literal">false</span>,</span><br><span class="line">  productionGzipExtensions: [<span class="string">&#x27;js&#x27;</span>, <span class="string">&#x27;css&#x27;</span>],</span><br><span class="line"></span><br><span class="line">  bundleAnalyzerReport: process.env.npm_config_report</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>5.vue项目中添加cordova.js</p>
-<p>在index.html body中添加cordova.js<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;cordova.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><br>同时在 head 中添加 移动端meta信息</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;self&#x27; data: gap: https://ssl.gstatic.com &#x27;unsafe-eval&#x27;; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;; media-src *; img-src &#x27;self&#x27; data: content:;&quot;--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;format-detection&quot;</span> <span class="attr">content</span>=<span class="string">&quot;telephone=no,email=no&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;msapplication-tap-highlight&quot;</span> <span class="attr">content</span>=<span class="string">&quot;no&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ol start="6">
-<li>运行项目</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
-<ol start="7">
-<li>编译成 iOS &amp; Android 项目</li>
-</ol>
-<p>安装 cordova iOS &amp; Android 平台</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova platform add ios android --save</span><br></pre></td></tr></table></figure>
-<p>编译</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>
-<p>运行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cordova run ios --device</span><br><span class="line">cordova run android --device</span><br></pre></td></tr></table></figure>
 
         
     </section>
@@ -195,97 +229,43 @@
 </article>
 
 
-
-
-
-
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
         
-            </div>
+        <h1 itemprop="name">
+            <a href="/blog/2018/10/12/Vue-%E7%BB%84%E4%BB%B6%E9%97%B4%E9%80%9A%E4%BF%A1/">Vue2组件间通信</a>
+        </h1>
         
-        <article id="search-result" class="search-result content"></article>
-        <footer class="footer">
+        <div class="article-meta clearfix">
+            <span class="article-date">
     
-        <div class="license">
-            <p>版权声明：
-                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
-            </p>
-        </div>
+    <i class="icon-calendar"></i>
     
-</footer>
+    <time datetime="2018-10-12T06:44:35.000Z" itemprop="datePublished">2018-10-12</time>
+</span>
 
-
-    </main>
-
-    
-    <div id="appreciate-modal" class="modal">
-    <div class="appreciate-container">
-        <div class="appreciate-image">
-            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
-            <p>⬆️支付宝</p>
-        </div>
-        <div class="appreciate-image">
-            <img src="/blog/images/wx.png" alt="微信二维码"></img>
-            <p>⬆️微信</p>
-        </div>
-    </div>
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/vue/" rel="tag">vue</a>
 </div>
-    
-    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/blog/js/jquery.modal.js"></script>
-    <script type="text/javascript" src="/blog/js/common.js"></script>
-    <script type="text/javascript" src="/blog/js/home.js"></script>
-    <script type="text/javascript">
-        $(function() {
-            var nodes = {
-                nav: $('#nav'),
-                aside: $('#aside'),
-                navTags: $('#nav-tags')
-            };
 
-            $('#open-panel, #aside-mask').on('click', function() {
-                nodes.aside.toggleClass('panel-show');
-            });
-            $('.toc-link').on('click', function() {
-                nodes.aside.toggleClass('panel-show');
-            });
-            $('#nav-tag').on('click', function(event) {
-                event.preventDefault();
-                // console.log(nodes.navTags.attr('class'))
-                nodes.navTags.toggleClass('tag-show');
-                // console.log(nodes.navTags.attr('class'))
-            });/*.hover(function() {
-                nodes.navTags.addClass('tag-show');
-            }, function() {
-                nodes.navTags.removeClass('tag-show');
-            });*/
-        });
-    </script>
+
+        </div>
+    </header>
     
-        <script type="text/javascript" src="/blog/js/search.js"></script>
-        <script type="text/javascript">
-            var search_path = "search.xml";
-            if (search_path.length == 0) {
-                search_path = "search.xml";
-            }
-            var path = "/blog/" + search_path;
-            searchFunc(path, 'search-box', 'search-result');
-        </script>
-    
-    
-    
-        <script>
-        var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
-            var s = document.getElementsByTagName("script")[0]; 
-            s.parentNode.insertBefore(hm, s);
-        })();
-        </script>
-    
-</body>
-</html>
-��的参数传递。"></a>Vue中通过自定义事件可以实现子组件向父组件的参数传递。</h3><p>在子组件中触发事件<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.$emit(<span class="string">&#x27;myEvent&#x27;</span>, data)</span><br></pre></td></tr></table></figure></p>
+    <section class="article-body markdown-body">
+        
+        <p>本篇主要讲述Vue2中组件间通信。目前 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue">Vue</a> 最新版本为<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/vue"><img src="https://img.shields.io/npm/v/vue.svg" alt="Version" style="width:auto !important;margin:auto;margin-left: 5px;"></a>。</p>
+<h2 id="props与自定义事件"><a href="#props与自定义事件" class="headerlink" title="props与自定义事件"></a>props与自定义事件</h2><p>这是Vue推荐使用的通信方法</p>
+<h3 id="Vue中通过props属性可以实现父组件向子组件的参数传递。"><a href="#Vue中通过props属性可以实现父组件向子组件的参数传递。" class="headerlink" title="Vue中通过props属性可以实现父组件向子组件的参数传递。"></a>Vue中通过props属性可以实现父组件向子组件的参数传递。</h3><p>所有的 prop 都使得其父子之间形成了一个 <em>单向下行绑定</em> ：父级 prop 的更新会向下流动到子组件中，但是反过来则不行。这样会防止从子组件意外改变父级组件的状态，从而导致你的应用的数据流向难以理解。每次父级组件发生更新时，子组件中所有的 prop 都将会刷新为最新的值。</p>
+<p>在子组件中定义props属性<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">&#x27;blog-post&#x27;</span>, &#123;</span><br><span class="line">  <span class="comment">// 在 JavaScript 中是 camelCase 的</span></span><br><span class="line">  props: [<span class="string">&#x27;postTitle&#x27;</span>],</span><br><span class="line">  template: <span class="string">&#x27;&lt;h3&gt;&#123;&#123; postTitle &#125;&#125;&lt;/h3&gt;&#x27;</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>在父组件中传入对应的props属性<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 在 HTML 中是 kebab-case 的 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">blog-post</span> <span class="attr">post-title</span>=<span class="string">&quot;hello!&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">blog-post</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>在 JavaScript 中对象和数组是通过引用传入的，所以对于一个数组或对象类型的 prop 来说，在子组件中改变这个对象或数组本身将会影响到父组件的状态。  </p>
+</blockquote>
+<h3 id="Vue中通过自定义事件可以实现子组件向父组件的参数传递。"><a href="#Vue中通过自定义事件可以实现子组件向父组件的参数传递。" class="headerlink" title="Vue中通过自定义事件可以实现子组件向父组件的参数传递。"></a>Vue中通过自定义事件可以实现子组件向父组件的参数传递。</h3><p>在子组件中触发事件<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.$emit(<span class="string">&#x27;myEvent&#x27;</span>, data)</span><br></pre></td></tr></table></figure></p>
 <p>在父组件中接受事件并进行处理<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">my-component</span> <span class="attr">v-on:my-event</span>=<span class="string">&quot;doSomething&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">my-component</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="provide与inject"><a href="#provide与inject" class="headerlink" title="provide与inject"></a>provide与inject</h2><p>2.2.0+ 新增  </p>
 <p>这对选项需要一起使用，以允许一个祖先组件向其所有子孙后代组件注入一个依赖，不论组件层次有多深，并在起上下游关系成立的时间里始终生效。祖先组件中通过provide来提供变量，然后在子孙后代组件中通过inject来注入变量。不论子孙后代有多深，只要调用了inject那么就可以注入provide中的数据。而不是局限于只能从当前父组件的prop属性来获取数据，只要在祖先组件的生命周期内，子孙后代组件都可以调用。  </p>
