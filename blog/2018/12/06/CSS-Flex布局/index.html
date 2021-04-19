@@ -6,7 +6,7 @@
 
     
     <title>
-        CSS-Flex布局 | 
+        Flex布局 | 
         Gblog
     </title>
     <meta name="author" content="Mangon" />
@@ -71,7 +71,7 @@
         
 
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC"><span class="toc-number">1.</span> <span class="toc-text">MVC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC-for-Javascript"><span class="toc-number">2.</span> <span class="toc-text">MVC for Javascript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVP"><span class="toc-number">3.</span> <span class="toc-text">MVP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVVM"><span class="toc-number">4.</span> <span class="toc-text">MVVM</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Flex%E5%B8%83%E5%B1%80"><span class="toc-number">1.</span> <span class="toc-text">Flex布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#flex-container-%E5%B1%9E%E6%80%A7"><span class="toc-number">2.</span> <span class="toc-text">flex container 属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#flex-item-%E5%B1%9E%E6%80%A7"><span class="toc-number">3.</span> <span class="toc-text">flex item 属性</span></a></li></ol>
         
         <div id="coffee-content"></div>
     </div>
@@ -87,7 +87,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            CSS-Flex布局
+            Flex布局
         </h1>
         
         <div class="article-meta clearfix">
@@ -119,7 +119,7 @@
 <p>容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。主轴的开始位置（与边框的交叉点）叫做main start，结束位置叫做main end；交叉轴的开始位置叫做cross start，结束位置叫做cross end。  </p>
 <p>项目默认沿主轴排列。单个项目占据的主轴空间叫做main size，占据的交叉轴空间叫做cross size。  </p>
 <h2 id="flex-container-属性"><a href="#flex-container-属性" class="headerlink" title="flex container 属性"></a>flex container 属性</h2><p>flex container包含以下属性  </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">flex</span>-container &#123; // <span class="attribute">flex</span>容器</span><br><span class="line">    <span class="attribute">display</span>: flex; // 设置容器为弹性布局</span><br><span class="line">    <span class="attribute">flex-direction</span>: <span class="built_in">row</span>(default) | row-reverse | column | column-reverse; // 主轴方向</span><br><span class="line">    <span class="attribute">flex-wrap</span>: <span class="built_in">nowrap</span>(default) | wrap | wrap-reverse; //换行</span><br><span class="line">    <span class="attribute">flex-flow</span>: &lt;flex-direction&gt;||&lt;flex-wrap&gt;; //以上两属性的缩写形式</span><br><span class="line">    justify-centent: flex-start | flex-end | center | space-between | space-around; //主轴对齐方式</span><br><span class="line">    <span class="attribute">align-items</span>: flex-start | flex-end | center | baseline | stretch; // 交叉轴对齐方式</span><br><span class="line">    <span class="attribute">align-content</span>: flex-start | flex-end | center | space-between | space-around | stretch; // 轴有多个时（<span class="attribute">flex-wrap</span>:wrap），多根轴线的对齐方式</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">flex</span>-container &#123; // <span class="attribute">flex</span>容器</span><br><span class="line">    <span class="attribute">display</span>: flex; // 设置容器为弹性布局</span><br><span class="line">    <span class="attribute">flex-direction</span>: <span class="built_in">row</span>(default) | row-reverse | column | column-reverse; // 主轴方向</span><br><span class="line">    <span class="attribute">flex-wrap</span>: <span class="built_in">nowrap</span>(default) | wrap | wrap-reverse; //换行</span><br><span class="line">    <span class="attribute">flex-flow</span>: &lt;flex-direction&gt;||&lt;flex-wrap&gt;; //以上两属性的缩写形式</span><br><span class="line">    <span class="attribute">justify-content</span>: flex-start | flex-end | center | space-between | space-around; //主轴对齐方式</span><br><span class="line">    <span class="attribute">align-items</span>: flex-start | flex-end | center | baseline | stretch; // 交叉轴对齐方式</span><br><span class="line">    <span class="attribute">align-content</span>: flex-start | flex-end | center | space-between | space-around | stretch; // 轴有多个时（<span class="attribute">flex-wrap</span>:wrap），多根轴线的对齐方式</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="flex-item-属性"><a href="#flex-item-属性" class="headerlink" title="flex item 属性"></a>flex item 属性</h2><p>flex item 包含以下属性  </p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">flex</span>-item &#123; // <span class="attribute">flex</span> item</span><br><span class="line">    <span class="attribute">order</span>: &lt;integer&gt;(default <span class="number">0</span>); //顺序</span><br><span class="line">    <span class="attribute">flex-grow</span>:&lt;number&gt;(default <span class="number">0</span>); //项目放大比例 默认存在剩余空间也不放大</span><br><span class="line">    <span class="attribute">flex-shrink</span>: &lt;number&gt;(default <span class="number">1</span>); //项目缩小比例 默认空间不足时，当前项目缩小</span><br><span class="line">    <span class="attribute">flex-basis</span>: &lt;length&gt;|<span class="built_in">auto</span>(default auto); // 在分配多余空间之前，项目占据主轴的空间</span><br><span class="line">    <span class="attribute">flex</span>:&lt;flex-grow&gt; || &lt;flex-shrink&gt; || &lt;flex-basis&gt;; //<span class="attribute">flex-grow</span> <span class="attribute">flex-shrink</span> <span class="attribute">flex-basis</span> 缩写</span><br><span class="line">    <span class="attribute">align-self</span>: auto | flex-start | flex-end | center | baseline | stretch;//该项目交叉轴对齐方式， 覆盖container的<span class="attribute">align-items</span>属性</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         

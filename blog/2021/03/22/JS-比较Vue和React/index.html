@@ -6,7 +6,7 @@
 
     
     <title>
-        JS-比较Vue和React | 
+        比较Vue和React | 
         Gblog
     </title>
     <meta name="author" content="Mangon" />
@@ -15,7 +15,7 @@
     <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
     
     
-    <meta name="description" content="相同之处使用 Virtual DOM提供了响应式 (Reactive) 和组件化 (Composable) 的视图组件。将注意力集中保持在核心库，而将其他功能如路由（react-router、vue-router）和全局状态管理（redux、vuex）交给相关的库。都有自己的cli，React 是 Create React App， Vue 是 vue-cli。都有自己的跨端解决方案 React Native 与 weex区别React中组件的渲染功能依赖JSX，可扩展性更好。V" />
+    <meta name="description" content="相同之处使用 Virtual DOM（vue2以上）提供了响应式 (Reactive) 和组件化 (Composable) 的视图组件。  将注意力集中保持在核心库，而将其他功能如路由（react-router、vue-router）和全局状态管理（redux、vuex）交给相关的库。  都有自己的cli，React 是 Create React App， Vue 是 vue-cli。  都有自己的跨端解决方案 React Native 与 weex  区别React中组件的渲染" />
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
@@ -71,7 +71,7 @@
         
 
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC"><span class="toc-number">1.</span> <span class="toc-text">MVC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC-for-Javascript"><span class="toc-number">2.</span> <span class="toc-text">MVC for Javascript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVP"><span class="toc-number">3.</span> <span class="toc-text">MVP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVVM"><span class="toc-number">4.</span> <span class="toc-text">MVVM</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%90%8C%E4%B9%8B%E5%A4%84"><span class="toc-number">1.</span> <span class="toc-text">相同之处</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%BA%E5%88%AB"><span class="toc-number">2.</span> <span class="toc-text">区别</span></a></li></ol>
         
         <div id="coffee-content"></div>
     </div>
@@ -87,7 +87,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            JS-比较Vue和React
+            比较Vue和React
         </h1>
         
         <div class="article-meta clearfix">
@@ -106,16 +106,16 @@
     <section class="article-body markdown-body">
         
         <h2 id="相同之处"><a href="#相同之处" class="headerlink" title="相同之处"></a>相同之处</h2><ol>
-<li>使用 Virtual DOM</li>
-<li>提供了响应式 (Reactive) 和组件化 (Composable) 的视图组件。</li>
-<li>将注意力集中保持在核心库，而将其他功能如路由（react-router、vue-router）和全局状态管理（redux、vuex）交给相关的库。</li>
-<li>都有自己的cli，React 是 Create React App， Vue 是 vue-cli。</li>
-<li>都有自己的跨端解决方案 React Native 与 weex</li>
+<li>使用 Virtual DOM（vue2以上）</li>
+<li>提供了响应式 (Reactive) 和组件化 (Composable) 的视图组件。  </li>
+<li>将注意力集中保持在核心库，而将其他功能如路由（react-router、vue-router）和全局状态管理（redux、vuex）交给相关的库。  </li>
+<li>都有自己的cli，React 是 Create React App， Vue 是 vue-cli。  </li>
+<li>都有自己的跨端解决方案 React Native 与 weex  </li>
 </ol>
 <h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><ol>
-<li>React中组件的渲染功能依赖JSX，可扩展性更好。Vue中使用了Templates，易于从HTML迁移，学习成本低。</li>
-<li>对于 “组件作用域内的 CSS” React通过 CSS-in-JS 的方案实现的，Vue 设置样式的默认方法是单文件组件里类似 style 的标签。</li>
-<li>在跨端支持上，ReactNative 由</li>
+<li>React中组件的渲染功能依赖JSX，可扩展性更好。Vue中使用了Templates，易于从HTML迁移，学习成本低。  </li>
+<li>对于 “组件作用域内的 CSS” React通过 CSS-in-JS 的方案实现的，Vue 设置样式的默认方法是单文件组件里类似 style 的标签。  </li>
+<li>在跨端支持上，ReactNative 由 Facebook 支持，发展较成熟。Vue 社区与阿里合作开发 Weex，但仍处于开发状态且并没经过实际项目的验证。  </li>
 </ol>
 
         

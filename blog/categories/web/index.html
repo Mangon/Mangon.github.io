@@ -67,11 +67,34 @@
     </form>
 </div>        
         
-            
-        
 
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC"><span class="toc-number">1.</span> <span class="toc-text">MVC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC-for-Javascript"><span class="toc-number">2.</span> <span class="toc-text">MVC for Javascript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVP"><span class="toc-number">3.</span> <span class="toc-text">MVP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVVM"><span class="toc-number">4.</span> <span class="toc-text">MVVM</span></a></li></ol>
+            <div class="author-meta">
+                
+                <div class="author-avatar">
+                    <a href="/blog/">
+                        <img src="/blog/images/avatar.jpeg" title="Mangon">
+                    </a>
+                </div>
+                
+                <div class="author-name">Mangon</div>
+                <div class="author-work">Front-End Software Engineer</div>
+                <div class="author-location">
+                    <i class="icon-location vm"></i>
+                    <span class="vm">Beijing, China</span>
+                </div>
+                
+                <div class="author-thread-wrap">
+                    <div class="author-threads clearfix">
+                        
+                        <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
+                        
+                        
+                        
+                    </div>
+                </div>
+                
+            </div>
         
         <div id="coffee-content"></div>
     </div>
@@ -151,14 +174,6 @@
 <p>修改数组的长度可以通过 <code>vm.items.splice(newLength)</code> 实现。  </p>
 <p>注意 <code>Vue.set(target, key, value)</code> 或  <code>Vue.delete(target, key)</code> 并不能为根数据对象添加/删除属性也不能为 Vue 实例添加/删除属性。  </p>
 <h2 id="vue不同组件之间如何通信"><a href="#vue不同组件之间如何通信" class="headerlink" title="vue不同组件之间如何通信?"></a>vue不同组件之间如何通信?</h2><p>可以通过使用一个空的Vue实例作为中间事件栈，然后使用 <code>$emit</code> <code>$on</code> 传递数据。  </p>
-<h2 id="vue3-和-vue2-相比有什么不同？"><a href="#vue3-和-vue2-相比有什么不同？" class="headerlink" title="vue3 和 vue2 相比有什么不同？"></a>vue3 和 vue2 相比有什么不同？</h2><ol>
-<li><p>Object.defineProperty -&gt; Proxy 使用 Proxy 替代 Object.defineProperty 来实现对数据的监听</p>
-</li>
-<li><p>Virtual Dom 重构</p>
-</li>
-<li><p>编译时优化</p>
-</li>
-</ol>
 
         
     </section>

@@ -67,11 +67,34 @@
     </form>
 </div>        
         
-            
-        
 
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC"><span class="toc-number">1.</span> <span class="toc-text">MVC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC-for-Javascript"><span class="toc-number">2.</span> <span class="toc-text">MVC for Javascript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVP"><span class="toc-number">3.</span> <span class="toc-text">MVP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVVM"><span class="toc-number">4.</span> <span class="toc-text">MVVM</span></a></li></ol>
+            <div class="author-meta">
+                
+                <div class="author-avatar">
+                    <a href="/blog/">
+                        <img src="/blog/images/avatar.jpeg" title="Mangon">
+                    </a>
+                </div>
+                
+                <div class="author-name">Mangon</div>
+                <div class="author-work">Front-End Software Engineer</div>
+                <div class="author-location">
+                    <i class="icon-location vm"></i>
+                    <span class="vm">Beijing, China</span>
+                </div>
+                
+                <div class="author-thread-wrap">
+                    <div class="author-threads clearfix">
+                        
+                        <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
+                        
+                        
+                        
+                    </div>
+                </div>
+                
+            </div>
         
         <div id="coffee-content"></div>
     </div>
@@ -125,7 +148,15 @@
 <h2 id="Teleport"><a href="#Teleport" class="headerlink" title="Teleport"></a>Teleport</h2><p>Teleport 提供了一种干净的方法，允许我们控制在 DOM 中哪个父节点下渲染了 HTML，而不必求助于全局状态或将其拆分为两个组件。一个典型的用法就是模态框组件的实现。  </p>
 <h2 id="Fragments"><a href="#Fragments" class="headerlink" title="Fragments"></a>Fragments</h2><p>也就是多根节点的组件，可以通过 <code>v-bind=&quot;$attrs&quot;</code> 将外部 attribute 显式的应用于子节点。  </p>
 <h2 id="Emits-组件选项"><a href="#Emits-组件选项" class="headerlink" title="Emits 组件选项"></a>Emits 组件选项</h2><p>可以通过 emits 选项在组件上定义已发出的事件，当在 emits 选项中定义了原生事件 (如 click) 时，将使用组件中的事件替代原生事件侦听器，如果使用对象语法而不是数组语法定义发出的事件，则可以验证事件选项是否符合要求。  </p>
-<h2 id="来自-vue-runtime-core-的-createRenderer-API-创建自定义渲染器"><a href="#来自-vue-runtime-core-的-createRenderer-API-创建自定义渲染器" class="headerlink" title="来自 @vue/runtime-core 的 createRenderer API 创建自定义渲染器"></a>来自 <code>@vue/runtime-core</code> 的 <code>createRenderer</code> API 创建自定义渲染器</h2><h2 id="单文件组件-Composition-API-语法糖（-lt-script-setup-gt-）"><a href="#单文件组件-Composition-API-语法糖（-lt-script-setup-gt-）" class="headerlink" title="单文件组件 Composition API 语法糖（&lt;script setup&gt;）"></a>单文件组件 Composition API 语法糖（<code>&lt;script setup&gt;</code>）</h2><h2 id="单文件组件状态驱动的-CSS-变量-lt-style-vars-gt"><a href="#单文件组件状态驱动的-CSS-变量-lt-style-vars-gt" class="headerlink" title="单文件组件状态驱动的 CSS 变量 (&lt;style vars&gt;)"></a>单文件组件状态驱动的 CSS 变量 (<code>&lt;style vars&gt;</code>)</h2><h2 id="单文件组件-lt-style-scoped-gt-现在可以包含全局规则或只针对插槽内容的规则"><a href="#单文件组件-lt-style-scoped-gt-现在可以包含全局规则或只针对插槽内容的规则" class="headerlink" title="单文件组件 &lt;style scoped&gt; 现在可以包含全局规则或只针对插槽内容的规则"></a>单文件组件 <code>&lt;style scoped&gt;</code> 现在可以包含全局规则或只针对插槽内容的规则</h2>
+<h2 id="来自-vue-runtime-core-的-createRenderer-API-创建自定义渲染器"><a href="#来自-vue-runtime-core-的-createRenderer-API-创建自定义渲染器" class="headerlink" title="来自 @vue/runtime-core 的 createRenderer API 创建自定义渲染器"></a>来自 <code>@vue/runtime-core</code> 的 <code>createRenderer</code> API 创建自定义渲染器</h2><h2 id="单文件组件-Composition-API-语法糖（-lt-script-setup-gt-）"><a href="#单文件组件-Composition-API-语法糖（-lt-script-setup-gt-）" class="headerlink" title="单文件组件 Composition API 语法糖（&lt;script setup&gt;）"></a>单文件组件 Composition API 语法糖（<code>&lt;script setup&gt;</code>）</h2><h2 id="单文件组件状态驱动的-CSS-变量-lt-style-vars-gt"><a href="#单文件组件状态驱动的-CSS-变量-lt-style-vars-gt" class="headerlink" title="单文件组件状态驱动的 CSS 变量 (&lt;style vars&gt;)"></a>单文件组件状态驱动的 CSS 变量 (<code>&lt;style vars&gt;</code>)</h2><h2 id="单文件组件-lt-style-scoped-gt-现在可以包含全局规则或只针对插槽内容的规则"><a href="#单文件组件-lt-style-scoped-gt-现在可以包含全局规则或只针对插槽内容的规则" class="headerlink" title="单文件组件 &lt;style scoped&gt; 现在可以包含全局规则或只针对插槽内容的规则"></a>单文件组件 <code>&lt;style scoped&gt;</code> 现在可以包含全局规则或只针对插槽内容的规则</h2><h2 id="vue3-和-vue2-相比有什么不同？"><a href="#vue3-和-vue2-相比有什么不同？" class="headerlink" title="vue3 和 vue2 相比有什么不同？"></a>vue3 和 vue2 相比有什么不同？</h2><ol>
+<li><p>Object.defineProperty -&gt; Proxy 使用 Proxy 替代 Object.defineProperty 来实现对数据的监听</p>
+</li>
+<li><p>Virtual Dom 重构</p>
+</li>
+<li><p>编译时优化</p>
+</li>
+</ol>
+
         
     </section>
     
