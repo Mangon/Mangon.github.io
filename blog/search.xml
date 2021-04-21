@@ -288,11 +288,11 @@
       
         <tags>
             
+            <tag> http </tag>
+            
             <tag> get </tag>
             
             <tag> post </tag>
-            
-            <tag> http </tag>
             
         </tags>
       
