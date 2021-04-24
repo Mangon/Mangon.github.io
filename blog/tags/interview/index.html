@@ -2010,13 +2010,22 @@
 <h2 id="数据结构和算法"><a href="#数据结构和算法" class="headerlink" title="数据结构和算法"></a>数据结构和算法</h2><h1 id="高级（框架，底层，扩展）"><a href="#高级（框架，底层，扩展）" class="headerlink" title="高级（框架，底层，扩展）"></a>高级（框架，底层，扩展）</h1><h2 id="Basic"><a href="#Basic" class="headerlink" title="Basic"></a>Basic</h2><h3 id="实现-define"><a href="#实现-define" class="headerlink" title="实现 define"></a>实现 define</h3><h3 id="实现-Promise-异步编程"><a href="#实现-Promise-异步编程" class="headerlink" title="实现 Promise 异步编程"></a>实现 Promise 异步编程</h3><p>Promise的解释：<br><a target="_blank" rel="noopener" href="http://bruce-xu.github.io/blogs/js/promise">http://bruce-xu.github.io/blogs/js/promise</a><br>两个优秀的Promise的实现：<br><a target="_blank" rel="noopener" href="https://github.com/bruce-xu/Promise/blob/master/Promise.js">https://github.com/bruce-xu/Promise/blob/master/Promise.js</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/yibingxiong1/article/details/68075416">https://blog.csdn.net/yibingxiong1/article/details/68075416</a></p>
 <h3 id="从输入url到window-onload-结束，这中间发生了什么？（计算机网络）"><a href="#从输入url到window-onload-结束，这中间发生了什么？（计算机网络）" class="headerlink" title="从输入url到window.onload()结束，这中间发生了什么？（计算机网络）"></a>从输入url到window.onload()结束，这中间发生了什么？（计算机网络）</h3><ol>
 <li>预处理</li>
-<li>读取cache</li>
+<li>读取cache(强缓存)</li>
 <li>查询DNS</li>
 <li>建立连接</li>
 <li>发送请求</li>
 <li>等待响应</li>
 <li>接收数据</li>
+<li>读取cache(协商缓存)</li>
 <li>处理渲染</li>
+</ol>
+<h3 id="为什么通常在发送数据埋点请求的时候使用的是-1x1-像素的透明-gif-图片？"><a href="#为什么通常在发送数据埋点请求的时候使用的是-1x1-像素的透明-gif-图片？" class="headerlink" title="为什么通常在发送数据埋点请求的时候使用的是 1x1 像素的透明 gif 图片？"></a>为什么通常在发送数据埋点请求的时候使用的是 1x1 像素的透明 gif 图片？</h3><ol>
+<li>能够完成整个 HTTP 请求+响应（不需要响应内容）</li>
+<li>触发 GET 请求之后不需要获取和处理数据、服务器也不需要发送数据</li>
+<li>跨域友好</li>
+<li>执行过程无阻塞</li>
+<li>相比 XMLHttpRequest 对象发送 GET 请求，性能上更好</li>
+<li>GIF的最低合法体积最小（最小的BMP文件需要74个字节，PNG需要67个字节，而合法的GIF，只需要43个字节）</li>
 </ol>
 <h3 id="前端性能优化从哪几方面入手？有哪些方法？"><a href="#前端性能优化从哪几方面入手？有哪些方法？" class="headerlink" title="前端性能优化从哪几方面入手？有哪些方法？"></a>前端性能优化从哪几方面入手？有哪些方法？</h3><ol>
 <li>性能优化=》减少从用户输入网址到用户看到期望内容的时间</li>

@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        HTTP | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.0.3" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="什么是HTTPHTTP全称超文本传输协议（HyperText Transfer Protocol），诞生于 1989年3月，由 CERN(欧洲核子研究组织)的 Tim Berners Lee 博士和他的团队设计，是一种能够获取如 HTML 这样的网络资源的通讯协议。它是在 Web 上进行数据交换的基础，是一种 客户端-服务器 协议，也就是说，请求通常是由像浏览器这样的客户端发起的。一个完整的Web文档通常是由不同的子文档拼接而成的，像是文本、布局描述、图片、视频、脚本等等。  HTTP正式作为" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://mangon.cn/blog"></form> -->
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFHTTP"><span class="toc-number">1.</span> <span class="toc-text">什么是HTTP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP-IP-%E5%9B%9B%E5%B1%82%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">TCP&#x2F;IP 四层模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%B1%82"><span class="toc-number">2.1.</span> <span class="toc-text">应用层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%E5%B1%82"><span class="toc-number">2.2.</span> <span class="toc-text">传输层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="toc-number">2.3.</span> <span class="toc-text">网络层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="toc-number">2.4.</span> <span class="toc-text">数据链路层</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="toc-number">3.</span> <span class="toc-text">TCP三次握手</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URI-%E7%BB%9F%E4%B8%80%E8%B5%84%E6%BA%90%E6%A0%87%E5%BF%97%E7%AC%A6"><span class="toc-number">4.</span> <span class="toc-text">URI-统一资源标志符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP%E6%8A%A5%E6%96%87%E7%94%B1%E5%93%AA%E4%BA%9B%E5%85%83%E7%B4%A0%E6%9E%84%E6%88%90"><span class="toc-number">5.</span> <span class="toc-text">HTTP报文由哪些元素构成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#method-%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95"><span class="toc-number">5.1.</span> <span class="toc-text">method 请求方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#keep-alive-%E6%8C%81%E4%B9%85%E8%BF%9E%E6%8E%A5"><span class="toc-number">5.2.</span> <span class="toc-text">keep-alive 持久连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cookie"><span class="toc-number">5.3.</span> <span class="toc-text">cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#content-encoding-%E5%86%85%E5%AE%B9%E7%BC%96%E7%A0%81"><span class="toc-number">5.4.</span> <span class="toc-text">content-encoding 内容编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Content-Type-%E5%86%85%E5%AE%B9%E7%B1%BB%E5%9E%8B"><span class="toc-number">5.5.</span> <span class="toc-text">Content-Type 内容类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AE%B9%E5%8D%8F%E5%95%86"><span class="toc-number">5.6.</span> <span class="toc-text">内容协商</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Status-Code-%E7%8A%B6%E6%80%81%E7%A0%81"><span class="toc-number">5.7.</span> <span class="toc-text">Status Code 状态码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP-1-1-%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5"><span class="toc-number">5.8.</span> <span class="toc-text">HTTP&#x2F;1.1 首部字段</span></a></li></ol></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            HTTP
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-04-22T11:22:19.000Z" itemprop="datePublished">2021-04-22</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/http/" rel="tag">http</a>, <a class="article-tag-link" href="/blog/tags/web/" rel="tag">web</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="什么是HTTP"><a href="#什么是HTTP" class="headerlink" title="什么是HTTP"></a>什么是HTTP</h2><p>HTTP全称超文本传输协议（HyperText Transfer Protocol），诞生于 1989年3月，由 CERN(欧洲核子研究组织)的 Tim Berners Lee 博士和他的团队设计，是一种能够获取如 HTML 这样的网络资源的通讯协议。它是在 Web 上进行数据交换的基础，是一种 客户端-服务器 协议，也就是说，请求通常是由像浏览器这样的客户端发起的。一个完整的Web文档通常是由不同的子文档拼接而成的，像是文本、布局描述、图片、视频、脚本等等。  </p>
+<p>HTTP正式作为标准是在 1996年的5月，版本被命名为 HTTP/1.0，并记载于 <a target="_blank" rel="noopener" href="https://www.ietf.org/rfc/rfc1945.txt">RFC1945</a>。  </p>
+<p>HTTP在基本的TCP/IP协议栈上发送信息，1994年底，网景公司（Netscape Communication）在此基础上创建了一个额外的加密传输层：SSL(Secure Socket Layer 安全套接层)，SSL在标准化道路上最终成为TLS(Transport Layer Security 安全传输层协议)，并记载于 <a target="_blank" rel="noopener" href="https://www.ietf.org/rfc/rfc2246.txt">RFC2246</a>。  </p>
+<p>1997年1月 HTTP/1.1公布，当初的标准是 <a target="_blank" rel="noopener" href="https://www.ietf.org/rfc/rfc2068.txt">RFC2068</a>，目前最新的修订版是1999年6月发布的 <a target="_blank" rel="noopener" href="https://www.ietf.org/rfc/rfc2616.txt">RFC2616</a></p>
+<p>HTTP2目前正在设计中，它的两个预览版本 <a target="_blank" rel="noopener" href="https://www.ietf.org/rfc/rfc7230.txt">RFC7230</a>、<a target="_blank" rel="noopener" href="https://www.ietf.org/rfc/rfc7235.txt">RFC 7235</a> 发布于2014年6月</p>
+<h2 id="TCP-IP-四层模型"><a href="#TCP-IP-四层模型" class="headerlink" title="TCP/IP 四层模型"></a>TCP/IP 四层模型</h2><p>HTTP运行的基础是 TCP/IP 。TCP/IP 一般是指在通信过程中使用到的协议族的统称。TCP/IP 协议族最重要的一个特点就是分层。按层次分为以下四层：应用层、传输层、网络层、数据链路层。通常也叫做 TCP/IP 四层模型。  </p>
+<h3 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h3><p>应用层决定了向用户提供应用服务时通信的活动。<br>属于该层的协议有 FTP（File Transfer Protocol 文件传输协议） SMTP（Simple Mail Transfer Protocol 简单邮件传送协议） DNS（Domain Name System 域名系统） HTTP（HyperText Transfer Protocol 超文本传输协议）Telnet(远程登录协议) POP3(Post Office Protocol - Version 3 邮局协议版本3) SNMP（Simple Network Management Protocol 简单网络管理协议）DHCP（Dynamic Host Configuration Protocol 动态主机配置协议）</p>
+<h3 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h3><p>传输层提供处于网络连接中的两台计算机之间的数据传输。<br>属于该层的协议有 TCP（Transmission Control Protocl 传输控制协议） UDP（User Data Protocal 用户数据报协议）</p>
+<h3 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h3><p>网络层用来处理在网络上流动的数据包。<br>属于该层的协议为 IP（Internet Protocol 网络互联协议）包括 IPv4、Ipv6</p>
+<h3 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h3><p>数据链路层用来处理连接网络硬件的部分。包括控制操作系统、硬件设备驱动、网络适配器（NIC）及光纤等。</p>
+<h2 id="TCP三次握手"><a href="#TCP三次握手" class="headerlink" title="TCP三次握手"></a>TCP三次握手</h2><p>TCP协议位于传输层，提供了可靠的字节流服务。为了准确无误的将数据送达目标处，TCP协议采用了三次握手的策略，在数据包送出后会通过 TCP 标志 SYNC（synchronize） 和 ACK（acknowledgement）向对方确认是否成功送达。<br>发送端首先发送一个带有 SYNC 标志的数据包给对方。接收端收到后，回传一个带有 SYNC/ACK 标志的数据包以示传达确认信息。最后，发送端再回传一个带 ACK 标志的数据包，代表“握手”结束。   </p>
+<h2 id="URI-统一资源标志符"><a href="#URI-统一资源标志符" class="headerlink" title="URI-统一资源标志符"></a>URI-统一资源标志符</h2><p>URI（Uniform Resource Identifier）是指访问资源所使用的协议类型名称。在 <a target="_blank" rel="noopener" href="https://www.ietf.org/rfc/rfc7230.txt">RFC2396</a> 中定义。标准的URI协议有30多种，由 国际互联网资源管理的非盈利性社团 ICANN(Internet Corporation for Assigned Names and Numbers) 管理。   </p>
+<p>URI包括以下几个部分：  </p>
+<p><code>http://user:pass@www.example.com:80/dir/index.html?uid=1#ch1</code><br>协议名、登录信息、服务器地址、服务器端口号、带层次的文件路径、查询字符串、片段标志符</p>
+<h2 id="HTTP报文由哪些元素构成"><a href="#HTTP报文由哪些元素构成" class="headerlink" title="HTTP报文由哪些元素构成"></a>HTTP报文由哪些元素构成</h2><p>HTTP报文包括请求报文和响应报文  </p>
+<p>请求报文 包括 请求方法 URI 协议版本 请求首部字段 内容实体 构成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">POST &#x2F;form&#x2F;entry HTTP&#x2F;1.1</span><br><span class="line">Host: example.com</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Content-Type: application&#x2F;x-www-form-urlencoded</span><br><span class="line">Content-Length: 16</span><br><span class="line"></span><br><span class="line">name&#x3D;userName&amp;age&#x3D;16</span><br></pre></td></tr></table></figure>
+<p>相应报文 包括 协议版本 状态码 原因短语 创建响应的时间 响应首部字段 主体 构成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">HTTP&#x2F;1.1 200 OK</span><br><span class="line">Date: Thu Apr 22 2021 00:08:31 GMT</span><br><span class="line">Content-Length: 3620</span><br><span class="line">Content-Type: text&#x2F;html</span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<h3 id="method-请求方法"><a href="#method-请求方法" class="headerlink" title="method 请求方法"></a>method 请求方法</h3><p>HTTP/1.1 支持请求的方法如下：  </p>
+<table>
+<thead>
+<tr>
+<th>请求方法</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td>GET方法用来请求访问已被URI识别的资源</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>POST方法用来传输报文主体部分</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>PUT方法用来传输文件，但PUT方法自身不带验证机制，所以一般web网站不使用该方法</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>DELETE方法用来删除文件，同PUT方法作用相反，但因为不带验证机制，所以一般也不使用</td>
+</tr>
+<tr>
+<td>HEAD</td>
+<td>HEAD方法用来获取报文首部，不返回报文主体</td>
+</tr>
+<tr>
+<td>OPTIONS</td>
+<td>OPTIONS方法用来询问服务器支持的方法</td>
+</tr>
+<tr>
+<td>TRACE</td>
+<td>TRACE方法让web服务器将之前的请求通信返回给客户端，容易引起XST（Cross-Site Tracing）攻击，所以也不常用</td>
+</tr>
+<tr>
+<td>CONNECT</td>
+<td>CONNECT方法要求在与代理服务器通信时建立隧道，实现用隧道协议进行TCP通信</td>
+</tr>
+</tbody>
+</table>
+<p>GET 和 POST 请求的区别可以参考 <a href="/blog/2021/03/19/HTTP-get-post区别/">HTTP-get-post区别</a></p>
+<h3 id="keep-alive-持久连接"><a href="#keep-alive-持久连接" class="headerlink" title="keep-alive 持久连接"></a>keep-alive 持久连接</h3><p>为了减少TCP三次握手的消耗，HTTP/1.1默认采用了 <code>Connection: keep-alive</code> 的首部字段来复用TCP三次握手所建立的连接通道。持久连接让客户端的请求可以以管线化的方式发送，即并行的同时发送多个请求而不需要等待上一个请求响应。同时，多数浏览器会对同时发起的请求数量进行限制以防止对连接资源的消耗。Chrome 浏览器限制为 8 个请求。  </p>
+<h3 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h3><p>HTTP请求是无状态的，但某些情况下我们需要进行状态管理，比如用户登陆场景。cookie技术通过在请求和响应报文中写入cookie信息来控制客户端的状态。<br>Server端可以在响应报文中通过 <code>Set-Cookie</code> 的首部字段来通知客户端添加cookie，客户端可以通过 <code>document.cookie</code> 获取和修改cookie相关信息。  </p>
+<h3 id="content-encoding-内容编码"><a href="#content-encoding-内容编码" class="headerlink" title="content-encoding 内容编码"></a>content-encoding 内容编码</h3><p>内容编码指明了应用在实体内容上的编码格式，并保持实体原样压缩。内容编码后的实体由客户端接受并负责解码。 在请求报文首部中，添加 <code>Accept-Encoding</code> 字段表明客户端支持的内容编码形式，Server端在响应报文首部中添加 <code>content-encoding</code> 字段表明该次请求采用的内容编码形式。常见内容编码压缩方式如下：  </p>
+<table>
+<thead>
+<tr>
+<th>内容编码方式</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gzip</td>
+<td>GNU zip</td>
+</tr>
+<tr>
+<td>compress</td>
+<td>UNIX系统的标准压缩</td>
+</tr>
+<tr>
+<td>deflate</td>
+<td>zlib</td>
+</tr>
+<tr>
+<td>identify</td>
+<td>不进行编码</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Content-Type-内容类型"><a href="#Content-Type-内容类型" class="headerlink" title="Content-Type 内容类型"></a>Content-Type 内容类型</h3><p>HTTP采用了MIME(Multipurpose internet Mail Extensions)来描述传输的内容类型。<br>MIME 信息是由 Internet Engineering Task Force (IETF) 在下面的文档中提供的:  </p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.ietf.org/rfc/rfc822.txt">RFC-822</a> Standard for ARPA Internet text messages</li>
+<li><a target="_blank" rel="noopener" href="https://www.ietf.org/rfc/rfc2045.txt">RFC-2045</a> MIME Part 1: Format of Internet Message Bodies</li>
+<li><a target="_blank" rel="noopener" href="https://www.ietf.org/rfc/rfc2046.txt">RFC-2046</a> MIME Part 2: Media Types</li>
+<li><a target="_blank" rel="noopener" href="https://www.ietf.org/rfc/rfc2047.txt">RFC-2047</a> MIME Part 3: Header Extensions for Non-ASCII Text</li>
+<li><a target="_blank" rel="noopener" href="https://www.ietf.org/rfc/rfc2048.txt">RFC-2048</a> MIME Part 4: Registration Procedures</li>
+<li><a target="_blank" rel="noopener" href="https://www.ietf.org/rfc/rfc2049.txt">RFC-2049</a> MIME Part 5: Conformance Criteria and Examples</li>
+</ul>
+<p>常见的 Content-Type 类型有如下：  </p>
+<table>
+<thead>
+<tr>
+<th>文件扩展名</th>
+<th>Content-Type</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.html</td>
+<td>text/html</td>
+<td>超文本标记语言文本</td>
+</tr>
+<tr>
+<td>.txt</td>
+<td>text/plain</td>
+<td>普通文本</td>
+</tr>
+<tr>
+<td>.gif</td>
+<td>image/gif</td>
+<td>GIF图形</td>
+</tr>
+<tr>
+<td>.jpeg,.jpg</td>
+<td>image/jpeg</td>
+<td>JPEG图形</td>
+</tr>
+<tr>
+<td>.au</td>
+<td>audio/basic</td>
+<td>声音文件</td>
+</tr>
+<tr>
+<td>.mpg,.mpeg</td>
+<td>video/mpeg</td>
+<td>MPEG文件</td>
+</tr>
+<tr>
+<td>.avi</td>
+<td>video/x-msvideo</td>
+<td>AVI文件</td>
+</tr>
+<tr>
+<td>.tar</td>
+<td>application/x-tar</td>
+<td>TAR文件</td>
+</tr>
+<tr>
+<td></td>
+<td>multipart/form-data</td>
+<td>web表单数据</td>
+</tr>
+</tbody>
+</table>
+<h3 id="内容协商"><a href="#内容协商" class="headerlink" title="内容协商"></a>内容协商</h3><p>内容协商机制是指客户端和服务器就响应的资源内容进行交涉，然后提供给客户端最为合适的资源。内容协商字段会包含在请求报文的首部字段。包括： Accept、Accept-Charset、Accept-Encoding、Accept-Language、Content-Language  </p>
+<h3 id="Status-Code-状态码"><a href="#Status-Code-状态码" class="headerlink" title="Status Code 状态码"></a>Status Code 状态码</h3><p>参见 <a href="/blog/2018/11/02/HTTP-状态码/">HTTP-状态码</a></p>
+<h3 id="HTTP-1-1-首部字段"><a href="#HTTP-1-1-首部字段" class="headerlink" title="HTTP/1.1 首部字段"></a>HTTP/1.1 首部字段</h3><p>首部字段分为四种 通用 请求 响应 实体  </p>
+<p>HTTP 首部字段参见 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers">HTTP Headers</a>  </p>
+<p>常见的有以下字段：  </p>
+<p>通用：</p>
+<table>
+<thead>
+<tr>
+<th>首部字段名</th>
+<th>说明</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cache-Control</td>
+<td>控制缓存的行为</td>
+<td>public;max-age=3600</td>
+</tr>
+<tr>
+<td>Connection</td>
+<td>逐跳首部、连接的管理</td>
+<td>keep-alive</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>创建报文的日期时间</td>
+<td>Thu, 22 Apr 2021 16:38:01 GMT</td>
+</tr>
+<tr>
+<td>Transfer-Encoding</td>
+<td>制定报文主体的传输编码方式</td>
+<td>chunked</td>
+</tr>
+<tr>
+<td>Upgrade</td>
+<td>升级为其他协议</td>
+<td>TLS/1.0,HTTP/1.1</td>
+</tr>
+</tbody>
+</table>
+<p>请求：</p>
+<table>
+<thead>
+<tr>
+<th>首部字段名</th>
+<th>说明</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Accept</td>
+<td>用户代理可处理的媒体类型</td>
+<td>text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,<em>/</em>;q=0.8,application/signed-exchange;v=b3;q=0.9</td>
+</tr>
+<tr>
+<td>Accept-Charset</td>
+<td>优先的字符集</td>
+<td></td>
+</tr>
+<tr>
+<td>Accept-Encoding</td>
+<td>优先的内容编码</td>
+<td>gzip, deflate, br</td>
+</tr>
+<tr>
+<td>Accept-Language</td>
+<td>优先的语言（自然）</td>
+<td>zh-CN,zh;q=0.9</td>
+</tr>
+<tr>
+<td>Host</td>
+<td>请求资源所在服务器</td>
+<td>localhost:5005</td>
+</tr>
+<tr>
+<td>If-Match</td>
+<td>比较实体标记(ETag)</td>
+<td></td>
+</tr>
+<tr>
+<td>If-Modify-Since</td>
+<td>比较资源的更新时间</td>
+<td></td>
+</tr>
+<tr>
+<td>If-None-Match</td>
+<td>比较实体标记(与If-Match相反)</td>
+<td></td>
+</tr>
+<tr>
+<td>User-Agent</td>
+<td>HTTP客户端程序的信息</td>
+<td>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36</td>
+</tr>
+</tbody>
+</table>
+<p>响应：</p>
+<table>
+<thead>
+<tr>
+<th>首部字段名</th>
+<th>说明</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ETag</td>
+<td>资源的匹配信息</td>
+<td></td>
+</tr>
+<tr>
+<td>Location</td>
+<td>令客户端重定向至指定URI</td>
+<td></td>
+</tr>
+<tr>
+<td>Server</td>
+<td>HTTP服务器的安装信息</td>
+<td></td>
+</tr>
+<tr>
+<td>Vary</td>
+<td>代理服务器缓存的管理信息</td>
+</tr>
+</tbody>
+</table>
+<p>实体：</p>
+<table>
+<thead>
+<tr>
+<th>首部字段名</th>
+<th>说明</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Allow</td>
+<td>资源可支持的HTTP方法</td>
+<td></td>
+</tr>
+<tr>
+<td>Content-Encoding</td>
+<td>实体主体适用的编码方式</td>
+<td></td>
+</tr>
+<tr>
+<td>Content-Language</td>
+<td>实体主体的自然语言</td>
+<td></td>
+</tr>
+<tr>
+<td>Content-Length</td>
+<td>实体主体的大小（字节）</td>
+<td></td>
+</tr>
+<tr>
+<td>Content-Location</td>
+<td>替代对应资源的URI</td>
+<td></td>
+</tr>
+<tr>
+<td>Content-MD5</td>
+<td>实体主体的报文摘要</td>
+<td></td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td>实体主体的媒体类型</td>
+<td></td>
+</tr>
+<tr>
+<td>Expires</td>
+<td>实体主体过期的日期时间</td>
+<td></td>
+</tr>
+<tr>
+<td>Last-Modified</td>
+<td>资源的最后修改日期时间</td>
+</tr>
+</tbody>
+</table>
+
+        
+    </section>
+    
+    <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明：
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

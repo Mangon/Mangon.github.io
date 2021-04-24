@@ -71,7 +71,7 @@
         
 
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AD%E5%8C%85"><span class="toc-number">1.</span> <span class="toc-text">闭包</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AD%E5%8C%85"><span class="toc-number">1.</span> <span class="toc-text">闭包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number"></span> <span class="toc-text">闭包的作用</span></a>
         
         <div id="coffee-content"></div>
     </div>
@@ -107,6 +107,17 @@
         
         <h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p>和其他大多数现代编程语言一样，JavaScript也采用词法作用域(lexical scoping)。也就是，函数的执行依赖于变量作用域，这个作用域是函数定义时决定的。而不是函数执行时决定的。为了实现这种词法作用域，JavaScript函数对象的内部状态不仅包含函数的代码逻辑，还必须引用当前的作用域链(scope chain)。函数可以通过作用域链(scope chain)相互关联起来，函数内部的变量都可以保存在函数作用域内，这种特性称为”闭包”。  </p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    n = <span class="number">999</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(n);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> f2;<span class="comment">// f2就是一个闭包</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> result = f1();</span><br><span class="line">result(); <span class="comment">// 999</span></span><br></pre></td></tr></table></figure>
+<h2 id="闭包的作用"><a href="#闭包的作用" class="headerlink" title="闭包的作用"></a>闭包的作用</h2><p>作用：  </p>
+<ol>
+<li>隐藏变量，避免全局污染</li>
+<li>可以读取函数内部的变量</li>
+</ol>
+<p>缺点：  </p>
+<ol>
+<li>导致变量不会被垃圾回收机制回收，造成内存消耗</li>
+<li>不恰当的使用闭包可能会造成内存泄漏的问题</li>
+</ol>
+
         
     </section>
     

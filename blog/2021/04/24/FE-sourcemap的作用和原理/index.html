@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        FE-sourcemap的作用和原理 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.0.3" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="什么是SourcemapSourcemap 本质上是一个信息文件，里面储存着代码转换前后的对应位置信息。它记录了转换压缩后的代码所对应的转换前的源代码位置，是源代码和生产环境代码的映射。 Sourcemap 解决了在打包过程中，代码经过压缩，去空格以及 babel 编译转化后，由于源代码与生产环境代码之间差异性过大，造成无法debug的问题。  在生产环境文件中，会有一行底部注释 其中 sourceMappingURL 指向 sourcemap 文件地址，形如：  1//# sourceMa" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://mangon.cn/blog"></form> -->
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFSourcemap"><span class="toc-number">1.</span> <span class="toc-text">什么是Sourcemap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sourcemap%E4%BD%9C%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">Sourcemap作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sourcemap%E7%9A%84%E7%94%A8%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">Sourcemap的用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8-webpack-%E4%B8%AD%E4%BD%BF%E7%94%A8-Sourcemap"><span class="toc-number">4.</span> <span class="toc-text">在 webpack 中使用 Sourcemap</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            FE-sourcemap的作用和原理
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-04-23T17:29:35.000Z" itemprop="datePublished">2021-04-24</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/sourcemap/" rel="tag">sourcemap</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="什么是Sourcemap"><a href="#什么是Sourcemap" class="headerlink" title="什么是Sourcemap"></a>什么是Sourcemap</h2><p>Sourcemap 本质上是一个信息文件，里面储存着代码转换前后的对应位置信息。它记录了转换压缩后的代码所对应的转换前的源代码位置，是源代码和生产环境代码的映射。 Sourcemap 解决了在打包过程中，代码经过压缩，去空格以及 babel 编译转化后，由于源代码与生产环境代码之间差异性过大，造成无法debug的问题。  </p>
+<p>在生产环境文件中，会有一行底部注释 其中 <code>sourceMappingURL</code> 指向 sourcemap 文件地址，形如：  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//# sourceMappingURL=http://example.com/path/to/your/sourcemap.map</span></span><br></pre></td></tr></table></figure>
+<h2 id="Sourcemap作用"><a href="#Sourcemap作用" class="headerlink" title="Sourcemap作用"></a>Sourcemap作用</h2><p>Sourcemap 构建了处理前以及处理后的代码之间的一座桥梁，方便定位生产环境中出现 bug 的位置。因为现在的前端开发都是模块化、组件化的方式，在上线前对 js 和 css 文件进行合并压缩容易造成混淆。如果对这样的线上代码进行调试，肯定不切实际，Sourcemap 的作用就是能够让浏览器的调试面版将生成后的代码映射到源码文件当中，开发者可以在源码文件中 debug，这样就会让调试轻松、简单很多。</p>
+<h2 id="Sourcemap的用法"><a href="#Sourcemap的用法" class="headerlink" title="Sourcemap的用法"></a>Sourcemap的用法</h2><p>为了调试工作能够使用 Sourcemap，你必须：</p>
+<ol>
+<li>生产一个 Sourcemap 文件</li>
+<li>在转换后的文件末尾加入一个注释，以 <code>#</code> 开始，声明参数 <code>sourceMappingURL</code> 指向 Sourcemap 文件所在位置。</li>
+</ol>
+<h2 id="在-webpack-中使用-Sourcemap"><a href="#在-webpack-中使用-Sourcemap" class="headerlink" title="在 webpack 中使用 Sourcemap"></a>在 webpack 中使用 Sourcemap</h2><p>可以在 webpack 配置文件中添加 <code>devtool</code> 参数用来说明 Sroucemap 的处理方式。常见的有以下几种：  </p>
+<table>
+<thead>
+<tr>
+<th>devtool取值</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>source-map</td>
+<td>产生一个单独的source-map文件，功能最完全，但会减慢打包速度</td>
+</tr>
+<tr>
+<td>eval-source-map</td>
+<td>使用eval打包源文件模块，直接在源文件中写入干净完整的source-map，不影响构建速度，但影响执行速度和安全，建议开发环境中使用，生产阶段不要使用</td>
+</tr>
+<tr>
+<td>cheap-module-source-map</td>
+<td>会产生一个不带映射到列的单独的map文件，开发者工具就只能看到行，但无法对应到具体的列（符号），对调试不便</td>
+</tr>
+<tr>
+<td>cheap-module-eval-source-map</td>
+<td>不会产生单独的map文件，（与eval-source-map类似）但开发者工具就只能看到行，但无法对应到具体的列（符号），对调试不便</td>
+</tr>
+</tbody>
+</table>
+
+        
+    </section>
+    
+    <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明：
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>
