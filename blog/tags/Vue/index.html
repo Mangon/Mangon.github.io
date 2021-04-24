@@ -6,7 +6,7 @@
 
     
     <title>
-        Tag: vue | 
+        Tag: Vue | 
         Gblog
     </title>
     <meta name="author" content="Mangon" />
@@ -111,7 +111,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2021/04/24/Vue-Vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">Vue生命周期</a>
+            <a href="/blog/2019/01/09/TIPS-Ionic4-vue%E6%90%AD%E5%BB%BA%E8%B7%A8%E5%B9%B3%E5%8F%B0%E7%A7%BB%E5%8A%A8%E5%BA%94%E7%94%A8%E6%A1%86%E6%9E%B6/">ionic4+vue搭建跨平台移动应用框架</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -119,13 +119,13 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2021-04-23T18:18:36.000Z" itemprop="datePublished">2021-04-24</time>
+    <time datetime="2019-01-09T07:09:36.000Z" itemprop="datePublished">2019-01-09</time>
 </span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/vue/" rel="tag">vue</a>
+    <a class="article-tag-link" href="/blog/tags/Vue/" rel="tag">Vue</a>
 </div>
 
 
@@ -134,44 +134,76 @@
     
     <section class="article-body markdown-body">
         
-        <h2 id="生命周期图示"><a href="#生命周期图示" class="headerlink" title="生命周期图示"></a>生命周期图示</h2><p><img src="/blog/static/imgs/vue-lifecycle.png" alt="vue生命周期_inner"></p>
-<h2 id="beforeCreate-创建前"><a href="#beforeCreate-创建前" class="headerlink" title="beforeCreate 创建前"></a>beforeCreate 创建前</h2><p>在实例初始化之后，数据观测 (data observer) 和 event/watcher 事件配置之前被调用。  </p>
-<h2 id="created-创建后"><a href="#created-创建后" class="headerlink" title="created 创建后"></a>created 创建后</h2><p>在实例创建完成后被立即调用。在这一步，实例已完成以下的配置：数据观测 (data observer)，property 和方法的运算，watch/event 事件回调。然而，挂载阶段还没开始，<code>$el</code> property 目前尚不可用。  </p>
-<h2 id="beforeMount-挂载前"><a href="#beforeMount-挂载前" class="headerlink" title="beforeMount 挂载前"></a>beforeMount 挂载前</h2><p>在挂载开始之前被调用：相关的 render 函数首次被调用。  </p>
-<h2 id="mounted-挂载后"><a href="#mounted-挂载后" class="headerlink" title="mounted 挂载后"></a>mounted 挂载后</h2><p>实例被挂载后调用，这时 el 被新创建的 vm.$el 替换了。如果根实例挂载到了一个文档内的元素上，当 mounted 被调用时 vm.$el 也在文档内。  </p>
-<p>注意 mounted 不会保证所有的子组件也都一起被挂载。如果你希望等到整个视图都渲染完毕，可以在 mounted 内部使用 <code>vm.$nextTick</code> 。  </p>
-<h2 id="beforeUpdate-更新前"><a href="#beforeUpdate-更新前" class="headerlink" title="beforeUpdate 更新前"></a>beforeUpdate 更新前</h2><p>数据更新时调用，发生在虚拟 DOM 打补丁之前。这里适合在更新之前访问现有的 DOM，比如手动移除已添加的事件监听器。  </p>
-<h2 id="updated-更新后"><a href="#updated-更新后" class="headerlink" title="updated 更新后"></a>updated 更新后</h2><p>由于数据更改导致的虚拟 DOM 重新渲染和打补丁，在这之后会调用该钩子。  </p>
-<p>当这个钩子被调用时，组件 DOM 已经更新，所以你现在可以执行依赖于 DOM 的操作。然而在大多数情况下，你应该避免在此期间更改状态。如果要相应状态改变，通常最好使用计算属性或 watcher 取而代之。  </p>
-<p>注意 updated 不会保证所有的子组件也都一起被重绘。如果你希望等到整个视图都重绘完毕，可以在 updated 里使用 <code>vm.$nextTick</code>  </p>
-<h2 id="beforeDestroy-销毁前"><a href="#beforeDestroy-销毁前" class="headerlink" title="beforeDestroy 销毁前"></a>beforeDestroy 销毁前</h2><p>实例销毁之前调用。在这一步，实例仍然完全可用。  </p>
-<h2 id="destroyed-销毁后"><a href="#destroyed-销毁后" class="headerlink" title="destroyed 销毁后"></a>destroyed 销毁后</h2><p>实例销毁后调用。该钩子被调用后，对应 Vue 实例的所有指令都被解绑，所有的事件监听器被移除，所有的子实例也都被销毁。  </p>
-<h2 id="activated"><a href="#activated" class="headerlink" title="activated"></a>activated</h2><p>被 keep-alive 缓存的组件激活时调用。  </p>
-<h2 id="deactivated"><a href="#deactivated" class="headerlink" title="deactivated"></a>deactivated</h2><p>被 keep-alive 缓存的组件停用时调用。</p>
-<h2 id="errorCaptured"><a href="#errorCaptured" class="headerlink" title="errorCaptured"></a>errorCaptured</h2><p>2.5.0+ 新增</p>
-<p>当捕获一个来自子孙组件的错误时被调用。此钩子会收到三个参数：错误对象、发生错误的组件实例以及一个包含错误来源信息的字符串。此钩子可以返回 false 以阻止该错误继续向上传播。  </p>
-<h2 id="生命周期解释"><a href="#生命周期解释" class="headerlink" title="生命周期解释"></a>生命周期解释</h2><h3 id="new-Vue-options-后"><a href="#new-Vue-options-后" class="headerlink" title="new Vue(options) 后"></a>new Vue(options) 后</h3><ol>
-<li>将用户提供的 options 与默认 options 合并，初始化 LifeCycle、Events、Render</li>
-<li>触发 beforeCreate 钩子</li>
-<li>初始化 Injections、State(包括初始化 props、methods、data（初始化 data 时 调用 Observer.observe 方法添加 Dep 依赖）、computed、watch)、Provide</li>
-<li>触发 created 钩子</li>
-<li>触发 beforeMount 钩子</li>
-<li>对 vm 创建 Watcher 执行 updateComponent 方法，updateComponent方法调用 vm._render 方法生成 VNode，调用 vm._update 把 VNode 渲染成真实的 DOM</li>
-<li>触发 mounted 钩子</li>
-</ol>
-<h3 id="数据-data-变化后"><a href="#数据-data-变化后" class="headerlink" title="数据 data 变化后"></a>数据 data 变化后</h3><ol>
-<li>初始化 data 时创建的 Observer 通过 Dep 触发了 watcher.update() 方法，watcher.update() 调用 scheduler.queueWatcher() 调用 scheduler.flushSchedulerQueue()，尝试调用 watcher.run()</li>
-<li>触发 beforeUpdate 钩子（之前已经注册了 Watcher.before）</li>
-<li>watcher 执行 watcher.run 方法，执行 watcher.get 方法，执行 watcher.getter 方法 即 updateComponent 方法，updateComponent 方法调用 vm._render 方法生成 VNode，调用 vm._update 把 VNode 渲染成真实的 DOM</li>
-<li>再回到 scheduler.flushSchedulerQueue 方法，在所有的 watcher 执行完毕后，触发 updated 钩子</li>
-</ol>
-<h3 id="组件销毁时"><a href="#组件销毁时" class="headerlink" title="组件销毁时"></a>组件销毁时</h3><p>patch.removeVnodes -&gt; patch.invokeDestroyHook -&gt; destroy -&gt; vm.$destroy -&gt; </p>
+        <h2 id="ionic4及vue介绍"><a href="#ionic4及vue介绍" class="headerlink" title="ionic4及vue介绍"></a>ionic4及vue介绍</h2><p>ionic是一款混合移动应用开发框架，可以用来构建跨平台（Android &amp; iOS）的移动应用程序，而且还可以基于Sass和AngularJS进行构建，是目前跨平台移动应用开发的一个翘楚。这个框架的目的是从web的角度开发手机应用，基于PhoneGap的编译平台，可以实现编译成各个平台的应用程序。<br>Vue.js是一个MVVM驱动的 web 界面的渐进式框架，学习简单并且十分灵活。ionic3之前一般默认和Angular“绑定”在了一起，从ionic4开始，Ionic Team宣布将会逐渐采用<a target="_blank" rel="noopener" href="https://github.com/ionic-team/stencil">Stencil</a>来实现标准Web Components，使用ionic将不再必须使用Angular，可以使用React，Vue，Jquery或者什么框架都不使用。  </p>
+<h2 id="准备环境"><a href="#准备环境" class="headerlink" title="准备环境"></a>准备环境</h2><p>Vue提供了CLI工具来方便的创建Vue应用，首先我们需要  </p>
 <ol>
-<li>调用 beforeDestroy 钩子</li>
-<li>将自身从父组件中移除，移除 watchers</li>
-<li>调用 destoryed 钩子</li>
-<li>关闭所有实例监听器</li>
+<li>安装Vue CLI：  </li>
 </ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g vue-cli</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建vue项目</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init webpack ionic-vue</span><br></pre></td></tr></table></figure>
+<p>随后一路enter</p>
+<ol start="3">
+<li>打开项目</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ionic-vue</span><br><span class="line">npm install</span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+<h2 id="引入Ionic"><a href="#引入Ionic" class="headerlink" title="引入Ionic"></a>引入Ionic</h2><ol>
+<li>在 index.html 引入 Ionic</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;format-detection&quot;</span> <span class="attr">content</span>=<span class="string">&quot;telephone=no&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;msapplication-tap-highlight&quot;</span> <span class="attr">content</span>=<span class="string">&quot;no&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/@ionic/core@0.0.2-20/dist/ionic.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>在 src/main.js 中添加ignoredElements</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Vue.config.ignoredElements = [</span><br><span class="line">    <span class="string">&#x27;ion-app&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;ion-header&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;ion-navbar&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;ion-title&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;ion-content&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;ion-button&#x27;</span>,</span><br><span class="line">    ··· ···</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<h2 id="开发应用"><a href="#开发应用" class="headerlink" title="开发应用"></a>开发应用</h2><ol>
+<li>创建两个新页面</li>
+</ol>
+<p>我们希望演示如何在两个页面之间跳转</p>
+<p>例如 src/pages/HelloWorld.vue<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ion-app</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ion-header</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ion-navbar</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ion-title</span>&gt;</span>Ionic<span class="tag">&lt;/<span class="name">ion-title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ion-navbar</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ion-header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ion-content</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ion-button</span> @<span class="attr">click</span>=<span class="string">&quot;goToDetail&quot;</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">ion-button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ion-content</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ion-app</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">  name: <span class="string">&#x27;HelloWorld&#x27;</span>,</span></span><br><span class="line">  data () &#123;</span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">      msg: <span class="string">&#x27;Welcome to Your Vue.js App&#x27;</span></span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    goToDetail () &#123;</span><br><span class="line"><span class="javascript">      <span class="built_in">this</span>.$router.push(<span class="string">&#x27;detail&#x27;</span>)</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>src/pages/Detail.vue<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ion-app</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ion-header</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ion-navbar</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ion-title</span>&gt;</span>Ionic<span class="tag">&lt;/<span class="name">ion-title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ion-navbar</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ion-header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ion-content</span> <span class="attr">padding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">&quot;/&quot;</span>&gt;</span>Go home<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ion-content</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ion-app</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">  name: <span class="string">&#x27;Detail&#x27;</span>,</span></span><br><span class="line">  data () &#123;</span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">      msg: <span class="string">&#x27;Welcome to Your Ionic App&#x27;</span></span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<ol start="2">
+<li>添加路由</li>
+</ol>
+<p>router/index.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">&#x27;vue-router&#x27;</span></span><br><span class="line"><span class="keyword">import</span> HelloWorld <span class="keyword">from</span> <span class="string">&#x27;@/pages/HelloWorld&#x27;</span></span><br><span class="line"><span class="keyword">import</span> Detail <span class="keyword">from</span> <span class="string">&#x27;@/pages/Detail&#x27;</span></span><br><span class="line"></span><br><span class="line">Vue.use(Router)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">&#x27;/&#x27;</span>,</span><br><span class="line">      component: HelloWorld</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">&#x27;/detail&#x27;</span>,</span><br><span class="line">      component: Detail</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<ol start="3">
+<li>添加全局过渡动画效果</li>
+</ol>
+<p>src/App.vue<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=<span class="string">&quot;app&quot;</span>&gt;</span><br><span class="line">    &lt;transition name=<span class="string">&quot;slide-fade&quot;</span>&gt;</span><br><span class="line">      &lt;router-view/&gt;</span><br><span class="line">    &lt;/transition&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">&#x27;app&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">#app &#123;</span><br><span class="line">  font-family: <span class="string">&#x27;Avenir&#x27;</span>, Helvetica, Arial, sans-serif;</span><br><span class="line">  -webkit-font-smoothing: antialiased;</span><br><span class="line">  -moz-osx-font-smoothing: grayscale;</span><br><span class="line">  text-align: center;</span><br><span class="line">  color: #2c3e50;</span><br><span class="line">  margin-top: 60px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.slide-fade-enter-active &#123;</span><br><span class="line">  transition: all .3s ease;</span><br><span class="line">&#125;</span><br><span class="line">.slide-fade-leave-active &#123;</span><br><span class="line">  transition: all .8s cubic-bezier(<span class="number">1.0</span>, <span class="number">0.5</span>, <span class="number">0.8</span>, <span class="number">1.0</span>);</span><br><span class="line">&#125;</span><br><span class="line">.slide-fade-enter, .slide-fade-leave-to</span><br><span class="line"><span class="comment">/* .slide-fade-leave-active below version 2.1.8 */</span> &#123;</span><br><span class="line">  transform: translateX(10px);</span><br><span class="line">  opacity: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="打包成应用"><a href="#打包成应用" class="headerlink" title="打包成应用"></a>打包成应用</h2><ol>
+<li>添加cordova 到项目</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cordova</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建cordova项目</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova create my-project-name</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>创建/移动vue项目</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init webpack my-app</span><br></pre></td></tr></table></figure>
+<p>将my-app里的内容剪切到my-project-name下，同名覆盖</p>
+<ol start="4">
+<li>修改打包路径<br>修改config/index.js文件下的build属性，将dist改为www，绝对路径改为相对路径</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">build: &#123;</span><br><span class="line">  index: path.resolve(__dirname, <span class="string">&#x27;../www/index.html&#x27;</span>),</span><br><span class="line"></span><br><span class="line">  assetsRoot: path.resolve(__dirname, <span class="string">&#x27;../www&#x27;</span>),</span><br><span class="line">  assetsSubDirectory: <span class="string">&#x27;static&#x27;</span>,</span><br><span class="line">  assetsPublicPath: <span class="string">&#x27;./&#x27;</span>,</span><br><span class="line"></span><br><span class="line">  productionSourceMap: <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">  devtool: <span class="string">&#x27;#source-map&#x27;</span>,</span><br><span class="line"></span><br><span class="line">  productionGzip: <span class="literal">false</span>,</span><br><span class="line">  productionGzipExtensions: [<span class="string">&#x27;js&#x27;</span>, <span class="string">&#x27;css&#x27;</span>],</span><br><span class="line"></span><br><span class="line">  bundleAnalyzerReport: process.env.npm_config_report</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>5.vue项目中添加cordova.js</p>
+<p>在index.html body中添加cordova.js<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;cordova.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><br>同时在 head 中添加 移动端meta信息</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;self&#x27; data: gap: https://ssl.gstatic.com &#x27;unsafe-eval&#x27;; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;; media-src *; img-src &#x27;self&#x27; data: content:;&quot;--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;format-detection&quot;</span> <span class="attr">content</span>=<span class="string">&quot;telephone=no,email=no&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;msapplication-tap-highlight&quot;</span> <span class="attr">content</span>=<span class="string">&quot;no&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>运行项目</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+<ol start="7">
+<li>编译成 iOS &amp; Android 项目</li>
+</ol>
+<p>安装 cordova iOS &amp; Android 平台</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova platform add ios android --save</span><br></pre></td></tr></table></figure>
+<p>编译</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+<p>运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cordova run ios --device</span><br><span class="line">cordova run android --device</span><br></pre></td></tr></table></figure>
 
         
     </section>
@@ -186,81 +218,97 @@
 </article>
 
 
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
+
+
+
+
         
-        <h1 itemprop="name">
-            <a href="/blog/2021/04/21/Vue-keep-alive%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">Vue-keep-alive实现原理</a>
-        </h1>
+            </div>
         
-        <div class="article-meta clearfix">
-            <span class="article-date">
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
     
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2021-04-20T16:10:20.000Z" itemprop="datePublished">2021-04-21</time>
-</span>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/keep-alive/" rel="tag">keep-alive</a>, <a class="article-tag-link" href="/blog/tags/vue/" rel="tag">vue</a>
-</div>
-
-
+        <div class="license">
+            <p>版权声明：
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
         </div>
-    </header>
     
-    <section class="article-body markdown-body">
-        
-        <p>原文： <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9523bb439950">https://www.jianshu.com/p/9523bb439950</a></p>
-<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>本文介绍的内容包括：</p>
-<ul>
-<li>keep-alive用法：动态组件&amp;vue-router</li>
-<li>keep-alive源码解析</li>
-<li>keep-alive组件及其包裹组件的钩子</li>
-<li>keep-alive组件及其包裹组件的渲染</li>
-</ul>
-<h2 id="二、keep-alive介绍与应用"><a href="#二、keep-alive介绍与应用" class="headerlink" title="二、keep-alive介绍与应用"></a>二、keep-alive介绍与应用</h2><h3 id="2-1-keep-alive是什么"><a href="#2-1-keep-alive是什么" class="headerlink" title="2.1 keep-alive是什么"></a>2.1 keep-alive是什么</h3><p>keep-alive是一个抽象组件：它自身不会渲染一个DOM元素，也不会出现在父组件链中；使用keep-alive包裹动态组件时，会缓存不活动的组件实例，而不是销毁它们。</p>
-<h3 id="2-2-keep-alive适用场景"><a href="#2-2-keep-alive适用场景" class="headerlink" title="2.2 keep-alive适用场景"></a>2.2 keep-alive适用场景</h3><p>用户在某个列表页面选择筛选条件过滤出一份数据列表，由列表页面进入数据详情页面，再返回该列表页面，我们希望：列表页面可以保留用户的筛选（或选中）状态。</p>
-<p>keep-alive就是用来解决这种场景。当然keep-alive不仅仅是能够保存页面/组件的状态这么简单，它还可以避免组件反复创建和渲染，有效提升系统性能。总的来说，keep-alive用于保存组件的渲染状态。</p>
-<h3 id="2-3-keep-alive用法"><a href="#2-3-keep-alive用法" class="headerlink" title="2.3 keep-alive用法"></a>2.3 keep-alive用法</h3><p>在动态组件中的应用</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">keep-alive</span> <span class="attr">:include</span>=<span class="string">&quot;whiteList&quot;</span> <span class="attr">:exclude</span>=<span class="string">&quot;blackList&quot;</span> <span class="attr">:max</span>=<span class="string">&quot;amount&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">component</span> <span class="attr">:is</span>=<span class="string">&quot;currentComponent&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">component</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">keep-alive</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>在vue-router中的应用</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">keep-alive</span> <span class="attr">:include</span>=<span class="string">&quot;whiteList&quot;</span> <span class="attr">:exclude</span>=<span class="string">&quot;blackList&quot;</span> <span class="attr">:max</span>=<span class="string">&quot;amount&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">keep-alive</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>include定义缓存白名单，keep-alive会缓存命中的组件；exclude定义缓存黑名单，被命中的组件将不会被缓存；max定义缓存组件上限，超出上限使用LRU的策略置换缓存数据。</p>
-<p>内存管理的一种页面置换算法，对于在内存中但又不用的数据块（内存块）叫做LRU，操作系统会根据哪些数据属于LRU而将其移出内存而腾出空间来加载另外的数据。</p>
-<h2 id="三、源码剖析"><a href="#三、源码剖析" class="headerlink" title="三、源码剖析"></a>三、源码剖析</h2><p>keep-alive.js 内部还定义了一些工具函数，我们按住不动，先看它对外暴露的对象</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/core/components/keep-alive.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">&#x27;keep-alive&#x27;</span>,</span><br><span class="line">  abstract: <span class="literal">true</span>, <span class="comment">// 判断当前组件虚拟dom是否渲染成真实dom的关键</span></span><br><span class="line">  props: &#123;</span><br><span class="line">      include: patternTypes, <span class="comment">// 缓存白名单</span></span><br><span class="line">      exclude: patternTypes, <span class="comment">// 缓存黑名单</span></span><br><span class="line">      max: [<span class="built_in">String</span>, <span class="built_in">Number</span>] <span class="comment">// 缓存的组件</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">created</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">     <span class="built_in">this</span>.cache = <span class="built_in">Object</span>.create(<span class="literal">null</span>) <span class="comment">// 缓存虚拟dom</span></span><br><span class="line">     <span class="built_in">this</span>.keys = [] <span class="comment">// 缓存的虚拟dom的键集合</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">destroyed</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> <span class="built_in">this</span>.cache) &#123;</span><br><span class="line">       <span class="comment">// 删除所有的缓存</span></span><br><span class="line">       pruneCacheEntry(<span class="built_in">this</span>.cache, key, <span class="built_in">this</span>.keys)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"> <span class="function"><span class="title">mounted</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">   <span class="comment">// 实时监听黑白名单的变动</span></span><br><span class="line">   <span class="built_in">this</span>.$watch(<span class="string">&#x27;include&#x27;</span>, <span class="function"><span class="params">val</span> =&gt;</span> &#123;</span><br><span class="line">       pruneCache(<span class="built_in">this</span>, <span class="function"><span class="params">name</span> =&gt;</span> matched(val, name))</span><br><span class="line">   &#125;)</span><br><span class="line">   <span class="built_in">this</span>.$watch(<span class="string">&#x27;exclude&#x27;</span>, <span class="function"><span class="params">val</span> =&gt;</span> &#123;</span><br><span class="line">       pruneCache(<span class="built_in">this</span>, <span class="function"><span class="params">name</span> =&gt;</span> !matches(val, name))</span><br><span class="line">   &#125;)</span><br><span class="line"> &#125;,</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="comment">// 先省略...</span></span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可以看出，与我们定义组件的过程一样，先是设置组件名为keep-alive，其次定义了一个abstract属性，值为true。这个属性在vue的官方教程并未提及，却至关重要，后面的渲染过程会用到。props属性定义了keep-alive组件支持的全部参数。</p>
-<p>keep-alive在它生命周期内定义了三个钩子函数：</p>
-<ul>
-<li><p>created<br>初始化两个对象分别缓存VNode(虚拟DOM)和VNode对应的键集合</p>
-</li>
-<li><p>destroyed<br>删除this.cache中缓存的VNode实例。我们留意到，这不是简单地将this.cache置为null，而是遍历调用pruneCacheEntry函数删除。</p>
-</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/core/components/keep-alive.js</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pruneCacheEntry</span> (<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  cache: VNodeCache,</span></span></span><br><span class="line"><span class="function"><span class="params">  key: string,</span></span></span><br><span class="line"><span class="function"><span class="params">  keys: <span class="built_in">Array</span>&lt;string&gt;,</span></span></span><br><span class="line"><span class="function"><span class="params">  current?: VNode</span></span></span><br><span class="line"><span class="function"><span class="params"></span>) </span>&#123;</span><br><span class="line"> <span class="keyword">const</span> cached = cache[key]</span><br><span class="line"> <span class="keyword">if</span> (cached &amp;&amp; (!current || cached.tag !== current.tag)) &#123;</span><br><span class="line">    cached.componentInstance.$destroyed() <span class="comment">// 执行组件的destroy钩子函数</span></span><br><span class="line"> &#125;</span><br><span class="line"> cache[key] = <span class="literal">null</span></span><br><span class="line"> remove(keys, key)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>删除缓存的VNode还要对应组件实例的destory钩子函数</p>
-<ul>
-<li>mounted<br>在mounted这个钩子中对include和exclude参数进行监听，然后实时地更新（删除）this.cache对象数据。pruneCache函数的核心也是去调用pruneCacheEntry</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pruneCache</span> (<span class="params">keepAliveInstance: any, filter: <span class="built_in">Function</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; cache, keys, _vnode &#125; = keepAliveInstance</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> cache) &#123;</span><br><span class="line">    <span class="keyword">const</span> cachedNode: ?VNode = cache[key]</span><br><span class="line">    <span class="keyword">if</span> (cachedNode) &#123;</span><br><span class="line">      <span class="keyword">const</span> name: ?string = getComponentName(cachedNode.componentOptions)</span><br><span class="line">      <span class="keyword">if</span> (name &amp;&amp; !filter(name)) &#123;</span><br><span class="line">        pruneCacheEntry(cache, key, keys, _vnode)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>render</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">render () &#123;</span><br><span class="line">  <span class="keyword">const</span> slot = <span class="built_in">this</span>.$slots.defalut</span><br><span class="line">  <span class="keyword">const</span> vnode: VNode = getFirstComponentChild(slot) <span class="comment">// 找到第一个子组件对象</span></span><br><span class="line">  <span class="keyword">const</span> componentOptions : ?VNodeComponentOptions = vnode &amp;&amp; vnode.componentOptions</span><br><span class="line">  <span class="keyword">if</span> (componentOptions) &#123; <span class="comment">// 存在组件参数</span></span><br><span class="line">    <span class="comment">// check pattern</span></span><br><span class="line">    <span class="keyword">const</span> name: ?string = getComponentName(componentOptions) <span class="comment">// 组件名</span></span><br><span class="line">    <span class="keyword">const</span> &#123; include, exclude &#125; = <span class="built_in">this</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="comment">// 条件匹配</span></span><br><span class="line">      <span class="comment">// not included</span></span><br><span class="line">      （include &amp;&amp; (!name || !matches(include, name))）||</span><br><span class="line">      <span class="comment">// excluded</span></span><br><span class="line">        (exclude &amp;&amp; name &amp;&amp; matches(exclude, name))</span><br><span class="line">    ) &#123;</span><br><span class="line">        <span class="keyword">return</span> vnode</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">const</span> &#123; cache, keys &#125; = <span class="built_in">this</span></span><br><span class="line">    <span class="comment">// 定义组件的缓存key</span></span><br><span class="line">    <span class="keyword">const</span> key: ?string = vnode.key === <span class="literal">null</span> ? componentOptions.Ctor.cid + (componentOptions.tag ? <span class="string">`::<span class="subst">$&#123;componentOptions.tag&#125;</span>`</span> : <span class="string">&#x27;&#x27;</span>) : vnode.key</span><br><span class="line">     <span class="keyword">if</span> (cache[key]) &#123; <span class="comment">// 已经缓存过该组件</span></span><br><span class="line">        vnode.componentInstance = cache[key].componentInstance</span><br><span class="line">        remove(keys, key)</span><br><span class="line">        keys.push(key) <span class="comment">// 调整key排序</span></span><br><span class="line">     &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        cache[key] = vnode <span class="comment">//缓存组件对象</span></span><br><span class="line">        keys.push(key)</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.max &amp;&amp; keys.length &gt; <span class="built_in">parseInt</span>(<span class="built_in">this</span>.max)) &#123;</span><br><span class="line">          <span class="comment">//超过缓存数限制，将第一个删除</span></span><br><span class="line">          pruneCacheEntry(cahce, keys[<span class="number">0</span>], keys, <span class="built_in">this</span>._vnode)</span><br><span class="line">        &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">      vnode.data.keepAlive = <span class="literal">true</span> <span class="comment">//渲染和执行被包裹组件的钩子函数需要用到</span></span><br><span class="line"> </span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> vnode || (slot &amp;&amp; slot[<span class="number">0</span>])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>第一步：获取keep-alive包裹着的第一个子组件对象及其组件名；</li>
-<li>第二步：根据设定的黑白名单（如果有）进行条件匹配，决定是否缓存。不匹配，直接返回组件实例（VNode），否则执行第三步；</li>
-<li>第三步：根据组件ID和tag生成缓存Key，并在缓存对象中查找是否已缓存过该组件实例。如果存在，直接取出缓存值并更新该key在this.keys中的位置（更新key的位置是实现LRU置换策略的关键），否则执行第四步；</li>
-<li>第四步：在this.cache对象中存储该组件实例并保存key值，之后检查缓存的实例数量是否超过max设置值，超过则根据LRU置换策略删除最近最久未使用的实例（即是下标为0的那个key）;</li>
-<li>第五步：最后并且很重要，将该组件实例的keepAlive属性值设置为true。</li>
-</ul>
-<h2 id="四、重头戏：渲染"><a href="#四、重头戏：渲染" class="headerlink" title="四、重头戏：渲染"></a>四、重头戏：渲染</h2><h3 id="4-1-Vue的渲染过程"><a href="#4-1-Vue的渲染过程" class="headerlink" title="4.1 Vue的渲染过程"></a>4.1 Vue的渲染过程</h3><p>借助一张图看下Vue渲染的整个过程：<br><img src="/blog/static/imgs/vue/vue_render.webp" alt="vue渲染过程_inner.png"></p>
-<p>Vue的渲染是从图中render阶段开始的，但keep-alive的渲染是在patch阶段，这是构建组件树（虚拟DOM树），并将VNode转换成真正DOM节点的过程。<br>简单描述从render到patch的过，我们从最简单的new Vue开始：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">&#x27;./App.vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    render: <span class="function"><span class="params">h</span> =&gt;</span> h(App)</span><br><span class="line">&#125;).$mount(<span class="string">&#x27;#app&#x27;</span>)</span><br></pre></td></tr></table></figure>
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>
+class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">&#x27;./App.vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    render: <span class="function"><span class="params">h</span> =&gt;</span> h(App)</span><br><span class="line">&#125;).$mount(<span class="string">&#x27;#app&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <p>Vue在渲染的时候先调用原型上的_render函数将组件对象转化成一个VNode实例；而_render是通过调用createElement和createEmptyVNode两个函数进行转化；<br>createElement的转化过程会根据不同的情形选择new VNode或者调用createComponent函数做VNode实例化；<br>完成VNode实例化后，这时候Vue调用原型上的_update函数把VNode渲染成真实DOM，这个过程又是通过调用patch函数完成的（这就是patch阶段了）<br>用一张图表达：<br><img src="/blog/static/imgs/vue/vue_process.webp" alt="渲染过程_inner.png"></p>
 <h3 id="4-2-keep-alive组件的渲染"><a href="#4-2-keep-alive组件的渲染" class="headerlink" title="4.2 keep-alive组件的渲染"></a>4.2 keep-alive组件的渲染</h3><p>我们用过keep-alive都知道，它不会生成真正的DOM节点，这是怎么做到的？</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/core/instance/lifecycle.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">initLifecycle</span> (<span class="params">vm: Component</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> options= vm.$options</span><br><span class="line">    <span class="comment">// 找到第一个非abstract父组件实例</span></span><br><span class="line">    <span class="keyword">let</span> parent = options.parent</span><br><span class="line">    <span class="keyword">if</span> (parent &amp;&amp; !options.abstract) &#123;</span><br><span class="line">        <span class="keyword">while</span> (parent.$options.abstract &amp;&amp; parent.$parent) &#123;</span><br><span class="line">              parent = parent.$parent</span><br><span class="line">        &#125;</span><br><span class="line">        parent.$children.push(vm)</span><br><span class="line">    &#125;</span><br><span class="line">    vm.$parent = parent</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
