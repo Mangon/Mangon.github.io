@@ -6,7 +6,7 @@
 
     
     <title>
-        Tag: Javascript | 
+        Tag: javascript | 
         Gblog
     </title>
     <meta name="author" content="Mangon" />
@@ -111,7 +111,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2020/08/28/JS-ES6%E7%89%B9%E6%80%A7/">ES6特性</a>
+            <a href="/blog/2021/04/26/JS-%E7%BB%A7%E6%89%BF/">JS-继承</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -119,13 +119,13 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2020-08-28T06:34:12.000Z" itemprop="datePublished">2020-08-28</time>
+    <time datetime="2021-04-25T16:27:27.000Z" itemprop="datePublished">2021-04-26</time>
 </span>
 
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/Javascript/" rel="tag">Javascript</a>, <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>
+    <a class="article-tag-link" href="/blog/tags/javascript/" rel="tag">javascript</a>
 </div>
 
 
@@ -134,300 +134,137 @@
     
     <section class="article-body markdown-body">
         
-        <p>ES6 是 ECMA 为 JavaScript 制定的第 6 个版本的标准，标准委员会 <a target="_blank" rel="noopener" href="https://tc39.es/">TC39</a> 最终决定，标准在每年的 6 月份正式发布一次，作为当年的正式版本。ECMAscript 2015 是在2015年6月份发布的ES6的第一个版本。依次类推 ECMAscript 2016 是 ES6 的第二个版本、 ECMAscript 2017 是 ES6 的第三个版本。<a target="_blank" rel="noopener" href="https://kangax.github.io/compat-table/es6/">查看浏览器对ES6的语法支持情况</a>。以下记录了 ES6 的比较常见的特性，并做了简单的解释，默认为 ES2015 引入（finished）的，如果不是则在后面用（）标志引入的版本。也可以<a target="_blank" rel="noopener" href="https://github.com/tc39/proposals/blob/master/finished-proposals.md">从这里查看从哪个版本支持</a>。</p>
-<h2 id="语句-amp-声明-amp-表达式-amp-运算符"><a href="#语句-amp-声明-amp-表达式-amp-运算符" class="headerlink" title="语句 &amp; 声明 &amp; 表达式 &amp; 运算符"></a>语句 &amp; 声明 &amp; 表达式 &amp; 运算符</h2><ol>
-<li>let 和 const 变量声明<br>let const 声明的变量具有块级作用域，不会变量提升，不能重复声明。<br>const 声明常量，声明时必须立即初始化。</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> y = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>变量的解构赋值<br>ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构。</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [x, y] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> &#123; foo, bar &#125; = &#123; <span class="attr">foo</span>: <span class="string">&#x27;aaa&#x27;</span>, <span class="attr">bar</span>: <span class="string">&#x27;bbb&#x27;</span> &#125;;</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li><p>globalThis 对象<br>引入globalThis作为顶层对象。也就是说，任何环境下，globalThis都是存在的，都可以从它拿到顶层对象，指向全局环境下的this。(ES2020)</p>
-</li>
-<li><p>for…of 循环表达式<br>for…of语句在可迭代对象（包括 Array，Map，Set，String，TypedArray，arguments 对象等等）上创建一个迭代循环，调用自定义迭代钩子，并为每个不同属性的值执行语句。</p>
-</li>
-<li><p>new.target<br>new.target属性允许你检测函数或构造方法是否是通过new运算符被调用的。在通过new运算符被初始化的函数或构造方法中，new.target返回一个指向构造方法或函数的引用。在普通的函数调用中，new.target 的值是undefined。</p>
-</li>
-<li><p>… spread扩展操作符<br>扩展运算符 … 将一个数组或arguments或对象的可遍历属性（ES2018）转为用逗号分隔的参数序列。</p>
-</li>
-</ol>
-<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><ol>
-<li>支持 Unicode 表示，允许采用 \uxxxx 形式表示一个字符</li>
-<li>行分隔符（U + 2028）和段分隔符（U + 2029）符号现在允许在字符串文字中，与JSON匹配 （ES2019）</li>
-<li>为字符串添加了遍历器接口，支持使用for…of循环遍历字符串</li>
-<li>模板字符串，可以使用反引号 ``来拼接多行字符串，将变量名写在 ${} 中</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;#result&#x27;</span>).append(<span class="string">`</span></span><br><span class="line"><span class="string">  There are &lt;b&gt;<span class="subst">$&#123;basket.count&#125;</span>&lt;/b&gt; items</span></span><br><span class="line"><span class="string">   in your basket, &lt;em&gt;<span class="subst">$&#123;basket.onSale&#125;</span>&lt;/em&gt;</span></span><br><span class="line"><span class="string">  are on sale!</span></span><br><span class="line"><span class="string">`</span>);</span><br></pre></td></tr></table></figure>
-<ol start="5">
-<li>标签模板<br>模板字符串可以紧跟在一个函数名后面，该函数将被调用来处理这个模板字符串。这被称为“标签模板”功能（tagged template）。标签模板可以用来过滤 HTML 字符串，防止用户输入恶意内容，也可以用来解决多语言转换的问题（i18n）。</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">let</span> b = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">tag<span class="string">`Hello <span class="subst">$&#123; a + b &#125;</span> world <span class="subst">$&#123; a * b &#125;</span>`</span>;</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line">tag([<span class="string">&#x27;Hello &#x27;</span>, <span class="string">&#x27; world &#x27;</span>, <span class="string">&#x27;&#x27;</span>], <span class="number">15</span>, <span class="number">50</span>);</span><br></pre></td></tr></table></figure>
-<ol start="6">
-<li>新添加的字符串方法及实例方法</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>作用</th>
-<th>例子</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>String.raw()</td>
-<td>String.raw() 是一个模板字符串的标签函数，是用来获取一个模板字符串的原始字符串的，占位符（例如 ${foo}）会被处理为它所代表的其他字符串，而转义字符（例如 \n）不会。</td>
-<td><code>String.raw(&#39;Hi\n$&#123;2+3&#125;!&#39;) ===  &#39;Hi\\n5!&#39;</code></td>
-</tr>
-<tr>
-<td>String.fromCodePoint()</td>
-<td>返回使用指定的代码点序列创建的字符串</td>
-<td><code>String.fromCodePoint(0x1D306, 0x61, 0x1D307) === &quot;\uD834\uDF06a\uD834\uDF07&quot;</code></td>
-</tr>
-<tr>
-<td>String.prototype.codePointAt()</td>
-<td>返回一个 Unicode 编码点值的非负整数</td>
-<td><code>&#39;d&#39;.codePointAt() === 100</code></td>
-</tr>
-<tr>
-<td>String.prototype.startsWith()</td>
-<td>用来判断当前字符串是否以另外一个给定的子字符串开头，并根据判断结果返回 true 或 false。</td>
-<td><code>&#39;i love u&#39;.startsWith(&#39;i lo&#39;)</code></td>
-</tr>
-<tr>
-<td>String.prototype.endsWith()</td>
-<td>用来判断当前字符串是否是以另外一个给定的子字符串“结尾”的，根据判断结果返回 true 或 false。</td>
-<td><code>&#39;i love u&#39;.endsWith(&#39;e u&#39;)</code></td>
-</tr>
-<tr>
-<td>String.prototype.repeat()</td>
-<td>构造并返回一个新字符串，该字符串包含被连接在一起的指定数量的字符串的副本。</td>
-<td><code>&#39;isee &#39;.repeat(3) === &#39;isee isee isee &#39;</code></td>
-</tr>
-<tr>
-<td>String.prototype.normalize()</td>
-<td>按照指定的一种 Unicode 正规形式将当前字符串正规化。（如果该值不是字符串，则首先将其转换为一个字符串）。</td>
-<td><code>&#39;\u00F1&#39;.normalize() === &#39;\u006E\u0303&#39;.normalize()</code></td>
-</tr>
-<tr>
-<td>String.prototype.includes()</td>
-<td>用于判断一个字符串是否包含在另一个字符串中，根据情况返回 true 或 false。</td>
-<td><code>&#39;To be, or not to be, that is the question.&#39;.includes(&#39;To be&#39;)</code></td>
-</tr>
-<tr>
-<td>String.prototype.padStart()</td>
-<td>用另一个字符串填充当前字符串(如果需要的话，会重复多次)，以便产生的字符串达到给定的长度。从当前字符串的左侧开始填充。(ES2017)</td>
-<td><code>&#39;abc&#39;.padStart(10, &quot;foo&quot;) === &#39;foofoofabc&#39;</code></td>
-</tr>
-<tr>
-<td>String.prototype.padEnd()</td>
-<td>用一个字符串填充当前字符串（如果需要的话则重复填充），返回填充后达到指定长度的字符串。从当前字符串的末尾（右侧）开始填充。(ES2017)</td>
-<td><code>&#39;abc&#39;.padEnd(10, &#39;foo&#39;) === &#39;abcfoofoof&#39;</code></td>
-</tr>
-<tr>
-<td>String.prototype.trimStart()</td>
-<td>从字符串的开头删除空格。trimLeft() 是此方法的别名。(ES2019)</td>
-<td><code>&#39;   Hello world!   &#39;.trimStart() === &#39;Hello world!   &#39;</code></td>
-</tr>
-<tr>
-<td>String.prototype.trimEnd()</td>
-<td>从一个字符串的末端移除空白字符。trimRight() 是这个方法的别名。(ES2019)</td>
-<td><code>&#39;   Hello world!   &#39;.trimStart() === &#39;   Hello world!&#39;</code></td>
-</tr>
-<tr>
-<td>String.prototype.matchAll()</td>
-<td>返回一个包含所有匹配正则表达式的结果及分组捕获组的迭代器。(ES2020)</td>
-<td><code>&#39;test1test2&#39;.matchAll(/t(e)(st(\d?))/g)</code></td>
-</tr>
-<tr>
-<td>String.prototype.replaceAll()</td>
-<td>被用来在正则表达式和字符串直接比较，然后用新的子串来替换所有被匹配的子串。（ES2021）</td>
-</tr>
-</tbody>
-</table>
-<ol start="7">
-<li>JSON.stringify 行为改变   (ES2019)<br>如果遇到0xD800到0xDFFF之间的单个码点，或者不存在的配对形式，它会返回转义字符串，留给应用自己决定下一步的处理。</li>
-</ol>
-<h2 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h2><ol>
-<li>从 ES2015 开始，当第一个参数为正则表达式而第二个标志参数存在时，不再抛错</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> regex = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/xyz/</span>, <span class="string">&#x27;i&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>字符串对象共有 4 个方法，可以使用正则表达式：match()、replace()、search()和split()。ES6 将这 4 个方法，在语言内部全部调用RegExp的实例方法，从而做到所有与正则相关的方法，全都定义在RegExp对象上。</li>
-</ol>
-<p>String.prototype.match 调用 RegExp.prototype[Symbol.match]<br>String.prototype.replace 调用 RegExp.prototype[Symbol.replace]<br>String.prototype.search 调用 RegExp.prototype[Symbol.search]<br>String.prototype.split 调用 RegExp.prototype[Symbol.split]</p>
-<ol start="3">
-<li>新添加了实例属性与对应的修饰符</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>实例属性</th>
-<th>修饰符</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>RegExp.prototype.unicode</td>
-<td>u</td>
-<td>用来正确处理大于\uFFFF的 Unicode 字符(ES2018)</td>
-</tr>
-<tr>
-<td>RegExp.prototype.sticky</td>
-<td>y</td>
-<td>反映了搜索是否具有粘性（ 仅从正则表达式的 lastIndex 属性表示的索引处搜索 ）</td>
-</tr>
-<tr>
-<td>RegExp.prototype.flags</td>
-<td></td>
-<td>返回一个字符串，由当前正则表达式对象的标志组成。</td>
-</tr>
-<tr>
-<td>RegExp.prototype.dotAll</td>
-<td>s</td>
-<td>使得.可以匹配任意单个字符(ES2018)</td>
-</tr>
-</tbody>
-</table>
-<ol start="4">
-<li>支持后行断言 (ES2018)</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 先行断言 先行否定断言</span></span><br><span class="line">/\d+(?=%)/.exec(<span class="string">&#x27;100% of US presidents have been male&#x27;</span>)  <span class="comment">// [&quot;100&quot;]</span></span><br><span class="line">/\d+(?!%)/.exec(<span class="string">&#x27;that’s all 44 of them&#x27;</span>)                 <span class="comment">// [&quot;44&quot;]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//后行断言 后行否定断言</span></span><br><span class="line">/(?&lt;=\$)\d+<span class="regexp">/.exec(&#x27;Benjamin Franklin is on the $100 bill&#x27;)  /</span><span class="regexp">/ [&quot;100&quot;]</span></span><br><span class="line"><span class="regexp">/</span>(?&lt;!\$)\d+<span class="regexp">/.exec(&#x27;it’s is worth about €90&#x27;)                /</span><span class="regexp">/ [&quot;90&quot;]</span></span><br></pre></td></tr></table></figure>
-<ol start="5">
-<li>Unicode 属性类 \P \p (ES2018)<br>引入了一种新的类的写法\p{…}和\P{…}，允许正则表达式匹配符合 Unicode 某种属性的所有字符。</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> regexGreekSymbol = <span class="regexp">/\p&#123;Script=Greek&#125;/u</span>; <span class="comment">// \p&#123;Script=Greek&#125;指定匹配一个希腊文字母</span></span><br><span class="line">regexGreekSymbol.test(<span class="string">&#x27;π&#x27;</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<ol start="6">
-<li>具名组匹配 &amp; 具名组匹配的引用 (ES2018)<br>正则表达式可以使用圆括号进行组匹配</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> RE_DATE = <span class="regexp">/(?&lt;year&gt;\d&#123;4&#125;)-(?&lt;month&gt;\d&#123;2&#125;)-(?&lt;day&gt;\d&#123;2&#125;)/</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> matchObj = RE_DATE.exec(<span class="string">&#x27;1999-12-31&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> year = matchObj.groups.year; <span class="comment">// 1999</span></span><br><span class="line"><span class="keyword">const</span> month = matchObj.groups.month; <span class="comment">// 12</span></span><br><span class="line"><span class="keyword">const</span> day = matchObj.groups.day; <span class="comment">// 31</span></span><br></pre></td></tr></table></figure>
-<p>如果要在正则表达式内部引用某个“具名组匹配”，可以使用 <code>\k&lt;组名&gt;</code> 的写法。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> RE_TWICE = <span class="regexp">/^(?&lt;word&gt;[a-z]+)!\k&lt;word&gt;$/</span>;</span><br><span class="line">RE_TWICE.test(<span class="string">&#x27;abc!abc&#x27;</span>) <span class="comment">// true</span></span><br><span class="line">RE_TWICE.test(<span class="string">&#x27;abc!ab&#x27;</span>) <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-<h2 id="数值"><a href="#数值" class="headerlink" title="数值"></a>数值</h2><ol>
-<li>数值二进制和八进制表示法<br>分别用前缀0b（或0B）和0o（或0O）表示。</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0b111110111</span> === <span class="number">503</span> <span class="comment">// true</span></span><br><span class="line"><span class="number">0o767</span> === <span class="number">503</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>方法 Number.isFinite(), Number.isNaN()<br>与全局方法isFinite()和isNaN()相比，这两个新方法只对数值有效，非数值返回 false</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">isFinite</span>(<span class="number">25</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">isFinite</span>(<span class="string">&quot;25&quot;</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Number</span>.isFinite(<span class="number">25</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Number</span>.isFinite(<span class="string">&quot;25&quot;</span>) <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">isNaN</span>(<span class="literal">NaN</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">isNaN</span>(<span class="string">&quot;NaN&quot;</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Number</span>.isNaN(<span class="literal">NaN</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Number</span>.isNaN(<span class="string">&quot;NaN&quot;</span>) <span class="comment">// false</span></span><br><span class="line"><span class="built_in">Number</span>.isNaN(<span class="number">1</span>) <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li><p>Number.parseInt(), Number.parseFloat()<br>与全局方法 parseInt() 和 parseFloat() 相同</p>
-</li>
-<li><p>Number.isInteger()<br>用来判断一个数值是否为整数</p>
-</li>
-<li><p>Number.EPSILON 属性<br>常量，表示 1 与大于 1 的最小浮点数之间的差</p>
-</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>.EPSILON === <span class="built_in">Math</span>.pow(<span class="number">2</span>, -<span class="number">52</span>)</span><br></pre></td></tr></table></figure>
-<ol start="6">
-<li>Number.MAX_SAFE_INTEGER 与 Number.MIN_SAFE_INTEGER，Number.isSafeInteger()<br>Number.MAX_SAFE_INTEGER 和 Number.MIN_SAFE_INTEGER这两个常量，用来表示JavaScript能够准确表示的整数范围的上下限。</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>.MAX_SAFE_INTEGER === <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>) - <span class="number">1</span></span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"><span class="built_in">Number</span>.MIN_SAFE_INTEGER === -<span class="built_in">Number</span>.MAX_SAFE_INTEGER</span><br><span class="line"><span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<p>Number.isSafeInteger()则是用来判断一个整数是否落在这个范围之内。</p>
-<ol start="7">
-<li>Math 对象的新方法（17个）</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Math.trunc(x)</td>
-<td>返回一个数的整数部分，直接去除其小数点及之后的部分。</td>
-</tr>
-<tr>
-<td>Math.sign(x)</td>
-<td>返回一个数的符号，得知一个数是正数、负数还是 0。</td>
-</tr>
-<tr>
-<td>Math.cbrt(x)</td>
-<td>返回一个数的立方根。</td>
-</tr>
-<tr>
-<td>Math.clz32(x)</td>
-<td>返回一个 32 位整数的前导零的数量。</td>
-</tr>
-<tr>
-<td>Math.imul(x, y)</td>
-<td>返回 32 位整数乘法的结果。</td>
-</tr>
-<tr>
-<td>Math.fround(x)</td>
-<td>返回最接近一个数的单精度浮点型表示。</td>
-</tr>
-<tr>
-<td>Math.imul(x, y)</td>
-<td>返回 32 位整数乘法的结果。</td>
-</tr>
-<tr>
-<td>Math.hypot([x[, y[, …]]])</td>
-<td>返回其所有参数平方和的平方根。</td>
-</tr>
-<tr>
-<td>Math.expm1(x)</td>
-<td>返回 exp(x) - 1 的值。</td>
-</tr>
-<tr>
-<td>Math.log1p(x)</td>
-<td>返回一个数加 1 的和的自然对数（㏒e，即 ㏑）。</td>
-</tr>
-<tr>
-<td>Math.log10(x)</td>
-<td>返回一个数以 10 为底数的对数。</td>
-</tr>
-<tr>
-<td>Math.log2(x)</td>
-<td>返回一个数以 2 为底数的对数。</td>
-</tr>
-<tr>
-<td>Math.sinh(x)</td>
-<td>返回x的双曲正弦</td>
-</tr>
-<tr>
-<td>Math.cosh(x)</td>
-<td>返回x的双曲余弦</td>
-</tr>
-<tr>
-<td>Math.tanh(x)</td>
-<td>返回x的双曲正切</td>
-</tr>
-<tr>
-<td>Math.asinh(x)</td>
-<td>返回x的反双曲正弦</td>
-</tr>
-<tr>
-<td>Math.acosh(x)</td>
-<td>返回x的反双曲余弦</td>
-</tr>
-<tr>
-<td>Math.atanh(x)</td>
-<td>返回x的反双曲正切</td>
-</tr>
-</tbody>
-</table>
-<ol start="8">
-<li>指数运算符 **(ES2016)<br>右结合的指数运算符</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span> ** <span class="number">2</span> === <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line"><span class="number">2</span> ** <span class="number">3</span> ** <span class="number">2</span> === <span class="number">2</span> ** (<span class="number">3</span> ** <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-<ol start="9">
-<li><p>BitInt 数据类型 (ES2020)<br>BigInt 只用来表示整数，没有位数的限制，任何位数的整数都可以精确表示</p>
-</li>
-<li><p>_ 数字分隔符 （ES2021）<br>可以使用下划线来分割数字，下划线没有实际的意义数字的值不会变化，更具有可读性</p>
-</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1_000_000_000</span> === <span class="number">1000000000</span>;</span><br><span class="line"><span class="number">101_475_938.38</span> === <span class="number">101475938.38</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><ol>
-<li>函数参数的默认值</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point</span>(<span class="params">x = <span class="number">0</span>, y = <span class="number">0</span></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.x = x;</span><br><span class="line">  <span class="built_in">this</span>.y = y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> Point();</span><br><span class="line">p <span class="comment">// &#123; x: 0, y: 0 &#125;</span></span><br></pre></td></tr></table></figure>
+        <h2 id="prototype-proto-constructor-的关系"><a href="#prototype-proto-constructor-的关系" class="headerlink" title="prototype __proto__ constructor 的关系"></a><code>prototype</code> <code>__proto__</code> <code>constructor</code> 的关系</h2><p><img src="/blog/static/imgs/proto.png" alt="proto_inner"></p>
+<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><p>构造函数就是提供了一个生成对象的模板并描述对象的基本结构的函数。一个构造函数，可以生成多个对象，每个对象都有相同的结构。总的来说，构造函数就是对象的模板，对象就是构造函数的实例。同一个构造函数的生成的对象实例之间无法共享属性或方法。  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">　　<span class="built_in">this</span>.name = <span class="string">&#x27;keith&#x27;</span>;</span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">var</span> boy = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="built_in">console</span>.log(boy.name); <span class="comment">// &#x27;keith&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>构造函数的特点有：</p>
+<p>  a：构造函数的函数名首字母必须大写。<br>  b：内部使用 this 对象，来指向将要生成的对象实例。<br>  c：使用 new 操作符来调用构造函数，并返回对象实例。</p>
+<h3 id="prototype-属性"><a href="#prototype-属性" class="headerlink" title="prototype 属性"></a><code>prototype</code> 属性</h3><p>原型属性 <code>prototype</code> 是函数特有的属性，这个属性是一个指针，指向一个对象，这个对象的用途就是包含所有实例共享的属性和方法（我们把这个对象叫做原型对象）。通过 prototype 定义的属性及方法能被所有对象实例所共享，这就是 prototype 的意义。  </p>
+<p><em>对于构造函数来说， prototype 是作为构造函数的属性；对于对象实例来说， prototype 是对象实例的原型对象。</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, height</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = name;</span><br><span class="line">  <span class="built_in">this</span>.height = height;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.hobby = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">// 生成的对象实例会共享这样声明的构造函数方法</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">&#x27;watching movies&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> boy = <span class="keyword">new</span> Person(<span class="string">&#x27;keith&#x27;</span>, <span class="number">180</span>);</span><br><span class="line"><span class="keyword">var</span> girl = <span class="keyword">new</span> Person(<span class="string">&#x27;rascal&#x27;</span>, <span class="number">153</span>);</span><br><span class="line"><span class="built_in">console</span>.log(boy.name); <span class="comment">//&#x27;keith&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(girl.name); <span class="comment">//&#x27;rascal&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(boy.hobby === girl.hobby); <span class="comment">//true 表明生成的对象实例共享着同一个方法</span></span><br></pre></td></tr></table></figure>
+<p>prototype 属性的特点有：</p>
+<p>　a：原型对象 prototype 的作用，就是定义所有对象实例所共享的属性和方法。<br>  b：prototype 对于构造函数来说，它是一个属性；对于对象实例来说，它是一个原型对象。</p>
+<h3 id="constructor-属性"><a href="#constructor-属性" class="headerlink" title="constructor 属性"></a><code>constructor</code> 属性</h3><p>对象实例的 constructor 属性返回对象实例的构造函数。  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> boy = <span class="keyword">new</span> Person(); </span><br><span class="line"><span class="built_in">console</span>.log(boy.constructor); <span class="comment">// Person</span></span><br></pre></td></tr></table></figure>
+<p><code>constructor</code> 属性实际上是原型对象的属性，这个属性包含了一个指针，指回原构造函数，它被所有实例对象继承。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> boy = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="built_in">console</span>.log(Person.prototype.constructor === Person)               <span class="comment">//true 通过原型对象访问 constructor 属性返回的是原型对象所处的构造函数</span></span><br><span class="line"><span class="built_in">console</span>.log(boy.constructor === boy.prototype.constructor);  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<h3 id="instanceof-运算符"><a href="#instanceof-运算符" class="headerlink" title="instanceof 运算符"></a><code>instanceof</code> 运算符</h3><p><code>instanceof</code> 用于判断对象是否为某个构造函数的实例。  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> boy = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="built_in">console</span>.log(boy <span class="keyword">instanceof</span> Person); <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(boy <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">//true 对整个原型链上的对象都有效</span></span><br></pre></td></tr></table></figure>
+<h3 id="proto-属性"><a href="#proto-属性" class="headerlink" title="__proto__ 属性"></a><code>__proto__</code> 属性</h3><p>属性 <code>__proto__</code> 返回对象实例的原型对象，即构造函数的 prototype 属性值，通过该属性可以访问原型对象的所有方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> boy = <span class="keyword">new</span> Person(<span class="string">&#x27;jack&#x27;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(boy.__proto__  === Person.prototype);    <span class="comment">//true  同样的， Person 也有原型对象，通过 Person 的 __proto__ 属性也可以访问到它的原型对象，以此类推，可以实现原型链的向上追溯。</span></span><br></pre></td></tr></table></figure>
+<p>相对于通过 <code>__proto__</code> 属性继承其他对象的属性而言，<code>Object.create()</code> 方法是一个更加值得推荐的方法。该方法接收一个对象作为参数，返回一个以该对象为原型对象的新对象，即继承了作为参数的对象的属性及方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  age: <span class="number">10</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> boy = <span class="built_in">Object</span>.create(person);</span><br><span class="line"><span class="built_in">console</span>.log(boy.age);     <span class="comment">//10</span></span><br></pre></td></tr></table></figure>
+<h2 id="实现-子类-继承-父类"><a href="#实现-子类-继承-父类" class="headerlink" title="实现 子类 继承 父类"></a>实现 子类 继承 父类</h2><p>继承的核心是让 子类 拥有 父类 的方法和属性</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.parentAge = <span class="number">50</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Child</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">Child.prototype = <span class="keyword">new</span> Parent();</span><br><span class="line">Child.prototype.constructor = Child;      <span class="comment">// 注意重置constructor</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj = <span class="keyword">new</span> Child();</span><br><span class="line"><span class="built_in">console</span>.log(obj.parentAge);    <span class="comment">// 50</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.parentAge = <span class="number">50</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Child</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">Child.prototype = <span class="built_in">Object</span>.create(Parent.prototype);</span><br><span class="line">Child.prototype.constructor = Child; </span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj = <span class="keyword">new</span> Child();</span><br><span class="line"><span class="built_in">console</span>.log(obj.parentAge);    <span class="comment">// 50</span></span><br></pre></td></tr></table></figure>
+<h2 id="实现-new"><a href="#实现-new" class="headerlink" title="实现 new"></a>实现 new</h2><p>new 其实就是生成了一个对象，这个对象能够访问类的原型</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myNew</span>(<span class="params">func, ...args</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> obj = &#123;&#125;;     <span class="comment">// 新建一个空对象</span></span><br><span class="line">  <span class="keyword">let</span> res = func.call(obj, ...args);  <span class="comment">// 执行构造函数</span></span><br><span class="line">  obj.__proto__ = func.prototype;    <span class="comment">// 设置原型链</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> obj <span class="keyword">instanceof</span> <span class="built_in">Object</span> ? res : obj</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myNew1</span>(<span class="params">func, ...args</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> obj = <span class="built_in">Object</span>.create(Parent.prototype);     <span class="comment">// 以构造器的prototype属性为原型，创建新对象；</span></span><br><span class="line">  <span class="keyword">let</span> reuslt = func.call(obj, ...args);  <span class="comment">// 将this和调用参数传给构造器执行</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">return</span> <span class="keyword">typeof</span> result  === <span class="string">&#x27;object&#x27;</span> ? result : obj; <span class="comment">// 如果构造器没有手动返回对象，则返回第一步的对象</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Puppy</span>(<span class="params">age</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.puppyAge = age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Puppy.prototype.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;汪汪汪&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> myPuppy3 = myNew(Puppy, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(myPuppy3.puppyAge);  <span class="comment">// 2</span></span><br><span class="line">myPuppy3.say();     <span class="comment">// 汪汪汪</span></span><br></pre></td></tr></table></figure>
+<h2 id="实现-instanceof"><a href="#实现-instanceof" class="headerlink" title="实现 instanceof"></a>实现 instanceof</h2><p>instanceof 作用是检查一个对象是不是某个类的实例，换句话说就是检查一个对象的的原型链上有没有这个类的prototype</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myInstanceof</span>(<span class="params">targetObj, targetClass</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 参数检查</span></span><br><span class="line">  <span class="keyword">if</span>(!targetObj || !targetClass || !targetObj.__proto__ || !targetClass.prototype)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> current = targetObj;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span>(current) &#123;   <span class="comment">// 一直往原型链上面找</span></span><br><span class="line">    <span class="keyword">if</span>(current.__proto__ === targetClass.prototype) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;    <span class="comment">// 找到了返回true</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    current = current.__proto__;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;     <span class="comment">// 没找到返回false</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用我们前面的继承实验下</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Child</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">Child.prototype.__proto__ = Parent.prototype;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj = <span class="keyword">new</span> Child();</span><br><span class="line"><span class="built_in">console</span>.log(myInstanceof(obj, Child) );   <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(myInstanceof(obj, Parent) );   <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(myInstanceof(&#123;&#125;, Parent) );   <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+        
+    </section>
+    
+    <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明：
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>
+"line"><span class="keyword">const</span> p = <span class="keyword">new</span> Point();</span><br><span class="line">p <span class="comment">// &#123; x: 0, y: 0 &#125;</span></span><br></pre></td></tr></table></figure>
 <ol start="2">
 <li>rest 参数<br>允许将一个不定数量的参数表示为一个数组</li>
 </ol>
