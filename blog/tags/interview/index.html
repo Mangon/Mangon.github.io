@@ -1762,7 +1762,7 @@
 <li>浏览器自定义或继承  </li>
 </ol>
 <p>同一级别<br>同一级别中后写的会覆盖先写的样式  </p>
-<h3 id="css-sprite是什么-有什么优缺点？"><a href="#css-sprite是什么-有什么优缺点？" class="headerlink" title="css sprite是什么,有什么优缺点？"></a>css sprite是什么,有什么优缺点？</h3><p>概念：将多个小图片拼接到一个图片中。通过 background-position 和元素尺寸调节需要显示的背景图案。  </p>
+<h3 id="css-sprite是什么-有什么优缺点？"><a href="#css-sprite是什么-有什么优缺点？" class="headerlink" title="css sprite是什么,有什么优缺点？"></a>css sprite是什么,有什么优缺点？</h3><p>概念：将多个小图片拼接到一个图片中。通过 <code>background-position</code> 和元素尺寸调节需要显示的背景图案。  </p>
 <p>优点：  </p>
 <ol>
 <li>减少HTTP请求数，极大地提高页面加载速度</li>
@@ -1772,7 +1772,7 @@
 <p>缺点：</p>
 <ol>
 <li>图片合并麻烦</li>
-<li>维护麻烦，修改一个图片可能需要从新布局整个图片，样式</li>
+<li>维护麻烦，修改一个图片可能需重新布局整个图片，样式</li>
 </ol>
 <h3 id="为什么要初始化CSS样式"><a href="#为什么要初始化CSS样式" class="headerlink" title="为什么要初始化CSS样式?"></a>为什么要初始化CSS样式?</h3><p>因为浏览器的兼容问题，不同浏览器对有些标签的默认值是不同的，如果没对CSS初始化往往会出现浏览器之间的页面显示差异。  </p>
 <h3 id="PNG-GIF-JPG的区别及如何选"><a href="#PNG-GIF-JPG的区别及如何选" class="headerlink" title="PNG,GIF,JPG的区别及如何选"></a>PNG,GIF,JPG的区别及如何选</h3><p>GIF</p>
@@ -1870,7 +1870,8 @@
 <li>不可以使用yield命令，因此箭头函数不能用作 Generator 函数。</li>
 </ol>
 <h3 id="解释-扩展运算符的作用"><a href="#解释-扩展运算符的作用" class="headerlink" title="解释 ... 扩展运算符的作用"></a>解释 <code>...</code> 扩展运算符的作用</h3><p>将一个数组转为用逗号分隔的参数序列。</p>
-<h3 id="解释-字符串模板-的作用"><a href="#解释-字符串模板-的作用" class="headerlink" title="解释 字符串模板 的作用"></a>解释 字符串模板 的作用</h3><h3 id="Promise-有哪些方法？"><a href="#Promise-有哪些方法？" class="headerlink" title="Promise 有哪些方法？"></a><code>Promise</code> 有哪些方法？</h3><p>Promise.prototype.then<br>Promise.prototype.catch<br>Promise.prototype.fanilly<br>Promise.resolve()<br>Promise.reject()<br>Promise.all()<br>Promise.allSettled()<br>Promise.any()<br>Promise.race()</p>
+<h3 id="解释-字符串模板-的作用"><a href="#解释-字符串模板-的作用" class="headerlink" title="解释 字符串模板 的作用"></a>解释 字符串模板 的作用</h3><p>在需要将变量和字符串进行拼接时使用字符串模板写法更优雅</p>
+<h3 id="Promise-有哪些方法？"><a href="#Promise-有哪些方法？" class="headerlink" title="Promise 有哪些方法？"></a><code>Promise</code> 有哪些方法？</h3><p>Promise.prototype.then<br>Promise.prototype.catch<br>Promise.prototype.fanilly<br>Promise.resolve()<br>Promise.reject()<br>Promise.all()<br>Promise.allSettled()<br>Promise.any()<br>Promise.race()</p>
 <h3 id="字符串的方法-amp-属性有哪些？"><a href="#字符串的方法-amp-属性有哪些？" class="headerlink" title="字符串的方法&amp;属性有哪些？"></a>字符串的方法&amp;属性有哪些？</h3><p><code>length</code>    返回字符串的长度<br><code>trim()</code>    删除字符串两端空白字符<br><code>charAt()</code>    返回指定位置的字符<br><code>charCodeAt()</code>    返回表示给定索引的字符的Unicode的值<br><code>split()</code>    把字符串分割为字符串数组<br><code>concat()</code>    将一个或多个字符串连接并返回新字符串<br><code>startWith()</code>    判断是否以给定字符串开始，返回布尔值<br><code>endsWith()</code>    判断是否以给定字符串结尾，返回布尔值<br><code>includes()</code>    判断是否包含给定字符串，返回布尔值<br><code>indexOf()</code>    返回给定字符串在原字符串中的位置，如果没有返回-1<br><code>lastIndexOf()</code>    从字符串对象中返回最后一个被发现的给定值的索引值，如果没有找到则返回-1<br><code>match()</code>    返回匹配正则表达式的结果<br><code>replace()</code>    替换与正则表达式匹配的子串<br><code>slice()</code>    提取字符串的一部分并返回一个新字符串<br><code>substr()</code>    从起始索引号提取字符串中指定数目的字符 （遗留函数，避免使用）<br><code>substring()</code>    提取字符串中两个指定的索引号之间的字符<br><code>normalize()</code>    返回调用字符串值的Unicode标准化形式<br><code>padStart()</code>    在当前字符串头部填充指定的字符串， 直到达到指定的长度。 返回一个新的字符串<br><code>padEnd()</code>    在当前字符串尾部填充指定的字符串， 直到达到指定的长度。 返回一个新的字符串<br><code>repeat()</code>    返回指定重复次数的由元素组成的字符串对象</p>
 <h3 id="简述JS函数柯里化是什么，有什么意义？"><a href="#简述JS函数柯里化是什么，有什么意义？" class="headerlink" title="简述JS函数柯里化是什么，有什么意义？"></a>简述JS函数柯里化是什么，有什么意义？</h3><p>柯里化是函数式编程的一个过程，在这个过程中我们能把一个带有多个参数的函数转换成一系列的嵌套函数。它返回一个新函数，这个新函数期望传入下一个参数。</p>
 <h2 id="others"><a href="#others" class="headerlink" title="others"></a>others</h2><h3 id="解释-offsetLeft-offsetTop-等参数含义"><a href="#解释-offsetLeft-offsetTop-等参数含义" class="headerlink" title="解释 offsetLeft offsetTop 等参数含义"></a>解释 offsetLeft offsetTop 等参数含义</h3><p><code>HTMLElement.offsetLeft</code> 是一个只读属性，返回当前元素左上角相对于  <code>HTMLElement.offsetParent</code> 节点的左边界偏移的像素值。<br><code>HTMLElement.offsetTop</code> 是一个只读属性，它返回当前元素相对于其 <code>HTMLElement.offsetParent</code> 元素的顶部内边距的距离。<br><code>HTMLElement.offsetWidth</code> 是一个只读属性，返回一个元素的布局宽度。<br><code>HTMLElement.offsetHeight</code> 是一个只读属性，它返回该元素的像素高度，高度包含该元素的垂直内边距和边框，且是一个整数。  </p>
@@ -1885,42 +1886,7 @@
 <p>综上所述，script标签最好放在</body>标签的前面，因为放在所有body中的标签后面就不会出现网页加载时出现空白的情况，可以持续的给用户提供视觉反馈，同时在有些情况下，会降低错误的发生。<br>而CSS标签应该放在<head></head>标签之间，因为如果放在</body>标签的前面，那么当DOM树构建完成了，渲染树才构建，那么当渲染树构建完成，浏览器不得不再重新渲染整个页面，这样造成了资源的浪费。效率也不高。如果放在<head></head>之间，浏览器边构建边渲染，效率要高的多。</p>
 <h3 id="如何做前后端分离？"><a href="#如何做前后端分离？" class="headerlink" title="如何做前后端分离？"></a>如何做前后端分离？</h3><p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000009329474?_ea=2038402">https://segmentfault.com/a/1190000009329474?_ea=2038402</a></p>
 <h3 id="PV、UV指的是什么？"><a href="#PV、UV指的是什么？" class="headerlink" title="PV、UV指的是什么？"></a>PV、UV指的是什么？</h3><p>page view 页面访问量<br>unique view 独立ip访问量</p>
-<h1 id="中级（初级编程题及深入基础知识）"><a href="#中级（初级编程题及深入基础知识）" class="headerlink" title="中级（初级编程题及深入基础知识）"></a>中级（初级编程题及深入基础知识）</h1><h2 id="编程"><a href="#编程" class="headerlink" title="编程"></a>编程</h2><h3 id="描述面向对象编程的23种设计模式"><a href="#描述面向对象编程的23种设计模式" class="headerlink" title="描述面向对象编程的23种设计模式"></a>描述面向对象编程的23种设计模式</h3><p><a target="_blank" rel="noopener" href="http://www.runoob.com/design-pattern/design-pattern-tutorial.html">http://www.runoob.com/design-pattern/design-pattern-tutorial.html</a></p>
-<p>创建型模式(Creational Patterns):  </p>
-<ul>
-<li>工厂模式（Factory Pattern）</li>
-<li>抽象工厂模式（Abstract Factory Pattern）</li>
-<li>单例模式（Singleton Pattern）</li>
-<li>建造者模式（Builder Pattern）</li>
-<li>原型模式（Prototype Pattern）</li>
-</ul>
-<p>结构型模式(Structural Patterns):  </p>
-<ul>
-<li>适配器模式（Adapter Pattern）</li>
-<li>桥接模式（Bridge Pattern）</li>
-<li>过滤器模式（Filter、Criteria Pattern）</li>
-<li>组合模式（Composite Pattern）</li>
-<li>装饰器模式（Decorator Pattern）</li>
-<li>外观模式（Facade Pattern）</li>
-<li>享元模式（Flyweight Pattern）</li>
-<li>代理模式（Proxy Pattern）</li>
-</ul>
-<p>行为型模式(Behavioral Patterns):  </p>
-<ul>
-<li>责任链模式（Chain of Responsibility Pattern）</li>
-<li>命令模式（Command Pattern）</li>
-<li>解释器模式（Interpreter Pattern）</li>
-<li>迭代器模式（Iterator Pattern）</li>
-<li>中介者模式（Mediator Pattern）</li>
-<li>备忘录模式（Memento Pattern）</li>
-<li>观察者模式（Observer Pattern）</li>
-<li>状态模式（State Pattern）</li>
-<li>空对象模式（Null Object Pattern）</li>
-<li>策略模式（Strategy Pattern）</li>
-<li>模板模式（Template Pattern）</li>
-<li>访问者模式（Visitor Pattern）</li>
-</ul>
-<h3 id="遍历对象属性的方法有哪些？"><a href="#遍历对象属性的方法有哪些？" class="headerlink" title="遍历对象属性的方法有哪些？"></a>遍历对象属性的方法有哪些？</h3><p>（1）for…in</p>
+<h1 id="中级（初级编程题及深入基础知识）"><a href="#中级（初级编程题及深入基础知识）" class="headerlink" title="中级（初级编程题及深入基础知识）"></a>中级（初级编程题及深入基础知识）</h1><h2 id="编程"><a href="#编程" class="headerlink" title="编程"></a>编程</h2><h3 id="遍历对象属性的方法有哪些？"><a href="#遍历对象属性的方法有哪些？" class="headerlink" title="遍历对象属性的方法有哪些？"></a>遍历对象属性的方法有哪些？</h3><p>（1）for…in</p>
 <p>for…in循环遍历对象自身的和继承的可枚举属性（不含 Symbol 属性）。</p>
 <p>（2）Object.keys(obj)</p>
 <p>Object.keys返回一个数组，包括对象自身的（不含继承的）所有可枚举属性（不含 Symbol 属性）的键名。</p>
@@ -1944,7 +1910,7 @@
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@link-color:</span> blue;</span><br><span class="line"><span class="variable">@hover-color:</span> red;</span><br><span class="line"><span class="variable">@visited-color:</span> green;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.link-colors</span> (<span class="variable">@normal</span>:<span class="variable">@link-color</span>; <span class="variable">@hover</span>:<span class="variable">@hover-color</span>; <span class="variable">@visited</span>:<span class="variable">@visited-color</span>) &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="variable">@normal</span>;</span><br><span class="line">    <span class="selector-tag">&amp;</span><span class="selector-pseudo">:hover</span> &#123; <span class="attribute">color</span>: <span class="variable">@hover</span>; &#125;</span><br><span class="line">    <span class="selector-tag">&amp;</span><span class="selector-pseudo">:visited</span> &#123; <span class="attribute">color</span>: <span class="variable">@visited</span>; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="selector-class">.link-colors</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>编译后</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span> &#123; <span class="attribute">color</span>: blue; &#125;</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123; <span class="attribute">color</span>: red; &#125;</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span> &#123; <span class="attribute">color</span>: green; &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="解释Event对象-currentTarget-preventDefault-stopProtogation-含义"><a href="#解释Event对象-currentTarget-preventDefault-stopProtogation-含义" class="headerlink" title="解释Event对象 currentTarget preventDefault() stopProtogation()含义"></a>解释Event对象 <code>currentTarget</code> <code>preventDefault()</code> <code>stopProtogation()</code>含义</h3><p><code>currentTarget</code>: 事件属性返回其监听器触发事件的节点，即当前处理该事件的元素、文档或窗口。<br><code>preventDefault</code>: 该方法将通知 Web 浏览器不要执行与事件关联的默认动作（如果存在这样的动作）。<br><code>stopPropagation</code>： 终止事件在传播过程的捕获、目标处理或起泡阶段进一步传播。调用该方法后，该节点上处理该事件的处理程序将被调用，事件不再被分派到其他节点。  </p>
+<h3 id="解释Event对象-target-currentTarget-preventDefault-stopProtogation-含义"><a href="#解释Event对象-target-currentTarget-preventDefault-stopProtogation-含义" class="headerlink" title="解释Event对象 target currentTarget preventDefault() stopProtogation()含义"></a>解释Event对象 <code>target</code> <code>currentTarget</code> <code>preventDefault()</code> <code>stopProtogation()</code>含义</h3><p><code>target</code>: 触发事件的对象元素的引用<br><code>currentTarget</code>: 事件属性返回其监听器绑定事件的节点，即当前处理该事件的元素、文档或窗口。<br><code>preventDefault</code>: 该方法将通知 Web 浏览器不要执行与事件关联的默认动作（如果存在这样的动作）。<br><code>stopPropagation</code>： 终止事件在传播过程的捕获、目标处理或起泡阶段进一步传播。调用该方法后，该节点上处理该事件的处理程序将被调用，事件不再被分派到其他节点。  </p>
 <h3 id="实现获取指定范围的随机整数"><a href="#实现获取指定范围的随机整数" class="headerlink" title="实现获取指定范围的随机整数"></a>实现获取指定范围的随机整数</h3><p><code>Math.random()</code>: 获取[0-1)范围的小数<br><code>Math.floor(num)</code>: num取整数<br>取[1-100]范围内一个随机整数值: <code>Math.floor(Math.random() * 100 + 1)</code>  </p>
 <h3 id="解释你熟悉的js常见类库-jquery-js-zepto-js-prototype-js-backbone-js-underscore-js-axios-js-的作用"><a href="#解释你熟悉的js常见类库-jquery-js-zepto-js-prototype-js-backbone-js-underscore-js-axios-js-的作用" class="headerlink" title="解释你熟悉的js常见类库 jquery.js/zepto.js (prototype.js) backbone.js underscore.js axios.js 的作用"></a>解释你熟悉的js常见类库 jquery.js/zepto.js (prototype.js) backbone.js underscore.js axios.js 的作用</h3><p>jQuery:<br>jQuery 是一个高效、精简并且功能丰富的 JavaScript 工具库。它提供的 API 易于使用且兼容众多浏览器，这让诸如 HTML 文档遍历和操作、事件处理、动画和 Ajax 操作更加简单。<br>Zepto:<br>Zepto是一个轻量级的针对现代高级浏览器的JavaScript库， 它与jquery有着类似的api。<br>Underscore:<br>一个JavaScript实用库，提供了一整套函数式编程的实用功能，但是没有扩展任何JavaScript内置对象。它弥补了部分jQuery没有实现的功能,同时又是Backbone.js必不可少的部分。<br>Backbone:<br>Backbone.js为复杂WEB应用程序提供模型(models)、集合(collections)、视图(views)的结构。<br>Axios:<br>Axios 是一个基于 promise 的 HTTP 库,可以用在浏览器和 node.js 中。<br>…</p>
 <h3 id="实现行内元素与块状元素的相互转换"><a href="#实现行内元素与块状元素的相互转换" class="headerlink" title="实现行内元素与块状元素的相互转换"></a>实现行内元素与块状元素的相互转换</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attribute">display</span>: inline/block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

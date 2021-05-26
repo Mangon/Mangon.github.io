@@ -111,6 +111,94 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/blog/2021/05/20/FE-SPA-MPA-SSR/">SPA &amp; MPA &amp; SSR</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-05-20T06:13:28.000Z" itemprop="datePublished">2021-05-20</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/spa/" rel="tag">spa</a>, <a class="article-tag-link" href="/blog/tags/ssr/" rel="tag">ssr</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="什么是-SPA-amp-MPA"><a href="#什么是-SPA-amp-MPA" class="headerlink" title="什么是 SPA &amp; MPA"></a>什么是 SPA &amp; MPA</h2><p>单页web应用（single page web application，SPA），是指只有一个web页面的应用，是加载单个HTML页面并在用户与应用程序交互时动态更新该页面的web应用程序。  </p>
+<p>多页web应用（multi page web application，MPA），是指有多个web页面的应用，每一次页面跳转的时候，后台服务器都会返回一个新的HTML文档。  </p>
+<h2 id="SPA-和-MPA-的区别"><a href="#SPA-和-MPA-的区别" class="headerlink" title="SPA 和 MPA 的区别"></a>SPA 和 MPA 的区别</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>多页应用模式（MPA）</th>
+<th>单页应用模式（SPA）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>应用组成</td>
+<td>由多个完整HTML页面构成</td>
+<td>一个HTML页面，通过ajax请求获取数据更新页面</td>
+</tr>
+<tr>
+<td>跳转方式</td>
+<td>页面之间跳转时从一个HTML页面跳转到另一个HTML页面</td>
+<td>通过javascript控制页面的渲染，达到页面切换的目的</td>
+</tr>
+<tr>
+<td>跳转后公共资源是否重新加载</td>
+<td>是</td>
+<td>否</td>
+</tr>
+<tr>
+<td>URL模式</td>
+<td><p><a target="_blank" rel="noopener" href="http://xxx/page1.html">http://xxx/page1.html</a></p> <p><a target="_blank" rel="noopener" href="http://xxx/page2.html">http://xxx/page2.html</a></p></td>
+<td><p><a target="_blank" rel="noopener" href="http://xxx/shell.html#page1">http://xxx/shell.html#page1</a></p> <p><a target="_blank" rel="noopener" href="http://xxx/shell.html#page2">http://xxx/shell.html#page2</a> （hash）</p></td>
+</tr>
+<tr>
+<td>用户体验</td>
+<td>首页加载速度快，页面间切换加载慢</td>
+<td>页面切换速度快，首页加载速度慢</td>
+</tr>
+<tr>
+<td>SEO（Search engine optimize）</td>
+<td>利于seo</td>
+<td>由于搜索引擎爬虫一般只爬取静态页面，所以SPA一般不利于seo</td>
+</tr>
+</tbody>
+</table>
+<p>总结：SPA页面切换更加流畅，页面切换速度快，但首页因需要加载过多的资源，首页速度较慢，且不利于SEO。在有强SEO需求的情况下，比如文档类型的应用、官网首页采用MPA更合适，开发较大型web应用时采用SPA更合适。  </p>
+<h2 id="SSR"><a href="#SSR" class="headerlink" title="SSR"></a>SSR</h2><p>服务器端渲染（Server Side Render）是指在服务器端将模板与数据绑定，并将页面返回给客户端的技术。服务器端渲染的优势就是利于 SEO，首屏加载速度快。  </p>
+<h2 id="同构渲染"><a href="#同构渲染" class="headerlink" title="同构渲染"></a>同构渲染</h2><p>部分 SSR 框架采用了同构渲染的策略。例如 Next.js，同一套代码既可以在服务器端渲染，也可以在客户端渲染。当我们首次访问时（访问首屏页面），Next.js 使用服务器端渲染，为我们返回已经渲染完成的最终 HTML 页面。这样就同时解决了首屏白屏问题以及 SEO 问题。此后当我们再进行交互时，则使用客户端渲染。HTML、CSS、JS 等资源都不需要再重新请求，只需要通过 ajax/websocket 等途径获取数据，在客户端完成渲染过程。  </p>
+
+        
+    </section>
+    
+    <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open">
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/blog/2018/09/15/Hexo-%E4%B9%9F%E8%83%BD%E6%9E%84%E5%BB%BASPA/">Hexo也能构建SPA</a>
         </h1>
         
