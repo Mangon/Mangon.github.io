@@ -1,3 +1,3 @@
-// build time:Thu May 27 2021 23:24:37 GMT+0800 (中国标准时间)
+// build time:Thu May 27 2021 23:26:58 GMT+0800 (中国标准时间)
 $(document).ready(function(){var r=2;var a=$(".original").html();var e=$("<div/>").insertBefore(".original");var i=$("<div/>").insertBefore(".original");for(var o=0;o<r;o++){$("<div/>").addClass("realistic blur blur-top").html(a).appendTo(e);$("<div/>").addClass("realistic blur blur-bottom").html(a).appendTo(i)}var d=$(".home")[0];if(d){var l=$(".footer",d.parentNode.parentNode);l.addClass("hide")}});
 //rebuild by neat 
