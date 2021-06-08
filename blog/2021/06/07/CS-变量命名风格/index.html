@@ -6,7 +6,7 @@
 
     
     <title>
-        JS this | 
+        变量命名风格 | 
         Gblog
     </title>
     <meta name="author" content="Mangon" />
@@ -15,7 +15,7 @@
     <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
     
     
-    <meta name="description" content="this 是一个关键字。和变量不同，关键字 this 没有作用域限制，如果嵌套函数作为方法调用，其 this 的值指向调用它的对象，如果嵌套函数作为函数调用，其 this 的值是全局对象（非严格模式）或者 undefined（严格模式）。如果希望在嵌套函数中调用外层函数的上下文，需要将外层函数的 this 值保存到一个变量（例如self、context或者_this）里，这个变量和内部函数都在同一个作用域里。" />
+    <meta name="description" content="小驼峰形式（camelCase）：符号、属性、方法、常量。 小驼峰（也叫标准驼峰）形式的第一个字母要使用小写形式，其他单词的首字母使用大写形式。比如 “selectedHero”。大驼峰形式（UpperCamelCase）或叫帕斯卡形式（PascalCase）：类名（包括用来定义组件、接口、指令等的类）。 大驼峰形式的第一个字母要使用大写形式。比如 “HeroListComponent”。中线形式（dash-case）或叫烤串形式（kebab-case）：文件名中的描述部分，组件的选择器。比" />
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
@@ -112,7 +112,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            JS this
+            变量命名风格
         </h1>
         
         <div class="article-meta clearfix">
@@ -120,22 +120,21 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2021-03-21T03:24:26.000Z" itemprop="datePublished">2021-03-21</time>
+    <time datetime="2021-06-07T08:25:30.000Z" itemprop="datePublished">2021-06-07</time>
 </span>
 
             
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/this/" rel="tag">this</a>
-</div>
-
 
         </div>
     </header>
     
     <section class="article-body markdown-body">
         
-        <p><code>this</code> 是一个关键字。和变量不同，关键字 <code>this</code> 没有作用域限制，如果嵌套函数作为方法调用，其 <code>this</code> 的值指向调用它的对象，如果嵌套函数作为函数调用，其 <code>this</code> 的值是全局对象（非严格模式）或者 <code>undefined</code>（严格模式）。<br>如果希望在嵌套函数中调用外层函数的上下文，需要将外层函数的 <code>this</code> 值保存到一个变量（例如self、context或者_this）里，这个变量和内部函数都在同一个作用域里。</p>
+        <p>小驼峰形式（camelCase）：符号、属性、方法、常量。 小驼峰（也叫标准驼峰）形式的第一个字母要使用小写形式，其他单词的首字母使用大写形式。比如 “selectedHero”。</p>
+<p>大驼峰形式（UpperCamelCase）或叫帕斯卡形式（PascalCase）：类名（包括用来定义组件、接口、指令等的类）。 大驼峰形式的第一个字母要使用大写形式。比如 “HeroListComponent”。</p>
+<p>中线形式（dash-case）或叫烤串形式（kebab-case）：文件名中的描述部分，组件的选择器。比如 “app-hero-list”。</p>
+<p>下划线形式（underscore_case）或叫蛇形形式（snake_case）：后端变量命名常采用此种形式，前端一般不常用。蛇形形式使用下划线连接各个单词，各单词字母小写。 比如 “convert_link_mode”。</p>
+<p>大写下划线形式（UPPER_UNDERSCORE_CASE）或叫大写蛇形形式（UPPER_SNAKE_CASE）：传统的常量写法。大蛇形形式使用下划线分隔的全大写单词。比如 “FIX_ME”。</p>
 
         
     </section>
