@@ -15,7 +15,7 @@
     <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
     
     
-    <meta name="description" content="position四个属性值描述absolute生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。此元素的位置可通过 “left”、”top”、”right” 以及 “bottom” 属性来规定。relative生成相对定位的元素，相对于其正常位置进行定位。fixed生成绝对定位的元素，相对于浏览器窗口进行定位。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。sticky粘性布局" />
+    <meta name="description" content="position四个属性值描述absolute生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。此元素的位置可通过 “top”、”right”、”bottom” 以及 “left” 属性来规定。relative生成相对定位的元素，相对于其正常位置进行定位。fixed生成绝对定位的元素，相对于浏览器窗口进行定位。元素的位置通过 “top”、”right”、”bottom” 以及 “left” 属性进行规定。sticky粘性布局，元" />
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
@@ -120,7 +120,7 @@
 <tbody>
 <tr>
 <td>absolute</td>
-<td>生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。<br/>此元素的位置可通过 “left”、”top”、”right” 以及 “bottom” 属性来规定。</td>
+<td>生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。<br/>此元素的位置可通过 “top”、”right”、”bottom” 以及 “left” 属性来规定。</td>
 </tr>
 <tr>
 <td>relative</td>
@@ -128,30 +128,31 @@
 </tr>
 <tr>
 <td>fixed</td>
-<td>生成绝对定位的元素，相对于浏览器窗口进行定位。<br/>元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。</td>
+<td>生成绝对定位的元素，相对于浏览器窗口进行定位。<br/>元素的位置通过 “top”、”right”、”bottom” 以及 “left” 属性进行规定。</td>
 </tr>
 <tr>
 <td>sticky</td>
-<td>粘性布局，元素先按照普通文档流定位，然后相对于该元素在流中的 flow root（BFC）和 containing block（最近的块级祖先元素）定位，而后，元素定位表现为在跨越特定阈值前为相对定位，之后为固定定位。这个特定阈值指的是 top, right, bottom 或 left 之一</td>
+<td>粘性布局，元素先按照普通文档流定位，然后相对于该元素在流中的 flow root（BFC）和 containing block（最近的块级祖先元素）定位，而后，元素定位表现为在跨越特定阈值前为相对定位，之后为固定定位。这个特定阈值指的是 “top”、”right”、”bottom” 以及 “left” 之一</td>
 </tr>
 <tr>
 <td>static</td>
-<td>默认值。static 元素会忽略任何 top、bottom、left、right 和z-index 声明</td>
+<td>默认值。static 元素会忽略任何 “top”、”right”、”bottom”、”left” 和 “z-index” 声明</td>
 </tr>
 <tr>
 <td>inherit</td>
-<td>规定应该从父元素继承 position 属性的值。</td>
+<td>规定应该从父元素继承 position 属性的值。position 属性默认是不继承的</td>
 </tr>
 <tr>
 <td>initial</td>
-<td></td>
+<td>设置该属性为浏览器默认值，对 positon 属性来说就是 static</td>
 </tr>
 <tr>
 <td>unset</td>
+<td>将属性的值复位，如果该属性是默认继承属性，该值等同于 inherit ，如果该属性是非继承属性，该值等同于 initial 。对 positon 属性来说就是 static</td>
 </tr>
 </tbody>
 </table>
-<h2 id="sticky布局如何polifill"><a href="#sticky布局如何polifill" class="headerlink" title="sticky布局如何polifill"></a>sticky布局如何polifill</h2><p>按照常规做法，监听页面 scroll 事件，判断区块距离视口顶部距离，超过了则设定该区块 <code>position: fixed;</code>，反之去掉。  </p>
+<h2 id="sticky布局如何polifill"><a href="#sticky布局如何polifill" class="headerlink" title="sticky布局如何polifill"></a>sticky布局如何polifill</h2><p>假如需要设置滑动时区块若超出视口则固定于浏览器上。按照常规做法，监听页面 onscroll 事件，判断 scrollTop 是否大于区块距离视口顶部距离，超过了则设定该区块 <code>position: fixed;</code>，反之去掉。onscroll 事件触发比较频繁，需要添加截流。  </p>
 
         
     </section>

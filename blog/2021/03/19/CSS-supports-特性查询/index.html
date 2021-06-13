@@ -6,7 +6,7 @@
 
     
     <title>
-        脱离文档流的方法 | 
+        css @supports 作用 | 
         Gblog
     </title>
     <meta name="author" content="Mangon" />
@@ -15,7 +15,7 @@
     <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
     
     
-    <meta name="description" content="正常文档布局流正常文档布局流（normal document layout flow）是指在没有改变默认布局规则情况下的页面元素布局方式。如果你未曾应用任何CSS规则来改变它们的展现方式，网页上的元素将会按照正常布局流来组织布局。首先说一下独立元素的布局。元素的内容被放在一个独立的元素盒子中，然后在其周边加上内边距（padding）、边框（border）和外边距（margin） — 就是我们所说的盒子模型（box model）。默认情况下，一个块级元素（典型如div）的内容宽度是其父元素的100" />
+    <meta name="description" content="@supports 可以指定依赖于浏览器中的一个或多个特定的CSS功能的支持声明，这被称为特性查询。  12345678910@supports (display: grid) &amp;#123;  div &amp;#123;    display: grid;  &amp;#125;&amp;#125;@supports not (display: grid) &amp;#123;  div &amp;#123;    float: right;  &amp;#125;&amp;#125;声明语法最基本的支持条件就是 CSS 声明，也就是一个 CS" />
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
@@ -71,7 +71,7 @@
         
 
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%B8%B8%E6%96%87%E6%A1%A3%E5%B8%83%E5%B1%80%E6%B5%81"><span class="toc-number">1.</span> <span class="toc-text">正常文档布局流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%84%B1%E7%A6%BB%E6%AD%A3%E5%B8%B8%E6%96%87%E6%A1%A3%E6%B5%81"><span class="toc-number">2.</span> <span class="toc-text">如何脱离正常文档流</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E%E8%AF%AD%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">声明语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E8%AF%AD%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">函数语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#not%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">3.</span> <span class="toc-text">not操作符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#and%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">4.</span> <span class="toc-text">and操作符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#or%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">5.</span> <span class="toc-text">or操作符</span></a></li></ol>
         
         <div id="coffee-content"></div>
     </div>
@@ -87,7 +87,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            脱离文档流的方法
+            css @supports 作用
         </h1>
         
         <div class="article-meta clearfix">
@@ -95,35 +95,28 @@
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2021-06-04T07:34:43.000Z" itemprop="datePublished">2021-06-04</time>
+    <time datetime="2021-03-19T06:00:11.000Z" itemprop="datePublished">2021-03-19</time>
 </span>
 
             
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>, <a class="article-tag-link" href="/blog/tags/float/" rel="tag">float</a>, <a class="article-tag-link" href="/blog/tags/html/" rel="tag">html</a>
-</div>
-
 
         </div>
     </header>
     
     <section class="article-body markdown-body">
         
-        <h2 id="正常文档布局流"><a href="#正常文档布局流" class="headerlink" title="正常文档布局流"></a>正常文档布局流</h2><p>正常文档布局流（normal document layout flow）是指在没有改变默认布局规则情况下的页面元素布局方式。如果你未曾应用任何CSS规则来改变它们的展现方式，网页上的元素将会按照正常布局流来组织布局。<br>首先说一下独立元素的布局。元素的内容被放在一个独立的元素盒子中，然后在其周边加上内边距（padding）、边框（border）和外边距（margin） — 就是我们所说的盒子模型（box model）。默认情况下，一个块级元素（典型如div）的内容宽度是其父元素的100%，其高度与其内容高度一致。内联元素（典型如span）的高度、宽度与内容一致。你可以通过设置 <code>display: block</code> 与 <code>display: inline</code> 来将一个元素变为块级元素或内联元素。<br>元素之间又是如何相互影响的呢？块级元素默认会按照基于其父元素的书写顺序（writing-mode: horizontal-tb）的块流动方向（block flow direction）放置 — 每个块级元素会在上一个元素下面另起一行，它们会被设置好的外边距（margin）分隔。在英语，或者其他水平书写、自上而下模式里，块级元素是垂直组织的。内联元素的表现有所不同 — 它们不会另起一行；只要在其父级块级元素的宽度内有足够的空间，它们与其他内联元素、相邻的文本内容（或者被包裹的）被安排在同一行。如果空间不够，溢出的文本或元素将移到新的一行。</p>
-<h2 id="如何脱离正常文档流"><a href="#如何脱离正常文档流" class="headerlink" title="如何脱离正常文档流"></a>如何脱离正常文档流</h2><p>有时候我们希望元素脱离正常的文档流，在正常文档流中不占用空间，我们有如下三种方法可以达到目的：</p>
-<ol>
-<li>使用 <code>float</code> 属性</li>
-</ol>
-<p>设置 <code>float:left;</code> 或 <code>float:right;</code> 后，其他盒子占用空间时会无视这个元素，但其他盒子内的文本依然会为这个元素让出位置，环绕在该元素的周围</p>
-<ol start="2">
-<li>设置 <code>position: absolute;</code></li>
-</ol>
-<p>设置 <code>position: absolute;</code> 后该元素会相对于非 <code>position: static;</code> 的祖先元素进行定位</p>
-<ol start="3">
-<li>设置 <code>position: fixed;</code></li>
-</ol>
-<p>设置 <code>position: fixed;</code> 后元素会相对于浏览器窗口进行定位</p>
+        <p><code>@supports</code> 可以指定依赖于浏览器中的一个或多个特定的CSS功能的支持声明，这被称为特性查询。  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@supports</span> (<span class="attribute">display</span>: <span class="attribute">grid</span>) &#123;</span><br><span class="line">  <span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: grid;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@supports</span> <span class="keyword">not</span> (<span class="attribute">display</span>: <span class="attribute">grid</span>) &#123;</span><br><span class="line">  <span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">float</span>: right;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="声明语法"><a href="#声明语法" class="headerlink" title="声明语法"></a>声明语法</h2><p>最基本的支持条件就是 CSS 声明，也就是一个 CSS 属性后跟一个值，中间用冒号分开。  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@supports</span> (<span class="attribute">transform-origin</span>: <span class="number">5%</span> <span class="number">5%</span>) &#123;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="函数语法"><a href="#函数语法" class="headerlink" title="函数语法"></a>函数语法</h2><p>测试浏览器是否支持经过测试的选择器语法。  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@supports</span> selector(A &gt; B) &#123;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="not操作符"><a href="#not操作符" class="headerlink" title="not操作符"></a>not操作符</h2><p>将 <code>not</code> 操作符放在任何表达式之前就能否定一条表达式。  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@supports</span> <span class="keyword">not</span> (<span class="attribute">transform-origin</span>: <span class="number">10em</span> <span class="number">10em</span> <span class="number">10em</span>) &#123;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="and操作符"><a href="#and操作符" class="headerlink" title="and操作符"></a>and操作符</h2><p><code>and</code> 操作符用来将两个原始的表达式做逻辑与后生成一个新的表达式，如果两个原始表达式的值都为真，则生成的表达式也为真。  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@supports</span> (<span class="attribute">display</span>: table-cell) <span class="keyword">and</span> (<span class="attribute">display</span>: list-item) &#123;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="or操作符"><a href="#or操作符" class="headerlink" title="or操作符"></a>or操作符</h2><p><code>or</code> 操作符用来将两个原始的表达式做逻辑或后生成一个新的表达式，如果两个原始表达式的值有一个或者都为真，则生成的表达式也为真。  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@supports</span> (<span class="attribute">transform-style</span>: preserve) <span class="keyword">or</span> (<span class="attribute">-moz-transform-style</span>: preserve) &#123;&#125;</span><br></pre></td></tr></table></figure>
 
         
     </section>

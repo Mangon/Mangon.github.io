@@ -134,7 +134,7 @@
     
     <section class="article-body markdown-body">
         
-        <h2 id="正常文档布局流"><a href="#正常文档布局流" class="headerlink" title="正常文档布局流"></a>正常文档布局流</h2><p>正常文档布局流（normal document layout flow）是指在没有改变默认布局规则情况下的页面元素布局方式。如果你未曾应用任何CSS规则来改变它们的展现方式，网页上的元素将会按照正常布局流来组织布局。<br>首选说一下独立元素的布局。元素的内容被放在一个独立的元素盒子中，然后在其周边加上内边距（padding）、边框（border）和外边距（margin） — 就是我们所说的盒子模型（box model）。默认情况下，一个块级元素（典型如div）的内容宽度是其父元素的100%，其高度与其内容高度一致。内联元素（典型如span）的高度、宽度与内容一致。你可以通过设置 <code>display: block</code> 与 <code>display: inline</code> 来将一个元素变为块级元素或内联元素。<br>元素之间又是如何相互影响的呢？块级元素默认会按照基于其父元素的书写顺序（writing-mode: horizontal-tb）的块流动方向（block flow direction）放置 — 每个块级元素会在上一个元素下面另起一行，它们会被设置好的外边距（margin）分隔。在英语，或者其他水平书写、自上而下模式里，块级元素是垂直组织的。内联元素的表现有所不同 — 它们不会另起一行；只要在其父级块级元素的宽度内有足够的空间，它们与其他内联元素、相邻的文本内容（或者被包裹的）被安排在同一行。如果空间不够，溢出的文本或元素将移到新的一行。</p>
+        <h2 id="正常文档布局流"><a href="#正常文档布局流" class="headerlink" title="正常文档布局流"></a>正常文档布局流</h2><p>正常文档布局流（normal document layout flow）是指在没有改变默认布局规则情况下的页面元素布局方式。如果你未曾应用任何CSS规则来改变它们的展现方式，网页上的元素将会按照正常布局流来组织布局。<br>首先说一下独立元素的布局。元素的内容被放在一个独立的元素盒子中，然后在其周边加上内边距（padding）、边框（border）和外边距（margin） — 就是我们所说的盒子模型（box model）。默认情况下，一个块级元素（典型如div）的内容宽度是其父元素的100%，其高度与其内容高度一致。内联元素（典型如span）的高度、宽度与内容一致。你可以通过设置 <code>display: block</code> 与 <code>display: inline</code> 来将一个元素变为块级元素或内联元素。<br>元素之间又是如何相互影响的呢？块级元素默认会按照基于其父元素的书写顺序（writing-mode: horizontal-tb）的块流动方向（block flow direction）放置 — 每个块级元素会在上一个元素下面另起一行，它们会被设置好的外边距（margin）分隔。在英语，或者其他水平书写、自上而下模式里，块级元素是垂直组织的。内联元素的表现有所不同 — 它们不会另起一行；只要在其父级块级元素的宽度内有足够的空间，它们与其他内联元素、相邻的文本内容（或者被包裹的）被安排在同一行。如果空间不够，溢出的文本或元素将移到新的一行。</p>
 <h2 id="如何脱离正常文档流"><a href="#如何脱离正常文档流" class="headerlink" title="如何脱离正常文档流"></a>如何脱离正常文档流</h2><p>有时候我们希望元素脱离正常的文档流，在正常文档流中不占用空间，我们有如下三种方法可以达到目的：</p>
 <ol>
 <li>使用 <code>float</code> 属性</li>
@@ -531,7 +531,7 @@
 <tbody>
 <tr>
 <td>absolute</td>
-<td>生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。<br/>此元素的位置可通过 “left”、”top”、”right” 以及 “bottom” 属性来规定。</td>
+<td>生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。<br/>此元素的位置可通过 “top”、”right”、”bottom” 以及 “left” 属性来规定。</td>
 </tr>
 <tr>
 <td>relative</td>
@@ -539,30 +539,31 @@
 </tr>
 <tr>
 <td>fixed</td>
-<td>生成绝对定位的元素，相对于浏览器窗口进行定位。<br/>元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。</td>
+<td>生成绝对定位的元素，相对于浏览器窗口进行定位。<br/>元素的位置通过 “top”、”right”、”bottom” 以及 “left” 属性进行规定。</td>
 </tr>
 <tr>
 <td>sticky</td>
-<td>粘性布局，元素先按照普通文档流定位，然后相对于该元素在流中的 flow root（BFC）和 containing block（最近的块级祖先元素）定位，而后，元素定位表现为在跨越特定阈值前为相对定位，之后为固定定位。这个特定阈值指的是 top, right, bottom 或 left 之一</td>
+<td>粘性布局，元素先按照普通文档流定位，然后相对于该元素在流中的 flow root（BFC）和 containing block（最近的块级祖先元素）定位，而后，元素定位表现为在跨越特定阈值前为相对定位，之后为固定定位。这个特定阈值指的是 “top”、”right”、”bottom” 以及 “left” 之一</td>
 </tr>
 <tr>
 <td>static</td>
-<td>默认值。static 元素会忽略任何 top、bottom、left、right 和z-index 声明</td>
+<td>默认值。static 元素会忽略任何 “top”、”right”、”bottom”、”left” 和 “z-index” 声明</td>
 </tr>
 <tr>
 <td>inherit</td>
-<td>规定应该从父元素继承 position 属性的值。</td>
+<td>规定应该从父元素继承 position 属性的值。position 属性默认是不继承的</td>
 </tr>
 <tr>
 <td>initial</td>
-<td></td>
+<td>设置该属性为浏览器默认值，对 positon 属性来说就是 static</td>
 </tr>
 <tr>
 <td>unset</td>
+<td>将属性的值复位，如果该属性是默认继承属性，该值等同于 inherit ，如果该属性是非继承属性，该值等同于 initial 。对 positon 属性来说就是 static</td>
 </tr>
 </tbody>
 </table>
-<h2 id="sticky布局如何polifill"><a href="#sticky布局如何polifill" class="headerlink" title="sticky布局如何polifill"></a>sticky布局如何polifill</h2><p>按照常规做法，监听页面 scroll 事件，判断区块距离视口顶部距离，超过了则设定该区块 <code>position: fixed;</code>，反之去掉。  </p>
+<h2 id="sticky布局如何polifill"><a href="#sticky布局如何polifill" class="headerlink" title="sticky布局如何polifill"></a>sticky布局如何polifill</h2><p>假如需要设置滑动时区块若超出视口则固定于浏览器上。按照常规做法，监听页面 onscroll 事件，判断 scrollTop 是否大于区块距离视口顶部距离，超过了则设定该区块 <code>position: fixed;</code>，反之去掉。onscroll 事件触发比较频繁，需要添加截流。  </p>
 
         
     </section>
