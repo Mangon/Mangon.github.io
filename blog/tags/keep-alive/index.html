@@ -134,8 +134,7 @@
     
     <section class="article-body markdown-body">
         
-        <p>原文： <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9523bb439950">https://www.jianshu.com/p/9523bb439950</a></p>
-<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>本文介绍的内容包括：</p>
+        <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>本文介绍的内容包括：</p>
 <ul>
 <li>keep-alive用法：动态组件&amp;vue-router</li>
 <li>keep-alive源码解析</li>
@@ -202,6 +201,7 @@
 <p>在这个钩子里面，调用了activateChildComponent函数递归地去执行所有子组件的activated钩子函数：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/core/instance/lifecycle.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">activateChildComponent</span> (<span class="params">vm: Component, direct?: boolean</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (direct) &#123;</span><br><span class="line">    vm._directInactive = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">if</span> (isInInactiveTree(vm)) &#123;</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (vm._directInactive) &#123;</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (vm._inactive || vm._inactive === <span class="literal">null</span>) &#123;</span><br><span class="line">    vm._inactive = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; vm.$children.length; i++) &#123;</span><br><span class="line">      activateChildComponent(vm.$children[i])</span><br><span class="line">    &#125;</span><br><span class="line">    callHook(vm, <span class="string">&#x27;activated&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>相反地，deactivated钩子函数也是一样的原理，在组件实例（VNode）的destroy钩子函数中调用deactivateChildComponent函数。</p>
+<p>原文： <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9523bb439950">https://www.jianshu.com/p/9523bb439950</a></p>
 
         
     </section>
