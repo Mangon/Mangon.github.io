@@ -1,3 +1,3 @@
-// build time:Wed Jun 23 2021 16:44:24 GMT+0800 (中国标准时间)
+// build time:Wed Jun 23 2021 16:48:32 GMT+0800 (中国标准时间)
 (function(n,t,e){function o(){t.oncontextmenu=function(){return false};t.onselectstart=function(){return false};t.oncopy=function(){return false};t.oncut=function(){return false};t.onpaste=function(){return false};t.onbeforeprint=function(){return false}}function r(){var o=t.createElement("canvas");var r=o.getContext("2d");r.font="20px Arial";r.textAlign="center";r.textBaseline="bottom";r.fillStyle="#F3F4F6";r.rotate(-20*Math.PI/180);r.fillText(n.location.host,150,100);var c=o.toDataURL();var u='url("'+c+'")';var f=e("#content");f.css("background",u),a(f,"background",500)}function a(n,t,e){var o=n.css(t);setInterval(function(){var e=n.css(t);if(o!=e){n.css(t,o)}},e)}o();r()})(window,document,jQuery);
 //rebuild by neat 
