@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        小技巧 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="本篇主要记录一些小技巧或者开发过程中遇到的小问题和解决方案。这些问题实在太小了而且大部分可能和代码没有关系，不好每次都单独列一篇文章，所以放到一起了。在eclipse中设置字体在eclipse中设置 Windows-&amp;gt;Preferences-&amp;gt;General-&amp;gt;Appearance-&amp;gt;Color and Fonts-&amp;gt;Basic-&amp;gt;Text Font-&amp;gt;Edit-&amp;gt;脚本(R) 选择 中欧字符 后中文字体的显示能够更好看些。  处理 nginx" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8eclipse%E4%B8%AD%E8%AE%BE%E7%BD%AE%E5%AD%97%E4%BD%93"><span class="toc-text">在eclipse中设置字体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%84%E7%90%86-nginx-php-%E9%81%87%E5%88%B0%E5%90%8E%E7%AB%AF%E8%BF%94%E5%9B%9E413%E9%94%99%E8%AF%AF"><span class="toc-text">处理 nginx + php 遇到后端返回413错误</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5-%E5%AF%BC%E5%87%BA-csv%E6%96%87%E4%BB%B6%E5%88%B0mysql"><span class="toc-text">导入&#x2F;导出 csv文件到mysql</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5"><span class="toc-text">导入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%87%BA"><span class="toc-text">导出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%87%BAcsv%E6%96%87%E4%BB%B6%E5%88%B0mysql%E6%8A%A5%E9%94%99"><span class="toc-text">导出csv文件到mysql报错</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Error-1148"><span class="toc-text">Error 1148</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Error-1290"><span class="toc-text">Error 1290</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8mysql%E6%8A%A5%E9%94%99error-11"><span class="toc-text">启动mysql报错error: 11</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%84%E7%90%86-mongoose-%E4%B8%AD-bson-MODULE-NOT-FOUND-%E7%9B%B8%E5%85%B3%E6%8A%A5%E9%94%99"><span class="toc-text">处理 mongoose 中 bson MODULE_NOT_FOUND 相关报错</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python-%E6%8A%A5%E9%94%99-%E2%80%98ascii%E2%80%99-codec-can%E2%80%99t-encode-characters-in-position-0-8%EF%BC%9Aordinal-not-in-range-128"><span class="toc-text">Python 报错 ‘ascii’ codec can’t encode characters in position 0-8：ordinal not in range(128)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8nvm%E7%9A%84%E5%89%8D%E7%BD%AE%E8%84%9A%E6%9C%AC"><span class="toc-text">使用nvm的前置脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%90%AF%E7%94%A8httpserver"><span class="toc-text">快速启用httpserver</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8-mongodb-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%8D%E5%8A%A1"><span class="toc-text">启动 mongodb 数据库服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8-redis-%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">启动 redis 数据库</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            小技巧
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-06-19T08:08:39.000Z" itemprop="datePublished">2019-06-19</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/tips/" rel="tag">tips</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>本篇主要记录一些小技巧或者开发过程中遇到的小问题和解决方案。这些问题实在太小了而且大部分可能和代码没有关系，不好每次都单独列一篇文章，所以放到一起了。</p>
+<span id="more"></span>
+<h2 id="在eclipse中设置字体"><a href="#在eclipse中设置字体" class="headerlink" title="在eclipse中设置字体"></a>在eclipse中设置字体</h2><p>在eclipse中设置 Windows-&gt;Preferences-&gt;General-&gt;Appearance-&gt;Color and Fonts-&gt;Basic-&gt;Text Font-&gt;Edit-&gt;脚本(R) 选择 <code>中欧字符</code> 后中文字体的显示能够更好看些。  </p>
+<h2 id="处理-nginx-php-遇到后端返回413错误"><a href="#处理-nginx-php-遇到后端返回413错误" class="headerlink" title="处理 nginx + php 遇到后端返回413错误"></a>处理 nginx + php 遇到后端返回413错误</h2><p>php 默认上传文件大小限制为 2M，如果超出 2M 你需要修改 php 配置文件 php.ini 里面的参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">post_max_size = 128M ## （表单提交的最大限制，此项不是限制上传单个文件的大小，而是针对整个表单提交的数据进行限制）</span><br><span class="line">upload_max_filesize = 128M ## （上传的单个文件的最大限制）</span><br></pre></td></tr></table></figure>
+<p>需要保证 post_max_size &gt;= upload_max_filesize ，也就是前者不小于后者。修改之后一定要重启 php-fpm (service php-fpm restart)。</p>
+<p>除了修改 php 配置，你也需要修改nginx配置文件 nginx.conf<br>打开 nginx 配置文件 nginx.conf，找到 http{} 段，在其中添加一行配置：<br>client_max_body_size 128m; 其中 128m 可以根据需要上传文件大小自行设定。<br>修改之后一定要重新载入 nginx （service nginx reload）。</p>
+<h2 id="导入-导出-csv文件到mysql"><a href="#导入-导出-csv文件到mysql" class="headerlink" title="导入/导出 csv文件到mysql"></a>导入/导出 csv文件到mysql</h2><h3 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h3><p>需要表存在且字段与csv文件中的相同</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">LOAD DATA <span class="keyword">LOCAL</span> INFILE <span class="string">&#x27;$&#123;csv文件路径&#125;&#x27;</span></span><br><span class="line"><span class="keyword">INTO</span> <span class="keyword">TABLE</span> $&#123;数据库表名&#125;</span><br><span class="line"><span class="type">CHARACTER</span> <span class="keyword">SET</span>  utf8</span><br><span class="line">FIELDS</span><br><span class="line">    TERMINATED <span class="keyword">BY</span> <span class="string">&#x27;,&#x27;</span></span><br><span class="line">    ENCLOSED <span class="keyword">BY</span> <span class="string">&#x27;&quot;&#x27;</span></span><br><span class="line">LINES</span><br><span class="line">    TERMINATED <span class="keyword">BY</span> <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">IGNORE <span class="number">1</span> <span class="keyword">ROWS</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">LOCK TABLES $&#123;数据库表名&#125; read;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> $&#123;数据库表名&#125; <span class="keyword">INTO</span> OUTFILE <span class="string">&#x27;$&#123;csv文件路径&#125;&#x27;</span> </span><br><span class="line">FIELDS</span><br><span class="line">    TERMINATED <span class="keyword">BY</span> <span class="string">&#x27;,&#x27;</span></span><br><span class="line">    OPTIONALLY ENCLOSED <span class="keyword">BY</span> <span class="string">&#x27;&quot;&#x27;</span></span><br><span class="line">LINES</span><br><span class="line">    TERMINATED <span class="keyword">BY</span> <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">UNLOCK TABLES;</span><br></pre></td></tr></table></figure>
+<h2 id="导出csv文件到mysql报错"><a href="#导出csv文件到mysql报错" class="headerlink" title="导出csv文件到mysql报错"></a>导出csv文件到mysql报错</h2><h3 id="Error-1148"><a href="#Error-1148" class="headerlink" title="Error 1148"></a>Error 1148</h3><p>如果在执行语句时报错 <code>Error 1148 MySQL The used command is not allowed with this MySQL version</code> 可能是因为MySQL的安全策略阻止读取本地文件，可以通过以下方法解决：</p>
+<ol>
+<li>Use –local-infile=1 argument on the mysql commandline:</li>
+</ol>
+<p>When you start MySQL on the terminal, include –local-infile=1 argument, Something like this:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql <span class="comment">--local-infile=1 -uroot -p</span></span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span>LOAD DATA <span class="keyword">LOCAL</span> INFILE <span class="string">&#x27;/tmp/foo.txt&#x27;</span> <span class="keyword">INTO</span> <span class="keyword">TABLE</span> foo </span><br><span class="line">COLUMNS TERMINATED <span class="keyword">BY</span> <span class="string">&#x27;\t&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>Then the command is permitted:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Query OK, <span class="number">3</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br><span class="line">Records: <span class="number">3</span>  Deleted: <span class="number">0</span>  Skipped: <span class="number">0</span>  Warnings: <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>Or send the parameter into the mysql daemon:</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld --local-infile=1</span><br></pre></td></tr></table></figure>
+<ol>
+<li>Or set it in the my.cnf file (This is a security risk):</li>
+</ol>
+<p>Find your mysql my.cnf file and edit it as root.</p>
+<p>Add the local-infile line under the mysqld and mysql designators:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">local-infile </span><br><span class="line"></span><br><span class="line">[mysql]</span><br><span class="line">local-infile </span><br></pre></td></tr></table></figure>
+<p>Save the file, restart mysql. Try it again.</p>
+<ol>
+<li>The main reason why we are using the LOCAL keyword is explained in the MySQL manual. On the other hand, you do not need the FILE privilege to load local files. So if you in fact do have file access to the server then try to skip using the word “LOCAL” in SQL query, and instead copy the file to the server and the directory mysql/data/[tablename].</li>
+</ol>
+<h3 id="Error-1290"><a href="#Error-1290" class="headerlink" title="Error 1290"></a>Error 1290</h3><p>如果在执行语句时报错 <code>[Error Code] 1290 - The MySQL server is running with the --secure-file-priv option</code> 说明参数secure-file-priv 可能有问题</p>
+<p>执行以下语句<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> VARIABLES <span class="keyword">LIKE</span> &quot;secure_file_priv&quot;;</span><br></pre></td></tr></table></figure><br>可以看到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">secure_file_prive=null   -- 限制mysqld 不允许导入导出</span><br><span class="line">secure_file_priv=/tmp/   -- 限制mysqld的导入导出只能发生在/tmp/目录下</span><br><span class="line">secure_file_priv=&#x27;&#x27;     -- 不对mysqld 的导入/导出做限制</span><br></pre></td></tr></table></figure>
+<p>可以在 my.ini（windows） 或 /etc/my.cnf(linux) 文件中的[mysqld]节点添加secure_file_priv=’’，然后重启mysql服务</p>
+<h2 id="启动mysql报错error-11"><a href="#启动mysql报错error-11" class="headerlink" title="启动mysql报错error: 11"></a>启动mysql报错error: 11</h2><p>如果在启动mysql时遇到了 <code>[ERROR] InnoDB: Unable to lock ./ibdata1, error: 11</code><br>说明 ibdata1 文件被其他的进程占用 或者 磁盘空间目录不足，有以下解决方案：</p>
+<ol>
+<li>查看磁盘空间情况</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br></pre></td></tr></table></figure>
+<ol>
+<li>查看系统 mysql 相关进程</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -eaf | grep mysql</span><br><span class="line">kill -9 78806</span><br></pre></td></tr></table></figure>
+<p>如果语句执行正常但是返回 <code>0 row(s) affected</code> ，查看一下csv中的字段是否是否与表中的字段一致，区分大小写；查看一下csv文件的分隔符的设置是否正确。</p>
+<h2 id="处理-mongoose-中-bson-MODULE-NOT-FOUND-相关报错"><a href="#处理-mongoose-中-bson-MODULE-NOT-FOUND-相关报错" class="headerlink" title="处理 mongoose 中 bson MODULE_NOT_FOUND 相关报错"></a>处理 mongoose 中 bson MODULE_NOT_FOUND 相关报错</h2><p>node.js 在使用 mongoose时报错 <code>[Error: Cannot find module &#39;../build/Release/bson&#39;] code: &#39;MODULE_NOT_FOUND&#39;</code>  </p>
+<p>参见 <a target="_blank" rel="noopener" href="https://github.com/Automattic/mongoose/issues/3436">https://github.com/Automattic/mongoose/issues/3436</a> </p>
+<p>应该是mongoose版本问题，理论上升级到最新版本可以解决，也可以按照以下步骤解决  </p>
+<ol>
+<li>更改 bson 引用<br>找到 module mongodb ..node_modules\mongodb\node_modules\bson\ext\index.js<br>改变bson引用的路径<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bson = <span class="built_in">require</span>(<span class="string">&#x27;../build/Release/bson&#x27;</span>);</span><br></pre></td></tr></table></figure>
+改为<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bson = <span class="built_in">require</span>(<span class="string">&#x27;../browser_build/bson&#x27;</span>);</span><br></pre></td></tr></table></figure>
+或<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bson = require(&#x27;bson&#x27;);</span><br></pre></td></tr></table></figure></li>
+<li>更改mongoose版本<br>将原有的mongoose升级为 <code>&quot;mongoose &quot;: &quot;~3.8.23&quot;</code>  </li>
+</ol>
+<h2 id="Python-报错-‘ascii’-codec-can’t-encode-characters-in-position-0-8：ordinal-not-in-range-128"><a href="#Python-报错-‘ascii’-codec-can’t-encode-characters-in-position-0-8：ordinal-not-in-range-128" class="headerlink" title="Python 报错 ‘ascii’ codec can’t encode characters in position 0-8：ordinal not in range(128)"></a>Python 报错 ‘ascii’ codec can’t encode characters in position 0-8：ordinal not in range(128)</h2><ol>
+<li>第一步，别忘了给文件顶部加上  </li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>重新载入SYS模块并设置uft-8  </li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">reload(sys)</span><br><span class="line">sys.setdefaultencoding(<span class="string">&#x27;utf-8&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="使用nvm的前置脚本"><a href="#使用nvm的前置脚本" class="headerlink" title="使用nvm的前置脚本"></a>使用nvm的前置脚本</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export NVM_DIR=&quot;$HOME/.nvm&quot;</span><br><span class="line">[ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; \. &quot;$NVM_DIR/nvm.sh&quot;  # This loads nvm</span><br></pre></td></tr></table></figure>
+<h2 id="快速启用httpserver"><a href="#快速启用httpserver" class="headerlink" title="快速启用httpserver"></a>快速启用httpserver</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m SimpleHTTPServer 8080</span><br></pre></td></tr></table></figure>
+<h2 id="启动-mongodb-数据库服务"><a href="#启动-mongodb-数据库服务" class="headerlink" title="启动 mongodb 数据库服务"></a>启动 mongodb 数据库服务</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongod --dbpath=/users/</span><br></pre></td></tr></table></figure>
+<h2 id="启动-redis-数据库"><a href="#启动-redis-数据库" class="headerlink" title="启动 redis 数据库"></a>启动 redis 数据库</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server</span><br></pre></td></tr></table></figure>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>
