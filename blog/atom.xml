@@ -6,7 +6,7 @@
   <link href="https://mangon.cn/blog/atom.xml" rel="self"/>
   
   <link href="https://mangon.cn/blog/"/>
-  <updated>2022-12-12T07:15:15.488Z</updated>
+  <updated>2022-12-26T10:03:48.728Z</updated>
   <id>https://mangon.cn/blog/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>前端异常监控</title>
+    <link href="https://mangon.cn/blog/2022/12/26/FE-%E5%89%8D%E7%AB%AF%E5%BC%82%E5%B8%B8%E7%9B%91%E6%8E%A7/"/>
+    <id>https://mangon.cn/blog/2022/12/26/FE-%E5%89%8D%E7%AB%AF%E5%BC%82%E5%B8%B8%E7%9B%91%E6%8E%A7/</id>
+    <published>2022-12-26T08:27:14.000Z</published>
+    <updated>2022-12-26T10:03:48.728Z</updated>
+    
+    <content type="html"><![CDATA[<p>前端异常监控是指在能够对前端项目运行过程中的错误和异常能够记录和上报从而可以对项目不断分析和优化的流程。从流程上来分，前端异常监控分为数据捕获和数据上报两个部分。</p><span id="more"></span><h2 id="数据捕获"><a href="#数据捕获" class="headerlink" title="数据捕获"></a>数据捕获</h2><p>前端异常数据捕获为全局捕获和单点捕获。全局捕获代码集中，易于管理；单点捕获作为补充，对某些特殊情况进行捕获，但较分散，不利于管理。</p><h3 id="全局捕获"><a href="#全局捕获" class="headerlink" title="全局捕获"></a>全局捕获</h3><ul><li>通过 web API 全局的接口，将捕获代码集中写在一个地方<ul><li><code>window.onerror</code> 可以捕获 JavaScript 运行时错误与语法错误</li><li><code>window.addEventListener(&#39;unhandledrejection&#39;)</code> 可以捕获 未被 catch 的 reject 状态的 Promise(Promise 异常)</li><li><code>document.addEventListener(&#39;click&#39;)</code> 全局的点击事件</li></ul></li><li>框架级别的全局监听<ul><li>aixos 中使用 interceptor 进行拦截</li><li>vue 中的 errorCaptured、errorHandler</li><li>react 中的 ErrorBoundary</li></ul></li><li>通过对全局函数进行封装包裹，实现在调用该函数时自动捕获异常<ul><li>例如对 xhr/Fetch 进行封装，在发送 Ajax 请求时进行记录</li></ul></li><li>对实例方法重写（Patch），在原有功能基础上包裹一层<ul><li>例如对 setTimeout、setInterval、requrestAnimationFrame、console 进行重写，在使用方法不变的情况下也可以异常捕获</li></ul></li></ul><h3 id="单点捕获"><a href="#单点捕获" class="headerlink" title="单点捕获"></a>单点捕获</h3><ul><li>在业务代码中对单个代码块进行包裹，或在逻辑流程中打点，实现有针对性的异常捕获</li><li><code>try catch</code> 语句块记录 JS Error 异常</li><li>专门写一个函数来收集异常信息，在异常发生时，调用该函数</li><li>专门写一个函数来包裹其他函数，得到一个新函数，该新函数运行结果和原函数一模一样，只是在发生异常时可以捕获异常</li></ul><h2 id="数据上报"><a href="#数据上报" class="headerlink" title="数据上报"></a>数据上报</h2><p>异常数据上报，即通过一定方式将收集到的参数上报到服务器的过程。</p><ul><li>异步请求，通过 xhr/fetch 上报</li><li><code>new Image()</code> 上报（1x1的透明gif）</li></ul><h2 id="sentry"><a href="#sentry" class="headerlink" title="sentry"></a>sentry</h2><p><a href="https://github.com/getsentry/sentry">Sentry</a> 是一款开源的错误捕获和性能监控系统。类似的商业化（非开源）前端错误与性能监控平台还有 Fundebug、FrontJS、rollbar.js 等。</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;前端异常监控是指在能够对前端项目运行过程中的错误和异常能够记录和上报从而可以对项目不断分析和优化的流程。从流程上来分，前端异常监控分为数据捕获和数据上报两个部分。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="front-end" scheme="https://mangon.cn/blog/tags/front-end/"/>
+    
+  </entry>
   
   <entry>
     <title>Vue面试手册</title>
@@ -500,30 +519,6 @@
     
     
     <category term="docker" scheme="https://mangon.cn/blog/tags/docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>结合附加符号</title>
-    <link href="https://mangon.cn/blog/2022/08/30/TIPS-%E7%BB%93%E5%90%88%E9%99%84%E5%8A%A0%E7%AC%A6%E5%8F%B7/"/>
-    <id>https://mangon.cn/blog/2022/08/30/TIPS-%E7%BB%93%E5%90%88%E9%99%84%E5%8A%A0%E7%AC%A6%E5%8F%B7/</id>
-    <published>2022-08-30T08:20:53.000Z</published>
-    <updated>2022-10-20T15:32:35.919Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://unicode-table.com/cn/blocks/combining-diacritical-marks/">结合附加符号</a>（combining diacritical marks）是指一类比较特殊的字符，这些字符一般不会单独存在，而是结合其他字符一同出现来表达不同的含义。汉语环境下，比较典型的例子就是汉语拼音的声调。</p><p>结合附加符号的 Unicode 范围是 0300-036F，字符数量总共有 112 个。其中，汉语声调字符包括：</p><table><thead><tr><th>名字</th><th>样式</th><th>Unicode编号</th><th>HTML实体代码</th><th>汉语声调</th></tr></thead><tbody><tr><td>组合用长音符</td><td>̄</td><td>U+0304</td><td><code>&amp;#772;</code></td><td>阴平</td></tr><tr><td>组合用锐音符</td><td>́</td><td>U+0301</td><td><code>&amp;#769;</code></td><td>阳平</td></tr><tr><td>组合用抑扬符</td><td>̌</td><td>U+030C</td><td><code>&amp;#780;</code></td><td>上声</td></tr><tr><td>组合用抑音符</td><td>̀</td><td>U+0300</td><td><code>&amp;#768;</code></td><td>去声</td></tr></tbody></table><p>Javascript 中使用 <code>String.fromCharCode()</code> 可以返回由指定的 UTF-16 代码单元序列创建的字符串。例如，<code>String.fromCharCode(98, 97, 768, 32, 98, 97)</code> 返回  <code>bà ba</code>，而 <code>bà ba</code> 的长度为 6。</p><p>结合附加符号有一个特点是可以附加在前一个字符上，这就导致前一个字符的实际显示高度可能会变化，例如：</p><p><img src="/blog/static/imgs/cdm.png" alt="cdm_inner"></p><p>考虑到这种情况，在渲染文本的时候，如果文本有可能含有结合附加符号最好限制一下行高度和文本渲染区域的高度，防止影响区域外的内容。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://unicode-table.com/cn/blocks/combining-diacritical-marks/&quot;&gt;结合附加符号&lt;/a&gt;（combining diacritical marks）是指一类比较特殊的字符，这些字符一般不会单独存</summary>
-      
-    
-    
-    
-    
-    <category term="encode" scheme="https://mangon.cn/blog/tags/encode/"/>
-    
-    <category term="tips" scheme="https://mangon.cn/blog/tags/tips/"/>
     
   </entry>
   
