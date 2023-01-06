@@ -539,7 +539,8 @@
     
     <section class="article-body markdown-body">
         
-            <h2 id="Composition-API"><a href="#Composition-API" class="headerlink" title="Composition API"></a>Composition API</h2><p>新增 setup 组件选项，是一个接受 props 和 context 的函数，使用 <code>toRefs</code> 对props进行响应式解构，可以通过 context 获取组件的 attrs slots emit 属性。返回一个可以在组件模板中使用其属性的对象，或者返回一个渲染函数，该函数可以直接使用在同一作用域中声明的响应式状态。  </p>
+            <p>2020 年 9 月 18 日  Vue3.0  正式发布。</p>
+<h2 id="Composition-API"><a href="#Composition-API" class="headerlink" title="Composition API"></a>Composition API</h2><p>新增 setup 组件选项，是一个接受 props 和 context 的函数，使用 <code>toRefs</code> 对 props 进行响应式解构，可以通过 context 获取组件的 attrs slots emit 属性。返回一个可以在组件模板中使用其属性的对象，或者返回一个渲染函数，该函数可以直接使用在同一作用域中声明的响应式状态。  </p>
 <p>通过一个新的 ref/reactive 函数使任何响应式变量在任何地方起作用。  </p>
 <p>在 setup 中注册生命周期钩子，因为 setup 是围绕 beforeCreate 和 created 生命周期钩子运行的，所以不需要显式地定义它们，在vue3中只有如下钩子：<code>onBeforeMount</code>、<code>onMounted</code>、<code>onBeforeUpdate</code>、<code>onUpdated</code>、<code>onBeforeUnmount</code>、<code>onUnmounted</code>、<code>onErrorCaptured</code>、<code>onRenderTracked</code>、<code>onRenderTriggered</code>。  </p>
 <p>从 Vue 导入的 watch 函数执行相同的操作</p>
