@@ -116,6 +116,117 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/blog/2023/02/09/FE-%E9%99%90%E5%88%B6%E5%B9%B6%E5%8F%91%E6%95%B0%E9%87%8F%E7%9A%84%E5%A4%9A%E8%AF%B7%E6%B1%82%E6%89%A7%E8%A1%8C/">限制并发数量的多请求执行</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2023-02-09T09:19:03.000Z" itemprop="datePublished">2023-02-09</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/front-end/" rel="tag">front-end</a>, <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>在项目中，我们经常会遇到同时发送多个HTTP请求的情况，对于同域名的请求，浏览器会限制同时发起的请求数量，当超过浏览器并发请求限制时，超过的请求将会等待，直到有请求返回时才会进行下一次请求。这是浏览器的一种保护机制，为了防止通过浏览器发起过量的请求，耗尽资源。在小程序中也会有同样的机制，例如，微信小程序中说明 <code>wx.request</code> 的最大并发限制是 10 个，<code>wx.connectSocket</code> 的最大并发限制是 5 个（参见 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/ability/network.html">微信小程序官方文档-基础能力/网络/使用说明-网络-3.网络请求-使用限制</a> ），但是这里有个BUG，在小程序中如果并发请求超过10个，并不会等待而是直接失败，所以实际上需要用户自己处理并发请求数，在超过10个时，请求需要在队列中等待而不是直接失败。</p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2023/02/09/FE-%E9%99%90%E5%88%B6%E5%B9%B6%E5%8F%91%E6%95%B0%E9%87%8F%E7%9A%84%E5%A4%9A%E8%AF%B7%E6%B1%82%E6%89%A7%E8%A1%8C/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2023/01/30/FE-%E9%9D%A2%E8%AF%95%E7%B4%A2%E5%BC%95/">前端常见面试题索引</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2023-01-30T05:23:30.000Z" itemprop="datePublished">2023-01-30</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <style>
+.article-body>.article-item {
+    display: flex;
+    flex-wrap: wrap;
+}
+.article-body>.article-item>a {
+    margin: 20px;
+}
+</style>
+
+<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><div class="article-item"><br><br><a href="/blog/2021/04/22/HTTP小抄/#HTTPS">HTTPS相对HTTP的区别</a><br><a href="/blog/2021/12/29/HTTP-Cookie/">HTTP Cookie的作用</a><br><a href="/blog/2021/04/23/HTTP-缓存/">HTTP 强缓存与协商缓存</a><br><a href="/blog/2021/12/30/HTTP-同源策略与跨域/">浏览器同源策略与跨域</a><br><a href="/blog/2022/01/04/FE-浏览器架构与基本原理/#浏览器工作流程（页面加载过程）">浏览器中从输入URL到页面加载的流程</a> <a href="/blog/2021/03/19/HTML-cookie、sessionStorage、localStorage区别与作用/">Cookie与sessionStorage、localStorage的区别</a><br><br></div>
+
+<h2 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h2><div class="article-item"><br><br><a href="/blog/2018/09/10/HACK-CSRF攻击/#CSRF防范">如何防范CSRF攻击</a><br><a href="/blog/2018/09/09/HACK-XSS攻击/#XSS防御">如何防范XSS攻击</a><br><br></div>
+
+<h2 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h2><div class="article-item"><br><br><a href="/blog/2023/01/31/FE-前端性能优化/#方法">性能优化的方法</a><br><br></div>
+
+<h2 id="工程化"><a href="#工程化" class="headerlink" title="工程化"></a>工程化</h2><div class="article-item"><br><br><a href="/blog/2021/03/22/FE-前端工程化/">谈谈你对前端工程化的理解</a><br><br><a href="/blog/2020/05/22/FE-Javascript模块化/">模块化</a><br><br><a href="/blog/2022/12/26/FE-前端异常监控/">前端异常监控</a><br><br></div>
+
+<h2 id="前端趋势"><a href="#前端趋势" class="headerlink" title="前端趋势"></a>前端趋势</h2><div class="article-item"><br><br><a href="/blog/2021/03/25/HTML-HTML5特性/">HTML5特性</a><br><br><a href="/blog/2020/08/28/JS-ES6特性/">ES6特性</a><br><br><a href="/blog/2021/03/26/CSS-CSS3特性/">CSS3特性</a><br><br><a href="/blog/2023/01/06/React-React18新功能和作用/">React18新特性</a><br><br><a href="/blog/2021/03/30/Vue-Vue3新功能和作用/">Vue3新特性</a><br><br><a href="/blog/2021/04/22/HTTP小抄/#HTTP2-特性">HTTP2新特性</a><br><br></div>
+
+<h2 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h2><div class="article-item"><br><br><a href="/blog/2021/03/20/JS-数据类型/">数据类型</a><br><br><a href="/blog/2021/03/24/JS-原型链/">原型链</a><br><br><a href="/blog/2021/04/26/JS-继承/">继承</a><br><br><a href="/blog/2021/03/19/JS-闭包/">闭包</a><br><br><a href="/blog/2018/08/31/JS-防抖与截流/">防抖与截流的区别</a><br><br><a href="/blog/2021/03/19/JS-js的异步运行机制/">任务队列与事件循环</a><br><br><a href="/blog/2021/04/20/JS-js内存回收机制/">内存回收机制gc</a><br><br><a href="/blog/2021/03/23/JS-Promise/">Promise</a><br><br><a href="/blog/2022/11/23/JS-Object-对象/">Object</a><br><br><a href="/blog/2021/03/21/JS-Array-数组/">Array</a><br><br><a href="/blog/2022/11/22/JS-Function-函数/">Function</a><br><br><a href="/blog/2022/11/22/JS-String-字符串/">String</a><br><br></div>
+
+<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><div class="article-item"><br><br><a href="/blog/2021/03/19/HTML-事件绑定-事件委托/">事件绑定与事件委托</a><br><br><a href="/blog/2021/03/19/HTML-页面渲染html的过程/">页面渲染HTML的过程</a><br><br></div>
+
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><div class="article-item"><br><br><a href="/blog/2018/12/06/CSS-Flex布局/">Flex布局</a><br><br><a href="/blog/2018/09/18/CSS-长度单位/">CSS长度单位有哪些</a><br><br><a href="/blog/2021/03/19/CSS-水平-垂直居中/">CSS水平居中与垂直居中</a><br><br><a href="/blog/2021/03/16/CSS-transform-transition-animation/">CSS属性transition、transform、animation</a><br><br></div>
+
+<h2 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h2><div class="article-item"><br><br><a href="/blog/2021/04/24/Vue-Vue生命周期/">Vue生命周期有哪些</a><br><br><a href="/blog/2018/10/12/Vue-组件间通信/">Vue如何实现组件间通信</a><br><br><a href="/blog/2022/11/29/Vue-Vue面试手册/#Vue-2-0-响应式数据的原理">Vue响应式数据的原理</a><br><br><a href="/blog/2019/02/12/Vue-读Vue源码所能想到的面试问题/#哪些数据变化情况无法被-Vue-的响应式系统观测到，应该如何处理？">Vue中哪些数据类型变化时无法被Vue的响应式系统观测到，应该如何处理</a><br><br><a href="/blog/2021/04/21/Vue-keep-alive实现原理/">Vue keep-alive实现原理</a><br><br><a href="/blog/2021/04/24/Vue-Vue最佳实践/">Vue有哪些最佳实践</a><br><br></div>
+
+<h2 id="React"><a href="#React" class="headerlink" title="React"></a>React</h2><div class="article-item"><br><br><a href="/blog/2022/11/24/React-React组件/">React 组件</a><br><br><a href="/blog/2022/11/25/React-React-Hook/">React Hook</a><br><br><a href="/blog/2022/11/24/React-React组件的状态state与属性props/">React组件的状态state与属性props</a><br><br><a href="/blog/2018/09/06/React-React父子组件数据传递/">React父子组件数据传递</a><br><br><a href="/blog/2022/11/25/React-Virtual-DOM/">React Virtual DOM</a><br><br><a href="/blog/2023/01/30/React-diff算法原理及优化/">React Diff 算法原理及优化</a><br><br><a href="/blog/2021/11/29/React-router速读速懂/">React Router</a><br><br><a href="/blog/2022/11/25/React-Redux小抄/">Redux</a><br><br><a href="/blog/2022/11/24/React-对比Vue和React/">React与Vue区别</a><br><br></div>
+
+<h2 id="小程序"><a href="#小程序" class="headerlink" title="小程序"></a>小程序</h2><div class="article-item"><br><br><a href="/blog/2021/04/20/FE-jsBridge/">JS Bridge原理</a><br><br></div>
+
+<h2 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h2><div class="article-item"><br><br><a href="/blog/2021/01/19/FE-webpack小抄/">Webpack</a><br><br><a href="/blog/2021/01/19/FE-webpack小抄/#loader-和-plugin-的区别">Webpack loader 和 plugin 的区别</a><br><br><a href="/blog/2021/01/19/FE-webpack小抄/#webpack-Tree-shaking原理">Webpack Tree-shaking原理</a><br></div>
+
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/blog/2021/03/19/JS-%E7%AC%94%E8%AF%95%E9%A2%98%E5%AE%9E%E8%B7%B5/">JS 笔试题实践</a>
         </h1>
         
