@@ -6,7 +6,7 @@
   <link href="https://mangon.cn/blog/atom.xml" rel="self"/>
   
   <link href="https://mangon.cn/blog/"/>
-  <updated>2023-02-09T10:19:14.294Z</updated>
+  <updated>2023-02-27T16:40:43.226Z</updated>
   <id>https://mangon.cn/blog/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数据可视化平台调研</title>
+    <link href="https://mangon.cn/blog/2023/02/27/CS-%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B9%B3%E5%8F%B0%E8%B0%83%E7%A0%94/"/>
+    <id>https://mangon.cn/blog/2023/02/27/CS-%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B9%B3%E5%8F%B0%E8%B0%83%E7%A0%94/</id>
+    <published>2023-02-27T14:54:37.000Z</published>
+    <updated>2023-02-27T16:40:43.226Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="数据可视化（Data-Visualization）"><a href="#数据可视化（Data-Visualization）" class="headerlink" title="数据可视化（Data Visualization）"></a>数据可视化（Data Visualization）</h2><p>数据可视化是关于数据视觉表现形式的科学技术研究，主要旨在借助于图形化手段，清晰有效地传达与沟通信息。<br>数据可视化主要应用在一些 <strong>报表类软件</strong> 或 <strong>商业智能（Business Intelligence,BI）分析工具</strong> 或 <strong>系统监控类软件</strong> 中。</p><h2 id="数据可视化工具"><a href="#数据可视化工具" class="headerlink" title="数据可视化工具"></a>数据可视化工具</h2><p>以下将列举出一些开源的数据可视化工具：</p><h3 id="Grafana"><a href="#Grafana" class="headerlink" title="Grafana"></a>Grafana</h3><p>Github Stars: 54.1k<br>Grafana 协议： AGPL-3.0</p><p><a href="https://github.com/grafana/grafana">Grafana</a> 是一款用于实时监控的开源平台。Grafana 支持对数据进行查询、可视化、提醒与维度分析，支持多种数据源。同时，通过 Grafana，团队成员可以共同创建、探索和分享仪表盘，并通过数据驱动业务成长。</p><p><a href="https://play.grafana.org/">在线体验</a></p><h3 id="Apache-Superset"><a href="#Apache-Superset" class="headerlink" title="Apache Superset"></a>Apache Superset</h3><p>Github Stars: 50.7k<br>Superset协议: Apache-2.0</p><p><a href="https://github.com/apache/superset">Apache Superset</a> 是一个面向企业的现代商业智能 web 应用和数据可视化平台。它与各种数据源集成良好，也可以与各种商业BI进行集成。</p><p>Superset效果预览：<br><img src="/blog/static/imgs/datavisual/superset.jpg" alt="superset_inner"></p><h3 id="DataEase"><a href="#DataEase" class="headerlink" title="DataEase"></a>DataEase</h3><p>Github Stars: 9k<br>DataEase协议：GPL-3.0</p><p><a href="https://github.com/dataease/dataease">DataEase</a> 是一款开源的数据可视化分析工具，由 fit2cloud 飞致云开发。它支持 Excel、MySQL、ORACEL、SQLServer、MariaDB、达梦、人大金仓 等多种数据源，能够通过拖拽方式快速制作图表，并且支持PC端、移动端、大屏等多种表现形式。</p><p>DataEase效果图预览：<br><img src="/blog/static/imgs/datavisual/dataease.gif" alt="dataease_inner"></p><p>DataEase技术栈：<br>    前端：<a href="https://vuejs.org/">Vue.js</a>、<a href="https://element.eleme.cn/#/">Element</a><br>    图库：<a href="https://github.com/apache/echarts">Apache ECharts</a>、<a href="https://antv.vision/zh/">AntV</a><br>    后端：<a href="https://spring.io/projects/spring-boot/">Spring Boot</a><br>    中间件：<a href="https://www.mysql.com/">MySQL</a><br>    数据处理：<a href="https://github.com/pentaho/pentaho-kettle">Kettle</a>、<a href="https://github.com/apache/doris">Apache Doris</a><br>    基础设施：<a href="https://www.docker.com/">Docker</a></p><p>DataEase架构：<br><img src="/blog/static/imgs/datavisual/dataease_struc.jpg" alt="dataease_inner"></p><p><a href="https://dataease.fit2cloud.com/">在线体验</a></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">用户名：demo</span><br><span class="line">密码：dataease</span><br></pre></td></tr></table></figure><h3 id="DataV"><a href="#DataV" class="headerlink" title="DataV"></a>DataV</h3><p>Github Stars: 7.5k<br>DataV协议：MIT</p><p><a href="https://github.com/DataV-Team/DataV">DataV</a> 是一个基于 Vue 的数据可视化组件库，提供用于提升页面视觉效果的 SVG 边框和装饰，提供常用的图表如折线图等，也提供了飞线图/轮播表等其他组件。</p><p>DataV效果图预览：<br><img src="/blog/static/imgs/datavisual/dataease.gif" alt="dataease_inner"></p><p>在线体验：<br><a href="http://datav.jiaminghi.com/demo/construction-data/index.html">施工养护综合数据</a><br><a href="http://datav.jiaminghi.com/demo/manage-desk/index.html">机电运维管理台</a><br><a href="http://datav.jiaminghi.com/demo/electronic-file/index.html">机电设备电子档案</a></p><h3 id="big-screen"><a href="#big-screen" class="headerlink" title="big_screen"></a>big_screen</h3><p>Github Stars: 1.3k<br>big_screen协议： MIT</p><p><a href="https://github.com/TurboWay/big_screen">big_screen</a> 是一款数据大屏可视化工具</p><p>big_screen效果图预览：<br><img src="/blog/static/imgs/datavisual/big_screen.jpg" alt="big_screen_inner"></p><p>big_screen 技术栈：<br>前端 HTML<br>后端 Python</p><p><a href="bigscreen.turboway.top/corp">在线体验</a></p><h3 id="datart"><a href="#datart" class="headerlink" title="datart"></a>datart</h3><p>Github Stars: 1.2k<br>datart协议： Apache-2.0</p><p><a href="https://github.com/running-elephant/datart">datart</a> 是一款数据可视化开放平台，支持报表、仪表板、大屏、分析和可视化数据应用的敏捷构建。</p><p>datart架构：<br><img src="/blog/static/imgs/datavisual/datart_struc.png" alt="datart_inner"></p><p><a href="http://datart-demo.retech.cc">在线体验</a></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">用户名：demo</span><br><span class="line">密码：123456</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;数据可视化（Data-Visualization）&quot;&gt;&lt;a href=&quot;#数据可视化（Data-Visualization）&quot; class=&quot;headerlink&quot; title=&quot;数据可视化（Data Visualization）&quot;&gt;&lt;/a&gt;数据可视化（Data </summary>
+      
+    
+    
+    
+    
+    <category term="BI" scheme="https://mangon.cn/blog/tags/BI/"/>
+    
+    <category term="data-visualization" scheme="https://mangon.cn/blog/tags/data-visualization/"/>
+    
+  </entry>
   
   <entry>
     <title>限制并发数量的多请求执行</title>
@@ -489,25 +513,6 @@
     <category term="javascript" scheme="https://mangon.cn/blog/tags/javascript/"/>
     
     <category term="string" scheme="https://mangon.cn/blog/tags/string/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Monorepo</title>
-    <link href="https://mangon.cn/blog/2022/11/16/CS-Monorepo/"/>
-    <id>https://mangon.cn/blog/2022/11/16/CS-Monorepo/</id>
-    <published>2022-11-16T08:28:51.000Z</published>
-    <updated>2022-11-26T04:07:10.673Z</updated>
-    
-    <content type="html"><![CDATA[<p>Monorepo（Monolithic repositorie）是一种将多个项目存放在同一个代码仓库中的开发策略。传统的开发流程中，一个项目使用一个代码仓库，然而一个产品可能需要多个项目来支持，多个项目之间互相依赖，依赖关系、编译顺序、版本管理、发布顺序互相不明朗，多个项目可能存在重复的部分（例如，前后端接口定义，protobuf），由于不在一个代码仓库中，维护起来十分不方便。Monorepo 的核心观点是所有的项目在一个代码仓库中，使用一套编译脚本来处理互相之间的依赖关系，但大部分人实际仍旧在少数的几个仓库内文件夹工作。</p><span id="more"></span><h2 id="Monorepo-优势"><a href="#Monorepo-优势" class="headerlink" title="Monorepo 优势"></a>Monorepo 优势</h2><ul><li><p>可见性（Visibility）：每个人都可以看到其他人的代码，这样可以带来更好的协作和跨团队贡献——不同团队的开发人员都可以修复代码中的 bug，而你甚至都不知道这个 bug 的存在。</p></li><li><p>更简单的依赖关系管理（Simpler dependency management）：共享依赖关系很简单，因为所有模块都托管在同一个存储库中，因此都不需要包管理器。</p></li><li><p>唯一依赖源（Single source of truth）：每个依赖只有一个版本，意味着没有版本冲突，没有依赖地狱。</p></li><li><p>一致性（Consistency）：当你把所有代码库放在一个地方时，执行代码质量标准和统一的风格会更容易。</p></li><li><p>共享时间线（Shared timeline）：API 或共享库的变更会立即被暴露出来，迫使不同团队提前沟通合作，每个人都得努力跟上变化。</p></li><li><p>原子提交（Atomic commits）：原子提交使大规模重构更容易，开发人员可以在一次提交中更新多个包或项目。</p></li><li><p>隐式 CI（Implicit CI）：因为所有代码已经统一维护在一个地方，因此可以保证持续集成[3]。</p></li><li><p>统一的 CI/CD（Unified CI/CD）：可以为代码库中的每个项目使用相同的 CI/CD[4]部署流程。</p></li><li><p>统一的构建流程（Unified build process）：代码库中的每个应用程序可以共享一致的构建流程。</p></li></ul><h2 id="Monorepo-缺点"><a href="#Monorepo-缺点" class="headerlink" title="Monorepo 缺点"></a>Monorepo 缺点</h2><ul><li><p>性能差（Bad performance）：单一代码库难以扩大规模，像 <code>git blame</code> 这样的命令可能会不合理的花费很长时间执行，IDE 也开始变得缓慢，生产力受到影响，对每个提交测试整个 repo 变得不可行。</p></li><li><p>破坏主线（Broken main/master）：主线损坏会影响到在单一代码库中工作的每个人，这既可以被看作是灾难，也可以看作是保证测试既可以保持简洁又可以跟上开发的好机会。</p></li><li><p>学习曲线（Learning curve）：如果代码库包含了许多紧密耦合的项目，那么新成员的学习曲线会更陡峭。</p></li><li><p>大量的数据（Large volumes of data）：单一代码库每天都要处理大量的数据和提交。</p></li><li><p>所有权（Ownership）：维护文件的所有权更有挑战性，因为像 Git 或 Mercurial 这样的系统没有内置的目录权限。</p></li><li><p>Code reviews：通知可能会变得非常嘈杂。例如，GitHub 有有限的通知设置，不适合大量的 pull request 和 code review。</p></li></ul><h2 id="一些知名的-Monorepo-构建工具"><a href="#一些知名的-Monorepo-构建工具" class="headerlink" title="一些知名的 Monorepo 构建工具"></a>一些知名的 Monorepo 构建工具</h2><p><a href="https://github.com/bazelbuild/bazel">Bazel</a>: 由 Google 发布，部分基于他们自己的构建系统（Blaze）。Bazel 支持多种语言，并支持大规模构建和测试</p><p><a href="https://github.com/facebook/buck">Buck</a>: 由 Facebook 开源的快速构建系统，支持在多种语言和平台上进行不同的构建</p><p><a href="https://github.com/microsoft/rushstack">Rush</a>: Microsoft 用于 JavaScript 的可扩展的单一代码库管理器，能够从一个代码库构建和部署多个包</p><p><a href="https://github.com/lerna/lerna">Lerna</a>: JavaScript 的单一代码库管理器，可以与 React、Angular 或 Babel 等流行框架集成</p><p>Yarn workspace: 用一个命令在多个地方安装和更新 Node.js 的依赖项</p><p><a href="https://github.com/teambit/bit">Bit</a>: 用于可组合软件开发的工具链</p><p><a href="https://github.com/nrwl/nx">Nx</a>: 为 monorepo 设计的小巧快捷可扩展的编译系统</p><p><a href="https://github.com/vercel/turbo">Turbo</a>: 使用 Rust 开发的前端工具链，增量的打包和构建工具</p><p><a href="https://github.com/microsoft/lage">Lage</a>: Microsoft 研发的用于提高 monorepo 构建效率的工具</p><p><a href="https://github.com/folke/ultra-runner">ultra-runner</a>: JavaScript 单一代码库管理脚本，支持 Yarn、pnpm 和 Lerna 插件，支持并行构建</p><p><a href="https://github.com/symplify/monorepo-builder">monorepo-builder</a>: 通过单一代码库安装和更新 PHP 包</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;Monorepo（Monolithic repositorie）是一种将多个项目存放在同一个代码仓库中的开发策略。传统的开发流程中，一个项目使用一个代码仓库，然而一个产品可能需要多个项目来支持，多个项目之间互相依赖，依赖关系、编译顺序、版本管理、发布顺序互相不明朗，多个项目可能存在重复的部分（例如，前后端接口定义，protobuf），由于不在一个代码仓库中，维护起来十分不方便。Monorepo 的核心观点是所有的项目在一个代码仓库中，使用一套编译脚本来处理互相之间的依赖关系，但大部分人实际仍旧在少数的几个仓库内文件夹工作。&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="monorepo" scheme="https://mangon.cn/blog/tags/monorepo/"/>
     
   </entry>
   
