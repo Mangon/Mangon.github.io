@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        前端简单面试题 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="该文章用来记录一些常见的前端简单面试题，这些题目部分是因为比较细碎，部分是比较偏门（对某个不常用功能的深入知识），部分是因为还没来得及，所以没有单独列出文章来讲述。  基础(基本概念)HTMLCSSdisplay:none 与 visibility:hidden 的区别是什么？还有哪些隐藏元素的方法？区别：display:none; 会让元素完全从渲染树中消失，渲染的时候不占据任何空间；visibility: hidden; 不会让元素从渲染树消失，渲染时元素继续占据空间，只是内容不可见" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">基础(基本概念)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML"><span class="toc-text">HTML</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS"><span class="toc-text">CSS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#display-none-%E4%B8%8E-visibility-hidden-%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E8%BF%98%E6%9C%89%E5%93%AA%E4%BA%9B%E9%9A%90%E8%97%8F%E5%85%83%E7%B4%A0%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9F"><span class="toc-text">display:none 与 visibility:hidden 的区别是什么？还有哪些隐藏元素的方法？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#link-%E4%B8%8E-import-%E9%83%BD%E5%8F%AF%E4%BB%A5%E5%BC%95%E5%85%A5%E6%A0%B7%E5%BC%8F%EF%BC%8C%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-text">link 与 @import 都可以引入样式，有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#css-sprite%E6%98%AF%E4%BB%80%E4%B9%88-%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E7%BC%BA%E7%82%B9%EF%BC%9F"><span class="toc-text">css sprite是什么,有什么优缺点？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%88%9D%E5%A7%8B%E5%8C%96CSS%E6%A0%B7%E5%BC%8F"><span class="toc-text">为什么要初始化CSS样式?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87a%E6%A0%87%E7%AD%BE%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%EF%BC%9F"><span class="toc-text">如何通过a标签批量下载文件？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript"><span class="toc-text">JavaScript</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Object-keys-%E5%92%8C-for-%E2%80%A6-in-%E9%81%8D%E5%8E%86%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F"><span class="toc-text">Object.keys() 和 for … in 遍历对象属性有什么不同？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for-%E2%80%A6-in-%E9%81%8D%E5%8E%86%E5%92%8C-for-%E2%80%A6-of-%E9%81%8D%E5%8E%86%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F"><span class="toc-text">for … in 遍历和 for … of 遍历有什么不同？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8delete%E6%93%8D%E4%BD%9C%E7%AC%A6%E5%88%A0%E9%99%A4%E5%AF%B9%E8%B1%A1%E6%97%B6%E9%9C%80%E8%A6%81%E9%81%8D%E5%8E%86%E5%B1%9E%E6%80%A7%E4%B8%AD%E7%9A%84%E5%B1%9E%E6%80%A7%EF%BC%8C%E4%BE%9D%E6%AC%A1%E5%88%A0%E9%99%A4%EF%BC%9F"><span class="toc-text">为什么使用delete操作符删除对象时需要遍历属性中的属性，依次删除？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E9%87%8A-null-%E5%92%8C-undefined-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">解释 null 和 undefined 的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E9%87%8A-%E4%B8%8E-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">解释 &#x3D;&#x3D; 与 &#x3D;&#x3D;&#x3D; 的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%89%E4%B8%AA%E6%96%B9%E6%B3%95%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">创建对象的三个方法是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Array-of-%E5%92%8C-new-Array-%E5%88%9B%E5%BB%BA%E7%9A%84%E6%95%B0%E7%BB%84%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F"><span class="toc-text">Array.of() 和 new Array() 创建的数组有什么不同？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E9%87%8A-var-let-const-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">解释 var let const 的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E9%87%8A-gt-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">解释 ()&#x3D;&gt;{} 箭头函数的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E9%87%8A-%E6%89%A9%E5%B1%95%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">解释 ... 扩展运算符的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E9%87%8A-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A8%A1%E6%9D%BF-%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">解释 字符串模板 的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E8%BF%B0JS%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%8C%E6%9C%89%E4%BB%80%E4%B9%88%E6%84%8F%E4%B9%89%EF%BC%9F"><span class="toc-text">简述JS函数柯里化是什么，有什么意义？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#others"><span class="toc-text">others</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E9%87%8A-offsetLeft-offsetTop-%E7%AD%89%E5%8F%82%E6%95%B0%E5%90%AB%E4%B9%89"><span class="toc-text">解释 offsetLeft offsetTop 等参数含义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%A6%82%E4%BD%95%E4%B9%A6%E5%86%99%EF%BC%9F"><span class="toc-text">常用正则表达式如何书写？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88js%E5%9C%A8html%E5%B0%BE%E9%83%A8%E5%BC%95%E5%85%A5%EF%BC%8CCSS%E5%9C%A8%E5%A4%B4%E9%83%A8%E5%BC%95%E5%85%A5%E6%AF%94%E8%BE%83%E5%90%88%E9%80%82%EF%BC%9F"><span class="toc-text">为什么js在html尾部引入，CSS在头部引入比较合适？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%88%E8%B0%88%E4%BD%A0%E5%AF%B9%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%9F"><span class="toc-text">谈谈你对前后端分离的理解？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%AD%E7%BA%A7%EF%BC%88%E5%88%9D%E7%BA%A7%E7%BC%96%E7%A8%8B%E9%A2%98%E5%8F%8A%E6%B7%B1%E5%85%A5%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%89"><span class="toc-text">中级（初级编程题及深入基础知识）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E7%A8%8B"><span class="toc-text">编程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%8D%E5%8E%86%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%E7%9A%84%E6%96%B9%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-text">遍历对象属性的方法有哪些？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E7%9A%84%E9%81%8D%E5%8E%86%E6%96%B9%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-text">数组的遍历方法有哪些？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%A6%E5%86%99sass%EF%BC%8Fless-mixin%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="toc-text">书写sass／less mixin的例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E9%87%8AEvent%E5%AF%B9%E8%B1%A1-target-currentTarget-preventDefault-stopPropagation-%E5%90%AB%E4%B9%89"><span class="toc-text">解释Event对象 target currentTarget preventDefault() stopPropagation()含义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E8%8E%B7%E5%8F%96%E6%8C%87%E5%AE%9A%E8%8C%83%E5%9B%B4%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B4%E6%95%B0"><span class="toc-text">实现获取指定范围的随机整数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E9%87%8A%E4%BD%A0%E7%86%9F%E6%82%89%E7%9A%84js%E5%B8%B8%E8%A7%81%E7%B1%BB%E5%BA%93-jquery-js-zepto-js-prototype-js-backbone-js-underscore-js-axios-js-%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">解释你熟悉的js常见类库 jquery.js&#x2F;zepto.js (prototype.js) backbone.js underscore.js axios.js 的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E4%B8%8E%E5%9D%97%E7%8A%B6%E5%85%83%E7%B4%A0%E7%9A%84%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2"><span class="toc-text">实现行内元素与块状元素的相互转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E9%87%8ACSS3%E5%8A%A8%E7%94%BB-%E8%BF%87%E6%B8%A1%E6%95%88%E6%9E%9C-transition-transform-animation-keyframe"><span class="toc-text">解释CSS3动画&#x2F;过渡效果 transition:transform animation:@keyframe</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E9%87%8A%E6%A8%A1%E5%9D%97%E5%8C%96%E7%BC%96%E7%A8%8B-%E5%8F%8AcommonJS-AMD-CMD-ES6import"><span class="toc-text">解释模块化编程 及commonJS AMD CMD ES6import</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C"><span class="toc-text">网络</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%95%E8%A7%A3%E9%87%8A%E5%BC%BA%E7%BC%93%E5%AD%98%E5%92%8C%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">试解释强缓存和协商缓存的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95"><span class="toc-text">数据结构和算法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%EF%BC%88%E6%A1%86%E6%9E%B6%EF%BC%8C%E5%BA%95%E5%B1%82%EF%BC%8C%E6%89%A9%E5%B1%95%EF%BC%89"><span class="toc-text">高级（框架，底层，扩展）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Basic"><span class="toc-text">Basic</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-define"><span class="toc-text">实现 define</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-Promise-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B"><span class="toc-text">实现 Promise 异步编程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0window-onload-%E7%BB%93%E6%9D%9F%EF%BC%8C%E8%BF%99%E4%B8%AD%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F%EF%BC%88%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%89"><span class="toc-text">从输入url到window.onload()结束，这中间发生了什么？（计算机网络）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%9A%E5%B8%B8%E5%9C%A8%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE%E5%9F%8B%E7%82%B9%E8%AF%B7%E6%B1%82%E7%9A%84%E6%97%B6%E5%80%99%E4%BD%BF%E7%94%A8%E7%9A%84%E6%98%AF-1x1-%E5%83%8F%E7%B4%A0%E7%9A%84%E9%80%8F%E6%98%8E-gif-%E5%9B%BE%E7%89%87%EF%BC%9F"><span class="toc-text">为什么通常在发送数据埋点请求的时候使用的是 1x1 像素的透明 gif 图片？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%BB%8E%E5%93%AA%E5%87%A0%E6%96%B9%E9%9D%A2%E5%85%A5%E6%89%8B%EF%BC%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E6%B3%95%EF%BC%9F"><span class="toc-text">前端性能优化从哪几方面入手？有哪些方法？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E9%87%8A-SSR%E3%80%81SEO%E3%80%81SPA"><span class="toc-text">解释 SSR、SEO、SPA</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue%E7%9B%B8%E5%85%B3"><span class="toc-text">vue相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#react%E7%9B%B8%E5%85%B3"><span class="toc-text">react相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Webpack%E7%9B%B8%E5%85%B3"><span class="toc-text">Webpack相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#node%E7%9B%B8%E5%85%B3"><span class="toc-text">node相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#shell%E7%9B%B8%E5%85%B3"><span class="toc-text">shell相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git%E7%9B%B8%E5%85%B3"><span class="toc-text">git相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-text">其他</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFmaterial-design%EF%BC%9F"><span class="toc-text">什么是material design？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Database-%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">Database(数据库)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E9%87%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1%E7%9A%844%E4%B8%AA%E5%9F%BA%E6%9C%AC%E7%89%B9%E5%BE%81ACID"><span class="toc-text">解释数据库事务的4个基本特征ACID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E9%87%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB"><span class="toc-text">解释数据库隔离级别</span></a></li></ol></li></ol></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            前端简单面试题
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-07-12T19:37:10.000Z" itemprop="datePublished">2018-07-13</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/algorithm/" rel="tag">algorithm</a>, <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>该文章用来记录一些常见的前端简单面试题，这些题目部分是因为比较细碎，部分是比较偏门（对某个不常用功能的深入知识），部分是因为还没来得及，所以没有单独列出文章来讲述。  </p>
+<span id="more"></span>
+<h1 id="基础-基本概念"><a href="#基础-基本概念" class="headerlink" title="基础(基本概念)"></a>基础(基本概念)</h1><h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><h3 id="display-none-与-visibility-hidden-的区别是什么？还有哪些隐藏元素的方法？"><a href="#display-none-与-visibility-hidden-的区别是什么？还有哪些隐藏元素的方法？" class="headerlink" title="display:none 与 visibility:hidden 的区别是什么？还有哪些隐藏元素的方法？"></a>display:none 与 visibility:hidden 的区别是什么？还有哪些隐藏元素的方法？</h3><p>区别：</p>
+<ol>
+<li><code>display:none;</code> 会让元素完全从渲染树中消失，渲染的时候不占据任何空间；<code>visibility: hidden;</code> 不会让元素从渲染树消失，渲染时元素继续占据空间，只是内容不可见  </li>
+<li><code>display: none;</code> 是非继承属性，子孙节点消失由于元素从渲染树消失造成，通过修改子孙节点属性无法显示；<code>visibility: hidden;</code> 是继承属性，子孙节点消失由于继承了hidden，通过设置 <code>visibility: visible;</code> 可以让子孙节点显式。  </li>
+<li>修改常规流中元素的 display 通常会造成文档重排。修改 visibility 属性只会造成本元素的重绘。  </li>
+<li>读屏器不会读取 <code>display: none;</code> 元素内容；会读取 <code>visibility: hidden;</code> 元素内容。  </li>
+</ol>
+<p>tips: 还有两种隐藏元素的方法：可以把元素移动到屏幕以外，或设置透明度 <code>opacity:0;</code> 为透明，也可以使用透明度滤镜 <code>filter:opacity(0)</code>  </p>
+<h3 id="link-与-import-都可以引入样式，有什么区别？"><a href="#link-与-import-都可以引入样式，有什么区别？" class="headerlink" title="link 与 @import 都可以引入样式，有什么区别？"></a>link 与 @import 都可以引入样式，有什么区别？</h3><ol>
+<li>link 是 HTML 方式， @import 是 CSS 方式</li>
+<li>link 最大限度支持并行下载，@import 过多嵌套导致串行下载，出现FOUC（Flash Of Unstyled Content）页面闪烁</li>
+<li>link 可以通过 <code>rel=&quot;alternate stylesheet&quot;</code> 指定候选样式</li>
+<li>浏览器对 link 支持早于 @import ，可以使用 @import 对老浏览器隐藏样式</li>
+<li>@import 必须在样式规则之前，可以在 css 文件中引用其他文件</li>
+</ol>
+<h3 id="css-sprite是什么-有什么优缺点？"><a href="#css-sprite是什么-有什么优缺点？" class="headerlink" title="css sprite是什么,有什么优缺点？"></a>css sprite是什么,有什么优缺点？</h3><p>概念：将多个小图片拼接到一个图片中。通过 <code>background-position</code> 和元素尺寸调节需要显示的背景图案。  </p>
+<p>优点：  </p>
+<ol>
+<li>减少HTTP请求数，极大地提高页面加载速度</li>
+<li>增加图片信息重复度，提高压缩比，减少图片大小</li>
+<li>更换风格方便，只需在一张或几张图片上修改颜色或样式即可实现</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>图片合并麻烦</li>
+<li>维护麻烦，修改一个图片可能需重新布局整个图片，样式</li>
+</ol>
+<h3 id="为什么要初始化CSS样式"><a href="#为什么要初始化CSS样式" class="headerlink" title="为什么要初始化CSS样式?"></a>为什么要初始化CSS样式?</h3><p>因为浏览器的兼容问题，不同浏览器对有些标签的默认值是不同的，如果没对CSS初始化往往会出现浏览器之间的页面显示差异。  </p>
+<h3 id="如何通过a标签批量下载文件？"><a href="#如何通过a标签批量下载文件？" class="headerlink" title="如何通过a标签批量下载文件？"></a>如何通过a标签批量下载文件？</h3><p>&lt;a> 标签的download属性指示浏览器下载而不是导航，参见 <a href="/blog/2019/01/03/HTML-a-的用法/#download-HTML5">a标签的属性download</a> ，然而该属性只适用于同源URLs，我们可以通过将地址转换为 <code>blob:URL</code> 的形式然后下载。  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">xhr.<span class="title function_">open</span>(<span class="string">&quot;get&quot;</span>, <span class="string">&quot;https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1593106255,4245861836&amp;fm=26&amp;gp=0.jpg&quot;</span>, <span class="literal">true</span>);</span><br><span class="line">xhr.<span class="property">responseType</span> = <span class="string">&quot;blob&quot;</span>;</span><br><span class="line">xhr.<span class="property">onload</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">status</span> == <span class="number">200</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> blob = <span class="variable language_">this</span>.<span class="property">response</span>;</span><br><span class="line">        <span class="keyword">const</span> ele = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">        ele.<span class="property">download</span> = name;</span><br><span class="line">        ele.<span class="property">style</span>.<span class="property">display</span> = <span class="string">&#x27;none&#x27;</span>;</span><br><span class="line">        ele.<span class="property">href</span> = <span class="variable constant_">URL</span>.<span class="title function_">createObjectURL</span>(blob);</span><br><span class="line">        ele.<span class="property">onload</span>= <span class="keyword">function</span>(<span class="params">e</span>) &#123;</span><br><span class="line">            <span class="variable constant_">URL</span>.<span class="title function_">revokeObjectURL</span>(ele.<span class="property">href</span>);</span><br><span class="line">            <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">removeChild</span>(ele);</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(eleLink);</span><br><span class="line">        ele.<span class="title function_">click</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">xhr.<span class="title function_">send</span>();</span><br></pre></td></tr></table></figure>
+<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><h3 id="Object-keys-和-for-…-in-遍历对象属性有什么不同？"><a href="#Object-keys-和-for-…-in-遍历对象属性有什么不同？" class="headerlink" title="Object.keys() 和 for … in 遍历对象属性有什么不同？"></a>Object.keys() 和 for … in 遍历对象属性有什么不同？</h3><p> for-in 循环还会枚举原型链中的属性  </p>
+<h3 id="for-…-in-遍历和-for-…-of-遍历有什么不同？"><a href="#for-…-in-遍历和-for-…-of-遍历有什么不同？" class="headerlink" title="for … in 遍历和 for … of 遍历有什么不同？"></a>for … in 遍历和 for … of 遍历有什么不同？</h3><p><code>for...of</code> 语句在可迭代对象（包括 Array，Map，Set，String，TypedArray，arguments 对象等等）上创建一个迭代循环，调用自定义迭代钩子，并为每个不同属性的值执行语句。  </p>
+<p><code>for...in</code> 语句以任意顺序遍历一个对象的除 Symbol 以外的可枚举属性（包括原型链中的属性）。  </p>
+<p>for…in 和 for…of 的区别在于：  </p>
+<p>for…in 语句以任意顺序迭代对象的可枚举属性。</p>
+<p>for…of 语句遍历可迭代对象定义要迭代的数据。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">objCustom</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;&#125;;</span><br><span class="line"><span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">arrCustom</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> iterable = [<span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>];</span><br><span class="line">iterable.<span class="property">foo</span> = <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> iterable) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(i); <span class="comment">// 打印： 0, 1, 2, &quot;foo&quot;, &quot;arrCustom&quot;, &quot;objCustom&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> iterable) &#123;</span><br><span class="line">  <span class="keyword">if</span> (iterable.<span class="title function_">hasOwnProperty</span>(i)) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(i); <span class="comment">// 打印： 0, 1, 2, &quot;foo&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">of</span> iterable) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(i); <span class="comment">// 打印： 3, 5, 7</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="为什么使用delete操作符删除对象时需要遍历属性中的属性，依次删除？"><a href="#为什么使用delete操作符删除对象时需要遍历属性中的属性，依次删除？" class="headerlink" title="为什么使用delete操作符删除对象时需要遍历属性中的属性，依次删除？"></a>为什么使用delete操作符删除对象时需要遍历属性中的属性，依次删除？</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;<span class="attr">p</span>:&#123;<span class="attr">x</span>:<span class="number">1</span>&#125;&#125;;</span><br><span class="line">b=a.<span class="property">p</span>;</span><br><span class="line"><span class="keyword">delete</span> a.<span class="property">p</span>;</span><br></pre></td></tr></table></figure>
+<p> 执行这段代码后b.x的值依然是1。由于已经删除的属性的引用依然存在，因此在JavaScript的某些实现中，可能因为这种不严谨的代码而造成内存泄漏。所以在销毁对象的时候，要遍历属性中的属性，依次删除。  </p>
+<h3 id="解释-null-和-undefined-的区别"><a href="#解释-null-和-undefined-的区别" class="headerlink" title="解释 null 和 undefined 的区别"></a>解释 null 和 undefined 的区别</h3><p>undefined 表示系统级的、出乎意料的或类似错误的值的空缺，null表示程序级的、正常的或在意料之中的值的空缺。  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="literal">null</span> <span class="comment">// &#x27;object&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">undefined</span> <span class="comment">// &#x27;undefined&#x27;</span></span><br></pre></td></tr></table></figure>
+<h3 id="解释-与-的区别"><a href="#解释-与-的区别" class="headerlink" title="解释 == 与 === 的区别"></a>解释 == 与 === 的区别</h3><p>“===”叫做严格相等运算符（恒等运算符），”==”叫做相等运算符。<br>严格相等运算符的运算规则如下，  </p>
+<ul>
+<li>不同类型值<br>  如果两个值的类型不同，直接返回false。</li>
+<li>同一类的原始类型值<br>  同一类型的原始类型的值（数值、字符串、布尔值）比较时，值相同就返回true，值不同就返回false。</li>
+<li>同一类的复合类型值<br>  两个复合类型（对象、数组、函数）的数据比较时，不是比较它们的值是否相等，而是比较它们是否指向同一个对象。</li>
+<li>undefined和null<br>  undefined 和 null 与自身严格相等。</li>
+</ul>
+<h3 id="创建对象的三个方法是什么？"><a href="#创建对象的三个方法是什么？" class="headerlink" title="创建对象的三个方法是什么？"></a>创建对象的三个方法是什么？</h3><ol>
+<li>对象直接量</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = &#123;&#125;;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>通过关键字 <code>new</code> 创建对象</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="keyword">new</span> <span class="title class_">Object</span>()</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>通过 <code>Object.create()</code> 创建对象</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="title class_">Object</span>.<span class="title function_">create</span>(<span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>);</span><br></pre></td></tr></table></figure>
+<h3 id="Array-of-和-new-Array-创建的数组有什么不同？"><a href="#Array-of-和-new-Array-创建的数组有什么不同？" class="headerlink" title="Array.of() 和 new Array() 创建的数组有什么不同？"></a>Array.of() 和 new Array() 创建的数组有什么不同？</h3><p><code>Array.of()</code> 和 <code>Array</code> 构造函数之间的区别在于处理整数参数：<code>Array.of(7)</code> 创建一个具有单个元素 7 的数组，而 <code>new Array(7)</code> 创建一个长度为7的空数组（注意：这是指一个有7个空位(empty)的数组，而不是由7个undefined组成的数组）。  </p>
+<h3 id="解释-var-let-const-的区别"><a href="#解释-var-let-const-的区别" class="headerlink" title="解释 var let const 的区别"></a>解释 <code>var</code> <code>let</code> <code>const</code> 的区别</h3><p><code>var</code> :</p>
+<ol>
+<li>默认声明变量形式</li>
+<li>全局作用域/函数作用域</li>
+<li>存在变量提升</li>
+<li>声明的全局对象同时为顶层对象的属性</li>
+<li>可以重复声明，相当于赋值</li>
+</ol>
+<p><code>let</code> :</p>
+<ol>
+<li>块级作用域</li>
+<li>不存在变量提升</li>
+<li>会在当前区域形成暂时性死区</li>
+<li>不允许重复声明</li>
+<li><ul>
+<li>块级作用域的出现，实际上使得获得广泛应用的立即执行函数表达式（IIFE）不再必要了</li>
+</ul>
+</li>
+</ol>
+<p><code>const</code> :</p>
+<ol>
+<li>const声明一个只读的常量。一旦声明，常量的值就不能改变。</li>
+<li>const必须在声明时初始化</li>
+<li>块级作用域</li>
+<li>不存在变量提升</li>
+<li>会在当前区域形成暂时性死区</li>
+<li>不允许重复声明</li>
+<li>const实际上保证的，并不是变量的值不得改动，而是变量指向的那个内存地址不得改动。对于简单类型的数据（数值、字符串、布尔值），值就保存在变量指向的那个内存地址，因此等同于常量。但对于复合类型的数据（主要是对象和数组），变量指向的内存地址，保存的只是一个指针，const只能保证这个指针是固定的，至于它指向的数据结构是不是可变的，就完全不能控制了。</li>
+</ol>
+<h3 id="解释-gt-箭头函数的作用"><a href="#解释-gt-箭头函数的作用" class="headerlink" title="解释 ()=&gt;{} 箭头函数的作用"></a>解释 <code>()=&gt;&#123;&#125;</code> 箭头函数的作用</h3><ol>
+<li>函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。</li>
+<li>不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。</li>
+<li>不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用 rest 参数代替。</li>
+<li>不可以使用yield命令，因此箭头函数不能用作 Generator 函数。</li>
+</ol>
+<h3 id="解释-扩展运算符的作用"><a href="#解释-扩展运算符的作用" class="headerlink" title="解释 ... 扩展运算符的作用"></a>解释 <code>...</code> 扩展运算符的作用</h3><p>将一个数组转为用逗号分隔的参数序列。</p>
+<h3 id="解释-字符串模板-的作用"><a href="#解释-字符串模板-的作用" class="headerlink" title="解释 字符串模板 的作用"></a>解释 字符串模板 的作用</h3><p>在需要将变量和字符串进行拼接时使用字符串模板写法更优雅</p>
+<h3 id="简述JS函数柯里化是什么，有什么意义？"><a href="#简述JS函数柯里化是什么，有什么意义？" class="headerlink" title="简述JS函数柯里化是什么，有什么意义？"></a>简述JS函数柯里化是什么，有什么意义？</h3><p>柯里化是函数式编程的一个过程，在这个过程中我们能把一个带有多个参数的函数转换成一系列的嵌套函数。它返回一个新函数，这个新函数期望传入下一个参数。</p>
+<h2 id="others"><a href="#others" class="headerlink" title="others"></a>others</h2><h3 id="解释-offsetLeft-offsetTop-等参数含义"><a href="#解释-offsetLeft-offsetTop-等参数含义" class="headerlink" title="解释 offsetLeft offsetTop 等参数含义"></a>解释 offsetLeft offsetTop 等参数含义</h3><p><code>HTMLElement.offsetLeft</code> 是一个只读属性，返回当前元素左上角相对于  <code>HTMLElement.offsetParent</code> 节点的左边界偏移的像素值。<br><code>HTMLElement.offsetTop</code> 是一个只读属性，它返回当前元素相对于其 <code>HTMLElement.offsetParent</code> 元素的顶部内边距的距离。<br><code>HTMLElement.offsetWidth</code> 是一个只读属性，返回一个元素的布局宽度。<br><code>HTMLElement.offsetHeight</code> 是一个只读属性，它返回该元素的像素高度，高度包含该元素的垂直内边距和边框，且是一个整数。  </p>
+<h3 id="常用正则表达式如何书写？"><a href="#常用正则表达式如何书写？" class="headerlink" title="常用正则表达式如何书写？"></a>常用正则表达式如何书写？</h3><p>（手机号）（邮箱地址）（url地址）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 手机号</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">isPhoneAvailable</span>(<span class="params">str</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> myreg = <span class="regexp">/^1[3,4,5,7,8]\d&#123;9&#125;$/</span>;</span><br><span class="line">    <span class="keyword">return</span> myreg.<span class="title function_">test</span>(str);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 邮箱</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">isMailAvailable</span>(<span class="params">str</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> myreg = <span class="regexp">/^([\w\-\.]+)@([\w\-]+)\.([a-zA-Z]&#123;2,4&#125;)$/</span>;</span><br><span class="line">    <span class="keyword">return</span> myreg.<span class="title function_">test</span>(str);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// url</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">isUrlAvailable</span>(<span class="params">str</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> myreg = <span class="regexp">/https?:\/\/[\w|\.|-]+(\.cn|\.com)[\w|\?|=|\/]*/</span>;</span><br><span class="line">    <span class="keyword">return</span> myreg.<span class="title function_">test</span>(str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="为什么js在html尾部引入，CSS在头部引入比较合适？"><a href="#为什么js在html尾部引入，CSS在头部引入比较合适？" class="headerlink" title="为什么js在html尾部引入，CSS在头部引入比较合适？"></a>为什么js在html尾部引入，CSS在头部引入比较合适？</h3><p>网站加载的整个完整过程</p>
+<ol>
+<li>首先浏览器从服务器接收到html代码，然后开始解析html</li>
+<li>构建DOM树（根据html代码自顶向下进行构建），并且在同时构建渲染树</li>
+<li>遇到js文件加载执行，将阻塞DOM树的构建；遇到CSS文件，将阻塞渲染树的构建<br>（script标签中的defer属性：构建DOM树的过程和js文件的加载异步（并行）进行，但是js文件执行需要在DOM树构建完成之后 script标签中的async属性：构建DOM树、渲染树的过程和js文件的加载和执行异步（并行）进行）</li>
+</ol>
+<p>综上所述，script标签最好放在</body>标签的前面，因为放在所有body中的标签后面就不会出现网页加载时出现空白的情况，可以持续的给用户提供视觉反馈，同时在有些情况下，会降低错误的发生。<br>而CSS标签应该放在<head></head>标签之间，因为如果放在</body>标签的前面，那么当DOM树构建完成了，渲染树才构建，那么当渲染树构建完成，浏览器不得不再重新渲染整个页面，这样造成了资源的浪费。效率也不高。如果放在<head></head>之间，浏览器边构建边渲染，效率要高的多。</p>
+<h3 id="谈谈你对前后端分离的理解？"><a href="#谈谈你对前后端分离的理解？" class="headerlink" title="谈谈你对前后端分离的理解？"></a>谈谈你对前后端分离的理解？</h3><p>https://segmentfault.com/a/1190000009329474?_ea=2038402</p>
+<h1 id="中级（初级编程题及深入基础知识）"><a href="#中级（初级编程题及深入基础知识）" class="headerlink" title="中级（初级编程题及深入基础知识）"></a>中级（初级编程题及深入基础知识）</h1><h2 id="编程"><a href="#编程" class="headerlink" title="编程"></a>编程</h2><h3 id="遍历对象属性的方法有哪些？"><a href="#遍历对象属性的方法有哪些？" class="headerlink" title="遍历对象属性的方法有哪些？"></a>遍历对象属性的方法有哪些？</h3><p>（1）for…in</p>
+<p>for…in循环遍历对象自身的和继承的可枚举属性（不含 Symbol 属性）。</p>
+<p>（2）Object.keys(obj)</p>
+<p>Object.keys返回一个数组，包括对象自身的（不含继承的）所有可枚举属性（不含 Symbol 属性）的键名。</p>
+<p>（3）Object.getOwnPropertyNames(obj)</p>
+<p>Object.getOwnPropertyNames返回一个数组，包含对象自身的所有属性（不含 Symbol 属性，但是包括不可枚举属性）的键名。</p>
+<p>（4）Object.getOwnPropertySymbols(obj)</p>
+<p>Object.getOwnPropertySymbols返回一个数组，包含对象自身的所有 Symbol 属性的键名。</p>
+<p>（5）Reflect.ownKeys(obj)</p>
+<p>Reflect.ownKeys返回一个数组，包含对象自身的（不含继承的）所有键名，不管键名是 Symbol 或字符串，也不管是否可枚举。</p>
+<p>以上的 5 种方法遍历对象的键名，都遵守同样的属性遍历的次序规则。</p>
+<p>首先遍历所有数值键，按照数值升序排列。<br>其次遍历所有字符串键，按照加入时间升序排列。<br>最后遍历所有 Symbol 键，按照加入时间升序排列。</p>
+<h3 id="数组的遍历方法有哪些？"><a href="#数组的遍历方法有哪些？" class="headerlink" title="数组的遍历方法有哪些？"></a>数组的遍历方法有哪些？</h3><p>遍历数组 arr</p>
+<p>第一种: 普通 <code>for</code> 循环<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(j = <span class="number">0</span>; j &lt; arr.<span class="property">length</span>; j++) &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>第二种: 优化版 <code>for</code> 循环<br>当数组的长度非常大时，缓存长度会带来略微的性能提升<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> len = arr.<span class="property">length</span>;</span><br><span class="line"><span class="keyword">for</span>(j = <span class="number">0</span>; j &lt; len; j++) &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>第三种: 利用数组的 <code>forEach</code> 方法<br>forEach() 方法对数组的每个元素执行一次提供的函数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr.<span class="title function_">forEach</span>(<span class="function">(<span class="params">item, index, array</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><br>第四种: 利用 <code>for in</code> 来遍历数组的可枚举属性<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(index <span class="keyword">in</span> arr) &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>第五种: 利用数组的 <code>map</code> 方法遍历<br>map() 方法创建一个新数组，其结果是该数组中的每个元素都调用一个提供的函数后返回的结果。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr.<span class="title function_">map</span>((item, index, array) &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><br>第六种: 利用 <code>for of</code> 遍历数组值<br>for…of语句在可迭代对象（包括 Array，Map，Set，String，TypedArray，arguments 对象等等）上创建一个迭代循环，调用自定义迭代钩子，并为每个不同属性的值执行语句。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(item <span class="keyword">of</span> arr) &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><br>第七种: 利用数组的 <code>every</code> 方法遍历<br>every() 方法测试数组的所有元素是否都通过了指定函数的测试。<br>当返回false时会由于没有通过测试而中止，所以为了遍历，必须返回true。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">arr.<span class="title function_">every</span>(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><br>第八种: 利用数组的 <code>filter</code> 方法遍历<br>filter() 方法创建一个新数组, 其包含通过所提供函数实现的测试的所有元素。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr.<span class="title function_">filter</span>(<span class="function">(<span class="params">item, index, array</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><br>第九种: 利用数组的 <code>some</code> 方法遍历<br>some() 方法测试是否至少有一个元素通过由提供的函数实现的测试。<br>当返回true时会由于已经找到一个元素通过测试而中止，所以为了遍历，必须返回false。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">arr.<span class="title function_">some</span>(<span class="function">(<span class="params">item, index, array</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><br>第十种: 利用数组的 <code>reduce</code> 方法遍历<br>reduce() 方法对数组中的每个元素执行一个reducer函数(升序执行)，将其结果汇总为单个返回值。<br>如果没有提供initialValue，reduce 会从索引1的地方开始执行 callback 方法，跳过第一个索引。如果提供initialValue，从索引0开始。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr.<span class="title function_">reduce</span>(<span class="function">(<span class="params">result, item, index, array</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;, initialValue);</span><br></pre></td></tr></table></figure></p>
+<h3 id="书写sass／less-mixin的例子"><a href="#书写sass／less-mixin的例子" class="headerlink" title="书写sass／less mixin的例子"></a>书写sass／less mixin的例子</h3><blockquote>
+<p>Saas</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$link-<span class="attribute">color</span>: blue;</span><br><span class="line">$hover-<span class="attribute">color</span>: red;</span><br><span class="line">$visited-<span class="attribute">color</span>: green;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@mixin</span> link-colors($normal, $<span class="attribute">hover</span>, $visited) &#123;</span><br><span class="line">    <span class="attribute">color</span>: $normal;</span><br><span class="line">    &amp;<span class="selector-pseudo">:hover</span> &#123; <span class="attribute">color</span>: $hover; &#125;</span><br><span class="line">    &amp;<span class="selector-pseudo">:visited</span> &#123; <span class="attribute">color</span>: $visited; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="keyword">@include</span> link-colors($link-color, $hover-color, $visited-color);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Less</p>
+</blockquote>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@link-color:</span> blue;</span><br><span class="line"><span class="variable">@hover-color:</span> red;</span><br><span class="line"><span class="variable">@visited-color:</span> green;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.link-colors</span> (<span class="variable">@normal</span>:<span class="variable">@link-color</span>; <span class="variable">@hover</span>:<span class="variable">@hover-color</span>; <span class="variable">@visited</span>:<span class="variable">@visited-color</span>) &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="variable">@normal</span>;</span><br><span class="line">    <span class="selector-tag">&amp;</span><span class="selector-pseudo">:hover</span> &#123; <span class="attribute">color</span>: <span class="variable">@hover</span>; &#125;</span><br><span class="line">    <span class="selector-tag">&amp;</span><span class="selector-pseudo">:visited</span> &#123; <span class="attribute">color</span>: <span class="variable">@visited</span>; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="selector-class">.link-colors</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译后</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span> &#123; <span class="attribute">color</span>: blue; &#125;</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123; <span class="attribute">color</span>: red; &#125;</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span> &#123; <span class="attribute">color</span>: green; &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="解释Event对象-target-currentTarget-preventDefault-stopPropagation-含义"><a href="#解释Event对象-target-currentTarget-preventDefault-stopPropagation-含义" class="headerlink" title="解释Event对象 target currentTarget preventDefault() stopPropagation()含义"></a>解释Event对象 <code>target</code> <code>currentTarget</code> <code>preventDefault()</code> <code>stopPropagation()</code>含义</h3><p><code>target</code>: 触发事件的对象元素的引用<br><code>currentTarget</code>: 事件属性返回其监听器绑定事件的节点，即当前处理该事件的元素、文档或窗口。<br><code>preventDefault</code>: 该方法将通知 Web 浏览器不要执行与事件关联的默认动作（如果存在这样的动作）。<br><code>stopPropagation</code>： 终止事件在传播过程的捕获、目标处理或起泡阶段进一步传播。调用该方法后，该节点上处理该事件的处理程序将被调用，事件不再被分派到其他节点。  </p>
+<h3 id="实现获取指定范围的随机整数"><a href="#实现获取指定范围的随机整数" class="headerlink" title="实现获取指定范围的随机整数"></a>实现获取指定范围的随机整数</h3><p><code>Math.random()</code>: 获取[0-1)范围的小数<br><code>Math.floor(num)</code>: num取整数<br>取[1-100]范围内一个随机整数值: <code>Math.floor(Math.random() * 100 + 1)</code>  </p>
+<h3 id="解释你熟悉的js常见类库-jquery-js-zepto-js-prototype-js-backbone-js-underscore-js-axios-js-的作用"><a href="#解释你熟悉的js常见类库-jquery-js-zepto-js-prototype-js-backbone-js-underscore-js-axios-js-的作用" class="headerlink" title="解释你熟悉的js常见类库 jquery.js/zepto.js (prototype.js) backbone.js underscore.js axios.js 的作用"></a>解释你熟悉的js常见类库 jquery.js/zepto.js (prototype.js) backbone.js underscore.js axios.js 的作用</h3><p>jQuery:<br>jQuery 是一个高效、精简并且功能丰富的 JavaScript 工具库。它提供的 API 易于使用且兼容众多浏览器，这让诸如 HTML 文档遍历和操作、事件处理、动画和 Ajax 操作更加简单。<br>Zepto:<br>Zepto是一个轻量级的针对现代高级浏览器的JavaScript库， 它与jquery有着类似的api。<br>Underscore:<br>一个JavaScript实用库，提供了一整套函数式编程的实用功能，但是没有扩展任何JavaScript内置对象。它弥补了部分jQuery没有实现的功能,同时又是Backbone.js必不可少的部分。<br>Backbone:<br>Backbone.js为复杂WEB应用程序提供模型(models)、集合(collections)、视图(views)的结构。<br>Axios:<br>Axios 是一个基于 promise 的 HTTP 库,可以用在浏览器和 node.js 中。<br>…</p>
+<h3 id="实现行内元素与块状元素的相互转换"><a href="#实现行内元素与块状元素的相互转换" class="headerlink" title="实现行内元素与块状元素的相互转换"></a>实现行内元素与块状元素的相互转换</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attribute">display</span>: inline/block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="解释CSS3动画-过渡效果-transition-transform-animation-keyframe"><a href="#解释CSS3动画-过渡效果-transition-transform-animation-keyframe" class="headerlink" title="解释CSS3动画/过渡效果 transition:transform animation:@keyframe"></a>解释CSS3动画/过渡效果 transition:transform animation:@keyframe</h3><p>transform: 定义转换<br>常用值：<br>translateX(xdeg) 沿X轴旋转x度<br>translateY(ydeg) 沿Y轴旋转y度<br>scale(x, y) 缩放 X轴放大到x倍数，Y轴放大到y倍<br>rotate(ndeg) 旋转 顺时针倾斜n角度<br>skew(x, y) 倾斜 沿X轴旋转x度，沿Y轴旋转y度</p>
+<h3 id="解释模块化编程-及commonJS-AMD-CMD-ES6import"><a href="#解释模块化编程-及commonJS-AMD-CMD-ES6import" class="headerlink" title="解释模块化编程 及commonJS AMD CMD ES6import"></a>解释模块化编程 及commonJS AMD CMD ES6import</h3><p>模块化是指把一个复杂的系统分解到多个模块以方便编码。<br>CommonJS 是一种使用广泛的 JavaScript 模块化规范，核心思想是通过 require 方法来同步地加载依赖的其他模块，通过 module.exports 导出需要暴露的接口。 CommonJS 规范的流行得益于 Node.js 采用了这种方式，后来这种方式被引入到了网页开发中。<br>采用 CommonJS 导入及导出时的代码如下：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 导入</span></span><br><span class="line"><span class="keyword">const</span> moduleA = <span class="built_in">require</span>(<span class="string">&#x27;./moduleA&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 导出</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = moduleA.<span class="property">someFunc</span>;</span><br></pre></td></tr></table></figure>
+<p>CommonJS 的优点在于:  </p>
+<ul>
+<li>代码可复用于 Node.js 环境下并运行，例如做同构应用；</li>
+<li>通过 NPM 发布的很多第三方模块都采用了 CommonJS 规范。</li>
+</ul>
+<p>CommonJS 的缺点在于:  </p>
+<ul>
+<li>这样的代码无法直接运行在浏览器环境下，必须通过工具转换成标准的 ES5。</li>
+</ul>
+<p>AMD 也是一种 JavaScript 模块化规范，与 CommonJS 最大的不同在于它采用异步的方式去加载依赖的模块。 AMD 规范主要是为了解决针对浏览器环境的模块化问题，最具代表性的实现是 requirejs。<br>采用 AMD 导入及导出时的代码如下：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 定义一个模块</span></span><br><span class="line">    <span class="title function_">define</span>(<span class="string">&#x27;module&#x27;</span>, [<span class="string">&#x27;dep&#x27;</span>], <span class="keyword">function</span>(<span class="params">dep</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">exports</span>;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 导入和使用</span></span><br><span class="line">    <span class="built_in">require</span>([<span class="string">&#x27;module&#x27;</span>], <span class="keyword">function</span>(<span class="params"><span class="variable language_">module</span></span>) &#123;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>AMD 的优点在于：  </p>
+<ul>
+<li>可在不转换代码的情况下直接在浏览器中运行；</li>
+<li>可异步加载依赖；</li>
+<li>可并行加载多个依赖；</li>
+<li>代码可运行在浏览器环境和 Node.js 环境下。</li>
+</ul>
+<p>AMD 的缺点在于:  </p>
+<ul>
+<li>JavaScript 运行环境没有原生支持 AMD，需要先导入实现了 AMD 的库后才能正常使用。</li>
+</ul>
+<p>ES6 模块化是欧洲计算机制造联合会 ECMA 提出的 JavaScript 模块化规范，它在语言的层面上实现了模块化。  </p>
+<p>采用 ES6 模块化导入及导出时的代码如下：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 导入</span></span><br><span class="line"><span class="keyword">import</span> &#123; readFile &#125; <span class="keyword">from</span> <span class="string">&#x27;fs&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="comment">// 导出</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">hello</span>(<span class="params"></span>) &#123;&#125;;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>ES6模块虽然是终极模块化方案，但它的缺点在于目前无法直接运行在大部分 JavaScript 运行环境下，必须通过工具转换成标准的 ES5 后才能正常运行。  </p>
+<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><h3 id="试解释强缓存和协商缓存的区别"><a href="#试解释强缓存和协商缓存的区别" class="headerlink" title="试解释强缓存和协商缓存的区别"></a>试解释强缓存和协商缓存的区别</h3><p>https://www.jianshu.com/p/9c95db596df5</p>
+<h2 id="数据结构和算法"><a href="#数据结构和算法" class="headerlink" title="数据结构和算法"></a>数据结构和算法</h2><h1 id="高级（框架，底层，扩展）"><a href="#高级（框架，底层，扩展）" class="headerlink" title="高级（框架，底层，扩展）"></a>高级（框架，底层，扩展）</h1><h2 id="Basic"><a href="#Basic" class="headerlink" title="Basic"></a>Basic</h2><h3 id="实现-define"><a href="#实现-define" class="headerlink" title="实现 define"></a>实现 define</h3><h3 id="实现-Promise-异步编程"><a href="#实现-Promise-异步编程" class="headerlink" title="实现 Promise 异步编程"></a>实现 Promise 异步编程</h3><p>Promise的解释：<br>http://bruce-xu.github.io/blogs/js/promise<br>两个优秀的Promise的实现：<br>https://github.com/bruce-xu/Promise/blob/master/Promise.js<br>https://blog.csdn.net/yibingxiong1/article/details/68075416</p>
+<h3 id="从输入url到window-onload-结束，这中间发生了什么？（计算机网络）"><a href="#从输入url到window-onload-结束，这中间发生了什么？（计算机网络）" class="headerlink" title="从输入url到window.onload()结束，这中间发生了什么？（计算机网络）"></a>从输入url到window.onload()结束，这中间发生了什么？（计算机网络）</h3><ol>
+<li>预处理</li>
+<li>读取cache(强缓存)</li>
+<li>查询DNS</li>
+<li>建立连接</li>
+<li>发送请求</li>
+<li>等待响应</li>
+<li>接收数据</li>
+<li>读取cache(协商缓存)</li>
+<li>处理渲染</li>
+</ol>
+<h3 id="为什么通常在发送数据埋点请求的时候使用的是-1x1-像素的透明-gif-图片？"><a href="#为什么通常在发送数据埋点请求的时候使用的是-1x1-像素的透明-gif-图片？" class="headerlink" title="为什么通常在发送数据埋点请求的时候使用的是 1x1 像素的透明 gif 图片？"></a>为什么通常在发送数据埋点请求的时候使用的是 1x1 像素的透明 gif 图片？</h3><ol>
+<li>能够完成整个 HTTP 请求+响应（不需要响应内容）</li>
+<li>触发 GET 请求之后不需要获取和处理数据、服务器也不需要发送数据</li>
+<li>跨域友好</li>
+<li>执行过程无阻塞</li>
+<li>相比 XMLHttpRequest 对象发送 GET 请求，性能上更好</li>
+<li>GIF的最低合法体积最小（最小的BMP文件需要74个字节，PNG需要67个字节，而合法的GIF，只需要43个字节）</li>
+</ol>
+<h3 id="前端性能优化从哪几方面入手？有哪些方法？"><a href="#前端性能优化从哪几方面入手？有哪些方法？" class="headerlink" title="前端性能优化从哪几方面入手？有哪些方法？"></a>前端性能优化从哪几方面入手？有哪些方法？</h3><ol>
+<li>性能优化=》减少从用户输入网址到用户看到期望内容的时间</li>
+<li>从用户输入url到 window.onload 发生了什么<ul>
+<li>预处理 本地</li>
+<li>读取cache 本地</li>
+<li>查询DNS 网络</li>
+<li>建立连接 网络</li>
+<li>发送请求 网络</li>
+<li>等待响应 网络</li>
+<li>接收数据 本地</li>
+<li>处理渲染 本地</li>
+</ul>
+</li>
+<li>本地 =》 缩短渲染时间<br>网络 =》 减少请求次数 减小请求体积 加快请求速度</li>
+<li>基本原则<ul>
+<li>建立监控机制 （监控）</li>
+<li>日志分析 （分析）</li>
+<li>针对监控暴露的弱点优化 （优化）</li>
+</ul>
+</li>
+<li>监控节点 window.performance.timing<ul>
+<li>白屏时间 <code>&lt;/head&gt;</code> 结束 domLoading - fetchStart</li>
+<li>首屏时间 首屏加载结束</li>
+<li>用户可操作时间 DOMReady&amp;核心js加载完毕 domContentLoadedEventEnd - fetchStart</li>
+<li>总下载时间 onload/异步渲染完毕 loadEventEnd - fetchStart</li>
+</ul>
+</li>
+<li>常用的性能优化方法</li>
+</ol>
+<ul>
+<li>减少http请求内容</li>
+<li>使用cdn</li>
+<li>添加 expires/ cache-control header</li>
+<li>使用gzip</li>
+<li>将css放到html顶部加载</li>
+<li>将js放到底部加载</li>
+<li>外部引用js &amp; css</li>
+<li>uglify js &amp; css</li>
+<li>避免重定向</li>
+<li>移除重复js</li>
+<li>配置Etags</li>
+<li>缓存ajax数据</li>
+<li>预先加载组件</li>
+<li>减少dom元素个数</li>
+<li>减少iframes</li>
+<li>避免404错误</li>
+<li>减少cookie大小</li>
+<li>对于不需要cookie的组件/请求，使用单独的域名</li>
+<li>减少dom操作</li>
+<li>采用事件委托</li>
+<li>减少 @import 动态导入</li>
+<li>优化图像大小</li>
+<li>使用css图像拼合</li>
+<li>不要缩放图像</li>
+<li>favicon.icon 尽量小&amp;缓存</li>
+<li>组件小于25k</li>
+<li>避免空image src</li>
+<li>采用 渐进式jpeg</li>
+</ul>
+<h3 id="解释-SSR、SEO、SPA"><a href="#解释-SSR、SEO、SPA" class="headerlink" title="解释 SSR、SEO、SPA"></a>解释 SSR、SEO、SPA</h3><p>SSR: Server side render 服务器渲染<br>SEO: Search engine optimize 搜索引擎优化<br>SPA: Single page application 单页面应用</p>
+<h2 id="vue相关"><a href="#vue相关" class="headerlink" title="vue相关"></a>vue相关</h2><h2 id="react相关"><a href="#react相关" class="headerlink" title="react相关"></a>react相关</h2><h2 id="Webpack相关"><a href="#Webpack相关" class="headerlink" title="Webpack相关"></a>Webpack相关</h2><h2 id="node相关"><a href="#node相关" class="headerlink" title="node相关"></a>node相关</h2><p>框架：express koa</p>
+<p>具体请查阅 <a target="_blank" rel="noopener" href="https://github.com/ElemeFE/node-interview/tree/master/sections/zh-cn">node-interview</a></p>
+<h2 id="shell相关"><a href="#shell相关" class="headerlink" title="shell相关"></a>shell相关</h2><p>具体请查阅 <a target="_blank" rel="noopener" href="https://github.com/jlevy/the-art-of-command-line/blob/master/README-zh.md">命令行的艺术</a></p>
+<h2 id="git相关"><a href="#git相关" class="headerlink" title="git相关"></a>git相关</h2><p>具体请查阅<a target="_blank" rel="noopener" href="https://git-scm.com/book/zh/v2">Pro Git book</a></p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="什么是material-design？"><a href="#什么是material-design？" class="headerlink" title="什么是material design？"></a>什么是material design？</h3><p>具体请查阅<a target="_blank" rel="noopener" href="http://www.google.com/design/spec/material-design/introduction.html">material-design</a><br>中文版：<a target="_blank" rel="noopener" href="http://wiki.jikexueyuan.com/project/material-design/animation/responsive-interaction.html">material-design</a></p>
+<h2 id="Database-数据库"><a href="#Database-数据库" class="headerlink" title="Database(数据库)"></a>Database(数据库)</h2><h3 id="解释数据库事务的4个基本特征ACID"><a href="#解释数据库事务的4个基本特征ACID" class="headerlink" title="解释数据库事务的4个基本特征ACID"></a>解释数据库事务的4个基本特征ACID</h3><p>Atomic 原子性<br>Consistency 一致性<br>Isolation 隔离性<br>Duration 持久性</p>
+<h3 id="解释数据库隔离级别"><a href="#解释数据库隔离级别" class="headerlink" title="解释数据库隔离级别"></a>解释数据库隔离级别</h3><p>Read uncommitted 未提交读 =&gt; 脏读，不可重复读，幻读<br>Read commited 读写提交 =&gt; 不可重复读，幻读<br>Repeatable read 可重复读 =&gt; 幻读<br>Serializable 串行化</p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

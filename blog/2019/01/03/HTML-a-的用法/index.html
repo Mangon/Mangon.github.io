@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        链接a标签的用法 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="样式&amp;lt;a&gt; 标签定义超链接，用于从一张页面链接到另一张页面。在所有浏览器中，链接的默认外观是：  未被访问的链接带有下划线而且是蓝色的活动链接带有下划线而且是红色的已被访问的链接带有下划线而且是紫色的链接默认样式1234a:link &amp;#123;color: blue;text-decoration: underline;&amp;#125;    /* 未访问的链接 */a:hover &amp;#123;color: blue;text-decoration: underline;&amp;#125" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E5%BC%8F"><span class="toc-text">样式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#href"><span class="toc-text">href</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#target"><span class="toc-text">target</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rel"><span class="toc-text">rel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#download-HTML5"><span class="toc-text">download HTML5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#type"><span class="toc-text">type</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%9F%E5%BC%83%E5%B1%9E%E6%80%A7"><span class="toc-text">废弃属性</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            链接a标签的用法
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-01-03T12:16:31.000Z" itemprop="datePublished">2019-01-03</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/HTML/" rel="tag">HTML</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="样式"><a href="#样式" class="headerlink" title="样式"></a>样式</h2><p>&lt;a> 标签定义超链接，用于从一张页面链接到另一张页面。</p>
+<p>在所有浏览器中，链接的默认外观是：  </p>
+<ul><li style="text-decoration: underline; color:blue;">未被访问的链接带有下划线而且是蓝色的</li><li style="text-decoration: underline; color:red;">活动链接带有下划线而且是红色的</li><li style="text-decoration: underline; color:purple;">已被访问的链接带有下划线而且是紫色的</li></ul>
+
+<p>链接默认样式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span> &#123;<span class="attribute">color</span>: blue;<span class="attribute">text-decoration</span>: underline;&#125;    <span class="comment">/* 未访问的链接 */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;<span class="attribute">color</span>: blue;<span class="attribute">text-decoration</span>: underline;&#125;    <span class="comment">/* 鼠标移动到链接上 */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:active</span> &#123;<span class="attribute">color</span>: red;<span class="attribute">text-decoration</span>: underline;&#125;     <span class="comment">/* 鼠标按下但还未收起时的链接 */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span> &#123;<span class="attribute">color</span>: purple;<span class="attribute">text-decoration</span>: underline;&#125;    <span class="comment">/* 已访问的链接 */</span></span><br></pre></td></tr></table></figure>
+<p>&lt;a>不能自闭合，必须有开始标识与结束标识。  </p>
+<span id="more"></span>
+<h2 id="href"><a href="#href" class="headerlink" title="href"></a>href</h2><p>&lt;a> 元素最重要的属性是 href 属性，它指示链接的目标。  </p>
+<p>如果没有href属性，&lt;a> 标签会表现的像是一个行内元素&lt;span>标签，甚至没有默认的样式。如果href属性没有值或者值为空字符串则点击 &lt;a> 标签会刷新当前页面。  </p>
+<p>href 属性的值可以是任何URL或URL片段。如果用户选择了 &lt;a> 标签中的内容，那么浏览器会尝试检索并显示 href 属性指定的 URL 所表示的文档，或者执行 JavaScript 表达式、方法和函数的列表。  </p>
+<p>href的值可以有很多种：  </p>
+<ul>
+<li>绝对 URL - 指向另一个站点（<code>href=&quot;http://www.example.com/index.html&quot;</code>）</li>
+<li>相对 URL - 指向站点内的某个文件（<code>href=&quot;index.html&quot;</code>）</li>
+<li>锚 URL - 指向页面中的锚（<code>href=&quot;#top&quot;</code>）</li>
+<li>javascript代码 - 执行javascript代码(<code>href=&quot;javascript:alert(&#39;a is clicked&#39;);&quot;</code>)</li>
+<li>本地文件地址 - 在浏览器中打开本地文件(<code>href=&quot;file:///Users/work/Desktop/test.txt&quot;</code>)</li>
+<li>邮件地址 - 发送邮件(<code>href=&quot;mailto://somebody@example.com&quot;</code>)</li>
+<li>电话号码 - 打电话(<code>href=&quot;tel:+86-10010&quot;</code>)</li>
+</ul>
+<p>⚠️注意事项</p>
+<ul>
+<li><p>除了相对URL和锚点，其它的表现都和在地址栏中输入相应href类似。<br>亦和<code>window.location.href=?</code>差不多，值得注意的是，在console执行 <code>window.location.href=&quot;file:///Users/work/Desktop/test.txt&quot;</code> 时会报错 <code>Not allowed to load local resource:file:///Users/work/Desktop/test.txt</code> 而执行 <code>window.location.href=&quot;tel:+86-10010&quot;</code> 则根本没反应</p>
+</li>
+<li><p>如果不是采用hash方式进行页面内导航的话，可以使用 <code>href=&quot;#top&quot;</code> 或者 <code>href=&quot;#&quot;</code> 链接返回到页面顶部 <span class="tag">HTML5<span/></p>
+</li>
+</ul>
+<h2 id="target"><a href="#target" class="headerlink" title="target"></a>target</h2><p>&lt;a> 标签的 target 属性规定在何处打开链接文档。  </p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>_blank</td>
+<td>浏览器总在一个新打开、未命名的窗口中载入目标文档。</td>
+</tr>
+<tr>
+<td>_self</td>
+<td>默认值，它使得目标文档载入并显示在相同的frame或者window中作为源文档。</td>
+</tr>
+<tr>
+<td>_parent</td>
+<td>这个目标使得文档载入父窗口或者包含来超链接引用的框架的框架集。如果这个引用是在窗口或者在顶级框架中，那么它与目标 _self 等效。</td>
+</tr>
+<tr>
+<td>_top</td>
+<td>这个目标使得文档载入包含这个超链接的窗口，用 _top 目标将会清除所有被包含的框架并将文档载入整个浏览器窗口。</td>
+</tr>
+<tr>
+<td>&lt;framename></td>
+<td>在指定的frame中打开被链接文档。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rel"><a href="#rel" class="headerlink" title="rel"></a>rel</h2><p>&lt;a> 标签的 rel 属性用于指定当前文档与被链接文档的关系。与 &lt;link> 标签的 rel 属性类似，事实上许多值两者通用。<br>搜索引擎可以利用该属性获得更多有关链接的信息，在跳转的时候某些值也有特殊的用处。  </p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>alternate</td>
+<td>文档的可选版本（例如打印页、翻译页或镜像）</td>
+</tr>
+<tr>
+<td>author</td>
+<td>作者链接</td>
+</tr>
+<tr>
+<td>bookmark</td>
+<td>表明这个超链接是当前页面的一个永久链接（可被加入书签的）</td>
+</tr>
+<tr>
+<td>external</td>
+<td>表明指向外部链接</td>
+</tr>
+<tr>
+<td>licence</td>
+<td>描述版权信息</td>
+</tr>
+<tr>
+<td>next</td>
+<td>集合中的下一个文档</td>
+</tr>
+<tr>
+<td>nofollow</td>
+<td>Google 使用 “nofollow”用于指定 Google 搜索引擎不要跟踪链接</td>
+</tr>
+<tr>
+<td>noopener</td>
+<td>防止新打开的页面通过window.opener访问父级页面</td>
+</tr>
+<tr>
+<td>noreferrer</td>
+<td>防止新打开页面时在http请求的header添加referrer字段</td>
+</tr>
+<tr>
+<td>prev</td>
+<td>集合中的前一个文档</td>
+</tr>
+<tr>
+<td>help</td>
+<td>指向帮助文档</td>
+</tr>
+<tr>
+<td>tag</td>
+<td>描述当前页面标识的页面</td>
+</tr>
+</tbody>
+</table>
+<p>⚠️注意事项</p>
+<ul>
+<li>使用target时，考虑添加 <code>rel=&quot;external noopener noreferrer&quot;</code> 以防止针对 window.opener API 的恶意行为。</li>
+</ul>
+<h2 id="download-HTML5"><a href="#download-HTML5" class="headerlink" title="download HTML5"></a>download <span class="self-tag">HTML5<span/></h2><p>&lt;a> 标签的 download 属性指示浏览器下载URL而不是导航到它，因此将提示用户将链接（href）指向地址保存为本地文件。如果属性有一个值，那么它将在Save提示符中作为预填充的文件名使用（如果用户需要，仍然可以更改文件名）。此属性对允许的值没有限制，但是/和\会被转换为下划线。大多数文件系统限制了文件名中的标点符号，故此，浏览器将相应地调整建议的文件名。  </p>
+<p>⚠️注意事项</p>
+<ul>
+<li>此属性仅适用于同源 URLs。</li>
+<li>尽管HTTP URL需要位于同一源中，但是可以使用 <code>blob: URLs</code> 和 <code>data: URLs</code> ，以方便用户下载 JavaScript 方式生成的内容（例如使用在线绘图的Web应用创建的照片）。</li>
+<li>如果HTTP头的Content-Disposition赋予了一个不同于此属性的文件名，HTTP头属性Content-Disposition优先于此属性。</li>
+<li>如果HTTP头属性Content-Disposition被设置为inline(即Content-Disposition=’inline’)，那么Firefox优先考虑HTTP头Content-Disposition属性，就像文件名的情况，而Chrome优先考虑download属性。</li>
+</ul>
+<h2 id="type"><a href="#type" class="headerlink" title="type"></a>type</h2><p>该属性指定在一个 MIME type 链接目标的形式的媒体类型。其仅提供建议，并没有内置的功能。  </p>
+<h2 id="废弃属性"><a href="#废弃属性" class="headerlink" title="废弃属性"></a>废弃属性</h2><p>以下属性在HTML5中已废弃，不推荐使用  </p>
+<ul>
+<li>charset</li>
+<li>coords</li>
+<li>name</li>
+<li>rev</li>
+<li>shape</li>
+</ul>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

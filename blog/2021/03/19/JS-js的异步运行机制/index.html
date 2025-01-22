@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        js 的异步运行机制 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="我们都知道 JavaScript 是单线程的，但是却很适合做 IO 密集型操作，那么 Javascript 为什么是单线程的又是如何处理异步操作的？下面我们来探究下 Jascript 的异步处理机制。进程与线程 - process &amp;amp; threadJavascript 代码是有运行环境的，例如在 浏览器 或者 Nodejs 等环境中，我们以浏览器为例，解释下浏览器中 Javascript 的异步运行机制。我们知道浏览器是多进程的，它主要包括以下进程：Browser 进程(Brow" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B-process-amp-thread"><span class="toc-text">进程与线程 - process &amp; thread</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%87%87%E7%94%A8%E5%8D%95%E7%BA%BF%E7%A8%8B"><span class="toc-text">为什么采用单线程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E4%B8%8E%E5%BC%82%E6%AD%A5-synchronization-amp-asynchronous"><span class="toc-text">同步与异步 - synchronization &amp; asynchronous</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF-task-queue-amp-event-loop"><span class="toc-text">任务队列与事件循环 - task queue &amp; event loop</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97-task-queue"><span class="toc-text">任务队列 - task queue</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF-event-loop"><span class="toc-text">事件循环 - event loop</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E4%BB%BB%E5%8A%A1%E4%B8%8E%EF%BC%88%E5%AE%8F%EF%BC%89%E4%BB%BB%E5%8A%A1-microtask-amp-macrotask-task"><span class="toc-text">微任务与（宏）任务 - microtask &amp; macrotask(task)</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            js 的异步运行机制
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-19T07:50:58.000Z" itemprop="datePublished">2021-03-19</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/javascript/" rel="tag">javascript</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>我们都知道 JavaScript 是单线程的，但是却很适合做 IO 密集型操作，那么 Javascript 为什么是单线程的又是如何处理异步操作的？下面我们来探究下 Jascript 的异步处理机制。</p>
+<span id="more"></span>
+<h2 id="进程与线程-process-amp-thread"><a href="#进程与线程-process-amp-thread" class="headerlink" title="进程与线程 - process &amp; thread"></a>进程与线程 - process &amp; thread</h2><p>Javascript 代码是有运行环境的，例如在 浏览器 或者 Nodejs 等环境中，我们以浏览器为例，解释下浏览器中 Javascript 的异步运行机制。<br>我们知道浏览器是多进程的，它主要包括以下进程：</p>
+<ul>
+<li>Browser 进程(Browser Process)：浏览器的主进程，唯一，负责创建和销毁其它进程、网络资源的下载与管理、浏览器界面的展示、前进后退等。</li>
+<li>GPU 进程(GPU Process)：用于 3D 绘制等，最多一个。</li>
+<li>第三方插件进程(Plugin Process)：每种类型的插件对应一个进程，仅当使用该插件时才创建。</li>
+<li>浏览器渲染进程（Renderer Process）：内部是多线程的，每打开一个新网页就会创建一个进程，主要用于页面渲染，脚本执行，事件处理等。</li>
+</ul>
+<p>页面的渲染，JavaScript 的执行，事件的循环均是在浏览器渲染进程（浏览器内核）中进行的，而是浏览器渲染进程（浏览器内核）是多线程的，主要包括以下线程：</p>
+<ul>
+<li>GUI 渲染线程：负责渲染浏览器界面HTML，当界面需要重绘（Repaint）或由于某种操作引发回流（Reflow）时，该线程就会执行;GUI 渲染线程与 JavaScript 引擎线程是互斥的，当 JavaScript 引擎执行时 GUI 线程会被挂起。</li>
+<li>JavaScript 引擎线程：也称为 JavaScript 内核，负责处理 Javascript 脚本程序、解析 Javascript 脚本、运行代码等。如果 JavaScript 执行的时间过长，会阻塞GUI渲染县城，这样就会造成页面的渲染不连贯，导致页面渲染加载阻塞。</li>
+<li>事件触发线程：用来控制浏览器事件循环，注意这不归 JavaScript 引擎线程管，当事件被触发时，该线程会把事件添加到待处理队列的队尾，等待 JavaScript 引擎的处理。</li>
+<li>定时触发器线程：setInterval 与 setTimeout 所在线程，注意，W3C 在 HTML 标准中规定，规定要求 setTimeout 中低于 4ms 的时间间隔算为 4ms 。</li>
+<li>异步 http 请求线程：在 XMLHttpRequest 连接后通过浏览器新开一个线程请求，将检测到状态变更时，如果设置有回调函数，异步线程就产生状态变更事件，将这个回调再放入事件队列中，再由 JavaScript 引擎执行。</li>
+</ul>
+<p>Tip: 浏览器 - 浏览器内核 - javascript内核 关系参考 Chromium - Blink - v8</p>
+<p>所谓单线程，是指在 JavaScript 引擎中负责解释和执行 JavaScript 代码的线程唯一，同一时间上只能执行一件任务。</p>
+<h3 id="为什么采用单线程"><a href="#为什么采用单线程" class="headerlink" title="为什么采用单线程"></a>为什么采用单线程</h3><p>我们知道浏览器是需要渲染 DOM 的，而 JavaScript 可以修改 DOM 结构，如果 JavaScript 引擎线程不是单线程的，那么可以同时执行多段 JavaScript，如果这多段 JavaScript 都修改 DOM，那么就会出现 DOM 冲突。JavaScript从诞生开始就选择了简单的单线程执行来避免产生这个问题。单线程就意味着，所有任务需要排队，前一个任务结束，才会执行后一个任务。这样的优点是实现比较简单，但也会带来一些问题，只要有一个任务耗时很长，后面的任务都必须排队等着，会拖延整个程序的执行。常见的浏览器无响应（假死），往往就是因为某一段 Javascript 代码长时间运行（比如死循环），导致整个页面卡在这个地方，其他任务无法执行。</p>
+<h2 id="同步与异步-synchronization-amp-asynchronous"><a href="#同步与异步-synchronization-amp-asynchronous" class="headerlink" title="同步与异步 - synchronization &amp; asynchronous"></a>同步与异步 - synchronization &amp; asynchronous</h2><p>为了解决这个问题，JavaScript 将任务的执行模式分为两种：同步和异步。<br>如果在函数 func 返回的时候，调用者就能够得到预期结果(即拿到了预期的返回值或者看到了预期的效果)，那么这个函数就是同步的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span></span><br><span class="line"><span class="title class_">Math</span>.<span class="title function_">floor</span>(a)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a) <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<p>如果在函数 func 返回的时候，调用者还不能够得到预期结果，需要经过一定时间，而且需要在将来通过一定的手段（比如回调）得到，那么这个函数就是异步的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fs.<span class="title function_">readFile</span>(<span class="string">&#x27;foo.txt&#x27;</span>, <span class="string">&#x27;utf8&#x27;</span>, <span class="keyword">function</span>(<span class="params">err, data</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在执行上面的这段异步代码时，<code>fs.readFile</code> 函数执行时，并不会立刻打印 <code>data</code> ，只有 <code>foo.txt</code> 读取完成时才打印。即异步函数 <code>fs.readFile</code> 不会在主线程中完成读取文件的操作，会由工作线程执行异步任务、通知主线程、主线程回调等操作，这个过程就叫做异步。<br>如果我们需要处理一些耗时的操作，例如：IO操作、定时/延时执行时，就可以使用异步的方法，不阻塞主线程，充分的利用CPU。<br>那么 Javascript 又是如何实现异步机制的呢？答案就是通过消息队列（task queue）与事件循环（event loop）。</p>
+<h2 id="任务队列与事件循环-task-queue-amp-event-loop"><a href="#任务队列与事件循环-task-queue-amp-event-loop" class="headerlink" title="任务队列与事件循环 - task queue &amp; event loop"></a>任务队列与事件循环 - task queue &amp; event loop</h2><p>任务队列(消息队列)：任务队列是一个先进先出的队列，它里面存放着各种异步任务。<br>事件循环：事件循环是指主线程重复从任务队列中取任务、执行任务的过程。</p>
+<h3 id="任务队列-task-queue"><a href="#任务队列-task-queue" class="headerlink" title="任务队列 - task queue"></a>任务队列 - task queue</h3><p>任务就是注册异步任务时设定的事件与添加的回调函数。以 Ajax 异步请求为例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$.<span class="title function_">ajax</span>(<span class="string">&#x27;XXX&#x27;</span>, <span class="keyword">function</span>(<span class="params">res</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span><br><span class="line">&#125;)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>主线程在发起 Ajax 请求后，会继续执行其它代码，Ajax 线程负责 HTTP 请求，拿到请求响应后，会封装成 JavaScript 对象，然后构造一条任务：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 消息队列里的消息</span></span><br><span class="line"><span class="keyword">var</span> task = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">callback</span>(response)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中 callback 是 Ajax 网络请求成功响应时的回调函数。</p>
+<p>主线程在执行完当前循环中的所有代码后，就会到任务队列取出这条任务(也就是 task 函数)，并执行它。到此为止，就完成了工作线程对主线程的通知 ，异步回调函数也就得到了执行。如果一开始主线程就没有提供回调函数，Ajax 线程在收到 HTTP 响应后，也就没必要通知主线程，从而也没必要往任务队列放消息。</p>
+<p><img src="/blog/static/imgs/async.png" alt="async_inner"></p>
+<h3 id="事件循环-event-loop"><a href="#事件循环-event-loop" class="headerlink" title="事件循环 - event loop"></a>事件循环 - event loop</h3><p>主线程不断的从任务队列中取任务，执行任务，其运行机制称为事件循环（event loop）。每执行一次任务被称作一个循环。事件循环是 JavaScript 实现异步的具体解决方案。在代码执行过程中，同步方法会直接执行，异步的方法先放在任务队列中，待同步方法执行完毕后，轮询执行任务队列中的回调函数。</p>
+<h2 id="微任务与（宏）任务-microtask-amp-macrotask-task"><a href="#微任务与（宏）任务-microtask-amp-macrotask-task" class="headerlink" title="微任务与（宏）任务 - microtask &amp; macrotask(task)"></a>微任务与（宏）任务 - microtask &amp; macrotask(task)</h2><p>每执行完一次任务队列中的任务之后，GUI 渲染线程便不会再被 Javascript 线程阻塞，从而进行一次渲染，渲染之后会执行任务队列中的异步任务。那么如果我们想要执行异步任务就必须触发一次渲染吗？不是的，Javascript 提供了另外一种机制微任务机制来在渲染进程之前执行异步的操作。</p>
+<p>JavaScript 中有 microtask 和 macrotask（task），它们是均为异步任务的类型，microtask 的优先级（这里指执行顺序）要高于 macrotask。macrotask 用于处理 I/O 和计时器等事件，每次执行一个。microtask 在每个同步 task 结束时执行，并且在每一个事件循环之前，microtask 队列总是被清空（全部执行）。</p>
+<p>Microtask 包括如下行为</p>
+<ul>
+<li>process.nextTick （Nodejs）</li>
+<li>Promise</li>
+<li>Object.observe (废弃)</li>
+<li>MutationObserver</li>
+</ul>
+<p>Macrotask（task）包括如下行为</p>
+<ul>
+<li>setTimeout</li>
+<li>setImmediate</li>
+<li>setInterval</li>
+<li>I/O</li>
+<li>DOM事件监听</li>
+</ul>
+<p>需要注意的是：</p>
+<ol>
+<li>每一个 event loop 都有一个 microtask queue</li>
+<li>每个 event loop 之后会有一个或多个 macrotask ( task queue )</li>
+<li>一个异步任务 task 可以放入 macrotask queue 也可以放入 microtask queue 中</li>
+<li>每一次event loop，会首先执行 microtask queue， 执行完毕后，会提取 macrotask queue 的第一个任务执行，如果这时又有异步任务加入 microtask queue， 会在同步任务执行结束后接着继续执行 microtask queue 里的任务，循环往复</li>
+</ol>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

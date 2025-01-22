@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        Decorator 小抄 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="现在的前端项目中，装饰器作为装饰器模式的语法糖得到了越来越广泛的应用。本文会先介绍装饰器的具体用法，然后会将 Javascript 中的装饰器和其他语言常见的装饰器用法进行比较，展示 Javascript 中装饰器的不同之处。什么是 DecoratorDecorator 装饰器是 ECMAScript 的一个语言功能提案，目前（文章书写时间 2022-02-09 13:54:26）还处于 stage-2 阶段。但是借助 TypeScript 或者 Babel，已经有大量的优秀开源项目深度使用" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Decorator"><span class="toc-text">什么是 Decorator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Decorator-%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">Decorator 的作用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="toc-text">主要的功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-text">生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">应用场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Decorator%E7%9A%84%E5%B1%80%E9%99%90%E6%80%A7"><span class="toc-text">Decorator的局限性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E6%94%AF%E6%8C%81%E6%96%B9%E6%B3%95%E8%A3%85%E9%A5%B0%E5%99%A8"><span class="toc-text">不支持方法装饰器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E6%94%AF%E6%8C%81%E7%BC%96%E8%AF%91%E6%97%B6%E8%A3%85%E9%A5%B0%E5%99%A8"><span class="toc-text">不支持编译时装饰器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E6%B3%95%E8%A2%ABtree-shaking"><span class="toc-text">无法被tree-shaking</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%87%E5%A4%9A%E7%9A%84%E8%A3%85%E9%A5%B0%E5%99%A8%E5%A2%9E%E5%8A%A0%E8%B0%83%E8%AF%95%E6%88%90%E6%9C%AC"><span class="toc-text">过多的装饰器增加调试成本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A3%85%E9%A5%B0%E5%99%A8%E8%AF%AD%E6%B3%95%E4%BB%8D%E5%A4%84%E4%BA%8E%E8%8D%89%E6%A1%88%E7%8A%B6%E6%80%81"><span class="toc-text">装饰器语法仍处于草案状态</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Typescript-%E4%B8%AD%E7%9A%84-Decorator-%E5%AE%9E%E7%8E%B0"><span class="toc-text">Typescript 中的 Decorator 实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Decorator-%E4%BE%8B%E5%AD%90"><span class="toc-text">Decorator 例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#decorate-%E6%96%B9%E6%B3%95%E8%A7%A3%E6%9E%90"><span class="toc-text">__decorate 方法解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Decorator-%E7%B1%BB%E5%9E%8B"><span class="toc-text">Decorator 类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Decorator-%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F"><span class="toc-text">Decorator 执行顺序</span></a></li></ol></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            Decorator 小抄
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2022-02-09T05:54:26.000Z" itemprop="datePublished">2022-02-09</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/ES7/" rel="tag">ES7</a>, <a class="article-tag-link" href="/blog/tags/decorator/" rel="tag">decorator</a>, <a class="article-tag-link" href="/blog/tags/javascript/" rel="tag">javascript</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>现在的前端项目中，装饰器作为装饰器模式的语法糖得到了越来越广泛的应用。本文会先介绍装饰器的具体用法，然后会将 Javascript 中的装饰器和其他语言常见的装饰器用法进行比较，展示 Javascript 中装饰器的不同之处。</p>
+<span id="more"></span>
+<h2 id="什么是-Decorator"><a href="#什么是-Decorator" class="headerlink" title="什么是 Decorator"></a>什么是 Decorator</h2><p>Decorator 装饰器是 ECMAScript 的一个语言功能提案，目前（文章书写时间 2022-02-09 13:54:26）还处于 <a target="_blank" rel="noopener" href="https://github.com/tc39/proposal-decorators">stage-2</a> 阶段。但是借助 TypeScript 或者 Babel，已经有大量的优秀开源项目深度使用上它了。比如：VS Code, Angular, Nest.js, Mobx 等等。Decorator 装饰器本质上是一种特殊的函数，在定义类、类元素时通过 <code>@</code> 来引用该函数，可以对被装饰的目标进行注入添加新的功能而无需从根本上改变其外部行为。</p>
+<p>一个 Decorator 的例子：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@defineElement</span>(<span class="string">&quot;my-class&quot;</span>)</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">C</span> <span class="keyword">extends</span> <span class="title class_ inherited__">HTMLElement</span> &#123;</span><br><span class="line">  <span class="meta">@reactive</span> accessor clicked = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Decorator-的作用"><a href="#Decorator-的作用" class="headerlink" title="Decorator 的作用"></a>Decorator 的作用</h2><h3 id="主要的功能"><a href="#主要的功能" class="headerlink" title="主要的功能"></a>主要的功能</h3><p>Decorator 有四个主要的功能</p>
+<ol>
+<li>它可以用具有相同语义的匹配值<strong>替换</strong>正在修饰的值。（例如，装饰器可以用另一个方法替换一个方法，用另一个字段替换一个字段，用另一个类替换一个类，等等）。</li>
+<li>它可以将<strong>元数据</strong>与正在修饰的值相关联。然后可以从外部读取这些元数据，并将其用于元编程(metaprogramming, 编写能改变语言语法特性或者运行时特性的程序)和自省(introspection, 检查对象的一种能力）。</li>
+<li>它可以通过元数据提供对正在修饰的值的<strong>访问</strong>。对于公共值(public)，他们可以通过值的名称来实现这一点。对于私有值(private)，它们接收访问器函数(accessor functions)，然后可以选择共享这些函数。</li>
+<li>它可以<strong>初始化</strong>被修饰的值，在值被完全定义后运行额外的代码。如果该值是类的成员，则每个实例都会进行一次初始化。</li>
+</ol>
+<h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><ol>
+<li>装饰器表达式（在 <code>@</code> 符号后的内容）的<strong>求值</strong>过程中穿插着计算属性名。</li>
+<li>在类定义期间，在对方法进行评估之后，但在将构造函数和原型组合在一起之前，会<strong>调用</strong>装饰器（作为函数）。</li>
+<li>在调用了所有装饰器之后，装饰器会同时被<strong>应用</strong>（修改构造函数和原型）。</li>
+</ol>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>常见应用场景：</p>
+<p>日志记录，性能统计，类型检查</p>
+<h2 id="Decorator的局限性"><a href="#Decorator的局限性" class="headerlink" title="Decorator的局限性"></a>Decorator的局限性</h2><p>使用装饰器语法特性的确可以带来很多方便，但还是有许多需要注意的地方，一方面是由于 Javascript 语言实现上的特性，一方面是装饰器语法本身的问题，还有一方面是语法方案本身进度的问题。</p>
+<h3 id="不支持方法装饰器"><a href="#不支持方法装饰器" class="headerlink" title="不支持方法装饰器"></a>不支持方法装饰器</h3><p>有关方法装饰器可参见 <a target="_blank" rel="noopener" href="https://github.com/tc39/proposal-decorators/blob/master/EXTENSIONS.md#function-decorators-and-annotations">function-decorators-and-annotations</a> 。其他语言像 python 是支持方法装饰器的。但是因为 Javascript 中的方法会变量提升，而装饰器并不会提升（详见<a target="_blank" rel="noopener" href="https://github.com/microsoft/TypeScript/issues/2249#issuecomment-86853710">Why decorator should not be hoisted</a>），所以 Javascript Decorator 草案初版不打算支持方法装饰器。详见<a target="_blank" rel="noopener" href="https://github.com/tc39/proposal-decorators/issues/40">Allow decorating functions</a>。</p>
+<h3 id="不支持编译时装饰器"><a href="#不支持编译时装饰器" class="headerlink" title="不支持编译时装饰器"></a>不支持编译时装饰器</h3><p>像 java 之类语言，装饰器（java一般叫注解 Annotation）可以在编译时产生不影响输出的代码。但 Javascript 不存在输出字节码这步，原生当然不支持编译时装饰器。不过工具如 Typescript 其实理论上是可以支持的。</p>
+<h3 id="无法被tree-shaking"><a href="#无法被tree-shaking" class="headerlink" title="无法被tree-shaking"></a>无法被tree-shaking</h3><p>目前从实现上来说，无论是 <code>babel-plugin-transform-decorators</code> 还是 Typescript 本质上都是一个 expression 。构建工具都没办法知道这个 expression 做了什么，所以被装饰的类没有办法被 tree-shaking 。例如下面的 TestClass 就无法被 tree-shaking 。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TestClass</span> &#123;</span><br><span class="line">    <span class="meta">@Foo</span>()</span><br><span class="line">    <span class="keyword">private</span> content = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// es6</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TestClass</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">content</span> = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">__decorate</span>([</span><br><span class="line">    <span class="title class_">Foo</span>(),</span><br><span class="line">    <span class="title function_">__metadata</span>(<span class="string">&quot;design:type&quot;</span>, <span class="title class_">Object</span>)</span><br><span class="line">], <span class="title class_">TestClass</span>.<span class="property"><span class="keyword">prototype</span></span>, <span class="string">&quot;content&quot;</span>, <span class="built_in">void</span> <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// es5</span></span><br><span class="line"><span class="keyword">var</span> <span class="title class_">TestClass</span> = <span class="comment">/** <span class="doctag">@class</span> */</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">TestClass</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">content</span> = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">__decorate</span>([</span><br><span class="line">        <span class="title class_">Foo</span>(),</span><br><span class="line">        <span class="title function_">__metadata</span>(<span class="string">&quot;design:type&quot;</span>, <span class="title class_">Object</span>)</span><br><span class="line">    ], <span class="title class_">TestClass</span>.<span class="property"><span class="keyword">prototype</span></span>, <span class="string">&quot;content&quot;</span>, <span class="built_in">void</span> <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">TestClass</span>;</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure>
+<p>代码压缩工具如 Terser 或 Uglify.js 支持用 <code>/*@__PURE__*/</code>comment来声明方法为 pure 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> x = <span class="comment">/*#__PURE__*/</span><span class="title function_">i_am_dropped_if_x_is_not_used</span>()</span><br></pre></td></tr></table></figure>
+<p>Typescript 中可以使用 <code>/** @class */</code> 注释。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="title class_">TestClass</span> = <span class="comment">/** <span class="doctag">@class</span> */</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line"><span class="comment">//...</span></span><br><span class="line"><span class="keyword">return</span> <span class="title class_">TestClass</span>;</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure>
+<p>我们可以在构建工具利用字符替换将这个注释替换成自动替换成 pure 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">plugins</span>: [</span><br><span class="line">    <span class="title function_">resolve</span>(&#123; <span class="attr">jsnext</span>: <span class="literal">true</span>, <span class="attr">module</span>: <span class="literal">true</span> &#125;),</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="title function_">transform</span>(<span class="params">code, id</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> code.<span class="title function_">replace</span>(<span class="regexp">/\/\*\* @class \\*\//g</span>, <span class="string">&quot;\/*@__PURE__*\/&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">uglify</span>(uglify_options),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h3 id="过多的装饰器增加调试成本"><a href="#过多的装饰器增加调试成本" class="headerlink" title="过多的装饰器增加调试成本"></a>过多的装饰器增加调试成本</h3><p>装饰器层次增多，会增加调试成本，很难追溯到一个 Bug 是在哪一层包装导致的。</p>
+<h3 id="装饰器语法仍处于草案状态"><a href="#装饰器语法仍处于草案状态" class="headerlink" title="装饰器语法仍处于草案状态"></a>装饰器语法仍处于草案状态</h3><p>当前的 <a target="_blank" rel="noopener" href="https://github.com/tc39/proposal-decorators">tc39 装饰器语法草案</a> 与 Babel “legacy” decorators 和 <a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/handbook/decorators.html">Typescript “experimental” decorators</a> 实现均不同。虽然 Babel 7 已经支持了 TC39 2018.11 会议上通过的草案，但其实现仍旧面临了性能上的问题。所以 tc39 的建议是，如果在之前已经使用了装饰器语法，那么继续按照老的方案使用。</p>
+<h2 id="Typescript-中的-Decorator-实现"><a href="#Typescript-中的-Decorator-实现" class="headerlink" title="Typescript 中的 Decorator 实现"></a>Typescript 中的 Decorator 实现</h2><p>目前 Typescript 中的 Decorator 实现是基于 2014 年的 JavaScript 装饰器语法草案。详细实现参见 <a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/handbook/decorators.html">Typescript “experimental” decorators</a>。</p>
+<h3 id="Decorator-例子"><a href="#Decorator-例子" class="headerlink" title="Decorator 例子"></a>Decorator 例子</h3><p>假设我们要实现一个 <code>Person</code> 的类，这个类包括两个方法 <code>walk</code> 与 <code>run</code>，我们通过装饰器记录 <code>walk</code> 与 <code>run</code> 消耗的时间。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">logTime</span>(<span class="params">target, key, desc</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> fn = desc.<span class="property">value</span>;</span><br><span class="line">    <span class="keyword">const</span> logTime = <span class="keyword">function</span> (<span class="params">...args</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> start = <span class="title class_">Date</span>.<span class="title function_">now</span>();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, args);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">const</span> end = <span class="title class_">Date</span>.<span class="title function_">now</span>();</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`<span class="subst">$&#123;key&#125;</span> time: <span class="subst">$&#123;end - start&#125;</span>ms`</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    desc.<span class="property">value</span> = logTime;</span><br><span class="line">    <span class="keyword">return</span> desc;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@logTime</span></span><br><span class="line">    <span class="title function_">walk</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Walk&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@logTime</span></span><br><span class="line">    <span class="title function_">run</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Run&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ming = <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">ming.<span class="title function_">walk</span>();</span><br><span class="line">ming.<span class="title function_">run</span>();</span><br></pre></td></tr></table></figure>
+<h3 id="decorate-方法解析"><a href="#decorate-方法解析" class="headerlink" title="__decorate 方法解析"></a>__decorate 方法解析</h3><p>上述代码经过 Typescript 转换后变为如下代码(emitDecoratorMetadata=false 不生成装饰器元数据)：</p>
+<p>可以在 <a target="_blank" rel="noopener" href="https://www.typescriptlang.org/play?emitDecoratorMetadata=false#code/PTAEHUFMBsGMHsC2lQBd5oBYoCoE8AHSAZVgCcBLA1UABWgEM8BzM+AVwDsATAGiwoBnUENANQAd0gAjQRVSQAUCEmYKsTKGYUAbpGF4OY0BoadYKdJMoL+gzAzIoz3UNEiPOofEVKVqAHSKymAAmkYI7NCuqGqcANag8ABmIjQUXrFOKBJMggBcISGgoAC0oACCbvCwDKgU8JkY7p7ehCTkVDQS2E6gnPCxGcwmZqDSTgzxxWWVoASMFmgYkAAeRJTInN3ymj4d-jSCeNsMq-wuoPaOltigAKoASgAywhK7SbGQZIIz5VWCFzSeCrZagNYbChbHaxUDcCjJZLfSDbExIAgUdxkUBIursJzCFJtXydajBZJcWD1RrVZg4KGQAAUqEczEgqH48UgeH43H0pPQZAAlKAAN6KEolBCcQQ0ZJeAC8cP5h3gZACOgY0HYkAA3BLJdLZbT6chQEqKeZqV5GQE7azBCLxZKXWiZUcWWQaEqACJ1SABAYSRlC-WuyWoMh4MUG8MupyofFeeUBBgEBZ4ZlqQQXMjMR1huMAXxxGS10GjzrjLqNNBRrl9-sD8GDodj1bdgng7gC0HgzEZAAMACSirl4Ev1ZD5UCj+uzWWOVBFxCCQdt6tF9tbl18wQCtUarU680mhmFkoJpPK-eqsj6reKWCMQTCWjfLtecXtgACfbpDLtrk0DxCGMbVka3YBv+jIAOTgFq8SwRukqPi6f79qaSjxlwYFVuGkE9jBsGPFwyEXqAW6PrWoCIMMp6cJAEh0B+jQhvqdGcMwATAaBbacdxZC4W2xQ4M0HhkF4iBqs4wLsDQXxuGYzDsAwbL8M+6iJAwwJ6CIXgAEQAKKrAwiALPoBlJNiBngA4qCwcIAByTEGUEKgAPJfGQ7yCJA-Bsh6S6QK40jRk40k6PRXx+WiiDQsIlyKRIarRCIBgcNiCxMKwHA8EEJRAA">Typescript Playground</a> 看到完整代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&quot;use strict&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> __decorate = (<span class="variable language_">this</span> &amp;&amp; <span class="variable language_">this</span>.<span class="property">__decorate</span>) || <span class="keyword">function</span> (<span class="params">decorators, target, key, desc</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> c = <span class="variable language_">arguments</span>.<span class="property">length</span>,</span><br><span class="line">        r = c &lt; <span class="number">3</span> ? <span class="attr">target</span>:</span><br><span class="line">            desc === <span class="literal">null</span> ? desc = <span class="title class_">Object</span>.<span class="title function_">getOwnPropertyDescriptor</span>(target, key) : desc,</span><br><span class="line">        d;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="title class_">Reflect</span> === <span class="string">&quot;object&quot;</span> &amp;&amp; <span class="keyword">typeof</span> <span class="title class_">Reflect</span>.<span class="property">decorate</span> === <span class="string">&quot;function&quot;</span>)</span><br><span class="line">        r = <span class="title class_">Reflect</span>.<span class="title function_">decorate</span>(decorators, target, key, desc);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = decorators.<span class="property">length</span> - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">            <span class="keyword">if</span> (d = decorators[i])</span><br><span class="line">                r = (c &lt; <span class="number">3</span> ? <span class="title function_">d</span>(r) : c &gt; <span class="number">3</span> ? <span class="title function_">d</span>(target, key, r) : <span class="title function_">d</span>(target, key)) || r;</span><br><span class="line">    <span class="keyword">return</span> c &gt; <span class="number">3</span> &amp;&amp; r &amp;&amp; <span class="title class_">Object</span>.<span class="title function_">defineProperty</span>(target, key, r), r;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">logTime</span>(<span class="params">target, key, descriptor</span>) &#123;<span class="comment">/* ... */</span>&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Persion</span> &#123;<span class="comment">/* ... */</span>&#125;</span><br><span class="line"><span class="title function_">__decorate</span>([</span><br><span class="line">    logTime</span><br><span class="line">], <span class="title class_">Person</span>.<span class="property"><span class="keyword">prototype</span></span>, <span class="string">&quot;walk&quot;</span>, <span class="literal">null</span>);</span><br><span class="line"><span class="title function_">__decorate</span>([</span><br><span class="line">    logTime</span><br><span class="line">], <span class="title class_">Person</span>.<span class="property"><span class="keyword">prototype</span></span>, <span class="string">&quot;run&quot;</span>, <span class="literal">null</span>);</span><br><span class="line"><span class="keyword">const</span> ming = <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">ming.<span class="title function_">walk</span>();</span><br><span class="line">ming.<span class="title function_">run</span>();</span><br></pre></td></tr></table></figure>
+<p>上述代码有关装饰器实现的核心点是两个部分，一个是定义，一个是执行。</p>
+<ul>
+<li><p>Part1 装饰器工具函数 <code>__decorate</code> 的执行</p>
+<p>执行会传入以下 4 个参数：</p>
+<ol>
+<li>装饰器业务逻辑函数</li>
+<li>类的构造器</li>
+<li>类的构造器属性名</li>
+<li>属性描述符(可以为null)</li>
+</ol>
+</li>
+<li><p>Part2 装饰器工具函数 <code>__decorate</code> 的定义</p>
+<p>首先，将该函数主要逻辑无关的部分剥离</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> __decorate = <span class="keyword">function</span> (<span class="params">decorators, target, key, desc</span>) &#123;</span><br><span class="line">    <span class="comment">// Step1 备份原来类构造器 (Class.prototype) 的属性描述符 (Descriptor)</span></span><br><span class="line">    <span class="keyword">var</span> r = desc = <span class="title class_">Object</span>.<span class="title function_">getOwnPropertyDescriptor</span>(target, key),</span><br><span class="line">    <span class="keyword">var</span> d;</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = decorators.<span class="property">length</span> - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">      <span class="comment">// d 为装饰器业务逻辑函数</span></span><br><span class="line">      <span class="keyword">if</span> (d = decorators[i]) &#123;</span><br><span class="line">        <span class="comment">// Step2 执行 d，并传入 target 类构造器，key 属性名，r 属性描述符</span></span><br><span class="line">        r = <span class="title function_">d</span>(target, key, r) || r;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// Step3 用装饰器函数覆盖原来属性描述符</span></span><br><span class="line">    <span class="title class_">Object</span>.<span class="title function_">defineProperty</span>(target, key, r);</span><br><span class="line">    <span class="keyword">return</span> r;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>我们可以看到，Typescript 对装饰器编译后的代码，是将装饰器逻辑抽离成了一个工具函数，这个工具函数主要包括三个部分：</p>
+<ol>
+<li>使用 <code>Object.getOwnPropertyDescriptor</code> 备份原来的类构造器的属性描述符</li>
+<li>执行装饰器业务逻辑函数，并传入类构造器、属性名、属性描述符</li>
+<li>使用 <code>Object.defineProperty</code> 将装饰器函数覆盖原来的属性描述符</li>
+</ol>
+</li>
+</ul>
+<h3 id="Decorator-类型"><a href="#Decorator-类型" class="headerlink" title="Decorator 类型"></a>Decorator 类型</h3><p>Typescript 中的装饰器一共有5种类型：</p>
+<ol>
+<li>类装饰器(Class)</li>
+<li>类属性装饰器(Class Field / Property)</li>
+<li>类方法装饰器(Class Method)</li>
+<li>类访问器装饰器(Calss Accessor)</li>
+<li>参数装饰器(Parameter)</li>
+</ol>
+<p>需要注意的是，在最新版 tc39 stage2 草案中，参数装饰器暂时没有被安排在内。并且 tc39 的草案与 Typescript 的实现有较大差别。</p>
+<p>Typescript 中各种装饰器的入参和返回值可参见以下描述：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">TypedPropertyDescriptor</span>&lt;T&gt; &#123;</span><br><span class="line">    enumerable?: <span class="built_in">boolean</span>;</span><br><span class="line">    configurable?: <span class="built_in">boolean</span>;</span><br><span class="line">    writable?: <span class="built_in">boolean</span>;</span><br><span class="line">    value?: T;</span><br><span class="line">    get?: <span class="function">() =&gt;</span> T;</span><br><span class="line">    set?: <span class="function">(<span class="params">value: T</span>) =&gt;</span> <span class="built_in">void</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 类装饰器</span></span><br><span class="line"><span class="keyword">declare</span> <span class="keyword">type</span> <span class="title class_">ClassDecorator</span> = &lt;<span class="title class_">TFunction</span> <span class="keyword">extends</span> <span class="title class_">Function</span>&gt;<span class="function">(<span class="params">target: TFunction</span>) =&gt;</span> <span class="title class_">TFunction</span> | <span class="built_in">void</span>;</span><br><span class="line"><span class="comment">// 属性装饰器</span></span><br><span class="line"><span class="keyword">declare</span> <span class="keyword">type</span> <span class="title class_">PropertyDecorator</span> = <span class="function">(<span class="params">target: <span class="built_in">Object</span>, propertyKey: <span class="built_in">string</span> | <span class="built_in">symbol</span></span>) =&gt;</span> <span class="built_in">void</span>;</span><br><span class="line"><span class="comment">// 方法装饰器/访问器装饰器</span></span><br><span class="line"><span class="keyword">declare</span> <span class="keyword">type</span> <span class="title class_">MethodDecorator</span> = &lt;T&gt;<span class="function">(<span class="params">target: <span class="built_in">Object</span>, propertyKey: <span class="built_in">string</span> | <span class="built_in">symbol</span>, descriptor: TypedPropertyDescriptor&lt;T&gt;</span>) =&gt;</span> <span class="title class_">TypedPropertyDescriptor</span>&lt;T&gt; | <span class="built_in">void</span>;</span><br><span class="line"><span class="comment">// 参数装饰器</span></span><br><span class="line"><span class="keyword">declare</span> <span class="keyword">type</span> <span class="title class_">ParameterDecorator</span> = <span class="function">(<span class="params">target: <span class="built_in">Object</span>, propertyKey: <span class="built_in">string</span> | <span class="built_in">symbol</span>, parameterIndex: <span class="built_in">number</span></span>) =&gt;</span> <span class="built_in">void</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="Decorator-执行顺序"><a href="#Decorator-执行顺序" class="headerlink" title="Decorator 执行顺序"></a>Decorator 执行顺序</h3><p>同一个类的方法有多个装饰器，其执行顺序为先从外到内进入，然后由内向外执行。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">dec</span>(<span class="params">id</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;evaluation&#x27;</span>, id);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params">target, key, desc</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;call&#x27;</span>, id);</span><br><span class="line">        <span class="keyword">return</span> desc;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Example</span> &#123;</span><br><span class="line">    <span class="meta">@dec</span>(<span class="number">1</span>)</span><br><span class="line">    <span class="meta">@dec</span>(<span class="number">2</span>)</span><br><span class="line">    <span class="title function_">method</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// evaluation 1</span></span><br><span class="line"><span class="comment">// evaluation 2</span></span><br><span class="line"><span class="comment">// call 2</span></span><br><span class="line"><span class="comment">// call 1</span></span><br></pre></td></tr></table></figure>
+<p>同一个类有不同类型的装饰器时，按照以下顺序执行：</p>
+<ol>
+<li>按照 实例 &gt;&gt; 静态 &gt;&gt; 构造函数 &gt; 类 的优先级顺序执行</li>
+<li>同一优先级内的（参数|方法/访问器/属性）装饰器按照出现的先后顺序执行</li>
+<li>同一个方法既有方法装饰器又有参数装饰器时，参数装饰器先执行</li>
+</ol>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">d</span>(<span class="params">value: <span class="built_in">string</span></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(value, <span class="string">&#x27;evaluation&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params">target: <span class="built_in">any</span>, key?: <span class="built_in">any</span>, desc?: <span class="built_in">any</span></span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(value, <span class="string">&#x27;call&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@d</span>(<span class="string">&#x27;Class&#x27;</span>)</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">C</span> &#123;</span><br><span class="line">    <span class="meta">@d</span>(<span class="string">&#x27;Static Property&#x27;</span>)</span><br><span class="line">    <span class="keyword">static</span> <span class="attr">prop</span>: <span class="built_in">any</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@d</span>(<span class="string">&#x27;Instance Property&#x27;</span>)</span><br><span class="line">    <span class="attr">prop</span>: <span class="built_in">any</span>;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params"><span class="meta">@d</span>(<span class="string">&#x27;Constructor Parameter&#x27;</span>) foo: <span class="built_in">void</span></span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@d</span>(<span class="string">&#x27;Static Method&#x27;</span>)</span><br><span class="line">    <span class="keyword">static</span> <span class="title function_">method</span>(<span class="params"><span class="meta">@d</span>(<span class="string">&#x27;Static Method Parameter&#x27;</span>) foo: <span class="built_in">void</span></span>)&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@d</span>(<span class="string">&#x27;Instance Method&#x27;</span>)</span><br><span class="line">    <span class="title function_">method</span>(<span class="params"><span class="meta">@d</span>(<span class="string">&#x27;Instance Method Parameter&#x27;</span>) foo: <span class="built_in">void</span></span>)&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Instance Property evaluation</span></span><br><span class="line"><span class="comment">// Instance Property call</span></span><br><span class="line"><span class="comment">// Instance Method evaluation</span></span><br><span class="line"><span class="comment">// Instance Method Parameter evaluation</span></span><br><span class="line"><span class="comment">// Instance Method Parameter call</span></span><br><span class="line"><span class="comment">// Instance Method call</span></span><br><span class="line"><span class="comment">// Static Property evaluation</span></span><br><span class="line"><span class="comment">// Static Property call</span></span><br><span class="line"><span class="comment">// Static Method evaluation</span></span><br><span class="line"><span class="comment">// Static Method Parameter evaluation</span></span><br><span class="line"><span class="comment">// Static Method Parameter call</span></span><br><span class="line"><span class="comment">// Static Method call</span></span><br><span class="line"><span class="comment">// Class evaluation</span></span><br><span class="line"><span class="comment">// Constructor Parameter evaluation</span></span><br><span class="line"><span class="comment">// Constructor Parameter call</span></span><br><span class="line"><span class="comment">// Class call</span></span><br></pre></td></tr></table></figure>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

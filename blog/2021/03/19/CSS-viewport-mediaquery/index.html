@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        CSS viewport/mediaquery | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="viewport 和 Mediaquery 都是为了进行响应式Web设计，即面对不同的设备有不同的样式而又不用开发不同的页面。viewport 视口，移动设备上的viewport就是设备的屏幕上能用来显示我们的网页的那一块区域,最常见用法  1&amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, maximum-scale=1.0, u" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <div class="author-meta">
+                
+                <div class="author-avatar">
+                    <a href="/blog/">
+                        <img src="/blog/images/avatar.jpeg" title="Mangon">
+                    </a>
+                </div>
+                
+                <div class="author-name">Mangon</div>
+                <div class="author-work">前端开发工程师</div>
+                <div class="author-location">
+                    <i class="icon-location vm"></i>
+                    <span class="vm">中国北京</span>
+                </div>
+                
+                <div class="author-thread-wrap">
+                    <div class="author-threads clearfix">
+                        
+                            <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
+                        
+                        
+                        
+                            <a class="thread-item" href="https://mangon.cn/blog/atom.xml" target="_blank" rel="external noopener noreferrer"><i class="icon-favorite"></i></a>
+                        
+                        
+                            <a class="thread-item" href="https://mangon.cn/resume" target="_blank" rel="external noopener noreferrer"><i class="icon-circle-more"></i></a>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            CSS viewport/mediaquery
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-19T06:10:22.000Z" itemprop="datePublished">2021-03-19</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>viewport 和 Mediaquery 都是为了进行响应式Web设计，即面对不同的设备有不同的样式而又不用开发不同的页面。<br>viewport 视口，移动设备上的viewport就是设备的屏幕上能用来显示我们的网页的那一块区域,最常见用法  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>width=device-width</code> : 当前viewport的宽度等于设备的宽度<br><code>initial-scale=1.0</code> : 初始缩放比例1.0<br><code>maximum-scale=1.0</code> : 最大缩放比例1.0<br><code>minimum-scale=1.0</code> : 最小缩放比例1.0 <em><br><code>user-scalable=no</code> : 不允许用户手动缩放 </em></p>
+<span id="more"></span>
+<p>Media query 媒体查询，针对不同的媒体类型定义不同的样式。最常见用法，根据屏幕宽度设置不同样式。  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Default wide-screen styles */</span></span><br><span class="line"><span class="keyword">@media</span> all <span class="keyword">and</span> (<span class="attribute">max-width</span>: <span class="number">1024px</span>) &#123;</span><br><span class="line">    <span class="comment">/* styles for narrow desktop browsers and iPad landscape */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@media</span> all <span class="keyword">and</span> (<span class="attribute">max-width</span>: <span class="number">768px</span>) &#123;</span><br><span class="line">    <span class="comment">/* styles for narrower desktop browsers and iPad portrait */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@media</span> all <span class="keyword">and</span> (<span class="attribute">max-width</span>: <span class="number">480px</span>) &#123;</span><br><span class="line">    <span class="comment">/* styles for iPhone/Android landscape (and really narrow browser windows) */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@media</span> all <span class="keyword">and</span> (<span class="attribute">max-width</span>: <span class="number">320px</span>) &#123;</span><br><span class="line">    <span class="comment">/* styles for iPhone/Android portrait */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@media</span> <span class="keyword">only</span> screen <span class="keyword">and</span> (<span class="attribute">max-width</span>: <span class="number">240px</span>) &#123;</span><br><span class="line">    <span class="comment">/* styles for smaller devices */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

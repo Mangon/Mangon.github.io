@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        SPA &amp; MPA &amp; SSR | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="什么是 SPA &amp;amp; MPA单页web应用（single page web application，SPA），是指只有一个web页面的应用，是加载单个HTML页面并在用户与应用程序交互时动态更新该页面的web应用程序。  多页web应用（multi page web application，MPA），是指有多个web页面的应用，每一次页面跳转的时候，后台服务器都会返回一个新的HTML文档，并加载js、css资源。  SPA 和 MPA 的区别多页应用模式（MPA）单页应用模" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-SPA-amp-MPA"><span class="toc-text">什么是 SPA &amp; MPA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SPA-%E5%92%8C-MPA-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">SPA 和 MPA 的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSR"><span class="toc-text">SSR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8C%E6%9E%84%E6%B8%B2%E6%9F%93"><span class="toc-text">同构渲染</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            SPA &amp; MPA &amp; SSR
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-05-20T06:13:28.000Z" itemprop="datePublished">2021-05-20</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/SPA/" rel="tag">SPA</a>, <a class="article-tag-link" href="/blog/tags/SSR/" rel="tag">SSR</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="什么是-SPA-amp-MPA"><a href="#什么是-SPA-amp-MPA" class="headerlink" title="什么是 SPA &amp; MPA"></a>什么是 SPA &amp; MPA</h2><p>单页web应用（single page web application，SPA），是指只有一个web页面的应用，是加载单个HTML页面并在用户与应用程序交互时动态更新该页面的web应用程序。  </p>
+<p>多页web应用（multi page web application，MPA），是指有多个web页面的应用，每一次页面跳转的时候，后台服务器都会返回一个新的HTML文档，并加载js、css资源。  </p>
+<span id="more"></span>
+<h2 id="SPA-和-MPA-的区别"><a href="#SPA-和-MPA-的区别" class="headerlink" title="SPA 和 MPA 的区别"></a>SPA 和 MPA 的区别</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>多页应用模式（MPA）</th>
+<th>单页应用模式（SPA）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>应用组成</td>
+<td>由多个完整HTML页面构成</td>
+<td>一个HTML页面，通过ajax请求获取数据更新页面</td>
+</tr>
+<tr>
+<td>跳转方式</td>
+<td>页面之间跳转时从一个HTML页面跳转到另一个HTML页面</td>
+<td>通过javascript控制页面的渲染，达到页面切换的目的</td>
+</tr>
+<tr>
+<td>跳转后公共资源是否重新加载</td>
+<td>是</td>
+<td>否</td>
+</tr>
+<tr>
+<td>URL模式</td>
+<td><p>http://xxx/page1.html</p> <p>http://xxx/page2.html</p></td>
+<td><p>http://xxx/shell.html#page1</p> <p>http://xxx/shell.html#page2 （hash）</p></td>
+</tr>
+<tr>
+<td>用户体验</td>
+<td>首页加载速度快，页面间切换加载慢</td>
+<td>页面切换速度快，首页加载速度慢</td>
+</tr>
+<tr>
+<td>SEO（Search engine optimize）</td>
+<td>利于seo</td>
+<td>由于搜索引擎爬虫一般只爬取静态页面，所以SPA一般不利于seo</td>
+</tr>
+</tbody>
+</table>
+<p>总结：SPA页面切换更加流畅，页面切换速度快，但首页因需要加载过多的资源，首页速度较慢，且不利于SEO。在有强SEO需求的情况下，比如文档类型的应用、官网首页采用MPA更合适，开发较大型web应用时采用SPA更合适。  </p>
+<h2 id="SSR"><a href="#SSR" class="headerlink" title="SSR"></a>SSR</h2><p>服务器端渲染（Server Side Render）是指在服务器端将模板与数据绑定，并将页面返回给客户端的技术。服务器端渲染的优势就是利于 SEO，首屏加载速度快。  </p>
+<h2 id="同构渲染"><a href="#同构渲染" class="headerlink" title="同构渲染"></a>同构渲染</h2><p>部分 SSR 框架采用了同构渲染的策略。例如 Next.js，同一套代码既可以在服务器端渲染，也可以在客户端渲染。当我们首次访问时（访问首屏页面），Next.js 使用服务器端渲染，为我们返回已经渲染完成的最终 HTML 页面。这样就同时解决了首屏白屏问题以及 SEO 问题。此后当我们再进行交互时，则使用客户端渲染。HTML、CSS、JS 等资源都不需要再重新请求，只需要通过 ajax/websocket 等途径获取数据，在客户端完成渲染过程。  </p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

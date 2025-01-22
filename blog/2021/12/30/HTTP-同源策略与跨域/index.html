@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        浏览器同源策略与跨域 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="浏览器的同源策略（Same-origin policy）是一个重要的基础安全策略，它用于限制一个源（origin）的文档或者它加载的脚本如何能与另一个源的资源进行交互。如果从 http://example.com/doc.html 检索到的文档尝试访问从 https://example.com/target.html 检索到的文档的 DOM ，则用户代理将不允许访问。它能帮助阻隔恶意文档，减少可能的攻击行为。当尝试跨域访问资源时会收到以下错误同源的定义如果两个 URL 的 协议、域名和端口" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8C%E6%BA%90%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-text">同源的定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BA%90%E7%9A%84%E4%BF%AE%E6%94%B9"><span class="toc-text">源的修改</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%A8%E6%BA%90%E7%BD%91%E7%BB%9C%E8%AE%BF%E9%97%AE"><span class="toc-text">跨源网络访问</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%B7%A8%E5%9F%9F%E5%85%B1%E4%BA%AB%E8%B5%84%E6%BA%90"><span class="toc-text">如何跨域共享资源</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CORS%EF%BC%88Cross-Origin-Resource-Sharing%EF%BC%89-%E8%B7%A8%E6%BA%90%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB"><span class="toc-text">CORS（Cross Origin Resource Sharing） 跨源资源共享</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#document-domain-%E7%88%B6%E5%AD%90%E5%9F%9F%E5%90%8D%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB"><span class="toc-text">document.domain 父子域名资源共享</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#window-postMessage-%E8%B7%A8%E6%96%87%E6%A1%A3%E9%80%9A%E4%BF%A1"><span class="toc-text">window.postMessage 跨文档通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WebSocket"><span class="toc-text">WebSocket</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JSONP-JSON-with-padding-hack"><span class="toc-text">JSONP - JSON with padding (hack)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#window-name-hack"><span class="toc-text">window.name (hack)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E8%AF%B7%E6%B1%82%E4%BB%A3%E7%90%86%E5%AE%9E%E7%8E%B0%E8%B7%A8%E5%9F%9F"><span class="toc-text">通过请求代理实现跨域</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-text">参考资料</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            浏览器同源策略与跨域
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-12-30T08:53:52.000Z" itemprop="datePublished">2021-12-30</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CORS/" rel="tag">CORS</a>, <a class="article-tag-link" href="/blog/tags/browser/" rel="tag">browser</a>, <a class="article-tag-link" href="/blog/tags/same-origin/" rel="tag">same-origin</a>, <a class="article-tag-link" href="/blog/tags/security/" rel="tag">security</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>浏览器的同源策略（Same-origin policy）是一个重要的基础安全策略，它用于限制一个源（origin）的文档或者它加载的脚本如何能与另一个源的资源进行交互。如果从 <code>http://example.com/doc.html</code> 检索到的文档尝试访问从 <code>https://example.com/target.html</code> 检索到的文档的 DOM ，则用户代理将不允许访问。它能帮助阻隔恶意文档，减少可能的攻击行为。</p>
+<span id="more"></span>
+<p>当尝试跨域访问资源时会收到以下错误<br><img src="/blog/static/imgs/cors.webp" alt="cors"></p>
+<h2 id="同源的定义"><a href="#同源的定义" class="headerlink" title="同源的定义"></a>同源的定义</h2><p>如果两个 URL 的 协议、域名和端口 都相同的话，则这两个 URL 是同源的。  </p>
+<h3 id="源的修改"><a href="#源的修改" class="headerlink" title="源的修改"></a>源的修改</h3><p>Javascript 脚本可以将 <code>document.domain</code> 的值设置为当前域名或当前域的父域名。如果将其设置为其当前域的父域名时，则这个较短的父域名将用于后续源的检查。任何对 <code>document.domain</code> 的赋值操作，包括 <code>document.domain = document.domain</code> 都会导致端口号被重写为 null 。因此，如果希望子域名和父域名同源，需要在他们双方中都进行赋值。  </p>
+<h2 id="跨源网络访问"><a href="#跨源网络访问" class="headerlink" title="跨源网络访问"></a>跨源网络访问</h2><p>受同源策略的影响，通常，文档允许嵌入跨源的资源，但是不允许对跨源资源进行读取。  </p>
+<table>
+<thead>
+<tr>
+<th>资源</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>内嵌iframe</td>
+<td>允许跨源嵌入，但不允许跨域读取（例如使用 JavaScript 访问 iframe 中的文档）</td>
+</tr>
+<tr>
+<td>样式CSS</td>
+<td>跨源 CSS 可以使用 <code>&lt;link&gt;</code> 元素或在CSS文件中通过 <code>@import</code> 嵌入（Content-Type 需要设置正确）</td>
+</tr>
+<tr>
+<td>表单forms</td>
+<td>跨源 URLs 可以作为 form 元素的 action 属性</td>
+</tr>
+<tr>
+<td>图片images</td>
+<td>跨源图片可以通过 <code>&lt;img&gt;</code> 元素嵌入，但是不能读取（例如使用 JavaScript 将跨域图像加载到 canvas 元素中）</td>
+</tr>
+<tr>
+<td>多媒体multimedia</td>
+<td>可以使用 <code>&lt;video&gt;</code> 和 <code>&lt;audio&gt;</code> 元素嵌入跨源视频和音频</td>
+</tr>
+<tr>
+<td>脚本script</td>
+<td>跨源脚本可以使用 <code>&lt;script&gt;</code> 元素嵌入，但特定 api(例如 跨源的 Fetch API 请求 或者 XMLHttpRequest 请求)会被阻止</td>
+</tr>
+<tr>
+<td>API</td>
+<td><code>iframe.contentWindow</code>、 <code>window.parent</code>、<code>window.open</code> 和 <code>window.opener</code> 在跨源时 访问 Window 和 Location 对象均被限制</td>
+</tr>
+<tr>
+<td>localStorage &amp; IndexedDB</td>
+<td>无法跨源访问</td>
+</tr>
+</tbody>
+</table>
+<p>同源策略主要限制以下三种情况：  </p>
+<ul>
+<li>DOM同源策略：禁止对不同源页面DOM进行操作。这里主要场景是 iframe 跨域的情况，不同域名的 iframe 是限制互相访问的。  </li>
+<li>Ajax同源策略：禁止使用 XMLHttpRequest 对象 或者 Fetch API 向不同源的服务器地址发起 HTTP 请求。  </li>
+<li>存储同源策略：禁止读取非同源的 sessionStorage、localStorage、IndexedDB</li>
+</ul>
+<h2 id="如何跨域共享资源"><a href="#如何跨域共享资源" class="headerlink" title="如何跨域共享资源"></a>如何跨域共享资源</h2><p>同源策略本质上为了对不同的源做资源隔离。但实际应用中，经常有不同的域名属于同一个实体的情况（比如为了突破浏览器并发请求数限制或对静态资源做了CDN配置导致静态资源和API请求不在同一域名下）。在这些情况下同源策略太严格了，给拥有多个域名（或子域）的大型网站跨域资源共享带来了问题。以下列出一些较常见的场景和方法来避免因同源策略导致的资源共享问题。</p>
+<h3 id="CORS（Cross-Origin-Resource-Sharing）-跨源资源共享"><a href="#CORS（Cross-Origin-Resource-Sharing）-跨源资源共享" class="headerlink" title="CORS（Cross Origin Resource Sharing） 跨源资源共享"></a>CORS（Cross Origin Resource Sharing） 跨源资源共享</h3><p>这种方式使用了一个新的 <code>Origin</code> 请求头和一个新的 <code>Access-Control-Allow-Origin</code> 响应头扩展了HTTP。允许服务端设置 <code>Access-Control-Allow-Origin</code> 头标识哪些站点可以请求文件，或者设置 <code>Access-Control-Allow-Origin: *</code>，表示允许任意站点访问文件。根据请求类型是否是“简单请求”，浏览器可能发送 OPTIONS 类型的预检请求。  </p>
+<p>对于跨源的 XMLHttpRequest 或 Fetch 请求，浏览器 <em>不会</em> 发送身份凭证信息。如果需要携带身份信息，需要在 XMLHttpRequest 实例中添加 withCredentials 属性，值为 true，如果服务器接受身份信息，则响应头中会包含 <code>Access-Control-Allow-Credentials: true</code> ，这样，浏览器就会发送 Cookie（Cookie 受 SameSite 属性控制） 和 Authorization 信息。  </p>
+<p>与 CORS 相关的 HTTP 请求头和响应头包括以下这些：  </p>
+<p>响应</p>
+<table>
+<thead>
+<tr>
+<th>首部字段名</th>
+<th>说明</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Access-Control-Allow-Origin</td>
+<td>origin 参数的值指定了允许访问该资源的外域 URI。对于不需要携带身份凭证的请求，服务器可以指定该字段的值为通配符，表示允许来自所有域的请求。如果服务端指定了具体的域名而非“*”，那么响应首部中的 <code>Vary</code> 字段的值必须包含 <code>Origin</code>。这将告诉客户端：服务器对不同的源站返回不同的内容。</td>
+<td><code>Access-Control-Allow-Origin: &lt;origin&gt; ｜ *</code></td>
+</tr>
+<tr>
+<td>Access-Control-Expose-Headers</td>
+<td>让服务器把允许浏览器访问的头放入白名单</td>
+<td><code>Access-Control-Expose-Headers: X-My-Custom-Header, X-Another-Custom-Header</code></td>
+</tr>
+<tr>
+<td>Access-Control-Max-Age</td>
+<td>指定了preflight请求的结果能够被缓存多久</td>
+<td><code>Access-Control-Max-Age: &lt;delta-seconds&gt;</code></td>
+</tr>
+<tr>
+<td>Access-Control-Allow-Credentials</td>
+<td>指定了当浏览器的 credentials 设置为 true 时是否允许浏览器读取 response 的内容</td>
+<td><code>Access-Control-Allow-Credentials: true</code></td>
+</tr>
+<tr>
+<td>Access-Control-Allow-Methods</td>
+<td>用于预检请求的响应，指明了实际请求所允许使用的 HTTP 方法</td>
+<td><code>Access-Control-Allow-Methods: &lt;method&gt;[, &lt;method&gt;]*</code></td>
+</tr>
+<tr>
+<td>Access-Control-Allow-Headers</td>
+<td>用于预检请求的响应，指明了实际请求中允许携带的首部字段</td>
+<td><code>Access-Control-Allow-Headers: &lt;field-name&gt;[, &lt;field-name&gt;]*</code></td>
+</tr>
+</tbody>
+</table>
+<p>请求</p>
+<table>
+<thead>
+<tr>
+<th>首部字段名</th>
+<th>说明</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Origin</td>
+<td>源站 URI</td>
+<td><code>Origin: &lt;origin&gt;</code></td>
+</tr>
+<tr>
+<td>Access-Control-Request-Method</td>
+<td>用于预检请求，将实际请求所使用的 HTTP 方法告诉服务器</td>
+<td><code>Access-Control-Request-Method: &lt;method&gt;</code></td>
+</tr>
+<tr>
+<td>Access-Control-Request-Headers</td>
+<td>用于预检请求，将实际请求所携带的首部字段告诉服务器</td>
+<td><code>Access-Control-Request-Headers: &lt;field-name&gt;[, &lt;field-name&gt;]*</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="document-domain-父子域名资源共享"><a href="#document-domain-父子域名资源共享" class="headerlink" title="document.domain 父子域名资源共享"></a>document.domain 父子域名资源共享</h3><p>如前所描，如果两个待共享资源的域名是父子域名的关系，或者同属于一个父域名，则可以通过修改 <code>document.domain</code> 将其源改为相同的父域名来实现跨域共享资源。</p>
+<h3 id="window-postMessage-跨文档通信"><a href="#window-postMessage-跨文档通信" class="headerlink" title="window.postMessage 跨文档通信"></a>window.postMessage 跨文档通信</h3><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/postMessage">window.postMessage</a> 可以安全地实现跨源通信。</p>
+<figure class="highlight js"><figcaption><span>发送窗口</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">otherWindow.<span class="title function_">postMessage</span>(message, targetOrigin, [transfer]);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>otherWindow: 其他窗口的一个引用，比如 iframe 的 contentWindow 属性、执行 window.open 返回的窗口对象、或者是命名过或数值索引的 window.frames</li>
+<li>message: 将要发送到其他 window 的数据</li>
+<li>targetOrigin: 通过窗口的 origin 属性来指定哪些窗口能接收到消息事件</li>
+<li>transfer(可选) : 是一串和 message 同时传递的 Transferable 对象. 这些对象的所有权将被转移给消息的接收方，而发送一方将不再保有所有权</li>
+</ul>
+<figure class="highlight js"><figcaption><span>接收窗口</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&quot;message&quot;</span>, receiveMessage, <span class="literal">false</span>);</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">receiveMessage</span>(<span class="params">event</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> origin = event.<span class="property">origin</span>;</span><br><span class="line">    <span class="comment">// 不检查 origin 属性会导致跨站点脚本攻击（XSS）</span></span><br><span class="line">    <span class="keyword">if</span> (origin !== <span class="string">&quot;http://example.org:8080&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 获取 event.data 数据，同时 可以使用 event.source 继续和 source 通信</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h3><p>WebSocket 规范定义了可在浏览器和服务器之间建立持久连接的 API，这种方式通信没有使用 HTTP，因此也没有跨域的限制。  </p>
+<p>客户端：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">let</span> socket = <span class="keyword">new</span> <span class="title class_">WebSocket</span>(<span class="string">&quot;ws://localhost:8080&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">  socket.<span class="property">onopen</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    socket.<span class="title function_">send</span>(<span class="string">&quot;message&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">  &#125;;</span></span><br><span class="line"><span class="language-javascript">  socket.<span class="property">onmessage</span> = <span class="keyword">function</span>(<span class="params">e</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(e.<span class="property">data</span>);</span></span><br><span class="line"><span class="language-javascript">  &#125;;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>服务器：<br><figure class="highlight js"><figcaption><span>nodejs</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">WebSocket</span> = <span class="built_in">require</span>(<span class="string">&quot;ws&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> server = <span class="keyword">new</span> <span class="title class_">WebSocket</span>.<span class="title class_">Server</span>(&#123; <span class="attr">port</span>: <span class="number">8080</span> &#125;);</span><br><span class="line">server.<span class="title function_">on</span>(<span class="string">&quot;connection&quot;</span>, <span class="keyword">function</span>(<span class="params">socket</span>) &#123;</span><br><span class="line">  socket.<span class="title function_">on</span>(<span class="string">&quot;message&quot;</span>, <span class="keyword">function</span>(<span class="params">data</span>) &#123;</span><br><span class="line">    socket.<span class="title function_">send</span>(data);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="JSONP-JSON-with-padding-hack"><a href="#JSONP-JSON-with-padding-hack" class="headerlink" title="JSONP - JSON with padding (hack)"></a>JSONP - JSON with padding (hack)</h3><p>JSONP 是利用 <code>&lt;script\&gt;</code> 标签没有跨域限制的要求来达到与第三方通讯的目的。JSONP 只能支持 GET 类型的请求。当需要通讯时，源站脚本创建一个 <code>&lt;script\&gt;</code> 元素，地址指向第三方的API地址，形如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;http://www.example.net/api?param1=1&amp;param2=2&amp;func=callback&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>并提供一个回调函数来接收数据（函数名可约定，或通过地址参数传递）。<br>第三方产生的响应为 json 数据的包装（故称之为jsonp，即json with padding），形如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">callback</span>(&#123;<span class="string">&quot;name&quot;</span>:<span class="string">&quot;hax&quot;</span>,<span class="string">&quot;gender&quot;</span>:<span class="string">&quot;Male&quot;</span>&#125;)</span><br></pre></td></tr></table></figure>
+<p>这样浏览器会调用 callback 函数，并传递解析后 json 对象作为参数。本站脚本可在 callback 函数里处理所传入的数据。</p>
+<p>客户端实现：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params">data</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> url=<span class="string">&quot;http://www.x.com/test?a=1&amp;callback=test&quot;</span>;</span><br><span class="line"><span class="comment">// 然后前端通过script标签去访问并执行，上面的东西</span></span><br><span class="line"><span class="keyword">var</span> script = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;script&#x27;</span>);</span><br><span class="line">script.<span class="title function_">setAttribute</span>(<span class="string">&#x27;src&#x27;</span>, url);</span><br><span class="line"><span class="comment">// 把script标签加入head，此时调用开始</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementsByTagName</span>(<span class="string">&#x27;head&#x27;</span>)[<span class="number">0</span>].<span class="title function_">appendChild</span>(script); </span><br><span class="line"><span class="comment">// 然后就会调用页面的test方法</span></span><br><span class="line"><span class="comment">// test(&#123;&#125;)</span></span><br></pre></td></tr></table></figure>
+<h3 id="window-name-hack"><a href="#window-name-hack" class="headerlink" title="window.name (hack)"></a>window.name (hack)</h3><p>window 对象有个 name 属性，该属性有个特征：即在一个窗口(window)的生命周期内，窗口载入的所有的页面都是共享一个 window.name 的，每个页面对 window.name 都有读写的权限，window.name 是持久存在一个窗口载入过的所有页面中的。</p>
+<h3 id="通过请求代理实现跨域"><a href="#通过请求代理实现跨域" class="headerlink" title="通过请求代理实现跨域"></a>通过请求代理实现跨域</h3><p>浏览器有跨域限制，但是服务器/代理工具不存在跨域问题，所以可以由同源服务器/代理工具请求所要域的资源再返回给客户端。</p>
+<ul>
+<li>服务器代理 - 你可以自己启动一个服务器，然后将接口转发，不过开发服务器一般都有代理工具可以快速对接口进行代理，例如 webpack-dev-server 可以通过配置 devServer.proxy 来配置对接口的代理，底层是使用了 <a target="_blank" rel="noopener" href="https://github.com/chimurai/http-proxy-middleware">http-proxy-middleware</a> 包进行了处理 </li>
+<li>代理工具代理 - 多数代理工具提供了接口转发功能，例如 charles 可以在 tools/map remote 中将请求转发到另一个地址</li>
+<li>Nginx 反向代理 - 将不同接口转发到对应的域名下</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1 local.test</span><br></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> local.test;</span><br><span class="line">    <span class="section">location</span> /api &#123;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://localhost:8080;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://localhost:8000;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy">MDN Docs Same-origin policy</a><br><a target="_blank" rel="noopener" href="https://www.w3.org/Security/wiki/Same_Origin_Policy">w3 Same_Origin_Policy</a><br><a target="_blank" rel="noopener" href="https://web.dev/same-origin-policy/">web.dev Same-origin policy</a><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS">MDN Docs CORS</a><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/postMessage">MDN Docs window.postMessage</a></p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

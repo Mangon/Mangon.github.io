@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        CSS 长度单位 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="本篇主要列举并比较下CSS中常用到的几个长度单位。包含px、em、rem、vh、vw、rpx、in、cm、mm、ex、pt、pc。pxpx(Pixel)像素。相对长度单位。1px等于计算机屏幕上的一个点像素的宽度。px是相对于显示器屏幕分辨率而言的。  emem是相对长度单位。相对于当前对象内文本的字体尺寸。如当前行内文本的字体尺寸未被人为设置，则相当于浏览器的默认字体尺寸。  em特点  em的值并不是固定的em会继承父级元素的字体大小注意：任意浏览器的默认字体高都是16px" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#px"><span class="toc-text">px</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#em"><span class="toc-text">em</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rem"><span class="toc-text">rem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vh-vw"><span class="toc-text">vh&#x2F;vw</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rpx"><span class="toc-text">rpx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-text">其他</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E5%9D%91"><span class="toc-text">一些坑</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            CSS 长度单位
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-18T12:15:59.000Z" itemprop="datePublished">2018-09-18</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>本篇主要列举并比较下CSS中常用到的几个长度单位。包含px、em、rem、vh、vw、rpx、in、cm、mm、ex、pt、pc。</p>
+<span id="more"></span>
+<h2 id="px"><a href="#px" class="headerlink" title="px"></a>px</h2><p>px(Pixel)像素。相对长度单位。1px等于计算机屏幕上的一个点像素的宽度。px是相对于显示器屏幕分辨率而言的。  </p>
+<h2 id="em"><a href="#em" class="headerlink" title="em"></a>em</h2><p>em是相对长度单位。相对于当前对象内文本的字体尺寸。如当前行内文本的字体尺寸未被人为设置，则相当于浏览器的默认字体尺寸。  </p>
+<p>em特点  </p>
+<ol>
+<li>em的值并不是固定的</li>
+<li>em会继承父级元素的字体大小</li>
+</ol>
+<p>注意：任意浏览器的默认字体高都是16px。所有未经调整的浏览器都符合: 1em = 16px。那么12px = 0.75em，10px = 0.625em。<br>如果使用em作为当前项目的单位，为了简化font-size的换算，需要在CSS中的body选择器中声明font-size=62.5%，这就使em值变为 16px * 62.5% = 10px，这样12px = 1.2em，10px=1em，也就是说只需要将你的原来的px数值除以10，然后换上em作为单位就行了。  </p>
+<h2 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h2><p>rem(Font size of the root element)是CSS3新增的一个相对单位，指相对于根元素（即html元素）的字体大小的单位。  </p>
+<p>rem特点  </p>
+<ol>
+<li>可以做到只修改根元素就成比例地调整所有字体大小</li>
+<li>避免px em混用导致的字体复数计算</li>
+</ol>
+<p>如果使用rem作为当前项目的单位，可以设置<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>那么<code>10px</code>就可以表示为<code>.1rem</code></p>
+<h2 id="vh-vw"><a href="#vh-vw" class="headerlink" title="vh/vw"></a>vh/vw</h2><p>vh(Viewport height)相对于视口的高度。视口被均分为100单位的vh，通过vh可以在不知道视口高度的情况下设置一个相对视口的高度。同理，vw指相对于视口的宽度。</p>
+<p>用法<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.banner</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100vh</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100vw</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="rpx"><a href="#rpx" class="headerlink" title="rpx"></a>rpx</h2><p>rpx(Relative pixcel) 相对像素。只有在小程序中采用的长度计算值。以屏幕宽度恒为750rpx来计算。以iPhone6来讲，屏幕宽度为375px，所以在iPhone6中，375px = 750rpx，也就是1rpx = 0.5px。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>多是一些绝对长度单位<br>1in = 2.54cm = 25.4 mm = 101.6q = 72pt = 6pc = 96px</p>
+<table>
+<thead>
+<tr>
+<th>单位</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>in</td>
+<td>英寸</td>
+</tr>
+<tr>
+<td>pt</td>
+<td>磅 (1pt =  1/72 in)</td>
+</tr>
+<tr>
+<td>cm</td>
+<td>厘米</td>
+</tr>
+<tr>
+<td>mm</td>
+<td>毫米</td>
+</tr>
+<tr>
+<td>q</td>
+<td>1/4毫米 (1q = 1/4mm)</td>
+</tr>
+<tr>
+<td>pc</td>
+<td>派卡（Picas）(1pc = 12px)</td>
+</tr>
+<tr>
+<td>ex</td>
+<td>相对长度单位 ex 代表了字符 x 的高度(通常是字体尺寸的一半)</td>
+</tr>
+<tr>
+<td>ch</td>
+<td>相对长度单位 ch 代表了字符 0 的宽度</td>
+</tr>
+</tbody>
+</table>
+<h2 id="一些坑"><a href="#一些坑" class="headerlink" title="一些坑"></a>一些坑</h2><p>PC chrome有12px最小字号限制，若使用10px会造成pc调试困难带来不必要的麻烦，所以可以设置字号为12px，然后通过 <code>transform: scale(.8)</code> 来达到同样的效果。  </p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

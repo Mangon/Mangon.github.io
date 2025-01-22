@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        分辨率，屏幕比例与设备像素比 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="首先需要理解一些屏幕分辨率相关的概念:屏幕分辨率与PPI屏幕分辨率（Screen Resolution）屏幕上面的像素点数，以 水平像素数 * 垂直像素数 来表示，分辨率越高，像素数越多，图像越细腻。分辨率的单位为px（像素），例如 1920 * 1080 分辨率，指的是水平像素为 1920 像素，垂直像素为 1080 像素。DPI（每英寸点数 Dots Per Inch）DPI（Dots Per Inch，每英寸点数）是一个量度单位，用于点阵数码影像，指每一英寸长度中，取样、可显示或输出点" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%8F%E5%B9%95%E5%88%86%E8%BE%A8%E7%8E%87%E4%B8%8EPPI"><span class="toc-text">屏幕分辨率与PPI</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%8F%E5%B9%95%E5%88%86%E8%BE%A8%E7%8E%87%EF%BC%88Screen-Resolution%EF%BC%89"><span class="toc-text">屏幕分辨率（Screen Resolution）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DPI%EF%BC%88%E6%AF%8F%E8%8B%B1%E5%AF%B8%E7%82%B9%E6%95%B0-Dots-Per-Inch%EF%BC%89"><span class="toc-text">DPI（每英寸点数 Dots Per Inch）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PPI%EF%BC%88%E6%AF%8F%E8%8B%B1%E5%AF%B8%E5%83%8F%E7%B4%A0%E6%95%B0-Pixels-Per-Inch%EF%BC%89"><span class="toc-text">PPI（每英寸像素数 Pixels Per Inch）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%B1%8F%E5%B9%95%E6%AF%94%E4%BE%8B%E4%B8%8E%E5%88%86%E8%BE%A8%E7%8E%87"><span class="toc-text">常见屏幕比例与分辨率</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#16%EF%BC%9A9%E5%B1%8F%E5%B9%95%E6%AF%94%E4%BE%8B"><span class="toc-text">16：9屏幕比例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16%EF%BC%9A10%E5%B1%8F%E5%B9%95%E6%AF%94%E4%BE%8B"><span class="toc-text">16：10屏幕比例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%EF%BC%9A3%E5%B1%8F%E5%B9%95%E6%AF%94%E4%BE%8B"><span class="toc-text">4：3屏幕比例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Retina%E5%B1%8F%E5%B9%95"><span class="toc-text">Retina屏幕</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E5%83%8F%E7%B4%A0%E6%AF%94%EF%BC%88DPR%EF%BC%89"><span class="toc-text">设备像素比（DPR）</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            分辨率，屏幕比例与设备像素比
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2022-06-10T07:47:50.000Z" itemprop="datePublished">2022-06-10</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/tips/" rel="tag">tips</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>首先需要理解一些屏幕分辨率相关的概念:</p>
+<h2 id="屏幕分辨率与PPI"><a href="#屏幕分辨率与PPI" class="headerlink" title="屏幕分辨率与PPI"></a>屏幕分辨率与PPI</h2><h3 id="屏幕分辨率（Screen-Resolution）"><a href="#屏幕分辨率（Screen-Resolution）" class="headerlink" title="屏幕分辨率（Screen Resolution）"></a>屏幕分辨率（Screen Resolution）</h3><p>屏幕上面的像素点数，以 水平像素数 * 垂直像素数 来表示，分辨率越高，像素数越多，图像越细腻。分辨率的单位为px（像素），例如 1920 * 1080 分辨率，指的是水平像素为 1920 像素，垂直像素为 1080 像素。</p>
+<h3 id="DPI（每英寸点数-Dots-Per-Inch）"><a href="#DPI（每英寸点数-Dots-Per-Inch）" class="headerlink" title="DPI（每英寸点数 Dots Per Inch）"></a>DPI（每英寸点数 Dots Per Inch）</h3><p>DPI（Dots Per Inch，每英寸点数）是一个量度单位，用于点阵数码影像，指每一英寸长度中，取样、可显示或输出点的数目。</p>
+<h3 id="PPI（每英寸像素数-Pixels-Per-Inch）"><a href="#PPI（每英寸像素数-Pixels-Per-Inch）" class="headerlink" title="PPI（每英寸像素数 Pixels Per Inch）"></a>PPI（每英寸像素数 Pixels Per Inch）</h3><p>PPI（Pixels Per Inch，每英寸像素数）所表示的是每英寸对角线上所拥有的像素数目。假设 X 代表长度像素数；Y 代表宽度像素数；Z 代表屏幕大小（屏幕对角线长度单位是英寸），那么 PPI=√（X^2+Y^2）/ Z。PPI 越高，人视觉上看到的屏幕就越清晰。当屏幕的 PPI 达到一定数值时，人眼就几乎分辨不出颗粒感了。</p>
+<span id="more"></span>
+<h2 id="常见屏幕比例与分辨率"><a href="#常见屏幕比例与分辨率" class="headerlink" title="常见屏幕比例与分辨率"></a>常见屏幕比例与分辨率</h2><h3 id="16：9屏幕比例"><a href="#16：9屏幕比例" class="headerlink" title="16：9屏幕比例"></a>16：9屏幕比例</h3><p>16：9的屏幕比例，常见的分辨率有 1920 * 1080（Full HD全高清）、1280 * 720（高清）、2560 * 1440（四高清晰度，超清）、1366 * 768（WXGA）分辨率。</p>
+<p>1920 * 1080（1080P）主要应用于电脑PC显示屏、笔记本高清屏和一些电视显示设备。</p>
+<p>1280 * 720 和 1366 * 768 主要应用在一些小屏幕商务笔记本（例14寸）、超级本、高清播放器等显示设备。</p>
+<p>2560 * 1440 分辨率为超高清显示分辨率，与 2048 * 1080、2048 * 1536(QXGA)等分辨率，常被称为2K分辨率。经常在一些大屏显示器、设计用显示器、高清电视中可以见到。</p>
+<h3 id="16：10屏幕比例"><a href="#16：10屏幕比例" class="headerlink" title="16：10屏幕比例"></a>16：10屏幕比例</h3><p>也就是宽荧幕比例。常见的分辨率有 1280 * 800（WXGA）、1440 * 900（WXGA+）、1920 * 1200（WUXGA）等分辨率，被应用于宽荧幕笔记本电脑显示屏、宽屏电视、宽屏显示器等设备。</p>
+<h3 id="4：3屏幕比例"><a href="#4：3屏幕比例" class="headerlink" title="4：3屏幕比例"></a>4：3屏幕比例</h3><p>4：3屏时代较为久远，在未出现宽荧幕前，4：3屏为最为常见的显示比例。常见的分辨率有640x480（VGA）、800x600（SVGA）、1024x768（XGA）等分辨率。尤其在一些CRT显示器、比较老的4：3方屏LCD显示器、比较老的电视上面，这种分辨率比较常见。尤其在15寸CRT显示器，比较通用的 800 * 600 ，17寸显示器最为通用的，则为 1024 * 768，如果屏幕分辨率再高，字体显示会特别小。</p>
+<h2 id="Retina屏幕"><a href="#Retina屏幕" class="headerlink" title="Retina屏幕"></a>Retina屏幕</h2><p>所谓 “Retina” 是一种显示标准，是把更多的像素点压缩至一块屏幕里，从而达到更高的分辨率并提高屏幕显示的细腻程度。该技术最初由摩托罗拉公司研发，被用于 Moto Aura 上。这种分辨率在正常观看距离下足以使人肉眼无法分辨其中的单独像素，所以也被称为视网膜显示屏。</p>
+<p>第三代iPad发布会上，苹果给出了 Retina 设计标准的公式：α＝2tan-1（h/2d）</p>
+<p>其中 a 代表人眼视角，h 代表像素间距，d 代表肉眼与屏幕的距离。符合一定像素间距的屏幕，在足够长的距离上可以使肉眼看不见单个物理像素点。这样的屏幕就可被苹果称作 “Retina显示屏” 。将 <em>通常使用距离</em> 代入上公式可知：移动电话显示器的像素密度达到或高于 300ppi 就不会再出现颗粒感；手持平板类电器显示器的像素密度达到或高于 260ppi 就不会再出现颗粒感，而苹果电脑的 Retina 显示器像素密度只要超过 200ppi 就无法区分出单独的像素。</p>
+<p>使用 Retina 屏幕的设备拥有的物理像素点数比非高清屏幕高4倍甚至更多，如果仍旧按照设备独立像素来进行绘制的话，同一张图片在 Retina 屏幕上显示的区域只有非高清屏的 1/4。</p>
+<h2 id="设备像素比（DPR）"><a href="#设备像素比（DPR）" class="headerlink" title="设备像素比（DPR）"></a>设备像素比（DPR）</h2><p>设备像素比（Device Pixel Ratio，DPR）。在浏览器中，可以通过 <code>window.devicePixelRatio</code> 获取 设备物理像素 和 设备独立像素(CSS像素) 的比例。在 devicePixelRatio &gt; 1 的浏览器或手机上使用 canvas 画图，你就会发现绘制模糊。这是因为图片被放大了 devicePixelRatio 倍， 我们处理的时候对其进行像素压缩（在小的屏幕范围内渲染更多的像素）即可实现图片不模糊。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">&quot;canvas&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: 1000px;height: 500px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> canvas = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;canvas&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Get display size (css pixels).</span></span><br><span class="line"><span class="keyword">const</span> canvasComputedStyle = <span class="title function_">getComputedStyle</span>(canvas, <span class="literal">null</span>)</span><br><span class="line"><span class="keyword">const</span> elementWidth = <span class="built_in">parseInt</span>(canvasComputedStyle[<span class="string">&#x27;width&#x27;</span>])</span><br><span class="line"><span class="keyword">const</span> elementHeight = <span class="built_in">parseInt</span>(canvasComputedStyle[<span class="string">&#x27;height&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">// Scaled to account for extra pixel density.</span></span><br><span class="line">canvas.<span class="property">width</span> = <span class="title class_">Math</span>.<span class="title function_">floor</span>(elementWidth * devicePixelRatio)</span><br><span class="line">canvas.<span class="property">height</span> = <span class="title class_">Math</span>.<span class="title function_">floor</span>(elementHeight * devicePixelRatio)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Normalize coordinate system to use css pixels.</span></span><br><span class="line">canvas.<span class="title function_">getContext</span>(<span class="string">&#x27;2d&#x27;</span>).<span class="title function_">scale</span>(devicePixelRatio, devicePixelRatio)</span><br></pre></td></tr></table></figure>
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

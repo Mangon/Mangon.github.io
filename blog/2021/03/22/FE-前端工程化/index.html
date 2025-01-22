@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        前端工程化 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="前端工程化是使用软件工程的技术和方法来对前端项目的开发、测试、上线和维护进行管理的方法。前端工程化的目的是为了提升开发效率，提高产品质量。主要包括以下几个方面：模块化前端模块化是指前端项目中包括 Javascript、CSS、HTML 和图片、字体、文本、声音等各种资源文件的编译、拆分、合并和引用的过程。  js 模块化 &amp;amp; 编译在ES6之前，JavaScript一直没有模块系统，这对开发大型复杂的前端工程造成了巨大的障碍。对此社区制定了一些模块加载方案，如 CommonJS 、 " />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="toc-text">模块化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#js-%E6%A8%A1%E5%9D%97%E5%8C%96-amp-%E7%BC%96%E8%AF%91"><span class="toc-text">js 模块化 &amp; 编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#css-%E6%A8%A1%E5%9D%97%E5%8C%96-amp-%E9%A2%84%E7%BC%96%E8%AF%91"><span class="toc-text">css 模块化 &amp; 预编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML-%E6%A8%A1%E6%9D%BF"><span class="toc-text">HTML 模板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="toc-text">资源模块化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E5%8C%96"><span class="toc-text">组件化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%84%E8%8C%83%E5%8C%96"><span class="toc-text">规范化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83"><span class="toc-text">编码规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E8%A7%84%E8%8C%83"><span class="toc-text">其他规范</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%8C%96"><span class="toc-text">自动化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA"><span class="toc-text">自动化构建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95"><span class="toc-text">自动化测试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-UT"><span class="toc-text">单元测试(UT)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95"><span class="toc-text">集成测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AB%AF%E5%88%B0%E7%AB%AF%E6%B5%8B%E8%AF%95-E2E"><span class="toc-text">端到端测试(E2E)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%EF%BC%88CI%EF%BC%89"><span class="toc-text">持续集成（CI）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E4%B8%8A%E7%9B%91%E6%8E%A7"><span class="toc-text">线上监控</span></a></li></ol></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            前端工程化
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-22T09:37:39.000Z" itemprop="datePublished">2021-03-22</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/front-end/" rel="tag">front-end</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>前端工程化是使用软件工程的技术和方法来对前端项目的开发、测试、上线和维护进行管理的方法。前端工程化的目的是为了提升开发效率，提高产品质量。主要包括以下几个方面：</p>
+<h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><p>前端模块化是指前端项目中包括 Javascript、CSS、HTML 和图片、字体、文本、声音等各种资源文件的编译、拆分、合并和引用的过程。  </p>
+<span id="more"></span>
+<h3 id="js-模块化-amp-编译"><a href="#js-模块化-amp-编译" class="headerlink" title="js 模块化 &amp; 编译"></a>js 模块化 &amp; 编译</h3><p>在ES6之前，JavaScript一直没有模块系统，这对开发大型复杂的前端工程造成了巨大的障碍。对此社区制定了一些模块加载方案，如 CommonJS 、 AMD 和 CMD 等。<br>现在ES6已经在语言层面上规定了模块系统，完全可以取代现有的 CommonJS 和 AMD 规范，而且使用起来相当简洁，并且有静态加载的特性。<br>但是目前浏览器还没有完全支持这种规范，所以，要实现 ES6 Module 规范的话，还需要使用编译工具进行编译。我们可以使用 Babel(Javascript编译器) 对JS源码进行编译，将ES6特性编译为浏览器支持的语法，这样我们就可以在JS源码中使用ES6的新特性包括模块化编程。  </p>
+<h3 id="css-模块化-amp-预编译"><a href="#css-模块化-amp-预编译" class="headerlink" title="css 模块化 &amp; 预编译"></a>css 模块化 &amp; 预编译</h3><p>CSS预编译器的工作原理是提供便捷的语法和特性供开发者编写源代码，随后经过专门的编译工具将源码转化为CSS语法。目前流行的CSS预编译器有 SASS 、LESS、 Stylus。  </p>
+<p>css模块化 有三种解决方案包括 Shadow DOM、CSS in JS、CSS Modules</p>
+<p>Shadow DOM 是 Web components 的标准。它能解决全局污染问题，但目前很多浏览器不兼容，对我们来说还很久远；<br>CSS in JS 是彻底抛弃CSS，使用JS或JSON来写样式。这种方法很激进，不能利用现有的CSS技术，而且处理伪类等问题比较困难；<br>CSS Modules 仍然使用CSS，只是让JS来管理依赖。它能够最大化地结合CSS生态和JS模块化能力，目前来看是比较好的解决方案。Vue的scoped style就是一种CSS Modules 方案。  </p>
+<h3 id="HTML-模板"><a href="#HTML-模板" class="headerlink" title="HTML 模板"></a>HTML 模板</h3><p>HTML模板技术是为了将数据和模板结合可以动态的生成HTML页面。常用的模板引擎有 Jade、EJS、Mustache、Handlebars、JSHTML、Smarty（PHP）。</p>
+<h3 id="资源模块化"><a href="#资源模块化" class="headerlink" title="资源模块化"></a>资源模块化</h3><p>web应用中不仅仅需要考虑 js/css资源，还需要考虑诸如文本，图片，字体等资源的管理。  </p>
+<h2 id="组件化"><a href="#组件化" class="headerlink" title="组件化"></a>组件化</h2><p>前端组件化是指从设计层面上对用户界面的拆分。从UI中拆分出来的一个结构单元，称为UI组件，一个UI组件单元包含了HTML模板、CSS样式、JS逻辑。组件是可以嵌套的，一个页面可以拆分成若干个大组件，大组件可以拆分成中型组件，中型组件可以拆分成小组件，直到拆分成DOM元素。组件的拆分是为了复用，一个组件应该包含完整的功能，可以在多个页面中复用，或者被多个更大型的组件复用。  </p>
+<p>目前比较流行的js框架都有组件库，例如 Vue 有 <a target="_blank" rel="noopener" href="https://github.com/ElemeFE/element">Element-ui</a>、<a target="_blank" rel="noopener" href="https://github.com/iview/iview">iview</a>、<a target="_blank" rel="noopener" href="https://github.com/vuetifyjs/vuetify">Vuetify</a>、<a target="_blank" rel="noopener" href="https://github.com/vuematerial/vue-material">Vue Material</a> 等，React 有 <a target="_blank" rel="noopener" href="https://github.com/ant-design/ant-design">Ant Design</a>、<a target="_blank" rel="noopener" href="https://github.com/mui-org/material-ui">Material-UI</a>、<a target="_blank" rel="noopener" href="https://github.com/react-bootstrap/react-bootstrap">React-Bootstrap</a>、<a target="_blank" rel="noopener" href="https://github.com/react-toolbox/react-toolbox">React toolbox</a>、<a target="_blank" rel="noopener" href="https://github.com/nikgraf/belle">React Belle</a>、<a target="_blank" rel="noopener" href="http://grommet.io/">React Grommet</a>、<a target="_blank" rel="noopener" href="https://github.com/ant-design/ant-design">Ant Design React</a></p>
+<h2 id="规范化"><a href="#规范化" class="headerlink" title="规范化"></a>规范化</h2><p>前端规范化是指在前端项目进行过程中制定各种项目规范与标准。这又包括以下几个部分：  </p>
+<h3 id="编码规范"><a href="#编码规范" class="headerlink" title="编码规范"></a>编码规范</h3><p>通常包括 JS编码规范、CSS编码规范、HTML编码规范。  </p>
+<p><strong>JS编码规范</strong> 通常使用代码检查工具来进行代码格式检查，知名代码格式检查工具包括 <a target="_blank" rel="noopener" href="https://github.com/douglascrockford/JSLint">JSlint</a>、<a target="_blank" rel="noopener" href="https://github.com/jshint/jshint">JSHint</a>、<a target="_blank" rel="noopener" href="https://github.com/eslint/eslint">ESLint</a> 等，其中 ESLint 目前较为流行，目前基于 ESLint 的知名的代码规范有 <a target="_blank" rel="noopener" href="https://github.com/standard/standard">Standard Style Guide</a>、<a target="_blank" rel="noopener" href="https://github.com/airbnb/javascript">Airbnb JavaScript Style Guide</a>、<a target="_blank" rel="noopener" href="https://github.com/google/eslint-config-google">Google Style Guide</a>。  </p>
+<p><strong>CSS编码规范</strong> 有代码检查工具 <a target="_blank" rel="noopener" href="https://github.com/stylelint/stylelint">stylelint</a> 。为了保持同一个项目中的CSS代码复用和样式统一的问题，有些项目也会使用特殊的CSS编码规范，例如 BEM、OOCSS、SMACSS  </p>
+<p><strong>HTML编码规范</strong> 规则较少，主要集中于使用语义化标签和HTML标签属性和值的使用习惯。  </p>
+<h3 id="其他规范"><a href="#其他规范" class="headerlink" title="其他规范"></a>其他规范</h3><p>除了编码规范外的其他规范。  </p>
+<p><strong>字体规范</strong> 主要体现在字体文件使用的一致性上。  </p>
+<p><strong>图片规范</strong> 主要体现在图片的质量、图片引入方式、图片类型、图片合并、图片CDN的规范和约束上。  </p>
+<p><strong>命名规范&amp;文件目录规范</strong> 主要体现在项目的资源命名、目录结构应该合理、清晰、可扩展。  </p>
+<p><strong>接口规范</strong> 主要体现在前后端分离情况下，对联合调试时接口的认同上应符合一定的规范来避免责任不清的问题。接口规范一般应包括对以下内容的解释与样例，包括接口请求类型、接口请求地址、接口请求参数名、请求参数类型、请求参数是否必填、请求参数取值范围、请求参数样例、请求参数备注、请求返回结构（包括返回参数名&amp;类型&amp;是否必填&amp;取值范围&amp;样例&amp;备注）、请求返回错误码映射等。目前有多种接口工具用来约束接口规范，包括 Yapi、swagger、PostMan 等，这些工具一般还提供接口Mock甚至接口规范权限管理的功能，方便对接口进行调试和管理。  </p>
+<p><strong>文档规范</strong> 主要体现在对项目开发、调试、检查、测试、上线、运维的说明文档的书写规范。目前较常用的文档均使用 Markdown 进行书写，或在 Markdown 的基础上进行进一步的扩展。  </p>
+<p><strong>代码管理规范（git规范）</strong> 通常指代码管理流程中的一系列标准化问题。目前主要的代码管理工具有 SVN 和 Git，Git由于对分布式开发的友好基本上占据了绝大部分的市场分割。所以目前的代码管理规范主要包括 git工作流 &amp; branch命名管理 和 commit管理。  </p>
+<h2 id="自动化"><a href="#自动化" class="headerlink" title="自动化"></a>自动化</h2><p>前端自动化是指在项目进行过程中的自动化构建、自动化测试、持续集成和线上监控的部分。  </p>
+<h3 id="自动化构建"><a href="#自动化构建" class="headerlink" title="自动化构建"></a>自动化构建</h3><p>自动化构建是将源代码利用工具自动转换成用户可以使用的目标的过程。常用的前端项目构建工具包括 webpack、gulp、grunt、rollup、browserify、fis 等。  </p>
+<h3 id="自动化测试"><a href="#自动化测试" class="headerlink" title="自动化测试"></a>自动化测试</h3><p>自动化测试是指测试的自动化，一般包括单元测试、集成测试和端到端测试的自动化。  </p>
+<h4 id="单元测试-UT"><a href="#单元测试-UT" class="headerlink" title="单元测试(UT)"></a>单元测试(UT)</h4><p>单元测试是指对程序中最小可测试单元进行的测试。<br>Karma：Karma为前端自动化测试提供了跨浏览器测试的能力，可以在浏览器中执行测试用例<br>还有一些知名单元测试框架：Jasmine、Mocha、Jest、AVA、Tape<br>测试一般包含多个部分，除了基础测试框架，还可包括 数据模拟 Mock、测试运行环境配置、断言库、覆盖率统计，部分测试框架只是提供了基础测试框架并没有进行集成。<br>一些知名的测试周边:should.js、expect.js、chai.js、sinon.js、istanbul<br>关于他们之间的异同，可以查看 https://juejin.cn/post/6844903589488361486</p>
+<h4 id="集成测试"><a href="#集成测试" class="headerlink" title="集成测试"></a>集成测试</h4><p>在单元测试的基础上，将所有模块按照设计要求（如根据结构图）组装成为子系统或系统，进行的测试称为集成测试。  </p>
+<h4 id="端到端测试-E2E"><a href="#端到端测试-E2E" class="headerlink" title="端到端测试(E2E)"></a>端到端测试(E2E)</h4><p>前端的端到端测试是指从用户角度来测试web应用质量。<br>端到端测试需要web容器来运行用例，例如 Chromium, Electron, PhantomJS, WebDriver。  </p>
+<p>知名端到端测试框架有：<a target="_blank" rel="noopener" href="https://github.com/puppeteer/puppeteer">Puppeteer</a>、<a target="_blank" rel="noopener" href="https://github.com/segmentio/nightmare">Nightmare</a>、<a target="_blank" rel="noopener" href="https://github.com/nightwatchjs/nightwatch">Nightwatch</a>、<a target="_blank" rel="noopener" href="https://github.com/cypress-io/cypress">Cypress</a></p>
+<h3 id="持续集成（CI）"><a href="#持续集成（CI）" class="headerlink" title="持续集成（CI）"></a>持续集成（CI）</h3><p>持续集成(CI)是一种软件开发实践，它基于将代码频繁集成到共享代码仓中。 然后通过自动构建(automated build)验证每个签入(Check-In)。<br>常用的持续集成工具有 travis、jenkins。</p>
+<h3 id="线上监控"><a href="#线上监控" class="headerlink" title="线上监控"></a>线上监控</h3><p>前端项目上线后，需要对线上情况进行监控，统计前端代码错误（包括错误堆栈信息、用户环境等）、记录用户行为、统计网站性能数据等。<br>Google Anaytics、 百度统计都可以对用户行为进行记录。而 <a target="_blank" rel="noopener" href="https://github.com/getsentry/sentry">Sentry</a> 可以进行异常捕获与分析。</p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        head中的meta | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="meta指的是html元素中存在与head中的meta元素它长这样  1&amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;meta的含义HTML  元素表示那些不能由其它HTML元相关元素 (&amp;lt;base&gt;, &amp;lt;link&gt;, &amp;lt;script&gt;, &amp;lt;style&gt; 或 &amp;lt;title&gt;) 之一表示的任何元数据信息.  meta的属性charset此特性声明当前文档所使用的字符编码，但该声明可以被任何一个元素(通常是html)的 lang 特性" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#meta%E7%9A%84%E5%90%AB%E4%B9%89"><span class="toc-text">meta的含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#meta%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-text">meta的属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#charset"><span class="toc-text">charset</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#http-equiv"><span class="toc-text">http-equiv</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#name-amp-content"><span class="toc-text">name &amp; content</span></a></li></ol></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            head中的meta
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-01-21T12:53:30.000Z" itemprop="datePublished">2019-01-21</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/HTML/" rel="tag">HTML</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>meta指的是html元素中存在与head中的meta元素<br>它长这样  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="meta的含义"><a href="#meta的含义" class="headerlink" title="meta的含义"></a>meta的含义</h2><p>HTML <meta> 元素表示那些不能由其它HTML元相关元素 (&lt;base>, &lt;link>, &lt;script>, &lt;style> 或 &lt;title>) 之一表示的任何元数据信息.  </p>
+<h2 id="meta的属性"><a href="#meta的属性" class="headerlink" title="meta的属性"></a>meta的属性</h2><h3 id="charset"><a href="#charset" class="headerlink" title="charset"></a>charset</h3><p>此特性声明当前文档所使用的字符编码，但该声明可以被任何一个元素(通常是html)的 lang 特性的值覆盖。此特性的值必须是一个符合由IANA所定义的字符编码首选MIME 名称（preferred MIME name ）之一。</p>
+<p>有几点需要注意：</p>
+<ol>
+<li>推荐使用 UTF-8；  </li>
+<li><meta> 元素必须包含在 <head> 元素中并且在HTML代码的前1024个字节内，因为某些浏览器在选择编码之前只查看前面这些字节。  </li>
+<li>meta charset元素并不能决定字符集，网页采用何种字符是由 <a target="_blank" rel="noopener" href="https://html.spec.whatwg.org/multipage/parsing.html#encoding-sniffing-algorithm">网页字符算法</a> 决定的  </li>
+<li>强烈建议使用该属性定义字符编码. 如果未定义，某些跨脚本技术可能危害网页， 例如 <a target="_blank" rel="noopener" href="http://code.google.com/p/doctype-mirror/wiki/ArticleUtf7">UTF-7 降级XSS攻击</a>  </li>
+</ol>
+<h3 id="http-equiv"><a href="#http-equiv" class="headerlink" title="http-equiv"></a>http-equiv</h3><p>这个枚举属性定义了能改变服务器和用户引擎行为的编译行为。值使用 content 来定义，如下：  </p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>content-security-policy</td>
+<td>它允许页面作者定义当前页的内容策略。 内容策略主要指定允许的服务器源和脚本端点，这有助于防止跨站点脚本攻击。</td>
+</tr>
+<tr>
+<td>default-style</td>
+<td>这个属性指定了在页面上使用的首选样式表. content属性必须包含 <code>&lt;link&gt;</code> 元素的标题, href属性链接到CSS样式表或包含CSS样式表的 <code>&lt;style&gt;</code> 元素的标题.</td>
+</tr>
+<tr>
+<td>refresh</td>
+<td>这个属性规定了重新载入页面或跳转到指定链接的时间间隔（正整数）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="name-amp-content"><a href="#name-amp-content" class="headerlink" title="name &amp; content"></a>name &amp; content</h3><p>全局属性 name 在 <meta> 元素中具有特殊的语义；<br>另外， 在同一个 <meta> 标签中，name、http-equiv 或者 charset 三者中任何一个属性存在时，itemprop 属性不能被使用。  </p>
+<p>定义文档级元数据的名称 与 内容  </p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>application-name</td>
+<td>定义正运行在该网页上的网络应用名称</td>
+</tr>
+<tr>
+<td>author</td>
+<td>这个文档的作者名称</td>
+</tr>
+<tr>
+<td>description</td>
+<td>其中包含页面内容的简短和精确的描述。 一些浏览器，如Firefox和Opera，将其用作书签页面的默认描述</td>
+</tr>
+<tr>
+<td>generator</td>
+<td>包含生成页面的软件的标识符</td>
+</tr>
+<tr>
+<td>keywords</td>
+<td>包含与逗号分隔的页面内容相关的单词（关键词）</td>
+</tr>
+<tr>
+<td>referrer</td>
+<td>控制所有从该文档发出的 HTTP 请求中HTTP Referer 首部的内容</td>
+</tr>
+</tbody>
+</table>
+<p>name 为 referrer 时 content 的可选值</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no-referrer</td>
+<td>不要发送 HTTP Referer 首部</td>
+</tr>
+<tr>
+<td>origin</td>
+<td>发送当前文档的 origin。</td>
+</tr>
+<tr>
+<td>no-referrer-when-downgrade</td>
+<td>当目的地是先验安全的(https-&gt;https)则发送 origin 作为 referrer ，但是当目的地是较不安全的 (https-&gt;http)时则不发送 referrer 。这个是默认的行为。</td>
+</tr>
+<tr>
+<td>origin-when-crossorigin</td>
+<td>在同源请求下，发送完整的URL (不含查询参数) ，其他情况下则仅发送当前文档的 origin。</td>
+</tr>
+<tr>
+<td>unsafe-URL</td>
+<td>在同源请求下，发送完整的URL (不含查询参数)。</td>
+</tr>
+</tbody>
+</table>
+<p>有些name虽然没有被正式承认，但是也被广泛使用，<a target="_blank" rel="noopener" href="https://wiki.whatwg.org/wiki/MetaExtensions">这个网站</a> 列举了所有存在的meta值。以下列举一些常用的。</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>creator</td>
+<td>文档的创建者</td>
+</tr>
+<tr>
+<td>publisher</td>
+<td>文档的发布者</td>
+</tr>
+<tr>
+<td>robots</td>
+<td>定义了合理的被允许的爬虫行为，注意只有搜索引擎爬虫会遵循此规则所以并不能阻止个人的爬虫程序，而且爬虫能读取到该属性说明已经在读取此网页了，所以最好使用robots.txt来阻止搜索引擎爬虫</td>
+</tr>
+<tr>
+<td>viewport</td>
+<td>视口，提供有关视口初始大小的提示，仅供移动设备使用，虽然目前标准化程度不高，还处于草案(work in progress)的进度，但由于事实上的几个浏览器的支配地位，大多数移动浏览器都尊重这一声明，更多有关viewport的解释参见<a target="_blank" rel="noopener" href="https://drafts.csswg.org/css-device-adapt/#viewport-meta">文档</a></td>
+</tr>
+</tbody>
+</table>
+<p>有关viewport的相关内容，参见 <a href="/2019/01/21/浅谈viewport/">浅谈viewport</a></p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        编码格式 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="在计算机中，所有的数据在存储和运算时都要使用二进制数表示，例如，像a、b、c、d这样的52个字母（包括大写）以及0、1等数字还有一些常用的符号（例如*、#、@等）在计算机中存储时也要使用二进制数来表示，而具体用哪些二进制数字表示哪个符号，这就是编码。如果不同的计算机系统要想互相通信而不造成混乱，那么每个计算机系统就必须使用相同的编码规则。编码是用预先规定的方法将文字、数字或其它对象编成数码，或将信息、数据转换成规定的电脉冲信号的过程。为了保证编码一致性，需要有标准的编码格式规范，中文编码环境中常" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ASCII"><span class="toc-text">ASCII</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Latin1-ISO-8859-1"><span class="toc-text">Latin1&#x2F;ISO-8859-1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GB2312"><span class="toc-text">GB2312</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GBK"><span class="toc-text">GBK</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GB18030"><span class="toc-text">GB18030</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Big5"><span class="toc-text">Big5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unicode"><span class="toc-text">Unicode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UTF-8"><span class="toc-text">UTF-8</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UTF-16"><span class="toc-text">UTF-16</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E8%8A%82%E9%A1%BA%E5%BA%8F%E6%A0%87%E8%AE%B0%EF%BC%88BOM%EF%BC%89"><span class="toc-text">字节顺序标记（BOM）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%B1%E7%A0%81"><span class="toc-text">乱码</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            编码格式
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2022-08-22T03:57:00.000Z" itemprop="datePublished">2022-08-22</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/encode/" rel="tag">encode</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>在计算机中，所有的数据在存储和运算时都要使用二进制数表示，例如，像a、b、c、d这样的52个字母（包括大写）以及0、1等数字还有一些常用的符号（例如*、#、@等）在计算机中存储时也要使用二进制数来表示，而具体用哪些二进制数字表示哪个符号，这就是编码。如果不同的计算机系统要想互相通信而不造成混乱，那么每个计算机系统就必须使用相同的编码规则。<br>编码是用预先规定的方法将文字、数字或其它对象编成数码，或将信息、数据转换成规定的电脉冲信号的过程。为了保证编码一致性，需要有标准的编码格式规范，中文编码环境中常见的编码格式有 ASCII、GBK、UTF-8、Unicode 等。</p>
+<p>8位 = 1字节<br>1字符 = 1~4字节（根据编码方式不同）</p>
+<span id="more"></span>
+<h2 id="ASCII"><a href="#ASCII" class="headerlink" title="ASCII"></a>ASCII</h2><p>美国信息交换标准代码（American Standard Code for Information Interchange，ASCII）是一套基于拉丁字母的电脑编码系统，是由美国国家标准学会（American National Standard Institute，ANSI）制定的。它最初是美国国家标准，供不同计算机在相互通信时用作共同遵守的西文字符编码标准，后来它被国际标准化组织（International Organization for Standardization，ISO）定为国际标准 ISO/IEC646。</p>
+<p>ASCII 由电报码发展而来。第一版标准发布于1963年，1967年经历了一次主要修订，最后一次更新则是在1986年，至今为止共定义了128个字符（character），包括33个控制字符和95个可显示字符。</p>
+<p>ASCII 码使用指定的 7 位或 8 位二进制数组合来表示 128 或 256 种可能的字符。标准ASCII 码也叫基础 ASCII 码，使用 7 位二进制数（剩下的1位二进制为0）来表示所有的大写和小写字母，数字0到9、标点符号，以及在美式英语中使用的特殊控制字符。ASCII控制字符的编号范围是 0-31 和 127（0x00-0x1F 和 0x7F），可显示字符编号范围是 32-126（0x20-0x7E）。</p>
+<p>ASCII 的局限在于只能显示52个基本拉丁字母（包括大小写）、阿拉伯数字和英式标点符号，因此只能用于显示现代美国英语，对更多其他语言无能为力。</p>
+<h2 id="Latin1-ISO-8859-1"><a href="#Latin1-ISO-8859-1" class="headerlink" title="Latin1/ISO-8859-1"></a>Latin1/ISO-8859-1</h2><p>ISO-8859-1，正式编号为 ISO/IEC8859-1:1998，又称 Latin1 或 Latin-1，是国际标准化组织内 ISO/IEC8859 的第一个8位字符集。其编码范围是 0x00-0xFF，0x00-0x7F 之间完全和 ASCII 一致，0x80-0x9F 之间是控制字符，0xA0-0xFF 之间是文字符号。</p>
+<p>ISO-8859-1 收录的字符除 ASCII 收录的字符外，还包括西欧语言、希腊语、泰语、阿拉伯语、希伯来语对应的文字符号。</p>
+<p>ISO-8859-1 的特点是，它的编码范围使用了单字节内的所有空间，在支持 ISO-8859-1 的系统中传输和存储其他任何编码的字节流都不会被抛弃（会乱码，但数据不会丢弃）。</p>
+<blockquote>
+<p>MySQL数据库默认编码是 Latin1。</p>
+</blockquote>
+<blockquote>
+<p>HTML4.01 支持 Latin1 字符集。</p>
+</blockquote>
+<blockquote>
+<p>Javascript 中的 <code>window.atob()</code> 入参必须是 Latin1 字符集。</p>
+</blockquote>
+<h2 id="GB2312"><a href="#GB2312" class="headerlink" title="GB2312"></a>GB2312</h2><p><a target="_blank" rel="noopener" href="https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=5664A728BD9D523DE3B99BC37AC7A2CC">《信息交换用汉字编码字符集 基本集》推荐性国家标准 GB/T 2312-1980</a> 是 1980 年制定的中国汉字编码国家标准。自2017年3月23日起，该标准转化为推荐性标准，不再强制执行。</p>
+<p>GB2312 共收录 7445 个字符，包括汉字 6763 个，其中一级汉字 3755 个，二级汉字 3008 个；同时收录了包括拉丁字母、希腊字母、日文平假名及片假名字母、俄语西里尔字母在内的 682 个字符。</p>
+<p>GB2312 兼容标准 ASCII 码，采用扩展 ASCII 码的编码空间进行编码，一个汉字占用两个字节，每个字节的最高位为 1。</p>
+<p>GB2312 编码通行于中国大陆，新加坡等地也采用此编码。中国大陆几乎所有的中文系统和国际化的软件都支持 GB2312。</p>
+<p>GB2312 的出现，基本满足了汉字的计算机处理需要，它所收录的汉字已经覆盖中国大陆99.75% 的使用频率。</p>
+<p>对于人名、古汉语等方面出现的罕用字，GB2312 不能处理，这导致了后来 GBK 及 GB18030 汉字字符集的出现。</p>
+<h2 id="GBK"><a href="#GBK" class="headerlink" title="GBK"></a>GBK</h2><p>汉字内码扩展规范，英文全称 Chinese Internal Code Extension Specification，简称GBK，全名为《汉字内码扩展规范(GBK)》1.0版，由中华人民共和国全国信息技术标准化技术委员会（China National Information Technology Standardization Network，信标委）1995年12月1日制订，国家技术监督局标准化司和电子工业部科技与质量监督司1995年12月15日联合以《技术标函[1995]229号》文件的形式公布。GBK的K为“扩展”的汉语拼音（kuòzhǎn）第一个声母。GBK 只为“指导性技术文件”，不属于国家标准。</p>
+<p>GBK 共收录21886个汉字和图形符号，其中汉字（包括部首和构件）21003个，图形符号883个。GBK 收录了包括：GB2312 中的全部汉字、非汉字符号，BIG5 中的全部汉字，与 ISO10646 相应的国家标准 GB13000 中的其它 CJK 汉字，以上合计 20902 个汉字。以及其它汉字、部首、符号，共计 984 个。</p>
+<p>GBK 向下与 GB2312 完全兼容，向上支持 ISO10646 国际标准。</p>
+<p>GBK 采用双字节表示。</p>
+<h2 id="GB18030"><a href="#GB18030" class="headerlink" title="GB18030"></a>GB18030</h2><p>GB18030 是国家强制性标准规范中文编码字符集，它包括以下几个国家标准：</p>
+<p>2000-03-17 发布的 <a target="_blank" rel="noopener" href="https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=4F885660EB8B3AC463C2ED336DB3B67B">《信息技术 信息交换用汉字编码字符集 基本集的扩充》强制性国家标准 GB 18030-2000</a>，目前已废弃。</p>
+<p>2005-11-08 发布的 <a target="_blank" rel="noopener" href="https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=C344D8D120B341A8DD328954A9B27A99">《信息技术 中文编码字符集》强制性国家标准 GB 18030-2005</a>，为现行标准。</p>
+<p>2022-07-19 发布的 <a target="_blank" rel="noopener" href="https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=A1931A578FE14957104988029B0833D3">《信息技术 中文编码字符集》强制性国家标准 GB 18030-2022</a>，为即将实施的标准，2023-08-01实施</p>
+<p>GB 18030-2005 与 GB/T 2312-1980 和 GBK 兼容，共收录汉字70244个。</p>
+<p>GB 18030-2005 采用多字节编码，每个字可以由1个、2个或4个字节组成。编码空间庞大，最多可定义 161 万个字符。支持中国国内少数民族的文字，不需要动用造字区。汉字收录范围包含繁体汉字以及日韩汉字。</p>
+<h2 id="Big5"><a href="#Big5" class="headerlink" title="Big5"></a>Big5</h2><p>大五码（英语：Big5，又称为五大码）是使用繁体中文（正体中文）社区中最常用的电脑汉字字符集标准，共收录13060个汉字。</p>
+<p>Big5虽普及于台湾、香港、澳门等繁体中文区域，但长期以来并非当地的国家/地区标准或官方标准，而只是业界标准。2003年，Big5 收录到 CNS11643 中文标准交换码的附录当中，获取了较正式的地位。这个最新版本称为 Big5-2003。</p>
+<h2 id="Unicode"><a href="#Unicode" class="headerlink" title="Unicode"></a>Unicode</h2><p>通用编码字符集（Universal Coded Character Set，Unicode or UCS），是一种信息技术标准，用于对世界上大多数书写系统中表达的文本进行一致的编码、表示和处理。该标准由 Unicode 联盟（Unicode Consortium）维护，Unicode 联盟于 1991年1月3日在加利福尼亚成立，并于1991年10月出版了 Unicode 标准的第一卷。当前版本 (14.0) 定义了144697个字符。</p>
+<p>Unicode 字符库与 ISO/IEC 10646 同步。</p>
+<p>Unicode 有超过 110 万个可能的代码点可供使用/分配，其中前 65536（2^16）个，被称为基本多语言平面（Basic Multilingual Plane，BMP）。</p>
+<p>可以通过以下三种方式之一对这一原始 ISO/IEC 10646 标准的字符进行编码：</p>
+<ul>
+<li>UCS-4，每个字符四个字节，实现所有字符的简单编码；例如 UTF-32 编码</li>
+<li>UCS-2，每个字符两个字节，通过ISO/IEC 2022转义序列切换到第一个平面，0x20，基本多语言平面，直接包含前 36864 个代码点，以及其他平面和组的编码；例如 UTF-16 编码</li>
+<li>UTF-1，它将所有字符编码为不同长度的字节序列（1 到 5 个字节，每个字节不包含控制代码）。</li>
+</ul>
+<p>Unicode 可以使用几种不同的编码来存储，这些编码将字符代码转换为字节序列。最常见的编码是兼容 ASCII 的 UTF-8、兼容 UCS-2 的 UTF-16 和 GB18030。</p>
+<h2 id="UTF-8"><a href="#UTF-8" class="headerlink" title="UTF-8"></a>UTF-8</h2><p>UTF-8（8-bit Unicode Transformation Format）是一种针对 Unicode 的可变长度字符编码。它可以用一至四个字节对 Unicode 字符集中的所有有效编码点进行编码，属于 Unicode 标准的一部分。UTF-8 兼容 ASCII，Unicode 的前 128 个字符与 ASCII 一一对应，使用与 ASCII 具有相同二进制值的单个字节进行编码，因此有效的 ASCII 文本也是有效的采用 UTF-8 编码的 Unicode 文本。Ken Thompson 和 Rob Pike 于1992年9月为 Plan 9 操作系统制作了第一个 UTF-8 实现。UTF-8 是万维网（和互联网技术）的主要编码，截至 2022 年，占所有网页的 98%。</p>
+<p>由于 2003 年将 Unicode 代码空间限制为 21 位值，UTF-8 被定义为将代码点编码为1到4个字节，具体取决于代码点数值中的有效位数。下表显示了编码的结构，其中x字符用于替换代码点位。</p>
+<p>代码点 ↔ UTF-8 转换</p>
+<table>
+<thead>
+<tr>
+<th>第一个代码点</th>
+<th>最后一个代码点</th>
+<th>字节 1</th>
+<th>字节 2</th>
+<th>字节 3</th>
+<th>字节 4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>U+0000</td>
+<td>U+007F</td>
+<td>0xxxxxxx</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>U+0080</td>
+<td>U+07FF</td>
+<td>110xxxx</td>
+<td>10xxxxxx</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>U+0800</td>
+<td>U+FFFF</td>
+<td>1110xxxx</td>
+<td>10xxxxxx</td>
+<td>10xxxxxx</td>
+<td></td>
+</tr>
+<tr>
+<td>U+10000</td>
+<td>U+10FFFF</td>
+<td>11110xxx</td>
+<td>10xxxxxx</td>
+<td>10xxxxxx</td>
+<td>10xxxxxx</td>
+</tr>
+</tbody>
+</table>
+<p>前 128 个代码点 (ASCII) 需要一个字节。接下来的 1920 个代码点需要两个字节来编码，这涵盖了几乎所有拉丁字母的其余部分，以及IPA 扩展、希腊语、西里尔语、科普特语、亚美尼亚语、希伯来语、阿拉伯语、叙利亚语、塔阿纳和 N’Ko 字母，以及组合变音符号。基本多语言平面的其余部分需要三个字节，其中包含几乎所有常用的代码点，包括大多数中文、日文和韩文字符。Unicode 的其他平面中的代码点需要四个字节，其中包括不太常见的 CJK 字符、各种历史文字、数学符号和表情符号（象形符号）。</p>
+<h2 id="UTF-16"><a href="#UTF-16" class="headerlink" title="UTF-16"></a>UTF-16</h2><p>UTF-16（16 位 Unicode转换格式）是一种字符编码，能够对 Unicode 的所有 1112064 个有效字符代码点进行编码（实际上，代码点的数量由 UTF-16 的设计决定）。编码是可变长度的，因为代码点是用一个或两个16位代码单元编码的。UTF-16 源于早期过时的固定宽度16位编码，现在称为 UCS-2（用于2字节通用字符集），一旦明确需要超过2^16（65536）个代码点的情况。</p>
+<p>UTF-16 中每个 Unicode 代码点都被编码为一个或两个16位代码单元。这些16位代码如何存储为字节取决于文本文件或通信协议的“字节顺序”。一个“字符”（character）可能需要从少至两个字节到十四个(<code>&quot;🤦🏼‍♂️&quot;.length == 7</code>)甚至更多字节来记录。</p>
+<p>UTF-16 是唯一与 ASCII 不兼容的 Web 编码，并且从未在 Web 上流行过，它被低于 0.002%（略高于 1% 的千分之一）的网页使用。</p>
+<blockquote>
+<p>Python 从 2.0 版本开始官方只在内部使用 UCS-2，但 UTF-8 解码器到“Unicode”会产生正确的 UTF-16。从 Python 2.2 开始，支持使用 UTF-32 的“宽” Unicode 版本，主要用于 Linux。Python 3.3 不再使用 UTF-16，而是从 ASCII/Latin-1、UCS-2 和 UTF-32 中选择为给定字符串提供最紧凑表示的编码。<br>Java 最初使用 UCS-2，并在 J2SE 5.0 中添加了 UTF-16 补充字符支持。<br>Javascript 默认编码格式为 UTF-16。从 ES2015 开始，字符串方法和正则表达式标志已添加到语言中，允许从与编码无关的角度处理字符串。</p>
+</blockquote>
+<h2 id="字节顺序标记（BOM）"><a href="#字节顺序标记（BOM）" class="headerlink" title="字节顺序标记（BOM）"></a>字节顺序标记（BOM）</h2><p>字节顺序标记（Byte Order Mark，BOM）是特殊 Unicode 字符 U+FEFF BYTE ORDER MARK 的一种特殊用法，它在文本流开头作为 魔数（magic number）出现可以向读取文本的程序发出几个信号：</p>
+<ul>
+<li>在 16 位和 32 位编码的情况下，文本流的字节顺序（byte order）或字节序（endianness）</li>
+<li>文本流的编码是 Unicode 的事实，具有很高的可信度</li>
+<li>使用哪种 Unicode 字符编码</li>
+</ul>
+<p>BOM 的使用是可选的。它的存在会影响软件对 UTF-8 的使用，这些软件在文件开头不期望非 ASCII 字节，但可以处理文本流。</p>
+<p>BOM 的字节序列因 Unicode 编码而异（包括 Unicode 标准之外的编码），并且没有任何序列可能出现在以其他编码存储的文本流的开头。因此，将编码的 BOM 放在文本流的开头可以指示文本是 Unicode 并识别使用的编码方案。BOM 字符的这种使用称为“Unicode 签名”。</p>
+<p>Unicode 标准允许使用 UTF-8 的 BOM ，但不要求或推荐使用它，因为字节顺序在 UTF-8 中没有意义，所以它在 UTF-8 中的唯一用途是在开始时表示文本流以 UTF-8 编码。该标准也不建议在 BOM 存在时删除它，以便编码之间的往返不会丢失信息。</p>
+<blockquote>
+<p>Microsoft 编译器和解释器，以及 Microsoft Windows 上的许多软件（如记事本、Microsoft Word、Microsoft Excel）将 BOM 视为必需的魔数，这些工具在将文本保存为 UTF-8 时会添加 BOM，并且除非 BOM 存在或文件仅包含 ASCII，否则无法解释 UTF-8。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>编码</th>
+<th>表现 (十六进制)</th>
+<th>表现 (十进制)</th>
+<th>CP1252 字符的字节</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UTF-8</td>
+<td>EF BB BF</td>
+<td>239 187 191</td>
+<td>ï»¿</td>
+</tr>
+<tr>
+<td>UTF-16 (BE)</td>
+<td>FE FF</td>
+<td>254 255</td>
+<td>þÿ</td>
+</tr>
+<tr>
+<td>UTF-16 (LE)</td>
+<td>FF FE</td>
+<td>255 254</td>
+<td>ÿþ</td>
+</tr>
+<tr>
+<td>UTF-32 (BE)</td>
+<td>00 00 FE FF</td>
+<td>0 0 254 255</td>
+<td>^@^@þÿ (^@ 表示null字符)</td>
+</tr>
+<tr>
+<td>UTF-32 (LE)</td>
+<td>FF FE 00 00</td>
+<td>255 254 0 0</td>
+<td>ÿþ^@^@ (^@ 表示null字符)</td>
+</tr>
+<tr>
+<td>GB-18030</td>
+<td>84 31 95 33</td>
+<td>132 49 149 51</td>
+<td>„1•3</td>
+</tr>
+</tbody>
+</table>
+<h2 id="乱码"><a href="#乱码" class="headerlink" title="乱码"></a>乱码</h2><p>乱码指的是电脑系统不能显示正确的字符，而显示其他无意义的字符或空白。</p>
+<p>常见的乱码情况如下</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>示例</th>
+<th>特点</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>古文码</td>
+<td>甯歌鐨勪贡鐮�</td>
+<td>大部分为不认识的古文或不常用汉字</td>
+<td>以 GBK 方式读取 UTF-8 编码的中文</td>
+</tr>
+<tr>
+<td>方块码</td>
+<td>����������</td>
+<td>大部分字符为小方块</td>
+<td>以 UTF-8 方式读取了 GBK 编码的中文</td>
+</tr>
+<tr>
+<td>符号码</td>
+<td>å¸¸è§çš„ä¹±ç </td>
+<td>大部分字符为各种符号或空白字符</td>
+<td>以 ISO 8859-1 方式读取了 UTF-8 编码的中文</td>
+</tr>
+<tr>
+<td>拼音码</td>
+<td>³£¼ûµÄÂÒÂë</td>
+<td>大部分字符为带有声调符号的字母</td>
+<td>以 ISO 8859-1 方式读取了 GBK 编码的中文</td>
+</tr>
+<tr>
+<td>半乱码</td>
+<td>好好学�_天天___</td>
+<td>部分字符显示正确，部分字符显示乱码</td>
+<td>以 GBK 方式读取了 UTF-8 编码的中文，保存为 GBK 形式，然后又用 UTF-8 的格式再次读取</td>
+</tr>
+<tr>
+<td>锟斤拷码</td>
+<td>锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷</td>
+<td>全中文字符，且大部分字符为“锟斤拷”这几个字符</td>
+<td>以 UTF-8 方式读取 GBK 编码的中文，保存为 UTF-8 形式，然后又用 GBK 的格式再次读取</td>
+</tr>
+</tbody>
+</table>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

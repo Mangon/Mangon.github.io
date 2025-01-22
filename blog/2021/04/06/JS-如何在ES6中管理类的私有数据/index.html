@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        如何在ES6中管理类的私有数据 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="如何在ES6中管理类的私有数据？本文为你介绍四种方法：  在类的构造函数作用域中处理私有数据成员遵照命名约定（例如前置下划线）标记私有属性将私有数据保存在WeakMap中使用Symbol作为私有属性的键对构造函数来说，前两种方法在 ES5 中已经很常见了，后两种方法是 ES6 中新出现的。现在我们在同一个案例上分别用这四种方法来实践一下：  1. 在类的构造函数作用域中处理私有数据成员我们要演示的这段代码是一个名为 Countdown 的类在 counter（初始值为 coun" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%9C%A8%E7%B1%BB%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%AD%E5%A4%84%E7%90%86%E7%A7%81%E6%9C%89%E6%95%B0%E6%8D%AE%E6%88%90%E5%91%98"><span class="toc-text">1. 在类的构造函数作用域中处理私有数据成员</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E9%80%9A%E8%BF%87%E5%91%BD%E5%90%8D%E7%BA%A6%E5%AE%9A%E6%9D%A5%E6%A0%87%E8%AE%B0%E7%A7%81%E6%9C%89%E5%B1%9E%E6%80%A7"><span class="toc-text">2. 通过命名约定来标记私有属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E9%80%9A%E8%BF%87-WeakMaps-%E4%BF%9D%E5%AD%98%E7%A7%81%E6%9C%89%E6%95%B0%E6%8D%AE"><span class="toc-text">3. 通过 WeakMaps 保存私有数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E4%BD%BF%E7%94%A8Symbol%E4%BD%9C%E4%B8%BA%E7%A7%81%E6%9C%89%E5%B1%9E%E6%80%A7%E7%9A%84%E9%94%AE%E5%90%8D"><span class="toc-text">4. 使用Symbol作为私有属性的键名</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            如何在ES6中管理类的私有数据
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-04-06T10:49:11.000Z" itemprop="datePublished">2021-04-06</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/ES6/" rel="tag">ES6</a>, <a class="article-tag-link" href="/blog/tags/javascript/" rel="tag">javascript</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>如何在ES6中管理类的私有数据？本文为你介绍四种方法：  </p>
+<ul>
+<li>在类的构造函数作用域中处理私有数据成员</li>
+<li>遵照命名约定（例如前置下划线）标记私有属性</li>
+<li>将私有数据保存在WeakMap中</li>
+<li>使用Symbol作为私有属性的键</li>
+</ul>
+<span id="more"></span>
+<p>对构造函数来说，前两种方法在 ES5 中已经很常见了，后两种方法是 ES6 中新出现的。现在我们在同一个案例上分别用这四种方法来实践一下：  </p>
+<h2 id="1-在类的构造函数作用域中处理私有数据成员"><a href="#1-在类的构造函数作用域中处理私有数据成员" class="headerlink" title="1. 在类的构造函数作用域中处理私有数据成员"></a>1. 在类的构造函数作用域中处理私有数据成员</h2><p>我们要演示的这段代码是一个名为 <code>Countdown</code> 的类在 <code>counter</code>（初始值为 counter）变成0时触发一个名为 <code>action</code> 的回调函数。其中 <code>action</code> 和 <code>counter</code> 两个参数应被存储为私有数据。  </p>
+<p>在这个实现方案中，我们将 <code>action</code> 和 <code>counter</code> 存储在 <code>constructor</code> 这个类的环境里面。环境是指JS引擎存储参数和本地变量的内部数据结构，变量存在即可，无论是否进入一个新的作用域（例如通过一个函数调用或者一个类调用）。来看看代码：  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Countdown</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">counter, action</span>) &#123;</span><br><span class="line">        <span class="title class_">Object</span>.<span class="title function_">assign</span>(<span class="variable language_">this</span>, &#123;</span><br><span class="line">            <span class="title function_">dec</span>(<span class="params"></span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (counter &lt; <span class="number">1</span>) <span class="keyword">return</span>;</span><br><span class="line">                counter--;</span><br><span class="line">                <span class="keyword">if</span> (counter === <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="title function_">action</span>();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后这样使用 Countdown：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">let</span> c = <span class="keyword">new</span> <span class="title class_">Countdown</span>(<span class="number">2</span>, <span class="function">() =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;DONE&#x27;</span>));</span><br><span class="line">&gt; c.<span class="title function_">dec</span>();</span><br><span class="line">&gt; c.<span class="title function_">dec</span>();</span><br><span class="line"><span class="variable constant_">DONE</span></span><br></pre></td></tr></table></figure>
+<p>优点：</p>
+<ul>
+<li>私有数据非常安全；</li>
+<li>私有属性的命名不会与其他父类或子类的私有属性命名冲突。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>当你需要在构造函数内把所有方法（至少那些需要用到私有数据的方法）添加到实例的时候，代码看起来就没那么优雅了；</li>
+<li>作为实例方法，代码会浪费内存；如果作为原型方法，则会被共享。</li>
+</ul>
+<p>关于此方法的更多内容请参考：《Speaking Javascript》的 <a target="_blank" rel="noopener" href="http://speakingjs.com/es5/ch17.html#private_data_constructor_environment">Private Data in the Environment of a Constructor (Crockford Privacy Pattern)</a> (构造函数环境中的私有数据)章节。  </p>
+<h2 id="2-通过命名约定来标记私有属性"><a href="#2-通过命名约定来标记私有属性" class="headerlink" title="2. 通过命名约定来标记私有属性"></a>2. 通过命名约定来标记私有属性</h2><p>下面的代码将私有数据保存在添加了前置下划线命名的属性中：  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Countdown</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">counter, action</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">_counter</span> = counter;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">_action</span> = action;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">dec</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">_counter</span> &lt; <span class="number">1</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">_counter</span>--;</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">_counter</span> === <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="title function_">_action</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>优点：</p>
+<ul>
+<li>代码比较美观；</li>
+<li>可以使用原型方法。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>不够安全，只能用规范去约束用户代码；</li>
+<li>私有属性的命名容易冲突。</li>
+</ul>
+<h2 id="3-通过-WeakMaps-保存私有数据"><a href="#3-通过-WeakMaps-保存私有数据" class="headerlink" title="3. 通过 WeakMaps 保存私有数据"></a>3. 通过 WeakMaps 保存私有数据</h2><p>有一个利用 WeakMap 的小技巧，结合了方法一和方法二各自的优点：安全性和能够使用原型方法。可以参考以下代码：我们利用 <code>_counter</code> 和 <code>_action</code> 两个WeakMap来存储私有数据。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> _counter = <span class="keyword">new</span> <span class="title class_">WeakMap</span>();</span><br><span class="line"><span class="keyword">let</span> _action = <span class="keyword">new</span> <span class="title class_">WeakMap</span>();</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Countdown</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">counter, action</span>) &#123;</span><br><span class="line">        _counter.<span class="title function_">set</span>(<span class="variable language_">this</span>, counter);</span><br><span class="line">        _action.<span class="title function_">set</span>(<span class="variable language_">this</span>, action);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">dec</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> counter = _counter.<span class="title function_">get</span>(<span class="variable language_">this</span>);</span><br><span class="line">        <span class="keyword">if</span> (counter &lt; <span class="number">1</span>) <span class="keyword">return</span>;</span><br><span class="line">        counter--;</span><br><span class="line">        _counter.<span class="title function_">set</span>(<span class="variable language_">this</span>, counter);</span><br><span class="line">        <span class="keyword">if</span> (counter === <span class="number">0</span>) &#123;</span><br><span class="line">            _action.<span class="title function_">get</span>(<span class="variable language_">this</span>)();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>_counter</code> 和 <code>_action</code> 这两个 WeakMap 都分别指向各自的私有数据。由于 WeakMap 的设计目的在于键名是对象的弱引用，其所对应的对象可能会被自动回收，只要不暴露 WeakMap ，私有数据就是安全的。如果想要更加保险一点，可以将 <code>WeakMap.prototype.get</code> 和 <code>WeakMap.prototype.set</code> 存储起来再调用（动态地代替方法）。这样即使有恶意代码篡改了可以窥探到私有数据的方法，我们的代码也不会受到影响。但是，我们只保护我们的代码不受在其之后执行的代码的干扰，并不能防御先于我们代码执行的代码。  </p>
+<p>优点：</p>
+<ul>
+<li>可以使用原型方法；</li>
+<li>比属性命名约定更加安全；</li>
+<li>私有属性命名不会冲突。</li>
+</ul>
+<p>缺点:</p>
+<ul>
+<li>代码不如命名约定优雅。</li>
+</ul>
+<h2 id="4-使用Symbol作为私有属性的键名"><a href="#4-使用Symbol作为私有属性的键名" class="headerlink" title="4. 使用Symbol作为私有属性的键名"></a>4. 使用Symbol作为私有属性的键名</h2><p>另外一个存储私有数据的方式是用 Symbol 作为其属性的键名：  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> _counter = <span class="title class_">Symbol</span>(<span class="string">&#x27;counter&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> _action = <span class="title class_">Symbol</span>(<span class="string">&#x27;action&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Countdown</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">counter, action</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>[_counter] = counter;</span><br><span class="line">        <span class="variable language_">this</span>[_action] = action;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">dec</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">this</span>[_counter] &lt; <span class="number">1</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="variable language_">this</span>[_counter]--;</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">this</span>[_counter] === <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="variable language_">this</span>[_action]();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>每一个 Symbol 都是唯一的，这就是为什么使用 Symbol 的属性键名之间不会冲突的原因。并且，Symbol 某种程度上来说是隐式的，但也并不完全是：  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> c = <span class="keyword">new</span> <span class="title class_">Countdown</span>(<span class="number">2</span>, <span class="function">() =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;DONE&#x27;</span>));</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="title function_">keys</span>(c));</span><br><span class="line"><span class="comment">// []</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Reflect</span>.<span class="title function_">ownKeys</span>(c));</span><br><span class="line"><span class="comment">// [Symbol(counter), Symbol(action)]</span></span><br></pre></td></tr></table></figure>
+<p>优点：</p>
+<ul>
+<li>可以使用原型方法；</li>
+<li>私有属性命名不会冲突。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>代码不如命名约定优雅；</li>
+<li>不太安全：可以通过 Reflect.ownKeys() 列出一个对象所有的属性键名（即使用了 Symbol）。</li>
+</ul>
+<p>延伸阅读：  </p>
+<p>Sect. <a target="_blank" rel="noopener" href="http://speakingjs.com/es5/ch17.html#private_data_for_objects">“Keeping Data Private”</a> in “Speaking JavaScript” (covers ES5 techniques)<br>Chap. <a target="_blank" rel="noopener" href="http://exploringjs.com/es6/ch_classes.html">“Classes”</a> in “Exploring ES6”<br>Chap. <a target="_blank" rel="noopener" href="http://exploringjs.com/es6/ch_symbols.html">“Symbols”</a> in “Exploring ES6”</p>
+<p>原文：http://www.2ality.com/2016/01/private-data-classes.html</p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

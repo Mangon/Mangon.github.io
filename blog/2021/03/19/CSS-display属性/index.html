@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        CSS display属性 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="display 属性的含义display 属性可以设置元素的内部和外部显示类型。元素的外部显示类型将决定该元素在流式布局中的表现。元素的内部显示类型可以控制其子元素的布局。  CSS3规范详细说明了 display 属性的两个值—显式地启用外部和内部显示类型的规，但是浏览器还没有很好地支持这一点。display 属性语法123456789101112131415161718192021222324252627282930313233/* legacy values */display: b" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#display-%E5%B1%9E%E6%80%A7%E7%9A%84%E5%90%AB%E4%B9%89"><span class="toc-text">display 属性的含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#display-%E5%B1%9E%E6%80%A7%E8%AF%AD%E6%B3%95"><span class="toc-text">display 属性语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E7%B1%BB"><span class="toc-text">分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%96%E9%83%A8%E6%98%BE%E7%A4%BA%E7%B1%BB%E5%9E%8B"><span class="toc-text">外部显示类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#block"><span class="toc-text">block</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#inline"><span class="toc-text">inline</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E6%98%BE%E7%A4%BA%E7%B1%BB%E5%9E%8B"><span class="toc-text">内部显示类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#flow-root"><span class="toc-text">flow-root</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#table"><span class="toc-text">table</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#flex"><span class="toc-text">flex</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#grid"><span class="toc-text">grid</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%97%E8%A1%A8%E9%A1%B9"><span class="toc-text">列表项</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#list-item"><span class="toc-text">list-item</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E9%80%89%E9%A1%B9"><span class="toc-text">内部选项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%92"><span class="toc-text">盒</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#contents"><span class="toc-text">contents</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#none"><span class="toc-text">none</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%97%E7%95%99"><span class="toc-text">遗留</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#inline-block"><span class="toc-text">inline-block</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#inline-table"><span class="toc-text">inline-table</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#inline-flex"><span class="toc-text">inline-flex</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#inline-grid"><span class="toc-text">inline-grid</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E5%B1%80"><span class="toc-text">全局</span></a></li></ol></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            CSS display属性
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-19T13:12:39.000Z" itemprop="datePublished">2021-03-19</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="display-属性的含义"><a href="#display-属性的含义" class="headerlink" title="display 属性的含义"></a>display 属性的含义</h2><p><code>display</code> 属性可以设置元素的内部和外部显示类型。元素的外部显示类型将决定该元素在流式布局中的表现。元素的内部显示类型可以控制其子元素的布局。  </p>
+<p>CSS3规范详细说明了 <code>display</code> 属性的两个值—显式地启用外部和内部显示类型的规，但是浏览器还没有很好地支持这一点。</p>
+<span id="more"></span>
+<h2 id="display-属性语法"><a href="#display-属性语法" class="headerlink" title="display 属性语法"></a>display 属性语法</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* legacy values */</span></span><br><span class="line"><span class="attribute">display</span>: block;</span><br><span class="line"><span class="attribute">display</span>: inline;</span><br><span class="line"><span class="attribute">display</span>: inline-block;</span><br><span class="line"><span class="attribute">display</span>: flex;</span><br><span class="line"><span class="attribute">display</span>: inline-flex;</span><br><span class="line"><span class="attribute">display</span>: grid;</span><br><span class="line"><span class="attribute">display</span>: inline-grid;</span><br><span class="line"><span class="attribute">display</span>: flow-root;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* box generation */</span></span><br><span class="line"><span class="attribute">display</span>: none;</span><br><span class="line"><span class="attribute">display</span>: contents;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* two-value syntax */</span></span><br><span class="line"><span class="attribute">display</span>: block flow;</span><br><span class="line"><span class="attribute">display</span>: inline flow;</span><br><span class="line"><span class="attribute">display</span>: inline flow-root;</span><br><span class="line"><span class="attribute">display</span>: block flex;</span><br><span class="line"><span class="attribute">display</span>: inline-flex;</span><br><span class="line"><span class="attribute">display</span>: block grid;</span><br><span class="line"><span class="attribute">display</span>: inline grid;</span><br><span class="line"><span class="attribute">display</span>: block flow-root;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* other values */</span></span><br><span class="line"><span class="attribute">display</span>: table;</span><br><span class="line"><span class="attribute">display</span>: table-row; <span class="comment">/* all table elements have an equivalent CSS display value */</span></span><br><span class="line"><span class="attribute">display</span>: list-item;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Global values */</span></span><br><span class="line"><span class="attribute">display</span>: inherit;</span><br><span class="line"><span class="attribute">display</span>: initial;</span><br><span class="line"><span class="attribute">display</span>: unset;</span><br></pre></td></tr></table></figure>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><h3 id="外部显示类型"><a href="#外部显示类型" class="headerlink" title="外部显示类型"></a>外部显示类型</h3><p>这些关键字指定元素的外部显示类型，它本质上是元素在流布局中的角色。  </p>
+<h4 id="block"><a href="#block" class="headerlink" title="block"></a>block</h4><p>元素生成块元素框，在正常流中生成元素前后的换行符。  </p>
+<h4 id="inline"><a href="#inline" class="headerlink" title="inline"></a>inline</h4><p>元素生成一个或多个内联元素框，这些内联元素框不会在它们之前或之后生成换行符。在正常流中，如果有空间，下一个元素将在同一行上。  </p>
+<h3 id="内部显示类型"><a href="#内部显示类型" class="headerlink" title="内部显示类型"></a>内部显示类型</h3><h4 id="flow-root"><a href="#flow-root" class="headerlink" title="flow-root"></a>flow-root</h4><p>元素生成一个块元素框，该框建立一个新的块格式化上下文（BFC），定义格式化根所在的位置。  </p>
+<h4 id="table"><a href="#table" class="headerlink" title="table"></a>table</h4><p>这些元素的行为类似于HTML <code>&lt;table&gt;</code> 元素。它定义了一个块级框。  </p>
+<h4 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h4><p>元素的行为类似于块元素，并根据弹性盒子（flexbox）模型布局其内容。  </p>
+<h4 id="grid"><a href="#grid" class="headerlink" title="grid"></a>grid</h4><p>元素的行为类似于块元素，并根据网格模型（grid model）布局其内容。  </p>
+<h3 id="列表项"><a href="#列表项" class="headerlink" title="列表项"></a>列表项</h3><h4 id="list-item"><a href="#list-item" class="headerlink" title="list-item"></a>list-item</h4><p>使元素表现的像一个列表项。  </p>
+<h3 id="内部选项"><a href="#内部选项" class="headerlink" title="内部选项"></a>内部选项</h3><p>一些标签的默认display属性</p>
+<table>
+<thead>
+<tr>
+<th>display</th>
+<th>html标签</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>table-row-group</td>
+<td><code>&lt;tbody&gt;</code></td>
+</tr>
+<tr>
+<td>table-header-group</td>
+<td><code>&lt;thead&gt;</code></td>
+</tr>
+<tr>
+<td>table-footer-group</td>
+<td><code>&lt;tfoot&gt;</code></td>
+</tr>
+<tr>
+<td>table-row</td>
+<td><code>&lt;tr&gt;</code></td>
+</tr>
+<tr>
+<td>table-cell</td>
+<td><code>&lt;td&gt;</code></td>
+</tr>
+<tr>
+<td>table-column-group</td>
+<td><code>&lt;colgroup&gt;</code></td>
+</tr>
+<tr>
+<td>table-column</td>
+<td><code>&lt;col&gt;</code></td>
+</tr>
+<tr>
+<td>table-caption</td>
+<td><code>&lt;caption&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="盒"><a href="#盒" class="headerlink" title="盒"></a>盒</h3><h4 id="contents"><a href="#contents" class="headerlink" title="contents"></a>contents</h4><p>伪元素</p>
+<h4 id="none"><a href="#none" class="headerlink" title="none"></a>none</h4><p>关闭元素的显示，使其对布局没有影响。  </p>
+<h3 id="遗留"><a href="#遗留" class="headerlink" title="遗留"></a>遗留</h3><p>由于CSS2对display属性采用了单关键字语法，对于相同布局模式的块级和内联级变体，需要单独的关键字。</p>
+<h4 id="inline-block"><a href="#inline-block" class="headerlink" title="inline-block"></a>inline-block</h4><p>相当于 <code>inline flow-root</code></p>
+<h4 id="inline-table"><a href="#inline-table" class="headerlink" title="inline-table"></a>inline-table</h4><p>相当于 <code>inline table</code></p>
+<h4 id="inline-flex"><a href="#inline-flex" class="headerlink" title="inline-flex"></a>inline-flex</h4><p>相当于 <code>inline flex</code></p>
+<h4 id="inline-grid"><a href="#inline-grid" class="headerlink" title="inline-grid"></a>inline-grid</h4><p>相当于 <code>inline grid</code></p>
+<h3 id="全局"><a href="#全局" class="headerlink" title="全局"></a>全局</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">/* Global values */</span></span><br><span class="line">    <span class="attribute">display</span>: inherit;</span><br><span class="line">    <span class="attribute">display</span>: initial;</span><br><span class="line">    <span class="attribute">display</span>: unset;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        标签: CSS | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="Mangon&#39;s Technology Blog" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+
+        
+            <div class="author-meta">
+                
+                <div class="author-avatar">
+                    <a href="/blog/">
+                        <img src="/blog/images/avatar.jpeg" title="Mangon">
+                    </a>
+                </div>
+                
+                <div class="author-name">Mangon</div>
+                <div class="author-work">前端开发工程师</div>
+                <div class="author-location">
+                    <i class="icon-location vm"></i>
+                    <span class="vm">中国北京</span>
+                </div>
+                
+                <div class="author-thread-wrap">
+                    <div class="author-threads clearfix">
+                        
+                            <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
+                        
+                        
+                        
+                            <a class="thread-item" href="https://mangon.cn/blog/atom.xml" target="_blank" rel="external noopener noreferrer"><i class="icon-favorite"></i></a>
+                        
+                        
+                            <a class="thread-item" href="https://mangon.cn/resume" target="_blank" rel="external noopener noreferrer"><i class="icon-circle-more"></i></a>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2022/11/29/CSS-%E7%BC%96%E5%86%99%E8%A7%84%E5%88%99/">CSS编写规则</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2022-11-29T06:58:38.000Z" itemprop="datePublished">2022-11-29</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>OOCSS，SMACSS，BEM，ITCSS，Utility-First CSS，ACSS 都是 CSS 编写规则，是结构化编写和组织 CSS 的指南，在一个项目中采用一致的 CSS 编写规则，更利于他人理解你的代码和团队协作。</p>
+<h2 id="面向对象的-CSS"><a href="#面向对象的-CSS" class="headerlink" title="面向对象的 CSS"></a>面向对象的 CSS</h2><p>面向对象的 CSS（Object Oriented CSS，OOCSS）是指把样式重复的代码片段，定义为 CSS 对象</p>
+<ul>
+<li>盒模型与皮肤无关：盒模型属性与颜色、背景等皮肤主题属性分选择器定义</li>
+<li>样式与位置无关：避免使用标签、关系选择器，应用时，我们通常提取多个元素的公用属性，作为基本类 在其基础上，通过其它类扩展每个元素的个性属性 这是避免 CSS 代码冗余的常用方法</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box bg-red&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box bg-green&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.bg-red</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.bg-green</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: green;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="可扩展模块化-CSS-架构"><a href="#可扩展模块化-CSS-架构" class="headerlink" title="可扩展模块化 CSS 架构"></a>可扩展模块化 CSS 架构</h2><p>可扩展模块化 CSS 架构（Scalable and Modular Architecture for CSS，SMACSS）定义了 CSS 分类和命名规则，并对 CSS 书写提出优化建议</p>
+<ul>
+<li>Base：默认，基础，通用规则，包括重置浏览器样式的规则</li>
+<li>Layout：布局规则，以 <code>l-</code> 或 <code>layout-</code>开头</li>
+<li>Module：可复用模块规则</li>
+<li>State：布局或模块的特殊状态规则，如隐藏，激活等，以 <code>is</code> 开头</li>
+<li>Theme：皮肤或主题规则，可能包含另一种配色方案</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* base */</span></span><br><span class="line"><span class="selector-tag">button</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#ababab</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#f2f2f2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* layout */</span></span><br><span class="line"><span class="selector-class">.l-header</span> &#123;&#125;</span><br><span class="line"><span class="selector-class">.l-primarynav</span> &#123;&#125;</span><br><span class="line"><span class="selector-class">.l-main-content</span> &#123;&#125;</span><br><span class="line"><span class="comment">/* module */</span></span><br><span class="line"><span class="selector-class">.article-title</span> &#123;&#125;</span><br><span class="line"><span class="selector-class">.article-content</span> &#123;&#125;</span><br><span class="line"><span class="comment">/* state */</span></span><br><span class="line"><span class="selector-class">.is-hidden</span> &#123;&#125;</span><br><span class="line"><span class="selector-class">.is-shown</span> &#123;&#125;</span><br><span class="line"><span class="comment">/* theme */</span></span><br><span class="line"><span class="selector-class">.button-large</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">60px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">60px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="块元素修饰符"><a href="#块元素修饰符" class="headerlink" title="块元素修饰符"></a>块元素修饰符</h2><p>块元素修饰符（Block Element Modifier，BEM）定义了一种 CSS 的命名规则，用于解决命名冲突</p>
+<ul>
+<li>Block：块，忽略结构和优先级，具有独立意义的实体</li>
+<li>Element：元素，块内部没有独立意义的实体</li>
+<li>Modifier：修饰符，标识块或元素的外观、行为、状态被修改，含有修饰符的类名不可独立出现，通常跟在不含修饰符的类名后</li>
+</ul>
+<p>BEM 在书写时需要遵循三个原则：</p>
+<ul>
+<li>使用 <code>__</code> 两个下划线将块名称与元素名称分开</li>
+<li>使用 <code>--</code> 两个破折号分隔元素名称及其修饰符</li>
+<li>一切样式都是一个类，不能嵌套</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.block__elementOne--modifier</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="倒三角形CSS"><a href="#倒三角形CSS" class="headerlink" title="倒三角形CSS"></a>倒三角形CSS</h2><p>倒三角形CSS（Inverted Triangle CSS，ITCSS）主要用 SASS 实现 提供了一种 CSS 由通用到具体的分层（分类）方法，层次可以按需增删</p>
+<ul>
+<li>Settings：全局变量、方法，例如字体、颜色定义</li>
+<li>Tools：结合预处理器使用，全局使用的函数（function）、混入器（mixin）</li>
+<li>Generic：浏览器默认样式重置，例如 normalize.css、reset.css</li>
+<li>Elements（Base）：仅可使用类型（标签）选择器，例如 <code>h1 &#123;&#125;</code></li>
+<li>Objects：遵循 OOCSS 的对象的盒模型，无颜色、背景等</li>
+<li>Components：可复用的 UI 组件</li>
+<li>Trumps(Utilities)：对组件的微调和其他样式定义，可使用 <code>!important</code></li>
+</ul>
+<h2 id="实用类优先CSS"><a href="#实用类优先CSS" class="headerlink" title="实用类优先CSS"></a>实用类优先CSS</h2><p>实用类优先CSS（Utility-First CSS） 提供了一种外观组件的构建方法，以 tailwindcss 为代表</p>
+<ul>
+<li>按照一定规则，基于 CSS 实用类构建复杂外观组件</li>
+<li>不用起类名</li>
+<li>样式文件体积不会随项目无限增长</li>
+<li>增删类名，比直接修改属性更安全，维护更容易</li>
+</ul>
+<h2 id="原子CSS"><a href="#原子CSS" class="headerlink" title="原子CSS"></a>原子CSS</h2><p>原子CSS（Atomic CSS），可以看成 Utility-First CSS 的极致抽象 提供了一种 CSS 类的定义方法，提升大型项目 CSS 复用度</p>
+<ul>
+<li>每个类选择器中只包含一条属性定义，一次编写，到处运行</li>
+<li>属性名类似函数，属性值类似函数参数，像写内联样式一样写类名，适合 CSS-in-JS</li>
+<li>提供工具，可按需编译</li>
+</ul>
+
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2022/03/03/CSS-%E5%AD%97%E4%BD%93/">字体 font</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2022-03-03T02:57:33.000Z" itemprop="datePublished">2022-03-03</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>, <a class="article-tag-link" href="/blog/tags/font/" rel="tag">font</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="字体格式类型"><a href="#字体格式类型" class="headerlink" title="字体格式类型"></a>字体格式类型</h2><p>字体格式类型有 TrueType、OpenType、EOT、WOFF/WOFF2 以及 SVG 等。</p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2022/03/03/CSS-%E5%AD%97%E4%BD%93/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/11/24/FE-png%E3%80%81jpg%E3%80%81bmp%E3%80%81gif%E3%80%81tif%E5%9B%BE%E7%89%87%E7%9A%84%E5%8C%BA%E5%88%AB/">png、jpg、bmp、gif、tif图片的区别</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-11-24T07:52:13.000Z" itemprop="datePublished">2021-11-24</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>, <a class="article-tag-link" href="/blog/tags/HTML/" rel="tag">HTML</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="BMP"><a href="#BMP" class="headerlink" title="BMP"></a>BMP</h2><p>BMP（Bitmap）位图，是 Windows 操作系统中的标准图像文件格式，可以分成两类：设备相关位图（DDB）和设备无关位图（DIB）。它采用位映射存储格式，除了图像深度可选以外，不采用其他任何压缩，因此，BMP文件所占用的空间很大。BMP文件的图像深度可选1bit、4bit、8bit及24bit。BMP文件存储数据时，图像的扫描方式是按从左到右、从下到上的顺序。由于BMP文件格式是 Windows 环境中交换与图有关的数据的一种标准，因此在 Windows 环境中运行的图形图像软件都支持BMP图像格式。</p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2021/11/24/FE-png%E3%80%81jpg%E3%80%81bmp%E3%80%81gif%E3%80%81tif%E5%9B%BE%E7%89%87%E7%9A%84%E5%8C%BA%E5%88%AB/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/06/14/CSS-z-index%E4%B8%8Ez%E8%BD%B4%E5%B1%82%E5%8F%A0%E9%A1%BA%E5%BA%8F/">z-index与CSS层叠顺序</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-06-14T07:57:27.000Z" itemprop="datePublished">2021-06-14</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="z轴索引-z-index"><a href="#z轴索引-z-index" class="headerlink" title="z轴索引 - z-index"></a>z轴索引 - z-index</h2><p>z-index 是一个CSS属性，它指定了元素及其子元素在z轴上的层叠顺序，z轴上的顺序可以决定当元素发生覆盖的时候，哪个元素在上面。  </p>
+<p>z-index 属性仅在定位元素（定义了 position 属性，且属性值为非 static 值的元素）上有效果。  </p>
+<p>z-index 的默认值为 auto 相当于 <code>z-index: 0;</code> 但不会创建新的层叠上下文，z-index 可以设置为任何整数值，包括负数。通常 z-index 值较大的元素会覆盖较低的那一个。  </p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2021/06/14/CSS-z-index%E4%B8%8Ez%E8%BD%B4%E5%B1%82%E5%8F%A0%E9%A1%BA%E5%BA%8F/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/06/13/CSS-css%E7%BB%A7%E6%89%BF%E6%80%A7/">CSS继承性</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-06-13T15:45:06.000Z" itemprop="datePublished">2021-06-13</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="css属性继承性"><a href="#css属性继承性" class="headerlink" title="css属性继承性"></a>css属性继承性</h2><p>css样式继承指的是，特定的css属性可以向下传递到后代元素。</p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2021/06/13/CSS-css%E7%BB%A7%E6%89%BF%E6%80%A7/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/06/04/CSS-%E8%84%B1%E7%A6%BB%E6%96%87%E6%A1%A3%E6%B5%81%E7%9A%84%E6%96%B9%E6%B3%95/">脱离文档流的方法</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-06-04T07:34:43.000Z" itemprop="datePublished">2021-06-04</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>, <a class="article-tag-link" href="/blog/tags/HTML/" rel="tag">HTML</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="正常文档布局流"><a href="#正常文档布局流" class="headerlink" title="正常文档布局流"></a>正常文档布局流</h2><p>正常文档布局流（normal document layout flow）是指在没有改变默认布局规则情况下的页面元素布局方式。如果你未曾应用任何CSS规则来改变它们的展现方式，网页上的元素将会按照正常布局流来组织布局。<br>首先说一下独立元素的布局。元素的内容被放在一个独立的元素盒子中，然后在其周边加上内边距（padding）、边框（border）和外边距（margin） — 就是我们所说的盒子模型（box model）。默认情况下，一个块级元素（典型如div）的内容宽度是其父元素的100%，其高度与其内容高度一致。内联元素（典型如span）的高度、宽度与内容一致。你可以通过设置 <code>display: block</code> 与 <code>display: inline</code> 来将一个元素变为块级元素或内联元素。<br>元素之间又是如何相互影响的呢？块级元素默认会按照基于其父元素的书写顺序（writing-mode: horizontal-tb）的块流动方向（block flow direction）放置 — 每个块级元素会在上一个元素下面另起一行，它们会被设置好的外边距（margin）分隔。在英语，或者其他水平书写、自上而下模式里，块级元素是垂直组织的。内联元素的表现有所不同 — 它们不会另起一行；只要在其父级块级元素的宽度内有足够的空间，它们与其他内联元素、相邻的文本内容（或者被包裹的）被安排在同一行。如果空间不够，溢出的文本或元素将移到新的一行。</p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2021/06/04/CSS-%E8%84%B1%E7%A6%BB%E6%96%87%E6%A1%A3%E6%B5%81%E7%9A%84%E6%96%B9%E6%B3%95/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/04/01/FE-Sass%E3%80%81Less%E5%92%8CStylus%E7%9A%84%E4%BD%9C%E7%94%A8%E5%92%8C%E5%8C%BA%E5%88%AB/">Sass、Scss、Less和Stylus的作用和区别</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-04-01T12:37:20.000Z" itemprop="datePublished">2021-04-01</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>, <a class="article-tag-link" href="/blog/tags/less/" rel="tag">less</a>, <a class="article-tag-link" href="/blog/tags/sass/" rel="tag">sass</a>, <a class="article-tag-link" href="/blog/tags/stylus/" rel="tag">stylus</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="CSS-预处理器"><a href="#CSS-预处理器" class="headerlink" title="CSS 预处理器"></a>CSS 预处理器</h2><p><a target="_blank" rel="noopener" href="https://github.com/sass/sass">Sass</a> (Syntactically Awesome StyleSheets)，是由Ruby语言编写的一款css预处理语言，诞生于2007年，有着严格的缩进风格。官方样式库为 <a target="_blank" rel="noopener" href="http://compass-style.org/">Compass</a>。  </p>
+<p>Scss (Sassy CSS)，一款css预处理语言，SCSS 是 Sass 3 引入新的语法，其语法完全兼容 CSS3，并且继承了 Sass 的强大功能。SCSS 需要使用分号和花括号而不是换行和缩进。SCSS 对空白符号不敏感。兼容CSS。  </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/less/less.js">Less</a> 是由 <a target="_blank" rel="noopener" href="https://github.com/cloudhead">Alexis Sellier</a>于2009年编写的一个CSS 预处理器，最开始由 Ruby 书写，后来改为 JavaScript。Less 由 Sass 启发，语法更接近于CSS，完全兼容CSS。  </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/stylus/stylus">Stylus</a> 是由 <a target="_blank" rel="noopener" href="https://github.com/tj">TJ Holowaychuk</a> 编写的一款CSS预处理器，诞生于2010年。官方样式库为 <a target="_blank" rel="noopener" href="https://github.com/stylus/nib">nib</a>  </p>
+<p>这些CSS预处理器都支持一些常用的CSS语法扩展，比如<br>变量 (variables)、嵌套 (nested rules)、混合 (mixins)、继承(extends)、导入 (imports)、函数（functions）<br>但在语法和功能性上有些许差异。  </p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2021/04/01/FE-Sass%E3%80%81Less%E5%92%8CStylus%E7%9A%84%E4%BD%9C%E7%94%A8%E5%92%8C%E5%8C%BA%E5%88%AB/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/04/01/CSS-%E5%B8%B8%E8%A7%81%E5%B8%83%E5%B1%80/">CSS 三栏常见布局</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-04-01T12:01:56.000Z" itemprop="datePublished">2021-04-01</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="为什么会有这篇"><a href="#为什么会有这篇" class="headerlink" title="为什么会有这篇"></a>为什么会有这篇</h2><p>有些面试题会有这些，实际上并没有什么作用，可以用 flex 布局轻松实现。<br>在老旧浏览器中不支持 flex ，为了实现常见的三栏布局，即分左中右三部分，左右两部分宽度固定，中间部分宽度随浏览器变化。  </p>
+<p>这些布局有以下特点：</p>
+<ol>
+<li>两侧宽度固定，中间宽度自适应</li>
+<li>中间部分在DOM结构上优先，以便先行渲染</li>
+<li>允许三列中的任意一列成为最高列</li>
+<li>只需要使用一个额外的<div>标签</li>
+</ol>
+            
+            <p class="article-more-link">
+                <a href="/blog/2021/04/01/CSS-%E5%B8%B8%E8%A7%81%E5%B8%83%E5%B1%80/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/03/31/CSS-%E9%98%B4%E5%BD%B1/">CSS-阴影</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-31T11:47:20.000Z" itemprop="datePublished">2021-03-31</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="box-shadow-元素阴影"><a href="#box-shadow-元素阴影" class="headerlink" title="box-shadow 元素阴影"></a>box-shadow 元素阴影</h2><p>box-shadow 属性用于在元素的框架上添加阴影效果。你可以在同一个元素上设置多个阴影效果，并用逗号将他们分隔开。该属性可设置的值包括阴影的X轴偏移量、Y轴偏移量、模糊半径、扩散半径和颜色。可以使用 inset 表示是内阴影。  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">blockquote</span> &#123;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">box-shadow</span>:</span><br><span class="line">        inset <span class="number">0</span> -<span class="number">3em</span> <span class="number">3em</span> <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.1</span>),</span><br><span class="line">            <span class="number">0</span> <span class="number">0</span>  <span class="number">0</span> <span class="number">2px</span> <span class="built_in">rgb</span>(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>),</span><br><span class="line">            <span class="number">0.3em</span> <span class="number">0.3em</span> <span class="number">1em</span> <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.3</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>渲染如下：  </p>
+<p><blockquote class="box-shadow-block"><q>You may shoot me with your words,<br/><br>You may cut me with your eyes,<br/><br>You may kill me with your hatefulness,<br/><br>But still, like air, I’ll rise.</q></p>
+<p><p>&mdash; Maya Angelou</p><br></blockquote></p>
+<style>
+blockquote.box-shadow-block {
+    border-left: revert;
+    color: revert;
+    padding: 20px;
+    box-shadow:
+        inset 0 -3em 3em rgba(0,0,0,0.1),
+            0 0  0 2px rgb(255,255,255),
+            0.3em 0.3em 1em rgba(0,0,0,0.3);
+}
+</style>
+            
+            <p class="article-more-link">
+                <a href="/blog/2021/03/31/CSS-%E9%98%B4%E5%BD%B1/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/03/31/CSS-Grid%E5%B8%83%E5%B1%80/">Grid布局</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-31T07:32:46.000Z" itemprop="datePublished">2021-03-31</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="Grid-布局"><a href="#Grid-布局" class="headerlink" title="Grid 布局"></a>Grid 布局</h2><p>CSS 网格布局擅长于将一个页面划分为几个主要区域，以及定义这些区域的大小、位置、层次等关系。  </p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2021/03/31/CSS-Grid%E5%B8%83%E5%B1%80/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/03/29/CSS-%E6%B8%90%E5%8F%98/">CSS gradient渐变</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-29T11:52:38.000Z" itemprop="datePublished">2021-03-29</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="线性渐变"><a href="#线性渐变" class="headerlink" title="线性渐变"></a>线性渐变</h2><p>CSS linear-gradient() 函数用于创建一个表示两种或多种颜色线性渐变的图片。其结果属于 &lt;gradient> 数据类型，是一种特别的 &lt;image> 数据类型。  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 渐变轴为45度，从蓝色渐变到红色 */</span></span><br><span class="line"><span class="attribute">background-image</span>: <span class="built_in">linear-gradient</span>(<span class="number">45deg</span>, blue, red);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 从右下到左上、从蓝色渐变到红色 */</span></span><br><span class="line"><span class="attribute">background-image</span>: <span class="built_in">linear-gradient</span>(to left top, blue, red);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 从下到上，从蓝色开始渐变、到高度40%位置是绿色渐变开始、最后以红色结束 */</span></span><br><span class="line"><span class="attribute">background-image</span>: <span class="built_in">linear-gradient</span>(<span class="number">0deg</span>, blue, green <span class="number">40%</span>, red);</span><br></pre></td></tr></table></figure>
+            
+            <p class="article-more-link">
+                <a href="/blog/2021/03/29/CSS-%E6%B8%90%E5%8F%98/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/03/26/CSS-CSS3%E7%89%B9%E6%80%A7/">CSS3特性</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-26T06:35:26.000Z" itemprop="datePublished">2021-03-26</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>CSS3 是层叠样式表（Cascading Style Sheets）语言的最新版本，旨在扩展CSS2.1。  </p>
+<p>它带来了许多期待已久的新特性，例如 border-radius(圆角)、box-shadow(阴影)、gradients(渐变) 、transitions(过渡) 与 animations(动画) 。以及新的布局方式，如 multi-columns 、 flexible box 与 grid layouts。  </p>
+<p><a target="_blank" rel="noopener" href="https://www.w3.org/">W3C</a> 的 CSS Working Group(CSS 工作组)  作出了一项被称为 Beijing doctrine 的决定，将 CSS 划分为许多小组件，称之为模块。这些模块彼此独立，按照各自的进度来进行标准化。  </p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2021/03/26/CSS-CSS3%E7%89%B9%E6%80%A7/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/03/19/CSS-display%E5%B1%9E%E6%80%A7/">CSS display属性</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-19T13:12:39.000Z" itemprop="datePublished">2021-03-19</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="display-属性的含义"><a href="#display-属性的含义" class="headerlink" title="display 属性的含义"></a>display 属性的含义</h2><p><code>display</code> 属性可以设置元素的内部和外部显示类型。元素的外部显示类型将决定该元素在流式布局中的表现。元素的内部显示类型可以控制其子元素的布局。  </p>
+<p>CSS3规范详细说明了 <code>display</code> 属性的两个值—显式地启用外部和内部显示类型的规，但是浏览器还没有很好地支持这一点。</p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2021/03/19/CSS-display%E5%B1%9E%E6%80%A7/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/03/19/CSS-%E4%BC%AA%E5%85%83%E7%B4%A0-%E4%BC%AA%E7%B1%BB/">CSS 伪元素&amp;伪类</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-19T07:31:18.000Z" itemprop="datePublished">2021-03-19</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="伪元素"><a href="#伪元素" class="headerlink" title="伪元素"></a>伪元素</h2><p>CSS伪元素(pseudo-elements)创建了一个有内容的虚拟容器，用于向某些选择器设置特殊效果<br>用法 <code>selector:pseudo-element &#123;property: value;&#125;</code>  </p>
+<p><code>::first-line</code> : 用于向文本的首行设置特殊样式<br><code>::first-letter</code> : 用于向文本的首字母设置特殊样式<br><code>::before</code> : 可以在元素的内容前面插入新内容<br><code>::after</code> : 可以在元素的内容之后插入新内容  </p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2021/03/19/CSS-%E4%BC%AA%E5%85%83%E7%B4%A0-%E4%BC%AA%E7%B1%BB/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/03/19/CSS-%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/">CSS 清除（闭合）浮动</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-19T06:42:46.000Z" itemprop="datePublished">2021-03-19</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="什么是浮动？"><a href="#什么是浮动？" class="headerlink" title="什么是浮动？"></a>什么是浮动？</h2><p><code>float</code> CSS属性指定一个元素应沿其容器的左侧或右侧放置，允许文本和内联元素环绕它。该元素从网页的正常流动(normal flow)中移除，尽管仍然保持部分的流动性。<br>本属于普通流中的元素，在使用 <code>float</code> 属性后，包含框内部由于不存在其他普通流元素了，也就表现出高度为0的情况。在实际布局中，往往这并不是我们所希望的，所以需要闭合浮动元素，使其包含框表现出正常的高，也就是让浮动内容和周围的内容等高。  </p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2021/03/19/CSS-%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/03/19/CSS-%E9%9D%A2%E8%AF%95%E9%A2%98%E5%AE%9E%E8%B7%B5/">CSS 面试题实践</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-19T06:39:39.000Z" itemprop="datePublished">2021-03-19</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="画一条0-5px的直线"><a href="#画一条0-5px的直线" class="headerlink" title="画一条0.5px的直线"></a>画一条0.5px的直线</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.line</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">1px</span>;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">scale</span>(<span class="number">0.5</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            
+            <p class="article-more-link">
+                <a href="/blog/2021/03/19/CSS-%E9%9D%A2%E8%AF%95%E9%A2%98%E5%AE%9E%E8%B7%B5/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/03/19/CSS-%E7%9B%92%E6%A8%A1%E5%9E%8B/">CSS 盒模型</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-19T06:36:15.000Z" itemprop="datePublished">2021-03-19</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h2><p>任何HTML元素都可以看作一个盒子，它包括：外边距，边框，内边距，和实际内容。<br>Margin(外边距) - 边框外的区域，外边距区域是透明的。<br>Border(边框) - 围绕在内边距和内容外的边框。<br>Padding(内边距) -内容周围的区域，内边距区域是透明的。<br>Content(内容) - 盒子的内容，显示文本和图像。  </p>
+<p>box-sizing 属性定义了浏览器应该如何计算一个元素的总宽度和总高度，可以通过 box-sizing 属性来设置盒模型。</p>
+<ul>
+<li><p>内容盒模型 <code>box-sizing: content-box</code><br>content-box:<br>width = content width;<br>height = content height</p>
+</li>
+<li><p>边框盒模型 <code>box-sizing: border-box</code><br>border-box:<br>width = border + padding + content width<br>heigth = border + padding + content heigth</p>
+</li>
+<li><p>内边距盒模型 <code>box-sizing: padding-box</code> （这不是一个标准的 box-sizing 选项，大部分浏览器不支持）<br>padding-box:<br>width = padding + content width<br>heigth = padding + content heigth</p>
+</li>
+</ul>
+<p>浏览器默认使用内容盒模型，在ie8以下的浏览器中默认使用边框盒模型。</p>
+
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/03/19/CSS-%E6%B0%B4%E5%B9%B3-%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/">CSS 水平&amp;垂直居中</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-19T06:13:33.000Z" itemprop="datePublished">2021-03-19</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="html-布局"><a href="#html-布局" class="headerlink" title="html 布局"></a>html 布局</h2><p>水平居中&amp;垂直居中指的都是子元素相对于父元素位置，所以页面中需要有两个元素，假设外层元素id为out，内层元素id为in。  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;out&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;in&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--p id=&quot;in&quot;/--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+            
+            <p class="article-more-link">
+                <a href="/blog/2021/03/19/CSS-%E6%B0%B4%E5%B9%B3-%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+
+
+<nav class="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/blog/tags/CSS/page/2/">2</a><a class="extend next" rel="next" href="/blog/tags/CSS/page/2/">下一页 &gt;&gt;</a>
+</nav>
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

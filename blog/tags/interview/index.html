@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        标签: interview | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="Mangon&#39;s Technology Blog" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+
+        
+            <div class="author-meta">
+                
+                <div class="author-avatar">
+                    <a href="/blog/">
+                        <img src="/blog/images/avatar.jpeg" title="Mangon">
+                    </a>
+                </div>
+                
+                <div class="author-name">Mangon</div>
+                <div class="author-work">前端开发工程师</div>
+                <div class="author-location">
+                    <i class="icon-location vm"></i>
+                    <span class="vm">中国北京</span>
+                </div>
+                
+                <div class="author-thread-wrap">
+                    <div class="author-threads clearfix">
+                        
+                            <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
+                        
+                        
+                        
+                            <a class="thread-item" href="https://mangon.cn/blog/atom.xml" target="_blank" rel="external noopener noreferrer"><i class="icon-favorite"></i></a>
+                        
+                        
+                            <a class="thread-item" href="https://mangon.cn/resume" target="_blank" rel="external noopener noreferrer"><i class="icon-circle-more"></i></a>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2023/02/09/FE-%E9%99%90%E5%88%B6%E5%B9%B6%E5%8F%91%E6%95%B0%E9%87%8F%E7%9A%84%E5%A4%9A%E8%AF%B7%E6%B1%82%E6%89%A7%E8%A1%8C/">限制并发数量的多请求执行</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2023-02-09T09:19:03.000Z" itemprop="datePublished">2023-02-09</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/front-end/" rel="tag">front-end</a>, <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>在项目中，我们经常会遇到同时发送多个HTTP请求的情况，对于同域名的请求，浏览器会限制同时发起的请求数量，当超过浏览器并发请求限制时，超过的请求将会等待，直到有请求返回时才会进行下一次请求。这是浏览器的一种保护机制，为了防止通过浏览器发起过量的请求，耗尽资源。在小程序中也会有同样的机制，例如，微信小程序中说明 <code>wx.request</code> 的最大并发限制是 10 个，<code>wx.connectSocket</code> 的最大并发限制是 5 个（参见 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/ability/network.html">微信小程序官方文档-基础能力/网络/使用说明-网络-3.网络请求-使用限制</a> ），但是这里有个BUG，在小程序中如果并发请求超过10个，并不会等待而是直接失败，所以实际上需要用户自己处理并发请求数，在超过10个时，请求需要在队列中等待而不是直接失败。</p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2023/02/09/FE-%E9%99%90%E5%88%B6%E5%B9%B6%E5%8F%91%E6%95%B0%E9%87%8F%E7%9A%84%E5%A4%9A%E8%AF%B7%E6%B1%82%E6%89%A7%E8%A1%8C/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2023/01/30/FE-%E9%9D%A2%E8%AF%95%E7%B4%A2%E5%BC%95/">前端常见面试题索引</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2023-01-30T05:23:30.000Z" itemprop="datePublished">2023-01-30</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <style>
+.article-body>.article-item {
+    display: flex;
+    flex-wrap: wrap;
+}
+.article-body>.article-item>a {
+    margin: 20px;
+}
+</style>
+
+<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><div class="article-item"><br><br><a href="/blog/2021/04/22/HTTP小抄/#HTTPS">HTTPS相对HTTP的区别</a><br><a href="/blog/2021/12/29/HTTP-Cookie/">HTTP Cookie的作用</a><br><a href="/blog/2021/04/23/HTTP-缓存/">HTTP 强缓存与协商缓存</a><br><a href="/blog/2021/12/30/HTTP-同源策略与跨域/">浏览器同源策略与跨域</a><br><a href="/blog/2022/01/04/FE-浏览器架构与基本原理/#浏览器工作流程（页面加载过程）">浏览器中从输入URL到页面加载的流程</a><br><a href="/blog/2021/03/19/HTML-cookie、sessionStorage、localStorage区别与作用/">Cookie与sessionStorage、localStorage的区别</a><br><br></div>
+
+<h2 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h2><div class="article-item"><br><br><a href="/blog/2018/09/10/HACK-CSRF攻击/#CSRF防范">如何防范CSRF攻击</a><br><a href="/blog/2018/09/09/HACK-XSS攻击/#XSS防御">如何防范XSS攻击</a><br><br></div>
+
+<h2 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h2><div class="article-item"><br><br><a href="/blog/2023/01/31/FE-前端性能优化/#方法">性能优化的方法</a><br><br></div>
+
+<h2 id="工程化"><a href="#工程化" class="headerlink" title="工程化"></a>工程化</h2><div class="article-item"><br><br><a href="/blog/2021/03/22/FE-前端工程化/">谈谈你对前端工程化的理解</a><br><a href="/blog/2020/05/22/FE-Javascript模块化/">模块化</a><br><a href="/blog/2022/12/26/FE-前端异常监控/">前端异常监控</a><br><br></div>
+
+<h2 id="前端趋势"><a href="#前端趋势" class="headerlink" title="前端趋势"></a>前端趋势</h2><div class="article-item"><br><br><a href="/blog/2021/03/25/HTML-HTML5特性/">HTML5特性</a><br><a href="/blog/2020/08/28/JS-ES6特性/">ES6特性</a><br><a href="/blog/2021/03/26/CSS-CSS3特性/">CSS3特性</a><br><a href="/blog/2023/01/06/React-React18新功能和作用/">React18新特性</a><br><a href="/blog/2021/03/30/Vue-Vue3新功能和作用/">Vue3新特性</a><br><a href="/blog/2021/04/22/HTTP小抄/#HTTP2-特性">HTTP2新特性</a><br><br></div>
+
+<h2 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h2><div class="article-item"><br><br><a href="/blog/2021/03/20/JS-数据类型/">数据类型</a><br><a href="/blog/2021/03/24/JS-原型链/">原型链</a><br><a href="/blog/2021/04/26/JS-继承/">继承</a><br><a href="/blog/2021/03/19/JS-闭包/">闭包</a><br><a href="/blog/2018/08/31/JS-防抖与截流/">防抖与截流的区别</a><br><a href="/blog/2021/03/19/JS-js的异步运行机制/">任务队列与事件循环</a><br><a href="/blog/2021/04/20/JS-js内存回收机制/">内存回收机制gc</a><br><a href="/blog/2021/03/23/JS-Promise/">Promise</a><br><a href="/blog/2022/11/23/JS-Object-对象/">Object</a><br><a href="/blog/2021/03/21/JS-Array-数组/">Array</a><br><a href="/blog/2022/11/22/JS-Function-函数/">Function</a><br><a href="/blog/2022/11/22/JS-String-字符串/">String</a><br><br></div>
+
+<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><div class="article-item"><br><br><a href="/blog/2021/03/19/HTML-事件绑定-事件委托/">事件绑定与事件委托</a><br><a href="/blog/2021/03/19/HTML-页面渲染html的过程/">页面渲染HTML的过程</a><br><br></div>
+
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><div class="article-item"><br><br><a href="/blog/2018/12/06/CSS-Flex布局/">Flex布局</a><br><a href="/blog/2018/09/18/CSS-长度单位/">CSS长度单位有哪些</a><br><a href="/blog/2021/03/19/CSS-水平-垂直居中/">CSS水平居中与垂直居中</a><br><a href="/blog/2021/03/16/CSS-transform-transition-animation/">CSS属性transition、transform、animation</a><br><br></div>
+
+<h2 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h2><div class="article-item"><br><br><a href="/blog/2021/04/24/Vue-Vue生命周期/">Vue生命周期有哪些</a><br><a href="/blog/2018/10/12/Vue-组件间通信/">Vue如何实现组件间通信</a><br><a href="/blog/2022/11/29/Vue-Vue面试手册/#Vue-2-0-响应式数据的原理">Vue响应式数据的原理</a><br><a href="/blog/2019/02/12/Vue-读Vue源码所能想到的面试问题/#哪些数据变化情况无法被-Vue-的响应式系统观测到，应该如何处理？">Vue中哪些数据类型变化时无法被Vue的响应式系统观测到，应该如何处理</a><br><a href="/blog/2021/04/21/Vue-keep-alive实现原理/">Vue keep-alive实现原理</a><br><a href="/blog/2021/04/24/Vue-Vue最佳实践/">Vue有哪些最佳实践</a><br><br></div>
+
+<h2 id="React"><a href="#React" class="headerlink" title="React"></a>React</h2><div class="article-item"><br><br><a href="/blog/2022/11/24/React-React组件/">React 组件</a><br><a href="/blog/2022/11/25/React-React-Hook/">React Hook</a><br><a href="/blog/2022/11/24/React-React组件的状态state与属性props/">React组件的状态state与属性props</a><br><a href="/blog/2018/09/06/React-React父子组件数据传递/">React父子组件数据传递</a><br><a href="/blog/2022/11/25/React-Virtual-DOM/">React Virtual DOM</a><br><a href="/blog/2023/01/30/React-diff算法原理及优化/">React Diff 算法原理及优化</a><br><a href="/blog/2021/11/29/React-router速读速懂/">React Router</a><br><a href="/blog/2022/11/25/React-Redux小抄/">Redux</a><br><a href="/blog/2022/11/24/React-对比Vue和React/">React与Vue区别</a><br><br></div>
+
+<h2 id="小程序"><a href="#小程序" class="headerlink" title="小程序"></a>小程序</h2><div class="article-item"><br><br><a href="/blog/2021/04/20/FE-jsBridge/">JS Bridge原理</a><br><br></div>
+
+<h2 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h2><div class="article-item"><br><br><a href="/blog/2021/01/19/FE-webpack小抄/">Webpack</a><br><a href="/blog/2021/01/19/FE-webpack小抄/#loader-和-plugin-的区别">Webpack loader 和 plugin 的区别</a><br><a href="/blog/2021/01/19/FE-webpack小抄/#webpack-Tree-shaking原理">Webpack Tree-shaking原理</a><br><br></div>
+
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/03/19/JS-%E7%AC%94%E8%AF%95%E9%A2%98%E5%AE%9E%E8%B7%B5/">JS 笔试题实践</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-19T08:10:10.000Z" itemprop="datePublished">2021-03-19</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>, <a class="article-tag-link" href="/blog/tags/javascript/" rel="tag">javascript</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="书写一个数组去重的方法"><a href="#书写一个数组去重的方法" class="headerlink" title="书写一个数组去重的方法"></a>书写一个数组去重的方法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 利用ES6 Set数据结构去重</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">deduplication</span>(<span class="params">array</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Array</span>.<span class="title function_">from</span>(<span class="keyword">new</span> <span class="title class_">Set</span>(array));</span><br><span class="line">    <span class="comment">// return [...new Set(array)];</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历一遍 利用对象的属性不能相同的特点去重</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">deduplication</span>(<span class="params">array</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> obj = &#123;&#125;, result = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i&lt; array.<span class="property">length</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!obj[array[i]])&#123; <span class="comment">//如果能查找到，证明数组元素重复了</span></span><br><span class="line">            obj[array[i]] = <span class="number">1</span>;</span><br><span class="line">            result.<span class="title function_">push</span>(array[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 双层遍历，内层遍历改用indexOf</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">deduplication</span>(<span class="params">array</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> result = [];</span><br><span class="line">    array.<span class="title function_">forEach</span>(<span class="keyword">function</span>(<span class="params">item, index ,arr</span>)&#123;  <span class="comment">//这里利用map，filter方法也可以实现外层遍历</span></span><br><span class="line">        <span class="keyword">if</span>(arr.<span class="title function_">indexOf</span>(item, index + <span class="number">1</span>) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            result.<span class="title function_">push</span>(item);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 双层遍历, 遇到重复则跳过，不重复的插入到新数组</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">deduplication</span>(<span class="params">array</span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> result = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.<span class="property">length</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; array.<span class="property">length</span>; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(array[i] === array[j])&#123;</span><br><span class="line">                j = ++i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        result.<span class="title function_">push</span>(array[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 双层遍历，删除重复，返回原数组 *对原数组有修改</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">deduplication</span>(<span class="params">array</span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> len = array.<span class="property">length</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; len; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(array[i] == array[j])&#123;</span><br><span class="line">                array.<span class="title function_">splice</span>(j, <span class="number">1</span>);</span><br><span class="line">                len--;</span><br><span class="line">                j--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> array;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+            
+            <p class="article-more-link">
+                <a href="/blog/2021/03/19/JS-%E7%AC%94%E8%AF%95%E9%A2%98%E5%AE%9E%E8%B7%B5/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2020/05/27/CS-%E9%9D%A2%E8%AF%95%E5%B8%B8%E7%94%A8%E7%AE%80%E5%8D%95%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">面试常用简单算法实现</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2020-05-27T03:54:35.000Z" itemprop="datePublished">2020-05-27</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/algorithm/" rel="tag">algorithm</a>, <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="阶乘"><a href="#阶乘" class="headerlink" title="阶乘"></a>阶乘</h2><p>在数学上, 自然数n的阶乘写作n!。一个正整数 n 的阶乘, 就是所有小于等于 n 的正整数的乘积，0的阶乘为1。比如:</p>
+<p>5！ = 5 <em> 4 </em> 3 <em> 2 </em> 1 = 120</p>
+<table>
+<thead>
+<tr>
+<th>n</th>
+<th style="text-align:right">n!</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<td>1</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align:right">2</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align:right">6</td>
+</tr>
+<tr>
+<td>4</td>
+<td style="text-align:right">24</td>
+</tr>
+<tr>
+<td>5</td>
+<td style="text-align:right">120</td>
+</tr>
+<tr>
+<td>6</td>
+<td style="text-align:right">720</td>
+</tr>
+<tr>
+<td>7</td>
+<td style="text-align:right">5 040</td>
+</tr>
+<tr>
+<td>8</td>
+<td style="text-align:right">40 320</td>
+</tr>
+<tr>
+<td>9</td>
+<td style="text-align:right">362 880</td>
+</tr>
+<tr>
+<td>10</td>
+<td style="text-align:right">3 628 800</td>
+</tr>
+<tr>
+<td>11</td>
+<td style="text-align:right">39 916 800</td>
+</tr>
+<tr>
+<td>12</td>
+<td style="text-align:right">479 001 600</td>
+</tr>
+<tr>
+<td>13</td>
+<td style="text-align:right">6 227 020 800</td>
+</tr>
+<tr>
+<td>14</td>
+<td style="text-align:right">87 178 291 200</td>
+</tr>
+<tr>
+<td>15</td>
+<td style="text-align:right">1 307 674 368 000</td>
+</tr>
+</tbody>
+</table>
+<p>问题： 求自然数n的阶乘  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; <span class="variable">number</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">number</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">factorial</span>(<span class="params">number</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> result = <span class="number">1</span>;</span><br><span class="line">  <span class="comment">// 0 或 1 返回 1</span></span><br><span class="line">  <span class="keyword">if</span> (number === <span class="number">0</span> || number === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 大于等于2时循环相乘</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt;= number; i++) &#123;</span><br><span class="line">    result *= i;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用尾递归的方法<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; <span class="variable">n</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; <span class="variable">total</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">number</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">factorial</span>(<span class="params">n, total = <span class="number">1</span></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> n === <span class="number">1</span> ? total : <span class="title function_">factorial</span>(n - <span class="number">1</span>, n * total);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2020/05/27/CS-%E9%9D%A2%E8%AF%95%E5%B8%B8%E7%94%A8%E7%AE%80%E5%8D%95%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2020/05/22/FE-Javascript%E6%A8%A1%E5%9D%97%E5%8C%96/">Javascript模块化</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2020-05-22T07:09:51.000Z" itemprop="datePublished">2020-05-22</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>, <a class="article-tag-link" href="/blog/tags/javascript/" rel="tag">javascript</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><h3 id="什么是模块化"><a href="#什么是模块化" class="headerlink" title="什么是模块化"></a>什么是模块化</h3><p>Javascript在最初的时候没有自己的模块化标准和引入外部模块的方法，类似于 c 的 <code>#include</code> java 的 <code>package</code> ，一个完备的编程语言会考虑一个工程在运行时各个模块的引用和依赖关系。但显然 Javascript 在设计之初只是被当作了一个网页端的脚本语言，既然 HTML 中可以引用js，为什么还要设计 js 中引入 js 的方法呢。可是 Javascript 的发展实在是太快了，我们知道现在 Javascript 不仅在网页中使用，服务器(Nodejs)，PC客户端(Electron)甚至移动客户端都有Js的程序。如何更好的定义模块并进行模块间的引用成了Javascript的当务之重。<br>模块化是一种将系统分离成独立功能部分的方法，可将系统分割成独立的功能部分，严格定义模块接口、模块间具有透明性。  </p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2020/05/22/FE-Javascript%E6%A8%A1%E5%9D%97%E5%8C%96/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2019/12/26/CS-%E4%BD%9C%E4%B8%BA%E4%B8%80%E4%B8%AA%E9%9D%A2%E8%AF%95%E5%AE%98%E5%BA%94%E8%AF%A5%E6%80%9D%E8%80%83%E7%9A%84%E9%97%AE%E9%A2%98/">作为一个面试官应该思考的问题</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-12-26T02:46:34.000Z" itemprop="datePublished">2019-12-26</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="我需要什么样的同事"><a href="#我需要什么样的同事" class="headerlink" title="我需要什么样的同事"></a>我需要什么样的同事</h2><p>招人首先应该明确招收人的性质。看，如果我需要的是一个技术专家我肯定不会提出和实习生一样的要求。如果我只是要招收一个打杂的人，我也不会要求他非得具有研究生学历。成本是很好的衡量一个人价值的方法，当老板（或者你自己就是老板）告诉你有一个HC时，首先应当明确的是这是一个什么样的HC。</p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2019/12/26/CS-%E4%BD%9C%E4%B8%BA%E4%B8%80%E4%B8%AA%E9%9D%A2%E8%AF%95%E5%AE%98%E5%BA%94%E8%AF%A5%E6%80%9D%E8%80%83%E7%9A%84%E9%97%AE%E9%A2%98/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2019/02/12/Vue-%E8%AF%BBVue%E6%BA%90%E7%A0%81%E6%89%80%E8%83%BD%E6%83%B3%E5%88%B0%E7%9A%84%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/">读Vue源码所能想到的面试问题</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-02-12T03:37:05.000Z" itemprop="datePublished">2019-02-12</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>, <a class="article-tag-link" href="/blog/tags/vue/" rel="tag">vue</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="指令v-if-v-show有什么不同？"><a href="#指令v-if-v-show有什么不同？" class="headerlink" title="指令v-if v-show有什么不同？"></a>指令v-if v-show有什么不同？</h2><p>v-if 和 v-show都是Vue中的指令而且都可以用来控制模板的渲染。  </p>
+<p>v-if 是“真正”的条件渲染，因为它会确保在切换过程中条件块内的事件监听器和子组件适当地被销毁和重建。  </p>
+<p>v-if 也是惰性的：如果在初始渲染时条件为假，则什么也不做——直到条件第一次变为真时，才会开始渲染条件块。  </p>
+<p>相比之下，v-show 就简单得多——不管初始条件是什么，元素总是会被渲染，并且只是简单地基于 CSS( <code>display:none</code>) 进行切换。  </p>
+<p>一般来说，v-if 有更高的切换开销，而 v-show 有更高的初始渲染开销。因此，如果需要非常频繁地切换，则使用 v-show 较好；如果在运行时条件很少改变，则使用 v-if 较好。  </p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2019/02/12/Vue-%E8%AF%BBVue%E6%BA%90%E7%A0%81%E6%89%80%E8%83%BD%E6%83%B3%E5%88%B0%E7%9A%84%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/08/31/JS-%E9%98%B2%E6%8A%96%E4%B8%8E%E6%88%AA%E6%B5%81/">debounce &amp; throttle</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-08-31T13:40:48.000Z" itemprop="datePublished">2018-08-31</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>, <a class="article-tag-link" href="/blog/tags/javascript/" rel="tag">javascript</a>, <a class="article-tag-link" href="/blog/tags/underscore/" rel="tag">underscore</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="函数节流（throttle）与函数去抖（debounce）"><a href="#函数节流（throttle）与函数去抖（debounce）" class="headerlink" title="函数节流（throttle）与函数去抖（debounce）"></a>函数节流（throttle）与函数去抖（debounce）</h2><p>以下场景往往由于事件频繁被触发，因而频繁执行DOM操作、资源加载等重行为，导致UI停顿甚至浏览器崩溃。  </p>
+<ol>
+<li><p>window对象的resize、scroll事件</p>
+</li>
+<li><p>拖拽时的mousemove事件</p>
+</li>
+<li><p>射击游戏中的mousedown、keydown事件</p>
+</li>
+<li><p>文字输入、自动完成的keyup事件</p>
+</li>
+</ol>
+<p>实际上对于 window 的 resize 事件，实际需求大多为停止改变大小n毫秒后执行后续处理；而其他事件大多的需求是以一定的频率执行后续处理。针对这两种需求就出现了 debounce 和 throttle 两种解决办法。  </p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2018/08/31/JS-%E9%98%B2%E6%8A%96%E4%B8%8E%E6%88%AA%E6%B5%81/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/07/13/FE-%E5%89%8D%E7%AB%AF%E7%AE%80%E5%8D%95%E9%9D%A2%E8%AF%95%E9%A2%98/">前端简单面试题</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-07-12T19:37:10.000Z" itemprop="datePublished">2018-07-13</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/algorithm/" rel="tag">algorithm</a>, <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>该文章用来记录一些常见的前端简单面试题，这些题目部分是因为比较细碎，部分是比较偏门（对某个不常用功能的深入知识），部分是因为还没来得及，所以没有单独列出文章来讲述。  </p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2018/07/13/FE-%E5%89%8D%E7%AB%AF%E7%AE%80%E5%8D%95%E9%9D%A2%E8%AF%95%E9%A2%98/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

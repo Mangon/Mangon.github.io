@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        存储的形式与硬盘的选择 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="以下收集总结一些存储相关的知识以供个人在寻找存储方案时进行参考。存储介质存储介质指的是存储数据的物理载体，包括硬盘、磁带、内存等设备。根据使用材料和存储原理的不同，可以分为光存储介质（例如光盘）、磁存储介质（例如机械硬盘、软盘）、电存储介质（也叫半导体存储介质，例如固态硬盘）三种。光学存储器利用激光在磁光材料上进行读写，数据不易失且耐用性好；磁性存储器是在金属或者塑料表面上涂上磁性材料作为记录介质，工作时利用磁头在磁层上运动进行读写操作；电存储器通过改变电压来对存储器中的数据进行擦除和改写。" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E4%BB%8B%E8%B4%A8"><span class="toc-text">存储介质</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A3%81%E5%AD%98%E5%82%A8%E4%BB%8B%E8%B4%A8-%E6%9C%BA%E6%A2%B0%E7%A1%AC%E7%9B%98-HDD"><span class="toc-text">磁存储介质-机械硬盘 HDD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B5%E5%AD%98%E5%82%A8%E4%BB%8B%E8%B4%A8-%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98-SSD"><span class="toc-text">电存储介质-固态硬盘 SSD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%89%E5%AD%98%E5%82%A8%E4%BB%8B%E8%B4%A8-%E5%85%89%E7%9B%98"><span class="toc-text">光存储介质-光盘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%BA%E6%A2%B0%E7%A1%AC%E7%9B%98%E4%B8%8E%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98%E5%AF%B9%E6%AF%94"><span class="toc-text">机械硬盘与固态硬盘对比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AC%E7%9B%98%E6%8E%A5%E5%8F%A3%E4%B8%8E%E5%8D%8F%E8%AE%AE"><span class="toc-text">硬盘接口与协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#IDE-%E6%8E%A5%E5%8F%A3"><span class="toc-text">IDE 接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SATA-%E6%8E%A5%E5%8F%A3"><span class="toc-text">SATA 接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SCSI-%E6%8E%A5%E5%8F%A3"><span class="toc-text">SCSI 接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%89%E7%BA%A4%E9%80%9A%E9%81%93"><span class="toc-text">光纤通道</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SAS-%E6%8E%A5%E5%8F%A3"><span class="toc-text">SAS 接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PCIe-%E6%8E%A5%E5%8F%A3"><span class="toc-text">PCIe 接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mSATA-%E6%8E%A5%E5%8F%A3"><span class="toc-text">mSATA 接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#M-2-NGFF-%E6%8E%A5%E5%8F%A3"><span class="toc-text">M.2(NGFF) 接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AHCI-%E8%A7%84%E8%8C%83"><span class="toc-text">AHCI 规范</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NVMe-%E8%A7%84%E8%8C%83"><span class="toc-text">NVMe 规范</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AC%E7%9B%98%E6%8E%92%E6%9F%A5%E8%BD%AF%E4%BB%B6"><span class="toc-text">硬盘排查软件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%BA%E6%A2%B0%E7%A1%AC%E7%9B%98%E4%B8%AD%E7%9A%84%E5%8F%A0%E7%93%A6%E7%9B%98%E5%92%8C%E5%9E%82%E7%9B%B4%E7%9B%98"><span class="toc-text">机械硬盘中的叠瓦盘和垂直盘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MTBF-MTTR-MTTF%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E8%81%94%E7%B3%BB"><span class="toc-text">MTBF MTTR MTTF的区别和联系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RPM"><span class="toc-text">RPM</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F"><span class="toc-text">存储方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A3%81%E5%B8%A6"><span class="toc-text">磁带</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E7%9B%98"><span class="toc-text">软盘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#U%E7%9B%98"><span class="toc-text">U盘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%89%E7%9B%98"><span class="toc-text">光盘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%8D%A1"><span class="toc-text">存储卡</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SD%E5%8D%A1"><span class="toc-text">SD卡</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CF%E5%8D%A1"><span class="toc-text">CF卡</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CFast%E5%8D%A1"><span class="toc-text">CFast卡</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#XQD%E5%8D%A1"><span class="toc-text">XQD卡</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CFexpress%E5%8D%A1"><span class="toc-text">CFexpress卡</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98"><span class="toc-text">移动硬盘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%9B%98"><span class="toc-text">网盘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NAS"><span class="toc-text">NAS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SAN"><span class="toc-text">SAN</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SAN-%E4%B8%8E-NAS-%E5%8C%BA%E5%88%AB"><span class="toc-text">SAN 与 NAS 区别</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%81%E7%89%8C%E5%95%86%E4%B8%8E%E4%BA%A7%E5%93%81"><span class="toc-text">品牌商与产品</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%BA%E6%A2%B0%E7%A1%AC%E7%9B%98%E5%93%81%E7%89%8C"><span class="toc-text">机械硬盘品牌</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%8C%E6%8D%B7"><span class="toc-text">希捷</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A5%BF%E9%83%A8%E6%95%B0%E6%8D%AE"><span class="toc-text">西部数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%9C%E8%8A%9D"><span class="toc-text">东芝</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98%E5%93%81%E7%89%8C"><span class="toc-text">固态硬盘品牌</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NAS-%E5%93%81%E7%89%8C"><span class="toc-text">NAS 品牌</span></a></li></ol></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            存储的形式与硬盘的选择
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2022-07-25T01:47:55.000Z" itemprop="datePublished">2022-07-25</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/storage/" rel="tag">storage</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>以下收集总结一些存储相关的知识以供个人在寻找存储方案时进行参考。</p>
+<span id="more"></span>
+<h2 id="存储介质"><a href="#存储介质" class="headerlink" title="存储介质"></a>存储介质</h2><p>存储介质指的是存储数据的物理载体，包括硬盘、磁带、内存等设备。根据使用材料和存储原理的不同，可以分为光存储介质（例如光盘）、磁存储介质（例如机械硬盘、软盘）、电存储介质（也叫半导体存储介质，例如固态硬盘）三种。光学存储器利用激光在磁光材料上进行读写，数据不易失且耐用性好；磁性存储器是在金属或者塑料表面上涂上磁性材料作为记录介质，工作时利用磁头在磁层上运动进行读写操作；电存储器通过改变电压来对存储器中的数据进行擦除和改写。</p>
+<h3 id="磁存储介质-机械硬盘-HDD"><a href="#磁存储介质-机械硬盘-HDD" class="headerlink" title="磁存储介质-机械硬盘 HDD"></a>磁存储介质-机械硬盘 HDD</h3><p>机械硬盘（Hard Disk Drive，HDD）即是传统普通硬盘。机械硬盘采用磁性碟片来存储数据，主要由：磁盘、磁头、磁盘转轴及控制电机、磁头控制器、数据转换器、接口、缓存等几个部分组成。</p>
+<p>常见的硬盘尺寸有三种，分别是3.5英寸硬盘、2.5英寸硬盘、1.8英寸硬盘。1.8英寸硬盘主要是在微型机上用（已停产），2.5英寸硬盘主要用于笔记本，3.5英寸硬盘主要用于台式机。</p>
+<h3 id="电存储介质-固态硬盘-SSD"><a href="#电存储介质-固态硬盘-SSD" class="headerlink" title="电存储介质-固态硬盘 SSD"></a>电存储介质-固态硬盘 SSD</h3><p>固态硬盘（Solid State Drive or Solid State Disk，SSD）由控制单元和存储单元（一般是 FLASH 芯片，也有 DRAM 芯片、3D XPoint 芯片）、缓存（非必须）等组成，</p>
+<p>存储单元通常采用 NAND Flash（闪存）芯片作为存储介质的固态硬盘，可以被制作成多种样式，例如 2.5英寸硬盘、存储卡、U盘等样式。这种 SSD 固态硬盘最大的优点就是可以移动，而且数据保护不受电源控制，能适应于各种环境，寿命长，适合于个人用户使用。</p>
+<p>NAND Flash 闪存芯片又分为 SLC（Single-Level Cell，单层单元）、MLC（Multi-Level Cell，双层单元）、TLC（Trinary-Level Cell，三层单元）、QLC（Quad-Level Cell，四层单元）这四种规格。SLC 闪存普遍能达到上万次的 P/E（闪存完全擦写一次叫做1次 P/E ，因此闪存的寿命就以 P/E 作单位），最新的 QLC 也能确保300次 P/E 的寿命。普通用户一年的写入量不超过硬盘的50倍总尺寸，即便最廉价的 QLC 闪存，也能提供6年的写入寿命。</p>
+<h3 id="光存储介质-光盘"><a href="#光存储介质-光盘" class="headerlink" title="光存储介质-光盘"></a>光存储介质-光盘</h3><p>光盘（Optical Disc，又称作光碟）于1965年由美国发明家詹姆斯·拉塞尔（James Russell）发明，它是用激光扫描来记录和读取信息的一种介质。光盘根据读写特性可分为只读光盘（例如 CD-ROM、DVD-ROM 等）和读写光盘（例如 CR-RW、DVD-RAM 等）。以 CD 为例，光盘主要由基板、记录层、反射层、保护层、印刷层等组成，厚度为1.2mm。根据数据存储结构不同，光盘可以分为 CD、DVD、蓝光（Blu-ray）等多种类型。容量上，CD 的容量有700MB左右，DVD 则可以达到4.7GB，而蓝光光盘更是可以达到25GB。</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>全称</th>
+<th>介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CD</td>
+<td>Compact-Disc</td>
+<td>光盘，代表小型镭射盘，是一个用于所有CD媒体格式的一般术语。是由 Lead-In（资料开始记录的位置）；而后是 Table-of-Contents 区域，由内及外记录资料；在记录之后加上一个 Lead-Out 的资料轨结束记录的标记。</td>
+</tr>
+<tr>
+<td>CD-ROM</td>
+<td>Compact-Disc-Read-Only-Memory</td>
+<td>只读光盘。1986年， SONY、Philips 一起制定的黄皮书标准，定义档案资料格式。定义了用于电脑数据存储的 MODE1 和用于压缩视频图象存储的 MODE2 两类型，使 CD 成为通用的储存介质。并加上侦错码及更正码等位元，以确保电脑资料能够完整读取无误。</td>
+</tr>
+<tr>
+<td>VCD</td>
+<td>Video-CD</td>
+<td>激光视盘。是由 SONY、Philips、JVC、Matsushita 等共同制定，属白皮书标准。是指全动态、全屏播放的激光影视光盘。</td>
+</tr>
+<tr>
+<td>DVD</td>
+<td>Digital-Versatile-Disk</td>
+<td>数字多用光盘，以 MPEG-2 为标准，拥有4.7G的大容量，可储存133分钟的高分辨率全动态影视节目，包括数个杜比数字环绕声音轨道，图像和声音质量是 VCD 所不及的。</td>
+</tr>
+<tr>
+<td>BD-ROM</td>
+<td>Blu-ray Disc-Read-Only-Memory</td>
+<td>蓝光只读光盘，能够存储大量数据的外部存储媒体，中文语境下常被称为“蓝光光盘”。蓝光光盘的命名是由于其采用波长405纳米（nm）的蓝色激光光束来进行读写操作（DVD采用650纳米波长的红光读写器，CD则是采用780纳米波长）。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="机械硬盘与固态硬盘对比"><a href="#机械硬盘与固态硬盘对比" class="headerlink" title="机械硬盘与固态硬盘对比"></a>机械硬盘与固态硬盘对比</h3><ul>
+<li>防震抗摔性：机械硬盘都是磁碟型的，数据储存在磁碟扇区里。而固态硬盘是使用闪存颗粒制作而成，所以 SSD 固态硬盘内部不存在任何机械部件，这样即使在高速移动甚至伴随翻转倾斜的情况下也不会影响到正常使用，而且在发生碰撞和震荡时能够将数据丢失的可能性降到最小。相较机械硬盘，固态硬盘占有绝对优势。</li>
+<li>数据存储/读取速度：机械硬盘的速度约为120MB/S，SATA 协议的固态硬盘速度约为500MB/S，NVMe 协议(PCIe 3.0 x2)的固态硬盘速度约为1800MB/S，NVMe 协议(PCIe 3.0 x4)的固态硬盘速度约为3500MB/S。固态硬盘的读写速度有绝对的优势，而且由于不需要寻道，固态硬盘在随机读写速度上更具有优势。</li>
+<li>功耗：由于固态硬盘内部没有机械部件，没有高速旋转的磁盘，所以功耗较小，更加节能省电。通常不超过3W，而机械硬盘则是5-10W</li>
+<li>噪音：机械硬盘工作时需要高速转动磁盘，马达的高速转动不可避免地带来噪音和发热。由于固态硬盘属于无机械部件及闪存芯片，所以具有了发热量小、散热快等特点，而且没有机械马达和风扇，噪音值为0分贝。</li>
+<li>使用寿命：固态硬盘的寿命是按读写次数算的，一般在10万次左右。机械硬盘的寿命则是按小时计算的，一般在3-5万小时左右。</li>
+<li>数据恢复：数据删除时，机械硬盘只是移动指针，而固态硬盘会将数据擦除。所以机械硬盘损坏后，一般仍旧可以进行数据恢复，但固态硬盘无法进行恢复。</li>
+<li>工作温度范围：典型的机械硬盘只能在5~55摄氏度范围内工作。而大多数固态硬盘可在-10~70摄氏度工作。</li>
+<li>体积与重量：固态硬盘比同容量机械硬盘体积小、重量轻。与常规1.8英寸硬盘相比，固态硬盘重量轻20-30克。</li>
+<li>价格：同容量固态硬盘价格约是机械硬盘的3～5倍。</li>
+</ul>
+<h3 id="硬盘接口与协议"><a href="#硬盘接口与协议" class="headerlink" title="硬盘接口与协议"></a>硬盘接口与协议</h3><p>这里的硬盘接口指的是用于连接主板和大容量存储设备的端口，包括 IDE 接口、SATA 接口、SCSI 接口、光纤通道、SAS 接口、mSATA 接口、M.2 接口。硬盘接口协议指的是硬盘接口上层对接的系统控制与通信协议，包括 AHCI、NVMe。</p>
+<p>早期的硬盘接口 包括 ST506/ST412、ESDI、IPI、SMD 等不再赘述。</p>
+<h4 id="IDE-接口"><a href="#IDE-接口" class="headerlink" title="IDE 接口"></a>IDE 接口</h4><p>IDE（Integrated Drive Electronics，电子集成驱动器，相对于SATA常被称为“并口”）硬盘接口也称作 “ATA（Advanced Technology Attachment）接口” 或 “PATA接口（Parallel Advanced Technology Attachment，以同 SATA 区别）”，是由 IBM 开发的早期机械硬盘的主要接口，ATA133 硬盘的理论速度可以达到 133MB/s。IDE 硬盘接口如下图所示：</p>
+<p><img src="/blog/static/imgs/disk/IDE.jpeg" alt="ide_inner"></p>
+<h4 id="SATA-接口"><a href="#SATA-接口" class="headerlink" title="SATA 接口"></a>SATA 接口</h4><p>SATA（Serial Advanced Technology Attachment，常被称为“串口”）硬盘接口，是由 Intel、 IBM、Dell、APT、Maxtor 和 Seagate 组成的 SATA-IO 提出的硬盘接口规范。它采用串行方式传输数据，结构简单，支持热插拔，具备了更高的传输速度和更强的纠错能力。SATA 1.0定义的数据传输率即可达 150MB/s，SATA2.0 的数据传输率将达到 300MB/s，目前最新的版本已经是 SATA Revision 3.0，传输速度可达到 600MB/s。SATA 接口如下图所示：</p>
+<p><img src="/blog/static/imgs/disk/SATA.jpeg" alt="sata_inner"></p>
+<h4 id="SCSI-接口"><a href="#SCSI-接口" class="headerlink" title="SCSI 接口"></a>SCSI 接口</h4><p>SCSI（Small Computer System Interface，小型计算机系统接口）接口，被广泛应用于计算机及其周边设备（尤其是存储设备）之间进行连接。它具有应用范围广、多任务、带宽大、CPU 占用率低及支持热插拔等优点，但是由于成本问题，主要用于中高端服务器与工作站上。最初的 SCSI 标准为 SCSI-1，又名 Narrow SCSI，于1986年发布，最大支持7个设备，最大同步传输速率为5MB/s。1994年 发布了 SCSI-2，又名 Fast SCSI，时钟频率提升了一倍，最大同步传输速率为10MB/s，之后又另一种提高速度的选择，传输频率提高一倍的同时也增大数据通路的宽度，由8位增至16位，这个标准被称为 Wide SCSI，它的最大同步传输速率为20MB/s。1995年左右出现了第三代 SCSI，被称为 Ultra SCSI。SCSI-3 有很多型号，其中传输速率最快的为 2003 年发布的 Ultra 640 SCSI，最大传输速度达到 640MB/s。SCSI 接口如下图所示：</p>
+<p><img src="/blog/static/imgs/disk/SCSI.jpeg" alt="scsi_inner"></p>
+<h4 id="光纤通道"><a href="#光纤通道" class="headerlink" title="光纤通道"></a>光纤通道</h4><p>光纤通道（Fibre Channel，FC）是一种高速数据传输协议，可提供原始块数据的有序、无损传输。光纤通道由信息技术标准国际委员会（INCITS）的T11技术委员会负责标准化。光纤通道主要是用于连接计算机的数据存储到服务器在存储区域网络（SAN）中的商业数据中心。光纤通道交换机最初的最大的传输速率为1Gbps，现在它已经发展到128Gbps 约合 16GB/s，且仍然可以使用8Gbps、16Gbps、32Gbps版本。</p>
+<h4 id="SAS-接口"><a href="#SAS-接口" class="headerlink" title="SAS 接口"></a>SAS 接口</h4><p>SAS 接口 (Serial Attached SCSI，即串行连接SCSI）是新一代的 SCSI 技术，连接小型计算机系统接口，采用串行技术以获得更高的传输速度，并通过缩短连结线改善了内部空间。由 ANSI INCITS <a target="_blank" rel="noopener" href="https://www.t10.org">T10 committee</a> 负责维护。SAS 是并行 SCSI 接口之后开发出的全新接口。此接口的设计是为了改善存储系统的效能、可用性和扩充性，并且提供与 SATA 硬盘的兼容性。最新的于2017年发布 SAS4 标准可提供 24Gbps 的全双工传输速率。</p>
+<h4 id="PCIe-接口"><a href="#PCIe-接口" class="headerlink" title="PCIe 接口"></a>PCIe 接口</h4><p>PCIe（Peripheral Component Interconnect Express）是一种高速串行计算机扩展总线规范，它原来的名称为“3GIO”，是由 Intel 在2001年提出的，旨在替代旧的 PCI，PCI-X 和 AGP 总线标准。PCI-E 是一项不断发展和完善的技术，由 PCI-SIG 组织负责开发与发布。PCI-E 提供了4种接口尺寸 X1/X4/X8/X16。截止目前（2022年7月25日），最新一版是于2022年6月22日发布的 PCIe 7.0，在一条通道 (x1) 上单向实现了 128GT / s 或 128Gbps 总吞吐量。</p>
+<h4 id="mSATA-接口"><a href="#mSATA-接口" class="headerlink" title="mSATA 接口"></a>mSATA 接口</h4><p>mSATA (mini-SATA)是迷你版本SATA接口，由 SATA-IO(Serial ATA International Organization)开发，外型和针脚排布与 mini PCI-E 完全相同，提供跟 SATA 接口标准一样的速度和可靠度。</p>
+<h4 id="M-2-NGFF-接口"><a href="#M-2-NGFF-接口" class="headerlink" title="M.2(NGFF) 接口"></a>M.2(NGFF) 接口</h4><p>M.2 接口，是 Intel 推出的一种替代 mSATA 的新的接口方案。M.2 接口有两种类型：Socket 2（B key——ngff）和Socket 3（M key——nvme），其中 Socket2 支持 SATA、PCI-E x2 接口，而如果采用 PCI-E x2 接口标准，最大的读取速度可以达到700MB/s，写入也能达到550MB/s。而其中的 Socket 3 可支持 PCI-E x4 接口，理论带宽可达4GB/s。<br>M.2标准的 SSD 同 mSATA 一样可以进行单面 NAND 闪存颗粒的布置，也可以进行双面布置，其中单面布置的总厚度仅有2.75mm，而双面布置的厚度也仅为3.85mm。</p>
+<p>资料传输方式：</p>
+<ul>
+<li>M.2接口 SATA通道：硬盘→内存→CPU→内存→硬盘</li>
+<li>M.2接口 PCI-E通道 NVMe规范：硬盘→CPU→硬盘</li>
+</ul>
+<h4 id="AHCI-规范"><a href="#AHCI-规范" class="headerlink" title="AHCI 规范"></a>AHCI 规范</h4><p><a target="_blank" rel="noopener" href="https://www.intel.com/content/www/us/en/io/serial-ata/ahci.html">AHCI</a>（Advanced Host Controller Interface，高级主机控制器接口）是由 Intel 制定的技术标准，由 SATA-IO 组织负责维护。该规范描述了一种系统内存结构，供计算机硬件供应商在主机系统内存和附加存储设备之间交换数据。该规范被广泛应用于 SATA 硬盘，也被称为 SATA 协议。</p>
+<h4 id="NVMe-规范"><a href="#NVMe-规范" class="headerlink" title="NVMe 规范"></a>NVMe 规范</h4><p><a target="_blank" rel="noopener" href="https://nvmexpress.org/">NVMe</a>（Non Volatile Memory Express），或称非易失性内存主机控制器接口规范（Non Volatile Memory Host Controller Interface Specification，NVMHCIS），是一个逻辑设备接口规范，定义了主机软件如何跨 PCI-E、RDMA、TCP 等多种传输方式与非易失性存储器进行通信。它是所有外形尺寸（U.2、M.2、AIC、EDSFF）的固态硬盘 (SSD) 的行业标准。最新的版本是 NVMe 2.0，包括了一系列的文档。</p>
+<h3 id="硬盘排查软件"><a href="#硬盘排查软件" class="headerlink" title="硬盘排查软件"></a>硬盘排查软件</h3><p>CrystalDiskInfo</p>
+<p>CrystalDiskMark</p>
+<p>QuickBench</p>
+<p>DiskSpeedTest</p>
+<p>DiskGenius</p>
+<p>victoria</p>
+<h3 id="机械硬盘中的叠瓦盘和垂直盘"><a href="#机械硬盘中的叠瓦盘和垂直盘" class="headerlink" title="机械硬盘中的叠瓦盘和垂直盘"></a>机械硬盘中的叠瓦盘和垂直盘</h3><p>垂直盘（CMR）和叠瓦盘（SMR）是机械硬盘的两种磁盘分布方式。</p>
+<p>传统的垂直盘的磁道是水平排列的，而叠瓦盘不会将磁道分开，而是将磁道像瓦片一样叠起来，利用这种方式可以增加磁道数量，提高数据密度。</p>
+<p>由于叠瓦盘的磁道是叠在一起的，改写数据时，就会影响到相邻磁道，为了避免影响，增加读写性能，叠瓦盘就需要大的缓存。</p>
+<h3 id="MTBF-MTTR-MTTF的区别和联系"><a href="#MTBF-MTTR-MTTF的区别和联系" class="headerlink" title="MTBF MTTR MTTF的区别和联系"></a>MTBF MTTR MTTF的区别和联系</h3><p>MTBF（Mean Time Between Failures），平均故障时间，又称平均无故障时间，指产品出现两次相邻故障之间的平均时间，当然，MTBF越长，表示故障出现的越不频繁。</p>
+<p>MTTR（Mean Time To Repair），平均恢复时间，指从出现故障到恢复的时间，当然，MTTR越短，表示易恢复性越好。</p>
+<p>MTTF（Mean Time To Failures），平均失效时间，指系统正常工作到出现故障的时间，当然，MTTF越长，表示系统可靠性越高。</p>
+<p><img src="/blog/static/imgs/disk/mttf.png" alt="mttf_inner"></p>
+<h3 id="RPM"><a href="#RPM" class="headerlink" title="RPM"></a>RPM</h3><p>RPM（Revolutions Per Minute），转/每分钟，是表示机械硬盘盘片转速的单位。RPM值越大，盘片转速就越快，硬盘寻找文件的速度也就越快，相对的硬盘的传输速度也就得到了提高，但同时，高转速带来了更高的功耗、噪声和故障率。家用的普通硬盘的转速一般有5400rpm、7200rpm，对于笔记本硬盘则是4200rpm、5400rpm为主。服务器用户对硬盘性能要求最高，服务器中使用的SCSI硬盘转速基本都采用10000rpm，甚至还有15000rpm的。<br>硬盘电机的功耗与转速的2.8次方成正比，与盘片直径的4.6次方成正比，功耗越大则故障率越高</p>
+<h2 id="存储方式"><a href="#存储方式" class="headerlink" title="存储方式"></a>存储方式</h2><h3 id="磁带"><a href="#磁带" class="headerlink" title="磁带"></a>磁带</h3><p>磁带（Tape）是一种用于记录声音、图像、数字或其他信号的载有磁层的带状材料，是产量最大和用途最广的一种磁记录材料。通常是在塑料薄膜带基（支持体）上涂覆一层颗粒状磁性材料或蒸发沉积上一层磁性氧化物或合金薄膜而成。曾使用纸和赛璐珞等作带基，现主要用强度高、稳定性好和不易变形的聚酯薄膜。</p>
+<h3 id="软盘"><a href="#软盘" class="headerlink" title="软盘"></a>软盘</h3><p>软盘（Floppy Disk）是个人计算机（PC）中最早使用的可移动介质。1967年，IBM 公司推出世界上第一张软盘，直径达32英寸，发明者是艾伦・舒加特（Alan Shugart，希捷创始人）。软盘的读写是通过软盘驱动器完成的。软盘驱动器设计成能接收可移动式软盘，常用的就是容量为1.44MB的3.5英寸软盘。一个1.44M的软盘，它有80个磁道，每个磁道有18个扇区，两面都可以存储数据，每个扇区存储512个字节。我们可以这样计算它的容量：80×18×2×512≈1440KB≈1.44MB。软盘中的数据一般可保存5－8年的时间，盘片不能变形、不能受高温、不能受潮、不能靠近磁性物质，而且每次存储数据都需要先格式化，存取速度慢，最主要的是容量太小，所以现在已经被淘汰了。</p>
+<h3 id="U盘"><a href="#U盘" class="headerlink" title="U盘"></a>U盘</h3><p>U盘是 USB 盘（USB flash disk）的简称，由朗科发明。U盘与硬盘的最大不同是，它不需物理驱动器，即插即用，且其存储容量远超过软盘，极便于携带。</p>
+<h3 id="光盘"><a href="#光盘" class="headerlink" title="光盘"></a>光盘</h3><p>见上 <a href="/blog/2022/07/25/CS-个人存储方案/#光盘">光盘</a> 所述。</p>
+<h3 id="存储卡"><a href="#存储卡" class="headerlink" title="存储卡"></a>存储卡</h3><p>常见的存储卡有 SD 卡、CF 卡、CFast 卡、XQD 卡、CFexpress 卡、MS 卡（记忆棒）、XD 卡、MMC 卡和 SM 卡等，其中最常用的是 SD 卡，CFast 卡、XQD 卡、CFexpress 卡兼顾了单反和微单的高速摄像的应用。</p>
+<h4 id="SD卡"><a href="#SD卡" class="headerlink" title="SD卡"></a>SD卡</h4><p>SD 存储卡（Secure Digital Memory Card）是一种基于半导体快闪存储器的高速存储设备，1999年8月由 Panasonic、Toshiba、SanDisk 3家公司共同开发，在推出 SD 存储卡的同时，成立安全储存数码卡协会（Secure Digital Card Association，SDA）制订相关规范，并负责 SD 存储卡的推广工作。SD 卡的数据传送和物理规范由 MMC（MulTI Media Card）发展而来，大小和 MMC 卡差不多，尺寸为 32mm x 24mm x 2.1mm，长宽和 MMC 卡一样，只是比 MMC 卡厚了0.7mm，以容纳更大容量的存贮单元。</p>
+<ol>
+<li>尺寸</li>
+</ol>
+<p>SD 卡家族有 SD、Mini SD、Micro SD 共3位成员，尺寸依次减小。标准 SD 卡用于绝大多数相机、摄像机，本体带有一个写保护开关——但它并不影响存储卡的内部，而是影响读卡设备的识别。Mini SD 卡已经退出历史舞台，Micro SD 卡又称作 TF 卡，主要用于手机、运动相机、无人机等产品。</p>
+<ol start="2">
+<li>容量</li>
+</ol>
+<p>我们统称的 SD 卡，其实在最大容量方面有多种版本。最初的 SD 卡使用 FAT16 文件系统，最大容量只能达到2GB，现在已经退出主流应用。最常见的 SDHC（SD High Capacity）存储卡和 SDXC（SD eXtended Capacity）存储卡，分别使用 FAT32 文件系统和 EXFAT 文件系统，最大容量分别为32GB和2TB。新推出的 SDUC 存储卡，理论容量可以达到128TB，值得一提的是，64GB以上的SD卡（SDXC及SDUC）采用 EXFAT 格式，单个文件的尺寸可以大于4GB，是需要长时间连续记录4K高码率视频拍摄的用户选择。</p>
+<ol start="3">
+<li>速度</li>
+</ol>
+<p>速度等级是 SD 卡联盟指定的性能规范，同时也是 SD 卡生产商需要在产品本体、外包装上印刷的标志。速度等级通常只能体现 SD 卡的最低性能水平，不代表实际性能。</p>
+<ul>
+<li><p>无UHS：单排触点，最高标准C10（持续写入速度不低于10MB/s），理论速度不超过25MB/s（通常指读取速度，写入速度会稍低一些）。这种卡目前已经基本退出市场了。</p>
+</li>
+<li><p>UHS-I：单排触点，最高标准C10、U3、V30（持续写入速度30MB/s），理论速度104MB/s。这是目前市场的最主力产品。</p>
+</li>
+<li><p>UHS-II：双排触点，最高标准C10，U3，V90（持续写入速度90MB/s）。全双工模式理论速度156MB/s（大多数相机）、半双工模式理论速度312MB/s（读卡器等）。</p>
+</li>
+<li><p>UHS-III：双排触点，最高标准C10，U3，V90，全双工模式即可达到624MB/s。不过，目前还没有实际产品。</p>
+</li>
+<li><p>SD Express：双排触点，采用 PCIe 3.0 总线且支持 NVMe，可以达到985MB/s的超高速度。目前，闪迪（西部数据）已经推出了原型产品。需要说明的是，SD Express 只能向下兼容 UHS-I，不支持 UHS-II 或 UHS-III —— 也就是当存储卡、设备中有一个不支持 SD Express 时，系统能达到的最高速度是104MB/s。</p>
+</li>
+</ul>
+<h4 id="CF卡"><a href="#CF卡" class="headerlink" title="CF卡"></a>CF卡</h4><p>CF（Compact Flash）卡最初是一种用于便携式电子设备的数据存储设备。作为一种存储设备，它革命性的使用了闪存，于1994年首次由 SanDisk 公司生产并制定了相关规范。CF卡内部控制器设计完全模拟硬盘，使用标准的并行 ATA/IDE 接口界面，国际 CFA 协会（Compact Flash Association） 最新规范 CF6.0，总线速度最高可达167 MB/s。</p>
+<h4 id="CFast卡"><a href="#CFast卡" class="headerlink" title="CFast卡"></a>CFast卡</h4><p>CFast 卡是由 CFA（CompactFlash AssociaTIon，CFA）2008年制定的标准和规范，是 CF 阵营开发出 CF 规范的新升级标准，使用的传输协议是 SATA，早期使用 SATA2，现在已经普遍使用 SATA3。同时外形和 CF 卡一样，号称是世界上最小的 SATA 固态硬盘。CFast2.0 规范支持 SATA3，总线速度可达600MB/s。基于 CFast 2.0 规范的 CFast 卡适用于工业以及专业成像和视频市场。</p>
+<p>随着闪存产品的不断进阶演化，该协会已于2017年发布了 PCI-E 传输信号的 CFexpress* 1.0规格。CFast 卡和 CF 卡是两种不同等级的产品，可以说 CFast 卡是 CF 卡的进阶演化和“变异升级”，但不能想当然的认为 CF 卡就是 CFast 卡，或者以为两者就是更新换代的关系。CF 卡和 CFast 卡不能通用。</p>
+<h4 id="XQD卡"><a href="#XQD卡" class="headerlink" title="XQD卡"></a>XQD卡</h4><p>XQD 卡规范最初由 Sony、SanDisk 和 Nikon 在2010年11月发表，并立刻被 Compact Flash协会提取作为发展目标。2011年12月8日，CFA 协会（Compact Flash Association）公布了新开发的 XQD 存储卡格式，随后第一批样品也于2012年2月在日本“CP+ 2012”展会上展示。XQD 是一种采用快闪存储器的存储卡格式，是针对 CF 卡的缺点而进行设计的，拥有更小的体积、更快的写入以及更大的容量、更为出色的可靠性及稳定性等等优势。基于 PCI-E 规范，最初只有125MB/s的持续写入速度、最大容量32GB；新一代 XQD 卡则是440MB/s读取、400MB/s写入速度，最大容量240GB，高速写入可持续拍摄长达200张的 RAW 图片，视频录制方面可实现稳定高帧4K录制的同时又能避免速度的下降。</p>
+<h4 id="CFexpress卡"><a href="#CFexpress卡" class="headerlink" title="CFexpress卡"></a>CFexpress卡</h4><p>在 CP+2019 上，CFA协会（Compact Flash Association）公布了 CFexpress 2.0 规范。CFexpress 卡是新一代存储卡标准，目前已有尼康的Z系列微单、松下的S系列、佳能的R系列微单支持该标准，它将 CFexpress 卡划分三种类型。</p>
+<ul>
+<li><p>Type A：尺寸是20mm<em>28mm</em>2.8mm，略小于 SD 卡，1条 PCI-E 通道，理论传输速度1GB/s，主要针对普通数码相机设计；</p>
+</li>
+<li><p>Type B：尺寸是38.5mm<em>29.8mm</em>2.8mm，与 XQD 卡相同，2条 PCI-E 通道，理论传输速度2GB/s，主要针对高端数码相机设计；</p>
+</li>
+<li><p>Type C：尺寸是54mm<em>74mm</em>4.8mm，外形类似2.5英寸 SSD，4条 PCI-E 通道，理论传输速度4GB/s，主要针对台式机、笔记本电脑、平板电脑设计，以取代固态硬盘。</p>
+</li>
+</ul>
+<h3 id="移动硬盘"><a href="#移动硬盘" class="headerlink" title="移动硬盘"></a>移动硬盘</h3><p>移动硬盘，主要指采用 USB 等接口，支持热插拔，小巧而便于携带的硬盘存储器。移动硬盘主要由外壳、电路板（包括控制芯片以及数据和电源接口）和硬盘三部分组成。硬盘通常采用2.5英寸机械硬盘或固态硬盘，数据接口通常采用 USB 或者 IEEE1394。</p>
+<h3 id="网盘"><a href="#网盘" class="headerlink" title="网盘"></a>网盘</h3><p>网盘，是指由互联网公司推出的在线存储 SaaS 服务。服务器机房为用户划分一定的磁盘空间，为用户免费或收费提供文件的存储、访问、备份、共享等文件管理等功能，并且提供容灾备份的能力。<br>目前国内市场占有率最高的就是百度网盘（百度），几乎占据了80%以上的市场。另外还有 腾讯微云（腾讯）、天翼云盘（中国电信）、和彩云网盘（中国移动）、阿里云盘（阿里巴巴）。国外还有 Dropbox、iCloud Drive（Apple）等网盘。</p>
+<h3 id="NAS"><a href="#NAS" class="headerlink" title="NAS"></a>NAS</h3><p>网络附加存储（Network Attached Storage，NAS）是指连接到计算机网络的文件级（与块级存储相反）计算机数据存储服务器，提供对异构客户端组的数据访问。NAS 被定义为一种特殊的专用数据存储服务器，由存储器件（例如磁盘阵列、CD/DVD 驱动器、磁带驱动器或可移动的存储介质）和内嵌系统软件构成，可提供跨平台文件共享功能。</p>
+<h3 id="SAN"><a href="#SAN" class="headerlink" title="SAN"></a>SAN</h3><p>存储区域网络（Storage Area Network，SAN）是企业常用的存储网络架构。存储区域网络是一种连接外接存储设备和服务器的架构。人们采用包括光纤通道技术、磁盘阵列、磁带柜、光盘柜的各种技术进行实现。该架构的特点是，连接到服务器的存储设备，将被操作系统视为直接连接的存储设备。</p>
+<p>存储区域网络部署通常用于支持性能要求较高的业务关键型应用，例如：</p>
+<ul>
+<li>Oracle 数据库</li>
+<li>Microsoft SQL Server 数据库</li>
+<li>采用 VMware、KVM 或 Microsoft Hyper-V 的大型虚拟化部署</li>
+<li>大型虚拟桌面基础架构 (Virtual Vesktop Infrastructure, VDI)</li>
+<li>SAP 或其他大型 ERP 或 CRM 环境</li>
+</ul>
+<h4 id="SAN-与-NAS-区别"><a href="#SAN-与-NAS-区别" class="headerlink" title="SAN 与 NAS 区别"></a>SAN 与 NAS 区别</h4><p>SAN 和 NAS 都可以用于集中管理存储，并与多个主机（服务器）共享该存储。但是，NAS 基于以太网，而 SAN 可使用以太网和光纤通道。此外，SAN 注重高性能和低延迟，NAS 则注重易用性、易管理性、可扩展性和更低的总拥有成本 (TCO，Total Cost Of Ownership)。不同于 SAN，NAS 存储控制器会对存储进行分区，并拥有文件系统所有权。实际上，对于使用存储的服务器来说，这使 NAS 服务器看起来就像一台 Windows 或 UNIX/Linux 服务器。</p>
+<p>SAN协议包括：</p>
+<ul>
+<li>光纤通道协议 (FCP)</li>
+<li>Internet 小型计算机系统接口 (iSCSI)</li>
+<li>以太网光纤通道 (FCoE)</li>
+<li>基于光纤通道的非易失性内存标准 (FC-NVMe)</li>
+</ul>
+<p>NAS协议包括：</p>
+<ul>
+<li>公共 Internet 文件服务/服务器消息块 (Common Internet File Services / Server Message Block, CIFS/SMB)</li>
+<li>网络文件系统 (NFS)</li>
+</ul>
+<p>相对于 NAS 与 SAN ，直接将存储设备通过 SCSI 或光纤通道连接到主机上的存储方式，被称为 直接附加存储（Direct Attached Storage，DAS）。</p>
+<h2 id="品牌商与产品"><a href="#品牌商与产品" class="headerlink" title="品牌商与产品"></a>品牌商与产品</h2><h3 id="机械硬盘品牌"><a href="#机械硬盘品牌" class="headerlink" title="机械硬盘品牌"></a>机械硬盘品牌</h3><h4 id="希捷"><a href="#希捷" class="headerlink" title="希捷"></a>希捷</h4><p><a target="_blank" rel="noopener" href="https://www.seagate.com/cn/zh/">希捷</a>（Seagate Technology Corp）成立于1979年，是全球最大的硬盘、磁盘和读写磁头制造商，总部位于美国加州 Scotts Valley 市。</p>
+<p>2006年5月 希捷收购迈拓（Maxtor）公司。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><a target="_blank" rel="noopener" href="https://www.seagate.com/files/www-content/datasheets/pdfs/3-5-barracudaDS1900-14-2007CN-zh_CN.pdf">酷鱼（BarraCuda）</a></th>
+<th><a target="_blank" rel="noopener" href="https://www.seagate.com/files/www-content/datasheets/pdfs/ironwolf-18tb-DS1904-20-2111CN-zh_CN.pdf">酷狼（IronWolf）</a></th>
+<th><a target="_blank" rel="noopener" href="https://www.seagate.com/files/www-content/datasheets/pdfs/ironwolf-pro-20tb-DS1914-20-2204CN-zh_CN.pdf">酷狼 Pro</a></th>
+<th><a target="_blank" rel="noopener" href="https://www.seagate.com/files/www-content/datasheets/pdfs/skyhawk-3-5-hdd-china-DS1902-16C-2107CN-zh_CN.pdf">酷鹰（SkyHawk）</a></th>
+<th><a target="_blank" rel="noopener" href="https://www.seagate.com/files/www-content/datasheets/pdfs/skyhawk-ai-china-DS1960-13S-2201CN-zh_CN.pdf">酷鹰 AI（SkyHawk AI）</a></th>
+<th><a target="_blank" rel="noopener" href="https://www.seagate.com/files/www-content/datasheets/pdfs/exos-x20-channel-DS2080-2111CN-zh_CN.pdf">银河 X20（Exos X20）</a> <a target="_blank" rel="noopener" href="https://www.seagate.com/files/www-content/datasheets/pdfs/exos-x18-channel-DS2045-4-2106CN-zh_CN.pdf">银河X18 (Exo X18)</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用途</td>
+<td>家用</td>
+<td>NAS</td>
+<td>商用NAS</td>
+<td>监控</td>
+<td>视频</td>
+<td>企业级</td>
+</tr>
+</tbody>
+</table>
+<h4 id="西部数据"><a href="#西部数据" class="headerlink" title="西部数据"></a>西部数据</h4><p><a target="_blank" rel="noopener" href="https://www.westerndigital.com/zh-cn">西部数据公司</a>（Western Digital Corp，WDC），是一家全球知名的硬盘厂商，成立于1970年，总部位于美国加州，在世界各地设有分支机构，为全球用户提供存储产品。</p>
+<p>2011年，西数以43亿美元收购日立环球存储技术公司（HGST），后者曾于2002年以20亿美元并购 IBM 的硬盘部门。<br>2016年5月，西数以160亿美元完成对 SanDisk 的收购。<br>2017年9月，西数以183亿美元收购东芝的半导体业务。</p>
+<p>西数的机械硬盘按照颜色分为不同的用途有细微的优化，参见 <a target="_blank" rel="noopener" href="https://www.westerndigital.com/zh-cn/solutions/color-drives">WD彩色硬盘</a>：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>绿盘</th>
+<th>蓝盘</th>
+<th>黑盘</th>
+<th>红盘</th>
+<th>紫盘</th>
+<th>金盘</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用途</td>
+<td>最适合日常轻型计算</td>
+<td>专为创意专业人士打造，旨在提供最大容量的存储设备</td>
+<td>专为游戏而优化的高性能硬盘</td>
+<td>NAS环境</td>
+<td>专为 24×7 全天候智慧视频录制而打造的大容量存储设备</td>
+<td>适用于企业应用程序的可靠、高性能硬盘</td>
+</tr>
+<tr>
+<td>优势</td>
+<td>低价格，低功耗，适合存储照片、视频、音频</td>
+<td>性能较强，价格较低，性价比高，适合普通家用</td>
+<td>高性能，大缓存（两倍 DRAM 高速缓存），适合游戏</td>
+<td>提高了兼容性、可升级性和可靠性，支持 24×7 全天候环境，适合NAS系统</td>
+<td>对主流监控应用中典型的写入密集型、低比特率、高流数工作负载进行了优化，防锈蚀，适合视频监控存储</td>
+<td>最高支持22T，5年质保，适合数据中心和邮件服务器</td>
+</tr>
+</tbody>
+</table>
+<h4 id="东芝"><a href="#东芝" class="headerlink" title="东芝"></a>东芝</h4><p><a target="_blank" rel="noopener" href="https://toshiba-semicon-storage.com/cn/storage.html">东芝</a>（Toshiba Corp）原名东京芝浦电气株式会社，1939年由株式会社芝浦制作所和东京电气株式会社合并而成。</p>
+<p>2019年10月1日东芝存储器株式会社正式更名为“Kioxia”，中文名为“铠侠株式会社”。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><a target="_blank" rel="noopener" href="https://toshiba-semicon-storage.com/cn/canvio/product/internal/n300.html">N300</a></th>
+<th><a target="_blank" rel="noopener" href="https://toshiba-semicon-storage.com/cn/canvio/product/internal/p300.html">P300</a></th>
+<th><a target="_blank" rel="noopener" href="https://toshiba-semicon-storage.com/cn/canvio/product/internal/x300.html">X300</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用途</td>
+<td>NAS</td>
+<td>一体计算机，桌上计算机</td>
+<td>专业系统，家用多媒体计算机，游戏用计算机</td>
+</tr>
+<tr>
+<td>规格</td>
+<td>4TB 6TB 8TB 10TB 12TB 14TB 16TB</td>
+<td>500GB 1TB 2TB 3TB 4TB 6TB</td>
+<td>4TB 5TB 6TB</td>
+</tr>
+<tr>
+<td>尺寸</td>
+<td>3.5-inch</td>
+<td>3.5-inch</td>
+<td>3.5-inch</td>
+</tr>
+<tr>
+<td>接口</td>
+<td>SATA 6.0Gbit/s</td>
+<td>SATA 6.0Gbit/s</td>
+<td>SATA 6.0Gbit/s</td>
+</tr>
+<tr>
+<td>转速</td>
+<td>7,200RPM</td>
+<td>7,200RPM（对应型号：HDWD130、HDWD120、HDWD110、HDWD105）<br>5,400RPM（对应型号：HDWD260、HDWD240、HDWD220）</td>
+<td>7,200RPM</td>
+</tr>
+<tr>
+<td>缓存</td>
+<td>256MB（对应型号：HDWG440、HDWG460、HDWG480、HDWG11A、HDWG21C)<br>512MB（对应型号：HDWG31E、HDWG31G)</td>
+<td></td>
+<td>128MB</td>
+</tr>
+<tr>
+<td>MTTF</td>
+<td>1,000,000小时（对应型号：HDWG440、HDWG460、HDWG480、HDWG11A、HDWG21C）<br>1,200,000小时（对应型号：HDWG31E、HDWG31G）</td>
+<td></td>
+<td>600,000小时</td>
+</tr>
+<tr>
+<td>加载／卸载次数</td>
+<td>300,000次</td>
+<td>600,000次</td>
+<td></td>
+</tr>
+<tr>
+<td>记录技术</td>
+<td>CMR</td>
+<td>CMR（对应型号：HDWD130、HDWD120、HDWD110、HDWD105）SMR（对应型号：HDWD260、HDWD240、HDWD220）</td>
+<td>CMR</td>
+</tr>
+<tr>
+<td>其他</td>
+<td>内置旋转震动（RV）感应器；<br>24x7运行（Workloads），支持（180TB／每年）</td>
+<td>内置冲击传感器，用于检测冲击力，屏蔽相邻磁道数据</td>
+<td>支持震动感应器</td>
+</tr>
+<tr>
+<td>质量保证</td>
+<td>3年有限质保</td>
+<td>2年有限质保</td>
+<td>2年有限质保</td>
+</tr>
+</tbody>
+</table>
+<h3 id="固态硬盘品牌"><a href="#固态硬盘品牌" class="headerlink" title="固态硬盘品牌"></a>固态硬盘品牌</h3><p>固态硬盘的性能主要在于 NAND 闪存。主要的 NAND Flash 生产商包括 三星 Samsung、铠侠 Kioxia、西部数据 WestDigital、美光 Micron、海力士 Hynix、英特尔 Intel，市场占有率超过95%。国产的有 长江存储 Yangtze。</p>
+<p>成品固态硬盘主要厂商有：三星 Samsung、铠侠 Kioxia（原东芝 Toshiba）、英特尔 Intel、西部数据 WestDigital、英睿达 Crucial(美光 Micron)、闪迪 SanDisk（也属于西部数据）、海力士 Hynix（原现代内存）</p>
+<p>国产的有：光威 Gloway、影驰 Galaxy、致钛 ZhiTai</p>
+<h3 id="NAS-品牌"><a href="#NAS-品牌" class="headerlink" title="NAS 品牌"></a>NAS 品牌</h3><p>群晖（Synology），成立于2000年，是台湾的网络存储服务器(NAS)品牌。</p>
+<p>威联通（QNAP），2004年成立于台湾，专注储存、网络及智能影音产品创。QNAP命名源自于高质量网络设备制造商（Quality Network Appliance Provider）。</p>
+<p>绿联（UGREEN），成立于2012年深圳，是一家集研发、设计、生产、销售于一体的国家级高新技术企业，致力于为用户提供全方位数码解决方案。</p>
+<p>海康威视（HIKVISION），杭州海康威视数字技术股份有限公司旗下品牌，2001年成立。</p>
+<p>新华三（H3C），2016年成立于杭州，是全球领先的高科技和电子设备供应商。</p>
+<p>亿格瑞（Egreat）隶属于深圳市亿格瑞科技有限公司旗下，是一家致力于高清播放产品自主研发、生产、营销、服务的高科技企业。</p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

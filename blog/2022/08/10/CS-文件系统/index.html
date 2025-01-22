@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        文件系统 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="文件系统（File System，FS）是操作系统用来控制数据存储和检索方式的方法和抽象数据结构。如果没有文件系统，存储介质中的数据将是一大组数据，无法判断其中一个数据在哪里停止，下一个数据在哪里开始。通过将数据分成多个片段并为每个片段命名，数据很容易被隔离和识别。文件系统使用文件和树形目录的抽象逻辑概念代替了硬盘和光盘等物理设备使用数据块的概念，用户使用文件系统来保存数据不必关心数据实际保存在硬盘（或者光盘）的地址为多少的数据块上，只需要记住这个文件的所属目录和文件名。得名于纸质数据管理系统的" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%8C%BA%E4%B8%8E%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-text">分区与格式化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%9B%BA%E4%BB%B6%E4%B8%8E%E5%BC%95%E5%AF%BC%E7%A8%8B%E5%BA%8F"><span class="toc-text">系统固件与引导程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MBR-%E5%88%86%E5%8C%BA%E5%92%8C%E5%9F%BA%E4%BA%8E-BIOS-%E7%9A%84%E5%9B%BA%E4%BB%B6"><span class="toc-text">MBR 分区和基于 BIOS 的固件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GPT-%E5%88%86%E5%8C%BA%E5%92%8C%E5%9F%BA%E4%BA%8E-UEFI-%E7%9A%84%E5%9B%BA%E4%BB%B6"><span class="toc-text">GPT 分区和基于 UEFI 的固件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-text">文件系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="toc-text">文件系统架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%85%83%E6%95%B0%E6%8D%AE"><span class="toc-text">文件元数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A9%BA%E9%97%B4%E7%AE%A1%E7%90%86"><span class="toc-text">空间管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95-%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-text">目录&#x2F;文件夹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E8%A7%84%E5%88%99"><span class="toc-text">文件规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E7%A8%8B%E5%BA%8F"><span class="toc-text">文件管理程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE%E7%AE%A1%E7%90%86"><span class="toc-text">文件访问管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%B4%E6%8A%A4%E6%95%B0%E6%8D%AE%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="toc-text">维护数据完整性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-text">数据库文件系统</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            文件系统
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2022-08-10T09:36:35.000Z" itemprop="datePublished">2022-08-10</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/file-system/" rel="tag">file-system</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>文件系统（File System，FS）是操作系统用来控制数据存储和检索方式的方法和抽象数据结构。如果没有文件系统，存储介质中的数据将是一大组数据，无法判断其中一个数据在哪里停止，下一个数据在哪里开始。通过将数据分成多个片段并为每个片段命名，数据很容易被隔离和识别。文件系统使用文件和树形目录的抽象逻辑概念代替了硬盘和光盘等物理设备使用数据块的概念，用户使用文件系统来保存数据不必关心数据实际保存在硬盘（或者光盘）的地址为多少的数据块上，只需要记住这个文件的所属目录和文件名。得名于纸质数据管理系统的命名方式，每组数据称为“文件”。用于管理数据组及其名称的结构和逻辑规则称为“文件系统”。</p>
+<span id="more"></span>
+<h2 id="分区与格式化"><a href="#分区与格式化" class="headerlink" title="分区与格式化"></a>分区与格式化</h2><p>存储设备在首次使用前必须进行 <em>分区</em>（partition）和 <em>格式化</em>（format）。</p>
+<p>分区就是将一个存储设备分割成若干个逻辑区域，这样它们就可以像单独的存储设备一样单独管理。我们通常通过操作系统提供的 <em>磁盘管理工具</em> 或者使用系统固件提供的 <em>命令行工具</em> 来进行分区。</p>
+<p>一个基本的 Linux 安装有三个分区：一个专用于操作系统的分区，一个用于用户文件的分区，以及一个可选的交换分区。当 RAM 空间不足时，交换分区用作 RAM 扩展。操作系统可能会将一块数据（临时）从 RAM 移动到交换分区，以释放 RAM 上的一些空间。操作系统不断使用各种内存管理技术来确保每个进程都有足够的内存空间来运行。</p>
+<p>Windows 设法在安装操作系统的分区内进行交换。</p>
+<p>在具有多个分区的计算机上，你可以安装多个操作系统，并且每次都选择不同的操作系统来启动你的系统。</p>
+<p>恢复和诊断实用程序也驻留在专用分区中。例如，要在恢复模式下启动 MacBook，你需要在  Command + R 重新启动（或打开）MacBook 后立即按住。通过这样做，你可以指示系统固件使用包含恢复程序的分区启动。</p>
+<p>某些操作系统（如 Windows）会为分区分配驱动器号（A、B、C 或 D）。然而，在类 Unix 操作系统中，分区显示为根目录下的普通目录。</p>
+<p>在对存储设备进行分区时，我们有两种分区方法</p>
+<ul>
+<li>主引导记录 (MBR) 方案</li>
+<li>GUID 分区表 (GPT) 方案</li>
+</ul>
+<p>无论选择哪种分区方案，存储设备上的前几个块将始终包含有关分区的关键数据。系统的 <em>固件</em> 使用这些数据结构来启动分区上的操作系统。</p>
+<p>分区完成后，分区应格式化。</p>
+<p>如果在 Windows 上格式化分区，可以在 FAT32、NTFS 和 exFAT 文件系统之间进行选择。格式化涉及创建用于管理分区内文件的各种 <em>数据结构</em> 和 <em>元数据</em> 。以 NTFS 文件系统为例，将分区格式化为 NTFS 时，格式化过程会将关键的 NTFS 数据结构和主文件表（MFT）放在分区上。</p>
+<h2 id="系统固件与引导程序"><a href="#系统固件与引导程序" class="headerlink" title="系统固件与引导程序"></a>系统固件与引导程序</h2><p><em>固件</em>（firmware）是嵌入到电子设备中以操作设备或引导另一个程序来执行此操作的低级软件。在计算机中，固件为操作系统等复杂软件提供了一个标准接口，用于启动和使用硬件组件。</p>
+<p>硬件制造商根据两个规范制作固件：</p>
+<ul>
+<li>基本输入/输出 (BIOS)</li>
+<li>统一可扩展固件接口 (UEFI)</li>
+</ul>
+<p>固件（无论是基于 BIOS 的还是基于 UEFI 的）驻留在非易失性内存中，当按下计算机上的电源按钮时，固件是第一个运行的程序。固件的主要任务是启动计算机，运行操作系统，并将整个系统的控制权交给它。固件还运行预操作系统环境（具有网络支持），例如恢复或诊断工具，甚至是运行基于文本的 shell 命令。</p>
+<h3 id="MBR-分区和基于-BIOS-的固件"><a href="#MBR-分区和基于-BIOS-的固件" class="headerlink" title="MBR 分区和基于 BIOS 的固件"></a>MBR 分区和基于 BIOS 的固件</h3><p>MBR 分区方案是 BIOS 规范的一部分，由基于 BIOS 的固件使用。在 MBR 分区的磁盘上，存储设备上的第一个扇区包含启动系统所需的基本数据。这个扇区称为 MBR。</p>
+<p>MBR 包含以下信息：</p>
+<ul>
+<li>引导加载程序 —— 它是一个 简单的程序（使用机器码），用于启动引导过程的第一阶段</li>
+<li>分区表 —— 其中包含有关分区的信息。  </li>
+</ul>
+<p>以下是它的工作原理：</p>
+<ol>
+<li>系统通电后，BIOS 固件启动并将引导加载程序（包含在 MBR 中）加载到内存中。<br>一旦程序在内存中，CPU 就开始执行它。</li>
+<li>将引导加载程序和分区表放在 MBR 等预定义位置使 BIOS 无需处理任何文件即可启动系统。<br>MBR 中的引导加载程序代码占用 MBR 空间的 434 到 446 字节（共 512b）。此外，分区表分配了 64 个字节，其中最多可以包含有关四个分区的信息。不过，446 字节不足以容纳太多代码。也就是说， Linux 上的 GRUB（GRand Unified Bootloader）等复杂的引导加载程序将其功能拆分为多个部分或阶段。称为 <em>第一阶段引导加载程序</em> 的最小代码段存储在 MBR 中。它通常是一个简单的程序，不需要太多空间。第一阶段引导加载程序的职责是启动引导过程的下一个（和更复杂的）阶段。在 MBR 之后，第一个分区开始之前，有一个小空间，大约 1MB，称为 <em>MBR 间隙</em>（MBR gap）。引导加载程序（例如 GRUB）使用 MBR 间隙 来存储其功能的另一个阶段。GRUB 将此称为 <em>1.5阶段引导加载程序</em>，其中包含一个文件系统驱动程序。</li>
+<li>能够处理文件的 <em>第二阶段引导加载程序</em> 可以加载操作系统的引导加载程序文件以启动相应的操作系统。</li>
+</ol>
+<p>MBR 分区存储设备的布局如下：</p>
+<p><img src="/blog/static/imgs/filesystem/mbr-partition.jpeg" alt="mbr_partition_inner"></p>
+<p>MBR 的布局如下：</p>
+<p><img src="/blog/static/imgs/filesystem/mbr.jpeg" alt="mbr_inner"></p>
+<p>MBR 简单且得到广泛支持，但它有一些限制：</p>
+<ol>
+<li>MBR 的数据结构将分区数量限制为只有四个主分区</li>
+<li>MBR 每个分区最多只可以有2TB</li>
+<li>MBR 扇区的内容没有备份</li>
+</ol>
+<h3 id="GPT-分区和基于-UEFI-的固件"><a href="#GPT-分区和基于-UEFI-的固件" class="headerlink" title="GPT 分区和基于 UEFI 的固件"></a>GPT 分区和基于 UEFI 的固件</h3><p>GPT分区方案 是 UEFI 规范的一部分，它比 MBR 更复杂，但没有 MBR 的诸多限制。</p>
+<ol>
+<li>在 GPT 分区方案中，出于与基于 BIOS 的系统的兼容性原因，存储设备的第一个扇区被保留。原因是某些系统可能仍使用基于 BIOS 的固件，但具有 GPT 分区的存储设备。该扇区称为 <em>保护MBR</em>。</li>
+<li>在第一个扇区之后，存储了 GPT 数据结构，包括 <em>GPT标头</em> 和 <em>GPT分区条目</em></li>
+<li>GPT分区条目 和 GPT标头 在存储设备的末尾有备份，因此如果主区损坏，可以从副本恢复。此备份称为 <em>辅助GPT</em></li>
+</ol>
+<p>GPT 分区存储设备的布局如下：</p>
+<p><img src="/blog/static/imgs/filesystem/GUID_Partition_Table_Scheme.svg" alt="GUID_Partition_Table_Scheme_inner"></p>
+<p>在 GPT 中，所有引导服务（引导加载程序、引导管理器、预操作系统环境和 shell）都位于一个名为 EFI 系统分区（ESP）的专用分区中，UEFI 固件可以使用该分区。</p>
+<p>如果进行了相应的配置，UEFI 固件也可以进行 BIOS 式引导（从 MBR 磁盘引导系统）。</p>
+<h2 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h2><p>文件系统是一组数据结构、接口、抽象和 API，它们协同工作以一致的方式管理任何类型的存储设备上的任何类型的文件。每个操作系统都使用特定的文件系统来管理文件。</p>
+<p>早期，Microsoft 在 MS-DOS 和 Windows 9x 家族中使用 FAT（FAT12、FAT16 和 FAT32）。从 WindowsNT 3.1 开始，Microsoft 开发了 新技术文件系统 (NTFS)，它与 ​​FAT32 相比具有许多优势，例如支持更大的文件、允许更长的文件名、数据加密、访问管理、日志等等。从那时起，NTFS 一直是 WindowNT 系列（2000、XP、Vista、7、10 等）的默认文件系统。不过，NTFS 不适合非 Windows 环境。在 MacOS 上，只能读取 NTFS 格式的存储设备（如闪存）的内容，但无法向其中写入任何内容 - 除非安装了具有写入支持的 NTFS 驱动程序。扩展文件分配表（exFAT）是 Microsoft 在 2006 年创建的 NTFS 的轻量级版本。exFAT 专为大容量可移动设备而设计，是 SDXC 卡使用的默认文件系统。与 NTFS 不同，exFAT 在包括 MacOS 在内的非 Windows 环境中也具有 <em>读写</em> 支持。</p>
+<p>多年来，Apple 还开发和使用了各种文件系统，包括 Hierarchical File System (HFS)、 HFS+ 以及最近的 Apple File System (APFS)。与 NTFS 一样，APFS 是一个日志文件系统，自 2017 年 OS X High Sierra 推出以来一直在使用。</p>
+<p>在 Linux 发行版中，普遍使用 扩展文件系统（ext）系列文件系统。ext 的第一个版本于 1991 年发布，但不久之后，它在 1993 年被第二版扩展文件系统 ext2 取代。在 2000 年代，为具有日志功能的 Linux 开发了第三版扩展文件系统（ext3）和第四版扩展文件系统 (ext4) 。ext4 现在是许多 Linux 发行版的默认文件系统，包括 Debian 和 Ubuntu。</p>
+<table>
+<thead>
+<tr>
+<th>文件系统</th>
+<th>版本</th>
+<th>适用于</th>
+<th>特点</th>
+<th>单文件最大大小</th>
+<th>文件名最大长度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RAW</td>
+<td></td>
+<td>磁盘未经处理或者未经格式化产生的文件系统</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FAT（File Allocation Table）</td>
+<td>1977 年被开发用于软盘；<br>FAT12、FAT16、FAT32</td>
+<td>MS-DOS， Windows 9x 系列</td>
+<td>Micosoft 早期文件系统；<br>文件名不能超过8个字符；<br>扩展名（例如.exe）不能超过3个字符</td>
+<td>FAT12单文件最大32MB；FAT16单文件最大2GB；FAT32单文件最大4GB</td>
+<td>8.3 文件名</td>
+</tr>
+<tr>
+<td>NTFS（New Technology File System）</td>
+<td>从1993年被用于 WindowsNT 3.1 开始；<br>最新的为2001年10月发布的 NTFS 3.1</td>
+<td>WindowNT 系列（2000、XP、Vista、7、10 等）的默认文件系统</td>
+<td>支持更长的文件名、文件系统加密、访问控制列表（ACL）、透明压缩、稀疏文件、文件系统日志；<br>不适合非 Windows 环境<br>在 Linux 和 BSD 中也受支持（通过 NTFS-3G 驱动程序/通过 <code>convert</code> 命令）</td>
+<td>MBR分区最大可以达到2TB；GPT分区不限制文件大小</td>
+<td>255个字符</td>
+</tr>
+<tr>
+<td>exFAT（Extensible File Allocation Table）</td>
+<td>Microsoft 在2006年11月随 Windows Embedded CE 6.0 推出的文件系统</td>
+<td>适用于外部硬盘、USB 驱动器和存储卡；<br>SDXC 卡使用的默认文件系统</td>
+<td>NTFS 的轻量级版本，专为大容量可移动设备而设计；<br>在包括 MacOS 在内的非 Windows 环境中也具有 <em>读写</em> 支持；<br>同一目录下最大文件数可达65 536个；<br>支持访问控制；<br>exFAT 是唯一在 macOS 和 Windows 上完全支持的文件系统；<br>2019年8月28日，微软宣布公开 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/win32/fileio/exfat-specification">exFAT 的技术规范</a>，以便它可以在 Linux 内核和其他操作系统中使用</td>
+<td>单文件最大16EB</td>
+<td>255个 UTF-16 字符</td>
+</tr>
+<tr>
+<td>APFS（Apple File System）</td>
+<td>2016 年 macOS Sierra（10.12.4）</td>
+<td>macOS Sierra（10.12.4）以上版本的默认文件系统</td>
+<td>支持加密、压缩、碰撞保护、日志文件系统</td>
+<td>单文件最大8EB</td>
+<td>255个 UTF-8 字符</td>
+</tr>
+<tr>
+<td>ext</td>
+<td>ext1 于 1991 年发布；ext2 于 1993 年发布；ext3 于 1999 年发布；ext4 于 2006 年发布</td>
+<td>Linux 发行版的默认文件系统，包括 Debian 和 Ubuntu</td>
+<td>ext3、 ext4 具有日志功能；<br>ext3 支持32000个子目录，ext4 支持无限子目录</td>
+<td>ext2 最大2TB；<br>ext3 支持的最大 16TB 文件系统和最大 2TB 文件；<br>ext4 支持 1EB 的文件系统以及 16TB 的文件</td>
+<td>255个字节</td>
+</tr>
+</tbody>
+</table>
+<p>完整的文件系统比较参见 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Comparison_of_file_systems">文件系统比较</a>。</p>
+<h2 id="文件系统架构"><a href="#文件系统架构" class="headerlink" title="文件系统架构"></a>文件系统架构</h2><p>安装在操作系统上的文件系统由三层组成：</p>
+<ul>
+<li>物理文件系统</li>
+<li>虚拟文件系统</li>
+<li>逻辑文件系统</li>
+</ul>
+<p>物理文件系统是文件系统的具体实现；它负责存储设备（或准确地说：分区）上的数据存储和检索以及空间管理。物理文件系统通过 设备驱动程序 与存储硬件交互。</p>
+<p>虚拟文件系统（VFS）提供安装在同一操作系统上的各种文件系统的一致视图。一个操作系统可以同时使用多个文件系统。VFS 定义了一个 契约（contract），所有物理文件系统都必须实现该契约才能得到该操作系统的支持。</p>
+<p>逻辑文件系统是文件系统中面向用户的部分，它提供了一个 API 使用户程序能够执行各种文件操作，例如  OPEN、READ 和 WRITE，而无需处理任何存储硬件。</p>
+<p><img src="/blog/static/imgs/filesystem/filesystem.jpeg" alt="filesystem_inner"></p>
+<h2 id="文件元数据"><a href="#文件元数据" class="headerlink" title="文件元数据"></a>文件元数据</h2><p>文件元数据（File metadata）是一种数据结构，其中包含 有关文件的数据，例如：</p>
+<ul>
+<li>文件大小</li>
+<li>时间戳，例如创建日期、上次访问日期和修改日期</li>
+<li>文件的所有者</li>
+<li>文件的模式（谁可以对文件做什么）</li>
+<li>分区上的哪些块分配给文件</li>
+<li>等等</li>
+</ul>
+<p>元数据不与文件内容一起存储。相反，它存储在磁盘上的不同位置 - 但与文件相关联。<br>在类 Unix 系统中，元数据采用的数据结构形式称为 索引（inode）。<br>存储设备上的每个文件都有一个 索引，其中包含有关它的信息，包括创建修改时间、分配给文件的块地址、在存储设备上的确切位置等等。<br>在 Linux 系统中可以使用 <code>df -i</code> 来查看分区中的 索引（总数、已使用和空闲）。<br>要查看与目录中的文件关联的 索引，可以使用 <code>ls -li</code> ，第一列就是与每个文件关联的索引号。<br>在大多数操作系统上，可以通过图形用户界面获取元数据。例如，在 MacOS 上右键单击文件并选择获取信息，或在 Windows 上右键单击文件并选择属性。</p>
+<h2 id="空间管理"><a href="#空间管理" class="headerlink" title="空间管理"></a>空间管理</h2><p>存储设备被划分为称为 <em>扇区</em>（sector）的固定大小的区域。扇区是存储设备上的 <em>最小存储单元</em> ，介于 512 字节和 4096 字节之间。文件系统使用高级概念作为存储单元，称为 <em>块</em>（block）。块是对物理扇区的抽象；每个块通常由多个扇区组成。根据文件大小，文件系统为每个文件分配一个或多个块。为了便于管理，将连续的块分组为 <em>块组</em>（block group）。每个块组都有自己的数据结构和数据块。在块组级别管理文件可以显着提高文件系统的性能，而不是将文件组织为一个单元。</p>
+<p>文件资源管理器为每个文件显示两种不同的大小： <em>大小</em>（size） 和 <em>磁盘大小</em>（size on disk）。这是因为一个块是可以分配给文件的最小空间，这意味着部分填充块的剩余空间不能被另一个文件使用，最后一个块可能会被部分使用，剩余的空间将保持未使用状态 - 或者将被零填充。所以“大小”基本上是实际文件大小，而“磁盘大小”是它占用的空间，即使它没有全部使用。</p>
+<h2 id="目录-文件夹"><a href="#目录-文件夹" class="headerlink" title="目录/文件夹"></a>目录/文件夹</h2><p>目录（direcotry，Windows 中的文件夹（folder））是一种特殊文件，用作逻辑文件系统中的 逻辑容器，用于对文件系统中的文件和目录进行分组。目录只是具有自己的 inode（在 Ext4 上）或 MFT 条目（在 NTFS 上）的文件。目录的 inode 或 MFT 条目包含有关该目录的信息，以及指向该目录“下”文件的条目集合。这些条目称为 目录条目（directory entries）。除了目录条目之外，还有两个条目。<code>.</code> 指向目录本身的条目和指向该目录 <code>..</code> 的父目录的条目。</p>
+<h2 id="文件规则"><a href="#文件规则" class="headerlink" title="文件规则"></a>文件规则</h2><p>一些文件系统对文件名实施限制，包括文件名的长度和是否区分大小写。在 NTFS (Windows) 和 APFS (MacOS) 文件系统中 <code>MyFile</code> ， <code>myfile</code> 它们指向同一个文件，而在 ext4 (Linux) 中，它们指向不同的文件。</p>
+<p>一些文件系统对文件大小实施限制，FAT32 不能存储超过 4GB 的文件，NTFS 允许文件大小高达 16EB，exFAT 也允许文件大小为 16EB。Linux 的 ext4 和 Apple 的 APFS 分别支持高达 16TB 和 8EB 的文件。</p>
+<blockquote>
+<p>注: 1B=8bit 1KB=1024B 1MB=1024KB 1GB=1024MB 1TB=1024GB 1PB=1024TB 1EB=1024PB</p>
+</blockquote>
+<p>大多数现代文件系统允许文件名包含 Unicode/UTF-8/UTF-16 字符集中的各种字符，但是，它们可能对某些特殊字符的使用有限制，不允许在文件名中使用它们。</p>
+<h2 id="文件管理程序"><a href="#文件管理程序" class="headerlink" title="文件管理程序"></a>文件管理程序</h2><p>文件系统的逻辑层提供了一个 API，使用户应用程序能够执行文件操作，例如 读、写、删除 与 执行 操作。不过，文件系统的 API 是一种低级机制，专为计算机程序、运行时环境和 shell 而设计。操作系统为日常文件管理提供了开箱即用的便捷文件管理实用程序，例如，Windows 上的 文件资源管理器（File Explorer）、MacOS 上的 访达（Finder）和 Ubuntu 上的 Nautilus。这些实用程序在后台使用逻辑文件系统的 API。除了这些 GUI 工具之外，操作系统还通过命令行界面公开文件系统的 API，例如 Windows 上的 命令提示符（Command Prompt）以及 Mac 和 Linux 上的 终端（Terminal）。</p>
+<h2 id="文件访问管理"><a href="#文件访问管理" class="headerlink" title="文件访问管理"></a>文件访问管理</h2><p>现代文件系统提供了控制用户对文件的访问和能力的机制。有关用户权限和文件所有权的数据存储在 Windows 上称为 访问控制列表 (ACL) 或类 Unix 操作系统（Linux 和 MacOS）上的 访问控制条目 (ACE) 的数据结构中。此功能在 命令行界面（CLI，即命令提示符或终端）中也可用，用户可以从命令行界面更改文件所有权或限制每个文件的权限。例如，在类Unix操作系统中可以通过 <code>chmod</code> 修改文件权限。</p>
+<h2 id="维护数据完整性"><a href="#维护数据完整性" class="headerlink" title="维护数据完整性"></a>维护数据完整性</h2><p>现代文件系统使用了一种称为 日志（journaling） 的技术来防止因数据操作正在进行时而崩溃所导致的数据损坏。日志文件系统记录物理层中即将发生但尚未发生的每一个操作。日志是磁盘上的特殊分配，每次写入尝试首先存储为 事务（transaction）。一旦数据物理地放置在存储设备上，更改就会提交到文件系统。如果发生系统故障，文件系统将检测到不完整的事务并将其 回滚（rollback），就好像它从未发生过一样。<br>NTFS、APFS 和 ext4（甚至 ext3）均使用日志来避免系统故障时数据损坏。</p>
+<h2 id="数据库文件系统"><a href="#数据库文件系统" class="headerlink" title="数据库文件系统"></a>数据库文件系统</h2><p>典型的文件系统应用将文件组织为目录树。但在数据库文件系统中，没有路径和目录的概念。它根据各种 属性（attributes）和 维度（dimensions）对文件进行分组。数据库文件系统不能替代典型的文件系统。它只是为了在某些系统上更轻松的文件管理而进行的高级抽象。例如，MacOS 上的 iTunes 应用程序，可以将 MP3 文件按艺术家、流派、发行年份和专辑列出。</p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

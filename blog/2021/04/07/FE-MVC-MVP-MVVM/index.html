@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        MVC MVP MVVM | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="MVCMVC最初是在研究Smalltalk-80（1979年）期间设计出来的，恐怕没有一本书能够回到计算机石器时代介绍一下Smalltalk的代码是如何实现MVC的，不仅如此，连想搞清楚当时的应用场景都很难了，都要追溯到80后出生以前的事了。在1995年出版的《设计模式：可复用面向对象软件的基础》对MVC进行了深入的阐述，在推广使用方面发挥了重要作用。  MVC包括三类对象，将他们分离以提高灵活性和复用性。模型 model 用于封装与应用程序的业务逻辑相关的数据以及对数据的处理方法，会" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC"><span class="toc-text">MVC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC-for-Javascript"><span class="toc-text">MVC for Javascript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVP"><span class="toc-text">MVP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVVM"><span class="toc-text">MVVM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVVM%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">MVVM的优缺点</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            MVC MVP MVVM
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-04-07T04:00:56.000Z" itemprop="datePublished">2021-04-07</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/framework/" rel="tag">framework</a>, <a class="article-tag-link" href="/blog/tags/mvc/" rel="tag">mvc</a>, <a class="article-tag-link" href="/blog/tags/mvvm/" rel="tag">mvvm</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <link rel="stylesheet" href="/blog/static/css/common.css"></link>
+
+<h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>MVC最初是在研究Smalltalk-80（1979年）期间设计出来的，恐怕没有一本书能够回到计算机石器时代介绍一下Smalltalk的代码是如何实现MVC的，不仅如此，连想搞清楚当时的应用场景都很难了，都要追溯到80后出生以前的事了。在1995年出版的《设计模式：可复用面向对象软件的基础》对MVC进行了深入的阐述，在推广使用方面发挥了重要作用。  </p>
+<p>MVC包括三类对象，将他们分离以提高灵活性和复用性。</p>
+<ul>
+<li><p>模型 model 用于封装与应用程序的业务逻辑相关的数据以及对数据的处理方法，会有一个或多个视图监听此模型。一旦模型的数据发生变化，模型将通知有关的视图。</p>
+</li>
+<li><p>视图 view 是它在屏幕上的表示，描绘的是model的当前状态。当模型的数据发生变化，视图相应地得到刷新自己的机会。</p>
+</li>
+<li><p>控制器 controller 定义用户界面对用户输入的响应方式，起到不同层面间的组织作用，用于控制应用程序的流程，它处理用户的行为和数据model上的改变。</p>
+</li>
+</ul>
+<span id="more"></span>
+<p><img src="/blog/static/imgs/typicalMVC.png" alt="经典MVC模式inner"></p>
+<p class="caption">经典MVC模式</p>
+
+<p>实线：方法调用 虚线：事件通知</p>
+<p>其中涉及两种设计模式：  </p>
+<ul>
+<li>view 和 model 之间的观察者模式，view 观察 model，事先在此 model 上注册，以便 view 可以了解在数据 model 上发生的改变</li>
+<li>view 和 controller 之间的策略模式</li>
+</ul>
+<p>一个策略是一个表述算法的对象，MVC 允许在不改变视图外观的情况下改变视图对用户输入的响应方式。例如，你可能希望改变视图对键盘的响应方式，或希望使用弹出菜单而不是原来的命令键方式。MVC 将响应机制封装在 controller 对象中。存在着一个 controller 的类层次结构，使得可以方便地对原有的 controller 做适当改变而创建新的controller。  </p>
+<p>view 使用 controller 子类的实例来实现一个特定的响应策略。要实现不同的响应的策略只要用不同种类的 controller 实例替换即可。甚至可以在运行时刻通过改变 view 的 controller 来改变用户输入的响应方式。例如，一个 view 可以被禁止接受任何输入，只需给他一个忽略输入事件的 controller。  </p>
+<h2 id="MVC-for-Javascript"><a href="#MVC-for-Javascript" class="headerlink" title="MVC for Javascript"></a>MVC for Javascript</h2><p><img src="/blog/static/imgs/javascriptMVC.png" alt="javascript MVC模式inner"></p>
+<p class="caption">javascript MVC模式</p>
+
+<p>如图所示，view 承接了部分 controller 的功能，负责处理用户输入，但是不必了解下一步做什么。它依赖于一个 controller 为它做决定或处理用户事件。事实上，前端的 view 已经具备了独立处理用户事件的能力，如果每个事件都要流经 controller ，势必增加复杂性。同时，view 也可以委托 controller 处理 model 的更改。model 数据变化后通知 view 进行更新，显示给用户。这个过程是一个圆，一个循环的过程。  </p>
+<p>这种从经典 MVC 到 Javascript MVC 的1对1转化，导致控制器的角色有点尴尬。MVC 这样的结构的正确性在于，任何界面都需要面对一个用户，而 controller “是用户和系统之间的链接”。在经典 MVC 中，controller 要做的事情多数是派发用户输入给不同的 view，并且在必要的时候从 view 中获取用户输入来更改 model，而 Web 以及绝大多数现在的UI系统中，controller 的职责已经被系统实现了。由于某种原因，控制器和视图的分界线越来越模糊，也有认为， view 启动了 action 理论上应该把 view 归属于 controller。比如在 Backbone 中，Backbone.View 和 Backbone.Router 一起承担了 controller 的责任。这就为 MVC 中 controller 的衍变埋下了伏笔。  </p>
+<h2 id="MVP"><a href="#MVP" class="headerlink" title="MVP"></a>MVP</h2><p>MVP（Model-View-Presenter）是经典 MVC 设计模式的一种衍生模式，是在1990年代 Taligent 公司创造的，一个用于 C++ CommonPoint 的模型。背景上不再考证，直接上图看一下与MVC的不同。  </p>
+<p><img src="/blog/static/imgs/mvp.png" alt="MVP模式inner"></p>
+<p class="caption">MVP模式</p>
+
+<p>经典 MVC 中，一对 controller-view 捆绑起来表示一个 ui 组件，controller 直接接受用户输入，并将输入转为相应命令来调用 model 的接口，对 model 的状态进行修改，最后通过观察者模式对 view 进行重新渲染。  </p>
+<p>进化为 MVP 的切入点是修改 controller-view 的捆绑关系，为了解决 controller-view 的捆绑关系，将进行改造，使 view 不仅拥有UI组件的结构，还拥有处理用户事件的能力，这样就能将 controller 独立出来。为了对用户事件进行统一管理，view 只负责将用户产生的事件传递给 controller，由 controller 来统一处理，这样的好处是多个 view 可共用同一个 controller。此时的 controller 也由组件级别上升到了应用级别，然而更新 view 的方式仍然与经典 MVC 一样：通过 Presenter 更新 model，通过观察者模式更新 view。  </p>
+<p>另一个显而易见的不同在于，MVC 是一个圆，一个循环的过程，但 MVP 不是，依赖 Presenter 作为核心，负责从 model 中拿数据，填充到 view 中。常见的 MVP 的实现是被动视图（passive view），Presenter 观察 model，不再是 view 观察 model，一旦 model 发生变化，就会更新 view。Presenter 有效地绑定了 model 到 view。view 暴露了 setters 接口以便 Presenter 可以设置数据。对于这种被动视图的结构，没有直接数据绑定的概念。但是他的好处是在 view 和 model 直接提供更清晰的分离。但是由于缺乏数据绑定支持，意味着不得不单独关注某个任务。在 MVP 里，应用程序的逻辑主要在 Presenter 来实现，其中的 view 是很薄的一层。  </p>
+<h2 id="MVVM"><a href="#MVVM" class="headerlink" title="MVVM"></a>MVVM</h2><p>MVVM，Model-View-ViewModel，最初是由 Microsoft 在使用 Windows Presentation Foundation 和 SilverLight 时定义的，2005年 John Grossman 在一篇关于 Avalon（WPF 的代号）的博客文章中正式宣布了它的存在。其中最重要的特性之一就是数据绑定（Data-binding）。  </p>
+<p><img src="/blog/static/imgs/mvvm.png" alt="MVVM模式inner"></p>
+<p class="caption">MVVM模式</p>
+
+<p>首先，view 和 model 是不知道彼此存在的，同 MVP 一样，将 view 和 model 清晰地分离开来。 其次，view 是对 viewmodel 的外在显示，与 viewmodel 保持同步，viewmodel 对象可以看作是 view 的上下文。view 绑定到 viewmodel 的属性上，如果 viewmodel 中的属性值变化了，这些新值通过数据绑定会自动传递给 view。反过来 viewmodel 会暴露 model 中的数据和特定状态给 view。 所以，view 不知道 model 的存在，viewmodel 和 model 也觉察不到 view。事实上，model 也完全忽略 viewmodel 和 view 的存在。这是一个非常松散耦合的设计。  </p>
+<h2 id="MVVM的优缺点"><a href="#MVVM的优缺点" class="headerlink" title="MVVM的优缺点"></a>MVVM的优缺点</h2><p>优点:</p>
+<ul>
+<li>分离视图（View）和模型（Model），降低代码耦合，提⾼视图或者逻辑的重⽤性: ⽐如视图（View）可以独⽴于 Model 变化和修改，⼀个 ViewModel 可以绑定不同的 View 上，当 View 变化的时候 Model 不可以不变，当 Model 变化的时候 View 也可以不变。你可以把⼀些视图逻辑放在⼀个 ViewModel ⾥⾯，让很多 View 重⽤这段视图逻辑</li>
+<li>⾃动更新dom，提升开发效率: 利⽤双向绑，数据更新后视图⾃动更新，让开发者从繁琐的⼿动dom操作中解放</li>
+<li>提⾼可测试性: ViewModel 的存在可以帮助开发者更好地编写测试代码</li>
+</ul>
+<p>缺点:</p>
+<ul>
+<li>Bug很难被调试: 因为使⽤双向绑定的模式，当你看到界⾯异常了，有可能是你 View 的代码有 Bug，也可能是 Model 的代码有问题。数据绑定使得⼀个位置的 Bug 被快速传递到别的位置，要定位原始出问题的地⽅就变得不那么容易了。另外，数据绑定的声明是指令式地写在 View 的模版当中的，这些内容是没办法去打断点 debug 的</li>
+<li>⼀个⼤的模块中 Model 也会很⼤，虽然使⽤⽅便了也很容易保证了数据的⼀致性，但如果⻓期持有，就会占用更多的内存</li>
+<li>对于⼤型的图形应⽤程序，视图状态较多，ViewModel 的构建和维护的成本都会⽐较⾼。</li>
+</ul>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

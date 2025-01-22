@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        Rust学习笔记 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="Rust 是一门比较新的系统编程语言。Rust 在语法上和 C++ 与 Haskell 比较类似，支持函数式和命令式以及泛型等多种编程范式，在保证性能的同时提供更好的内存安全策略。Rust 最初由 Mozilia 研究院的 Graydon Hoare 设计创造，然后在 Dave Herman, Brendan Eich 以及很多人的贡献下逐步完善。第一个有版本号的 Rust 编译器于2012 年1月发布。Mozilla 在2014年10月宣布发布 Rust 编译器和工具的0.12版。Rust 1" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Rust-%E5%B7%A5%E5%85%B7%E7%AE%B1"><span class="toc-text">Rust 工具箱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B-Hello-World"><span class="toc-text">开始 Hello World!</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7"><span class="toc-text">语言特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-text">语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E5%AF%BC%E5%85%A5-prelude"><span class="toc-text">预导入 prelude</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%90%E8%97%8F-shadow"><span class="toc-text">隐藏 shadow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-data-type"><span class="toc-text">数据类型 data type</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E9%87%8F%E7%B1%BB%E5%9E%8B"><span class="toc-text">标量类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="toc-text">复合类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E6%A0%87%E7%AD%BE-loop-label"><span class="toc-text">循环标签 loop label</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%80%E6%9C%89%E6%9D%83-ownership"><span class="toc-text">所有权 ownership</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E4%B8%8E%E5%80%9F%E7%94%A8-references-amp-borrowing"><span class="toc-text">引用与借用 references &amp; borrowing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F-scope"><span class="toc-text">作用域 scope</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E8%AF%8D%E6%B3%95%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-NLL"><span class="toc-text">非词法作用域生命周期 NLL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B-generics"><span class="toc-text">泛型 generics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E6%80%81%E5%8C%96-monomorphization"><span class="toc-text">单态化 monomorphization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E8%B4%A8-trait"><span class="toc-text">特质 trait</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-lifetimes"><span class="toc-text">生命周期 lifetimes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%B9%B2%E6%80%A7-coherence-%E5%AD%A4%E5%84%BF%E8%A7%84%E5%88%99-orphan-rule"><span class="toc-text">相干性 coherence(孤儿规则 orphan rule)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98"><span class="toc-text">问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%8F%98%E9%87%8F%E5%92%8C%E5%B8%B8%E9%87%8F%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-text">不可变变量和常量有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%90%E8%97%8F-shadow-%E5%92%8C%E5%B0%86%E5%8F%98%E9%87%8F%E6%A0%87%E8%AE%B0%E4%B8%BA-mut-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-text">隐藏(shadow)和将变量标记为 mut 有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E5%9E%8B%E6%BA%A2%E5%87%BA%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">整型溢出会发生什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E4%B8%8B%E6%A0%87%E8%B6%8A%E7%95%8C%E4%BC%9A%E5%8F%91%E7%94%9F%E7%94%9F%E4%B9%88%EF%BC%9F"><span class="toc-text">数组下标越界会发生生么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E5%8F%A5%E4%B8%8E%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-text">语句与表达式有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%9C%A8%E5%90%8C%E4%B8%80%E6%97%B6%E9%97%B4%E5%86%85%E5%AF%B9%E6%9F%90%E4%B8%80%E7%89%B9%E5%AE%9A%E6%95%B0%E6%8D%AE%E4%B8%8D%E8%83%BD%E5%AD%98%E5%9C%A8%E5%A4%9A%E4%B8%AA%E5%8F%AF%E5%8F%98%E5%BC%95%E7%94%A8%EF%BC%9F"><span class="toc-text">为什么在同一时间内对某一特定数据不能存在多个可变引用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rust%E6%98%AF%E5%90%A6%E4%BC%9A%E5%AD%98%E5%9C%A8%E6%82%AC%E5%9E%82%E5%BC%95%E7%94%A8%EF%BC%88Dangling-References%EF%BC%89%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">Rust是否会存在悬垂引用（Dangling References）的问题?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rust%E7%9A%84%E6%A8%A1%E5%9D%97%E7%B3%BB%E7%BB%9F%EF%BC%88the-module-system%EF%BC%89%E5%8C%85%E5%90%AB%E5%93%AA%E4%BA%9B%E9%83%A8%E5%88%86%EF%BC%9F"><span class="toc-text">Rust的模块系统（the module system）包含哪些部分？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-Rust-%E4%B8%8D%E5%85%81%E8%AE%B8%E4%BD%BF%E7%94%A8%E7%B4%A2%E5%BC%95%E8%8E%B7%E5%8F%96-String-%E5%AD%97%E7%AC%A6%EF%BC%9F"><span class="toc-text">为什么 Rust 不允许使用索引获取 String 字符？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%86%B3%E5%AE%9A%E4%BD%95%E6%97%B6%E5%BA%94%E8%AF%A5%E4%BD%BF%E7%94%A8-panic-%E4%BB%A5%E5%8F%8A%E4%BD%95%E6%97%B6%E5%BA%94%E8%AF%A5%E8%BF%94%E5%9B%9E-Result-%E5%91%A2"><span class="toc-text">如何决定何时应该使用 panic! 以及何时应该返回 Result 呢?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E5%87%BA%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95%E7%BB%99%E5%AE%9A-vector-%E5%88%97%E8%A1%A8%E8%BF%94%E5%9B%9E%E5%87%BA%E5%85%B6%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC"><span class="toc-text">写出三种方法给定 vector 列表返回出其中的最大值</span></a></li></ol></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            Rust学习笔记
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2022-07-08T07:24:23.000Z" itemprop="datePublished">2022-07-08</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/rust/" rel="tag">rust</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p><a target="_blank" rel="noopener" href="https://www.rust-lang.org/">Rust</a> 是一门比较新的系统编程语言。Rust 在语法上和 C++ 与 Haskell 比较类似，支持函数式和命令式以及泛型等多种编程范式，在保证性能的同时提供更好的内存安全策略。Rust 最初由 Mozilia 研究院的 Graydon Hoare 设计创造，然后在 Dave Herman, Brendan Eich 以及很多人的贡献下逐步完善。第一个有版本号的 Rust 编译器于2012 年1月发布。Mozilla 在2014年10月宣布发布 Rust 编译器和工具的0.12版。Rust 1.0 是第一个稳定版本，于 2015年5月15日发布。当前（2022年7月8日）的最新版本是 1.62.0。</p>
+<span id="more"></span>
+<h2 id="Rust-工具箱"><a href="#Rust-工具箱" class="headerlink" title="Rust 工具箱"></a>Rust 工具箱</h2><p>不同于其他编程语言需要由开发者来共建生态，Rust 社区提供了一揽子的生态工具和 Rust 语言配合，这个工具相当于是官方支持的，所以被广泛接受。</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>作用</th>
+<th>类比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rustup</td>
+<td>Rust 的安装器和版本管理工具。可以通过 <code>rustup update</code> 来更新 Rust 的版本。</td>
+<td>nvm</td>
+</tr>
+<tr>
+<td>Cargo</td>
+<td>Rust 的构建工具和包管理器。可以通过 <code>cargo --version</code> 来查看 Rust 和 Cargo 的版本，他们的版本始终是保持一致的。</td>
+<td>npm/yarn</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://crates.io/">crates.io</a></td>
+<td>Rust 包的仓库</td>
+<td>npmjs.com</td>
+</tr>
+<tr>
+<td>Rustfmt</td>
+<td>Rust 的代码风格格式化工具。</td>
+<td>prettier</td>
+</tr>
+<tr>
+<td>Clippy</td>
+<td>Rust 的代码风格检查工具。</td>
+<td>eslint/standard</td>
+</tr>
+<tr>
+<td>Rust Language Server(LSP)</td>
+<td>为 Rust 提供编辑器和IDE支持</td>
+<td></td>
+</tr>
+<tr>
+<td>Rustdoc</td>
+<td>Rust 的文档生成器</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://discord.gg/rust-lang">Rust 官方 Discord</a></td>
+<td>Rust 相关问题的讨论区</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/tagged/rust">Rust stackoverflow tag</a></td>
+<td>Rust 相关问题提问区</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://users.rust-lang.org/">Rust 官方用户论坛</a></td>
+<td>Rust 用户论坛</td>
+<td>-</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://toml.io/">TOML</a></td>
+<td>Cargo 配置文件格式</td>
+</tr>
+</tbody>
+</table>
+<h2 id="开始-Hello-World"><a href="#开始-Hello-World" class="headerlink" title="开始 Hello World!"></a>开始 Hello World!</h2><p>首先，需要安装 Rust 及相关生态工具，以下均以类 Linux 系统为例：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl --proto <span class="string">&#x27;=https&#x27;</span> --tlsv1.2 -sSf https://sh.rustup.rs | sh <span class="comment"># 安装 Rustup &amp; Cargo</span></span><br><span class="line">cargo --version <span class="comment"># 查看 Rust 版本，验证是否正确安装</span></span><br></pre></td></tr></table></figure>
+<p>创建一个新的 Rust 项目</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cargo new hello-rust <span class="comment"># 生成一个新的“Hello, world!”项目</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 包含以下文件</span></span><br><span class="line"><span class="comment"># hello-rust</span></span><br><span class="line"><span class="comment"># |- Cargo.toml # Rust 的清单文件。其中包含了项目的元数据和依赖库。</span></span><br><span class="line"><span class="comment"># |- src</span></span><br><span class="line"><span class="comment">#   |- main.rs # 编写应用代码的地方。</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> hello-rust</span><br><span class="line">cargo run <span class="comment"># 执行程序</span></span><br></pre></td></tr></table></figure>
+<p>这样就可以在控制台看到 Hello, world! 的提示语。<br>在 Cargo.toml 文件中添加以下信息</p>
+<figure class="highlight toml"><figcaption><span>Cargo.toml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[dependencies]</span></span><br><span class="line"><span class="attr">ferris-says</span> = <span class="string">&quot;0.2&quot;</span></span><br></pre></td></tr></table></figure>
+<p>在 main.rs 中添加以下代码</p>
+<figure class="highlight rust"><figcaption><span>main.rs</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> ferris_says::say;</span><br><span class="line"><span class="keyword">use</span> std::io::&#123;stdout, BufWriter&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">stdout</span> = <span class="title function_ invoke__">stdout</span>();</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">message</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;Hello fellow Rustaceans!&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">width</span> = message.<span class="title function_ invoke__">chars</span>().<span class="title function_ invoke__">count</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">writer</span> = BufWriter::<span class="title function_ invoke__">new</span>(stdout.<span class="title function_ invoke__">lock</span>());</span><br><span class="line">    <span class="title function_ invoke__">say</span>(message.<span class="title function_ invoke__">as_bytes</span>(), width, &amp;<span class="keyword">mut</span> writer).<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行命令</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">cargo build <span class="comment"># 安装依赖。此命令会创建一个新文件 Cargo.lock，该文件记录了本地所用依赖库的精确版本。</span></span><br><span class="line">cargo run <span class="comment"># 执行程序</span></span><br><span class="line"><span class="comment"># 执行结果：</span></span><br><span class="line"><span class="comment">#  __________________________</span></span><br><span class="line"><span class="comment"># &lt; Hello fellow Rustaceans! &gt;</span></span><br><span class="line"><span class="comment">#  --------------------------</span></span><br><span class="line"><span class="comment">#         \</span></span><br><span class="line"><span class="comment">#          \</span></span><br><span class="line"><span class="comment">#             _~^~^~_</span></span><br><span class="line"><span class="comment">#         \) /  o o  \ (/</span></span><br><span class="line"><span class="comment">#           &#x27;_   -   _&#x27;</span></span><br><span class="line"><span class="comment">#           / &#x27;-----&#x27; \</span></span><br></pre></td></tr></table></figure>
+<h2 id="语言特性"><a href="#语言特性" class="headerlink" title="语言特性"></a>语言特性</h2><p>Rust 是 静态类型（statically typed）语言，也就是说在编译时就必须知道所有变量的类型。<br>main 函数是 Rust 程序的入口。<br>Rust 不关心函数定义所在的位置，只要函数被调用时出现在调用之处可见的作用域内就行。<br>Rust 是一门基于表达式（expression-based）的语言。<br>Rust 并不会尝试自动地将非布尔值转换为布尔值。必须总是显式地使用布尔值作为 if 的条件。</p>
+<p><a target="_blank" rel="noopener" href="https://kaisery.github.io/trpl-zh-cn/appendix-01-keywords.html">关键字</a></p>
+<p><a target="_blank" rel="noopener" href="https://kaisery.github.io/trpl-zh-cn/appendix-02-operators.html">运算符与符号</a></p>
+<p><a target="_blank" rel="noopener" href="https://kaisery.github.io/trpl-zh-cn/appendix-03-derivable-traits.html">可派生的trait</a></p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><table>
+<thead>
+<tr>
+<th>关键字与标志符</th>
+<th>用法</th>
+<th>作用</th>
+<th>类比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>use</code></td>
+<td><code>use std::io;</code></td>
+<td>显示的引入</td>
+<td><code>import</code></td>
+</tr>
+<tr>
+<td><code>fn</code></td>
+<td><code>fn main()&#123;&#125;</code></td>
+<td>函数声明</td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td><code>let</code></td>
+<td><code>let guess = 5;</code></td>
+<td>变量声明，在 Rust 中，变量默认是不可变的</td>
+<td><code>const</code></td>
+</tr>
+<tr>
+<td><code>const</code></td>
+<td><code>const THREE_HOURS_IN_SECONDS: u32 = 60 * 60 * 3;</code></td>
+<td>常量声明</td>
+<td><code>const</code></td>
+</tr>
+<tr>
+<td><code>mut</code></td>
+<td><code>let mut guess = 5</code></td>
+<td>可变变量声明</td>
+<td><code>var</code></td>
+</tr>
+<tr>
+<td><code>::</code></td>
+<td><code>let mut guess = String::new();</code></td>
+<td>关联函数(associated function)， 也就是类的静态方法（static method）</td>
+<td><code>.</code></td>
+</tr>
+<tr>
+<td><code>&amp;</code></td>
+<td><code>io::stdin().read_line(&amp;mut guess)</code></td>
+<td>引用（reference），它允许多处代码访问同一处数据，而无需在内存中多次拷贝。</td>
+<td></td>
+</tr>
+<tr>
+<td><code>match</code></td>
+<td><code>match guess.cmp(&amp;secret_number) &#123; Ordering::Less =&gt; println!(&quot;Too small!&quot;), Ordering::Greater =&gt; println!(&quot;Too big!&quot;), Ordering::Equal =&gt; println!(&quot;You win!&quot;), &#125;</code></td>
+<td>一个 match 表达式由 分支（arms） 构成。一个分支包含一个 模式（pattern）和表达式开头的值与分支模式相匹配时应该执行的代码。Rust 获取提供给 match 的值并挨个检查每个分支的模式。</td>
+<td><code>switch ($&#123;cmp&#125;) &#123; case $&#123;condition&#125;: $&#123;action&#125;&#125;</code></td>
+</tr>
+<tr>
+<td><code>loop</code></td>
+<td><code>loop &#123;&#125;</code></td>
+<td>循环</td>
+<td><code>while(true) &#123;&#125;</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="预导入-prelude"><a href="#预导入-prelude" class="headerlink" title="预导入 prelude"></a>预导入 prelude</h3><p>默认情况下，Rust 设定了若干个会自动导入到每个程序作用域中的标准库内容，这组内容被称为 <a target="_blank" rel="noopener" href="https://doc.rust-lang.org/std/prelude/index.html">预导入</a> （prelude）内容。</p>
+<h3 id="隐藏-shadow"><a href="#隐藏-shadow" class="headerlink" title="隐藏 shadow"></a>隐藏 shadow</h3><p>Rust 允许用一个新值来 隐藏 （shadow）变量之前的值。这个功能常用在需要转换值类型之类的场景。</p>
+<h3 id="数据类型-data-type"><a href="#数据类型-data-type" class="headerlink" title="数据类型 data type"></a>数据类型 data type</h3><p>在 Rust 中，每一个值都属于某一个 数据类型（data type），这告诉 Rust 它被指定为何种数据，以便明确数据处理方式。</p>
+<p>Rust 有两种数据类型子集 标量(scalar) 和 复合(compound)。</p>
+<h3 id="标量类型"><a href="#标量类型" class="headerlink" title="标量类型"></a>标量类型</h3><p>Rust 有四种基本的标量类型：整数（integers）、浮点数（floating-point numbers）、布尔类型（booleans）和字符类型(characters)。</p>
+<p>整数包括：</p>
+<table>
+<thead>
+<tr>
+<th>长度</th>
+<th>有符号</th>
+<th>无符号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8-bit</td>
+<td>i8</td>
+<td>u8</td>
+</tr>
+<tr>
+<td>16-bit</td>
+<td>i16</td>
+<td>u16</td>
+</tr>
+<tr>
+<td>32-bit</td>
+<td>i32</td>
+<td>u32</td>
+</tr>
+<tr>
+<td>64-bit</td>
+<td>i64</td>
+<td>u64</td>
+</tr>
+<tr>
+<td>128-bit</td>
+<td>i128</td>
+<td>u128</td>
+</tr>
+<tr>
+<td>arch</td>
+<td>isize</td>
+<td>usize</td>
+</tr>
+</tbody>
+</table>
+<p>Rust 也有两个原生的浮点数类型 f32 与 f64。</p>
+<p>Rust 中的布尔类型有两个可能的值：true 和 false。Rust 中的布尔类型使用 bool 表示。</p>
+<p>Rust的 char 类型是语言中最原生的字母类型。单引号声明字面量，双引号声明字符串字面量。Rust 的 char 类型的大小为四个字节(four bytes)，并代表了一个 Unicode 标量值（Unicode Scalar Value）。Unicode 标量值包含从 U+0000 到 U+D7FF 和 U+E000 到 U+10FFFF 在内的值。</p>
+<h3 id="复合类型"><a href="#复合类型" class="headerlink" title="复合类型"></a>复合类型</h3><p>Rust 有两个原生的复合类型：元组（tuple）和数组（array）。</p>
+<p>元组是一个将多个其他类型的值组合进一个复合类型的主要方式。元组长度固定：一旦声明，其长度不会增大或缩小。不带任何值的元组有个特殊的名称，叫做 单元（unit） 元组。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">tup</span>: (<span class="type">i32</span>, <span class="type">f64</span>, <span class="type">u8</span>) = (<span class="number">500</span>, <span class="number">6.4</span>, <span class="number">1</span>); <span class="comment">// 元组的声明</span></span><br><span class="line"><span class="built_in">println!</span>(tup.<span class="number">0</span>) <span class="comment">// 打印 500。 使用 . 操作符来访问元组的值</span></span><br><span class="line"><span class="keyword">let</span> (x, y, z) = tup; <span class="comment">// 使用模式匹配（pattern matching）来解构（destructure）元组值</span></span><br><span class="line"><span class="built_in">println!</span>(y) <span class="comment">// 打印 6.4</span></span><br></pre></td></tr></table></figure>
+<p>Rust 中的数组与一些其他语言中的数组不同，Rust中的数组长度是固定的。但是数组并不如 vector 类型灵活。vector 类型是标准库提供的一个 <em>允许</em> 增长和缩小长度的类似数组的集合类型。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">a</span>: [<span class="type">i32</span>; <span class="number">5</span>] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]; <span class="comment">// 数组声明</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">b</span>: [<span class="number">3</span> ; <span class="number">5</span>]; <span class="comment">// 每个元素都为相同值的数组声明</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">first</span> = a[<span class="number">0</span>]; <span class="comment">// 使用索引来访问数组的元素</span></span><br></pre></td></tr></table></figure>
+<h3 id="循环标签-loop-label"><a href="#循环标签-loop-label" class="headerlink" title="循环标签 loop label"></a>循环标签 loop label</h3><p>如果存在嵌套循环，break 和 continue 应用于此时最内层的循环。你可以选择在一个循环上指定一个 循环标签（loop label），然后将标签与 break 或 continue 一起使用，使这些关键字应用于已标记的循环而不是最内层的循环。循环标签以 单引号 开始， 冒号 结束，例如 <code>&#39;counting_up:</code> 。</p>
+<h3 id="所有权-ownership"><a href="#所有权-ownership" class="headerlink" title="所有权 ownership"></a>所有权 ownership</h3><ol>
+<li>Rust 中的每一个值都有一个被称为其 所有者（owner）的变量。</li>
+<li>值在任一时刻有且只有一个所有者。</li>
+<li>当所有者（变量）离开作用域，这个值将被丢弃。</li>
+</ol>
+<p>针对于内存与分配，Rust 采取了一个不同的策略：内存在拥有它的变量离开作用域后就被自动释放。当变量离开作用域，Rust 为我们调用一个特殊的函数。这个函数叫做 <a target="_blank" rel="noopener" href="https://doc.rust-lang.org/std/ops/trait.Drop.html#tymethod.drop">drop</a>。Rust 有一个叫做 Copy trait 的特殊注解，可以用在类似整型这样的存储在栈上的类型上。如果一个类型实现了 Copy trait，那么一个旧的变量在将其赋值给其他变量后仍然可用，否则，赋值操作会使旧的变量无效，这个操作被称为 <em>移动</em>（move）。如果我们 确实 需要深度复制未实现 Copy trait 的类型，可以使用一个叫做 clone 的通用函数。</p>
+<p>以下类型实现了 Copy trait:</p>
+<ul>
+<li>所有整数类型，比如 u32。</li>
+<li>布尔类型，bool，它的值是 true 和 false。</li>
+<li>所有浮点数类型，比如 f64。</li>
+<li>字符类型，char。</li>
+<li>元组，当且仅当其包含的类型也都实现 Copy 的时候。比如，(i32, i32) 实现了 Copy，但 (i32, String) 就没有。</li>
+</ul>
+<p>将值传递给函数在语义上与给变量赋值相似。向函数传递值可能会 <em>移动</em> 或者 <em>复制</em> ，就像赋值语句一样。返回值也可以转移所有权。</p>
+<h3 id="引用与借用-references-amp-borrowing"><a href="#引用与借用-references-amp-borrowing" class="headerlink" title="引用与借用 references &amp; borrowing"></a>引用与借用 references &amp; borrowing</h3><p>在 Rust 中， <code>&amp;</code> 符号就是 引用，它们允许你使用值但不获取其所有权。与使用 <code>&amp;</code> 引用相反的操作是 解引用（dereferencing），它使用解引用运算符 <code>*</code>。我们将创建一个引用的行为称为 借用（borrowing），（默认）不允许修改引用的值。</p>
+<p><code>&amp;mut</code> 为可变引用（mutable reference），可变引用允许我们修改一个借用的值，但在同一时间只能有一个对某一特定数据的可变引用。</p>
+<h3 id="作用域-scope"><a href="#作用域-scope" class="headerlink" title="作用域 scope"></a>作用域 scope</h3><p>作用域是一个项（item）在程序中有效的范围。变量作用域就是变量在程序中有效的范围。</p>
+<p>一个引用的作用域从声明的地方开始一直持续到最后一次使用为止。</p>
+<h3 id="非词法作用域生命周期-NLL"><a href="#非词法作用域生命周期-NLL" class="headerlink" title="非词法作用域生命周期 NLL"></a>非词法作用域生命周期 NLL</h3><p>编译器在作用域结束之前判断不再使用的引用的能力被称为 <a target="_blank" rel="noopener" href="https://blog.rust-lang.org/2018/12/06/Rust-1.31-and-rust-2018.html#non-lexical-lifetimes">非词法作用域生命周期</a>（Non-Lexical Lifetimes，简称 NLL）</p>
+<h3 id="泛型-generics"><a href="#泛型-generics" class="headerlink" title="泛型 generics"></a>泛型 generics</h3><p>泛型是具体类型或其他属性的抽象替代。我们可以表达泛型的属性，比如他们的行为或如何与其他泛型相关联，而不需要在编写和编译代码时知道他们在这里实际上代表什么。</p>
+<h3 id="单态化-monomorphization"><a href="#单态化-monomorphization" class="headerlink" title="单态化 monomorphization"></a>单态化 monomorphization</h3><p>单态化是一个通过填充编译时使用的具体类型，将通用代码转换为特定代码的过程。我们可以使用泛型来编写不重复的代码，而 Rust 将会为每一个实例编译其特定类型的代码。</p>
+<h3 id="特质-trait"><a href="#特质-trait" class="headerlink" title="特质 trait"></a>特质 trait</h3><p>一种定义泛型行为的方法。特质可以与泛型结合来将泛型限制为拥有特定行为的类型，而不是任意类型。</p>
+<h3 id="生命周期-lifetimes"><a href="#生命周期-lifetimes" class="headerlink" title="生命周期 lifetimes"></a>生命周期 lifetimes</h3><p>生命周期是一类允许我们向编译器提供引用如何相互关联的泛型。Rust 的生命周期功能允许在很多场景下借用值的同时仍然使编译器能够检查这些引用的有效性。</p>
+<h3 id="相干性-coherence-孤儿规则-orphan-rule"><a href="#相干性-coherence-孤儿规则-orphan-rule" class="headerlink" title="相干性 coherence(孤儿规则 orphan rule)"></a>相干性 coherence(孤儿规则 orphan rule)</h3><p>只有当至少一个 trait 或者要实现 trait 的类型位于 crate 的本地作用域时，才能为该类型实现 trait。这个限制是被称为 相干性（coherence） 的程序属性的一部分，或者更具体的说是 孤儿规则（orphan rule），其得名于不存在父类型。这条规则确保了其他人编写的代码不会破坏你代码，反之亦然。</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="不可变变量和常量有什么区别？"><a href="#不可变变量和常量有什么区别？" class="headerlink" title="不可变变量和常量有什么区别？"></a>不可变变量和常量有什么区别？</h3><ul>
+<li>不允许对常量使用 mut。</li>
+<li>常量不光默认不能变，它总是不能变。</li>
+<li>声明常量使用 const 关键字而不是 let，并且 <em>必须</em> 注明值的类型。</li>
+<li>常量可以在任何作用域中声明，包括全局作用域，这在一个值需要被很多部分的代码用到时很有用。</li>
+<li>常量只能被设置为常量表达式，而不可以是其他任何只能在运行时计算出的值。</li>
+</ul>
+<h3 id="隐藏-shadow-和将变量标记为-mut-有什么区别？"><a href="#隐藏-shadow-和将变量标记为-mut-有什么区别？" class="headerlink" title="隐藏(shadow)和将变量标记为 mut 有什么区别？"></a>隐藏(shadow)和将变量标记为 mut 有什么区别？</h3><ul>
+<li>当不小心尝试对变量重新赋值时，如果没有使用 let 关键字，就会导致编译时错误。通过使用 let，我们可以用这个值进行一些计算，不过计算完之后变量仍然是不可变的。</li>
+<li>当再次使用 let 时，实际上创建了一个新变量，我们可以改变值的类型，并且复用这个名字。</li>
+</ul>
+<h3 id="整型溢出会发生什么？"><a href="#整型溢出会发生什么？" class="headerlink" title="整型溢出会发生什么？"></a>整型溢出会发生什么？</h3><p>有一个 u8 ，它可以存放从 0 到 255 的值。当你将其修改为 256 时就会发生 “整型溢出”（“integer overflow”）。当在 debug 模式编译时，Rust 检查这类问题并使程序 panic（程序因错误而退出）。在 release 构建中，Rust 不检测溢出，相反会进行一种被称为二进制补码包装（two’s complement wrapping）的操作。简而言之，值 256 变成 0，值 257 变成 1，依此类推。</p>
+<h3 id="数组下标越界会发生生么？"><a href="#数组下标越界会发生生么？" class="headerlink" title="数组下标越界会发生生么？"></a>数组下标越界会发生生么？</h3><p>当尝试用索引访问一个元素时，Rust 会检查指定的索引是否小于数组的长度。如果索引超出了数组长度，Rust 会 panic。</p>
+<h3 id="语句与表达式有什么区别？"><a href="#语句与表达式有什么区别？" class="headerlink" title="语句与表达式有什么区别？"></a>语句与表达式有什么区别？</h3><p>语句（Statements）是执行一些操作但不返回值的指令。表达式（Expressions）计算并产生一个值。表达式的结尾没有分号。如果在表达式的结尾加上分号，它就变成了语句，而语句不会返回值。</p>
+<h3 id="为什么在同一时间内对某一特定数据不能存在多个可变引用？"><a href="#为什么在同一时间内对某一特定数据不能存在多个可变引用？" class="headerlink" title="为什么在同一时间内对某一特定数据不能存在多个可变引用？"></a>为什么在同一时间内对某一特定数据不能存在多个可变引用？</h3><p>这个限制的好处是 Rust 可以在编译时就避免数据竞争。数据竞争（data race）类似于竞态条件，它可由这三个行为造成：</p>
+<p>两个或更多指针同时访问同一数据。<br>至少有一个指针被用来写入数据。<br>没有同步数据访问的机制。</p>
+<p>数据竞争会导致未定义行为，难以在运行时追踪，并且难以诊断和修复；Rust 避免了这种情况的发生。</p>
+<h3 id="Rust是否会存在悬垂引用（Dangling-References）的问题"><a href="#Rust是否会存在悬垂引用（Dangling-References）的问题" class="headerlink" title="Rust是否会存在悬垂引用（Dangling References）的问题?"></a>Rust是否会存在悬垂引用（Dangling References）的问题?</h3><p>在具有指针的语言中，很容易通过释放内存时保留指向它的指针而错误地生成一个 悬垂指针（dangling pointer），所谓悬垂指针是其指向的内存可能已经被分配给其它持有者。相比之下，在 Rust 中编译器确保引用永远也不会变成悬垂状态：当你拥有一些数据的引用，编译器确保数据不会在其引用之前离开作用域。</p>
+<h3 id="Rust的模块系统（the-module-system）包含哪些部分？"><a href="#Rust的模块系统（the-module-system）包含哪些部分？" class="headerlink" title="Rust的模块系统（the module system）包含哪些部分？"></a>Rust的模块系统（the module system）包含哪些部分？</h3><ul>
+<li>包（Packages）： Cargo 的一个功能，它允许你构建、测试和分享箱（crate）。</li>
+<li>箱（Crates）：一个模块的树形结构，它形成了库或二进制项目。</li>
+<li>模块（Modules）和 use： 允许你控制作用域和路径的私有性。</li>
+<li>路径（path）：一个命名例如结构体、函数或模块等项的方式。</li>
+</ul>
+<h3 id="为什么-Rust-不允许使用索引获取-String-字符？"><a href="#为什么-Rust-不允许使用索引获取-String-字符？" class="headerlink" title="为什么 Rust 不允许使用索引获取 String 字符？"></a>为什么 Rust 不允许使用索引获取 String 字符？</h3><ol>
+<li>String 是一个 <code>Vec&lt;u8&gt;</code> 的封装，每个 Unicode 标量值需要两个字节存储，因此一个字符串字节值的索引并不总是对应一个有效的 Unicode 标量值</li>
+<li>索引操作预期总是需要常数时间 (O(1))。但是对于 String 不可能保证这样的性能，因为 Rust 必须从开头到索引位置遍历来确定有多少有效的字符</li>
+</ol>
+<h3 id="如何决定何时应该使用-panic-以及何时应该返回-Result-呢"><a href="#如何决定何时应该使用-panic-以及何时应该返回-Result-呢" class="headerlink" title="如何决定何时应该使用 panic! 以及何时应该返回 Result 呢?"></a>如何决定何时应该使用 <code>panic!</code> 以及何时应该返回 <code>Result</code> 呢?</h3><p><code>panic!</code> 宏代表一个程序无法处理的状态，并停止执行而不是使用无效或不正确的值继续处理。Rust 类型系统的 Result 枚举代表操作可能会在一种可以恢复的情况下失败。可以使用 <code>Result</code> 来告诉代码调用者他需要处理潜在的成功或失败。</p>
+<h3 id="写出三种方法给定-vector-列表返回出其中的最大值"><a href="#写出三种方法给定-vector-列表返回出其中的最大值" class="headerlink" title="写出三种方法给定 vector 列表返回出其中的最大值"></a>写出三种方法给定 vector 列表返回出其中的最大值</h3><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">largest</span>&lt;T: <span class="built_in">PartialOrd</span> + <span class="built_in">Clone</span>&gt;(list: &amp;[T]) <span class="punctuation">-&gt;</span> T &#123;</span><br><span class="line">  <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">largest</span> = list[<span class="number">0</span>].<span class="title function_ invoke__">clone</span>();</span><br><span class="line">  <span class="keyword">for</span> <span class="variable">item</span> <span class="keyword">in</span> list &#123;</span><br><span class="line">    <span class="keyword">if</span> item &gt; &amp;largest &#123;</span><br><span class="line">      largest = item.<span class="title function_ invoke__">clone</span>();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  largest</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">largest1</span>&lt;T: <span class="built_in">PartialOrd</span> + <span class="built_in">Copy</span>&gt;(list: &amp;[T]) <span class="punctuation">-&gt;</span> T &#123;</span><br><span class="line">  <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">largest</span> = list[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">for</span> &amp;item <span class="keyword">in</span> list &#123;</span><br><span class="line">    <span class="keyword">if</span> item &gt; largest &#123;</span><br><span class="line">      largest = item;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  largest</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">largest2</span>&lt;T: <span class="built_in">PartialOrd</span>&gt;(list: &amp;[T]) <span class="punctuation">-&gt;</span> &amp;T &#123;</span><br><span class="line">  <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">largest</span> = &amp;list[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">for</span> <span class="variable">item</span> <span class="keyword">in</span> list &#123;</span><br><span class="line">    <span class="keyword">if</span> &amp;item &gt; &amp;largest &#123;</span><br><span class="line">      largest = &amp;item;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  largest</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">  <span class="keyword">let</span> <span class="variable">number_list</span> = <span class="built_in">vec!</span>[<span class="number">34</span>, <span class="number">50</span>, <span class="number">25</span>, <span class="number">100</span>, <span class="number">65</span>];</span><br><span class="line">  <span class="keyword">let</span> <span class="variable">result</span> = <span class="title function_ invoke__">largest2</span>(&amp;number_list);</span><br><span class="line">  <span class="built_in">println!</span>(<span class="string">&quot;The largest number is &#123;&#125;&quot;</span>, result);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> <span class="variable">char_list</span> = <span class="built_in">vec!</span>[<span class="string">&#x27;y&#x27;</span>, <span class="string">&#x27;m&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;q&#x27;</span>];</span><br><span class="line">  <span class="keyword">let</span> <span class="variable">result</span> = <span class="title function_ invoke__">largest2</span>(&amp;char_list);</span><br><span class="line">  <span class="built_in">println!</span>(<span class="string">&quot;The largest char is &#123;&#125;&quot;</span>, result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

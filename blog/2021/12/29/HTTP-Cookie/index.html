@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        HTTP Cookie 小抄 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="Cookie 作用HTTP Cookie（也叫 Web Cookie 或浏览器 Cookie）是服务器发送到用户代理（一般是浏览器，以下统一用浏览器表示）并保存在本地的一小块数据，它会在浏览器下次向同一服务器再发起请求时被携带并发送到服务器上。虽然 Cookie 具有许多降低其安全性的缺陷和隐私问题，但由于历史原因，Cookie 和 Set-Cookie 头字段还是被广泛的在互联网上使用。Cookie 主要用于以下三个方面：会话状态管理（如用户登录状态、购物车、游戏分数或其它需要记录的信息" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Cookie-%E4%BD%9C%E7%94%A8"><span class="toc-text">Cookie 作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Cookie"><span class="toc-text">使用 Cookie</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cookie-%E5%B1%9E%E6%80%A7"><span class="toc-text">Cookie 属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Cookie-%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">Cookie 作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Domain"><span class="toc-text">Domain</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Path"><span class="toc-text">Path</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cookie-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-text">Cookie 生命周期</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Expires"><span class="toc-text">Expires</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Max-Age"><span class="toc-text">Max-Age</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cookie-%E5%AE%89%E5%85%A8%E5%B1%9E%E6%80%A7"><span class="toc-text">Cookie 安全属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Secure"><span class="toc-text">Secure</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HttpOnly"><span class="toc-text">HttpOnly</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SameSite"><span class="toc-text">SameSite</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cookie-%E7%9A%84%E5%85%B6%E5%AE%83%E5%B1%9E%E6%80%A7"><span class="toc-text">Cookie 的其它属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Cookie-prefixes"><span class="toc-text">Cookie prefixes</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SameParty"><span class="toc-text">SameParty</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Priority"><span class="toc-text">Priority</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cookie%E7%9A%84%E5%8F%91%E9%80%81%E8%A7%84%E5%88%99"><span class="toc-text">Cookie的发送规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cookie-%E7%9A%84%E9%99%90%E5%88%B6%E6%9D%A1%E4%BB%B6"><span class="toc-text">Cookie 的限制条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E4%B8%8E%E9%97%AE%E9%A2%98"><span class="toc-text">其他安全策略与问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-text">参考资料</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            HTTP Cookie 小抄
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-12-29T07:46:51.000Z" itemprop="datePublished">2021-12-29</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/HTTP/" rel="tag">HTTP</a>, <a class="article-tag-link" href="/blog/tags/cookie/" rel="tag">cookie</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="Cookie-作用"><a href="#Cookie-作用" class="headerlink" title="Cookie 作用"></a>Cookie 作用</h2><p><a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/rfc6265/">HTTP Cookie</a>（也叫 Web Cookie 或浏览器 Cookie）是服务器发送到用户代理（一般是浏览器，以下统一用浏览器表示）并保存在本地的一小块数据，它会在浏览器下次向同一服务器再发起请求时被携带并发送到服务器上。虽然 Cookie 具有许多降低其安全性的缺陷和隐私问题，但由于历史原因，Cookie 和 Set-Cookie 头字段还是被广泛的在互联网上使用。</p>
+<p>Cookie 主要用于以下三个方面：</p>
+<ul>
+<li>会话状态管理（如用户登录状态、购物车、游戏分数或其它需要记录的信息）</li>
+<li>个性化设置（如用户自定义设置、主题等）</li>
+<li>浏览器行为跟踪（如跟踪分析用户行为等）</li>
+</ul>
+<span id="more"></span>
+<p>Cookie 曾一度用于浏览器数据的存储，但浏览器的每次请求都会携带 Cookie 数据，会带来额外的性能开销，随着新的浏览器 API 已经允许开发者直接将数据存储到本地，如使用 Web storage API （本地存储和会话存储）或 IndexedDB ，Cookie 作为浏览器数据存储的功能渐渐被淘汰。</p>
+<p>在 Chrome 浏览器中可以通过 <a href="chrome://settings/siteData">chrome settings</a> 管理浏览器 Cookie。也可以 F12 打开 dev-tools 在 Application-Storage-Cookie 下查看当前页面相关的 Cookie 。</p>
+<p>另外还有 <a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/rfc7873/">DNS Cookies</a>、<a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/rfc6013/">TCP Cookie Transactions</a> 也被叫做 Cookie，但都没有 HTTP Cookie 知名。  </p>
+<h2 id="使用-Cookie"><a href="#使用-Cookie" class="headerlink" title="使用 Cookie"></a>使用 Cookie</h2><p>服务器使用 Set-Cookie 响应头部向浏览器发送 Cookie 信息</p>
+<figure class="highlight http"><figcaption><span>header</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Set-Cookie</span><span class="punctuation">: </span>&lt;cookie name&gt;=&lt;cookie value&gt;[;Expires=&lt;date&gt;][;Max-Age=&lt;non-zero-digit&gt;][;Domain=&lt;domain-value&gt;][;Path=&lt;path-value&gt;][;Secure][;HttpOnly][;SameSite=&lt;Strict|Lax|None&gt;];</span><br></pre></td></tr></table></figure>
+<p>例如在 nodejs 中</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.<span class="title function_">setHeader</span>(<span class="string">&#x27;Set-Cookie&#x27;</span>, [<span class="string">&#x27;locale=zh-cn&#x27;</span>, <span class="string">&#x27;language=javascript&#x27;</span>]);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>&lt;cookie-name&gt;</code> 可以是除了控制字符 (CTLs)、空格 (spaces) 或制表符 (tab)之外的任何 US-ASCII 字符。同时不能包含以下分隔字符： ( ) &lt; &gt; @ , ; : \ “ /  [ ] ? = { }.</li>
+<li><code>&lt;cookie-value&gt;</code> 是可选的，如果存在的话，那么需要包含在双引号里面。支持除了控制字符（CTLs）、空格（whitespace）、双引号（double quotes）、逗号（comma）、分号（semicolon）以及反斜线（backslash）之外的任意 US-ASCII 字符。关于编码：许多应用会对 Cookie 值按照 URL 编码（URL encoding）规则进行编码，但是按照 RFC 规范，这不是必须的。不过需要满足规范中对于 <code>&lt;cookie-value&gt;</code> 所允许使用的字符的要求。</li>
+</ul>
+<p>浏览器使用 <code>document.cookie</code> API 获取 Cookie，使用 <code>document.cookie = &quot;&lt;cookie name&gt;=&lt;cookie value&gt;[;Expires=&lt;date&gt;][;Max-Age=&lt;non-zero-digit&gt;][;Domain=&lt;domain-value&gt;][;Path=&lt;path-value&gt;][;Secure][;SameSite=&lt;Strict|Lax|None&gt;]&quot;;</code> 来创建 Cookie。浏览器读取 Cookie 需要进行字符串解析与 Unicode 编码，直接使用 API 进行变更不太方便，有一些库可以更方便的对 Cookie 进行设置 例如 <a target="_blank" rel="noopener" href="https://github.com/js-cookie/js-cookie">js-cookie</a>。</p>
+<p>Cookie 并不直接提供修改、删除的操作，如果要修改某个 Cookie，只需要新建一个 Name、Domain、Path 均与原 Cookie 相同的 Cookie，即会覆盖原 Cookie。如果要删除某个Cookie，只需要新建一个 Name、Domain、Path 均与原 Cookie 相同的 Cookie，并将 Max-Age 设置为 0 或者 将 Expires 设置为过去的时间即可。</p>
+<h2 id="Cookie-属性"><a href="#Cookie-属性" class="headerlink" title="Cookie 属性"></a>Cookie 属性</h2><p>Cookie 具有以下属性<br>名称/值 Name Value<br>作用域 Domain Path<br>有效期 Expires Max-Age<br>安全属性 HttpOnly Secure SameSite  </p>
+<h3 id="Cookie-作用域"><a href="#Cookie-作用域" class="headerlink" title="Cookie 作用域"></a>Cookie 作用域</h3><p>Domain 和 Path 标识定义了 Cookie 的作用域：即允许 Cookie 应该发送给哪些 URL。一般情况下，一个 Cookie 只有 Domain 和 Path 均比 HTTP(S) 请求的域名和路径更高层级（或同层级）时才会发送。 Name Domain Path 可以决定一个唯一的 Cookie，当设置一个 Name Domain Path 相同的 Cookie 时，Cookie 的值会被覆盖。  </p>
+<h4 id="Domain"><a href="#Domain" class="headerlink" title="Domain"></a>Domain</h4><p><code>Domain=&lt;domain-value&gt;</code> 指定 Cookie 可以送达的域名。默认值为当前文档访问地址中的域名(<code>window.location.origin</code>)，而且不包含子域名（存储时 host-only-flag 为 true）。设定 Cookie 时如果指定了 Domain ，则包含子域名，而且 指定的 Domain 必须涵盖原始服务器的域名（属于当前域名的父级域名），否则会被浏览器拒绝。</p>
+<h4 id="Path"><a href="#Path" class="headerlink" title="Path"></a>Path</h4><p><code>Path=&lt;path-value&gt;</code> 指定 Cookie 可以送达的 URL 路径，这个路径必须出现在要请求的资源的路径中才可以发送 Cookie header。默认值为当前文档的路径(<code>window.location.pathname</code>)的上一层。</p>
+<h3 id="Cookie-生命周期"><a href="#Cookie-生命周期" class="headerlink" title="Cookie 生命周期"></a>Cookie 生命周期</h3><p>Cookie 根据生命周期可以分为两种， 会话期 Cookie 和 持久性 Cookie。<br>不指定过期时间（Expires）或者有效期（Max-Age）的 Cookie 是会话期 Cookie，浏览器关闭之后它会被自动删除。（如果浏览器支持会话恢复功能，会话期 Cookie 会一直生效。）<br>持久性 Cookie 的生命周期取决于过期时间（Expires）或有效期（Max-Age）指定的一段时间。  </p>
+<h4 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h4><p><code>Expires=&lt;date&gt;</code> Cookie 的最长有效时间，形式为符合 <a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc7231#section-7.1.1.2">RFC7231 HTTP-date</a> 规范的时间戳。设置早于当前时间的 Expires 会使 Cookie 直接过期。  </p>
+<h4 id="Max-Age"><a href="#Max-Age" class="headerlink" title="Max-Age"></a>Max-Age</h4><p><code>Max-Age=&lt;non-zero-digit&gt;</code> 在 Cookie 失效之前需要经过的秒数。秒数为 0 或 -1 将会使 Cookie 直接过期。如果 Expires 和 Max-Age 均存在，那么 Max-Age 优先级更高。  </p>
+<h3 id="Cookie-安全属性"><a href="#Cookie-安全属性" class="headerlink" title="Cookie 安全属性"></a>Cookie 安全属性</h3><h4 id="Secure"><a href="#Secure" class="headerlink" title="Secure"></a>Secure</h4><p><code>Secure</code> 一个带有 Secure 属性的 Cookie 只有在请求使用 HTTPS 协议的时候才会被发送到服务器。(但是在 Chrome 52 和 Firefox 52 以下版本中，仍旧能够在使用 HTTP 时被浏览器覆盖。)其目的是为了防范中间人攻击(MitM).</p>
+<h4 id="HttpOnly"><a href="#HttpOnly" class="headerlink" title="HttpOnly"></a>HttpOnly</h4><p><code>HttpOnly</code> 设置了 HttpOnly 属性的 Cookie 不能使用 JavaScript 经由 <code>Document.cookie</code>  属性、XMLHttpRequest 和  Request APIs 进行访问。也即浏览器不能直接访问。其目的是为了防范跨站脚本攻击(XSS)。</p>
+<h4 id="SameSite"><a href="#SameSite" class="headerlink" title="SameSite"></a>SameSite</h4><p><code>SameSite=&lt;Strict|Lax|None&gt;</code> 允许服务器要求某个 Cookie 在跨站请求时不会被发送。其目的是为了阻止跨站请求伪造攻击(CSRF)和解决第三方 Cookie 导致的用户追踪问题。该属性在<a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-cookie-same-site-00">RFC6265bis</a>中进行了定义。</p>
+<ul>
+<li>Strict 完全禁止第三方 Cookie，跨站点时，任何情况下都不会发送 Cookie。</li>
+<li>Lax 允许部分第三方请求携带 Cookie。</li>
+<li>None 无论是否跨站都会发送 Cookie，只支持 HTTPS（也即 Cookie 有 Secure 属性）。</li>
+</ul>
+<p>SameSite 是 Chrome 51 新增的属性，从 Chrome 84 开始 默认值从 None 变更为 Lax。现在 Chrome 的 SameSite 默认值是 Lax ，而 Safari 的默认值是 Strict 。  </p>
+<table>
+<thead>
+<tr>
+<th>请求类型</th>
+<th>实例</th>
+<th>Strict</th>
+<th>Lax</th>
+<th>None</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链接</td>
+<td><code>&lt;a href=&quot;...&quot;&gt;&lt;/a&gt;</code></td>
+<td>不发送</td>
+<td>发送cookie</td>
+<td>发送cookie</td>
+</tr>
+<tr>
+<td>预加载</td>
+<td><code>&lt;link rel=&quot;prerender&quot; href=&quot;...&quot; /&gt;</code></td>
+<td>不发送</td>
+<td>发送cookie</td>
+<td>发送cookie</td>
+</tr>
+<tr>
+<td>get 表单</td>
+<td><code>&lt;form method=&quot;GET&quot; action=&quot;...&quot; &gt;&lt;/form&gt;</code></td>
+<td>不发送</td>
+<td>发送cookie</td>
+<td>发送cookie</td>
+</tr>
+<tr>
+<td>post 表单</td>
+<td><code>&lt;form method=&quot;POST&quot; action=&quot;...&quot; &gt;&lt;/form&gt;</code></td>
+<td>不发送</td>
+<td>不发送</td>
+<td>发送cookie</td>
+</tr>
+<tr>
+<td>iframe</td>
+<td><code>&lt;iframe src=&quot;...&quot; /&gt;</code></td>
+<td>不发送</td>
+<td>不发送</td>
+<td>发送cookie</td>
+</tr>
+<tr>
+<td>Ajax</td>
+<td><code>$.get(&quot;...&quot;)</code></td>
+<td>不发送</td>
+<td>不发送</td>
+<td>发送cookie</td>
+</tr>
+<tr>
+<td>Image</td>
+<td><code>&lt;img src=&quot;...&quot; /&gt;</code></td>
+<td>不发送</td>
+<td>不发送</td>
+<td>发送cookie</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Cookie-的其它属性"><a href="#Cookie-的其它属性" class="headerlink" title="Cookie 的其它属性"></a>Cookie 的其它属性</h3><h4 id="Cookie-prefixes"><a href="#Cookie-prefixes" class="headerlink" title="Cookie prefixes"></a>Cookie prefixes</h4><ul>
+<li><strong>Secure- 前缀：以 </strong>Secure- 为前缀的 Cookie（其中连接符是前缀的一部分），必须与 secure 属性一同设置，同时必须应用于安全页面（即使用 HTTPS 访问的页面）。</li>
+<li><strong>Host- 前缀： 以 </strong>Host- 为前缀的 Cookie，必须与 secure 属性一同设置，必须应用于安全页面（即使用 HTTPS 访问的页面），必须不能设置 domain 属性 （也就不会发送给子域），同时 path 属性的值必须为“/”。</li>
+</ul>
+<h4 id="SameParty"><a href="#SameParty" class="headerlink" title="SameParty"></a>SameParty</h4><p>同主体标志，结合 First-Party Sets 来判断不同域名是否为同一主体，是否需要发送 Cookie 。SameParty Cookie 必须包含 Secure 且不得包含 SameSite=Strict。该属性主要是为了限制第三方 Cookie 及解决同一主体拥有不同域名时跨站 Cookie 共享的问题。</p>
+<h4 id="Priority"><a href="#Priority" class="headerlink" title="Priority"></a>Priority</h4><p>当 Cookie 超过每个域的 Cookie 容量时，将会被删除。Priority 属性（分为 High Medium(默认) Low）决定较低优先级的旧 Cookie 会被优先删除。</p>
+<h2 id="Cookie的发送规则"><a href="#Cookie的发送规则" class="headerlink" title="Cookie的发送规则"></a>Cookie的发送规则</h2><p>浏览器会将 Domain（当前请求的域名和 Cookie 的 Domain 相同，或者 Cookie 的 Domain 符合请求的上级域名）、Path（当前请求的路径和 Cookie 的 Path 相同，或者 Cookie 的 Path 符合请求的父级路径）、 Secure（当前请求为https请求） 均符合的 Cookie 按照 Path 长的在前、创建时间早的在前的规则发送给服务器，只发送 Name 和 Value。</p>
+<h2 id="Cookie-的限制条件"><a href="#Cookie-的限制条件" class="headerlink" title="Cookie 的限制条件"></a>Cookie 的限制条件</h2><ul>
+<li>单个 Cookie 最大 4k，任何 Cookie 大小超过限制都被忽略  </li>
+<li>单个 域名 至少提供50条 Cookie</li>
+<li>总共 提供 至少 3000条 Cookie</li>
+</ul>
+<p>根据这些限制条件，浏览器随时可能清除 Cookie，服务器应当使 Cookie 的体积小，数量少。</p>
+<h2 id="其他安全策略与问题"><a href="#其他安全策略与问题" class="headerlink" title="其他安全策略与问题"></a>其他安全策略与问题</h2><ul>
+<li><p>为了防止 Cookie 被篡改，服务器通常可以将 会话标志符 存储在 Cookie 中，而不是直接存储会话信息。这样，即使攻击者获取到了 Cookie 内容，如果不知道会话标志符编码解码规则，就无法进行修改。  </p>
+</li>
+<li><p>如果站点使用 Cookie 对用户进行身份验证，则每当用户进行身份验证时，它都应重新生成并重新发送会话 Cookie，即使会话 Cookie 已经存在。此技术有助于防止会话固定攻击（<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/Security/Types_of_attacks#session_hijacking">session fixation attacks</a>）。</p>
+</li>
+<li><p>Cookie 不提供端口隔离。如果 cookie 可由运行在一个端口上的服务读取/写入，则该 cookie 也可由运行在同一服务器的另一个端口上的服务读取/写入。出于这个原因，当使用 Cookie 来存储安全敏感信息时，服务器不应该在同一主机的不同端口上运行互不信任的服务。</p>
+</li>
+<li><p>Cookie 不对路径提供完整性保护。<code>document.cookie</code> API 不会隔离从不同路径获取的 Cookie，浏览器会接受 Set-Cookie 头中的任意 Path 属性 。出于这个原因，当使用 Cookie 来存储安全敏感信息时，服务器不应该在同一主机的不同路径上运行互不信任的服务。</p>
+</li>
+<li><p>Cookie 不为同级域（及其子域）提供完整性保证。例如，考虑 foo.example.com 和 bar.example.com。foo.example.com 服务器可以设置一个域属性为 “example.com” 的 cookie （可能覆盖由 bar.example.com 设置的现有 “example.com” cookie ），并且浏览器会将该 cookie 包含在对 bar.example.com 的 HTTP 请求。这里面最坏的情况是，bar.example.com 将无法区分这个 cookie和它自己设置的 cookie。foo.example.com 服务器可能能够利用这种能力对 bar.example.com 发起攻击。</p>
+</li>
+<li><p>Cookie 是依赖 DNS 来确保安全的，如果 DNS 层面已经不安全了（比如发生 DNS劫持），那 Cookie 也无法保证安全。</p>
+</li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/rfc6265/">RFC6265 HTTP State Management Mechanism</a><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Cookies#Secure_and_HttpOnly_cookies">MDN Web Docs HTTP cookies</a><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Set-Cookie">MDN Web Docs Set-Cookie</a><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies">MDN Web Docs Using HTTP cookies</a><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Document/cookie">MDN Web Docs Document.cookie</a><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/Security/Types_of_attacks#session_hijacking">MDN Web Docs Type of attacks</a><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/MitM">MDN Web Docs MitM</a><br><a target="_blank" rel="noopener" href="https://github.com/privacycg/first-party-sets">Github first-party-sets</a><br><a target="_blank" rel="noopener" href="https://github.com/cfredric/sameparty">Github sameparty</a><br><a target="_blank" rel="noopener" href="https://web.dev/samesite-cookies-explained/">web.dev samesite-cookies-explained</a><br><a target="_blank" rel="noopener" href="https://book.douban.com/subject/25863515/">图解 http</a></p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

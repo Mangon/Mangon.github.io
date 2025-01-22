@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        React父子组件数据传递 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="本篇主要讲述 React 中的 props state 以及 父子组件之间的数据传递。  props &amp;amp; state对于一个组件来说，props 属性是只读的，像一个透明包裹一样，子组件可以看到包裹里的东西，却不能直接改变 props 的值。props 来自他的父组件。而 state 属性则好像是自己的背包一样，可以随意通过 setState 修改，而且是永远跟随着自己的，不用担心丢失。123456789101112131415161718192021222324252627282" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#props-amp-state"><span class="toc-text">props &amp; state</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%92"><span class="toc-text">数据传递</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E4%BC%A0%E9%80%92%E6%95%B0%E6%8D%AE"><span class="toc-text">全局传递数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#EventEmitter"><span class="toc-text">EventEmitter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Context"><span class="toc-text">Context</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Context"><span class="toc-text">什么是 Context</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Context-%E7%9A%84%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">Context 的适用场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#refs"><span class="toc-text">refs</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Ref-%E8%BD%AC%E5%8F%91"><span class="toc-text">什么是 Ref 转发</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#refs-%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">refs 适用场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E5%BA%93"><span class="toc-text">使用状态管理库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-React-%E6%98%AF%E5%8D%95%E5%90%91%E6%95%B0%E6%8D%AE%E6%B5%81"><span class="toc-text">为什么 React 是单向数据流</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            React父子组件数据传递
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-06T11:55:58.000Z" itemprop="datePublished">2018-09-06</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/react/" rel="tag">react</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>本篇主要讲述 <a target="_blank" rel="noopener" href="https://github.com/facebook/react">React</a> 中的 props state 以及 父子组件之间的数据传递。  </p>
+<span id="more"></span>
+<h2 id="props-amp-state"><a href="#props-amp-state" class="headerlink" title="props &amp; state"></a>props &amp; state</h2><p>对于一个组件来说，props 属性是只读的，像一个透明包裹一样，子组件可以看到包裹里的东西，却不能直接改变 props 的值。props 来自他的父组件。而 state 属性则好像是自己的背包一样，可以随意通过 setState 修改，而且是永远跟随着自己的，不用担心丢失。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ChildComponent</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">        <span class="variable language_">super</span>(props);</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">state</span> = &#123;</span><br><span class="line">            <span class="attr">item</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">sendToFather</span>(<span class="params">data</span>)&#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">props</span>.<span class="title function_">setData</span>(data);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;main&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span>=&gt;</span>&#123;this.sendToFather(&#123;item1: value2&#125;)&#125;&#125;&gt;&#123;this.props.item&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">                <span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;this.state.item&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">FatherComponent</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">        <span class="variable language_">super</span>(props);</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">state</span> = &#123;</span><br><span class="line">            <span class="attr">item</span>: <span class="string">&#x27;value1&#x27;</span>,</span><br><span class="line">            <span class="attr">item1</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">setDateMethod</span>(<span class="params">value</span>)&#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">setState</span>(value)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            <span class="language-xml"><span class="tag">&lt;<span class="name">ChildComponent</span> <span class="attr">setData</span>=<span class="string">&#123;(this.setDateMethod).bind(this))&#125;</span> <span class="attr">item</span>=<span class="string">&#123;this.state.item&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">ChildComponent</span>&gt;</span></span></span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="数据传递"><a href="#数据传递" class="headerlink" title="数据传递"></a>数据传递</h2><p>父组件需要向自组件传递数据的时候，比如需要传递一个名字为 item ，值为 value1 的数据，<br>只需要引用子组件的时候为其添加一个名字为 item 的属性，然后将值赋予它，那么在子组件中就可以通过 props.item 获取到传递进来的值。  </p>
+<p>子组件要把数据返回给父组件，比如需要传递一个名字为 item1 ，值为 value2 的数据，<br>就需要父组件传递一个函数 setData 给子组件，子组件通过传入参数 <code>&#123; item1: value2 &#125;</code> 调用函数 setData 将数据返回给父组件的函数，父组件的函数 setDateMethod 接受实参来改变父组件中的 state 等值。  </p>
+<p>简单来说：</p>
+<ul>
+<li>父组件将需要传递的数据，更改 state 的方法（setData方法）或组件本身通过 props 传递给子组件</li>
+<li>子组件通过调用 props 传来的回调函数（setData方法）向父组件传递数据或更改状态</li>
+</ul>
+<h2 id="全局传递数据"><a href="#全局传递数据" class="headerlink" title="全局传递数据"></a>全局传递数据</h2><h3 id="EventEmitter"><a href="#EventEmitter" class="headerlink" title="EventEmitter"></a>EventEmitter</h3><p>因为数据只能在父子之间传递，当父子关系嵌套很深的时候，不同组件之间传递数据十分不便。这时可以使用 <code>EventEmitter</code> 事件传递来实现组件之间的数据传递。使用事件模型，组件之间无论是父子关系还是非父子关系都可以直接沟通，从而解决了组件间层层回调传递的问题，但是频繁地使用事件实现组件间沟通会使整个程序的数据流向越来越乱，因此，组件间的沟通还是要尽量遵循单向数据流机制。  </p>
+<p>一个简单的发布订阅 Eventbus</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">Eventbus</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span> () &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">fns</span> = []</span><br><span class="line">    &#125;</span><br><span class="line">    emit (type, ...args) &#123;</span><br><span class="line">        <span class="keyword">const</span> fns = <span class="variable language_">this</span>.<span class="property">fns</span>[type]</span><br><span class="line">        <span class="keyword">if</span> (fns) fns.<span class="title function_">forEach</span>(<span class="function"><span class="params">fn</span> =&gt;</span> fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, args))</span><br><span class="line">    &#125;</span><br><span class="line">    on (type, fn) &#123;</span><br><span class="line">        <span class="keyword">const</span> fns = <span class="variable language_">this</span>.<span class="property">fns</span>[type]</span><br><span class="line">        fns ? fns.<span class="title function_">push</span>(fn) : (<span class="variable language_">this</span>.<span class="property">fns</span>[type] = [fn])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h3><p>全局传递数据可以通过 <a target="_blank" rel="noopener" href="https://zh-hans.reactjs.org/docs/context.html">Context</a> 来实现<br>Context 设计目的是为了共享那些对于一个组件树而言是“全局”的数据，比如UI主题，地区偏好。</p>
+<h4 id="什么是-Context"><a href="#什么是-Context" class="headerlink" title="什么是 Context"></a>什么是 Context</h4><ul>
+<li>Context 提供了一种无需为每层组件手动添加 props，能在组件树间进行数据传递的方法</li>
+<li>Context 设计目的是共享或缓存组件树的全局数据，如用户认证，地区偏好，主题和语言</li>
+<li>Context 应用场景是不同层级组件访问同样数据，副作用是降低组件的复用性</li>
+<li>Context API<ul>
+<li><code>React.createContext</code> 创建 Context 对象，订阅该对象的组件从组件树中离自身最近的匹配的 Provider 中读取当前的 context 值</li>
+<li><code>Context.Provider</code> 接收 value 属性，当其发生变化时，内部所有消费组件都会重新渲染，忽略 shouldComponentUpdate 函数</li>
+<li><code>Class.contextType</code> 订阅单一 context，在任何生命周期中，使用 <code>this.context</code> 访问</li>
+<li><code>Context.Consumer</code><ul>
+<li>在函数式组件中订阅 context 的变更</li>
+<li>需要一个函数作为子元素。函数接收当前 context 值，并返回一个 React 节点<ul>
+<li>context 值由最近的 Provider 提供</li>
+<li>没有 Provider 时等同于 <code>createContext()</code> 的 defaultValue</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>Context.displayName</code> 指定组件在 DevToools 中显示的名称</li>
+</ul>
+</li>
+</ul>
+<h4 id="Context-的适用场景"><a href="#Context-的适用场景" class="headerlink" title="Context 的适用场景"></a>Context 的适用场景</h4><ul>
+<li>适合在组件之间共享如地区偏好，主题等数据，避免逐层传递 props</li>
+<li>存在 context 的 value 更新，内部所有消费组件都重新渲染问题</li>
+<li>过度使用组件的状态与上下文相关，复用度降低</li>
+</ul>
+<h3 id="refs"><a href="#refs" class="headerlink" title="refs"></a>refs</h3><h4 id="什么是-Ref-转发"><a href="#什么是-Ref-转发" class="headerlink" title="什么是 Ref 转发"></a>什么是 Ref 转发</h4><ul>
+<li>Ref 转发可以将 ref 传递到子组件<ul>
+<li>由 React.forwardRef 实现</li>
+<li>向 ref 传入回调函数，函数第一参数是 React 组件实例或 HTML DOM 元素</li>
+</ul>
+</li>
+<li>Ref 转发适合应用场景<ul>
+<li>转发表单组件的 ref 到 DOM 节点，便于访问 DOM 节点，来管理焦点、选中或动画</li>
+<li>在高阶组件内，转发外层组件的 ref 到 被包裹的组件</li>
+</ul>
+</li>
+<li>Ref 转发更改了组件默认的 ref 指向，对组件使用者不可见，不建议使用<ul>
+<li>不兼容之前同时使用组件和 ref 的应用</li>
+<li>对组件使用者，ref 结果可能不符合直观预期</li>
+</ul>
+</li>
+<li><p>由 React.forwardRef 实现 Ref 转发，可以使用函数决定 ref 转发组件显示的内容</p>
+<ul>
+<li><p>设置传入 React.forwardRef 函数名称，例如</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> newComponent = <span class="title class_">React</span>.<span class="title function_">forwardRef</span>(<span class="keyword">function</span> <span class="title function_">myName</span>(<span class="params">props, ref</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">innerComponent</span> &#123;<span class="attr">...props</span>&#125; <span class="attr">forwardedRef</span>=<span class="string">&#123;ref&#125;</span> /&gt;</span></span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// DevTools DisplayName: ForwardRef(myName)</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>设置函数的 displayName 来包含被包裹组件的名称</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">myName</span>(<span class="params">props, ref</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">innerComponent</span> &#123;<span class="attr">...props</span>&#125; <span class="attr">forwardedRef</span>=<span class="string">&#123;ref&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml"><span class="attr">myName.displayName</span> = <span class="string">&#x27;myDisplayName&#x27;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml"><span class="attr">const</span> <span class="attr">newComponent</span> = <span class="string">React.forwardRef(myName)</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">// <span class="attr">DevTools</span> <span class="attr">DisplayName:</span> <span class="attr">ForwardRef</span>(<span class="attr">myDisplayName</span>)</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="refs-适用场景"><a href="#refs-适用场景" class="headerlink" title="refs 适用场景"></a>refs 适用场景</h4><ul>
+<li>适合在典型数据流之外强制修改子组件的场景，例如<ul>
+<li>管理焦点，文本选择或媒体播放</li>
+<li>触发强制动画</li>
+<li>集成第三方 DOM 库</li>
+</ul>
+</li>
+<li>DOM refs 打破组件封装，ref 转发更改开发者预期<ul>
+<li>应避免过度使用，用声明式实现和状态提升代替</li>
+<li>一定要使用时，建议添加注释和说明</li>
+</ul>
+</li>
+<li>被修改的子组件可以是 React 组件实例或 DOM 元素</li>
+<li>包含向子组件添加 ref、回调 refs 和 ref 转发三种方式</li>
+</ul>
+<h3 id="使用状态管理库"><a href="#使用状态管理库" class="headerlink" title="使用状态管理库"></a>使用状态管理库</h3><p>状态管理库例如 Redux、Mobx 通过自己的 API 实现了对数据状态的管理。</p>
+<h2 id="为什么-React-是单向数据流"><a href="#为什么-React-是单向数据流" class="headerlink" title="为什么 React 是单向数据流"></a>为什么 React 是单向数据流</h2><p>在 React 中，父组件可以把它的 state 作为 props 向下传递它的子组件中，子组件通过 props 接收父组件的数据，不关心数据来源于父组件的 state 或 props。 状态 state 总是所属于特定的组件，而能够使用 state 的组件只限定于当前组件或者他的孩子组件。React 中这种自上而下的数据传递被称为单向数据流。</p>
+<p>单向数据流的好处在于，数据只限定于特定的流向，在寻找数据流向和查找问题时，链路更加清晰明了。但是在某些情况下，相比于双向绑定，单向数据流需要通过通过传入回调来实现，不够简洁。</p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

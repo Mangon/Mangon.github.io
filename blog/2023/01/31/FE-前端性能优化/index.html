@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        前端性能优化 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="目的对比两款功能相似的产品，我们如何才能说一个产品的性能优于另外一个产品呢，无外乎以下几种情况页面打开的速度快，用户可以很快的看到期望的内容页面流转流畅，不会出现卡顿的情况页面不会出现非预期的错误，例如白屏性能优化也即从技术的角度提升产品的用户体验。原则建立性能监控机制打点记录pv/uv，首页进入占比错误监控机制，记录JSError、http请求错误记录白屏时间、首屏加载时间、用户可操作时间进行性能分析从性能数据进行分析针对项目类型进行分析从项目代码进行分析" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E7%9A%84"><span class="toc-text">目的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%88%99"><span class="toc-text">原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E5%90%91"><span class="toc-text">方向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-text">方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%8F%E5%B0%91%E8%AF%B7%E6%B1%82%E6%AC%A1%E6%95%B0"><span class="toc-text">减少请求次数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%8F%E5%B0%8F%E8%AF%B7%E6%B1%82%E4%BD%93%E7%A7%AF"><span class="toc-text">减小请求体积</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E5%BF%AB%E8%AF%B7%E6%B1%82%E9%80%9F%E5%BA%A6"><span class="toc-text">加快请求速度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%A9%E7%9F%AD%E6%B8%B2%E6%9F%93%E6%97%B6%E9%97%B4"><span class="toc-text">缩短渲染时间</span></a></li></ol></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            前端性能优化
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2023-01-31T14:16:40.000Z" itemprop="datePublished">2023-01-31</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/front-end/" rel="tag">front-end</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>对比两款功能相似的产品，我们如何才能说一个产品的性能优于另外一个产品呢，无外乎以下几种情况</p>
+<ol>
+<li>页面打开的速度快，用户可以很快的看到期望的内容</li>
+<li>页面流转流畅，不会出现卡顿的情况</li>
+<li>页面不会出现非预期的错误，例如白屏</li>
+</ol>
+<p>性能优化也即从技术的角度提升产品的用户体验。</p>
+<span id="more"></span>
+<h2 id="原则"><a href="#原则" class="headerlink" title="原则"></a>原则</h2><ol>
+<li>建立性能监控机制<ol>
+<li>打点记录pv/uv，首页进入占比</li>
+<li>错误监控机制，记录JSError、http请求错误</li>
+<li>记录白屏时间、首屏加载时间、用户可操作时间</li>
+</ol>
+</li>
+<li>进行性能分析<ol>
+<li>从性能数据进行分析</li>
+<li>针对项目类型进行分析</li>
+<li>从项目代码进行分析</li>
+</ol>
+</li>
+<li>采用性能优化手段<ol>
+<li>采用控制变量法评判性能优化的有效性</li>
+<li>多次实验取平均值，减少误差</li>
+</ol>
+</li>
+<li>建立常态化的性能准入机制</li>
+</ol>
+<h2 id="方向"><a href="#方向" class="headerlink" title="方向"></a>方向</h2><ol>
+<li>减少请求次数</li>
+<li>减小请求体积</li>
+<li>加快请求速度</li>
+<li>缩短渲染时间</li>
+</ol>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="减少请求次数"><a href="#减少请求次数" class="headerlink" title="减少请求次数"></a>减少请求次数</h3><ol>
+<li><p>静态资源用单独域名，与后端数据请求域名隔离</p>
+</li>
+<li><p>合并请求，合理利用浏览器同域名并发请求限制</p>
+</li>
+<li><p>使用 css sprite，减少图片请求次数</p>
+</li>
+<li><p>避免空 image src</p>
+</li>
+<li><p>避免 301 重定向</p>
+</li>
+<li><p>缓存 ajax 数据</p>
+</li>
+</ol>
+<h3 id="减小请求体积"><a href="#减小请求体积" class="headerlink" title="减小请求体积"></a>减小请求体积</h3><ol>
+<li><p>减少HTTP请求内容，例如列表进行分页</p>
+</li>
+<li><p>外部引用 js &amp; css 等静态资源而不是直接嵌入到 html 中</p>
+</li>
+<li><p>使用 gzip 压缩</p>
+</li>
+<li><p>对 JS,CSS 进行压缩混淆</p>
+</li>
+<li><p>Tree shaking，删除未使用的代码</p>
+</li>
+<li><p>减少cookie大小</p>
+</li>
+<li><p>压缩图片，优化图片大小，减少缩放，采用渐进式jpeg</p>
+</li>
+<li><p>减少组件的复杂度，减小组件体积</p>
+</li>
+<li><p>减少 favicon.icon 体积</p>
+</li>
+</ol>
+<h3 id="加快请求速度"><a href="#加快请求速度" class="headerlink" title="加快请求速度"></a>加快请求速度</h3><ol>
+<li><p>使用cdn，减少资源物理上与用户的距离</p>
+</li>
+<li><p>添加 expires/cache-control/etag header 字段，利用浏览器的缓存策略</p>
+</li>
+<li><p>预加载组件</p>
+</li>
+</ol>
+<h3 id="缩短渲染时间"><a href="#缩短渲染时间" class="headerlink" title="缩短渲染时间"></a>缩短渲染时间</h3><ol>
+<li><p>将 css 放到 html 顶部加载，将 js 放到底部加载</p>
+</li>
+<li><p>减少 dom 元素个数</p>
+</li>
+<li><p>减少 dom 操作</p>
+</li>
+<li><p>减少 iframes</p>
+</li>
+<li><p>采用事件委托</p>
+</li>
+</ol>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

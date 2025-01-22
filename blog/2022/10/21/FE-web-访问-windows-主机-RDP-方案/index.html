@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        Web 访问 Windows 主机(RDP)方案 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="浏览器支持 HTTP(S) 协议和 Websocket 协议，部分浏览器支持 FTP 协议。通过浏览器无法直接使用 RDP 协议与 Windows 主机相连，需要构建一个 Web 端到目标主机的网关。这个网关，需要承载 RDP 客户端的功能用以连接 RDP 服务器也就是真正的主机，也需要承载 HTTP/Websocket 服务器的功能以同用户的浏览器相连，同时需要将 RDP 协议内容回流给 Web 端以渲染，将 Web 端的指令动作转译为 RDP 参数。GuacamoleGuacamole " />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Guacamole"><span class="toc-text">Guacamole</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Guacamole-%E6%9E%B6%E6%9E%84"><span class="toc-text">Guacamole 架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9-RDP-%E7%9A%84%E6%94%AF%E6%8C%81"><span class="toc-text">对 RDP 的支持</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Myrtille"><span class="toc-text">Myrtille</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F"><span class="toc-text">工作方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E4%B8%8E%E8%B5%84%E6%BA%90%E8%A6%81%E6%B1%82"><span class="toc-text">性能与资源要求</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FreeRDP-WebConnect"><span class="toc-text">FreeRDP-WebConnect</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#FreeRDP"><span class="toc-text">FreeRDP</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mstsc-js"><span class="toc-text">mstsc.js</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%A1%88%E5%AF%B9%E6%AF%94"><span class="toc-text">方案对比</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            Web 访问 Windows 主机(RDP)方案
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2022-10-21T07:36:33.000Z" itemprop="datePublished">2022-10-21</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/guacamole/" rel="tag">guacamole</a>, <a class="article-tag-link" href="/blog/tags/rdp/" rel="tag">rdp</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>浏览器支持 HTTP(S) 协议和 Websocket 协议，部分浏览器支持 FTP 协议。通过浏览器无法直接使用 RDP 协议与 Windows 主机相连，需要构建一个 Web 端到目标主机的网关。这个网关，需要承载 RDP 客户端的功能用以连接 RDP 服务器也就是真正的主机，也需要承载 HTTP/Websocket 服务器的功能以同用户的浏览器相连，同时需要将 RDP 协议内容回流给 Web 端以渲染，将 Web 端的指令动作转译为 RDP 参数。</p>
+<span id="more"></span>
+<h2 id="Guacamole"><a href="#Guacamole" class="headerlink" title="Guacamole"></a>Guacamole</h2><p><a target="_blank" rel="noopener" href="https://guacamole.apache.org/">Guacamole</a> <code>[ˌɡwækəˈməʊleɪ]</code> 是一个基于 HTML 5 和 JavaScript 的 远程桌面网关，支持 VNC、RDP、SSH 标准协议。目前该项目是 Apache 基金会的孵化项目，采用 Apache-2.0 开源协议。</p>
+<p>Guacamole主要包含以下项目，分别是：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/apache/guacamole-server">apache/guacamole-server</a></li>
+</ul>
+<p>guacamole-server 包括了一系列 Guacamole 最基础的软件包，包括 guacd、libguac 与多个协议支持库。</p>
+<p>guacd 是 Guacamole web 应用程序与框架使用的 Gauacamole 代理守护进程。因为 Javascript 无法处理二进制协议（例如 VNC 和 RDP），一个新的基于文本的协议（Guacamole 协议）被开发来包括一个通用的有效率的远程桌面操作的超集，并且易于被 Javascript 程序访问。guacd 是在任意协议和 Guacamole 协议之间转换的代理。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/apache/guacamole-client">apache/guacamole-client</a></li>
+</ul>
+<p>guacamole-client 包括了一系列的 Guacamole 需要的 基于 Maven 包的项目（Java 版的 web 应用），提供了一个 HTML5 web应用，提供对远程桌面协议桌面的访问。guacamole-client 包含了多个子项目，每个子项目之间互相独立可以独立编译。如果所有子项目均使用 guacamole-client 编译，Maven 将会控制编译顺序。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/apache/guacamole-website">apache/guacamole-website</a></li>
+</ul>
+<p>guacamole-website 包含了 Guacamole 官网的代码，是由 Jekyll 生成的静态网站，包含了 Guacamole 相关的使用文档和更新日志。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/apache/guacamole-manual">apache/guacamole-manual</a></li>
+</ul>
+<p>guacamole-manual 是整个 Guacamole 技术堆栈的基础文档。</p>
+<p><img src="/blog/static/imgs/guacamole.jpeg" alt="guacamole"></p>
+<h3 id="Guacamole-架构"><a href="#Guacamole-架构" class="headerlink" title="Guacamole 架构"></a>Guacamole 架构</h3><p><img src="/blog/static/imgs/guacamole_arch.png" alt="guacamole_inner"></p>
+<p>Guacamole 的主要组成部分：</p>
+<ul>
+<li><p>guacd：远程协议连接网关，由 C/C++ 开发的网关库，目前只有 Linux 版本，因此 guacd 必须部署在 Linux 系统中。</p>
+</li>
+<li><p>guacamole-common（Java API）：这是 Java 实现的与 guacd 通信的 Java API，它基于 Servlet2.5+，是项目集成的主要API，所以它必须在 Servlet 容器中运行，比如 Tomcat，据官方使用的 API 情况，必须使用 Tomcat8.5 以上 Tomcat。</p>
+</li>
+<li><p>guacamole-common-js（JS API）：是 H5 中显示远程桌面连接的API。</p>
+</li>
+<li><p>guacamole（官方网页端和容器实现）：是官方基于 RestAPI 实现的 Web 管理端，包括认证、扩展、前端界面等，基于 Servlet2.5+，必须在 Tomcat8.5+ 等 Servlet 容器中运行。</p>
+</li>
+<li><p>guacamole-common-ext：是官方实现的网页登录认证、连接管理模块，基于 Java RestAPI。</p>
+</li>
+</ul>
+<h3 id="对-RDP-的支持"><a href="#对-RDP-的支持" class="headerlink" title="对 RDP 的支持"></a>对 RDP 的支持</h3><p>libguac-client-rdp 库为 Guacamole 提供了对 RDP 协议的支持，如果构建过程中存在所需的依赖项，则该库将作为 guacamole-server 的一部分安装。</p>
+<p>除了 RDP 特定参数外，Guacamole 还支持：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://guacamole.apache.org/doc/gug/configuring-guacamole.html#disable-clipboard">禁用剪切板访问</a></li>
+<li><a target="_blank" rel="noopener" href="https://guacamole.apache.org/doc/gug/configuring-guacamole.html#common-sftp">通过SFTP进行文件传输</a></li>
+<li><a target="_blank" rel="noopener" href="https://guacamole.apache.org/doc/gug/configuring-guacamole.html#graphical-recording">图形会话录制</a></li>
+<li><a target="_blank" rel="noopener" href="https://guacamole.apache.org/doc/gug/configuring-guacamole.html#wake-on-lan">网络唤醒</a></li>
+</ul>
+<h2 id="Myrtille"><a href="#Myrtille" class="headerlink" title="Myrtille"></a>Myrtille</h2><p><a target="_blank" rel="noopener" href="https://www.myrtille.io/">Myrtille</a> <code>[mirtij]</code> 通过 Web 浏览器提供对远程桌面、应用程序和 SSH 服务器的简单快速访问，无需任何插件、扩展或配置。Myrtille 基于 C# 开发，采用 Apache-2.0 开源协议。<a target="_blank" rel="noopener" href="https://github.com/cedrozor/myrtille">Myrtille 源代码地址</a>。</p>
+<h3 id="工作方式"><a href="#工作方式" class="headerlink" title="工作方式"></a>工作方式</h3><p>用户输入（键盘、鼠标、触摸屏）从 Web 浏览器转发到 HTTP(S) 网关（即 Myrtille），然后转发到 RDP（或 SSH）客户端，该客户端与 RDP（或 SSH）服务器保持会话。操作的显示结果（或不显示）从 RDP（或 SSH）客户端并通过网关流回浏览器。</p>
+<h3 id="性能与资源要求"><a href="#性能与资源要求" class="headerlink" title="性能与资源要求"></a>性能与资源要求</h3><p>Myrtille 支持多个连接/选项卡。除了 RDP（或 SSH）服务器可以处理的（CAL 数量、CPU、RAM）之外，最大并发用户数没有限制。关于 Myrtille 网关，具有 4 GB RAM 的简单双核 CPU 最多可以同时处理 50 个会话（RDP 客户端进程大约占用 50MB RAM，SSH 甚至更少）。一个会话平均使用大约 200 KB/s 的带宽。对于大多数情况，每个用户 1 MB/s 是一个很好的规定。对 Myrtille 来说真正重要的是传出带宽，因为显示更新将占用大部分流量。</p>
+<p>编译需要 Microsoft Visual Studio 2017 或更高版本。从 2.8.0 版本开始，Myrtille 可作为 Docker 映像使用。</p>
+<h2 id="FreeRDP-WebConnect"><a href="#FreeRDP-WebConnect" class="headerlink" title="FreeRDP-WebConnect"></a>FreeRDP-WebConnect</h2><p><a target="_blank" rel="noopener" href="https://github.com/FreeRDP/FreeRDP-WebConnect">FreeRDP-WebConnect</a> 是一个可以通过 Web 访问 RDP 会话的网关。FreeRDP-WebConnect 采用了 Websocket 协议与浏览器端进行通信，通过 Canvas 绘制画面，服务器端使用 C++ 编写，提供 HTTPS 服务并通过 FreeRDP 与主机通信。<br>FreeRDP-WebConnect 在 Github 中已被标注为 archived。</p>
+<h3 id="FreeRDP"><a href="#FreeRDP" class="headerlink" title="FreeRDP"></a>FreeRDP</h3><p><a target="_blank" rel="noopener" href="https://www.freerdp.com/">FreeRDP</a> 是一个 RDP 协议的开源实现，基于 C 语言，采用 Apache-2.0 开源协议发布。<a target="_blank" rel="noopener" href="https://github.com/FreeRDP/FreeRDP">源代码地址</a>。</p>
+<p>Guacamole、Myrtille、FreeRDP-WebConnect 的 RDP 部分均采用 FreeRDP 与主机连接。</p>
+<h2 id="mstsc-js"><a href="#mstsc-js" class="headerlink" title="mstsc.js"></a>mstsc.js</h2><p><a target="_blank" rel="noopener" href="https://github.com/citronneur/mstsc.js">Mstsc.js</a> 是一个纯 Javascript Microsoft RDP（远程桌面客户端）客户端，使用了 nodejs、<a target="_blank" rel="noopener" href="https://github.com/citronneur/node-rdpjs">node-rdpjs</a> 和 socket.io。它允许用户通过 web 浏览器连接到任何终端服务器兼容的应用程序。mstsc.js 采用 GPL-3.0 协议发布。</p>
+<h2 id="方案对比"><a href="#方案对比" class="headerlink" title="方案对比"></a>方案对比</h2><table>
+<thead>
+<tr>
+<th>-</th>
+<th>Guacamole</th>
+<th>Myrtille</th>
+<th>FreeRDP-WebConnect</th>
+<th>mstsc.js</th>
+<th>FreeRDP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>支持协议</td>
+<td>VNC,RDP,SSH</td>
+<td>SSH,RDP</td>
+<td>RDP</td>
+<td>RDP</td>
+<td>RDP</td>
+</tr>
+<tr>
+<td>开发语言</td>
+<td>Java</td>
+<td>C#</td>
+<td>C++</td>
+<td>Javascript</td>
+<td>C</td>
+</tr>
+<tr>
+<td>star数量</td>
+<td>2.3k</td>
+<td>1.4k</td>
+<td>463</td>
+<td>645</td>
+<td>7.5k</td>
+</tr>
+<tr>
+<td>最近更新</td>
+<td>6 days ago</td>
+<td>15 months ago</td>
+<td>5 years ago(archived)</td>
+<td>2 years ago</td>
+<td>3 hours ago</td>
+</tr>
+</tbody>
+</table>
+<p>最近更新参考时间 2022-10-24 17:10:00</p>
+<p>Guacamole：功能强大，文档（英文）丰富，社区活跃更新频繁，被多个开源堡垒机采用<br>Myrtille：小众，似乎不再更新，不推荐<br>FreeRDP-WebConnect：已停止更新，不推荐使用，可参考实现<br>mstsc.js：似乎不再更新，协议不友好，不推荐<br>FreeRDP：文档（英文）健全，社区活跃，需要自己开发 HTTP/Websocket 客户端，制定沟通协议</p>
+<p>比较推荐方案：</p>
+<ol>
+<li>采用 Guacamole。后端需要部署 guacd 服务，用 golang 实现 guacamole-client 中的 guacamole-common 以及 guacamole 中的 RestAPI 部分。前端实现 guacamole 中的前端页面部分，调用 guacamole-common-js 渲染。</li>
+</ol>
+<p>好处在于 Guacamole 文档丰富，且被多数开源堡垒机接受，说明在一定程度上质量有保证。难点在于需要学习 Guacamole 协议及配置方法。</p>
+<ol start="2">
+<li>采用 FreeRDP。后端已经比较熟悉 FreeRDP，前后端可定义 wss 接口，参考 web ssh 实现部分，自主实现。</li>
+</ol>
+<p>好处在于自定义程度高。难点在于前后端协议定义，按照支持功能的丰富程度，可能需要进一步解析 RDP 协议，定义包括音频支持、剪切板支持等多种 action，需要自己处理预连接 PDU 和负载均衡。</p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

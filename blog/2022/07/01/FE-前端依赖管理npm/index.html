@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        前端依赖管理npm | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="2009年，Ryan Dahl 写了 Node.js 以后，缺少包管理器，Isaac Z. Schlueter 苦于如何推广自己的包管理器，于是俩人一拍即合，最终 Node.js 内置了 npm 。后来，随着 Node.js 的流行, npm 也跟着流行了起来。npm v1-v2早期 npm 的处理依赖的设计比较简单，以递归的形式，严格按照 package.json 结构以及子依赖包的 package.json 结构将依赖安装到他们各自的 node_modules 中，直到有子依赖包不再依赖" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#npm-v1-v2"><span class="toc-text">npm v1-v2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#npm-v3-amp-yarn"><span class="toc-text">npm v3+ &amp; yarn</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%81%E5%B9%B3%E5%8C%96"><span class="toc-text">扁平化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%97%E4%BD%99%E9%97%AE%E9%A2%98"><span class="toc-text">冗余问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E9%94%81"><span class="toc-text">依赖锁</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#npm-v5-8"><span class="toc-text">npm v5-8</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8npm%E5%91%BD%E4%BB%A4"><span class="toc-text">常用npm命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#npm-config"><span class="toc-text">npm config</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#npm-install"><span class="toc-text">npm install</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#npm-init"><span class="toc-text">npm init</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#npm-ls"><span class="toc-text">npm ls</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#npm-dedupe"><span class="toc-text">npm dedupe</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#npm-publish"><span class="toc-text">npm publish</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#npm-start"><span class="toc-text">npm start</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#npm-run-script"><span class="toc-text">npm run-script</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#npx"><span class="toc-text">npx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#npm-link"><span class="toc-text">npm link</span></a></li></ol></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            前端依赖管理npm
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2022-07-01T07:47:59.000Z" itemprop="datePublished">2022-07-01</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/front-end/" rel="tag">front-end</a>, <a class="article-tag-link" href="/blog/tags/npm/" rel="tag">npm</a>, <a class="article-tag-link" href="/blog/tags/package-json/" rel="tag">package.json</a>, <a class="article-tag-link" href="/blog/tags/yarn/" rel="tag">yarn</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>2009年，Ryan Dahl 写了 Node.js 以后，缺少包管理器，Isaac Z. Schlueter 苦于如何推广自己的包管理器，于是俩人一拍即合，最终 Node.js 内置了 npm 。后来，随着 Node.js 的流行, npm 也跟着流行了起来。</p>
+<span id="more"></span>
+<h2 id="npm-v1-v2"><a href="#npm-v1-v2" class="headerlink" title="npm v1-v2"></a>npm v1-v2</h2><p>早期 npm 的处理依赖的设计比较简单，以递归的形式，严格按照 package.json 结构以及子依赖包的 package.json 结构将依赖安装到他们各自的 node_modules 中，直到有子依赖包不再依赖其他模块。</p>
+<p>这样的 node_modules 结构简单明了符合预期，但是在遇到大型项目时，可能会有很多重复依赖的包，在遇到相互依赖的情况时甚至会形成“嵌套地狱”的情况。</p>
+<p><img src="/blog/static/imgs/npm/npm.png" alt="npmp_inner"></p>
+<p>总结一下此时遇到的问题：</p>
+<ol>
+<li>嵌套过深，安装太慢</li>
+<li>多个子依赖包依赖相同的包时，会有重复安装的情况</li>
+<li>相互依赖时会形成“嵌套地狱”的情况</li>
+<li>目录层级太深导致文件路径太长，在 Windows 系统下删除 node_modules 文件夹会出现失败的情况</li>
+</ol>
+<h2 id="npm-v3-amp-yarn"><a href="#npm-v3-amp-yarn" class="headerlink" title="npm v3+ &amp; yarn"></a>npm v3+ &amp; yarn</h2><p>2016年，yarn 诞生，从结构上解决了 npm 存在的问题：</p>
+<ol>
+<li>嵌套过深，冗余安装 -》 扁平化安装依赖</li>
+<li>安装太慢 -》 添加缓存、多线程安装</li>
+</ol>
+<p>随后，在 npm v3 中，也实现了相关的功能。</p>
+<h3 id="扁平化"><a href="#扁平化" class="headerlink" title="扁平化"></a>扁平化</h3><p>npm 官网有介绍扁平化相关的 <a target="_blank" rel="noopener" href="https://docs.npmjs.com/cli/v7/commands/npm-install#algorithm">算法</a> </p>
+<p><img src="/blog/static/imgs/npm/npm3.png" alt="npm3_inner"></p>
+<p>扁平化后，实际需要安装的包数量大大减少，再加上相应的缓存机制，依赖的安装速度也得到了极大的提升。</p>
+<h3 id="冗余问题"><a href="#冗余问题" class="headerlink" title="冗余问题"></a>冗余问题</h3><p>依据 npm v3 的扁平化规则。按照上述例子，如果我们又安装了新的依赖 D 和 E，D 和 E 都依赖于 C v2.0。 结构如下：</p>
+<p><img src="/blog/static/imgs/npm/npm3_dup.png" alt="npm3_dup_inner"></p>
+<p>为什么不能将 C v1.0 和 C v2.0 都安装在顶层目录？这是因为 C v1.0 和 C v2.0 的结构是类似的，包名是完全相同的，所以不能安装在同一目录下。</p>
+<p>那么此时， C v2.0 依然存在了两次。那么为什么 C v1.0 出现在项目顶层 node_modules 而不是 C v2.0 出现在 node_modules 顶层呢？这取决于 A 和 D 的安装顺序，A 先安装，A 的依赖 C v1.0 就先安装，所以后面的 D 和 E 依赖的 C v2.0 只能重复安装于子目录。</p>
+<p>同样的 package.json，不同的安装顺序可能影响 node_modules 内的文件结构。</p>
+<p>接下来我们要升级 B 变为 B v2.0 ，B v2.0 也依赖 C v2.0 。此时，npm 会删除 C v1.0 ，安装 C v2.0 。变成下面的结构：</p>
+<p><img src="/blog/static/imgs/npm/npm3_dup_1.png" alt="npm3_dup_1_inner"></p>
+<p>明显，D 和 E 下面的 C v2.0 是多余的，这时我们就可以使用 <a href="#npm-dedupe">npm dedupe</a> 来消除重复模块。</p>
+<p><img src="/blog/static/imgs/npm/npm3_dup_2.png" alt="npm3_dup_2_inner"></p>
+<h3 id="依赖锁"><a href="#依赖锁" class="headerlink" title="依赖锁"></a>依赖锁</h3><p>我们在执行 <code>npm install</code> 的时候，npm 会根据 package.json 中的依赖进行安装和升级。安装模块的时候，会根据 <em>模块版本是否符合新模块的版本范围</em> 来进行判断是否更新版本。</p>
+<p>判断模块是否符合版本范围的标准是根据 <a target="_blank" rel="noopener" href="https://semver.org">语义化版本</a> 约定的。</p>
+<p>简单来说，a.b.c 代表一个版本，每个位置代表的含义如下：</p>
+<ol>
+<li>主版本号：当你做了不兼容的 API 修改</li>
+<li>次版本号：当你做了向下兼容的功能性新增</li>
+<li>修订号：当你做了向下兼容的问题修正</li>
+</ol>
+<p>先行版本号及版本编译信息可以加到“主版本号.次版本号.修订号”的后面，作为延伸。</p>
+<p>在 package.json 中，我们可以看到 ~ 和 ^ 这种标识，就是用来判断如何更新版本模块的。</p>
+<ol>
+<li><code>~</code> 会匹配最近的小版本依赖包，比如 <code>~1.2.3</code> 会匹配所有 1.2.x 版本，但是不包括 1.3.0</li>
+<li><code>^</code> 会匹配最新的大版本依赖包，比如 <code>^1.2.3</code> 会匹配所有 1.x.x 的包，包括 1.3.0 ，但是不包括 2.0.0</li>
+</ol>
+<p>此时如果有个包没有遵守约定，在提供了不兼容的功能时未升级版本，那么当其他人安装依赖的时候，会导致非常大的不确定性。</p>
+<p>于是在2016年 yarn 提出了 yarn.lock 依赖锁的概念：</p>
+<p>每次安装依赖的时候，将依赖精确地将版本号锁定在一个值，并且在安装时通过计算哈希值校验文件一致性，从而保证每次构建使用的依赖都是完全一致的。</p>
+<p>17年， npm 也提供了该功能，也就是 package-lock.json。</p>
+<h2 id="npm-v5-8"><a href="#npm-v5-8" class="headerlink" title="npm v5-8"></a>npm v5-8</h2><p>npm 之后的版本也提供了很多新的特性，例如 scope, npx, workspaces 能力支持等。</p>
+<h2 id="常用npm命令"><a href="#常用npm命令" class="headerlink" title="常用npm命令"></a>常用npm命令</h2><p>以下介绍比较常用的几个命令</p>
+<h3 id="npm-config"><a href="#npm-config" class="headerlink" title="npm config"></a>npm config</h3><p><a target="_blank" rel="noopener" href="https://docs.npmjs.com/cli/v8/commands/npm-config">npm config</a> 可以管理 npm 配置文件。</p>
+<p>常见用法： </p>
+<p><code>npm config ls -l</code> 列出当前目录所有的配置<br><code>npm config get &lt;key&gt;</code> 获取单条配置信息<br><code>npm config set &lt;key&gt;=&lt;value&gt; [&lt;key&gt;=&lt;value&gt; ...]</code> 设置配置信息</p>
+<p>例如：</p>
+<p><code>npm config set registry https://registry.npm.taobao.org</code> 将默认的官方 npm 源 <code>https://registry.npmjs.org/</code> 改为 <code>https://registry.npm.taobao.org</code><br><code>npm config set user.email example@example.com</code></p>
+<h3 id="npm-install"><a href="#npm-install" class="headerlink" title="npm install"></a>npm install</h3><p><a target="_blank" rel="noopener" href="https://docs.npmjs.com/cli/v8/commands/npm-install">npm install</a> 安装特定的 npm 包或者安装项目所有依赖的 npm 包。</p>
+<p><img src="/blog/static/imgs/npm/npm_install.png" alt="npm_install_inner"></p>
+<h3 id="npm-init"><a href="#npm-init" class="headerlink" title="npm init"></a>npm init</h3><p><a target="_blank" rel="noopener" href="https://docs.npmjs.com/cli/v8/commands/npm-init">npm init</a> 创建 package.json 文件。</p>
+<h3 id="npm-ls"><a href="#npm-ls" class="headerlink" title="npm ls"></a>npm ls</h3><p><a target="_blank" rel="noopener" href="https://docs.npmjs.com/cli/v8/commands/npm-ls">npm ls</a> 列出所有已安装的包。</p>
+<h3 id="npm-dedupe"><a href="#npm-dedupe" class="headerlink" title="npm dedupe"></a>npm dedupe</h3><p><a target="_blank" rel="noopener" href="https://docs.npmjs.com/cli/v8/commands/npm-dedupe">npm dedupe</a> 减少包树的重复依赖。</p>
+<h3 id="npm-publish"><a href="#npm-publish" class="headerlink" title="npm publish"></a>npm publish</h3><p><a target="_blank" rel="noopener" href="https://docs.npmjs.com/cli/v8/commands/npm-publish">npm publish</a> 发布一个包。</p>
+<h3 id="npm-start"><a href="#npm-start" class="headerlink" title="npm start"></a>npm start</h3><p><a target="_blank" rel="noopener" href="https://docs.npmjs.com/cli/v8/commands/npm-start">npm start</a> 开始一个包。</p>
+<p><code>npm start</code> 将会运行 package.json 中 script 里的 start 命令，如果没有 start 命令，npm 将会运行 <code>node server.js</code> 。</p>
+<h3 id="npm-run-script"><a href="#npm-run-script" class="headerlink" title="npm run-script"></a>npm run-script</h3><p><a target="_blank" rel="noopener" href="https://docs.npmjs.com/cli/v8/commands/npm-run-script">npm run-script</a> 将会运行任意的包脚本（在 package.json 的 script 当中定义）。</p>
+<p>更常见的是它的别名 <code>npm run</code> 。</p>
+<h3 id="npx"><a href="#npx" class="headerlink" title="npx"></a>npx</h3><p><a target="_blank" rel="noopener" href="https://docs.npmjs.com/cli/v8/commands/npx">npx</a> 支持从远程或者本地的 npm 包里执行一个命令。npx 命令是 <code>npm exec</code> 的别名，如果命令在本地项目的依赖中不存在，则会将命令安装到 npm 缓存中的文件夹。</p>
+<h3 id="npm-link"><a href="#npm-link" class="headerlink" title="npm link"></a>npm link</h3><p><a target="_blank" rel="noopener" href="https://docs.npmjs.com/cli/v8/commands/npm-link">npm link</a> 支持将某个依赖指向一个本地的 npm 包。这对于本地调试 npm 包而言非常方便，不需要发布即可以通过 npm 依赖。</p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

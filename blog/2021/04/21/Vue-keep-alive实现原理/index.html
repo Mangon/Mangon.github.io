@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        Vue-keep-alive实现原理 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="一、前言本文介绍的内容包括：keep-alive用法：动态组件&amp;amp;vue-routerkeep-alive源码解析keep-alive组件及其包裹组件的钩子keep-alive组件及其包裹组件的渲染二、keep-alive介绍与应用2.1 keep-alive是什么keep-alive是一个抽象组件：它自身不会渲染一个DOM元素，也不会出现在父组件链中；使用keep-alive包裹动态组件时，会缓存不活动的组件实例，而不是销毁它们。2.2 keep-alive适用场景用户" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E8%A8%80"><span class="toc-text">一、前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81keep-alive%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%BA%94%E7%94%A8"><span class="toc-text">二、keep-alive介绍与应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-keep-alive%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">2.1 keep-alive是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-keep-alive%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">2.2 keep-alive适用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-keep-alive%E7%94%A8%E6%B3%95"><span class="toc-text">2.3 keep-alive用法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90"><span class="toc-text">三、源码剖析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E9%87%8D%E5%A4%B4%E6%88%8F%EF%BC%9A%E6%B8%B2%E6%9F%93"><span class="toc-text">四、重头戏：渲染</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-Vue%E7%9A%84%E6%B8%B2%E6%9F%93%E8%BF%87%E7%A8%8B"><span class="toc-text">4.1 Vue的渲染过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-keep-alive%E7%BB%84%E4%BB%B6%E7%9A%84%E6%B8%B2%E6%9F%93"><span class="toc-text">4.2 keep-alive组件的渲染</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E4%B8%8D%E5%8F%AF%E5%BF%BD%E8%A7%86%EF%BC%9A%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0"><span class="toc-text">五、不可忽视：钩子函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E5%8F%AA%E6%89%A7%E8%A1%8C%E4%B8%80%E6%AC%A1%E7%9A%84%E9%92%A9%E5%AD%90"><span class="toc-text">5.1 只执行一次的钩子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E5%8F%AF%E9%87%8D%E5%A4%8D%E7%9A%84activated"><span class="toc-text">5.2 可重复的activated</span></a></li></ol></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            Vue-keep-alive实现原理
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-04-20T16:10:20.000Z" itemprop="datePublished">2021-04-21</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/keep-alive/" rel="tag">keep-alive</a>, <a class="article-tag-link" href="/blog/tags/vue/" rel="tag">vue</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>本文介绍的内容包括：</p>
+<ul>
+<li>keep-alive用法：动态组件&amp;vue-router</li>
+<li>keep-alive源码解析</li>
+<li>keep-alive组件及其包裹组件的钩子</li>
+<li>keep-alive组件及其包裹组件的渲染</li>
+</ul>
+<span id="more"></span>
+<h2 id="二、keep-alive介绍与应用"><a href="#二、keep-alive介绍与应用" class="headerlink" title="二、keep-alive介绍与应用"></a>二、keep-alive介绍与应用</h2><h3 id="2-1-keep-alive是什么"><a href="#2-1-keep-alive是什么" class="headerlink" title="2.1 keep-alive是什么"></a>2.1 keep-alive是什么</h3><p>keep-alive是一个抽象组件：它自身不会渲染一个DOM元素，也不会出现在父组件链中；使用keep-alive包裹动态组件时，会缓存不活动的组件实例，而不是销毁它们。</p>
+<h3 id="2-2-keep-alive适用场景"><a href="#2-2-keep-alive适用场景" class="headerlink" title="2.2 keep-alive适用场景"></a>2.2 keep-alive适用场景</h3><p>用户在某个列表页面选择筛选条件过滤出一份数据列表，由列表页面进入数据详情页面，再返回该列表页面，我们希望：列表页面可以保留用户的筛选（或选中）状态。</p>
+<p>keep-alive就是用来解决这种场景。当然keep-alive不仅仅是能够保存页面/组件的状态这么简单，它还可以避免组件反复创建和渲染，有效提升系统性能。总的来说，keep-alive用于保存组件的渲染状态。</p>
+<h3 id="2-3-keep-alive用法"><a href="#2-3-keep-alive用法" class="headerlink" title="2.3 keep-alive用法"></a>2.3 keep-alive用法</h3><p>在动态组件中的应用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">keep-alive</span> <span class="attr">:include</span>=<span class="string">&quot;whiteList&quot;</span> <span class="attr">:exclude</span>=<span class="string">&quot;blackList&quot;</span> <span class="attr">:max</span>=<span class="string">&quot;amount&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">component</span> <span class="attr">:is</span>=<span class="string">&quot;currentComponent&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">component</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">keep-alive</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在vue-router中的应用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">keep-alive</span> <span class="attr">:include</span>=<span class="string">&quot;whiteList&quot;</span> <span class="attr">:exclude</span>=<span class="string">&quot;blackList&quot;</span> <span class="attr">:max</span>=<span class="string">&quot;amount&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">keep-alive</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>include定义缓存白名单，keep-alive会缓存命中的组件；exclude定义缓存黑名单，被命中的组件将不会被缓存；max定义缓存组件上限，超出上限使用LRU的策略置换缓存数据。</p>
+<p>内存管理的一种页面置换算法，对于在内存中但又不用的数据块（内存块）叫做LRU，操作系统会根据哪些数据属于LRU而将其移出内存而腾出空间来加载另外的数据。</p>
+<h2 id="三、源码剖析"><a href="#三、源码剖析" class="headerlink" title="三、源码剖析"></a>三、源码剖析</h2><p>keep-alive.js 内部还定义了一些工具函数，我们按住不动，先看它对外暴露的对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/core/components/keep-alive.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;keep-alive&#x27;</span>,</span><br><span class="line">  <span class="attr">abstract</span>: <span class="literal">true</span>, <span class="comment">// 判断当前组件虚拟dom是否渲染成真实dom的关键</span></span><br><span class="line">  <span class="attr">props</span>: &#123;</span><br><span class="line">      <span class="attr">include</span>: patternTypes, <span class="comment">// 缓存白名单</span></span><br><span class="line">      <span class="attr">exclude</span>: patternTypes, <span class="comment">// 缓存黑名单</span></span><br><span class="line">      <span class="attr">max</span>: [<span class="title class_">String</span>, <span class="title class_">Number</span>] <span class="comment">// 缓存的组件</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">created</span>(<span class="params"></span>) &#123;</span><br><span class="line">     <span class="variable language_">this</span>.<span class="property">cache</span> = <span class="title class_">Object</span>.<span class="title function_">create</span>(<span class="literal">null</span>) <span class="comment">// 缓存虚拟dom</span></span><br><span class="line">     <span class="variable language_">this</span>.<span class="property">keys</span> = [] <span class="comment">// 缓存的虚拟dom的键集合</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">destroyed</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> <span class="variable language_">this</span>.<span class="property">cache</span>) &#123;</span><br><span class="line">       <span class="comment">// 删除所有的缓存</span></span><br><span class="line">       <span class="title function_">pruneCacheEntry</span>(<span class="variable language_">this</span>.<span class="property">cache</span>, key, <span class="variable language_">this</span>.<span class="property">keys</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"> <span class="title function_">mounted</span>(<span class="params"></span>) &#123;</span><br><span class="line">   <span class="comment">// 实时监听黑白名单的变动</span></span><br><span class="line">   <span class="variable language_">this</span>.$watch(<span class="string">&#x27;include&#x27;</span>, <span class="function"><span class="params">val</span> =&gt;</span> &#123;</span><br><span class="line">       <span class="title function_">pruneCache</span>(<span class="variable language_">this</span>, <span class="function"><span class="params">name</span> =&gt;</span> <span class="title function_">matched</span>(val, name))</span><br><span class="line">   &#125;)</span><br><span class="line">   <span class="variable language_">this</span>.$watch(<span class="string">&#x27;exclude&#x27;</span>, <span class="function"><span class="params">val</span> =&gt;</span> &#123;</span><br><span class="line">       <span class="title function_">pruneCache</span>(<span class="variable language_">this</span>, <span class="function"><span class="params">name</span> =&gt;</span> !<span class="title function_">matches</span>(val, name))</span><br><span class="line">   &#125;)</span><br><span class="line"> &#125;,</span><br><span class="line"></span><br><span class="line"> <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 先省略...</span></span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看出，与我们定义组件的过程一样，先是设置组件名为keep-alive，其次定义了一个abstract属性，值为true。这个属性在vue的官方教程并未提及，却至关重要，后面的渲染过程会用到。props属性定义了keep-alive组件支持的全部参数。</p>
+<p>keep-alive在它生命周期内定义了三个钩子函数：</p>
+<ul>
+<li><p>created<br>初始化两个对象分别缓存VNode(虚拟DOM)和VNode对应的键集合</p>
+</li>
+<li><p>destroyed<br>删除this.cache中缓存的VNode实例。我们留意到，这不是简单地将this.cache置为null，而是遍历调用pruneCacheEntry函数删除。</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/core/components/keep-alive.js</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">pruneCacheEntry</span> (</span><br><span class="line">  <span class="attr">cache</span>: <span class="title class_">VNodeCache</span>,</span><br><span class="line">  <span class="attr">key</span>: string,</span><br><span class="line">  <span class="attr">keys</span>: <span class="title class_">Array</span>&lt;string&gt;,</span><br><span class="line">  current?: <span class="title class_">VNode</span></span><br><span class="line">) &#123;</span><br><span class="line"> <span class="keyword">const</span> cached = cache[key]</span><br><span class="line"> <span class="keyword">if</span> (cached &amp;&amp; (!current || cached.<span class="property">tag</span> !== current.<span class="property">tag</span>)) &#123;</span><br><span class="line">    cached.<span class="property">componentInstance</span>.$destroyed() <span class="comment">// 执行组件的destroy钩子函数</span></span><br><span class="line"> &#125;</span><br><span class="line"> cache[key] = <span class="literal">null</span></span><br><span class="line"> <span class="title function_">remove</span>(keys, key)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>删除缓存的VNode还要对应组件实例的destory钩子函数</p>
+<ul>
+<li>mounted<br>在mounted这个钩子中对include和exclude参数进行监听，然后实时地更新（删除）this.cache对象数据。pruneCache函数的核心也是去调用pruneCacheEntry</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">pruneCache</span> (<span class="attr">keepAliveInstance</span>: any, <span class="attr">filter</span>: <span class="title class_">Function</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; cache, keys, _vnode &#125; = keepAliveInstance</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> cache) &#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="attr">cachedNode</span>: ?<span class="title class_">VNode</span> = cache[key]</span><br><span class="line">    <span class="keyword">if</span> (cachedNode) &#123;</span><br><span class="line">      <span class="keyword">const</span> <span class="attr">name</span>: ?string = <span class="title function_">getComponentName</span>(cachedNode.<span class="property">componentOptions</span>)</span><br><span class="line">      <span class="keyword">if</span> (name &amp;&amp; !<span class="title function_">filter</span>(name)) &#123;</span><br><span class="line">        <span class="title function_">pruneCacheEntry</span>(cache, key, keys, _vnode)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>render</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">render () &#123;</span><br><span class="line">  <span class="keyword">const</span> slot = <span class="variable language_">this</span>.<span class="property">$slots</span>.<span class="property">defalut</span></span><br><span class="line">  <span class="keyword">const</span> <span class="attr">vnode</span>: <span class="title class_">VNode</span> = <span class="title function_">getFirstComponentChild</span>(slot) <span class="comment">// 找到第一个子组件对象</span></span><br><span class="line">  <span class="keyword">const</span> componentOptions : ?<span class="title class_">VNodeComponentOptions</span> = vnode &amp;&amp; vnode.<span class="property">componentOptions</span></span><br><span class="line">  <span class="keyword">if</span> (componentOptions) &#123; <span class="comment">// 存在组件参数</span></span><br><span class="line">    <span class="comment">// check pattern</span></span><br><span class="line">    <span class="keyword">const</span> <span class="attr">name</span>: ?string = <span class="title function_">getComponentName</span>(componentOptions) <span class="comment">// 组件名</span></span><br><span class="line">    <span class="keyword">const</span> &#123; include, exclude &#125; = <span class="variable language_">this</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="comment">// 条件匹配</span></span><br><span class="line">      <span class="comment">// not included</span></span><br><span class="line">      （include &amp;&amp; (!name || !<span class="title function_">matches</span>(include, name))）||</span><br><span class="line">      <span class="comment">// excluded</span></span><br><span class="line">        (exclude &amp;&amp; name &amp;&amp; <span class="title function_">matches</span>(exclude, name))</span><br><span class="line">    ) &#123;</span><br><span class="line">        <span class="keyword">return</span> vnode</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">const</span> &#123; cache, keys &#125; = <span class="variable language_">this</span></span><br><span class="line">    <span class="comment">// 定义组件的缓存key</span></span><br><span class="line">    <span class="keyword">const</span> <span class="attr">key</span>: ?string = vnode.<span class="property">key</span> === <span class="literal">null</span> ? componentOptions.<span class="property">Ctor</span>.<span class="property">cid</span> + (componentOptions.<span class="property">tag</span> ? <span class="string">`::<span class="subst">$&#123;componentOptions.tag&#125;</span>`</span> : <span class="string">&#x27;&#x27;</span>) : vnode.<span class="property">key</span></span><br><span class="line">     <span class="keyword">if</span> (cache[key]) &#123; <span class="comment">// 已经缓存过该组件</span></span><br><span class="line">        vnode.<span class="property">componentInstance</span> = cache[key].<span class="property">componentInstance</span></span><br><span class="line">        <span class="title function_">remove</span>(keys, key)</span><br><span class="line">        keys.<span class="title function_">push</span>(key) <span class="comment">// 调整key排序</span></span><br><span class="line">     &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        cache[key] = vnode <span class="comment">//缓存组件对象</span></span><br><span class="line">        keys.<span class="title function_">push</span>(key)</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">max</span> &amp;&amp; keys.<span class="property">length</span> &gt; <span class="built_in">parseInt</span>(<span class="variable language_">this</span>.<span class="property">max</span>)) &#123;</span><br><span class="line">          <span class="comment">//超过缓存数限制，将第一个删除</span></span><br><span class="line">          <span class="title function_">pruneCacheEntry</span>(cahce, keys[<span class="number">0</span>], keys, <span class="variable language_">this</span>.<span class="property">_vnode</span>)</span><br><span class="line">        &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">      vnode.<span class="property">data</span>.<span class="property">keepAlive</span> = <span class="literal">true</span> <span class="comment">//渲染和执行被包裹组件的钩子函数需要用到</span></span><br><span class="line"> </span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> vnode || (slot &amp;&amp; slot[<span class="number">0</span>])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第一步：获取keep-alive包裹着的第一个子组件对象及其组件名；</li>
+<li>第二步：根据设定的黑白名单（如果有）进行条件匹配，决定是否缓存。不匹配，直接返回组件实例（VNode），否则执行第三步；</li>
+<li>第三步：根据组件ID和tag生成缓存Key，并在缓存对象中查找是否已缓存过该组件实例。如果存在，直接取出缓存值并更新该key在this.keys中的位置（更新key的位置是实现LRU置换策略的关键），否则执行第四步；</li>
+<li>第四步：在this.cache对象中存储该组件实例并保存key值，之后检查缓存的实例数量是否超过max设置值，超过则根据LRU置换策略删除最近最久未使用的实例（即是下标为0的那个key）;</li>
+<li>第五步：最后并且很重要，将该组件实例的keepAlive属性值设置为true。</li>
+</ul>
+<h2 id="四、重头戏：渲染"><a href="#四、重头戏：渲染" class="headerlink" title="四、重头戏：渲染"></a>四、重头戏：渲染</h2><h3 id="4-1-Vue的渲染过程"><a href="#4-1-Vue的渲染过程" class="headerlink" title="4.1 Vue的渲染过程"></a>4.1 Vue的渲染过程</h3><p>借助一张图看下Vue渲染的整个过程：<br><img src="/blog/static/imgs/vue/vue_render.webp" alt="vue渲染过程_inner.png"></p>
+<p>Vue的渲染是从图中render阶段开始的，但keep-alive的渲染是在patch阶段，这是构建组件树（虚拟DOM树），并将VNode转换成真正DOM节点的过程。<br>简单描述从render到patch的过，我们从最简单的new Vue开始：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&#x27;./App.vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span><br><span class="line">    <span class="attr">render</span>: <span class="function"><span class="params">h</span> =&gt;</span> <span class="title function_">h</span>(<span class="title class_">App</span>)</span><br><span class="line">&#125;).$mount(<span class="string">&#x27;#app&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>Vue在渲染的时候先调用原型上的_render函数将组件对象转化成一个VNode实例；而_render是通过调用createElement和createEmptyVNode两个函数进行转化；<br>createElement的转化过程会根据不同的情形选择new VNode或者调用createComponent函数做VNode实例化；<br>完成VNode实例化后，这时候Vue调用原型上的_update函数把VNode渲染成真实DOM，这个过程又是通过调用patch函数完成的（这就是patch阶段了）<br>用一张图表达：<br><img src="/blog/static/imgs/vue/vue_process.webp" alt="渲染过程_inner.png"></p>
+<h3 id="4-2-keep-alive组件的渲染"><a href="#4-2-keep-alive组件的渲染" class="headerlink" title="4.2 keep-alive组件的渲染"></a>4.2 keep-alive组件的渲染</h3><p>我们用过keep-alive都知道，它不会生成真正的DOM节点，这是怎么做到的？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/core/instance/lifecycle.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">initLifecycle</span> (<span class="attr">vm</span>: <span class="title class_">Component</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> options= vm.<span class="property">$options</span></span><br><span class="line">    <span class="comment">// 找到第一个非abstract父组件实例</span></span><br><span class="line">    <span class="keyword">let</span> parent = options.<span class="property">parent</span></span><br><span class="line">    <span class="keyword">if</span> (parent &amp;&amp; !options.<span class="property">abstract</span>) &#123;</span><br><span class="line">        <span class="keyword">while</span> (parent.<span class="property">$options</span>.<span class="property">abstract</span> &amp;&amp; parent.<span class="property">$parent</span>) &#123;</span><br><span class="line">              parent = parent.<span class="property">$parent</span></span><br><span class="line">        &#125;</span><br><span class="line">        parent.<span class="property">$children</span>.<span class="title function_">push</span>(vm)</span><br><span class="line">    &#125;</span><br><span class="line">    vm.<span class="property">$parent</span> = parent</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Vue在初始化生命周期的时候，为组件实例建立父子关系会根据abstract属性决定是否忽略某个组件。在keep-alive中，设置了abstract:true，那Vue就会跳过该组件实例。</p>
+<p>最后构建的组件树中就不会包含keep-alive组件，那么由组件树渲染成的DOM树自然也不会有keep-alive相关的节点了。</p>
+<p><strong>keep-alive包裹的组件是如何使用缓存的？</strong><br>在patch阶段，会执行createComponent函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/core/vdom/patch.js</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">createComponent</span> (vnode, insertedVnodeQueue, parentElm, refElm) &#123;</span><br><span class="line">    <span class="keyword">let</span> i = vnode.<span class="property">data</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_">isDef</span>(i)) &#123;</span><br><span class="line">        <span class="keyword">const</span> isReactivated = <span class="title function_">isDef</span>(vnode.<span class="property">componentInstance</span>) &amp;&amp; i.<span class="property">keepAlive</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_">isDef</span>(i = i.<span class="property">hook</span>) &amp;&amp; <span class="title function_">isDef</span>(i = i.<span class="property">init</span>)) &#123;</span><br><span class="line">            <span class="title function_">i</span>(vnode, <span class="literal">false</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_">isDef</span>(vnode.<span class="property">componentInstance</span>)) &#123;</span><br><span class="line">            <span class="title function_">initComponent</span>(vnode, insertedVnodeQueue)</span><br><span class="line">            <span class="title function_">insert</span>(parentElem, vnode.<span class="property">elem</span>, refElem) <span class="comment">// 将缓存的DOM(vnode.elem) 插入父元素中</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="title function_">isTrue</span>(isReactivated)) &#123;</span><br><span class="line">                <span class="title function_">reactivateComponent</span>(vnode, insertedVnodeQueue, parentEle, refElm)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在首次加载被包裹组建时，由keep-alive.js中的render函数可知，vnode.componentInstance的值是undfined，keepAlive的值是true，因为keep-alive组件作为父组件，它的render函数会先于被包裹组件执行；那么只执行到i(vnode,false)，后面的逻辑不执行；</li>
+<li>再次访问被包裹组件时，vnode.componentInstance的值就是已经缓存的组件实例，那么会执行insert(parentElm, vnode.elm, refElm)逻辑，这样就直接把上一次的DOM插入到父元素中。</li>
+</ul>
+<h2 id="五、不可忽视：钩子函数"><a href="#五、不可忽视：钩子函数" class="headerlink" title="五、不可忽视：钩子函数"></a>五、不可忽视：钩子函数</h2><h3 id="5-1-只执行一次的钩子"><a href="#5-1-只执行一次的钩子" class="headerlink" title="5.1 只执行一次的钩子"></a>5.1 只执行一次的钩子</h3><p>一般的组件，每一次加载都会有完整的生命周期，即生命周期里面对于的钩子函数都会被触发，为什么被keep-alive包裹的组件却不是呢？<br>被缓存的组件实例会为其设置keepAlive= true，而在初始化组件钩子函数中：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/core/vdom/create-component.js</span></span><br><span class="line"><span class="keyword">const</span> componentVNodeHooks = &#123;</span><br><span class="line">    init (<span class="attr">vnode</span>: <span class="title class_">VNodeWithData</span>, <span class="attr">hydrating</span>: boolean): ?boolean&#123;</span><br><span class="line">        <span class="keyword">if</span> (</span><br><span class="line">         vnode.<span class="property">componentInstance</span> &amp;&amp;       </span><br><span class="line">         !vnode.<span class="property">componentInstance</span>.<span class="property">_isDestroyed</span> &amp;&amp;</span><br><span class="line">         vnode.<span class="property">data</span>.<span class="property">keepAlive</span></span><br><span class="line">        ) &#123;</span><br><span class="line">          <span class="comment">// keep-alive components, treat as a patch</span></span><br><span class="line">          <span class="keyword">const</span> <span class="attr">mountedNode</span>:any = vnode</span><br><span class="line">          componentVNodeHooks.<span class="title function_">prepatch</span>(mountedNode, mountedNode)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="keyword">const</span> child = vnode.<span class="property">componentInstance</span> = createComponentInstanceForVnode (vnode, activeInstance)</span><br><span class="line">           </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看出，当vnode.componentInstance和keepAlive同时为true时，不再进入$mount过程，那mounted之前的所有钩子函数（beforeCreate、created、mounted）都不再执行。</p>
+<h3 id="5-2-可重复的activated"><a href="#5-2-可重复的activated" class="headerlink" title="5.2 可重复的activated"></a>5.2 可重复的activated</h3><p>在patch的阶段，最后会执行invokeInsertHook函数，而这个函数就是去调用组件实例（VNode）自身的insert钩子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/core/vdom/patch.js</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">invokeInsertHook</span> (vnode, queue, initial) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="title function_">isTrue</span>(initial) &amp;&amp; <span class="title function_">isDef</span>(vnode.<span class="property">parent</span>)) &#123;</span><br><span class="line">          vnode.<span class="property">parent</span>.<span class="property">data</span>,pendingInsert = queue</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">         <span class="keyword">for</span>(<span class="keyword">let</span> i =<span class="number">0</span>; i&lt;queue.<span class="property">length</span>; ++i) &#123;</span><br><span class="line">                queue[i].<span class="property">data</span>.<span class="property">hook</span>.<span class="title function_">insert</span>(queue[i]) <span class="comment">// 调用VNode自身的insert钩子函数</span></span><br><span class="line">         &#125;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再看insert钩子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> componentVNodeHooks = &#123;</span><br><span class="line">      <span class="comment">// init()</span></span><br><span class="line">     insert (<span class="attr">vnode</span>: <span class="title class_">MountedComponentVNode</span>) &#123;</span><br><span class="line">           <span class="keyword">const</span> &#123; context, componentInstance &#125; = vnode</span><br><span class="line">           <span class="keyword">if</span> (!componentInstance.<span class="property">_isMounted</span>) &#123;</span><br><span class="line">                 componentInstance.<span class="property">_isMounted</span> = <span class="literal">true</span></span><br><span class="line">                 <span class="title function_">callHook</span>(componentInstance, <span class="string">&#x27;mounted&#x27;</span>)</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">if</span> (vnode.<span class="property">data</span>.<span class="property">keepAlive</span>) &#123;</span><br><span class="line">                 <span class="keyword">if</span> (context.<span class="property">_isMounted</span>) &#123;</span><br><span class="line">                     <span class="title function_">queueActivatedComponent</span>(componentInstance)</span><br><span class="line">                 &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                      <span class="title function_">activateChildComponent</span>(componentInstance, <span class="literal">true</span><span class="comment">/* direct */</span>)</span><br><span class="line">                 &#125;</span><br><span class="line">          &#125;</span><br><span class="line">         <span class="comment">// ...</span></span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这个钩子里面，调用了activateChildComponent函数递归地去执行所有子组件的activated钩子函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/core/instance/lifecycle.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">activateChildComponent</span> (<span class="attr">vm</span>: <span class="title class_">Component</span>, direct?: boolean) &#123;</span><br><span class="line">  <span class="keyword">if</span> (direct) &#123;</span><br><span class="line">    vm.<span class="property">_directInactive</span> = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_">isInInactiveTree</span>(vm)) &#123;</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (vm.<span class="property">_directInactive</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (vm.<span class="property">_inactive</span> || vm.<span class="property">_inactive</span> === <span class="literal">null</span>) &#123;</span><br><span class="line">    vm.<span class="property">_inactive</span> = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; vm.<span class="property">$children</span>.<span class="property">length</span>; i++) &#123;</span><br><span class="line">      <span class="title function_">activateChildComponent</span>(vm.<span class="property">$children</span>[i])</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">callHook</span>(vm, <span class="string">&#x27;activated&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>相反地，deactivated钩子函数也是一样的原理，在组件实例（VNode）的destroy钩子函数中调用deactivateChildComponent函数。</p>
+<p>原文： https://www.jianshu.com/p/9523bb439950</p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

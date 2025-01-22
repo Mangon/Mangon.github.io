@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        前端技术选型 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="本文主要面向前端基础框架和库的选型，不包括构建工具、 UI 库和框架配套解决方案的选择。由于前端发展速度很快，框架层出不穷，特标明本文发布时间为 2021年6月6日，更新时间 2022年2月21日，更新时间 2022年3月14日，只适用于2021年前端基础框架技术选型。只选择了 web 应用开发时使用的框架，桌面端框架如 Electron、Tauri、Flutter，或者跨平台框架例如 React Native、Weex 或者众多的小程序框架本质上和如下列出的框架不是解决同一类问题所以不在对比之" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%86%E6%9E%B6%E8%83%8C%E6%99%AF"><span class="toc-text">框架背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E7%82%B9%E5%92%8C%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">特点和优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%86%E6%9E%B6%E7%94%9F%E6%80%81"><span class="toc-text">框架生态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E5%A5%97UI%E7%BB%84%E4%BB%B6%E5%BA%93"><span class="toc-text">配套UI组件库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B4%BB%E8%B7%83%E5%BA%A6%E5%92%8C%E6%B5%81%E8%A1%8C%E8%B6%8B%E5%8A%BF"><span class="toc-text">活跃度和流行趋势</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#npm-trends"><span class="toc-text">npm trends</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GitHub-Repo-stars"><span class="toc-text">GitHub Repo stars</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GitHub-Repo-Star-History"><span class="toc-text">GitHub Repo Star History</span></a></li></ol></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            前端技术选型
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-06-06T12:25:58.000Z" itemprop="datePublished">2021-06-06</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/angular/" rel="tag">angular</a>, <a class="article-tag-link" href="/blog/tags/front-end/" rel="tag">front-end</a>, <a class="article-tag-link" href="/blog/tags/react/" rel="tag">react</a>, <a class="article-tag-link" href="/blog/tags/vue/" rel="tag">vue</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>本文主要面向前端基础框架和库的选型，不包括构建工具、 UI 库和框架配套解决方案的选择。由于前端发展速度很快，框架层出不穷，特标明本文发布时间为 2021年6月6日，更新时间 2022年2月21日，更新时间 2022年3月14日，只适用于2021年前端基础框架技术选型。只选择了 web 应用开发时使用的框架，桌面端框架如 Electron、Tauri、Flutter，或者跨平台框架例如 React Native、Weex 或者众多的小程序框架本质上和如下列出的框架不是解决同一类问题所以不在对比之列。</p>
+<span id="more"></span>
+<h2 id="框架背景"><a href="#框架背景" class="headerlink" title="框架背景"></a>框架背景</h2><p><a target="_blank" rel="noopener" href="https://github.com/vuejs/vue">Vue</a> 是一款渐进式、可增量采用来构建 UI 界面的 Javascript 框架，它于2014年2月首次由Google前员工 Evan You（尤雨溪）发布。当前最新版本是2.6.12。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/facebook/react">React</a> 是一款用于构建用户界面的 JavaScript 库，最初于2013年3月发布，由 Facebook 进行开发和维护。最新版本为17.0.2。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/angular/angular">Angular</a> 是一款用于构建移动和桌面 web 应用的前端框架，最初于2010年发布，由 Google 进行开发和维护。Angular 1.x名为<a target="_blank" rel="noopener" href="https://github.com/angular/angular.js">AngularJS</a>，基于 JavaScript 开发。从 Angular 2开始基于 TypeScript 开发，并去掉了js，直接称为 Angular ，最新版本为12.0.1。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/jquery/jquery">jQuery</a> 是一款流行的 Javascript 库，提供了多种方便的DOM操作、事件绑定、CSS操作、Ajax封装的API。由 John Resig 开发。当前最新版本为3.6.0。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/sveltejs/svelte">Svelte</a> 是一款轻量级高性能的编译型 Javascript 框架。由 Rich Harris 于16年发布。它避开虚拟DOM的概念，在构建期间即将代码编译到小型原始JavaScript模块中。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/preactjs/preact">Preact</a> 是一款只有3kb的轻量级的类 React 的框架。由 Google 工程师 Jason Miller 开发。当前最新版本为10.5.13。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/emberjs/ember.js">Ember</a> 是一款基于 Handlebar 模板的 Javascript 框架。Ember在2011年发布，目前由Ember社区维护。当前最新版本为3.27.3。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/infernojs/inferno">Inferno</a> 是一款为了追求极致性能的类 React 框架。由 Facebook 工程师 Dominic Gannaway 开发。当前最新版本为7.4.8。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/madrobby/zepto">Zepto</a> 是一款轻量级的类 jQeruy 的 Javascript 库。由 Thomas Fuchs 开发。当前最新版本为1.2.0。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/baidu/san">San</a> 是一款高兼容性、高性能、轻量级的 Javascript 框架。由百度前端工程师 Erik (董睿)开发。当前最新版本为3.10.3。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/dojo/framework">Dojo</a> 是一款用 TypeScript 构建的现代 web 应用程序的渐进式框架。由 IBM 开发与支持。当前最新版本为7.0.0。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Polymer/polymer">Polymer</a> 是一款用来构建可重用的 Web 组件（Web Components）的框架。由 Google 发布，当前最新版本是3.4.1，目前已处于维护模式，不再开发新的功能。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/lit/lit">Lit</a>是一个轻量级的库，用于构建快速、轻量级的 web 组件。由 Google 发布，属于 Polymer 的替代品。当前最新版本是2.2.0。</p>
+<h2 id="特点和优缺点"><a href="#特点和优缺点" class="headerlink" title="特点和优缺点"></a>特点和优缺点</h2><p>Angular特点：</p>
+<ol>
+<li>良好的应用程序架构</li>
+<li>双向数据绑定</li>
+<li>Angular 指令与 HTML 模板</li>
+<li>可嵌入、注入和测试</li>
+</ol>
+<p>优点：</p>
+<ol>
+<li>模板功能强大丰富，自带了极其丰富的 Angular 指令，支持双向数据绑定。</li>
+<li>代码模块化（每个模块的代码独立拥有自己的作用域，model，controller等）</li>
+<li>是一个比较完善的前端框架，包含服务、模板、数据双向绑定、模块化、路由、过滤器、依赖注入等所有功能</li>
+<li>ng模块化引入了对依赖注入的支持，能够很容易的写出可复用的代码</li>
+<li>Angular 由商业公司 Google 开发，这意味着它有一个坚实的基础支持</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>Angular 入门较难，需要首先了解 TypeScript 和 ES7 的 decorator 语法，还需要理解 DI</li>
+<li>对 IE6/7 兼容不是很好</li>
+<li>DI依赖注入如果代码压缩需要显示声明</li>
+<li>更适合企业级应用开发，对小型项目来说过于过于重量级需要引入过多模块</li>
+<li>国内使用 Angular 的公司和项目较少</li>
+</ol>
+<p>React特点：</p>
+<ol>
+<li>声明式设计：React采用声明式设计，可以轻松描述应用</li>
+<li>高效：React通过对DOM的模拟（virtual DOM），最大限度地减少低性能的DOM操作</li>
+<li>灵活：React 核心只实现了基础的UI渲染部分，可以与已知的库或框架很好的配合</li>
+</ol>
+<p>优点：</p>
+<ol>
+<li>速度快：在UI渲染过程中，React通过在虚拟 DOM 中的微操作来实现对实际DOM的局部更新</li>
+<li>跨浏览器兼容：虚拟DOM帮助我们解决了跨浏览器问题，它为我们提供了标准化的API，甚至在IE8中都是没问题的</li>
+<li>模块化：为你程序编写独立的模块化UI组件，这样当某个或某些组件出现问题时，可以方便地进行隔离</li>
+<li>单向数据流：Flux是一个用于在 JavaScript 应用中创建单向数据层的架构，它随着React视图库的开发而被Facebook概念化</li>
+<li>同构、纯粹的JavaScript：因为搜索引擎的爬虫程序依赖的是服务端响应而不是JavaScript的执行，预渲染应用有助于搜索引擎优化</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>React仅核心库由 facebook 提供支持，其他相关库例如路由，状态管理等均由社区维护</li>
+<li>React 由商业公司 facebook 支持，React Native 开源协议曾受到质疑</li>
+<li>React17 之前版本基于事件委托的合成事件，表现和使用与原生事件存在差异</li>
+</ol>
+<p>Vue特性：</p>
+<ol>
+<li>轻量级的框架</li>
+<li>双向数据绑定</li>
+<li>单页面模板 与 vue 指令</li>
+<li>插件化</li>
+</ol>
+<p>优点：</p>
+<ol>
+<li>简单：官方文档国际化支持更好，语法更易用，比 Angular 和 React 易学</li>
+<li>快速：异步批处理方式更新DOM</li>
+<li>紧凑：~18kb min+gzip，且无依赖</li>
+<li>组合：vue3支持组合式（composition）api 可以用解耦的、可复用的组件组合应用程序</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>缺少工程化设计，不利于复用代码</li>
+<li>使用了 <code>Object.defineProperty</code> 语法，不支持 IE8 以下浏览器</li>
+<li>由个人开发者 Even You 支持</li>
+</ol>
+<p>Svelte特性：</p>
+<ol>
+<li>轻量级</li>
+<li>编译型框架</li>
+<li>无 virtual DOM</li>
+</ol>
+<p>优点：</p>
+<ol>
+<li>编译型框架：线上环境无需单独下载框架包，编译好后直接发布</li>
+<li>轻量级：比 react、angular、vue的代码量更少，通过CSS缩小后有约17kb的大小，gzip后更是小到了4kb</li>
+<li>没有 virtual DOM 和 virtual DOM diff，性能更好</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>不支持 Typescript</li>
+<li>配套库不太完善，不支持前端路由</li>
+<li>框架较新，社区规模较小</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>说明</th>
+<th>Vue</th>
+<th>React</th>
+<th>Angular</th>
+<th>Svelte</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据监听</td>
+<td>代码中的某个值变化后，能够通过回调函数实现逻辑</td>
+<td>支持<br><code>watch</code></td>
+<td>支持<br><code>useCallback()</code></td>
+<td>支持<br><code>ngOnChanges</code></td>
+<td>支持<br><code>$:</code></td>
+</tr>
+<tr>
+<td>计算属性</td>
+<td>某个只读变量可以通过另外几个变量和逻辑响应式的得出</td>
+<td>支持<br><code>computed</code></td>
+<td>支持<br><code>useMemo()</code></td>
+<td>支持<br><code>get Var()&#123;&#125;</code></td>
+<td>支持<br><code>$:</code></td>
+</tr>
+<tr>
+<td>数据双向绑定</td>
+<td>主要用于表单提交和更新，用户输入和数据双向绑定，一者变更时另一者随之变化</td>
+<td>支持<br><code>v-model</code></td>
+<td>不支持<br>使用单向数据绑定</td>
+<td>支持<br><code>ngModel</code></td>
+<td>支持<br><code>bind:value</code></td>
+</tr>
+<tr>
+<td>css scoped</td>
+<td>css的作用域只针对当前的组件生效，避免相同的css名字相互影响</td>
+<td>支持</td>
+<td>不支持<br>支持 css in js</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>组件生命周期</td>
+<td>在组件生成，更新，销毁等情况时可以有回调函数实现逻辑</td>
+<td>支持</td>
+<td>支持</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>SPA前端路由</td>
+<td>单页APP，url改变不刷新页面</td>
+<td>支持</td>
+<td>支持</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>TypeScript</td>
+<td>支持使用 TypeScript</td>
+<td>支持</td>
+<td>支持</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>自定义指令(directive)</td>
+<td>为所有页面元素添加全局自定义属性</td>
+<td>支持</td>
+<td>不支持</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>Pipe/Filter</td>
+<td>可以对字符串、数字在打印模板中进行数据过滤和美化</td>
+<td>支持</td>
+<td>不支持</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+</tbody>
+</table>
+<h2 id="框架生态"><a href="#框架生态" class="headerlink" title="框架生态"></a>框架生态</h2><p>一个好的框架会有一些周边生态来完善框架在面对不同的业务场景时的具体问题。</p>
+<p>Angular是一个“完整的解决方案”<br>Angular 命令行工具 - @angular/cli<br>Angular 路由管理 - @angular/router<br>Angular 跨端解决方案 - Cordava Ionic</p>
+<p>React 命令行工具 - Create-react-app<br>React 路由管理 - React-router<br>React 应用状态管理 - <a target="_blank" rel="noopener" href="https://github.com/reduxjs/redux">Redux</a>、mobx、flux<br>React SSR解决方案 - Next.js<br>React 跨端解决方案 - React Native<br>React 浏览器开发者工具插件 - react-devtools</p>
+<p>Vue 命令行工具 - @vue/cli<br>Vue 路由管理 Vue-router<br>Vue 应用状态管理 - Vuex<br>Vue SSR解决方案 - Nuxt.js<br>Vue 静态页面生成框架 - Vuepress<br>Vue 跨端解决方案 - Weex<br>Vue 浏览器开发者工具插件 - vue-devtools</p>
+<h2 id="配套UI组件库"><a href="#配套UI组件库" class="headerlink" title="配套UI组件库"></a>配套UI组件库</h2><p>现代 web 应用中，页面一般是由不同的模块组成，为了可以复用代码，提升开发效率，通常会把相同或类似的模块抽象成组件以便于在不同的页面中使用。在长期的开发实践过程中，人们把常用的组件组合成组件库，以便在不同的项目中也可以复用。组件库一般是基于前端基础框架进行扩展，且遵循同一套设计规范。成熟的前端框架很多都有多套配套的UI组件库，可以进一步的提升研发效率。</p>
+<p>常用的 Vue UI库有 </p>
+<table>
+<thead>
+<tr>
+<th>ui库</th>
+<th>介绍</th>
+<th>Github stars</th>
+<th>作者</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/ElemeFE/element">Element UI</a></td>
+<td>一款界面风格偏向于B端的基于 Vue 2.0 的桌面端组件库</td>
+<td>50.2k</td>
+<td>ElemeFE 饿了么</td>
+<td>PC</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/vuetifyjs/vuetify">Vuetify</a></td>
+<td>一款采用 <a target="_blank" rel="noopener" href="https://www.material.io/">Material Design</a> 的 vue 组件库</td>
+<td>31k</td>
+<td>John Leider &amp; Heather Leider</td>
+<td>Responsive</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/iview/iview">iview</a> <a target="_blank" rel="noopener" href="https://github.com/view-design/ViewUI">ViewUI</a></td>
+<td>一款基于 Vue 的高质量 UI 工具集 <br> iview4名称变更为 ViewUI</td>
+<td>23.8k <br> 2.3k</td>
+<td>TalkingData 腾云天下</td>
+<td>PC</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/quasarframework/quasar">Quasar</a></td>
+<td>一款基于 Vue 的企业级开源多平台UI库</td>
+<td>18.7k</td>
+<td>Razvan Stoenescu</td>
+<td>Responsive</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/youzan/vant">vant</a></td>
+<td>一款基于 Vue2 的移动 UI 组件库</td>
+<td>17.5k</td>
+<td>YouZan 有赞</td>
+<td>Mobile</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/airyland/vux">vux</a></td>
+<td>一款采用 <a target="_blank" rel="noopener" href="https://weui.io/">WeUI</a> 设计的移动端 Vue UI 组件库</td>
+<td>17.4k</td>
+<td>Airyland</td>
+<td>Mobile</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/ElemeFE/mint-ui">mint-ui</a></td>
+<td>一款基于 Vue2 的移动端组件库</td>
+<td>16.4k</td>
+<td>ElemeFE 饿了么</td>
+<td>Mobile</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/bootstrap-vue/bootstrap-vue">BootstrapVue</a></td>
+<td>一款基于 Vue2.6 并采用 <a target="_blank" rel="noopener" href="https://getbootstrap.com/docs/4.5/getting-started/introduction/">Bootstrap v4.5</a> 组件和栅格系统设计的 UI 组件库</td>
+<td>13.2k</td>
+<td>pooya parsa &amp; Troy Morehouse</td>
+<td>Responsive</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/vuematerial/vue-material">Vue Material</a></td>
+<td>一款简单、轻量级的采用 Material Design 的 vue 组件库</td>
+<td>9.4k</td>
+<td>Marcos Moura</td>
+<td>Responsive</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/buefy/buefy">Buefy</a></td>
+<td>一个基于 <a target="_blank" rel="noopener" href="https://bulma.io/">Bulma</a> 框架和设计的轻量级的 Vue 响应式UI组件库</td>
+<td>8.7k</td>
+<td>Rafael Beraldo</td>
+<td>Responsive</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/museui/muse-ui">muse-ui</a></td>
+<td>一款采用 Material Design 的 vue2 UI库</td>
+<td>8.3k</td>
+<td>(停止更新)</td>
+<td>PC</td>
+</tr>
+</tbody>
+</table>
+<p>常用的 React 组件库有</p>
+<table>
+<thead>
+<tr>
+<th>ui库</th>
+<th>介绍</th>
+<th>Github stars</th>
+<th>作者</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/ant-design/ant-design">Ant Design</a></td>
+<td>一款企业级的 React UI组件库</td>
+<td>72.2k</td>
+<td>Alibaba 阿里-支付宝</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/mui-org/material-ui">Material-UI</a></td>
+<td>一款采用  Material Design 的简单可定制化的 React 组件库</td>
+<td>68.7k</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/react-bootstrap/react-bootstrap">React-Bootstrap</a></td>
+<td>一款采用 React 构建的 Bootstrap 5 组件库</td>
+<td>19.4k</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/palantir/blueprint">Blueprint</a></td>
+<td>一款基于 React 的 UI工具集</td>
+<td>17.8k</td>
+<td></td>
+<td>PC</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/microsoft/fluentui">Fluent UI</a></td>
+<td>一款React组件、工具的集合</td>
+<td>11.5k</td>
+<td>Microsoft</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/Semantic-Org/Semantic-UI-React">Semantic UI React</a></td>
+<td>Semantic-UI的官方 React 组件库</td>
+<td>12.3k</td>
+<td>Semantic</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/segmentio/evergreen">Evergreen</a></td>
+<td>一款 react UI库</td>
+<td>10.8k</td>
+<td>Segment.io</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/reactstrap/reactstrap">reactstrap</a></td>
+<td>一款基于  Bootstrap4 的无状态的 React 库</td>
+<td>9.9k</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>常用的 Angular 组件库有</p>
+<table>
+<thead>
+<tr>
+<th>ui库</th>
+<th>介绍</th>
+<th>Github stars</th>
+<th>作者</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/angular/material2">Material2</a></td>
+<td>Angular官方提供的 Material Design 组件库</td>
+<td>21.5k</td>
+<td>Google</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="活跃度和流行趋势"><a href="#活跃度和流行趋势" class="headerlink" title="活跃度和流行趋势"></a>活跃度和流行趋势</h2><p>在选择一款前端框架时，流行程度和活跃度是需要考量的一部分。被越多的人使用，说明在业界得到很好的认可，而框架的更新频率和社区&amp;话题活跃度则代表了一款框架之后的趋势，如果作者和主要的 maintainer 都不再更新，那么这款框架基本上也就离自己的尽头不远了。比较通用的考察角度可以包括以下几个方面  </p>
+<ul>
+<li>npm包 周期下载量（npm download）</li>
+<li>GitHub 收藏数量及趋势(github stars)</li>
+<li>框架更新频率(last updated)</li>
+<li>框架贡献者(contributors)数量</li>
+</ul>
+<h3 id="npm-trends"><a href="#npm-trends" class="headerlink" title="npm trends"></a>npm trends</h3><p>参见 <a target="_blank" rel="noopener" href="https://www.npmtrends.com/angular-vs-ember-source-vs-jquery-vs-lit-html-vs-preact-vs-react-vs-svelte-vs-vue-vs-inferno">npm trends</a></p>
+<p>npm 包的下载量与趋势直观的反映了现存项目对框架包的依赖情况。<br>但是有些框架可能会拆分为不同的包，在横向对比时不能很好的反应框架的使用量，只能反应对应npm包的下载量。<br>另外由于历史项目的依赖等，npm包下载量不能很好的预测未来技术的趋势。同时，考虑 registry 镜像的问题，taobao 的 <a target="_blank" rel="noopener" href="https://registry.npm.taobao.org">registry</a> 在中国可能有更广泛的使用，所以 npmjs 也不一定能够反映真实的反应国内的 npm 包下载量。</p>
+<p>从图中我们可以看到 React 处于一骑绝尘的状态，jQuery 和 Vue 也将其他框架远远的甩在了后面。<br>这基本上反映了现存项目的框架依赖状态，React 在国际上应用广泛，而且在可预见的未来都很难有框架能够比拟 React。jQuery 在许多项目中仍旧有用武之地。Vue 也被大量项目使用。</p>
+<h3 id="GitHub-Repo-stars"><a href="#GitHub-Repo-stars" class="headerlink" title="GitHub Repo stars"></a>GitHub Repo stars</h3><table>
+<thead>
+<tr>
+<th>框架</th>
+<th>GitHub Repo stars</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/vuejs/vue">Vue</a></td>
+<td><img src="https://img.shields.io/github/stars/vuejs/vue" alt="GitHub Repo stars"></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/facebook/react">React</a></td>
+<td><img src="https://img.shields.io/github/stars/facebook/react" alt="GitHub Repo stars"></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/angular/angular">Angular2</a></td>
+<td><img src="https://img.shields.io/github/stars/angular/angular" alt="GitHub Repo stars"></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/angular/angular.js">AngularJS</a></td>
+<td><img src="https://img.shields.io/github/stars/angular/angular.js" alt="GitHub Repo stars"></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/sveltejs/svelte">Svelte</a></td>
+<td><img src="https://img.shields.io/github/stars/sveltejs/svelte" alt="GitHub Repo stars"></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/jquery/jquery">jQuery</a></td>
+<td><img src="https://img.shields.io/github/stars/jquery/jquery" alt="GitHub Repo stars"></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/preactjs/preact">Preact</a></td>
+<td><img src="https://img.shields.io/github/stars/preactjs/preact" alt="GitHub Repo stars"></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/emberjs/ember.js">Ember</a></td>
+<td><img src="https://img.shields.io/github/stars/emberjs/ember.js" alt="GitHub Repo stars"></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/Polymer/polymer">Ploymer</a></td>
+<td><img src="https://img.shields.io/github/stars/Polymer/polymer" alt="GitHub Repo stars"></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/infernojs/inferno">Inferno</a></td>
+<td><img src="https://img.shields.io/github/stars/infernojs/inferno" alt="GitHub Repo stars"></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/madrobby/zepto">Zepto</a></td>
+<td><img src="https://img.shields.io/github/stars/madrobby/zepto" alt="GitHub Repo stars"></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/lit/lit">Lit</a></td>
+<td><img src="https://img.shields.io/github/stars/lit/lit" alt="GitHub Repo stars"></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/baidu/san">San</a></td>
+<td><img src="https://img.shields.io/github/stars/baidu/san" alt="GitHub Repo stars"></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/dojo/framework">Dojo</a></td>
+<td><img src="https://img.shields.io/github/stars/dojo/framework" alt="GitHub Repo stars"></td>
+</tr>
+</tbody>
+</table>
+<p>Github stars 可以反应项目自在 Github 发布以来的关注度。<br>从 Github Stars 来看，Vue 和 React 均是最受关注的框架，甩了其他框架一个数量级。Angular、Svelte、jQuery 都超过了 5w 的收藏，可以说都是备受关注的框架。使用这些框架开始你的开发，基本上不会有什么大问题，它们都是经过了多数人的验证。</p>
+<h3 id="GitHub-Repo-Star-History"><a href="#GitHub-Repo-Star-History" class="headerlink" title="GitHub Repo Star History"></a>GitHub Repo Star History</h3><p><img src="https://api.star-history.com/svg?repos=vuejs/vue,facebook/react,angular/angular,sveltejs/svelte,jquery/jquery,preactjs/preact,emberjs/ember.js,infernojs/inferno,lit/lit&amp;type=Date" alt="Star History Chart inner"></p>
+<p>GitHub Repo Star History 反映了项目在 Github 流行的趋势。<br>从 GitHub Repo Star History 来看，React、Vue、Angular 和 Svelte 的斜率比其它项目要大的多，说明这些框架正在变得更加流行（虽然 React、Vue 已经非常流行了）。</p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

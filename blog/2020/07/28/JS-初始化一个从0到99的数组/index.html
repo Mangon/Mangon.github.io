@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        初始化一个从0到99的数组 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="开发过程中遇到了一个问题，需要mock一些数据。一开始直接用的静态常量，后来想想这实在是太占地方了，尤其为了符合eslint需要写很多行，找其它部分代码的时候也不方便，而且很显然，我们可以用“时间换取空间”，通过程序简化这一部分。我需要mock的是一个数组，数组里有一些固定的或是随机的数据（这里不妨假设只需要填满不同的数字），那么如何才能简便的mock一个这样的数组呢？如何初始化一个从0到99的数组通常最简单的能想到的方法，不就是个循环嘛  1234let result = [];for " />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%80%E4%B8%AA%E4%BB%8E0%E5%88%B099%E7%9A%84%E6%95%B0%E7%BB%84"><span class="toc-text">如何初始化一个从0到99的数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%9E%84%E9%80%A0%E4%B8%80%E4%B8%AA%E9%95%BF%E5%BA%A6%E4%B8%BA100%E7%9A%84%E6%95%B0%E7%BB%84"><span class="toc-text">如何构造一个长度为100的数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-Array-prototype-map-%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">利用 Array.prototype.map 初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-Object-keys-%E8%8E%B7%E5%8F%96%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E7%BB%84%E7%9A%84key"><span class="toc-text">利用 Object.keys() 获取初始化数组的key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-Array-prototype-keys-%E7%94%9F%E6%88%90%E8%BF%AD%E4%BB%A3%E5%99%A8"><span class="toc-text">利用 Array.prototype.keys 生成迭代器</span></a></li></ol></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            初始化一个从0到99的数组
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2020-07-28T09:19:46.000Z" itemprop="datePublished">2020-07-28</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/array/" rel="tag">array</a>, <a class="article-tag-link" href="/blog/tags/javascript/" rel="tag">javascript</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>开发过程中遇到了一个问题，需要mock一些数据。一开始直接用的静态常量，后来想想这实在是太占地方了，尤其为了符合eslint需要写很多行，找其它部分代码的时候也不方便，而且很显然，我们可以用“时间换取空间”，通过程序简化这一部分。<br>我需要mock的是一个数组，数组里有一些固定的或是随机的数据（这里不妨假设只需要填满不同的数字），那么如何才能简便的mock一个这样的数组呢？</p>
+<span id="more"></span>
+<h2 id="如何初始化一个从0到99的数组"><a href="#如何初始化一个从0到99的数组" class="headerlink" title="如何初始化一个从0到99的数组"></a>如何初始化一个从0到99的数组</h2><p>通常最简单的能想到的方法，不就是个循环嘛  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span> ; i++) &#123;</span><br><span class="line">    result.<span class="title function_">push</span>(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但这实在是太笨了，“高级程序员是不会使用for循环的（偷笑）”，在js中，我们可以用其它的方法循环。比如 <code>map</code>。 利用 <code>map</code> 方法会看起来更简便些，但我们首先要构造一个长度为100并且初始化了的数组。</p>
+<h3 id="如何构造一个长度为100的数组"><a href="#如何构造一个长度为100的数组" class="headerlink" title="如何构造一个长度为100的数组"></a>如何构造一个长度为100的数组</h3><ol>
+<li>Array的构造函数 + …扩展运算符</li>
+</ol>
+<p>通过 Array 的构造函数 <code>Array(100)</code> 我们可以创建长度为100的数组，但是并没有初始化。</p>
+<p>我们可以通过…来初始化它</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[...<span class="title class_">Array</span>(<span class="number">100</span>)];</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>将类数组对象初始化为数组 - <code>Array.from</code></li>
+</ol>
+<p>类数组对象比较好写 <code>&#123;length: 100&#125;</code> ，那如何把它变成初始化了的数组呢？</p>
+<p>可以直接用 <code>Array.from</code> ，这个方法本身就是为了从一个类似数组或可迭代对象创建一个新的数组。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Array</span>.<span class="title function_">from</span>(&#123;<span class="attr">length</span>: <span class="number">100</span>&#125;);</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>将类数组对象初始化为数组 - <code>Array.apply</code></li>
+</ol>
+<p>使用 <code>Array(&#123;length: 100&#125;)</code> 并不会创建长度为100的数组，这是因为 Array 的构造函数把入参当成了一个对象进行了初始化，如何让Array的构造函数把入参作为类数组对象呢？可以使用 <code>apply</code> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Array</span>.<span class="title function_">apply</span>(<span class="literal">null</span>, &#123;<span class="attr">length</span>: <span class="number">100</span>&#125;);</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li><code>Array.prototype.slice</code> + …扩展运算符</li>
+</ol>
+<p>Array 的 slice 方法可以对数组进行拷贝，也可以用它来将类数组对象拷贝成长度为100的数组，直接使用是不行的，因为毕竟类数组对象还不是数组，我们可以用 <code>call</code> 或者 <code>apply</code> 、 <code>bind</code> 来调用它  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[...<span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">slice</span>.<span class="title function_">call</span>(&#123;<span class="attr">length</span>: <span class="number">100</span>&#125;)];</span><br><span class="line">[...<span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">slice</span>.<span class="title function_">apply</span>(&#123;<span class="attr">length</span>: <span class="number">100</span>&#125;)];</span><br><span class="line">[...<span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">slice</span>.<span class="title function_">bind</span>(&#123;<span class="attr">length</span>: <span class="number">100</span>&#125;)()];</span><br></pre></td></tr></table></figure>
+<h3 id="利用-Array-prototype-map-初始化"><a href="#利用-Array-prototype-map-初始化" class="headerlink" title="利用 Array.prototype.map 初始化"></a>利用 <code>Array.prototype.map</code> 初始化</h3><p>有了已经初始化为undefined的数组后面就是将数组填满值了  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[...<span class="title class_">Array</span>(<span class="number">100</span>)].<span class="title function_">map</span>(<span class="function">(<span class="params">_, i</span>) =&gt;</span> i);</span><br><span class="line"><span class="title class_">Array</span>.<span class="title function_">from</span>(&#123;<span class="attr">length</span>: <span class="number">100</span>&#125;, <span class="function">(<span class="params">_, i</span>) =&gt;</span> i);</span><br><span class="line"><span class="title class_">Array</span>.<span class="title function_">apply</span>(<span class="literal">null</span>, &#123;<span class="attr">length</span>: <span class="number">100</span>&#125;).<span class="title function_">map</span>(<span class="function">(<span class="params">_, i</span>) =&gt;</span> i);</span><br><span class="line"><span class="comment">// 上面4的写法已经够长了，我就不加map了</span></span><br></pre></td></tr></table></figure>
+<p>因为 <code>mapFn</code> 可以随意写，我们还可以用以上两种方法构造诸如全是1的数组  </p>
+<h3 id="利用-Object-keys-获取初始化数组的key"><a href="#利用-Object-keys-获取初始化数组的key" class="headerlink" title="利用 Object.keys() 获取初始化数组的key"></a>利用 <code>Object.keys()</code> 获取初始化数组的key</h3><p>注意，我们要初始化的值其实和数组的key是相同的！这样我们其实可以有一些取巧的方法，比如，可以通过 <code>Object.keys()</code> 来得到这样一个符合条件的新的数组。<code>Object.keys()</code> 方法会返回一个由一个给定对象的自身可枚举属性组成的数组，数组中属性名的排列顺序和正常循环遍历该对象时返回的顺序一致 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Object</span>.<span class="title function_">keys</span>([...<span class="title class_">Array</span>(<span class="number">100</span>)]);</span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">keys</span>(<span class="title class_">Array</span>.<span class="title function_">from</span>(&#123;<span class="attr">length</span>: <span class="number">100</span>&#125;));</span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">keys</span>(<span class="title class_">Array</span>.<span class="title function_">apply</span>(<span class="literal">null</span>,&#123;<span class="attr">length</span>:<span class="number">100</span>&#125;));</span><br></pre></td></tr></table></figure>
+<h3 id="利用-Array-prototype-keys-生成迭代器"><a href="#利用-Array-prototype-keys-生成迭代器" class="headerlink" title="利用 Array.prototype.keys 生成迭代器"></a>利用 <code>Array.prototype.keys</code> 生成迭代器</h3><p>如果我们构造了一个长度为100的数组但是没有初始化，我们可以生成从0到99的数组吗？其实也是可以的，我们可以通过 <code>Array.prototype.keys</code> 生成一个数组迭代器对象，然后再通过 …扩展运算符 来生成一个从0到99的数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[...<span class="title class_">Array</span>(<span class="number">100</span>).<span class="title function_">keys</span>()]</span><br><span class="line">[...<span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">slice</span>.<span class="title function_">call</span>(&#123;<span class="attr">length</span>: <span class="number">100</span>&#125;).<span class="title function_">keys</span>()]</span><br></pre></td></tr></table></figure>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

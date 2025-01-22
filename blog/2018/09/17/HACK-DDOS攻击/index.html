@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        DDoS攻击 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="分布式拒绝服务(DDoS:Distributed Denial of Service)攻击指借助于客户/服务器技术，将多个计算机联合起来作为攻击平台，对一个或多个目标发动 DoS 攻击，从而成倍地提高拒绝服务攻击威力的一种攻击方式。攻击方式DDoS 攻击通过大量的请求占用网络资源，以达到瘫痪网络的目的。 这种攻击方式大致可分为以下几种：通过使网络过载来干扰甚至阻断正常的网络通讯通过向服务器提交大量请求，使服务器超负荷阻断某一用户访问服务器阻断某服务与特定系统或个人的通讯下面列举" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E6%96%B9%E5%BC%8F"><span class="toc-text">攻击方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SYN-flood"><span class="toc-text">SYN flood</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ACK-flood"><span class="toc-text">ACK flood</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UDP-flood"><span class="toc-text">UDP flood</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ping-of-Death"><span class="toc-text">Ping of Death</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Teardrop"><span class="toc-text">Teardrop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Smurf"><span class="toc-text">Smurf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IP-Spoofing"><span class="toc-text">IP Spoofing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Land-Attack"><span class="toc-text">Land Attack</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ICMP-flood"><span class="toc-text">ICMP flood</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Application-level-flood"><span class="toc-text">Application level flood</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%B2%E5%BE%A1%E6%8E%AA%E6%96%BD"><span class="toc-text">防御措施</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            DDoS攻击
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-17T11:42:50.000Z" itemprop="datePublished">2018-09-17</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/DDoS/" rel="tag">DDoS</a>, <a class="article-tag-link" href="/blog/tags/security/" rel="tag">security</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>分布式拒绝服务(DDoS:Distributed Denial of Service)攻击指借助于客户/服务器技术，将多个计算机联合起来作为攻击平台，对一个或多个目标发动 DoS 攻击，从而成倍地提高拒绝服务攻击威力的一种攻击方式。</p>
+<span id="more"></span>
+<h2 id="攻击方式"><a href="#攻击方式" class="headerlink" title="攻击方式"></a>攻击方式</h2><p>DDoS 攻击通过大量的请求占用网络资源，以达到瘫痪网络的目的。 这种攻击方式大致可分为以下几种：</p>
+<ul>
+<li>通过使网络过载来干扰甚至阻断正常的网络通讯</li>
+<li>通过向服务器提交大量请求，使服务器超负荷</li>
+<li>阻断某一用户访问服务器</li>
+<li>阻断某服务与特定系统或个人的通讯</li>
+</ul>
+<p>下面列举一些常见的 DDos/Dos 攻击方式：  </p>
+<h3 id="SYN-flood"><a href="#SYN-flood" class="headerlink" title="SYN flood"></a>SYN flood</h3><p>该攻击以多个随机的源主机地址向意图主机发送 SYN 包，而在收到意图主机的 SYN ACK 后并不回应，这么，意图主机就为这些源主机树立了很多的衔接行列，而且因为没有收到 ACK 一直维护着这些行列，形成了资源的很多耗费而不能向正常请求供给服务。</p>
+<h3 id="ACK-flood"><a href="#ACK-flood" class="headerlink" title="ACK flood"></a>ACK flood</h3><p>ACK Flood 攻击是在 TCP 连接建立之后，所有的数据传输 TCP 报文都是带有 ACK 标志位的，主机在接收到一个带有 ACK 标志位的数据包的时候，需要检查该数据包所表示的连接四元组是否存在，如果存在则检查该数据包所表示的状态是否合法，然后再向应用层传递该数据包。如果在检查中发现该数据包不合法，例如该数据包所指向的目的端口在本机并未开放，则主机操作系统协议栈会回应 RST 包告诉对方此端口不存在。</p>
+<h3 id="UDP-flood"><a href="#UDP-flood" class="headerlink" title="UDP flood"></a>UDP flood</h3><p>如今在 Internet 上 UDP （用户数据包协议）的应用比较广泛，很多提供 WWW 和 Mail 等服务设备通常是使用 Unix 的服务器，它们默认打开一些被黑客恶意利用的 UDP 服务。如 echo 服务会显示接收到的每一个数据包，而原本作为测试功能的 chargen 服务会在收到每一个数据包时随机反馈一些字符。UDP flood 攻击就是利用这两个简单的 TCP/IP 服务的漏洞进行恶意攻击，通过伪造与某一主机的 Chargen 服务之间的一次的 UDP 连接，回复地址指向开着 Echo 服务的一台主机，通过将 Chargen 和 Echo 服务互指，来回传送毫无用处且占满带宽的垃圾数据，在两台主机之间生成足够多的无用数据流，这一拒绝服务攻击飞快地导致网络可用带宽耗尽。</p>
+<h3 id="Ping-of-Death"><a href="#Ping-of-Death" class="headerlink" title="Ping of Death"></a>Ping of Death</h3><p>ICMP(Internet Control Message Protocol，Internet 控制信息协议)在 Internet 上用于错误处理和传递控制信息。最普通的 ping 程序就是这个功能。而在 TCP/IP 的 RFC 文档中对包的最大尺寸都有严格限制规定，许多操作系统的 TCP/IP 协议栈都规定 ICMP 包大小为64KB，且在对包的标题头进行读取之后，要根据该标题头里包含的信息来为有效载荷生成缓冲区。”Ping of Death” 就是故意产生畸形的测试 Ping（Packet Internet Groper）包，声称自己的尺寸超过 ICMP 上限，也就是加载的尺寸超过64KB上限，使未采取保护措施的网络系统出现内存分配错误，导致 TCP/IP 协议栈崩溃，最终接收方宕机。</p>
+<h3 id="Teardrop"><a href="#Teardrop" class="headerlink" title="Teardrop"></a>Teardrop</h3><p>Teardrop 攻击利用在 TCP/IP 协议栈实现中信任 IP 碎片中的包的标题头所包含的信息来实现自己的攻击。IP 分段含有指示该分段所包含的是原包的哪一段的信息，某些 TCP/IP 协议栈（例如 NT 在 servicepack4 以前）在收到含有重叠偏移的伪造分段时将崩溃。</p>
+<h3 id="Smurf"><a href="#Smurf" class="headerlink" title="Smurf"></a>Smurf</h3><p>该攻击向一个子网的广播地址发一个带有特定请求(如 ICMP 回应请求)的包，并且将源地址伪装成想要攻击的主机地址。子网上所有主机都回应广播包请求而向被攻击主机发包，使该主机受到攻击。</p>
+<h3 id="IP-Spoofing"><a href="#IP-Spoofing" class="headerlink" title="IP Spoofing"></a>IP Spoofing</h3><p>IP 欺骗攻击是一种黑客通过向服务端发送虚假的包以欺骗服务器的做法。具体说，就是将包中的源 IP 地址设置为不存在或不合法的值。服务器一旦接受到该包便会返回接受请求包，但实际上这个包永远返回不到来源处的计算机。这种做法使服务器必需开启自己的监听端口不断等待，也就浪费了系统各方面的资源。</p>
+<h3 id="Land-Attack"><a href="#Land-Attack" class="headerlink" title="Land Attack"></a>Land Attack</h3><p>在 Land 攻击中，黑客利用一个特别打造的 SYN 包–它的原地址和目标地址都被设置成某一个服务器地址进行攻击。此举将导致接受服务器向它自己的地址发送 SYN-ACK 消息，结果这个地址又发回 ACK 消息并创建一个空连接，每一个这样的连接都将保留直到超时，在 Land 攻击下，许多 UNIX 将崩溃， NT 变得极其缓慢（大约持续五分钟）。</p>
+<h3 id="ICMP-flood"><a href="#ICMP-flood" class="headerlink" title="ICMP flood"></a>ICMP flood</h3><p>ICMP flood是通过向未良好设置的路由器发送广播信息占用系统资源的做法。</p>
+<h3 id="Application-level-flood"><a href="#Application-level-flood" class="headerlink" title="Application level flood"></a>Application level flood</h3><p>与前面叙说的攻击方式不同，Application level flood 主要是针对应用软件层的，也就是高于OSI的。它同样是以大量消耗系统资源为目的，通过向 IIS 这样的网络服务程序提出无节制的资源申请来迫害正常的网络服务。</p>
+<h2 id="防御措施"><a href="#防御措施" class="headerlink" title="防御措施"></a>防御措施</h2><p>可参考措施如下：  </p>
+<ol>
+<li>采用高性能的网络设备<br>首先要保证网络设备不能成为瓶颈，因此选择路由器、交换机、硬件防火墙等设备的时候要尽量选用知名度高、 口碑好的产品。 再就是假如和网络提供商有特殊关系或协议的话就更好了，当大量攻击发生的时候请他们在网络接点处做一下流量限制来对抗某些种类的 DDoS 攻击是非常有效的。</li>
+<li>尽量避免 NAT 的使用<br>无论是路由器还是硬件防护墙设备要尽量避免采用网络地址转换 NAT 的使用， 因为采用此技术会较大降低网络通信能力，其实原因很简单，因为 NAT 需要对地址来回转换，转换过程中需要对网络包的校验和进行计算，因此浪费了很多 CPU 的时间，但有些时候必须使用 NAT，那就没有好办法了。</li>
+<li>充足的网络带宽保证<br>网络带宽直接决定了能抗受攻击的能力， 假若仅仅有 10M 带宽的话， 无论采取什么措施都很难对抗当今的 SYNFlood 攻击， 至少要选择 100M 的共享带宽，最好的当然是挂在1000M 的主干上了。但需要注意的是，主机上的网卡是 1000M 的并不意味着它的网络带宽就是千兆的， 若把它接在 100M 的交换机上， 它的实际带宽不会超过 100M， 再就是接在 100M 的带宽上也不等于就有了百兆的带宽， 因为网络服务商很可能会在交换机上限制实际带宽为10M，这点一定要搞清楚。</li>
+<li>升级主机服务器硬件<br>在有网络带宽保证的前提下，请尽量提升硬件配置，要有效对抗每秒 10 万个 SYN 攻击包，服务器的配置至少应该为：P4 2.4G/DDR512M/SCSI-HD，起关键作用的主要是 CPU 和内存， 内存一定要选择 DDR 的高速内存， 硬盘要尽量选择 SCSI 的，别只贪 IDE 价格不贵量还足的便宜，否则会付出高昂的性能代价，再就是网卡一定要选用 3COM 或 Intel 等名牌的，若是 Realtek 的还是用在自己的 PC 上吧。</li>
+<li>把网站做成静态页面<br>大量事实证明，把网站尽可能做成静态页面，不仅能大大提高抗攻击能力，而且还给黑客入侵带来不少麻烦，至少到现在为止关于 HTML 的溢出还没出现，新浪、搜狐、网易等门户网站主要都是静态页面， 若你非的需要动态脚本调用， 那就把它弄到另外一台单独主机去，免的遭受攻击时连累主服务器。当然， 适当放一些不做数据库调用脚本还是可以的， 此外，最好在需要调用数据库的脚本中拒绝使用代理的访问， 因为经验表明使用代理访问你网站的80%属于恶意行为。</li>
+</ol>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        前端常用软件与工具 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="集成开发环境集成开发环境（IDE，Integrated Development Environment ）是用于提供程序开发环境的应用程序，一般包括代码编辑器、编译器、调试器和图形用户界面等工具。集成了代码编写功能、分析功能、编译功能、调试功能等一体化的开发软件服务套。所有具备这一特性的软件或者软件套（组）都可以叫集成开发环境。Visual Studio Code官网：https://code.visualstudio.com源代码：https://github.com/microsoft/" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="toc-text">集成开发环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Visual-Studio-Code"><span class="toc-text">Visual Studio Code</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Atom"><span class="toc-text">Atom</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sublime-Text"><span class="toc-text">Sublime Text</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WebStorm"><span class="toc-text">WebStorm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HBuilder"><span class="toc-text">HBuilder</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%AE%A1%E7%90%86%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-text">代码管理客户端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sourcetree"><span class="toc-text">Sourcetree</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Github-Desktop"><span class="toc-text">Github Desktop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sublime-Merge"><span class="toc-text">Sublime Merge</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E8%B0%83%E8%AF%95%E4%BB%A3%E7%90%86"><span class="toc-text">网络调试代理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Charles"><span class="toc-text">Charles</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fiddler"><span class="toc-text">Fiddler</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Whistle"><span class="toc-text">Whistle</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#API-%E8%B0%83%E8%AF%95%E4%B8%8E%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7"><span class="toc-text">API 调试与管理工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Postman"><span class="toc-text">Postman</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hoppscotch"><span class="toc-text">Hoppscotch</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="toc-text">浏览器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E8%BD%AF%E4%BB%B6%E4%B8%8E%E5%B7%A5%E5%85%B7"><span class="toc-text">下载软件与工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Homebrew"><span class="toc-text">Homebrew</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Wget"><span class="toc-text">Wget</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#curl"><span class="toc-text">curl</span></a></li></ol></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            前端常用软件与工具
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2022-01-19T07:51:13.000Z" itemprop="datePublished">2022-01-19</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/front-end/" rel="tag">front-end</a>, <a class="article-tag-link" href="/blog/tags/software/" rel="tag">software</a>, <a class="article-tag-link" href="/blog/tags/tool/" rel="tag">tool</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="集成开发环境"><a href="#集成开发环境" class="headerlink" title="集成开发环境"></a>集成开发环境</h2><p>集成开发环境（IDE，Integrated Development Environment ）是用于提供程序开发环境的应用程序，一般包括代码编辑器、编译器、调试器和图形用户界面等工具。集成了代码编写功能、分析功能、编译功能、调试功能等一体化的开发软件服务套。所有具备这一特性的软件或者软件套（组）都可以叫集成开发环境。</p>
+<span id="more"></span>
+<h3 id="Visual-Studio-Code"><a href="#Visual-Studio-Code" class="headerlink" title="Visual Studio Code"></a>Visual Studio Code</h3><p>官网：https://code.visualstudio.com<br>源代码：https://github.com/microsoft/vscode</p>
+<p>Visual Studio Code（VSCode） 是由 Microsoft 提供的一款开源文本编辑器。它将文本编辑器与开发者常用的 “编辑-构建-调试” 的循环结合了起来，提供了全面的代码编辑、导航、轻量级的代码调试的支持，同时通过丰富的插件支持扩展功能。</p>
+<p>主要功能：</p>
+<ul>
+<li>支持跨平台，提供了 Windows、Linux、macOS 等多个版本</li>
+<li>支持代码高亮 &amp; 自动代码提示</li>
+<li>支持在编辑器调试代码</li>
+<li>支持文件系统浏览器，可以在一个窗口中浏览和打开单个文件、整个项目或多个项目</li>
+<li>内置 Git 命令，支持源代码管理</li>
+<li>集成 zsh/bash 终端</li>
+<li>可以通过插件扩展和定制其它功能</li>
+</ul>
+<h3 id="Atom"><a href="#Atom" class="headerlink" title="Atom"></a>Atom</h3><p>官网：https://atom.io<br>源代码：https://github.com/atom/atom</p>
+<p>Atom 是一款界面简洁优美同时功能十分强大的开源文本编辑器，由 Github 提供支持，基于 Electron 构建，包含了现代编辑器的大部分常用功能，而且支持深度定制。</p>
+<p>主要功能：</p>
+<ul>
+<li>跨平台编辑，OS X、Windows 或 Linux 均可使用</li>
+<li>内置包管理器，支持搜索并安装新包</li>
+<li>文件系统浏览器，可以在一个窗口中浏览和打开单个文件、整个项目或多个项目</li>
+<li>支持代码高亮 &amp; 自动代码提示</li>
+<li>支持全局查找与替换</li>
+<li>支持多窗口跨文件比较与编辑</li>
+<li>支持深色、浅色等多个主题</li>
+<li>通过 teletype 支持多人协同编辑</li>
+<li>集成 Git 与 Github 进行代码管理</li>
+<li>深度定制，可以通过 CSS/Less 调整外观，可以使用 HTML 和 JavaScript 添加额外功能</li>
+</ul>
+<h3 id="Sublime-Text"><a href="#Sublime-Text" class="headerlink" title="Sublime Text"></a>Sublime Text</h3><p>官网：https://www.sublimetext.com</p>
+<p>Sublime Text 是一款快速的，用于编码、标记或写作的文本编辑器。Sublime Text 是收费软件，一次性收费 $99，包含三年的更新支持，由 Sublime HQ Pty Ltd 开发并提供技术支持。</p>
+<p>主要功能：</p>
+<ul>
+<li>支持GPU渲染</li>
+<li>对 Apple Silicon 处理器原生支持，Linux ARM64 版本也可用于 Raspberry Pi 等设备</li>
+<li>支持文件选项卡</li>
+<li>基于上下文支持自动完成提示</li>
+<li>主题和配色方案支持自动暗模式切换</li>
+<li>默认支持 Typescript、JSX、TSX</li>
+<li>支持语法高亮</li>
+</ul>
+<h3 id="WebStorm"><a href="#WebStorm" class="headerlink" title="WebStorm"></a>WebStorm</h3><p>官网：https://www.jetbrains.com/webstorm/</p>
+<p>WebStorm 是一款适用于 Javascript 和相关技术的集成开发环境。WebStorm 由 JetBrains 提供技术支持，个人版 $59/年</p>
+<p>主要功能：</p>
+<ul>
+<li>提供了对 Javascript 相关生态的原生支持</li>
+<li>支持代码补全和代码提示</li>
+<li>支持对 客户端与 Node.js 应用程序进行调试</li>
+<li>支持代码比较和查看提交历史</li>
+<li>内置 HTTP 客户端</li>
+<li>集成 linter</li>
+<li>集成终端</li>
+<li>支持导航和搜索代码</li>
+<li>支持通过 Code With Me 进行协同开发</li>
+<li>支持集成 JetBrains Space 进行代码审查</li>
+<li>支持自定义 UI 与 键盘映射</li>
+<li>支持通过插件市场扩展功能</li>
+</ul>
+<h3 id="HBuilder"><a href="#HBuilder" class="headerlink" title="HBuilder"></a>HBuilder</h3><p>官网：https://www.dcloud.io/hbuilderx.html</p>
+<p>HBuilder 是一款小巧、轻量级的文本编辑器。它只有10M的安装包，功能较少，主要支持 Vue 及小程序相关生态。HBuilder 由 DCloud（数字天堂）提供技术支持，是一款免费软件。</p>
+<p>主要功能：</p>
+<ul>
+<li>对 Vue 生态，小程序生态进行了更好的支持</li>
+<li>支持语法分析，代码提示</li>
+<li>对 markdown 文件进行了原生支持</li>
+<li>提供插件市场支持扩展功能</li>
+</ul>
+<h2 id="代码管理客户端"><a href="#代码管理客户端" class="headerlink" title="代码管理客户端"></a>代码管理客户端</h2><h3 id="Sourcetree"><a href="#Sourcetree" class="headerlink" title="Sourcetree"></a>Sourcetree</h3><p>官网：https://www.sourcetreeapp.com</p>
+<p>Sourcetree 是一款免费的 Git 客户端，支持 Windows 和 Mac 系统。Sourcetree 由 Atlassian 提供技术支持，是免费的，但是需要注册 Atlassian 账户才能使用。</p>
+<p>主要功能：</p>
+<ul>
+<li>支持 Windows &amp; Mac 操作系统</li>
+<li>支持代码分支提交历史可视化</li>
+<li>支持多种 Git 工作流</li>
+<li>Git 大文件支持（Git LFS）</li>
+<li>支持子模块 （Submodules）</li>
+<li>支持远程仓库管理</li>
+<li>支持本地提交搜索</li>
+</ul>
+<h3 id="Github-Desktop"><a href="#Github-Desktop" class="headerlink" title="Github Desktop"></a>Github Desktop</h3><p>官网：https://desktop.github.com<br>源代码：https://github.com/desktop/desktop</p>
+<p>Github Desktop 是由 Github 提供的一款开源 Git 客户端。</p>
+<p>主要功能：</p>
+<ul>
+<li>支持为提交快速地添加共同作者</li>
+<li>检出分支时带推送请求同时可查看持续集成状态</li>
+<li>代码比较时支持语法高亮</li>
+</ul>
+<h3 id="Sublime-Merge"><a href="#Sublime-Merge" class="headerlink" title="Sublime Merge"></a>Sublime Merge</h3><p>官网：https://www.sublimemerge.com</p>
+<p>Sublime Merge 是由 Sublime HQ Pty Ltd 提供的一款跨平台的 Git 客户端。Sublime Merge 是收费软件，一次性收费 $99，包含三年的更新支持。</p>
+<p>主要功能：</p>
+<ul>
+<li>通过 zippy 支持跨平台</li>
+<li>支持语法高亮</li>
+<li>文件对比时可拆行</li>
+<li>支持本地提交搜索</li>
+</ul>
+<h2 id="网络调试代理"><a href="#网络调试代理" class="headerlink" title="网络调试代理"></a>网络调试代理</h2><p>网络调试代理（Web Debugging Proxy）是一类提供了 HTTP 网络代理与调试的工具。</p>
+<h3 id="Charles"><a href="#Charles" class="headerlink" title="Charles"></a>Charles</h3><p>官网：https://www.charlesproxy.com</p>
+<p>Charles 是一个 HTTP 代理/ HTTP 监视器/反向代理，它使开发人员能够查看其计算机与 Internet 之间的所有 HTTP 和 SSL/HTTPS 通信。这包括请求、响应和 HTTP 头（其中包含 cookie 和缓存信息）。Charles 提供了 Windows、macOS 和 Linux版本，由 <a target="_blank" rel="noopener" href="https://www.xk72.com">xk72</a> 开发，售价为 $50。</p>
+<h3 id="Fiddler"><a href="#Fiddler" class="headerlink" title="Fiddler"></a>Fiddler</h3><p>官网：https://www.telerik.com/fiddler</p>
+<p>Fiddler 是一款可以运行在 macOS、Windows、Linux 上的网络调试代理 。Fiddler 由 Progress Software Corporation 开发，采用订阅式收费，售价为 $12/用户/月。</p>
+<h3 id="Whistle"><a href="#Whistle" class="headerlink" title="Whistle"></a>Whistle</h3><p>官网：https://wproxy.org/whistle/<br>源代码：https://github.com/avwo/whistle</p>
+<p>Whistle 是一款基于 Node.js 实现的跨平台开源 web 调试代理工具。主要用于查看、修改 HTTP/HTTPS/Websocket 的请求、响应，也可以作为 HTTP 代理服务器使用。它采用的是类似配置系统 hosts 的方式，一切操作都可以通过配置实现，支持域名、路径、正则表达式、通配符、通配路径等多种匹配方式，且可以通过 Node.js 模块扩展功能。Whistle 由 Tencent 公司的 <a target="_blank" rel="noopener" href="https://github.com/avwo">avenwu</a> 开发。</p>
+<h2 id="API-调试与管理工具"><a href="#API-调试与管理工具" class="headerlink" title="API 调试与管理工具"></a>API 调试与管理工具</h2><h3 id="Postman"><a href="#Postman" class="headerlink" title="Postman"></a>Postman</h3><p>官网：https://postman.com</p>
+<p>Postman 是一个用于构建和使用 API 的 API 平台。Postman 提供了 API 调试和管理的功能。Postman 提供了免费版，也以订阅的形式提供售价不同的高级版本。</p>
+<h3 id="Hoppscotch"><a href="#Hoppscotch" class="headerlink" title="Hoppscotch"></a>Hoppscotch</h3><p>官网：https://hoppscotch.io<br>源代码：https://github.com/hoppscotch/hoppscotch</p>
+<p>Hoppscotch 是一款开源的 API 开发工具，提供轻量级快速的 API 调试功能。</p>
+<h2 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h2><p>浏览器是用来检索、展示以及传递 Web 信息资源的应用程序。</p>
+<table>
+<thead>
+<tr>
+<th>公司</th>
+<th>浏览器</th>
+<th>浏览器内核</th>
+<th>js 引擎</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.microsoft.com/">Microsoft</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/download/internet-explorer.aspx">Internet Exporler(IE)</a> -&gt; <a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/edge">Edge</a></td>
+<td>Trident(MSHTML，IE11-) -&gt; EdgeHTML/MSHTML(Edge)-&gt;Blink（基于WebKit）</td>
+<td>JScript（IE3.0-IE8.0） -&gt; <a target="_blank" rel="noopener" href="https://github.com/chakra-core/ChakraCore">ChakraCore</a>（IE9+之后）-&gt; v8</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.google.com/">Google</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.google.com/intl/zh-CN/chrome/">Chrome</a>/<a target="_blank" rel="noopener" href="https://github.com/chromium/chromium">Chromium</a></td>
+<td>WebKit -&gt; Blink（28.0.1469.0+，基于Webkit）</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/v8/v8">v8</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.apple.com/">Apple</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.apple.com.cn/safari/">Safari</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/WebKit/WebKit">WebKit</a></td>
+<td><a target="_blank" rel="noopener" href="https://trac.webkit.org/wiki/JavaScriptCore">JavaScriptCore</a> -&gt; SquirrelFish（Nitro）</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.mozilla.org/">Mozilla</a></td>
+<td><a target="_blank" rel="noopener" href="http://www.firefox.com.cn/">Firefox</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/mozilla/gecko-dev">Gecko</a></td>
+<td>SpiderMonkey（1.0-3.0）-&gt; TraceMonkey（3.5-3.6）-&gt; JägerMonkey（4.0-）-&gt; IonMonkey (18.0+) -&gt; OdinMonkey（22.0+）</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.opera.com/">Opera</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.opera.com/zh-cn">Opera</a></td>
+<td>Elektra(4-6) -&gt; Presto(7.0-12.18) -&gt; WebKit -&gt; Blink（基于Webkit）</td>
+<td>Linear A（4.0-6.1）-&gt; Linear B（7.0-9.2）-&gt; Futhark（9.5-10.2）-&gt; Carakan（10.5-）-&gt; V8</td>
+</tr>
+</tbody>
+</table>
+<h2 id="下载软件与工具"><a href="#下载软件与工具" class="headerlink" title="下载软件与工具"></a>下载软件与工具</h2><p>下载软件与工具是用来下载和管理软件包的应用程序。</p>
+<h3 id="Homebrew"><a href="#Homebrew" class="headerlink" title="Homebrew"></a>Homebrew</h3><p>官网：https://brew.sh<br>源代码：https://github.com/Homebrew/brew</p>
+<p>Homebrew 是一款 macOS/Linux 环境下的包管理工具。通过 Homebrew 可以轻松的通过命令行管理（包括安装、卸载、更新、搜索、查看）软件包，Homebrew 会将软件包安装在特定的目录下从而将软件包与系统尽量的隔离。</p>
+<h3 id="Wget"><a href="#Wget" class="headerlink" title="Wget"></a>Wget</h3><p>官网：https://www.gnu.org/software/wget<br>源代码：https://github.com/mirror/wget</p>
+<p>GNU Wget 是一个免费的非交互式的实用程序，用于从网络下载文件。它支持 HTTP、HTTPS、FTP、FTPS 协议。Wget 属于 GNU 项目的一部分，采用 GPL 协议分发。</p>
+<h3 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h3><p>官网：https://curl.se<br>源代码：https://github.com/curl/curl</p>
+<p>curl 是一个命令行工具，用于通过 URL 来传输数据。curl 支持 HTTP、HTTPS、FTP、FTPS 等众多协议。curl 已经在 macOS、Windows10 等系统中预先安装，可以直接使用。curl 采用 MIT 协议分发。</p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

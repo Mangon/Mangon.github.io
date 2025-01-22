@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        限制并发数量的多请求执行 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="在项目中，我们经常会遇到同时发送多个HTTP请求的情况，对于同域名的请求，浏览器会限制同时发起的请求数量，当超过浏览器并发请求限制时，超过的请求将会等待，直到有请求返回时才会进行下一次请求。这是浏览器的一种保护机制，为了防止通过浏览器发起过量的请求，耗尽资源。在小程序中也会有同样的机制，例如，微信小程序中说明 wx.request 的最大并发限制是 10 个，wx.connectSocket 的最大并发限制是 5 个（参见 微信小程序官方文档-基础能力/网络/使用说明-网络-3.网络请求-使用限" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <div class="author-meta">
+                
+                <div class="author-avatar">
+                    <a href="/blog/">
+                        <img src="/blog/images/avatar.jpeg" title="Mangon">
+                    </a>
+                </div>
+                
+                <div class="author-name">Mangon</div>
+                <div class="author-work">前端开发工程师</div>
+                <div class="author-location">
+                    <i class="icon-location vm"></i>
+                    <span class="vm">中国北京</span>
+                </div>
+                
+                <div class="author-thread-wrap">
+                    <div class="author-threads clearfix">
+                        
+                            <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
+                        
+                        
+                        
+                            <a class="thread-item" href="https://mangon.cn/blog/atom.xml" target="_blank" rel="external noopener noreferrer"><i class="icon-favorite"></i></a>
+                        
+                        
+                            <a class="thread-item" href="https://mangon.cn/resume" target="_blank" rel="external noopener noreferrer"><i class="icon-circle-more"></i></a>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            限制并发数量的多请求执行
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2023-02-09T09:19:03.000Z" itemprop="datePublished">2023-02-09</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/front-end/" rel="tag">front-end</a>, <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>在项目中，我们经常会遇到同时发送多个HTTP请求的情况，对于同域名的请求，浏览器会限制同时发起的请求数量，当超过浏览器并发请求限制时，超过的请求将会等待，直到有请求返回时才会进行下一次请求。这是浏览器的一种保护机制，为了防止通过浏览器发起过量的请求，耗尽资源。在小程序中也会有同样的机制，例如，微信小程序中说明 <code>wx.request</code> 的最大并发限制是 10 个，<code>wx.connectSocket</code> 的最大并发限制是 5 个（参见 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/ability/network.html">微信小程序官方文档-基础能力/网络/使用说明-网络-3.网络请求-使用限制</a> ），但是这里有个BUG，在小程序中如果并发请求超过10个，并不会等待而是直接失败，所以实际上需要用户自己处理并发请求数，在超过10个时，请求需要在队列中等待而不是直接失败。</p>
+<span id="more"></span>
+<p>假如我们的请求方法 <code>request</code> 形如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">request</span>(<span class="params">options</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`<span class="subst">$&#123;options&#125;</span> is start`</span>)</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`<span class="subst">$&#123;options&#125;</span> is finished`</span>)</span><br><span class="line">            <span class="title function_">resolve</span>(&#123; <span class="attr">data</span>: options &#125;);</span><br><span class="line">        &#125;, <span class="number">3000</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>request</code> 是一个通用的请求方法，它接受请求的参数，返回请求的 Promise，其中 options 是形如 <code>&#123;url: &#39;&#39;, method: &#39;GET&#39;, params: &#123;&#125;&#125;</code> 的请求相关参数对象。</p>
+<p>在业务中，我们会通过 <code>fetch</code> 方法获取请求内容并处理请求结果：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fetch</span>(<span class="params">options</span>) =&gt; &#123;</span><br><span class="line">    <span class="title function_">request</span>(options).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// do something</span></span><br><span class="line">    &#125;).<span class="title function_">catch</span>(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// do something</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>fetch</code> 是一个和业务相关的请求方法，它接受请求的参数，对请求的结果进行处理。</p>
+<p>当发起多个并行请求时，最简单直接的方法就是使用 <code>Promise.all</code>:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 多请求并行执行</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">parallelRequest</span>(<span class="params">optionsList</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">all</span>(optionsList.<span class="title function_">map</span>(<span class="function"><span class="params">options</span> =&gt;</span> <span class="title function_">request</span>(options)));</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">parallelRequest</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]).<span class="title function_">then</span>(<span class="variable language_">console</span>.<span class="property">log</span>);</span><br></pre></td></tr></table></figure>
+<p>如果需要请求串行发送，可以通过 <code>async/await</code> 的方式等待前一个请求返回后再发起下一个请求:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 多请求串行执行</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">serialRequest</span>(<span class="params">optionsList</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> res = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; optionsList.<span class="property">length</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> result = <span class="keyword">await</span> <span class="title function_">request</span>(optionsList[i]);</span><br><span class="line">        res.<span class="title function_">push</span>(result);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(res);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">serialRequest</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]).<span class="title function_">then</span>(<span class="variable language_">console</span>.<span class="property">log</span>);</span><br></pre></td></tr></table></figure>
+<p>串行是可以避免超过10个请求后，再次发送请求失败的问题，但是没有充分利用并行发送的数量，更好的方式是通过参数限制并发请求数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 限制并发数量的多请求执行</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">multiRequest</span>(<span class="params">optionsList = [], maxNum</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> len = optionsList.<span class="property">length</span>;</span><br><span class="line">    <span class="keyword">const</span> result = <span class="keyword">new</span> <span class="title class_">Array</span>(len).<span class="title function_">fill</span>(<span class="literal">false</span>);</span><br><span class="line">    <span class="keyword">let</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">while</span> (count &lt; maxNum) &#123;</span><br><span class="line">            <span class="title function_">next</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">function</span> <span class="title function_">next</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="keyword">let</span> current = count++;</span><br><span class="line">            <span class="keyword">if</span> (current &gt;= len) &#123;</span><br><span class="line">                !result.<span class="title function_">includes</span>(<span class="literal">false</span>) &amp;&amp; <span class="title function_">resolve</span>(result);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">const</span> options = optionsList[current];</span><br><span class="line">            <span class="title function_">request</span>(options)</span><br><span class="line">                .<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">                    result[current] = res;</span><br><span class="line">                    <span class="keyword">if</span> (current &lt; len) &#123;</span><br><span class="line">                        <span class="title function_">next</span>();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;).<span class="title function_">catch</span>(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">                    result[current] = err;</span><br><span class="line">                    <span class="keyword">if</span> (current &lt; len) &#123;</span><br><span class="line">                        <span class="title function_">next</span>();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">multiRequest</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>], <span class="number">3</span>).<span class="title function_">then</span>(<span class="variable language_">console</span>.<span class="property">log</span>);</span><br></pre></td></tr></table></figure>
+<p>实际业务场景中，我们并不会在一个地方同时发起多个请求，而是在不同的地方发起请求，所以限制并发数量的的 request 方法应该是一个工具函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 提供给第三方使用的 request 方法，内部实现支持限制并发数量的请求</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LimitRequest</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">limit</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">limit</span> = limit; <span class="comment">// 并发请求限制数量</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">tasks</span> = []; <span class="comment">// 请求等待队列</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">current</span> = <span class="number">0</span>; <span class="comment">// 当前并发请求数量</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">addRequest</span>(<span class="params">reqFn</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!reqFn || !(reqFn <span class="keyword">instanceof</span> <span class="title class_">Function</span>)) &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;当前请求不是一个Function&#x27;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">tasks</span>.<span class="title function_">push</span>(reqFn);</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">current</span> &lt; <span class="variable language_">this</span>.<span class="property">limit</span>) &#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="title function_">run</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">async</span> <span class="title function_">run</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="property">current</span>++;</span><br><span class="line">            <span class="keyword">const</span> fn = <span class="variable language_">this</span>.<span class="property">tasks</span>.<span class="title function_">shift</span>();</span><br><span class="line">            <span class="keyword">await</span> <span class="title function_">fn</span>();</span><br><span class="line">        &#125; <span class="keyword">catch</span>(err) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(err);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="property">current</span>--;</span><br><span class="line">            <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">tasks</span>.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="title function_">run</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> limitRequest = <span class="keyword">new</span> <span class="title class_">LimitRequest</span>(<span class="number">3</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++) &#123;</span><br><span class="line">    limitRequest.<span class="title function_">addRequest</span>(fetch.<span class="title function_">bind</span>(<span class="literal">null</span>, i));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意上面用的是 fetch 方法，当需要发送请求时，需要确定请求返回后的处理逻辑，将整体的方法写成 fetch 方法，并通过 <code>addRequest</code> 添加到并行的队列中去。</p>
+<p>我们也可以优化一下，使用 request 方法，这样可以在请求时不必确定返回后的逻辑，将 <em>请求</em> 这个动作与业务分离：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">LimitRequest</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">limit</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">limit</span> = limit; <span class="comment">// 并发限制数量</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">tasks</span> = []; <span class="comment">// 等待的请求队列</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">current</span> = <span class="number">0</span>;  <span class="comment">// 当前进行中的请求数量</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">request</span>(<span class="params">options</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> reqFn = request.<span class="title function_">bind</span>(<span class="literal">null</span>, options);</span><br><span class="line">            <span class="variable language_">this</span>.<span class="property">tasks</span>.<span class="title function_">push</span>([reqFn, resolve, reject]);</span><br><span class="line">            <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">current</span> &lt; <span class="variable language_">this</span>.<span class="property">limit</span>) &#123;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="title function_">run</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">async</span> <span class="title function_">run</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="property">current</span>++;</span><br><span class="line">            <span class="keyword">const</span> [fn, resolve, reject] = <span class="variable language_">this</span>.<span class="property">tasks</span>.<span class="title function_">shift</span>();</span><br><span class="line">            <span class="keyword">await</span> <span class="title function_">fn</span>().<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="title function_">resolve</span>(res);</span><br><span class="line">            &#125;).<span class="title function_">catch</span>(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="title function_">reject</span>(err);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125; <span class="keyword">catch</span>(err) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(err);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="property">current</span>--;</span><br><span class="line">            <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">tasks</span>.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="title function_">run</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> limitRequest = <span class="keyword">new</span> <span class="title class_">LimitRequest</span>(<span class="number">3</span>);</span><br><span class="line"><span class="keyword">let</span> newRequest = limitRequest.<span class="property">request</span>.<span class="title function_">bind</span>(limitRequest);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="title function_">newRequest</span>(i).<span class="title function_">then</span>(<span class="variable language_">console</span>.<span class="property">log</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>作为 utils 方法，可以这样写：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> limit = <span class="number">3</span>; <span class="comment">// 并发限制数量</span></span><br><span class="line"><span class="keyword">let</span> tasks = []; <span class="comment">// 等待的请求队列</span></span><br><span class="line"><span class="keyword">let</span> current = <span class="number">0</span>;  <span class="comment">// 当前进行中的请求数量</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">limitRequest</span>(<span class="params">options</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> reqFn = request.<span class="title function_">bind</span>(<span class="literal">null</span>, options);</span><br><span class="line">        tasks.<span class="title function_">push</span>([reqFn, resolve, reject]);</span><br><span class="line">        <span class="keyword">if</span> (current &lt; limit) &#123;</span><br><span class="line">            <span class="title function_">run</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">setLimit</span>(<span class="params">num</span>) &#123;</span><br><span class="line">    limit = num;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">run</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        current++;</span><br><span class="line">        <span class="keyword">const</span> [fn, resolve, reject] = <span class="variable language_">this</span>.<span class="property">tasks</span>.<span class="title function_">shift</span>();</span><br><span class="line">        <span class="keyword">await</span> <span class="title function_">fn</span>().<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="title function_">resolve</span>(res);</span><br><span class="line">        &#125;).<span class="title function_">catch</span>(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="title function_">reject</span>(err);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125; <span class="keyword">catch</span>(err) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(err);</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        current--;</span><br><span class="line">        <span class="keyword">if</span> (tasks.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="title function_">run</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="title function_">limitRequest</span>(i).<span class="title function_">then</span>(<span class="variable language_">console</span>.<span class="property">log</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

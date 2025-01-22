@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        排序算法的javascript实现 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="时间空间复杂度排序是算法中最经典的问题，以下表格对插入排序、冒泡排序、选择排序、希尔排序、快速排序、归并排序这几种排序进行了比较。  排序算法平均时间复杂度最坏时间复杂度空间复杂度是否稳定插入排序O（n2）O（n2）O（1）是冒泡排序O（n2）O（n2）O（1）是选择排序O（n2）O（n2）O（1）不是希尔排序O(nlogn)O（n2）O（1）不是快速排序O(nlogn)O（n2）O（logn）不是归" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-text">时间空间复杂度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F-Insertion-Sort"><span class="toc-text">插入排序 Insertion Sort</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F-Bubble-Sort"><span class="toc-text">冒泡排序 Bubble Sort</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F-Selection-Sort"><span class="toc-text">选择排序 Selection Sort</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F-Shell-Sort"><span class="toc-text">希尔排序 Shell Sort</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-Quick-Sort"><span class="toc-text">快速排序 Quick Sort</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F-Merge-Sort"><span class="toc-text">归并排序 Merge Sort</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js-%E4%B8%AD-Array-prototype-sort-%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">js 中 Array.prototype.sort 的实现</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            排序算法的javascript实现
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-01T15:19:21.000Z" itemprop="datePublished">2018-09-01</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/algorithm/" rel="tag">algorithm</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="时间空间复杂度"><a href="#时间空间复杂度" class="headerlink" title="时间空间复杂度"></a>时间空间复杂度</h2><p>排序是算法中最经典的问题，以下表格对插入排序、冒泡排序、选择排序、希尔排序、快速排序、归并排序这几种排序进行了比较。  </p>
+<table>
+<thead>
+<tr>
+<th>排序算法</th>
+<th>平均时间复杂度</th>
+<th>最坏时间复杂度</th>
+<th>空间复杂度</th>
+<th>是否稳定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>插入排序</td>
+<td>O（n2）</td>
+<td>O（n2）</td>
+<td>O（1）</td>
+<td>是</td>
+</tr>
+<tr>
+<td>冒泡排序</td>
+<td>O（n2）</td>
+<td>O（n2）</td>
+<td>O（1）</td>
+<td>是</td>
+</tr>
+<tr>
+<td>选择排序</td>
+<td>O（n2）</td>
+<td>O（n2）</td>
+<td>O（1）</td>
+<td>不是</td>
+</tr>
+<tr>
+<td>希尔排序</td>
+<td>O(nlogn)</td>
+<td>O（n2）</td>
+<td>O（1）</td>
+<td>不是</td>
+</tr>
+<tr>
+<td>快速排序</td>
+<td>O(nlogn)</td>
+<td>O（n2）</td>
+<td>O（logn）</td>
+<td>不是</td>
+</tr>
+<tr>
+<td>归并排序</td>
+<td>O(nlogn)</td>
+<td>O(nlogn)</td>
+<td>O（n）</td>
+<td>是</td>
+</tr>
+</tbody>
+</table>
+<span id="more"></span>
+<p>下面是具体的javascript实现：  </p>
+<h2 id="插入排序-Insertion-Sort"><a href="#插入排序-Insertion-Sort" class="headerlink" title="插入排序 Insertion Sort"></a>插入排序 Insertion Sort</h2><p>插入排序，一般也被称为直接插入排序。对于少量元素的排序，它是一个有效的算法。它的基本思想是将一个记录插入到已经排好序的有序表中，从而一个形成一个新的、记录数增1的有序表。  </p>
+<p>插入排序还有升级版-二分插入排序（Binary Sort)。即数据在试图找到自己在前面已排序的部分中的位置时，用比较高效的二分查找。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> insertSort = <span class="keyword">function</span> (<span class="params">arr</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> len = arr.<span class="property">length</span>, key;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">var</span> j = i;</span><br><span class="line">            key = arr[j];</span><br><span class="line">            <span class="keyword">while</span> (--j &gt; -<span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (arr[j] &gt; key) &#123;</span><br><span class="line">                    arr[j + <span class="number">1</span>] = arr[j];</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            arr[j + <span class="number">1</span>] = key;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="冒泡排序-Bubble-Sort"><a href="#冒泡排序-Bubble-Sort" class="headerlink" title="冒泡排序 Bubble Sort"></a>冒泡排序 Bubble Sort</h2><p>重复地走访过要排序的元素列，依次比较两个相邻的元素，如果顺序错误就把他们交换过来。  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bubbleSort = <span class="keyword">function</span> (<span class="params">arr</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> flag = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">var</span> len = arr.<span class="property">length</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        flag = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; len - <span class="number">1</span> - i; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">var</span> temp = arr[j + <span class="number">1</span>];</span><br><span class="line">                arr[j + <span class="number">1</span>] = arr[j];</span><br><span class="line">                arr[j] = temp;</span><br><span class="line">                flag = <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="选择排序-Selection-Sort"><a href="#选择排序-Selection-Sort" class="headerlink" title="选择排序 Selection Sort"></a>选择排序 Selection Sort</h2><p>第一次从待排序的数据元素中选出最小（或最大）的一个元素，存放在序列的起始位置，然后再从剩余的未排序元素中寻找到最小（大）元素，然后放到已排序的序列的末尾。以此类推，直到全部待排序的数据元素的个数为零。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> selectSort = <span class="keyword">function</span> (<span class="params">arr</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> min;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.<span class="property">length</span> - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        min = i;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> j = i + <span class="number">1</span>; j &lt; arr.<span class="property">length</span>; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[min] &gt; arr[j]) &#123;</span><br><span class="line">                min = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (i != min) &#123;</span><br><span class="line">            <span class="title function_">swap</span>(arr, i, min);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">swap</span>(<span class="params">arr, index1, index2</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> temp = arr[index1];</span><br><span class="line">    arr[index1] = arr[index2];</span><br><span class="line">    arr[index2] = temp;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="希尔排序-Shell-Sort"><a href="#希尔排序-Shell-Sort" class="headerlink" title="希尔排序 Shell Sort"></a>希尔排序 Shell Sort</h2><p>希尔排序是把记录按下标的一定增量分组，对每组使用直接插入排序算法排序；随着增量逐渐减少，每组包含的关键词越来越多，当增量减至 1 时，整个文件恰被分成一组，算法便终止  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> shellSort = <span class="keyword">function</span> (<span class="params">arr</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> gaps = [<span class="number">5</span>, <span class="number">3</span>, <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> g = <span class="number">0</span>; g &lt; gaps.<span class="property">length</span>; ++g) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = gaps[g]; i &lt; arr.<span class="property">length</span>; ++i) &#123;</span><br><span class="line">            <span class="keyword">var</span> temp = arr[i];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">var</span> j = i; j &gt;= gaps[g] &amp;&amp; arr[j - gaps[g]] &gt; temp; j -= gaps[g])&#123;</span><br><span class="line">                arr[j] = arr[j - gaps[g]];</span><br><span class="line">            &#125;</span><br><span class="line">            arr[j] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="快速排序-Quick-Sort"><a href="#快速排序-Quick-Sort" class="headerlink" title="快速排序 Quick Sort"></a>快速排序 Quick Sort</h2><p>通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> quickSort = <span class="keyword">function</span>(<span class="params">arr, left, right</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> i, j, t, pivot;</span><br><span class="line">    <span class="keyword">if</span> (left &gt;= right) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    pivot = arr[left];</span><br><span class="line">    i = left;</span><br><span class="line">    j = right;</span><br><span class="line">    <span class="keyword">while</span> (i != j) &#123;</span><br><span class="line">        <span class="keyword">while</span> (arr[j] &gt;= pivot &amp;&amp; i &lt; j) &#123;</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (arr[i] &lt;= pivot &amp;&amp; i &lt; j) &#123;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; j) &#123;</span><br><span class="line">            t = arr[i];</span><br><span class="line">            arr[i] = arr[j];</span><br><span class="line">            arr[j] = t;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    arr[left] = arr[j];</span><br><span class="line">    arr[j] = pivot;</span><br><span class="line">    <span class="title function_">quickSort</span>(arr, left, i - <span class="number">1</span>);</span><br><span class="line">    <span class="title function_">quickSort</span>(arr, i + <span class="number">1</span>, right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="归并排序-Merge-Sort"><a href="#归并排序-Merge-Sort" class="headerlink" title="归并排序 Merge Sort"></a>归并排序 Merge Sort</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">mergeSort</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (arr.<span class="property">length</span> &lt; <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> step = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">var</span> left, right;</span><br><span class="line">    <span class="keyword">while</span> (step &lt; arr.<span class="property">length</span>) &#123;</span><br><span class="line">        left = <span class="number">0</span>;</span><br><span class="line">        right = step;</span><br><span class="line">        <span class="keyword">while</span> (right + step &lt;= arr.<span class="property">length</span>) &#123;</span><br><span class="line">            <span class="title function_">mergeArrays</span>(arr, left, left + step, right, right + step);</span><br><span class="line">            left = right + step;</span><br><span class="line">            right = left + step;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (right &lt; arr.<span class="property">length</span>) &#123;</span><br><span class="line">            <span class="title function_">mergeArrays</span>(arr, left, left + step, right, arr.<span class="property">length</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        step *= <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">mergeArrays</span>(<span class="params">arr, startLeft, stopLeft, startRight, stopRight</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> rightArr = <span class="keyword">new</span> <span class="title class_">Array</span>(stopRight - startRight + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">var</span> leftArr = <span class="keyword">new</span> <span class="title class_">Array</span>(stopLeft - startLeft + <span class="number">1</span>);</span><br><span class="line">    k = startRight;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; (rightArr.<span class="property">length</span> - <span class="number">1</span>); ++i) &#123;</span><br><span class="line">        rightArr[i] = arr[k];</span><br><span class="line">        ++k;</span><br><span class="line">    &#125;</span><br><span class="line">    k = startLeft;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; (leftArr.<span class="property">length</span> - <span class="number">1</span>); ++i) &#123;</span><br><span class="line">        leftArr[i] = arr[k];</span><br><span class="line">        ++k;</span><br><span class="line">    &#125;</span><br><span class="line">    rightArr[rightArr.<span class="property">length</span> - <span class="number">1</span>] = <span class="title class_">Infinity</span>; <span class="comment">// 哨兵值</span></span><br><span class="line">    leftArr[leftArr.<span class="property">length</span> - <span class="number">1</span>] = <span class="title class_">Infinity</span>; <span class="comment">// 哨兵值</span></span><br><span class="line">    <span class="keyword">var</span> m = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> n = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> k = startLeft; k &lt; stopRight; ++k) &#123;</span><br><span class="line">        <span class="keyword">if</span> (leftArr[m] &lt;= rightArr[n]) &#123;</span><br><span class="line">            arr[k] = leftArr[m];</span><br><span class="line">            m++;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            arr[k] = rightArr[n];</span><br><span class="line">            n++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="js-中-Array-prototype-sort-的实现"><a href="#js-中-Array-prototype-sort-的实现" class="headerlink" title="js 中 Array.prototype.sort 的实现"></a>js 中 Array.prototype.sort 的实现</h2><p>ECMAScript没有定义使用哪种排序算法，甚至没有规定排序的稳定性，各个浏览器的实现方式也会有所不同。<br>具体到浏览器中，<br>Mozilla/Firefox : 归并排序<br>V8 ：数组长度小于等于 22 的用二分插入排序，其它的用快速排序（<a target="_blank" rel="noopener" href="https://github.com/v8/v8/blob/master/test/mjsunit/array-sort.js">array.js test 源码</a>），数组长度大于1000时会 调用 <code>GetThirdIndex</code> 获取更接近中位值的 <code>pivot</code></p>
+<p>见下面注释</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// Quicksort is used for arrays which length &gt; 22</span><br><span class="line">// Arrays which length &gt; 1000 guarantee GetThirdIndex is executed</span><br></pre></td></tr></table></figure>
+<p>更新于 20210419，v8的排序算法已变更为 tim-sort  </p>
+<p>(array-sort.js源码)[https://github.com/v8/v8/blob/master/third_party/v8/builtins/array-sort.tq]</p>
+<p>Tim Sort采用分治的思想，分组进行二分插入排序，再用归并排序合并。  </p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        Vue最佳实践 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="使用 vue 周边vue-devtools浏览器插件，让你能够实时编辑数据 property 并立即看到其反映出来的变化。另一个主要的好处是能够为 Vuex 提供时间旅行式的调试体验。  vue-performance-devtool一个用于检查vue组件性能的浏览器插件。  vue-clivue-cli 是 vue 开发的标准工具，提供了交互式的项目脚手架，集成了 webpack 和丰富的官方插件集合。vue-routervue 官方路由管理器，支持嵌套的路由/视图表以及模块化的" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-vue-%E5%91%A8%E8%BE%B9"><span class="toc-text">使用 vue 周边</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">数据初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81-props-%E5%B1%9E%E6%80%A7"><span class="toc-text">验证 props 属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E9%97%B4%E9%80%9A%E4%BF%A1-amp-%E5%BA%94%E7%94%A8%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86"><span class="toc-text">组件间通信 &amp; 应用状态管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%88%86%E5%89%B2-Code-Splitting"><span class="toc-text">代码分割 - Code Splitting</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-mixin-%E6%89%A9%E5%B1%95%E7%BB%84%E4%BB%B6%E5%8A%9F%E8%83%BD"><span class="toc-text">使用 mixin 扩展组件功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E4%B8%8A-vue-%E8%87%AA%E5%B8%A6%E7%9A%84%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-text">使用上 vue 自带的修饰符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8-beforeDestroy-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%94%80%E6%AF%81%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="toc-text">在 beforeDestroy 生命周期销毁定时器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E7%BB%84%E4%BB%B6%E6%A0%B7%E5%BC%8F%E8%AE%BE%E7%BD%AE%E4%BD%9C%E7%94%A8%E5%9F%9F-scope"><span class="toc-text">为组件样式设置作用域 scope</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A7%8B%E7%BB%88%E4%B8%BA%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93%E6%8F%90%E4%BE%9B%E5%94%AF%E4%B8%80%E7%9A%84key%E5%80%BC"><span class="toc-text">始终为列表渲染提供唯一的key值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-keepAlive-%E7%BB%84%E4%BB%B6%E4%BB%A5%E8%8E%B7%E5%BE%97%E6%9B%B4%E5%A5%BD%E7%9A%84%E6%80%A7%E8%83%BD"><span class="toc-text">使用 keepAlive 组件以获得更好的性能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E7%9B%B4%E6%8E%A5%E4%BF%AE%E6%94%B9-DOM"><span class="toc-text">避免直接修改 DOM</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            Vue最佳实践
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-04-23T18:20:26.000Z" itemprop="datePublished">2021-04-24</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/vue/" rel="tag">vue</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="使用-vue-周边"><a href="#使用-vue-周边" class="headerlink" title="使用 vue 周边"></a>使用 vue 周边</h2><p><a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-devtools">vue-devtools</a></p>
+<p>浏览器插件，让你能够实时编辑数据 property 并立即看到其反映出来的变化。另一个主要的好处是能够为 Vuex 提供时间旅行式的调试体验。  </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/vue-perf-devtool/vue-perf-devtool">vue-performance-devtool</a></p>
+<p>一个用于检查vue组件性能的浏览器插件。  </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-cli/">vue-cli</a></p>
+<p>vue-cli 是 vue 开发的标准工具，提供了交互式的项目脚手架，集成了 webpack 和丰富的官方插件集合。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-router">vue-router</a></p>
+<p>vue 官方路由管理器，支持嵌套的路由/视图表以及模块化的、基于组件的路由配置。  </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/vuejs/vuex">vuex</a></p>
+<p>Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。  </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/axios/axios">axios</a></p>
+<p>Axios是一款 promise 化的HTTP客户端，支持在浏览器和 Nodejs 环境中使用。  </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/ElemeFE/element">element-ui</a></p>
+<p>elementUI 是一款基于 Vue 2.0 桌面端中后台组件库。  </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/iview/iview">iview</a></p>
+<p>iview 是一套基于 Vue 的高质量 UI 组件库，主要服务于 PC 界面的中后台产品。  </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/vueComponent/ant-design-vue">Ant Design Vue</a></p>
+<p>Ant Design Vue 是 Ant Design 的 Vue 实现，开发和服务于企业级后台产品。  </p>
+<span id="more"></span>
+<h2 id="数据初始化"><a href="#数据初始化" class="headerlink" title="数据初始化"></a>数据初始化</h2><p>明确定义的数据模型更加适合 Vue 的数据观察模式。建议在定义组件时，在 data 选项中初始化所有需要进行动态观察的属性。  </p>
+<h2 id="验证-props-属性"><a href="#验证-props-属性" class="headerlink" title="验证 props 属性"></a>验证 props 属性</h2><p>在声明 props 属性时明确 props 的类型(type)，是否必须(required)和默认值(default) 或通过 validator 方法进行验证，如果有一个需求没有被满足，则 Vue 会在开发环境中的浏览器控制台中警告你。</p>
+<h2 id="组件间通信-amp-应用状态管理"><a href="#组件间通信-amp-应用状态管理" class="headerlink" title="组件间通信 &amp; 应用状态管理"></a>组件间通信 &amp; 应用状态管理</h2><p>在跨父子组件进行通信时，可以使用 <a href="/blog/2018/10/12/Vue-组件间通信/#Event-Bus-中央事件总栈-emit-on">Event Bus 模式</a> 或者使用 <a target="_blank" rel="noopener" href="https://vuex.vuejs.org/zh/">Vuex</a></p>
+<h2 id="代码分割-Code-Splitting"><a href="#代码分割-Code-Splitting" class="headerlink" title="代码分割 - Code Splitting"></a>代码分割 - Code Splitting</h2><ul>
+<li>分离业务代码和第三方库</li>
+<li>避免将所有组件都注册为全局组件，按需加载</li>
+</ul>
+<h2 id="使用-mixin-扩展组件功能"><a href="#使用-mixin-扩展组件功能" class="headerlink" title="使用 mixin 扩展组件功能"></a>使用 mixin 扩展组件功能</h2><p>混入 (mixin) 提供了一种非常灵活的方式，来分发 Vue 组件中的可复用功能。一个混入对象可以包含任意组件选项。当组件使用混入对象时，所有混入对象的选项将被“混合”进入该组件本身的选项。混入可以大大提升代码的可复用性。</p>
+<h2 id="使用上-vue-自带的修饰符"><a href="#使用上-vue-自带的修饰符" class="headerlink" title="使用上 vue 自带的修饰符"></a>使用上 vue 自带的修饰符</h2><p>在 v-on 绑定的事件处理程序中使用事件/按键/系统修饰符可以减少代码量。</p>
+<h2 id="在-beforeDestroy-生命周期销毁定时器"><a href="#在-beforeDestroy-生命周期销毁定时器" class="headerlink" title="在 beforeDestroy 生命周期销毁定时器"></a>在 beforeDestroy 生命周期销毁定时器</h2><p>在 beforeDestroy 生命周期销毁定时器以减少对性能的消耗。</p>
+<h2 id="为组件样式设置作用域-scope"><a href="#为组件样式设置作用域-scope" class="headerlink" title="为组件样式设置作用域 scope"></a>为组件样式设置作用域 scope</h2><ul>
+<li>使用 reset.css 统一浏览器样式</li>
+<li>在设置组件样式时使用 css scoped 以减少对同名样式之间互相影响。</li>
+</ul>
+<h2 id="始终为列表渲染提供唯一的key值"><a href="#始终为列表渲染提供唯一的key值" class="headerlink" title="始终为列表渲染提供唯一的key值"></a>始终为列表渲染提供唯一的key值</h2><p>为了给 Vue 一个提示，以便它能跟踪每个节点的身份，从而重用和重新排序现有元素，你需要为每项提供一个唯一 key attribute。建议尽可能在使用 v-for 时提供 key attribute，除非遍历输出的 DOM 内容非常简单，或者是刻意依赖默认行为以获取性能上的提升。</p>
+<h2 id="使用-keepAlive-组件以获得更好的性能"><a href="#使用-keepAlive-组件以获得更好的性能" class="headerlink" title="使用 keepAlive 组件以获得更好的性能"></a>使用 keepAlive 组件以获得更好的性能</h2><p>在动态组件上使用 keep-alive，当这些组件之间互相切换的时候，keep-alive 会想保持这些组件的状态，以避免反复重渲染导致的性能问题。</p>
+<h2 id="避免直接修改-DOM"><a href="#避免直接修改-DOM" class="headerlink" title="避免直接修改 DOM"></a>避免直接修改 DOM</h2><p>Vue 采用了 mvvm 的模型设计，支持数据与模板之间的数据监听与模板渲染，直接操作 DOM 打破了框架的设计模式，除非有十分明确的需求，否则最好通过驱动数据变动来影响视图变化。</p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        标签: algorithm | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="Mangon&#39;s Technology Blog" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+
+        
+            <div class="author-meta">
+                
+                <div class="author-avatar">
+                    <a href="/blog/">
+                        <img src="/blog/images/avatar.jpeg" title="Mangon">
+                    </a>
+                </div>
+                
+                <div class="author-name">Mangon</div>
+                <div class="author-work">前端开发工程师</div>
+                <div class="author-location">
+                    <i class="icon-location vm"></i>
+                    <span class="vm">中国北京</span>
+                </div>
+                
+                <div class="author-thread-wrap">
+                    <div class="author-threads clearfix">
+                        
+                            <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
+                        
+                        
+                        
+                            <a class="thread-item" href="https://mangon.cn/blog/atom.xml" target="_blank" rel="external noopener noreferrer"><i class="icon-favorite"></i></a>
+                        
+                        
+                            <a class="thread-item" href="https://mangon.cn/resume" target="_blank" rel="external noopener noreferrer"><i class="icon-circle-more"></i></a>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2022/10/18/CS-%E5%9B%BE%E7%81%B5%E5%AE%8C%E5%A4%87/">图灵完备</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2022-10-18T11:16:26.000Z" itemprop="datePublished">2022-10-18</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/algorithm/" rel="tag">algorithm</a>, <a class="article-tag-link" href="/blog/tags/language/" rel="tag">language</a>, <a class="article-tag-link" href="/blog/tags/program/" rel="tag">program</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h3 id="图灵完备（Turing-completeness）"><a href="#图灵完备（Turing-completeness）" class="headerlink" title="图灵完备（Turing completeness）"></a>图灵完备（Turing completeness）</h3><p>在可计算性理论中，如果一个数据操作规则系统（如计算机的指令集、编程语言或细胞自动机）可以用来模拟任何图灵机器（由英国数学家和计算机科学家阿兰·图灵（Alan Turing）设计），则称其为图灵完备（Turing-complete）或计算通用的。</p>
+<h3 id="图灵等价（Turing-equivalence）"><a href="#图灵等价（Turing-equivalence）" class="headerlink" title="图灵等价（Turing equivalence）"></a>图灵等价（Turing equivalence）</h3><p>若P可以模拟Q，Q可以模拟P，那个么这两个数据操作规则系统P和Q就是图灵等价的。</p>
+<h3 id="图灵机（Turing-machine）"><a href="#图灵机（Turing-machine）" class="headerlink" title="图灵机（Turing machine）"></a>图灵机（Turing machine）</h3><p>图灵机（Turing Machine）是图灵在1936年发表的 《论可计算数及其在判定性问题上的应用》（《On Computable Numbers, with an Application to the Entscheidungsproblem》）中提出的数学模型。</p>
+<p>图灵机的结构包括以下几个部分：</p>
+<ul>
+<li>一条无限长的纸带（tape），纸带被分成一个个相邻的格子（square），每个格子都可以写上至多一个字符（symbol）。</li>
+<li>一个字符表（alphabet），即字符的集合，它包含纸带上可能出现的所有字符。其中包含一个特殊的空白字符（blank），意思是此格子没有任何字符。</li>
+<li>一个读写头（head），可理解为指向其中一个格子的指针。它可以读取/擦除/写入当前格子的内容，此外也可以每次向左/右移动一个格子。</li>
+<li>一个状态寄存器（state register），它追踪着每一步运算过程中，整个机器所处的状态（运行/终止）。当这个状态从运行变为终止，则运算结束，机器停机并交回控制权。如果你了解有限状态机，它便对应着有限状态机里的状态。</li>
+<li>一个有限的指令集（instructions table），它记录着读写头在特定情况下应该执行的行为。可以想象读写头随身有一本操作指南，里面记录着很多条类似于“当你身处编号53的格子并看到其内容为0时，擦除，改写为1，并向右移一格。此外，令下一状态为运行。”这样的命令。其实某种意义上，这个指令集就对应着程序员所写下的程序了。</li>
+</ul>
+<p><img src="/blog/static/imgs/turing_machine.png" alt="turing_machine_inner"></p>
+<p>在计算开始前，纸带可以是完全空白，也可以在某些格子里预先就有写上部分字符作为输入。运算开始时，读写头从某一位置开始，严格按照此刻的配置（configuration），即：</p>
+<ul>
+<li>当前所处位置</li>
+<li>当前格子内容</li>
+</ul>
+<p>来一步步的对照着指令集去进行操作，直到状态变为停止，运算结束。而后纸带上留下的信息，即字符的序列（比如类似“…011001…”）便作为输出，由人来解码为自然语言。</p>
+<h3 id="停机问题（Halting-Problem）"><a href="#停机问题（Halting-Problem）" class="headerlink" title="停机问题（Halting Problem）"></a>停机问题（Halting Problem）</h3><p>在可计算性理论中，停机问题是根据对任意计算机程序和输入的描述，确定程序是否将完成运行，还是将永远继续运行的问题。阿兰·图灵在1936年证明，解决所有可能的程序输入对的停机问题的通用算法不存在。</p>
+<h3 id="自动机（Automation）"><a href="#自动机（Automation）" class="headerlink" title="自动机（Automation）"></a>自动机（Automation）</h3><p>自动机是有限状态自动机（Finite State Machine，FSM）的数学模型。有限状态自动机是给定符号输入，依据（可表达为一个表格的）转移函数“跳转”过一系列状态的一种机器。</p>
+<ol>
+<li>有限状态自动机（Finite Automata，FA）<ol>
+<li>确定有限自动机（Deterministic Finite Automata，DFA）<br>自动机的每个状态都有对字母表中所有符号的转移。</li>
+<li>非确定有限自动机（Non-deterministic Finite Automata，NFA）<br>自动机的状态对字母表中的每个符号可以有也可以没有转移，对一个符号甚至可以有多个转移。<br>上述自动机接受的语言家族被称为<em>正规表达式</em>(Regular Expression)</li>
+</ol>
+</li>
+<li>下推自动机（Pushdown Automation，PDA）<br>下推自动机额外的装备了栈形式的内存。下推自动机是一种实现<em>上下文无关语法</em>的方式。</li>
+<li>线性有界自动机（Linear Bounded Automation，LBA）<br>线性有界自动机是有限制的 图灵机；不使用无限磁带，它的磁带有同输入字元串成正比的空间。线性有界自动机接受<em>上下文有关语言</em>。</li>
+<li>图灵机（Turing Machine）<br>图灵机是最强力的自动机。图灵机拥有磁带形式的无限内存，和可以读取和变更磁带的磁头，它可在磁带上向任何方向移动。图灵机等价于演算法，可以用来判定<em>递归语言</em>并识别递归可枚举语言。</li>
+</ol>
+<h3 id="Brainfuck-语言"><a href="#Brainfuck-语言" class="headerlink" title="Brainfuck 语言"></a>Brainfuck 语言</h3><p>在1993年，Urban Müller 发明了 Brainfuck 语言。这门语言可以说是编程语言界的 helloworld 了——它一共只含有 8 个有效字符，每个有效字符就是一条指令。语言虽然极致轻量，它却是一门图灵完备的编程语言。</p>
+<p>语言里的 8 个有效字符分别是：</p>
+<ul>
+<li><code>&gt;</code><br>指针向右移动一格</li>
+<li><code>&lt;</code><br>指针向左移动一格</li>
+<li><code>+</code><br>使指针当前格数值加一</li>
+<li><code>-</code><br>使指针当前格数值减一</li>
+<li><code>.</code><br>把当前格数值按 ASCII 表输出到终端</li>
+<li><code>,</code><br>从终端接受 1 byte 的数据，存储其 ASCII 数值到当前格</li>
+<li><code>[</code><br>当指针当前值为 0 时，程序跳转至与之对应的 <code>]</code> 之后；否则程序正常执行</li>
+<li><code>]</code><br>程序跳转回与之对应的 <code>[</code> 处</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://github.com/usaikiran/brainfuck-visualizer">brainfuck-visualizer</a> 提供了 Brainfuck 的可视化解析过程。</p>
+<p>Brainfuck 的 8 个指令可以等价的转换为 C/C++ 语言语法：</p>
+<table>
+<thead>
+<tr>
+<th>Brainfuck</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&gt;</code></td>
+<td><code>++ptr;</code></td>
+</tr>
+<tr>
+<td><code>&lt;</code></td>
+<td><code>--ptr;</code></td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td><code>++*ptr;</code></td>
+</tr>
+<tr>
+<td><code>-</code></td>
+<td><code>--*ptr;</code></td>
+</tr>
+<tr>
+<td><code>.</code></td>
+<td><code>putchar(*ptr);</code></td>
+</tr>
+<tr>
+<td><code>,</code></td>
+<td><code>*ptr=getch();</code></td>
+</tr>
+<tr>
+<td><code>[</code></td>
+<td><code>while(*ptr)&#123;</code></td>
+</tr>
+<tr>
+<td><code>]</code></td>
+<td><code>&#125;</code></td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight c++"><figcaption><span>Windows</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">string <span class="title">translate</span><span class="params">(<span class="type">char</span> c)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span>(c) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;&gt;&#x27;</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;p++&quot;</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;&lt;&#x27;</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;p--&quot;</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;+&#x27;</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;*p = *p + 1&quot;</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;-&#x27;</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;*p = *p - 1&quot;</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;.&#x27;</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;cout &lt;&lt; char(*p)&quot;</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;,&#x27;</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;*p = getchar()&quot;</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;[&#x27;</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;while(*p) &#123;&quot;</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;]&#x27;</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">char</span> arr[<span class="number">1000</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="type">char</span>* p = arr + <span class="number">500</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">run</span>();</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;D:/out.text&quot;</span>, <span class="string">&quot;w&quot;</span>, stdout);</span><br><span class="line">    <span class="type">char</span> c;</span><br><span class="line">    <span class="keyword">while</span>(cin &gt;&gt; c) &#123;</span><br><span class="line">        cout &lt;&lt; <span class="built_in">translate</span>(c);</span><br><span class="line">        <span class="keyword">if</span> (c != <span class="string">&#x27;[&#x27;</span>)</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;;\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2020/05/27/CS-%E9%9D%A2%E8%AF%95%E5%B8%B8%E7%94%A8%E7%AE%80%E5%8D%95%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">面试常用简单算法实现</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2020-05-27T03:54:35.000Z" itemprop="datePublished">2020-05-27</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/algorithm/" rel="tag">algorithm</a>, <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="阶乘"><a href="#阶乘" class="headerlink" title="阶乘"></a>阶乘</h2><p>在数学上, 自然数n的阶乘写作n!。一个正整数 n 的阶乘, 就是所有小于等于 n 的正整数的乘积，0的阶乘为1。比如:</p>
+<p>5！ = 5 <em> 4 </em> 3 <em> 2 </em> 1 = 120</p>
+<table>
+<thead>
+<tr>
+<th>n</th>
+<th style="text-align:right">n!</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<td>1</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align:right">2</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align:right">6</td>
+</tr>
+<tr>
+<td>4</td>
+<td style="text-align:right">24</td>
+</tr>
+<tr>
+<td>5</td>
+<td style="text-align:right">120</td>
+</tr>
+<tr>
+<td>6</td>
+<td style="text-align:right">720</td>
+</tr>
+<tr>
+<td>7</td>
+<td style="text-align:right">5 040</td>
+</tr>
+<tr>
+<td>8</td>
+<td style="text-align:right">40 320</td>
+</tr>
+<tr>
+<td>9</td>
+<td style="text-align:right">362 880</td>
+</tr>
+<tr>
+<td>10</td>
+<td style="text-align:right">3 628 800</td>
+</tr>
+<tr>
+<td>11</td>
+<td style="text-align:right">39 916 800</td>
+</tr>
+<tr>
+<td>12</td>
+<td style="text-align:right">479 001 600</td>
+</tr>
+<tr>
+<td>13</td>
+<td style="text-align:right">6 227 020 800</td>
+</tr>
+<tr>
+<td>14</td>
+<td style="text-align:right">87 178 291 200</td>
+</tr>
+<tr>
+<td>15</td>
+<td style="text-align:right">1 307 674 368 000</td>
+</tr>
+</tbody>
+</table>
+<p>问题： 求自然数n的阶乘  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; <span class="variable">number</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">number</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">factorial</span>(<span class="params">number</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> result = <span class="number">1</span>;</span><br><span class="line">  <span class="comment">// 0 或 1 返回 1</span></span><br><span class="line">  <span class="keyword">if</span> (number === <span class="number">0</span> || number === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 大于等于2时循环相乘</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt;= number; i++) &#123;</span><br><span class="line">    result *= i;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用尾递归的方法<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; <span class="variable">n</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; <span class="variable">total</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">number</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">factorial</span>(<span class="params">n, total = <span class="number">1</span></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> n === <span class="number">1</span> ? total : <span class="title function_">factorial</span>(n - <span class="number">1</span>, n * total);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2020/05/27/CS-%E9%9D%A2%E8%AF%95%E5%B8%B8%E7%94%A8%E7%AE%80%E5%8D%95%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/12/14/CS-%E7%BC%96%E7%A8%8B%E8%8C%83%E5%BC%8F/">编程范式</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-12-14T08:06:59.000Z" itemprop="datePublished">2018-12-14</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/algorithm/" rel="tag">algorithm</a>, <a class="article-tag-link" href="/blog/tags/design/" rel="tag">design</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h2><p>函数式编程（Functional programming）或称函数程序设计，又称泛函编程，是一种编程范型，它将电脑运算视为数学上的函数计算，并且避免使用程序状态以及易变对象。函数编程语言最重要的基础是λ演算（lambda calculus）。而且λ演算的函数可以接受函数当作输入（引数）和输出（传出值）。</p>
+<p>函数式编程优点：  </p>
+<ol>
+<li>没有并发编程的问题，是多线程安全的</li>
+<li>函数式编程的表达方式更加符合人类日常生活中的语法，代码可读性更强，实现同样的功能函数式编程所需要的代码比面向对象编程要少很多，代码更加简洁明晰</li>
+</ol>
+<p>函数式编程缺点：  </p>
+<ol>
+<li>所有的变量在程序运行期间都是一直存在的，资源利用率低</li>
+<li>大型项目中工程化不足，使得代码易读性降低</li>
+</ol>
+            
+            <p class="article-more-link">
+                <a href="/blog/2018/12/14/CS-%E7%BC%96%E7%A8%8B%E8%8C%83%E5%BC%8F/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/01/CS-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84javascript%E5%AE%9E%E7%8E%B0/">排序算法的javascript实现</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-01T15:19:21.000Z" itemprop="datePublished">2018-09-01</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/algorithm/" rel="tag">algorithm</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="时间空间复杂度"><a href="#时间空间复杂度" class="headerlink" title="时间空间复杂度"></a>时间空间复杂度</h2><p>排序是算法中最经典的问题，以下表格对插入排序、冒泡排序、选择排序、希尔排序、快速排序、归并排序这几种排序进行了比较。  </p>
+<table>
+<thead>
+<tr>
+<th>排序算法</th>
+<th>平均时间复杂度</th>
+<th>最坏时间复杂度</th>
+<th>空间复杂度</th>
+<th>是否稳定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>插入排序</td>
+<td>O（n2）</td>
+<td>O（n2）</td>
+<td>O（1）</td>
+<td>是</td>
+</tr>
+<tr>
+<td>冒泡排序</td>
+<td>O（n2）</td>
+<td>O（n2）</td>
+<td>O（1）</td>
+<td>是</td>
+</tr>
+<tr>
+<td>选择排序</td>
+<td>O（n2）</td>
+<td>O（n2）</td>
+<td>O（1）</td>
+<td>不是</td>
+</tr>
+<tr>
+<td>希尔排序</td>
+<td>O(nlogn)</td>
+<td>O（n2）</td>
+<td>O（1）</td>
+<td>不是</td>
+</tr>
+<tr>
+<td>快速排序</td>
+<td>O(nlogn)</td>
+<td>O（n2）</td>
+<td>O（logn）</td>
+<td>不是</td>
+</tr>
+<tr>
+<td>归并排序</td>
+<td>O(nlogn)</td>
+<td>O(nlogn)</td>
+<td>O（n）</td>
+<td>是</td>
+</tr>
+</tbody>
+</table>
+            
+            <p class="article-more-link">
+                <a href="/blog/2018/09/01/CS-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84javascript%E5%AE%9E%E7%8E%B0/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/07/13/FE-%E5%89%8D%E7%AB%AF%E7%AE%80%E5%8D%95%E9%9D%A2%E8%AF%95%E9%A2%98/">前端简单面试题</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-07-12T19:37:10.000Z" itemprop="datePublished">2018-07-13</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/algorithm/" rel="tag">algorithm</a>, <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>该文章用来记录一些常见的前端简单面试题，这些题目部分是因为比较细碎，部分是比较偏门（对某个不常用功能的深入知识），部分是因为还没来得及，所以没有单独列出文章来讲述。  </p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2018/07/13/FE-%E5%89%8D%E7%AB%AF%E7%AE%80%E5%8D%95%E9%9D%A2%E8%AF%95%E9%A2%98/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

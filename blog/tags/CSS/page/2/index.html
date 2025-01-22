@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        标签: CSS | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="Mangon&#39;s Technology Blog" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+
+        
+            <div class="author-meta">
+                
+                <div class="author-avatar">
+                    <a href="/blog/">
+                        <img src="/blog/images/avatar.jpeg" title="Mangon">
+                    </a>
+                </div>
+                
+                <div class="author-name">Mangon</div>
+                <div class="author-work">前端开发工程师</div>
+                <div class="author-location">
+                    <i class="icon-location vm"></i>
+                    <span class="vm">中国北京</span>
+                </div>
+                
+                <div class="author-thread-wrap">
+                    <div class="author-threads clearfix">
+                        
+                            <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
+                        
+                        
+                        
+                            <a class="thread-item" href="https://mangon.cn/blog/atom.xml" target="_blank" rel="external noopener noreferrer"><i class="icon-favorite"></i></a>
+                        
+                        
+                            <a class="thread-item" href="https://mangon.cn/resume" target="_blank" rel="external noopener noreferrer"><i class="icon-circle-more"></i></a>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/03/19/CSS-viewport-mediaquery/">CSS viewport/mediaquery</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-19T06:10:22.000Z" itemprop="datePublished">2021-03-19</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>viewport 和 Mediaquery 都是为了进行响应式Web设计，即面对不同的设备有不同的样式而又不用开发不同的页面。<br>viewport 视口，移动设备上的viewport就是设备的屏幕上能用来显示我们的网页的那一块区域,最常见用法  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>width=device-width</code> : 当前viewport的宽度等于设备的宽度<br><code>initial-scale=1.0</code> : 初始缩放比例1.0<br><code>maximum-scale=1.0</code> : 最大缩放比例1.0<br><code>minimum-scale=1.0</code> : 最小缩放比例1.0 <em><br><code>user-scalable=no</code> : 不允许用户手动缩放 </em></p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2021/03/19/CSS-viewport-mediaquery/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/03/19/CSS-supports-%E7%89%B9%E6%80%A7%E6%9F%A5%E8%AF%A2/">css @supports 作用</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-19T06:00:11.000Z" itemprop="datePublished">2021-03-19</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p><code>@supports</code> 可以指定依赖于浏览器中的一个或多个特定的CSS功能的支持声明，这被称为特性查询。  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@supports</span> (<span class="attribute">display</span>: <span class="attribute">grid</span>) &#123;</span><br><span class="line">  <span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: grid;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@supports</span> <span class="keyword">not</span> (<span class="attribute">display</span>: <span class="attribute">grid</span>) &#123;</span><br><span class="line">  <span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">float</span>: right;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            
+            <p class="article-more-link">
+                <a href="/blog/2021/03/19/CSS-supports-%E7%89%B9%E6%80%A7%E6%9F%A5%E8%AF%A2/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/03/16/CSS-transform-transition-animation/">CSS transform &amp; transition &amp; animation属性</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-16T07:39:04.000Z" itemprop="datePublished">2021-03-16</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="transition-过渡"><a href="#transition-过渡" class="headerlink" title="transition 过渡"></a>transition 过渡</h2><p>transition 属性是 transition-property，transition-duration，transition-timing-function 和 transition-delay 的一个简写属性。transition 可以为一个元素在不同状态之间切换的时候定义不同的过渡效果。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>transition-property</td>
+<td>指定应用过渡属性的名称</td>
+</tr>
+<tr>
+<td>transition-duration</td>
+<td>以秒或毫秒为单位指定过渡动画所需的时间，默认为0s</td>
+</tr>
+<tr>
+<td>transition-timing-function</td>
+<td>用来描述 <code>transition-property</code> 中间值是怎样计算的, 默认 ease, 可选 ease-in，ease-out，ease-in-out，linear，step-start，step-end，steps(4, end)，inherit，cubic-bezier(0.1, 0.7, 1.0, 0.1)</td>
+</tr>
+<tr>
+<td>transition-delay</td>
+<td>规定了在过渡效果开始作用之前需要等待的时间, 默认0s</td>
+</tr>
+</tbody>
+</table>
+<p>在符合标准的浏览器中，transition效果结束时会触发 <code>transitionend(propertyName, elapsedTime)</code> 事件</p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2021/03/16/CSS-transform-transition-animation/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/12/10/CSS-%E5%A4%B4%E5%83%8F%E7%9A%84%E6%98%BE%E7%A4%BA/">头像的显示</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-12-10T10:37:19.000Z" itemprop="datePublished">2018-12-10</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>在项目中遇到了上传头像图片的需求，包括两个部分，一个是头像的上传。另一个是上传后头像图片的显示。</p>
+<h2 id="头像的上传"><a href="#头像的上传" class="headerlink" title="头像的上传"></a>头像的上传</h2><p>头像的上传和普通的图片上传几乎没有不同，但通常需要对上传的图片进行限制，例如限制图片格式为png/jpg，图片大小的限制，图片像素的限制等。</p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2018/12/10/CSS-%E5%A4%B4%E5%83%8F%E7%9A%84%E6%98%BE%E7%A4%BA/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/12/06/CSS-Flex%E5%B8%83%E5%B1%80/">Flex布局</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-12-06T12:34:55.000Z" itemprop="datePublished">2018-12-06</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="Flex布局"><a href="#Flex布局" class="headerlink" title="Flex布局"></a>Flex布局</h2><p>Flex 是 Flexible Box 的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性，设为 Flex 布局以后，子元素的 float、clear 和 vertical-align 属性无效。  </p>
+<p>任何一个容器都可以指定为flex布局</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: -webkit-flex;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>flex布局由父子元素共同组成，父元素被称为flex container，子元素被称为flex item。</p>
+<div><style type="text/css">img {box-shadow:none !important;</style><img src="/blog/static/imgs/flex.png" alt="flex"></div>
+
+<p>容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。主轴的开始位置（与边框的交叉点）叫做main start，结束位置叫做main end；交叉轴的开始位置叫做cross start，结束位置叫做cross end。  </p>
+<p>项目默认沿主轴排列。单个项目占据的主轴空间叫做main size，占据的交叉轴空间叫做cross size。  </p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2018/12/06/CSS-Flex%E5%B8%83%E5%B1%80/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/11/29/CSS-position%E5%B1%9E%E6%80%A7/">CSS postion属性</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-11-29T11:29:20.000Z" itemprop="datePublished">2018-11-29</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="position四个属性"><a href="#position四个属性" class="headerlink" title="position四个属性"></a>position四个属性</h2><table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>absolute</td>
+<td>生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。<br/>此元素的位置可通过 “top”、”right”、”bottom” 以及 “left” 属性来规定。</td>
+</tr>
+<tr>
+<td>relative</td>
+<td>生成相对定位的元素，相对于其正常位置进行定位。</td>
+</tr>
+<tr>
+<td>fixed</td>
+<td>生成绝对定位的元素，相对于浏览器窗口进行定位。<br/>元素的位置通过 “top”、”right”、”bottom” 以及 “left” 属性进行规定。</td>
+</tr>
+<tr>
+<td>sticky</td>
+<td>粘性布局，元素先按照普通文档流定位，然后相对于该元素在流中的 flow root（BFC）和 containing block（最近的块级祖先元素）定位，而后，元素定位表现为在跨越特定阈值前为相对定位，之后为固定定位。这个特定阈值指的是 “top”、”right”、”bottom” 以及 “left” 之一</td>
+</tr>
+<tr>
+<td>static</td>
+<td>默认值。static 元素会忽略任何 “top”、”right”、”bottom”、”left” 和 “z-index” 声明</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>规定应该从父元素继承 position 属性的值。position 属性默认是不继承的</td>
+</tr>
+<tr>
+<td>initial</td>
+<td>设置该属性为浏览器默认值，对 positon 属性来说就是 static</td>
+</tr>
+<tr>
+<td>unset</td>
+<td>将属性的值复位，如果该属性是默认继承属性，该值等同于 inherit ，如果该属性是非继承属性，该值等同于 initial 。对 positon 属性来说就是 static</td>
+</tr>
+</tbody>
+</table>
+            
+            <p class="article-more-link">
+                <a href="/blog/2018/11/29/CSS-position%E5%B1%9E%E6%80%A7/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/18/CSS-%E9%95%BF%E5%BA%A6%E5%8D%95%E4%BD%8D/">CSS 长度单位</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-18T12:15:59.000Z" itemprop="datePublished">2018-09-18</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>本篇主要列举并比较下CSS中常用到的几个长度单位。包含px、em、rem、vh、vw、rpx、in、cm、mm、ex、pt、pc。</p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2018/09/18/CSS-%E9%95%BF%E5%BA%A6%E5%8D%95%E4%BD%8D/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/12/CSS-%E6%8A%98%E8%A1%8C/">CSS 折行</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-12T10:46:39.000Z" itemprop="datePublished">2018-09-12</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>本篇主要介绍与折行有关的三个样式 <code>white-space</code> ， <code>word-wrap</code> ， <code>word-break</code> 。  </p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2018/09/12/CSS-%E6%8A%98%E8%A1%8C/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/11/CSS-%E6%88%AA%E6%96%AD/">CSS 截断</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-11T11:46:53.000Z" itemprop="datePublished">2018-09-11</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>有时，我们需要对某段文字进行截断处理，多余的字符显示…  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;words&quot;</span>&gt;</span>For a long time it seemed to me that life was about to begin , real life. But, there was always some obsacle in the way, something to be gotten through first, some unfinnished business, time still to be served or a debt to be paid. Then life would begin.<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+            
+            <p class="article-more-link">
+                <a href="/blog/2018/09/11/CSS-%E6%88%AA%E6%96%AD/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/05/CSS-%E4%BF%AE%E6%94%B9%E5%85%89%E6%A0%87%E7%9A%84%E6%A0%B7%E5%BC%8F/">修改光标的样式</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-05T12:00:34.000Z" itemprop="datePublished">2018-09-05</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>某些情况下我们需要修改默认的光标样式，比如当我们为一个元素添加了点击事件之后，这个元素就会表现的像一个按钮。为了更好的用户体验，我们可以将光标样式由默认的箭头样式改为指针样式。这样，当用户划过此元素时，就会意识到这是一个可点击的元素。</p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2018/09/05/CSS-%E4%BF%AE%E6%94%B9%E5%85%89%E6%A0%87%E7%9A%84%E6%A0%B7%E5%BC%8F/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/05/CSS-%E6%94%B9%E5%8F%98placeholder%E7%9A%84%E9%A2%9C%E8%89%B2/">改变placeholder的颜色</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-05T11:46:41.000Z" itemprop="datePublished">2018-09-05</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>我们都知道输入框中改变默认显示的文字是通过改变 input 的 placeholder 来实现的  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;search&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;Search...&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>部分浏览器通过改变类似 <code>-webkit-input-placeholder</code> 的属性，使得输入框的 placeholder 也可以有自己的样式。</p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2018/09/05/CSS-%E6%94%B9%E5%8F%98placeholder%E7%9A%84%E9%A2%9C%E8%89%B2/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/03/CSS-%E9%80%89%E6%8B%A9%E5%99%A8/">CSS-选择器</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-03T11:32:59.000Z" itemprop="datePublished">2018-09-03</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <table>
+<thead>
+<tr>
+<th style="text-align:left">选择器</th>
+<th style="text-align:left">例子</th>
+<th style="text-align:left">例子描述</th>
+<th>css</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">.class</td>
+<td style="text-align:left">.intro</td>
+<td style="text-align:left">选择 class=”intro” 的所有元素。</td>
+<td>1</td>
+</tr>
+<tr>
+<td style="text-align:left">#id</td>
+<td style="text-align:left">#firstname</td>
+<td style="text-align:left">选择 id=”firstname” 的所有元素。</td>
+<td>1</td>
+</tr>
+<tr>
+<td style="text-align:left">*</td>
+<td style="text-align:left">*</td>
+<td style="text-align:left">选择所有元素。</td>
+<td>2</td>
+</tr>
+<tr>
+<td style="text-align:left">element</td>
+<td style="text-align:left">p</td>
+<td style="text-align:left">选择所有 &lt;p> 元素。</td>
+<td>1</td>
+</tr>
+<tr>
+<td style="text-align:left">element,element</td>
+<td style="text-align:left">div,p</td>
+<td style="text-align:left">选择所有 &lt;div> 元素和所有 &lt;p> 元素。</td>
+<td>1</td>
+</tr>
+<tr>
+<td style="text-align:left">element element</td>
+<td style="text-align:left">div p</td>
+<td style="text-align:left">选择 &lt;div> 元素内部的所有 &lt;p> 元素。</td>
+<td>1</td>
+</tr>
+<tr>
+<td style="text-align:left">element>element</td>
+<td style="text-align:left">div>p</td>
+<td style="text-align:left">选择父元素为 &lt;div> 元素的所有 &lt;p> 元素。</td>
+<td>2</td>
+</tr>
+<tr>
+<td style="text-align:left">element+element</td>
+<td style="text-align:left">div+p</td>
+<td style="text-align:left">选择紧接在 &lt;div> 元素之后的所有 &lt;p> 元素。</td>
+<td>2</td>
+</tr>
+<tr>
+<td style="text-align:left">[attribute]</td>
+<td style="text-align:left">[target]</td>
+<td style="text-align:left">选择带有 target 属性所有元素。</td>
+<td>2</td>
+</tr>
+<tr>
+<td style="text-align:left">[attribute=value]</td>
+<td style="text-align:left">[target=_blank]</td>
+<td style="text-align:left">选择 target=”_blank” 的所有元素。</td>
+<td>2</td>
+</tr>
+<tr>
+<td style="text-align:left">[attribute~=value]</td>
+<td style="text-align:left">[title~=flower]</td>
+<td style="text-align:left">选择 title 属性包含单词 “flower” 的所有元素。</td>
+<td>2</td>
+</tr>
+<tr>
+<td style="text-align:left">[attribute&#124;=value]</td>
+<td style="text-align:left">[lang&#124;=en]</td>
+<td style="text-align:left">选择 lang 属性值以 “en” 开头的所有元素。</td>
+<td>2</td>
+</tr>
+<tr>
+<td style="text-align:left">:link</td>
+<td style="text-align:left">a:link</td>
+<td style="text-align:left">选择所有未被访问的链接。</td>
+<td>1</td>
+</tr>
+<tr>
+<td style="text-align:left">:visited</td>
+<td style="text-align:left">a:visited</td>
+<td style="text-align:left">选择所有已被访问的链接。</td>
+<td>1</td>
+</tr>
+<tr>
+<td style="text-align:left">:active</td>
+<td style="text-align:left">a:active</td>
+<td style="text-align:left">选择活动链接。</td>
+<td>1</td>
+</tr>
+<tr>
+<td style="text-align:left">:hover</td>
+<td style="text-align:left">a:hover</td>
+<td style="text-align:left">选择鼠标指针位于其上的链接。</td>
+<td>1</td>
+</tr>
+<tr>
+<td style="text-align:left">:focus</td>
+<td style="text-align:left">input:focus</td>
+<td style="text-align:left">选择获得焦点的 input 元素。</td>
+<td>2</td>
+</tr>
+<tr>
+<td style="text-align:left">:first-letter</td>
+<td style="text-align:left">p:first-letter</td>
+<td style="text-align:left">选择每个 &lt;p> 元素的首字母。</td>
+<td>1</td>
+</tr>
+<tr>
+<td style="text-align:left">:first-line</td>
+<td style="text-align:left">p:first-line</td>
+<td style="text-align:left">选择每个 &lt;p> 元素的首行。</td>
+<td>1</td>
+</tr>
+<tr>
+<td style="text-align:left">:first-child</td>
+<td style="text-align:left">p:first-child</td>
+<td style="text-align:left">选择属于父元素的第一个子元素的每个 &lt;p> 元素。</td>
+<td>2</td>
+</tr>
+<tr>
+<td style="text-align:left">:before</td>
+<td style="text-align:left">p:before</td>
+<td style="text-align:left">在每个 &lt;p> 元素的内容之前插入内容。</td>
+<td>2</td>
+</tr>
+<tr>
+<td style="text-align:left">:after</td>
+<td style="text-align:left">p:after</td>
+<td style="text-align:left">在每个 &lt;p> 元素的内容之后插入内容。</td>
+<td>2</td>
+</tr>
+<tr>
+<td style="text-align:left">:lang(language)</td>
+<td style="text-align:left">p:lang(it)</td>
+<td style="text-align:left">选择带有以 “it” 开头的 lang 属性值的每个 &lt;p> 元素。</td>
+<td>2</td>
+</tr>
+<tr>
+<td style="text-align:left">element1~element2</td>
+<td style="text-align:left">p~ul</td>
+<td style="text-align:left">选择前面有 &lt;p> 元素的每个 &lt;ul> 元素。</td>
+<td>3</td>
+</tr>
+<tr>
+<td style="text-align:left">[attribute^=value]</td>
+<td style="text-align:left">a[src^=”https”]</td>
+<td style="text-align:left">选择其 src 属性值以 “https” 开头的每个 &lt;a> 元素。</td>
+<td>3</td>
+</tr>
+<tr>
+<td style="text-align:left">[attribute$=value]</td>
+<td style="text-align:left">a[src$=”.pdf”]</td>
+<td style="text-align:left">选择其 src 属性以 “.pdf” 结尾的所有 &lt;a> 元素。</td>
+<td>3</td>
+</tr>
+<tr>
+<td style="text-align:left">[attribute*=value]</td>
+<td style="text-align:left">a[src*=”abc”]</td>
+<td style="text-align:left">选择其 src 属性中包含 “abc” 子串的每个 &lt;a> 元素。</td>
+<td>3</td>
+</tr>
+<tr>
+<td style="text-align:left">:first-of-type</td>
+<td style="text-align:left">p:first-of-type</td>
+<td style="text-align:left">选择属于其父元素的首个 &lt;p> 元素的每个 &lt;p> 元素。</td>
+<td>3</td>
+</tr>
+<tr>
+<td style="text-align:left">:last-of-type</td>
+<td style="text-align:left">p:last-of-type</td>
+<td style="text-align:left">选择属于其父元素的最后 &lt;p> 元素的每个 &lt;p> 元素。</td>
+<td>3</td>
+</tr>
+<tr>
+<td style="text-align:left">:only-of-type</td>
+<td style="text-align:left">p:only-of-type</td>
+<td style="text-align:left">选择属于其父元素唯一的 &lt;p> 元素的每个 &lt;p> 元素。</td>
+<td>3</td>
+</tr>
+<tr>
+<td style="text-align:left">:only-child</td>
+<td style="text-align:left">p:only-child</td>
+<td style="text-align:left">选择属于其父元素的唯一子元素的每个 &lt;p> 元素。</td>
+<td>3</td>
+</tr>
+<tr>
+<td style="text-align:left">:nth-child(n)</td>
+<td style="text-align:left">p:nth-child(2)</td>
+<td style="text-align:left">选择属于其父元素的第二个子元素的每个 &lt;p> 元素。</td>
+<td>3</td>
+</tr>
+<tr>
+<td style="text-align:left">:nth-last-child(n)</td>
+<td style="text-align:left">p:nth-last-child(2)</td>
+<td style="text-align:left">同上，从最后一个子元素开始计数。</td>
+<td>3</td>
+</tr>
+<tr>
+<td style="text-align:left">:nth-of-type(n)</td>
+<td style="text-align:left">p:nth-of-type(2)</td>
+<td style="text-align:left">选择属于其父元素第二个 &lt;p> 元素的每个 &lt;p> 元素。</td>
+<td>3</td>
+</tr>
+<tr>
+<td style="text-align:left">:nth-last-of-type(n)</td>
+<td style="text-align:left">p:nth-last-of-type(2)</td>
+<td style="text-align:left">同上，但是从最后一个子元素开始计数。</td>
+<td>3</td>
+</tr>
+<tr>
+<td style="text-align:left">:last-child</td>
+<td style="text-align:left">p:last-child</td>
+<td style="text-align:left">选择属于其父元素最后一个子元素每个 &lt;p> 元素。</td>
+<td>3</td>
+</tr>
+<tr>
+<td style="text-align:left">:root</td>
+<td style="text-align:left">:root</td>
+<td style="text-align:left">选择文档的根元素。</td>
+<td>3</td>
+</tr>
+<tr>
+<td style="text-align:left">:empty</td>
+<td style="text-align:left">p:empty</td>
+<td style="text-align:left">选择没有子元素的每个 &lt;p> 元素（包括文本节点）。</td>
+<td>3</td>
+</tr>
+<tr>
+<td style="text-align:left">:target</td>
+<td style="text-align:left">#news:target</td>
+<td style="text-align:left">选择当前活动的 #news 元素。</td>
+<td>3</td>
+</tr>
+<tr>
+<td style="text-align:left">:enabled</td>
+<td style="text-align:left">input:enabled</td>
+<td style="text-align:left">选择每个启用的 &lt;input> 元素。</td>
+<td>3</td>
+</tr>
+<tr>
+<td style="text-align:left">:disabled</td>
+<td style="text-align:left">input:disabled</td>
+<td style="text-align:left">选择每个禁用的 &lt;input> 元素</td>
+<td>3</td>
+</tr>
+<tr>
+<td style="text-align:left">:checked</td>
+<td style="text-align:left">input:checked</td>
+<td style="text-align:left">选择每个被选中的 &lt;input> 元素。</td>
+<td>3</td>
+</tr>
+<tr>
+<td style="text-align:left">:not(selector)</td>
+<td style="text-align:left">:not(p)</td>
+<td style="text-align:left">选择非 &lt;p> 元素的每个元素。</td>
+<td>3</td>
+</tr>
+<tr>
+<td style="text-align:left">::selection</td>
+<td style="text-align:left">::selection</td>
+<td style="text-align:left">选择被用户选取的元素部分。</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+            
+            <p class="article-more-link">
+                <a href="/blog/2018/09/03/CSS-%E9%80%89%E6%8B%A9%E5%99%A8/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/08/30/css-calc-%E5%87%BD%E6%95%B0/">CSS calc 函数</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-08-30T12:30:10.000Z" itemprop="datePublished">2018-08-30</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>本篇主要介绍 calc 函数，CSS函数之一，可以在CSS中执行计算操作。  </p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2018/08/30/css-calc-%E5%87%BD%E6%95%B0/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+
+
+<nav class="page-nav">
+    <a class="extend prev" rel="prev" href="/blog/tags/CSS/">&amp;laquo; 上一页</a><a class="page-number" href="/blog/tags/CSS/">1</a><span class="page-number current">2</span>
+</nav>
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

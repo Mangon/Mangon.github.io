@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        前端API缓存方案 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="API 缓存在开发 web 应用程序时，性能都是必不可少的话题。对于单页面应用程序而言，我们可以采用很多方式来对性能进行优化，比方说 tree-shaking、模块懒加载、利用网络cdn加速等这些常规的优化。而事实上，缓存一定是提升web应用程序性能最有效方法之一，这是一种用空间换取时间的做法，尤其是用户受限于网速的情况下，利用额外的存储来提升系统的响应能力，降低网络的消耗，可以有效的提升 web 应用的性能。以浏览器而言，我们有很多缓存数据与资源的方法，例如 标准的浏览器缓存（包括强缓存和" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#API-%E7%BC%93%E5%AD%98"><span class="toc-text">API 缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">适用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0"><span class="toc-text">如何实现</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            前端API缓存方案
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-05-20T16:30:16.000Z" itemprop="datePublished">2021-05-21</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/cache/" rel="tag">cache</a>, <a class="article-tag-link" href="/blog/tags/front-end/" rel="tag">front-end</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="API-缓存"><a href="#API-缓存" class="headerlink" title="API 缓存"></a>API 缓存</h2><p>在开发 web 应用程序时，性能都是必不可少的话题。对于单页面应用程序而言，我们可以采用很多方式来对性能进行优化，比方说 tree-shaking、模块懒加载、利用网络cdn加速等这些常规的优化。</p>
+<p>而事实上，缓存一定是提升web应用程序性能最有效方法之一，这是一种用空间换取时间的做法，尤其是用户受限于网速的情况下，利用额外的存储来提升系统的响应能力，降低网络的消耗，可以有效的提升 web 应用的性能。</p>
+<p>以浏览器而言，我们有很多缓存数据与资源的方法，例如 标准的浏览器缓存（包括强缓存和协商缓存） 以及 Service worker 等技术。但一般而言，他们都更适合静态内容的缓存。例如 html，js，css以及图片等文件。而如果需要缓存系统数据的话，我们需要采用另外的方案。</p>
+<span id="more"></span>
+<h2 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h2><p>对 API 进行缓存，在某些场景下是有害的，例如页面对实时性要求比较高，需要频繁的请求 server 且每次请求 server 获取的数据均不同，或者 server 返回的数据是带策略的，比如有个性化推荐，那么就完全不能对 API 进行缓存。什么场景比较适合对 API 进行缓存呢？当 API 请求的地址和参数不变时，server 返回的数据也是固定的，该部分数据之所以从接口返回是因为该部分数据量级很大，不能完全放到前端，这种情况对 API 进行缓存就比较合适了。一些常见的业务场景有：</p>
+<ol>
+<li><p>文档类型的应用<br>文档类型的页面如果做成静态网站，虽然可以通过HTTP缓存在第二次进入页面时有更快的性能体验，但是在不同的页面之间跳转都会请求静态页面，有刷新感，体验较差，如果做成SPA，切换页面时也会请求数据，如果能缓存这部分数据，在第二次进入页面时就会有更快的体验。  </p>
+</li>
+<li><p>分发类的应用<br>分发类的应用有固定的页面更新时间，在用户进入一次页面之后，可以缓存当前的分发数据。  </p>
+</li>
+<li><p>论坛类的应用<br>文章详情页可以进行缓存，因为文章内容在发布后几乎不会变化，数量巨大，如果缓存了，用户在第二次进入相同的文章时可以立即看到文章。  </p>
+</li>
+</ol>
+<h2 id="如何实现"><a href="#如何实现" class="headerlink" title="如何实现"></a>如何实现</h2><ol>
+<li>简单的数据缓存，第一次请求时候获取数据，之后便使用数据，不再请求后端api</li>
+</ol>
+<p>我们假设获取数据的 function 是这样声明的，它返回一个 promise</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">getDataAPI</span>(<span class="params">params</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">arguments</span>.<span class="property">callee</span>.<span class="property">name</span>, <span class="string">&#x27;is called.&#x27;</span>);</span><br><span class="line">    <span class="comment">// mock</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(&#123;<span class="attr">data</span>: &#123;&#125;, <span class="attr">status</span>: <span class="number">0</span>, <span class="attr">msg</span>: <span class="string">&#x27;Success.&#x27;</span>&#125;);</span><br><span class="line">    <span class="comment">// online</span></span><br><span class="line">    <span class="keyword">return</span> request.<span class="title function_">get</span>(<span class="string">&#x27;/getData&#x27;</span>, params);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们希望将 fn 的结果缓存，一般而言，前端可以将数据缓存到内存和硬盘上。内存就是我们正在运行的程序中，我们可以声明一个 Map 或者 Object 用来存储我们的数据。硬盘就是浏览器给我们提供的持久化数据的方法，可以使用 localStorage 或者 IndexedDB。这里我们使用 Object 数据结构用来将数据存储到内存中，用 localStorage 来将数据持久化到客户端。  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从storage中获取缓存</span></span><br><span class="line"><span class="keyword">let</span> storageCache = <span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;cache&#x27;</span>) || <span class="string">&#x27;&#123;&#125;&#x27;</span>;</span><br><span class="line"><span class="comment">// 将缓存放到内存中</span></span><br><span class="line"><span class="keyword">let</span> dataCache = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(storageCache);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getData</span>(<span class="params">params</span>) &#123;</span><br><span class="line">    <span class="comment">// 获取缓存的key</span></span><br><span class="line">    <span class="keyword">let</span> apiName = <span class="variable language_">arguments</span>.<span class="property">callee</span>.<span class="property">name</span>;</span><br><span class="line">    <span class="comment">// 从内存缓存中获取数据</span></span><br><span class="line">    <span class="keyword">let</span> data = dataCache[apiName];</span><br><span class="line">    <span class="keyword">if</span> (data) &#123;</span><br><span class="line">        <span class="comment">// 有数据则返回之前的缓存数据</span></span><br><span class="line">        <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(data);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 没有数据则请求服务器</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">getDataAPI</span>(params).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 设置内存数据缓存</span></span><br><span class="line">        dataCache[apiName] = res;</span><br><span class="line">        <span class="comment">// 同步storage缓存</span></span><br><span class="line">        <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;cache&#x27;</span>, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(dataCache));</span><br><span class="line">        <span class="comment">// 返回最新数据</span></span><br><span class="line">        <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(res);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调用方式：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">getData</span>().<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> &#123; <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>, data) &#125;);</span><br><span class="line"><span class="comment">// 第二次调用 不再发起 api 请求，直接取得先前的 data</span></span><br><span class="line"><span class="title function_">getData</span>().<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> &#123; <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>, data) &#125;);</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>如果此 api 有同时两个以上的调用，会因为请求未返回而进行第二次 api 请求，所以我们需要对 promise 进行缓存，因为只需在内存中缓存，所以在这里我们使用 Map 数据结构</li>
+</ol>
+<p>首先改造下请求 api 使它不那么快的返回</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">getDataAPI</span>(<span class="params">params</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">arguments</span>.<span class="property">callee</span>.<span class="property">name</span>, <span class="string">&#x27; request.&#x27;</span>);</span><br><span class="line">    <span class="comment">// mock</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">arguments</span>.<span class="property">callee</span>.<span class="property">name</span>, <span class="string">&#x27; response.&#x27;</span>);</span><br><span class="line">            <span class="title function_">resolve</span>(&#123;<span class="attr">data</span>: &#123;&#125;, <span class="attr">status</span>: <span class="number">0</span>, <span class="attr">msg</span>: <span class="string">&#x27;Success.&#x27;</span>&#125;);</span><br><span class="line">        &#125;, <span class="number">3000</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// online</span></span><br><span class="line">    <span class="keyword">return</span> request.<span class="title function_">get</span>(<span class="string">&#x27;/getData&#x27;</span>, params);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后改造下缓存方法添加对 promise 的缓存</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> storageCache = <span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;cache&#x27;</span>) || <span class="string">&#x27;&#123;&#125;&#x27;</span>;</span><br><span class="line"><span class="keyword">let</span> dataCache = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(storageCache);</span><br><span class="line"><span class="keyword">let</span> promiseCache = <span class="keyword">new</span> <span class="title class_">Map</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getData</span>(<span class="params">params</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> apiName = <span class="variable language_">arguments</span>.<span class="property">callee</span>.<span class="property">name</span>;</span><br><span class="line">    <span class="keyword">let</span> data = dataCache[apiName];</span><br><span class="line">    <span class="keyword">if</span> (data) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(data);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果 promise 缓存中已有该 api ，说明在不久之前我们刚请求过，而且还未返回</span></span><br><span class="line">    <span class="keyword">let</span> promise = promiseCache.<span class="title function_">get</span>(apiName);</span><br><span class="line">    <span class="keyword">if</span> (promise) &#123;</span><br><span class="line">        <span class="keyword">return</span> promise;</span><br><span class="line">    &#125;</span><br><span class="line">    promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">getDataAPI</span>(params).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">            dataCache[apiName] = res;</span><br><span class="line">            <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;cache&#x27;</span>, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(dataCache));</span><br><span class="line">            <span class="title function_">resolve</span>(res);</span><br><span class="line">        &#125;).<span class="title function_">catch</span>(<span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="title function_">reject</span>(e);</span><br><span class="line">        &#125;).<span class="title function_">finally</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="comment">// 请求结束则从内存缓存中删除该api请求</span></span><br><span class="line">            promiseCache.<span class="title function_">delete</span>(apiName);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// 将该请求的promise存放到缓存中去</span></span><br><span class="line">    promiseCache.<span class="title function_">set</span>(apiName, promise);</span><br><span class="line">    <span class="keyword">return</span> promise;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该代码解决了同一时间发起多次同样请求时不会读取缓存的问题。同时也在后端出错的情况下对 promise 进行了删除，不会出现缓存了错误的 promise 一直出错。</p>
+<p>调用方式：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">getData</span>().<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> &#123; <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>, data) &#125;);</span><br><span class="line"><span class="title function_">getData</span>().<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> &#123; <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>, data) &#125;);</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>同时同时缓存需要设置过期时间，防止一直获取不到最新数据的问题</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> storageCache = <span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;cache&#x27;</span>) || <span class="string">&#x27;&#123;&#125;&#x27;</span>;</span><br><span class="line"><span class="keyword">let</span> dataCache = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(storageCache);</span><br><span class="line"><span class="keyword">let</span> promiseCache = <span class="keyword">new</span> <span class="title class_">Map</span>();</span><br><span class="line"> <span class="comment">// api 最大缓存时间 一周</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">MAX_CACHE_TIME</span> = <span class="number">1000</span> * <span class="number">60</span> * <span class="number">60</span> * <span class="number">24</span> * <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getData</span>(<span class="params">params</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> apiName = <span class="variable language_">arguments</span>.<span class="property">callee</span>.<span class="property">name</span>;</span><br><span class="line">    <span class="keyword">let</span> data = dataCache[apiName];</span><br><span class="line">    <span class="keyword">if</span> (data) &#123;</span><br><span class="line">        <span class="comment">// 当前时间还未超出最大缓存时间</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="title class_">Date</span>.<span class="title function_">now</span>() - data.<span class="property">__timestamp</span> &lt; <span class="variable constant_">MAX_CACHE_TIME</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(data.<span class="property">res</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 否则将缓存清空</span></span><br><span class="line">        <span class="keyword">delete</span> dataCache[apiName];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> promise = promiseCache.<span class="title function_">get</span>(apiName);</span><br><span class="line">    <span class="keyword">if</span> (promise) &#123;</span><br><span class="line">        <span class="keyword">return</span> promise;</span><br><span class="line">    &#125;</span><br><span class="line">    promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="title function_">getDataAPI</span>(params).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">            data = &#123;</span><br><span class="line">                res,</span><br><span class="line">                <span class="attr">__timestamp</span>: <span class="title class_">Date</span>.<span class="title function_">now</span>()</span><br><span class="line">            &#125;;</span><br><span class="line">            <span class="comment">// 设置数据缓存</span></span><br><span class="line">            dataCache[apiName] = data;</span><br><span class="line">            <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;cache&#x27;</span>, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(dataCache));</span><br><span class="line">            <span class="title function_">resolve</span>(res);</span><br><span class="line">        &#125;).<span class="title function_">catch</span>(<span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="title function_">reject</span>(e);</span><br><span class="line">        &#125;).<span class="title function_">finally</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            promiseCache.<span class="title function_">delete</span>(apiName);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">    promiseCache.<span class="title function_">set</span>(apiName, promise);</span><br><span class="line">    <span class="keyword">return</span> promise;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>将该方法改为工厂方法，即通过该函数可以将任意 api方法 改造为 可以缓存api的方法</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> storageCache = <span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;cache&#x27;</span>) || <span class="string">&#x27;&#123;&#125;&#x27;</span>;</span><br><span class="line"><span class="keyword">let</span> dataCache = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(storageCache);</span><br><span class="line"><span class="keyword">let</span> promiseCache = <span class="keyword">new</span> <span class="title class_">Map</span>();</span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">MAX_CACHE_TIME</span> = <span class="number">1000</span> * <span class="number">60</span> * <span class="number">60</span> * <span class="number">24</span> * <span class="number">7</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">cacheApi</span>(<span class="params">fn</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> apiName = fn.<span class="property">name</span>;</span><br><span class="line">    <span class="comment">// 返回新的缓存化的函数</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params">params</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> data = dataCache[apiName];</span><br><span class="line">        <span class="keyword">if</span> (data) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="title class_">Date</span>.<span class="title function_">now</span>() - data.<span class="property">__timestamp</span> &lt; <span class="variable constant_">MAX_CACHE_TIME</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(data.<span class="property">res</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">delete</span> dataCache[apiName];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> promise = promiseCache.<span class="title function_">get</span>(apiName);</span><br><span class="line">        <span class="keyword">if</span> (promise) &#123;</span><br><span class="line">            <span class="keyword">return</span> promise;</span><br><span class="line">        &#125;</span><br><span class="line">        promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="title function_">fn</span>(params).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">                data = &#123;</span><br><span class="line">                    res,</span><br><span class="line">                    <span class="attr">__timestamp</span>: <span class="title class_">Date</span>.<span class="title function_">now</span>()</span><br><span class="line">                &#125;;</span><br><span class="line">                dataCache[apiName] = data;</span><br><span class="line">                <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;cache&#x27;</span>, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(dataCache));</span><br><span class="line">                <span class="title function_">resolve</span>(res);</span><br><span class="line">            &#125;).<span class="title function_">catch</span>(<span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="title function_">reject</span>(e);</span><br><span class="line">            &#125;).<span class="title function_">finally</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">                promiseCache.<span class="title function_">delete</span>(apiName);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">        promiseCache.<span class="title function_">set</span>(apiName, promise);</span><br><span class="line">        <span class="keyword">return</span> promise;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调用方式：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> getData = <span class="title function_">cacheApi</span>(getDataAPI);</span><br><span class="line"><span class="title function_">getData</span>().<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> &#123; <span class="comment">/* 业务逻辑 */</span> &#125;);</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>将该方法改造为类实例方法，避免对全局变量的干扰，同时对同一类的 api 可以修改相同的最大缓存时间。如果所有的api都希望设置相同的最大缓存时间，可以将 memorize 方法改为静态方法。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ApiCache</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将初始化的部分放到 constructor 里</span></span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">time</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">MAX_CACHE_TIME</span> = <span class="title class_">Number</span>(time) || <span class="number">1000</span> * <span class="number">60</span> * <span class="number">60</span> * <span class="number">24</span> * <span class="number">7</span>;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">promiseCache</span> = <span class="keyword">new</span> <span class="title class_">Map</span>();</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">dataCache</span> = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;cache&#x27;</span>)) || &#123;&#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 可以主动设置最大缓存时间</span></span><br><span class="line">    <span class="title function_">setMaxCacheTime</span>(<span class="params">time</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">MAX_CACHE_TIME</span> = time;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 可以清除缓存</span></span><br><span class="line">    <span class="title function_">clearCache</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">dataCache</span> = &#123;&#125;;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">promiseCache</span>.<span class="title function_">clear</span>();</span><br><span class="line">        <span class="variable language_">localStorage</span>.<span class="title function_">removeItem</span>(<span class="string">&#x27;cache&#x27;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">memorize</span>(<span class="params">fn</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> apiName = fn.<span class="property">name</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="function">(<span class="params">params</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> data = <span class="variable language_">this</span>.<span class="property">dataCache</span>[apiName];</span><br><span class="line">            <span class="keyword">if</span> (data) &#123;</span><br><span class="line">                <span class="keyword">if</span> (<span class="title class_">Date</span>.<span class="title function_">now</span>() - data.<span class="property">__timestamp</span> &lt; <span class="variable language_">this</span>.<span class="property">MAX_CACHE_TIME</span>) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(data.<span class="property">res</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">delete</span> <span class="variable language_">this</span>.<span class="property">dataCache</span>[apiName];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">let</span> promise = <span class="variable language_">this</span>.<span class="property">promiseCache</span>.<span class="title function_">get</span>(apiName);</span><br><span class="line">            <span class="keyword">if</span> (!promise) &#123;</span><br><span class="line">                promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="title function_">fn</span>(params).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">                        data = &#123;</span><br><span class="line">                            res,</span><br><span class="line">                            <span class="attr">__timestamp</span>: <span class="title class_">Date</span>.<span class="title function_">now</span>()</span><br><span class="line">                        &#125;;</span><br><span class="line">                        <span class="variable language_">this</span>.<span class="property">dataCache</span>[apiName] = data;</span><br><span class="line">                        <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;cache&#x27;</span>, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(<span class="variable language_">this</span>.<span class="property">dataCache</span>));</span><br><span class="line">                        <span class="title function_">resolve</span>(res);</span><br><span class="line">                    &#125;).<span class="title function_">catch</span>(<span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">                        <span class="title function_">reject</span>(e);</span><br><span class="line">                    &#125;).<span class="title function_">finally</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">                        <span class="variable language_">this</span>.<span class="property">promiseCache</span>.<span class="title function_">delete</span>(apiName);</span><br><span class="line">                    &#125;);</span><br><span class="line">                &#125;);</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">promiseCache</span>.<span class="title function_">set</span>(apiName, promise);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> promise;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> getData = <span class="keyword">new</span> <span class="title class_">ApiCache</span>().<span class="title function_">memorize</span>(getDataAPI);</span><br><span class="line"><span class="title function_">getData</span>().<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> &#123; <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>, data) &#125;);</span><br><span class="line"><span class="title function_">getData</span>().<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> &#123; <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>, data) &#125;);</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>以上只是根据 api 的名字进行了缓存，实际上，一般会根据 api 名字和参数一起来进行缓存，只有当 api名字和参数 均一致时才从缓存中获取；另外，以上代码在不超过最大缓存时间时就会从缓存获取数据，而实际上，即使从缓存获取数据，我们也希望可以异步的更新下缓存；目前只有最大缓存时间，也可以设置最大缓存日期，过期失效；目前采用 class 实现，实际上大部分情况下对于一个api只会调用 <code>new ApiCache(1000 * 60 * 60 * 24 * 30).memorize(getDataAPI)</code> 这一行代码来使之支持缓存，那么我们可以采用代理（proxy）或者修饰器（decorators）的方法对api请求方法进行拦截，会更加方便；</li>
+</ol>
+<p>// TODO： 未完待续</p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

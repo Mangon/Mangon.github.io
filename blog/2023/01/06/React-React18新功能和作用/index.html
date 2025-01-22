@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        React18新功能和作用 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="2022 年 3 月 29 日 React18 正式发布。React18 放弃了对 IE11 的支持。新增 createRoot API 并支持并发模式渲染为了更好的管理 root 节点，React18 引入了一个新的 root API，新的 root API 还支持并发模式的渲染（new concurrent renderer），允许进入并发模式（concurrent mode）。React18 从 同步不可中断的更新 变成了 异步可中断的更新。12345678910111213141" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E-createRoot-API-%E5%B9%B6%E6%94%AF%E6%8C%81%E5%B9%B6%E5%8F%91%E6%A8%A1%E5%BC%8F%E6%B8%B2%E6%9F%93"><span class="toc-text">新增 createRoot API 并支持并发模式渲染</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#setState-%E8%87%AA%E5%8A%A8%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86%E6%9B%B4%E6%96%B0"><span class="toc-text">setState 自动批量处理更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E-flushSync-%E6%89%8B%E5%8A%A8%E9%80%80%E5%87%BA%E6%89%B9%E9%87%8F%E6%9B%B4%E6%96%B0"><span class="toc-text">新增 flushSync 手动退出批量更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%BA%86%E5%8D%B8%E8%BD%BD%E7%BB%84%E4%BB%B6%E5%90%8E%E5%86%8D%E6%9B%B4%E6%96%B0%E7%BB%84%E4%BB%B6%E7%8A%B6%E6%80%81%E6%97%B6%E7%9A%84%E8%AD%A6%E5%91%8A"><span class="toc-text">删除了卸载组件后再更新组件状态时的警告</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React-%E7%BB%84%E4%BB%B6%E7%9A%84%E8%BF%94%E5%9B%9E%E5%80%BC%E5%8F%AF%E4%BB%A5%E4%B8%BA-undefined"><span class="toc-text">React 组件的返回值可以为 undefined</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F%EF%BC%88Strict-Mode%EF%BC%89%E5%8F%96%E6%B6%88%E4%BA%86%E7%AC%AC%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%9A%84%E6%8E%A7%E5%88%B6%E5%8F%B0%E6%97%A5%E5%BF%97"><span class="toc-text">严格模式（Strict Mode）取消了第二次渲染的控制台日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Suspense-%E4%B8%8D%E5%86%8D%E9%9C%80%E8%A6%81-fallback-%E6%9D%A5%E6%8D%95%E8%8E%B7"><span class="toc-text">Suspense 不再需要 fallback 来捕获</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E-userId-API"><span class="toc-text">新增 userId API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E-useSyncExternalStore-API"><span class="toc-text">新增 useSyncExternalStore API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E-useInsertionEffect-API"><span class="toc-text">新增 useInsertionEffect API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E-startTransition-API"><span class="toc-text">新增 startTransition API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E-useDeferredValue-API"><span class="toc-text">新增 useDeferredValue API</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            React18新功能和作用
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2023-01-06T08:13:04.000Z" itemprop="datePublished">2023-01-06</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/react/" rel="tag">react</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>2022 年 3 月 29 日 React18 正式发布。</p>
+<p>React18 放弃了对 IE11 的支持。</p>
+<h2 id="新增-createRoot-API-并支持并发模式渲染"><a href="#新增-createRoot-API-并支持并发模式渲染" class="headerlink" title="新增 createRoot API 并支持并发模式渲染"></a>新增 createRoot API 并支持并发模式渲染</h2><p>为了更好的管理 root 节点，React18 引入了一个新的 root API，新的 root API 还支持并发模式的渲染（new concurrent renderer），允许进入并发模式（concurrent mode）。</p>
+<p>React18 从 <em>同步不可中断的更新</em> 变成了 <em>异步可中断的更新</em>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// React 17</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">ReactDOM</span> <span class="keyword">from</span> <span class="string">&#x27;react-dom&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&#x27;./App&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> root = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;root&#x27;</span>)!;</span><br><span class="line"></span><br><span class="line"><span class="title class_">ReactDOM</span>.<span class="title function_">render</span>(<span class="language-xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span></span>, root);</span><br><span class="line"></span><br><span class="line"><span class="comment">// React 18</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">ReactDOM</span> <span class="keyword">from</span> <span class="string">&#x27;react-dom/client&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&#x27;./App&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> root = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;root&#x27;</span>)!;</span><br><span class="line"></span><br><span class="line"><span class="title class_">ReactDOM</span>.<span class="title function_">createRoot</span>(root).<span class="title function_">render</span>(<span class="language-xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span></span>);</span><br></pre></td></tr></table></figure>
+<p>同时，在卸载组件时，我们也需要将 <code>unmountComponentAtNode</code> 升级为 <code>root.unmount</code> :</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// React 17</span></span><br><span class="line"><span class="title class_">ReactDOM</span>.<span class="title function_">unmountComponentAtNode</span>(root);</span><br><span class="line"></span><br><span class="line"><span class="comment">// React 18</span></span><br><span class="line">root.<span class="title function_">unmount</span>();</span><br></pre></td></tr></table></figure>
+<p>除此之外，React18 还从 render 方法中删除了回调函数，因为当使用 Suspense 时，它通常不会有预期的结果。</p>
+<p>在新版本中，如果需要在 render 方法中使用回调函数，我们可以在组件中通过 useEffect 实现：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// React 17</span></span><br><span class="line"><span class="keyword">const</span> root = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;root&#x27;</span>)!;</span><br><span class="line"><span class="title class_">ReactDOM</span>.<span class="title function_">render</span>(<span class="language-xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span></span>, root, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;渲染完成&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// React 18</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">AppWithCallback</span>: <span class="title class_">React</span>.<span class="property">FC</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;渲染完成&#x27;</span>);</span><br><span class="line">  &#125;, []);</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> root = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;root&#x27;</span>)!;</span><br><span class="line"><span class="title class_">ReactDOM</span>.<span class="title function_">createRoot</span>(root).<span class="title function_">render</span>(<span class="language-xml"><span class="tag">&lt;<span class="name">AppWithCallback</span> /&gt;</span></span>);</span><br></pre></td></tr></table></figure>
+<p>最后，如果项目使用了服务端渲染（SSR），需要把 <code>ReactDOM.hydration</code> 升级为 <code>ReactDOM.hydrateRoot</code> ：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// React 17</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">ReactDOM</span> <span class="keyword">from</span> <span class="string">&#x27;react-dom&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> root = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;root&#x27;</span>);</span><br><span class="line"><span class="title class_">ReactDOM</span>.<span class="title function_">hydrate</span>(<span class="language-xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span></span>, root);</span><br><span class="line"></span><br><span class="line"><span class="comment">// React 18</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">ReactDOM</span> <span class="keyword">from</span> <span class="string">&#x27;react-dom/client&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> root = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;root&#x27;</span>)!;</span><br><span class="line"><span class="title class_">ReactDOM</span>.<span class="title function_">hydrateRoot</span>(root, <span class="language-xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span></span>);</span><br></pre></td></tr></table></figure>
+<p>另外，还需要更新 TypeScript 类型定义，如果项目使用了 TypeScript，最值得注意的变化是，现在在定义 props 类型时，如果需要获取子组件 children ，那么需要显式的定义它，例如这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// React 17</span></span><br><span class="line">interface <span class="title class_">MyButtonProps</span> &#123;</span><br><span class="line">  <span class="attr">color</span>: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">MyButton</span>: <span class="title class_">React</span>.<span class="property">FC</span>&lt;<span class="title class_">MyButtonProps</span>&gt; = <span class="function">(<span class="params">&#123; children &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 在 React 17 的 FC 中，默认携带了 children 属性</span></span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;children&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">MyButton</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// React 18</span></span><br><span class="line">interface <span class="title class_">MyButtonProps</span> &#123;</span><br><span class="line">  <span class="attr">color</span>: string;</span><br><span class="line">  children?: <span class="title class_">React</span>.<span class="property">ReactNode</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">MyButton</span>: <span class="title class_">React</span>.<span class="property">FC</span>&lt;<span class="title class_">MyButtonProps</span>&gt; = <span class="function">(<span class="params">&#123; children &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 在 React 18 的 FC 中，不存在 children 属性，需要手动申明</span></span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;children&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">MyButton</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="setState-自动批量处理更新"><a href="#setState-自动批量处理更新" class="headerlink" title="setState 自动批量处理更新"></a>setState 自动批量处理更新</h2><p>批处理是指为了获得更好的性能，在数据层，将多个状态更新批量处理，合并成一次更新（在视图层，将多个渲染合并成一次渲染）。</p>
+<p>在 React18 之前，只有在 react 事件处理函数中，才会自动执行批处理，其它情况会多次更新；在 React18 之后，任何情况都会自动执行批处理，多次更新始终合并为一次。</p>
+<p>React18 通过在默认情况下执行批处理来实现了开箱即用的性能改进。</p>
+<h2 id="新增-flushSync-手动退出批量更新"><a href="#新增-flushSync-手动退出批量更新" class="headerlink" title="新增 flushSync 手动退出批量更新"></a>新增 flushSync 手动退出批量更新</h2><p>批处理是一个破坏性改动，如果想退出批量更新，可以使用 <code>flushSync</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useState &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; flushSync &#125; <span class="keyword">from</span> <span class="string">&#x27;react-dom&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">App</span>: <span class="title class_">React</span>.<span class="property">FC</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> [count1, setCount1] = <span class="title function_">useState</span>(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">const</span> [count2, setCount2] = <span class="title function_">useState</span>(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-xml">        flushSync(() =&gt; &#123;</span></span><br><span class="line"><span class="language-xml">          setCount1(count =&gt; count + 1);</span></span><br><span class="line"><span class="language-xml">        &#125;);</span></span><br><span class="line"><span class="language-xml">        // 第一次更新</span></span><br><span class="line"><span class="language-xml">        flushSync(() =&gt; &#123;</span></span><br><span class="line"><span class="language-xml">          setCount2(count =&gt; count + 1);</span></span><br><span class="line"><span class="language-xml">        &#125;);</span></span><br><span class="line"><span class="language-xml">        // 第二次更新</span></span><br><span class="line"><span class="language-xml">      &#125;&#125;</span></span><br><span class="line"><span class="language-xml">    &gt;</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">div</span>&gt;</span>count1： &#123;count1&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">div</span>&gt;</span>count2： &#123;count2&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
+<p>注意：<code>flushSync</code> 函数内部的多个 <code>setState</code> 仍然为批量更新，这样可以精准控制哪些不需要的批量更新。</p>
+<h2 id="删除了卸载组件后再更新组件状态时的警告"><a href="#删除了卸载组件后再更新组件状态时的警告" class="headerlink" title="删除了卸载组件后再更新组件状态时的警告"></a>删除了卸载组件后再更新组件状态时的警告</h2><p>删除了以下警告：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Warining: Can&#x27;t perfform a React state update on an unmounted component...</span><br></pre></td></tr></table></figure>
+<p>这个错误的初衷，原本旨在针对一些特殊场景，譬如 在 <code>useEffect</code> 里面设置了定时器，或者订阅了某个事件，从而在组件内部产生了副作用，而且忘记 <code>return</code> 一个函数清除副作用，则会发生内存泄漏之类的场景<br>但是在实际开发中，更多的场景是，我们在 <code>useEffect</code> 里面发送了一个异步请求，在异步函数还没有被 <code>resolve</code> 或者被 <code>reject</code> 的时候，我们就卸载了组件。 在这种场景中，警告同样会触发。但是，在这种情况下，组件内部并没有内存泄漏，因为这个异步函数已经被垃圾回收了，此时，警告具有误导性。</p>
+<h2 id="React-组件的返回值可以为-undefined"><a href="#React-组件的返回值可以为-undefined" class="headerlink" title="React 组件的返回值可以为 undefined"></a>React 组件的返回值可以为 undefined</h2><p>在 React17 中，如果需要返回一个空组件，React 只允许返回 null 。如果显式的返回了 undefined，控制台则会在运行时抛出一个错误。在 React18 中，不再检查因返回 undefined 而导致崩溃。既能返回 null，也能返回 undefined。</p>
+<h2 id="严格模式（Strict-Mode）取消了第二次渲染的控制台日志"><a href="#严格模式（Strict-Mode）取消了第二次渲染的控制台日志" class="headerlink" title="严格模式（Strict Mode）取消了第二次渲染的控制台日志"></a>严格模式（Strict Mode）取消了第二次渲染的控制台日志</h2><p>当使用严格模式时，React 会对每个组件进行两次渲染，以便观察一些意想不到的结果。在 React17 中，取消了其中一次渲染的控制台日志，以便让日志更容易阅读。如果安装了 React DevTools，第二次渲染的日志信息将显示为灰色，以柔和的方式显式在控制台。</p>
+<h2 id="Suspense-不再需要-fallback-来捕获"><a href="#Suspense-不再需要-fallback-来捕获" class="headerlink" title="Suspense 不再需要 fallback 来捕获"></a>Suspense 不再需要 fallback 来捕获</h2><p>在 React18 的 Suspense 组件中，官方对空的 fallback 属性的处理方式做了改变：不再跳过缺失值或值为 null 的 fallback 的 Suspense 边界。相反，会捕获边界并且向外层查找，如果查找不到，将会把 fallback 呈现为 null。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// React 17</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;Suspense fallback=&#123;&lt;Loading /&gt;&#125;&gt; // &lt;--- 这个边界被使用，显示 Loading 组件</span><br><span class="line">      &lt;Suspense&gt;                      // &lt;--- 这个边界被跳过，没有 fallback 属性</span><br><span class="line">        &lt;Page /&gt;</span><br><span class="line">      &lt;/Suspense&gt;</span><br><span class="line">    &lt;/Suspense&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default App;</span><br><span class="line"></span><br><span class="line">// React 18</span><br><span class="line">const App = () =&gt; &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;Suspense fallback=&#123;&lt;Loading /&gt;&#125;&gt; // &lt;--- 不使用</span><br><span class="line">      &lt;Suspense&gt;                      // &lt;--- 这个边界被使用，将 fallback 渲染为 null</span><br><span class="line">        &lt;Page /&gt;</span><br><span class="line">      &lt;/Suspense&gt;</span><br><span class="line">    &lt;/Suspense&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default App;</span><br></pre></td></tr></table></figure>
+<h2 id="新增-userId-API"><a href="#新增-userId-API" class="headerlink" title="新增 userId API"></a>新增 userId API</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> id = <span class="title function_">useId</span>();</span><br></pre></td></tr></table></figure>
+<p>支持同一个组件在客户端和服务端生成相同的唯一的 ID，避免 <code>hydration</code> 的不兼容，这解决了在 React17 及 17 以下版本中已经存在的问题。因为我们的服务器渲染时提供的 HTML 是无序的，useId 的原理就是每个 id 代表该组件在组件树中的层级结构。</p>
+<h2 id="新增-useSyncExternalStore-API"><a href="#新增-useSyncExternalStore-API" class="headerlink" title="新增 useSyncExternalStore API"></a>新增 useSyncExternalStore API</h2><p><code>useSyncExternalStore</code> 能够通过强制同步更新数据让 React 组件在并发模式下安全地有效地读取外接数据源。 在并发模式下，React 一次渲染会分片执行（以 fiber 为单位），中间可能穿插优先级更高的更新。假如在高优先级的更新中改变了公共数据（比如 Redux 中的数据），那之前低优先的渲染必须要重新开始执行，否则就会出现前后状态不一致的情况。<code>useSyncExternalStore</code> 一般是三方状态管理库使用。React 自身的 useState 已经原生的解决了并发特性下 state 更新问题。目前 React-Redux 8.0 已经基于 <code>useSyncExternalStore</code> 实现。</p>
+<h2 id="新增-useInsertionEffect-API"><a href="#新增-useInsertionEffect-API" class="headerlink" title="新增 useInsertionEffect API"></a>新增 useInsertionEffect API</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">useCSS</span> = rule =&gt; &#123;</span><br><span class="line">  <span class="title function_">useInsertionEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!isInserted.<span class="title function_">has</span>(rule)) &#123;</span><br><span class="line">      isInserted.<span class="title function_">add</span>(rule);</span><br><span class="line">      <span class="variable language_">document</span>.<span class="property">head</span>.<span class="title function_">appendChild</span>(<span class="title function_">getStyleForRule</span>(rule));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> rule;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">App</span>: <span class="title class_">React</span>.<span class="property">FC</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> className = <span class="title function_">useCSS</span>(rule);</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#123;className&#125;</span> /&gt;</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
+<p>这个 Hook 只建议 css-in-js 库来使用。 这个 Hooks 执行时机在 DOM 生成之后，<code>useLayoutEffect</code> 之前，它的工作原理大致和 <code>useLayoutEffect</code> 相同，只是此时无法访问 DOM 节点的引用，一般用于提前注入 <code>&lt;style&gt;</code> 脚本。</p>
+<h2 id="新增-startTransition-API"><a href="#新增-startTransition-API" class="headerlink" title="新增 startTransition API"></a>新增 startTransition API</h2><p><code>startTransition</code>，主要为了能在大量的任务下也能保持 UI 响应。这个新的 API 可以通过将特定更新标记为“过渡”来显著改善用户交互，简单来说，就是被 <code>startTransition</code> 回调包裹的 <code>setState</code> 触发的渲染被标记为不紧急渲染，这些渲染可能被其他紧急渲染所抢占。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useState, useEffect, useTransition &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">App</span>: <span class="title class_">React</span>.<span class="property">FC</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> [list, setList] = useState&lt;any[]&gt;([]);</span><br><span class="line">  <span class="keyword">const</span> [isPending, startTransition] = <span class="title function_">useTransition</span>();</span><br><span class="line">  <span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 使用了并发特性，开启并发更新</span></span><br><span class="line">    <span class="title function_">startTransition</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="title function_">setList</span>(<span class="keyword">new</span> <span class="title class_">Array</span>(<span class="number">10000</span>).<span class="title function_">fill</span>(<span class="literal">null</span>));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;, []);</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">      &#123;list.map((_, i) =&gt; (</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">key</span>=<span class="string">&#123;i&#125;</span>&gt;</span>&#123;i&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      ))&#125;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
+<p>由于 <code>setList</code> 在 <code>startTransition</code> 的回调函数中执行（使用了并发特性），所以 <code>setList</code> 会触发 <em>并发更新</em>。</p>
+<h2 id="新增-useDeferredValue-API"><a href="#新增-useDeferredValue-API" class="headerlink" title="新增 useDeferredValue API"></a>新增 useDeferredValue API</h2><p><code>useDeferredValue</code> 返回一个延迟响应的值，可以让一个 state 延迟生效，只有当前没有紧急更新时，该值才会变为最新值。<code>useDeferredValue</code> 和 <code>startTransition</code> 一样，都是标记了一次非紧急更新。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useState, useEffect, useDeferredValue &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">App</span>: <span class="title class_">React</span>.<span class="property">FC</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> [list, setList] = useState&lt;any[]&gt;([]);</span><br><span class="line">  <span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">setList</span>(<span class="keyword">new</span> <span class="title class_">Array</span>(<span class="number">10000</span>).<span class="title function_">fill</span>(<span class="literal">null</span>));</span><br><span class="line">  &#125;, []);</span><br><span class="line">  <span class="comment">// 使用了并发特性，开启并发更新</span></span><br><span class="line">  <span class="keyword">const</span> deferredList = <span class="title function_">useDeferredValue</span>(list);</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">      &#123;deferredList.map((_, i) =&gt; (</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">key</span>=<span class="string">&#123;i&#125;</span>&gt;</span>&#123;i&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      ))&#125;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

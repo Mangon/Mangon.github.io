@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        字体 font | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="字体格式类型字体格式类型有 TrueType、OpenType、EOT、WOFF/WOFF2 以及 SVG 等。PostScriptPostScript 是由 Adobe 在1985年开发的页面描述语言，也被称为 Type1，文件扩展名为 .eps。PostScript 避免了版面制作对使用设备的依赖性，使得显示和打印可以跨平台。TrueTypeTrueType 是由 Apple 和 Microsoft 在1991年左右共同开发的一种电脑轮廓字体，文件扩展名为 .ttf 。Windows " />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E4%BD%93%E6%A0%BC%E5%BC%8F%E7%B1%BB%E5%9E%8B"><span class="toc-text">字体格式类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PostScript"><span class="toc-text">PostScript</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TrueType"><span class="toc-text">TrueType</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenType"><span class="toc-text">OpenType</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#E0T-Embedded-Open-Type"><span class="toc-text">E0T - Embedded Open Type</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WOFF-Web-Open-Font-Format"><span class="toc-text">WOFF - Web Open Font Format</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SVG-Scalable-Vector-Graphics"><span class="toc-text">SVG - Scalable Vector Graphics</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87-font-face-%E6%8C%87%E5%AE%9A%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AD%97%E4%BD%93"><span class="toc-text">通过 @font-face 指定自定义字体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87-font-family-%E8%AE%BE%E7%BD%AE%E5%AD%97%E4%BD%93%E6%97%8F"><span class="toc-text">通过 font-family 设置字体族</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-family-%E5%8F%96%E5%80%BC"><span class="toc-text">font-family 取值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87-font-style-%E8%AE%BE%E7%BD%AE%E5%AD%97%E4%BD%93%E6%A0%B7%E5%BC%8F"><span class="toc-text">通过 font-style 设置字体样式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87-font-weight-%E8%AE%BE%E7%BD%AE%E5%AD%97%E4%BD%93%E7%B2%97%E7%BB%86"><span class="toc-text">通过 font-weight 设置字体粗细</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87-font-size-%E8%AE%BE%E7%BD%AE%E5%AD%97%E4%BD%93%E5%A4%A7%E5%B0%8F"><span class="toc-text">通过 font-size 设置字体大小</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87-font-variant-%E8%AE%BE%E7%BD%AE%E5%AD%97%E4%BD%93%E7%9A%84%E5%8F%98%E4%BD%93"><span class="toc-text">通过 font-variant 设置字体的变体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87-font-%E5%AF%B9%E5%A4%9A%E4%B8%AA%E5%AD%97%E4%BD%93%E5%B1%9E%E6%80%A7%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%86%99"><span class="toc-text">通过 font 对多个字体属性进行简写</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            字体 font
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2022-03-03T02:57:33.000Z" itemprop="datePublished">2022-03-03</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>, <a class="article-tag-link" href="/blog/tags/font/" rel="tag">font</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="字体格式类型"><a href="#字体格式类型" class="headerlink" title="字体格式类型"></a>字体格式类型</h2><p>字体格式类型有 TrueType、OpenType、EOT、WOFF/WOFF2 以及 SVG 等。</p>
+<span id="more"></span>
+<h3 id="PostScript"><a href="#PostScript" class="headerlink" title="PostScript"></a>PostScript</h3><p>PostScript 是由 Adobe 在1985年开发的页面描述语言，也被称为 Type1，文件扩展名为 <strong>.eps</strong>。PostScript 避免了版面制作对使用设备的依赖性，使得显示和打印可以跨平台。</p>
+<h3 id="TrueType"><a href="#TrueType" class="headerlink" title="TrueType"></a>TrueType</h3><p>TrueType 是由 Apple 和 Microsoft 在1991年左右共同开发的一种电脑轮廓字体，文件扩展名为 <strong>.ttf</strong> 。Windows 和 Mac 系统最常用的字体格式就是 TrueType，其最大的特点就是它是由一种数学模式来进行定义的基于轮廓技术的字体，这使得它们比基于矢量的字体更容易处理，保证了屏幕与打印输出的一致性。同时，这类字体和矢量字体一样可以随意缩放、旋转而不必担心会出现锯齿。</p>
+<h3 id="OpenType"><a href="#OpenType" class="headerlink" title="OpenType"></a>OpenType</h3><p>OpenType 是 Microsoft 和 Adobe 在1995年左右共同开发的字体，文件扩展名为 <strong>.otf</strong> 。OpenType 也被称为 Type2 字体，它也是一种轮廓字体，而且可以把 PostScript 字体嵌入到 TrueType 的软件中。并且还支持多个平台，支持很大的字符集，支持在字符集中加入数字签名。Microsoft 从 Windows 2000 系统开始兼容 OpenType 字库，Apple 公司也从 MAC OS X 开始完全兼容 OpenType 字库。</p>
+<h3 id="E0T-Embedded-Open-Type"><a href="#E0T-Embedded-Open-Type" class="headerlink" title="E0T - Embedded Open Type"></a>E0T - Embedded Open Type</h3><p>EOT 是一种嵌入式字体，是 Microsoft 在1997年开发的技术，文件扩展名为 <strong>.eot</strong> 。允许 OpenType 字体用 <code>@font-face</code> 嵌入到网页并下载至浏览器渲染，存储在临时安装文件夹下。</p>
+<h3 id="WOFF-Web-Open-Font-Format"><a href="#WOFF-Web-Open-Font-Format" class="headerlink" title="WOFF - Web Open Font Format"></a>WOFF - Web Open Font Format</h3><p>WOFF 是一种专门为了 Web 而设计的字体格式标准，由 Mozilla、Opera、Microsoft 在2009年提案给， 由 W3C 的 Web字体工作组 负责标准化，文件扩展名为 <strong>.woff</strong> 。它实际上是对于 TrueType / OpenType 等字体格式的封装，每个字体文件中含有字体以及针对字体的元数据（Metadata），同时字体文件被压缩，以便于网络传输，同时不加密，不受DRM（数字著作权）限制。 Mozilla Firefox 3.6 开始支持 WOFF，Microsoft 从 IE9 开始支持，Safari 自 5.1 起支持WOFF，Google Chrome 自 6.0 起支持WOFF，Presto 自 2.7.81 起支持 WOFF。<br>2014年，Web字体工作组 发布了 WOFF2 草案，文件扩展名为 <strong>.woff2</strong> 。2018年，WOFF2标准成为 W3C 推荐标准。</p>
+<h3 id="SVG-Scalable-Vector-Graphics"><a href="#SVG-Scalable-Vector-Graphics" class="headerlink" title="SVG - Scalable Vector Graphics"></a>SVG - Scalable Vector Graphics</h3><p>SVG 是由 W3C 制定的开放标准的图形格式，文件扩展名为 <strong>.svg</strong> 。SVG 字体就是使用 SVG 技术来呈现字体。</p>
+<h2 id="通过-font-face-指定自定义字体"><a href="#通过-font-face-指定自定义字体" class="headerlink" title="通过 @font-face 指定自定义字体"></a>通过 <code>@font-face</code> 指定自定义字体</h2><p><code>@font-face</code> CSS at规则指定了一种用于显示文本的自定义字体；字体可以从远程服务器或用户自己计算机上本地安装的字体加载。</p>
+<p>一个最常见的用法是，通过 <code>font-family</code> 指定自定义字体族名；通过 <code>src</code> 指定字体文件来源，通常可以通过 URL 加载远程字体文件，或者通过 dataURL 将需要的字体 data 信息包括进来，src 每个字体文件可以包括一个 <code>format()</code> 方法标志字体格式类型，format 的入参只能是 “woff”, “woff2”, “truetype”, “opentype”, “embedded-opentype” 或者 “svg”，和上文提到的字体格式类型是一一对应的。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@font-face</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">&quot;Open Sans&quot;</span>;</span><br><span class="line">  <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">&quot;/fonts/OpenSans-Regular-webfont.woff2&quot;</span>) <span class="built_in">format</span>(<span class="string">&quot;woff2&quot;</span>),</span><br><span class="line">       <span class="built_in">url</span>(<span class="string">&quot;/fonts/OpenSans-Regular-webfont.woff&quot;</span>) <span class="built_in">format</span>(<span class="string">&quot;woff&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>@font-face</code> 也有许多其他的参数，可以通过 <code>font-style</code> 设置字体样式类型，通过 <code>font-weight</code> 设置字体粗细等。</p>
+<h2 id="通过-font-family-设置字体族"><a href="#通过-font-family-设置字体族" class="headerlink" title="通过 font-family 设置字体族"></a>通过 <code>font-family</code> 设置字体族</h2><h3 id="font-family-取值"><a href="#font-family-取值" class="headerlink" title="font-family 取值"></a><code>font-family</code> 取值</h3><div><dl><dt id="family-name"><code>&lt;family-name&gt;</code></dt><dd>一个字体族的名字。例如 “Times” 和 “Helvetica” 都是字体族名。字体族名可以包含空格，但包含空格时应该用引号。</dd><dt id="generic-name"><code>&lt;generic-name&gt;</code></dt><dd><p>通用字体族名是一种备选机制，用于在指定的字体不可用时给出较好的字体。通用字体族名都是关键字，所以不可以加引号。 在列表的末尾应该至少有一个通用字体族名。 以下是该属性可能的取值以及他们的定义。</p><dl><dt id="serif"><code>serif</code></dt><dd style="font-family: serif;">带衬线字体，笔画结尾有特殊的装饰线或衬线。<br>例如： <span style="font-family: lucida bright,serif;">Lucida Bright</span>, <span style="font-family: lucida fax,serif;">Lucida Fax</span>, <span style="font-family: palatino,serif;">Palatino</span>, <span style="font-family: palatino linotype,serif;">“Palatino Linotype”</span>, <span style="font-family: palladio,serif;">Palladio</span>, <span style="font-family: " urw="">“URW Palladio”</span>, <span style="font-family: serif;">serif</span>.</dd><dt id="sans-serif"><code>sans-serif</code></dt><dd style="font-family: sans-serif;">无衬线字体，即笔画结尾是平滑的字体。<br>例如， <span style="font-family: open sans,sans-serif;">“Open Sans”</span>, <span style="font-family: fira sans,sans-serif;">“Fira Sans”</span>, <span style="font-family: lucida sans,sans-serif;">“Lucida Sans”</span>, <span style="font-family: lucida sans unicode sans-serif;">“Lucida Sans Unicode”</span>, <span style="font-family: trebuchet ms,sans-serif;">“Trebuchet MS”</span>, <span style="font-family: liberation sans,sans-serif;">“Liberation Sans”</span>, <span style="font-family: nimbus sans l,sans-serif;">“Nimbus Sans L”</span>, <span style="font-family: sans-serif;">sans-serif</span>.</dd><dt id="monospace"><code>monospace</code></dt><dd style="font-family: monospace;">等宽字体，即字体中每个字宽度相同。<br>例如， <span style="font-family: fira mono,monospace;">“Fira Mono”</span>, <span style="font-family: dejavu sans mono,monospace;">“DejaVu Sans Mono”</span>, <span style="font-family: menlo,monospace;">Menlo</span>, <span style="font-family: consolas,monospace;">Consolas</span>, <span style="font-family: liberation mono,monospace;">“Liberation Mono”</span>, <span style="font-family: monaco,monospace;">Monaco</span>, <span style="font-family: lucida console,monospace;">“Lucida Console”</span>, <span style="font-family: monospace;">monospace</span>.</dd><dt id="cursive"><code>cursive</code></dt><dd style="font-family: cursive;">草书字体。这种字体有的有连笔，有的还有特殊的斜体效果。因为一般这种字体都有一点连笔效果，所以会给人一种手写的感觉。<br>例如，<span style="font-family: brush script mt,cursive;">“Brush Script MT</span>“, <span style="font-family: brush script std,cursive;">“Brush Script Std</span>“, <span>“Lucida Calligraphy”</span>, <span>“Lucida Handwriting”</span>, <span style="font-family: apple chancery,cursive;">“Apple Chancery”</span>, <span style="font-family: cursive;">cursive</span>.</dd><dt id="fantasy"><code>fantasy</code></dt><dd style="font-family: fantasy;">Fantasy 字体主要是那些具有特殊艺术效果的字体。<br>例如，<span style="font-family: papyrus,fantasy;">Papyrus</span>, <span style="font-family: herculanum,fantasy;">Herculanum</span>, <span style="font-family: party let,fantasy;">Party LET</span>, <span style="font-family: curlz mt,fantasy;">Curlz MT</span>, <span style="font-family: harrington,fantasy;">Harrington</span>, <span style="font-family: fantasy;">fantasy</span>.</dd><dt id="system-ui"><code>system-ui</code></dt><dd>从浏览器所处平台处获取的默认用户界面字体。由于世界各地的排版习惯之间有很大的差异，这个通用选项为无法清晰映射到其他类型的字体提供支持。</dd><dt id="math"><code>math</code></dt><dd>针对显示数学相关字符的特殊样式问题而设计的字体：支持上标和下标、跨行括号、嵌套表达式和具有不同含义的双字母字形。</dd><dt id="emoji"><code>emoji</code></dt><dd>专门用于呈现 Emoji 表情符号的字体。</dd><dt id="fangsong"><code>fangsong</code></dt><dd>一种汉字字体，介于宋体和楷体之间。这种字体常用于某些政府文件。</dd></dl></dd></dl></div>
+
+<h2 id="通过-font-style-设置字体样式"><a href="#通过-font-style-设置字体样式" class="headerlink" title="通过 font-style 设置字体样式"></a>通过 <code>font-style</code> 设置字体样式</h2><p>可以设置为 <code>italic</code>（斜体） <code>oblique</code>（倾斜体）默认是 <code>normal</code> 。</p>
+<h2 id="通过-font-weight-设置字体粗细"><a href="#通过-font-weight-设置字体粗细" class="headerlink" title="通过 font-weight 设置字体粗细"></a>通过 <code>font-weight</code> 设置字体粗细</h2><p>可以设置为一个介于 1 和 1000 (包含) 之间的数字类型值（需为 100 的整倍数），更大的数值代表字体更粗（前提是字体支持）。默认是 <code>normal</code> 相当于 400。可以设置为 <code>bold</code> 相当于 700，也可以设置成 <code>lighter</code> 或 <code>bolder</code> 表示比从父元素继承来的值更细或更粗。</p>
+<h2 id="通过-font-size-设置字体大小"><a href="#通过-font-size-设置字体大小" class="headerlink" title="通过 font-size 设置字体大小"></a>通过 <code>font-size</code> 设置字体大小</h2><p>可以使用 绝对大小值 <code>xx-small, x-small, small, medium, large, x-large, xx-large</code> ，可以使用相对值 <code>larger, smaller</code> 表示比父元素大或者小，可以使用 em/ex/百分比 表示相对父元素的大小，不过最常见的是使用像素 px。</p>
+<h2 id="通过-font-variant-设置字体的变体"><a href="#通过-font-variant-设置字体的变体" class="headerlink" title="通过 font-variant 设置字体的变体"></a>通过 <code>font-variant</code> 设置字体的变体</h2><p><code>font-variant</code> 属性是 <code>font-variant-caps</code>, <code>font-variant-numeric</code>, <code>font-variant-alternates</code>, <code>font-variant-ligatures</code>, <code>font-variant-east-asian</code> 等属性的简写。</p>
+<p>这些属性都不常用到。一个比较有意思的属性是 <code>font-variant-east-asian</code> 设置 <code>font-variant-east-asian: traditional;</code> 可以将简体文本显示为繁体字，但需要字体族支持。</p>
+<h2 id="通过-font-对多个字体属性进行简写"><a href="#通过-font-对多个字体属性进行简写" class="headerlink" title="通过 font 对多个字体属性进行简写"></a>通过 <code>font</code> 对多个字体属性进行简写</h2><p><code>font</code> 属性可以用来作为 <code>font-style</code>, <code>font-variant</code>, <code>font-weight</code>, <code>font-size</code>, <code>line-height</code> 和 <code>font-family</code> 属性的简写，或将元素的字体设置为系统字体。如果是作为简写使用，必须包括 <code>font-size</code> 和 <code>font-family</code> 属性。</p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

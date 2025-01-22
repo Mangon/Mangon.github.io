@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        React Hook | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="什么是 React HookHook 是 React 16.8 的新增特性允许开发者在函数组件里使用 React state 及生命周期等特性的函数React 内置如 useState、useEffect 等 HookHook 将组件中相互关联的部分拆分成更小的函数（比如设置订阅或请求数据）非强制按照生命周期划分，避免每个生命周期包含不相关的逻辑开发者可以在不编写 class 的情况下使用 state 以及其他的 React 特性无需考虑 this，无需考虑函数和 clas" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-React-Hook"><span class="toc-text">什么是 React Hook</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-State-Hook"><span class="toc-text">什么是 State Hook</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Effect-Hook"><span class="toc-text">什么是 Effect Hook</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#useReducer-%E5%92%8C-useState-%E5%8C%BA%E5%88%AB"><span class="toc-text">useReducer 和 useState 区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#useMemo-%E5%92%8C-useCallback-%E5%8C%BA%E5%88%AB"><span class="toc-text">useMemo 和 useCallback 区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#useEffect-%E5%92%8C-useLayoutEffect-%E5%8C%BA%E5%88%AB"><span class="toc-text">useEffect 和 useLayoutEffect 区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#useRef-%E5%92%8C-Refs-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">useRef 和 Refs 的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%87%AA%E5%AE%9A%E4%B9%89-Hook"><span class="toc-text">如何自定义 Hook</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%87%AA%E5%AE%9A%E4%B9%89-Hook"><span class="toc-text">什么是自定义 Hook</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89-Hook-%E9%9C%80%E8%A6%81%E9%81%B5%E5%BE%AA%E5%93%AA%E4%BA%9B%E8%A7%84%E5%88%99"><span class="toc-text">自定义 Hook 需要遵循哪些规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89-Hook-%E4%BD%9C%E7%94%A8"><span class="toc-text">自定义 Hook 作用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E5%9C%A8%E5%BE%AA%E7%8E%AF%EF%BC%8C%E6%9D%A1%E4%BB%B6%E6%88%96%E5%B5%8C%E5%A5%97%E5%87%BD%E6%95%B0%E4%B8%AD%E8%B0%83%E7%94%A8-Hook%EF%BC%9F"><span class="toc-text">为什么不能在循环，条件或嵌套函数中调用 Hook？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#useDeferredValue-%E5%92%8C-useTransition-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">useDeferredValue 和 useTransition 的区别</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            React Hook
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2022-11-25T02:19:30.000Z" itemprop="datePublished">2022-11-25</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/react/" rel="tag">react</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="什么是-React-Hook"><a href="#什么是-React-Hook" class="headerlink" title="什么是 React Hook"></a>什么是 React Hook</h2><p>Hook 是 React 16.8 的新增特性</p>
+<ul>
+<li>允许开发者在函数组件里使用 React state 及生命周期等特性的函数<ul>
+<li>React 内置如 useState、useEffect 等 Hook</li>
+</ul>
+</li>
+<li>Hook 将组件中相互关联的部分拆分成更小的函数（比如设置订阅或请求数据）<ul>
+<li>非强制按照生命周期划分，避免每个生命周期包含不相关的逻辑</li>
+</ul>
+</li>
+<li>开发者可以在不编写 class 的情况下使用 state 以及其他的 React 特性<ul>
+<li>无需考虑 this，无需考虑函数和 class 组件的区别和应用场景</li>
+<li>便于使用 Prepack 试验 component folding，使代码更易于优化</li>
+<li>拥抱函数式编程</li>
+</ul>
+</li>
+<li>Hook 和现有代码可以同时工作，渐进式地使用</li>
+</ul>
+<span id="more"></span>
+<h2 id="什么是-State-Hook"><a href="#什么是-State-Hook" class="headerlink" title="什么是 State Hook"></a>什么是 State Hook</h2><ul>
+<li>State Hook 允许开发者在 React 函数组件中添加 state 的 Hook</li>
+<li>这种 Hook 在 React 的原生实现是 <code>useState</code>，它是一种函数调用时保存变量的方式，它与 class 里面的 this.state 提供的功能完全相同</li>
+<li>useState 的唯一参数是初始 state，支持数字、字符串、对象等类型</li>
+<li>useState 方法的返回值分别是当前 state 以及更新 state 的函数，使用数组解构获取赋值</li>
+<li>state 只在组件首次渲染时创建，下次重新渲染时，返回当前的 state</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [count, setCount] = <span class="title function_">useState</span>(<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="什么是-Effect-Hook"><a href="#什么是-Effect-Hook" class="headerlink" title="什么是 Effect Hook"></a>什么是 Effect Hook</h2><ul>
+<li>Effect Hook 允许开发者在函数组件中执行副作用操作，包括数据获取、设置订阅以及手动更改 React 组件中的 DOM。</li>
+<li>这种 Hook 在 React 的原生实现是 useEffect</li>
+<li>useEfect 支持两个参数<ul>
+<li>第一个参数为函数，默认在组件第一次渲染和每次更新、浏览器完成画面渲染之后执行，调用时机可以看作 class 组件的 componentDidMount、componentDidUpdate 生命周期 + 浏览器完成画面渲染时</li>
+<li>第二个参数为数组，只有数组元素发生变化时，才会调用第一个参数的函数</li>
+<li>当第二个参数为空数组 [] 时，第一个参数的函数仅会在组件挂载和卸载时执行</li>
+</ul>
+</li>
+<li>useEffect 可以返回一个函数，用于移除订阅等副作用，区别于 class 组件的 componetWillUnMount，React 会在执行当前 effect 之前对上一个 effect 进行清除</li>
+<li>useEffect 可以直接访问 state 和 props</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// Update the document title using the browser API</span></span><br><span class="line">    <span class="variable language_">document</span>.<span class="property">title</span> = <span class="string">`You clicked <span class="subst">$&#123;count&#125;</span> times`</span>;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="useReducer-和-useState-区别"><a href="#useReducer-和-useState-区别" class="headerlink" title="useReducer 和 useState 区别"></a>useReducer 和 useState 区别</h2><p>useReducer 是 useState 在某些场景下的替代方案，例如 state 逻辑较复杂且包含多个子值，或者下一个 state 依赖于之前的 state 等。它接收一个形如 <code>(state, action) =&gt; newState</code> 的 reducer，并返回当前的 state 以及与其配套的 dispatch 方法。一个典型的应用场景就是计数器。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [state, dispatch] = <span class="title function_">useReducer</span>(reducer, initialArg, init);</span><br></pre></td></tr></table></figure>
+<h2 id="useMemo-和-useCallback-区别"><a href="#useMemo-和-useCallback-区别" class="headerlink" title="useMemo 和 useCallback 区别"></a>useMemo 和 useCallback 区别</h2><p>useMemo 返回一个 <em>被记忆的</em> 值，把值的“创建”函数和依赖项数组作为参数传入 useMemo，它仅会在某个依赖项改变时才重新计算该 <em>被记忆的</em> 值。这种优化有助于避免在每次渲染时都进行高开销的计算。</p>
+<p>useCallback 返回一个 <em>被记忆的</em> 回调函数。把内联回调函数及依赖项数组作为参数传入 useCallback，它将返回该回调函数的 memoized 版本，该回调函数仅在某个依赖项改变时才会更新。</p>
+<p><code>useCallback(fn, deps)</code> 相当于 <code>useMemo(() =&gt; fn, deps)</code>。</p>
+<h2 id="useEffect-和-useLayoutEffect-区别"><a href="#useEffect-和-useLayoutEffect-区别" class="headerlink" title="useEffect 和 useLayoutEffect 区别"></a>useEffect 和 useLayoutEffect 区别</h2><p>相同点：</p>
+<ul>
+<li>执行时机都是组件挂载或更新之后，浏览器执行绘制之前</li>
+<li>支持返回清除函数，函数执行时机是组件卸载之前</li>
+</ul>
+<p>不同点：</p>
+<ul>
+<li>useLayoutEffect 在所有 DOM 变更之后同步调用 effect，用来读取 DOM 布局并同步触发重渲染</li>
+<li>useEffect 在所有 DOM 变更并且浏览器完成渲染后调用 effect</li>
+<li>服务端渲染组件引入 useLayoutEffect 会触发 React 告警</li>
+</ul>
+<h2 id="useRef-和-Refs-的区别"><a href="#useRef-和-Refs-的区别" class="headerlink" title="useRef 和 Refs 的区别"></a>useRef 和 Refs 的区别</h2><p>useRef 返回一个可变的 ref 对象，其 current 属性被初始化为传入的参数 （initialValue），返回的 ref 对象在组件的整个生命周期保持不变。<br>一个常见的用例便是命令式地访问子组件，例如将 input 元素的 ref 属性设置为 useRef 返回的 ref 对象，则可以通过该 ref 对象的 current 属性设置 input 元素是否聚焦。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">TextInputWithFocusButton</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> inputEl = <span class="title function_">useRef</span>(<span class="literal">null</span>);</span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">onButtonClick</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="comment">// `current` 指向已挂载到 DOM 上的文本输入元素</span></span><br><span class="line">    inputEl.<span class="property">current</span>.<span class="title function_">focus</span>();</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">ref</span>=<span class="string">&#123;inputEl&#125;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;onButtonClick&#125;</span>&gt;</span>Focus the input<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Refs 使用 <code>React.createRef()</code> 创建的，并通过 ref 属性附加到 React 元素，当 ref 被传递给 render 中的元素时，对节点的引用可以在 ref 的 current 属性中被访问。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Component</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">        <span class="variable language_">super</span>(props)</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">myRef</span> = <span class="title class_">React</span>.<span class="title function_">createRef</span>()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ref</span>=<span class="string">&#123;this.myRef&#125;</span> /&gt;</span></span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>区别：<br>useRef</p>
+<ul>
+<li>函数组件可用</li>
+<li>用途多样，useRef() 创建一个普通 Javascript 对象，每次渲染时返回同一个 ref 对象<br>  可以在其 current 属性保存任何可变值。<br>Refs</li>
+<li>class 组件或 HTML 元素，函数组件无实例，不可用</li>
+<li>用途单一，current 属性为实例的引用，根据节点的类型不同<ul>
+<li>当 ref 属性用于 HTML 元素时，构造函数中使用 React.createRef() 创建的 ref 接收底层 DOM 元素作为 current 属性</li>
+<li>当 ref 属性用于自定义 class 组件时，ref 对象接收组件的挂载实例作为其 current 属性</li>
+</ul>
+</li>
+</ul>
+<h2 id="如何自定义-Hook"><a href="#如何自定义-Hook" class="headerlink" title="如何自定义 Hook"></a>如何自定义 Hook</h2><h3 id="什么是自定义-Hook"><a href="#什么是自定义-Hook" class="headerlink" title="什么是自定义 Hook"></a>什么是自定义 Hook</h3><p>自定义 Hook，是将组件逻辑提取到可重用的函数，它可以像 render props 和高阶组件来共享组件之间的状态逻辑，而不增加组件。</p>
+<h3 id="自定义-Hook-需要遵循哪些规则"><a href="#自定义-Hook-需要遵循哪些规则" class="headerlink" title="自定义 Hook 需要遵循哪些规则"></a>自定义 Hook 需要遵循哪些规则</h3><ul>
+<li>名称以 “use” 开头的函数，表示这是一个 Hook，函数内部可以调用其他的 Hook。</li>
+<li>参数和返回可以自定义，可以像使用函数一样在不同 Hook 间传递信息</li>
+<li>其中所有 state 和副作用完全隔离，每次调用 Hook，都会获取独立的 state</li>
+</ul>
+<h3 id="自定义-Hook-作用"><a href="#自定义-Hook-作用" class="headerlink" title="自定义 Hook 作用"></a>自定义 Hook 作用</h3><p>将组件逻辑提取到可重用的函数中，简化代码逻辑</p>
+<h2 id="为什么不能在循环，条件或嵌套函数中调用-Hook？"><a href="#为什么不能在循环，条件或嵌套函数中调用-Hook？" class="headerlink" title="为什么不能在循环，条件或嵌套函数中调用 Hook？"></a>为什么不能在循环，条件或嵌套函数中调用 Hook？</h2><p>React 通过 Hook 调用的顺序来将 state 与对应的 useState 相关联，所以需要确保 Hook 的调用顺序在多次渲染之间保持一致。如果想要有条件地执行一个 effect，可以将判断放到 Hook 的内部。</p>
+<h2 id="useDeferredValue-和-useTransition-的区别"><a href="#useDeferredValue-和-useTransition-的区别" class="headerlink" title="useDeferredValue 和 useTransition 的区别"></a>useDeferredValue 和 useTransition 的区别</h2><ul>
+<li>useDeferredValue 本质上和内部实现与 useTransition 一样，都是标记成了延迟更新任务。</li>
+<li>useTransition 是把更新任务变成了延迟更新任务，而 useDeferredValue 是产生一个新的值，这个值作为延时状态。（一个用来包装方法，一个用来包装值）</li>
+</ul>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

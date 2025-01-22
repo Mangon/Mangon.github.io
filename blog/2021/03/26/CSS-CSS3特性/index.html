@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        CSS3特性 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="CSS3 是层叠样式表（Cascading Style Sheets）语言的最新版本，旨在扩展CSS2.1。  它带来了许多期待已久的新特性，例如 border-radius(圆角)、box-shadow(阴影)、gradients(渐变) 、transitions(过渡) 与 animations(动画) 。以及新的布局方式，如 multi-columns 、 flexible box 与 grid layouts。  W3C 的 CSS Working Group(CSS 工作组)  作" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9Ecss%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-text">新增css选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#border-radius-%E5%9C%86%E8%A7%92"><span class="toc-text">border-radius 圆角</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#columns-%E5%88%86%E5%88%97"><span class="toc-text">columns 分列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E%E5%B8%83%E5%B1%80-flexible-box-grid"><span class="toc-text">新增布局 flexible-box grid</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#box-shadow-%E9%98%B4%E5%BD%B1-text-shadow-%E6%96%87%E5%AD%97%E9%98%B4%E5%BD%B1"><span class="toc-text">box-shadow 阴影 text-shadow 文字阴影</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gradients-%E6%B8%90%E5%8F%98"><span class="toc-text">gradients 渐变</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#transform-%E5%8F%98%E6%8D%A2-transition-%E8%BF%87%E6%B8%A1-animation-%E5%8A%A8%E7%94%BB"><span class="toc-text">transform 变换 transition 过渡 animation 动画</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#text-overflow-%E6%96%87%E6%9C%AC%E6%BA%A2%E5%87%BA%E6%94%AF%E6%8C%81%E6%B8%90%E9%9A%90%E5%92%8C%E6%96%87%E6%9C%AC"><span class="toc-text">text-overflow 文本溢出支持渐隐和文本</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            CSS3特性
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-26T06:35:26.000Z" itemprop="datePublished">2021-03-26</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>CSS3 是层叠样式表（Cascading Style Sheets）语言的最新版本，旨在扩展CSS2.1。  </p>
+<p>它带来了许多期待已久的新特性，例如 border-radius(圆角)、box-shadow(阴影)、gradients(渐变) 、transitions(过渡) 与 animations(动画) 。以及新的布局方式，如 multi-columns 、 flexible box 与 grid layouts。  </p>
+<p><a target="_blank" rel="noopener" href="https://www.w3.org/">W3C</a> 的 CSS Working Group(CSS 工作组)  作出了一项被称为 Beijing doctrine 的决定，将 CSS 划分为许多小组件，称之为模块。这些模块彼此独立，按照各自的进度来进行标准化。  </p>
+<span id="more"></span>
+<h2 id="新增css选择器"><a href="#新增css选择器" class="headerlink" title="新增css选择器"></a>新增css选择器</h2><p>参见 <a href="/blog/2018/09/03/CSS-选择器/">css选择器</a>  </p>
+<p>CSS3新增多个伪类选择器<br><code>:first-of-type</code> <code>:last-of-type</code> <code>:only-of-type</code> <code>:nth-of-type(n)</code> <code>:nth-last-of-type(n)</code> <code>:last-child</code> <code>:only-child</code> <code>:nth-child(n)</code> <code>:nth-last-child(n)</code><br><code>:root</code> <code>:epmty</code> <code>:target</code> <code>:enabled</code> <code>:disabled</code> <code>:checked</code> <code>:not(selector)</code> </p>
+<p>新增了后兄弟选择<br><code>element1~element2</code></p>
+<p>新增了属性选择<br><code>[attribute^=value]</code>、<code>[attribute$=value]</code>、<code>[attribute*=value]</code></p>
+<h2 id="border-radius-圆角"><a href="#border-radius-圆角" class="headerlink" title="border-radius 圆角"></a>border-radius 圆角</h2><p><code>border-radius</code> 允许设置元素的外边框圆角，该属性是一个 简写属性，是为了将这四个属性 <code>border-top-left-radius</code>、<code>border-top-right-radius</code>、<code>border-bottom-right-radius</code> 和 <code>border-bottom-left-radius</code> 简写为一个属性。即使元素没有 border，圆角也可以用到 background 上面。<br>可以使用 &lt;length> &lt;percentage> 类型，&lt;length> 定义圆形半径或椭圆的半长轴，半短轴。&lt;percentage> 定义圆形半径或椭圆的半长轴，半短轴。水平半轴相对于盒模型的宽度；垂直半轴相对于盒模型的高度</p>
+<h2 id="columns-分列"><a href="#columns-分列" class="headerlink" title="columns 分列"></a>columns 分列</h2><p><code>columns</code> 用来设置元素的列宽和列数。它是一个简写属性，可在单个方便的声明中设置 <code>column-width</code> 和 <code>column-count</code> 属性。可以通过 <code>column-gap</code> 设置列间距。可以通过 <code>column-rule</code> 设置列间隔样式，该属性是 <code>column-rule-width</code> 、 <code>column-rule-style</code> 、 <code>column-rule-color</code> 三个属性的简写。  </p>
+<h2 id="新增布局-flexible-box-grid"><a href="#新增布局-flexible-box-grid" class="headerlink" title="新增布局 flexible-box grid"></a>新增布局 flexible-box grid</h2><p>参见 <a href="/blog/2018/12/06/CSS-Flex布局/">flex</a>、<a href="/blog/2021/03/31/CSS-Grid布局/">grid</a></p>
+<h2 id="box-shadow-阴影-text-shadow-文字阴影"><a href="#box-shadow-阴影-text-shadow-文字阴影" class="headerlink" title="box-shadow 阴影 text-shadow 文字阴影"></a>box-shadow 阴影 text-shadow 文字阴影</h2><p>参见 <a href="/blog/2021/03/31/CSS-阴影/">阴影</a></p>
+<h2 id="gradients-渐变"><a href="#gradients-渐变" class="headerlink" title="gradients 渐变"></a>gradients 渐变</h2><p>参见 <a href="/blog/2021/03/29/CSS-渐变/">gradients</a>  </p>
+<h2 id="transform-变换-transition-过渡-animation-动画"><a href="#transform-变换-transition-过渡-animation-动画" class="headerlink" title="transform 变换 transition 过渡 animation 动画"></a>transform 变换 transition 过渡 animation 动画</h2><p>参见 <a href="/blog/2021/03/16/CSS-transform-transition-animation/">transform &amp; transition &amp; animation</a>  </p>
+<h2 id="text-overflow-文本溢出支持渐隐和文本"><a href="#text-overflow-文本溢出支持渐隐和文本" class="headerlink" title="text-overflow 文本溢出支持渐隐和文本"></a>text-overflow 文本溢出支持渐隐和文本</h2><p><code>text-overflow</code> 属性确定如何向用户发出未显示的溢出内容的形式，CSS4中可能会支持 fade（以及fade函数） 和 string 两种形式(workidng draft)</p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

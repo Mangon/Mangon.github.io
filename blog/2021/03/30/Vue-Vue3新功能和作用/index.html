@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        Vue3新功能和作用 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="2020 年 9 月 18 日  Vue3.0  正式发布。Composition API新增 setup 组件选项，是一个接受 props 和 context 的函数，使用 toRefs 对 props 进行响应式解构，可以通过 context 获取组件的 attrs slots emit 属性。返回一个可以在组件模板中使用其属性的对象，或者返回一个渲染函数，该函数可以直接使用在同一作用域中声明的响应式状态。  通过一个新的 ref/reactive 函数使任何响应式变量在任何地方起作用。" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Composition-API"><span class="toc-text">Composition API</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Composition-API-%E5%A5%BD%E5%A4%84"><span class="toc-text">Composition API 好处</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Teleport"><span class="toc-text">Teleport</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fragments"><span class="toc-text">Fragments</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Emits-%E7%BB%84%E4%BB%B6%E9%80%89%E9%A1%B9"><span class="toc-text">Emits 组件选项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%A5%E8%87%AA-vue-runtime-core-%E7%9A%84-createRenderer-API-%E5%88%9B%E5%BB%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B2%E6%9F%93%E5%99%A8"><span class="toc-text">来自 @vue&#x2F;runtime-core 的 createRenderer API 创建自定义渲染器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E6%96%87%E4%BB%B6%E7%BB%84%E4%BB%B6-Composition-API-%E8%AF%AD%E6%B3%95%E7%B3%96%EF%BC%88-lt-script-setup-gt-%EF%BC%89"><span class="toc-text">单文件组件 Composition API 语法糖（&lt;script setup&gt;）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E6%96%87%E4%BB%B6%E7%BB%84%E4%BB%B6%E7%8A%B6%E6%80%81%E9%A9%B1%E5%8A%A8%E7%9A%84-CSS-%E5%8F%98%E9%87%8F-lt-style-vars-gt"><span class="toc-text">单文件组件状态驱动的 CSS 变量 (&lt;style vars&gt;)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E6%96%87%E4%BB%B6%E7%BB%84%E4%BB%B6-lt-style-scoped-gt-%E7%8E%B0%E5%9C%A8%E5%8F%AF%E4%BB%A5%E5%8C%85%E5%90%AB%E5%85%A8%E5%B1%80%E8%A7%84%E5%88%99%E6%88%96%E5%8F%AA%E9%92%88%E5%AF%B9%E6%8F%92%E6%A7%BD%E5%86%85%E5%AE%B9%E7%9A%84%E8%A7%84%E5%88%99"><span class="toc-text">单文件组件 &lt;style scoped&gt; 现在可以包含全局规则或只针对插槽内容的规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue3-%E5%92%8C-vue2-%E7%9B%B8%E6%AF%94%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F"><span class="toc-text">vue3 和 vue2 相比有什么不同？</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            Vue3新功能和作用
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-30T07:46:58.000Z" itemprop="datePublished">2021-03-30</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/vue/" rel="tag">vue</a>, <a class="article-tag-link" href="/blog/tags/vue3/" rel="tag">vue3</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>2020 年 9 月 18 日  Vue3.0  正式发布。</p>
+<h2 id="Composition-API"><a href="#Composition-API" class="headerlink" title="Composition API"></a>Composition API</h2><p>新增 setup 组件选项，是一个接受 props 和 context 的函数，使用 <code>toRefs</code> 对 props 进行响应式解构，可以通过 context 获取组件的 attrs slots emit 属性。返回一个可以在组件模板中使用其属性的对象，或者返回一个渲染函数，该函数可以直接使用在同一作用域中声明的响应式状态。  </p>
+<p>通过一个新的 ref/reactive 函数使任何响应式变量在任何地方起作用。  </p>
+<p>在 setup 中注册生命周期钩子，因为 setup 是围绕 beforeCreate 和 created 生命周期钩子运行的，所以不需要显式地定义它们，在vue3中只有如下钩子：<code>onBeforeMount</code>、<code>onMounted</code>、<code>onBeforeUpdate</code>、<code>onUpdated</code>、<code>onBeforeUnmount</code>、<code>onUnmounted</code>、<code>onErrorCaptured</code>、<code>onRenderTracked</code>、<code>onRenderTriggered</code>。  </p>
+<p>从 Vue 导入的 watch 函数执行相同的操作</p>
+<p>从 Vue 导入的 computed 函数在 Vue 组件外部创建计算属性</p>
+<p>从 Vue 导入的 provide/inject 函数进行深度传值</p>
+<p>…</p>
+<span id="more"></span>
+<h3 id="Composition-API-好处"><a href="#Composition-API-好处" class="headerlink" title="Composition API 好处"></a>Composition API 好处</h3><ol>
+<li>同功能代码组织结构放到一起，代码可读性更强</li>
+<li>让相同的代码逻辑在不同的组件中可以复用</li>
+</ol>
+<h2 id="Teleport"><a href="#Teleport" class="headerlink" title="Teleport"></a>Teleport</h2><p>Teleport 提供了一种干净的方法，允许我们控制在 DOM 中哪个父节点下渲染了 HTML，而不必求助于全局状态或将其拆分为两个组件。一个典型的用法就是模态框组件的实现。  </p>
+<h2 id="Fragments"><a href="#Fragments" class="headerlink" title="Fragments"></a>Fragments</h2><p>也就是多根节点的组件，可以通过 <code>v-bind=&quot;$attrs&quot;</code> 将外部 attribute 显式的应用于子节点。  </p>
+<h2 id="Emits-组件选项"><a href="#Emits-组件选项" class="headerlink" title="Emits 组件选项"></a>Emits 组件选项</h2><p>可以通过 emits 选项在组件上定义已发出的事件，当在 emits 选项中定义了原生事件 (如 click) 时，将使用组件中的事件替代原生事件侦听器，如果使用对象语法而不是数组语法定义发出的事件，则可以验证事件选项是否符合要求。  </p>
+<h2 id="来自-vue-runtime-core-的-createRenderer-API-创建自定义渲染器"><a href="#来自-vue-runtime-core-的-createRenderer-API-创建自定义渲染器" class="headerlink" title="来自 @vue/runtime-core 的 createRenderer API 创建自定义渲染器"></a>来自 <code>@vue/runtime-core</code> 的 <code>createRenderer</code> API 创建自定义渲染器</h2><h2 id="单文件组件-Composition-API-语法糖（-lt-script-setup-gt-）"><a href="#单文件组件-Composition-API-语法糖（-lt-script-setup-gt-）" class="headerlink" title="单文件组件 Composition API 语法糖（&lt;script setup&gt;）"></a>单文件组件 Composition API 语法糖（<code>&lt;script setup&gt;</code>）</h2><h2 id="单文件组件状态驱动的-CSS-变量-lt-style-vars-gt"><a href="#单文件组件状态驱动的-CSS-变量-lt-style-vars-gt" class="headerlink" title="单文件组件状态驱动的 CSS 变量 (&lt;style vars&gt;)"></a>单文件组件状态驱动的 CSS 变量 (<code>&lt;style vars&gt;</code>)</h2><h2 id="单文件组件-lt-style-scoped-gt-现在可以包含全局规则或只针对插槽内容的规则"><a href="#单文件组件-lt-style-scoped-gt-现在可以包含全局规则或只针对插槽内容的规则" class="headerlink" title="单文件组件 &lt;style scoped&gt; 现在可以包含全局规则或只针对插槽内容的规则"></a>单文件组件 <code>&lt;style scoped&gt;</code> 现在可以包含全局规则或只针对插槽内容的规则</h2><h2 id="vue3-和-vue2-相比有什么不同？"><a href="#vue3-和-vue2-相比有什么不同？" class="headerlink" title="vue3 和 vue2 相比有什么不同？"></a>vue3 和 vue2 相比有什么不同？</h2><ol>
+<li><p>Object.defineProperty -&gt; Proxy<br>使用 Proxy 替代 Object.defineProperty 来实现对数据的监听</p>
+</li>
+<li><p>Virtual Dom 重构</p>
+</li>
+<li><p>编译时优化</p>
+</li>
+</ol>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

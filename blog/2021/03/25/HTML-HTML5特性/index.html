@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        HTML5特性 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="HTML5 是定义 HTML 标准的最新的版本。WHATWG 致力于 web 表单和应用程序，而 W3C 专注于 XHTML 2.0。在 2006 年，双方决定进行合作，来创建一个新版本的 HTML，这就是HTML5。  语义新增元素HTML5新增了区块与段落元素：元素名含义section表示一个包含在HTML文档中的独立部分，它没有更具体的语义元素来表示，一般来说会有包含一个标题article表示文档、页面、应用或网站中的独立结构，其意在成为可独立分配的或可复" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E4%B9%89"><span class="toc-text">语义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E%E5%85%83%E7%B4%A0"><span class="toc-text">新增元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iframe%E4%B8%8A%E7%9A%84%E6%94%B9%E8%BF%9B"><span class="toc-text">iframe上的改进</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%AF%E6%8C%81-MathML"><span class="toc-text">支持 MathML</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%AF%B9%E4%BA%8EHTML4-1%E7%9A%84%E4%BC%98%E5%8C%96"><span class="toc-text">其他对于HTML4.1的优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#doctype-%E5%A3%B0%E6%98%8E"><span class="toc-text">doctype 声明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E9%9B%86%E5%A3%B0%E6%98%8E"><span class="toc-text">字符集声明</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E4%BF%A1"><span class="toc-text">通信</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%AF%E6%8C%81-WebSockets"><span class="toc-text">支持 WebSockets</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%AF%E6%8C%81-Server-sent-events"><span class="toc-text">支持 Server-sent events</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%AF%E6%8C%81-WebRTC"><span class="toc-text">支持 WebRTC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%BB%E7%BA%BF-amp-%E5%AD%98%E5%82%A8"><span class="toc-text">离线 &amp; 存储</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%AF%E6%8C%81-onLine-%E5%92%8C-offline-%E4%BA%8B%E4%BB%B6"><span class="toc-text">支持 onLine 和 offline 事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%AF%E6%8C%81-Web-Storage%EF%BC%88sessionStorage-amp-localStorage%EF%BC%89"><span class="toc-text">支持 Web Storage（sessionStorage &amp; localStorage）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%AF%E6%8C%81-IndexedDB"><span class="toc-text">支持 IndexedDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%AF%E6%8C%81-FileReader"><span class="toc-text">支持 FileReader</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%AF%E6%8C%81%E4%BD%BF%E7%94%A8Camera-API"><span class="toc-text">支持使用Camera API</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD-amp-%E9%9B%86%E6%88%90"><span class="toc-text">性能 &amp; 集成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%AF%E6%8C%81-Web-Workers"><span class="toc-text">支持 Web Workers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XMLHttpRequest-Level-2"><span class="toc-text">XMLHttpRequest Level 2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#History-API"><span class="toc-text">History API</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#contentEditable-%E5%B1%9E%E6%80%A7"><span class="toc-text">contentEditable 属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Drag-amp-Drop-API"><span class="toc-text">Drag &amp; Drop API</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web-based-protocol-handlers"><span class="toc-text">Web-based protocol handlers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#requestAnimationFrame"><span class="toc-text">requestAnimationFrame</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fullscreen-API"><span class="toc-text">Fullscreen API</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pointer-Lock-API"><span class="toc-text">Pointer Lock API</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E8%AE%BF%E9%97%AE"><span class="toc-text">设备访问</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%AF%E6%8C%81%E8%A7%A6%E6%91%B8%E4%BA%8B%E4%BB%B6"><span class="toc-text">支持触摸事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Geolocation-API"><span class="toc-text">Geolocation API</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E6%B5%8B%E8%AE%BE%E5%A4%87%E6%96%B9%E5%90%91"><span class="toc-text">检测设备方向</span></a></li></ol></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            HTML5特性
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-25T09:14:29.000Z" itemprop="datePublished">2021-03-25</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/HTML/" rel="tag">HTML</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>HTML5 是定义 HTML 标准的最新的版本。<a target="_blank" rel="noopener" href="https://whatwg.org/">WHATWG</a> 致力于 web 表单和应用程序，而 <a target="_blank" rel="noopener" href="https://www.w3.org/">W3C</a> 专注于 XHTML 2.0。在 2006 年，双方决定进行合作，来创建一个新版本的 HTML，这就是HTML5。  </p>
+<span id="more"></span>
+<h2 id="语义"><a href="#语义" class="headerlink" title="语义"></a>语义</h2><h3 id="新增元素"><a href="#新增元素" class="headerlink" title="新增元素"></a>新增元素</h3><p>HTML5新增了区块与段落元素：</p>
+<table>
+<thead>
+<tr>
+<th>元素名</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>section</td>
+<td>表示一个包含在HTML文档中的独立部分，它没有更具体的语义元素来表示，一般来说会有包含一个标题</td>
+</tr>
+<tr>
+<td>article</td>
+<td>表示文档、页面、应用或网站中的独立结构，其意在成为可独立分配的或可复用的结构</td>
+</tr>
+<tr>
+<td>nav</td>
+<td>表示页面的一部分，其目的是在当前文档或其他文档中提供导航链接</td>
+</tr>
+<tr>
+<td>header</td>
+<td>用于展示介绍性内容，通常包含一组介绍性的或是辅助导航的实用元素</td>
+</tr>
+<tr>
+<td>footer</td>
+<td>表示最近一个章节内容(Sectioning content)或者根节点（Sectioning root）元素的页脚</td>
+</tr>
+<tr>
+<td>aside</td>
+<td>表示一个和其余页面内容几乎无关的部分，被认为是独立于该内容的一部分并且可以被单独的拆分出来而不会使整体受影响</td>
+</tr>
+<tr>
+<td>main</td>
+<td>呈现了文档的 &lt;body> 或应用的主体部分</td>
+</tr>
+<tr>
+<td>hgroup</td>
+<td>代表文档章节所属的多级别的目录</td>
+</tr>
+<tr>
+<td>template</td>
+<td>表示一种用于保存客户端内容的机制，该内容在加载页面时不会呈现，但随后可以在运行时使用JavaScript实例化</td>
+</tr>
+<tr>
+<td>figure</td>
+<td>代表一段独立的内容, 经常与说明（caption） &lt;figcaption> 配合使用, 并且作为一个独立的引用单元。</td>
+</tr>
+<tr>
+<td>figcaption</td>
+<td>是与其相关联的图片的说明/标题，用于描述其父节点 &lt;figure> 元素里的其他数据</td>
+</tr>
+</tbody>
+</table>
+<p>新增了音频与视频元素：</p>
+<table>
+<thead>
+<tr>
+<th>元素名</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>audio</td>
+<td>元素用于在文档中嵌入音频内容</td>
+</tr>
+<tr>
+<td>video</td>
+<td>用于在HTML或者XHTML文档中嵌入媒体播放器，用于支持文档内的视频播放</td>
+</tr>
+<tr>
+<td>source</td>
+<td>为 &lt;video> 或 &lt;audio> 这类媒体元素指定媒体源</td>
+</tr>
+<tr>
+<td>track</td>
+<td>为 &lt;video> 或 &lt;audio> 这类媒体元素指定文本轨道（字幕）</td>
+</tr>
+</tbody>
+</table>
+<p>图表&amp;公式等嵌入内容：</p>
+<table>
+<thead>
+<tr>
+<th>元素名</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>canvas</td>
+<td>代表位图区域 ，可以通过脚本在它上面实时呈现图形，如图表、游戏绘图等</td>
+</tr>
+<tr>
+<td>svg</td>
+<td>定义一个嵌入式矢量图</td>
+</tr>
+<tr>
+<td>math</td>
+<td>定义一段数学公式</td>
+</tr>
+<tr>
+<td>embed</td>
+<td>代表一个嵌入的外部资源，如应用程序或交互内容</td>
+</tr>
+</tbody>
+</table>
+<h3 id="iframe上的改进"><a href="#iframe上的改进" class="headerlink" title="iframe上的改进"></a>iframe上的改进</h3><p>新增了一些属性：  </p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sandbox</td>
+<td>属性对呈现在 iframe 框架中的内容启用一些额外的限制条件</td>
+</tr>
+<tr>
+<td>seamless</td>
+<td>规定了 &lt;iframe> 看上去像是包含文档的一部分（无边框或滚动条）</td>
+</tr>
+<tr>
+<td>srcdoc</td>
+<td>该属性是一段HTML代码，这些代码会被渲染到 iframe 中。如果浏览器不支持 srcdoc 属性，则会渲染 src 属性表示的内容</td>
+</tr>
+</tbody>
+</table>
+<h3 id="支持-MathML"><a href="#支持-MathML" class="headerlink" title="支持 MathML"></a>支持 MathML</h3><p>Mathematical Markup Language (MathML) 是一个用于描述数学公式、符号的一种 XML 标记语言。</p>
+<h3 id="其他对于HTML4-1的优化"><a href="#其他对于HTML4-1的优化" class="headerlink" title="其他对于HTML4.1的优化"></a>其他对于HTML4.1的优化</h3><h4 id="doctype-声明"><a href="#doctype-声明" class="headerlink" title="doctype 声明"></a>doctype 声明</h4><p>HTML5的 doctype 非常简单</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="字符集声明"><a href="#字符集声明" class="headerlink" title="字符集声明"></a>字符集声明</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="通信"><a href="#通信" class="headerlink" title="通信"></a>通信</h2><h3 id="支持-WebSockets"><a href="#支持-WebSockets" class="headerlink" title="支持 WebSockets"></a>支持 WebSockets</h3><p>WebSockets 是一种先进的技术。它可以在用户的浏览器和服务器之间打开交互式通信会话。使用此API，您可以向服务器发送消息并接收事件驱动的响应，而无需通过轮询服务器的方式以获得响应。  </p>
+<h3 id="支持-Server-sent-events"><a href="#支持-Server-sent-events" class="headerlink" title="支持 Server-sent events"></a>支持 Server-sent events</h3><p>允许服务器向客户端推送事件，而不是仅在响应客户端请求时服务器才能发送数据的传统范式。  </p>
+<h3 id="支持-WebRTC"><a href="#支持-WebRTC" class="headerlink" title="支持 WebRTC"></a>支持 WebRTC</h3><p>这项技术，其中的 RTC 代表的是即时通信，允许连接到其他人，直接在浏览器中控制视频会议，而不需要一个插件或是外部的应用程序。WebRTC作为一项标准,使得所有浏览器无需安装插件或第三方软件，就可以点对点地分享应用数据和进行电话会议。  </p>
+<h2 id="离线-amp-存储"><a href="#离线-amp-存储" class="headerlink" title="离线 &amp; 存储"></a>离线 &amp; 存储</h2><h3 id="支持-onLine-和-offline-事件"><a href="#支持-onLine-和-offline-事件" class="headerlink" title="支持 onLine 和 offline 事件"></a>支持 onLine 和 offline 事件</h3><p><code>navigator.onLine</code> 是一个值为 true/false  (true 表示在线， false 表示离线) 的属性。  </p>
+<p>你可以使用几种熟悉的方式来注册事件：</p>
+<ul>
+<li>在 window，document，或 document.body 上使用 addEventListener</li>
+<li>将 document 或 document.body 的 .ononline 或 .onoffline 属性设置为一个 JavaScript Function 对象。(注意：由于兼容性原因，不能使用 window.ononline 或 window.onoffline。)</li>
+<li>在 HTML 标记中的 &lt;body> 标签上指定 ononline=”…” 或 onoffline=”…” 特性。</li>
+</ul>
+<h3 id="支持-Web-Storage（sessionStorage-amp-localStorage）"><a href="#支持-Web-Storage（sessionStorage-amp-localStorage）" class="headerlink" title="支持 Web Storage（sessionStorage &amp; localStorage）"></a>支持 Web Storage（sessionStorage &amp; localStorage）</h3><p>sessionStorage 和 localStorage 让 web 应用程序能够在客户端存储结构化数据。  </p>
+<h3 id="支持-IndexedDB"><a href="#支持-IndexedDB" class="headerlink" title="支持 IndexedDB"></a>支持 IndexedDB</h3><p>IndexedDB 是一个为了能够在浏览器中存储大量结构化数据，并且能够在这些数据上使用索引进行高性能检索的 Web 标准。  </p>
+<h3 id="支持-FileReader"><a href="#支持-FileReader" class="headerlink" title="支持 FileReader"></a>支持 FileReader</h3><p>FileReader 对象允许Web应用程序异步读取存储在用户计算机上的文件（或原始数据缓冲区）的内容，使用 File 或 Blob 对象指定要读取的文件或数据。  </p>
+<p>其中File对象可以是来自用户在一个&lt;input>元素上选择文件后返回的 FileList 对象,也可以来自拖放操作生成的 DataTransfer 对象,还可以是来自在一个HTMLCanvasElement 上执行 mozGetAsFile() 方法后返回结果。  </p>
+<h3 id="支持使用Camera-API"><a href="#支持使用Camera-API" class="headerlink" title="支持使用Camera API"></a>支持使用Camera API</h3><p>通过Camera API,你可以使用手机的摄像头拍照，然后把拍到的照片发送给当前网页.这些操作主要是通过一个input元素来实现的，其中该元素的type属性必须为”file”，accept属性要允许图片格式，这样才能知道这个文件选择框是用来选择图片的。  </p>
+<h2 id="性能-amp-集成"><a href="#性能-amp-集成" class="headerlink" title="性能 &amp; 集成"></a>性能 &amp; 集成</h2><h3 id="支持-Web-Workers"><a href="#支持-Web-Workers" class="headerlink" title="支持 Web Workers"></a>支持 Web Workers</h3><p>能够把 JavaScript 计算委托给后台线程，通过允许这些活动以防止使交互型事件变得缓慢。  </p>
+<h3 id="XMLHttpRequest-Level-2"><a href="#XMLHttpRequest-Level-2" class="headerlink" title="XMLHttpRequest Level 2"></a>XMLHttpRequest Level 2</h3><p>允许异步读取页面的某些部分，允许其显示动态内容，根据时间和用户行为而有所不同。这是在 Ajax 背后的技术。  </p>
+<h3 id="History-API"><a href="#History-API" class="headerlink" title="History API"></a>History API</h3><p>允许对浏览器历史记录进行操作。这对于那些交互地加载新信息的页面尤其有用。<br>通过 <code>window.history</code> 可以获取浏览器历史记录相关信息。使用 <code>back()</code>, <code>forward()</code> 和 <code>go()</code> 方法来完成在用户历史记录中向后和向前的跳转。<code>window.history.length</code> 来确定的历史堆栈中页面的数量。  </p>
+<h3 id="contentEditable-属性"><a href="#contentEditable-属性" class="headerlink" title="contentEditable 属性"></a>contentEditable 属性</h3><p>在HTML中，任何元素都可以被编辑。通过使用一些JavaScript事件处理程序，您可以将您的网页转换为完整且快速的富文本编辑器。  </p>
+<h3 id="Drag-amp-Drop-API"><a href="#Drag-amp-Drop-API" class="headerlink" title="Drag &amp; Drop API"></a>Drag &amp; Drop API</h3><p>HTML5 的拖放 API 能够支持在网站内部和网站之间拖放项目。  </p>
+<h3 id="Web-based-protocol-handlers"><a href="#Web-based-protocol-handlers" class="headerlink" title="Web-based protocol handlers"></a>Web-based protocol handlers</h3><p>可以使用 navigator.registerProtocolHandler() 方法把 web 应用程序注册成一个协议处理程序。  </p>
+<h3 id="requestAnimationFrame"><a href="#requestAnimationFrame" class="headerlink" title="requestAnimationFrame"></a>requestAnimationFrame</h3><p>允许控制动画渲染以获得更优性能。  </p>
+<h3 id="Fullscreen-API"><a href="#Fullscreen-API" class="headerlink" title="Fullscreen API"></a>Fullscreen API</h3><p>全屏 API 为使用用户的整个屏幕展现网络内容提供了一种简单的方式，并且在不需要时退出全屏模式。通过 <code>element.requestFullscreen()</code> 请求浏览器（user agent）将特定元素（甚至延伸到它的后代元素）置为全屏模式。<code>document.exitFullscreen()</code> 用于请求从全屏模式切换到窗口模式。<del><code>document.fullscreen</code> 可以获取当前是否是全屏模式，</del> <code>document.fullscreenElement</code> 可以获取到当前全屏的元素。  </p>
+<button type="button" class="appreciate-btn" onclick="document.fullscreenElement ? document.exitFullscreen() : document.querySelector('.content').requestFullscreen()">全屏/退出全屏</button>
+
+<h3 id="Pointer-Lock-API"><a href="#Pointer-Lock-API" class="headerlink" title="Pointer Lock API"></a>Pointer Lock API</h3><p>允许锁定到内容的指针，这样游戏或者类似的应用程序在指针到达窗口限制时也不会失去焦点。  </p>
+<h2 id="设备访问"><a href="#设备访问" class="headerlink" title="设备访问"></a>设备访问</h2><h3 id="支持触摸事件"><a href="#支持触摸事件" class="headerlink" title="支持触摸事件"></a>支持触摸事件</h3><p>对用户按下触控屏的事件做出反应的处理程序。即 <code>ontouchstart</code>、<code>ontouchmove</code>、<code>ontouchend</code>、<code>ontouchcancel</code> 事件 和 <code>TouchEvent</code> 。   </p>
+<h3 id="Geolocation-API"><a href="#Geolocation-API" class="headerlink" title="Geolocation API"></a>Geolocation API</h3><p>让浏览器使用地理位置服务定位用户的位置。<br>地理位置 API 通过 <code>navigator.geolocation</code> 提供，可以通过 <code>navigator.geolocation.getCurrentPosition(success, error, options)</code> 来获取设备当前位置。  </p>
+<h3 id="检测设备方向"><a href="#检测设备方向" class="headerlink" title="检测设备方向"></a>检测设备方向</h3><p>让用户在运行浏览器的设备变更方向时能够得到信息。<br>主要是在 window 对象添加事件监听器来实现，其中 <code>deviceorientation</code> 接收设备方向变化信息，<code>devicemotion</code> 接收设备移动信息。  </p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

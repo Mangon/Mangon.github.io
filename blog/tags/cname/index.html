@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        标签: cname | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="Mangon&#39;s Technology Blog" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+
+        
+            <div class="author-meta">
+                
+                <div class="author-avatar">
+                    <a href="/blog/">
+                        <img src="/blog/images/avatar.jpeg" title="Mangon">
+                    </a>
+                </div>
+                
+                <div class="author-name">Mangon</div>
+                <div class="author-work">前端开发工程师</div>
+                <div class="author-location">
+                    <i class="icon-location vm"></i>
+                    <span class="vm">中国北京</span>
+                </div>
+                
+                <div class="author-thread-wrap">
+                    <div class="author-threads clearfix">
+                        
+                            <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
+                        
+                        
+                        
+                            <a class="thread-item" href="https://mangon.cn/blog/atom.xml" target="_blank" rel="external noopener noreferrer"><i class="icon-favorite"></i></a>
+                        
+                        
+                            <a class="thread-item" href="https://mangon.cn/resume" target="_blank" rel="external noopener noreferrer"><i class="icon-circle-more"></i></a>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2022/08/08/FE-%E5%9F%9F%E5%90%8D%E7%B3%BB%E7%BB%9FA%E8%AE%B0%E5%BD%95%E5%92%8CCNAME%E8%AE%B0%E5%BD%95/">域名系统A记录和CNAME记录</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2022-08-08T06:53:44.000Z" itemprop="datePublished">2022-08-08</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/cname/" rel="tag">cname</a>, <a class="article-tag-link" href="/blog/tags/dns/" rel="tag">dns</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="域名系统（DNS）"><a href="#域名系统（DNS）" class="headerlink" title="域名系统（DNS）"></a>域名系统（DNS）</h2><p>域名系统（Domain Name System，DNS）是一种分层和分散的命名系统，用于识别可通过互联网或其他互联网协议（IP）网络访问的计算机。DNS 中包含的资源记录将域名与其他形式的信息相关联，从而将人类友好的域名映射到计算机使用底层网络协议定位的服务和设备 IP 地址。最新的 DNS 规范记录于 <a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc1034">RFC 1034</a> 与 <a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc1035">RFC 1035</a>。<br>DNS 反映了互联网中的管理责任结构。每个子域都是委托给管理者的管理自治区域。对于由注册管理机构运营的区域，管理信息通常由注册管理机构的 RDAP（Registration Data Access Protocol）和 <a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc3912">WHOIS</a> 服务补充。该数据可用于深入了解互联网上的给定主机并跟踪其责任。</p>
+<h2 id="地址解析机制"><a href="#地址解析机制" class="headerlink" title="地址解析机制"></a>地址解析机制</h2><p>域名解析器通过从最右边（顶级）域标签开始的一系列查询来确定负责相关域名的域名服务器。为了正确操作其域名解析器，网络主机配置有根名称服务器的已知地址的初始缓存。管理员通过从可靠来源检索数据集定期更新提示。假设解析器没有缓存记录来加速该过程，则解析过程从查询其中一个根服务器开始。在典型的操作中，根服务器不直接回答，而是通过对更权威的服务器的引用进行响应，例如，对 “<a href="">www.wikipedia.org</a>” 的查询被引用到 org 服务器。解析器现在查询引用的服务器，并反复重复此过程，直到收到权威答案。如果互联网上的每个解析都需要从根开始，那么这种机制会给根服务器带来很大的流量负担。实际上，DNS 服务器中使用缓存来减轻根服务器的负载，因此，根名称服务器实际上只参与了所有请求的一小部分。</p>
+<p><img src="/blog/static/imgs/Example_of_an_iterative_DNS_resolver.png" alt="dns_inner"></p>
+<p>为了提高效率、减少互联网上的 DNS 流量并提高最终用户应用程序的性能，域名系统支持 DNS 缓存服务器。这些服务器将 DNS 查询结果存储在配置中确定的生存时间（Time To Live，TTL）更新有问题的域名记录。互联网服务提供商（ISP）通常为客户提供递归和缓存名称服务器。另外，许多路由器也实现了 DNS 缓存和递归以提高本地网络的效率。某些应用程序（例如 Web 浏览器）也会维护内部 DNS 缓存以避免通过网络重复查找。</p>
+<p>主机名和 IP 地址不需要以一对一的关系匹配。多个主机名可能对应于一个 IP 地址，这在虚拟主机中很有用，其中许多网站都由一个主机提供服务。或者，单个主机名可以解析为多个 IP 地址，以促进容错并将负载分配到企业或全球互联网上的多个服务器实例。</p>
+<p>全球 DNS 的顶层，存在 13 组根名称服务器，它们的附加“副本”通过泛播（Anycast）寻址在全球范围内分布。</p>
+<h2 id="资源记录（RR）"><a href="#资源记录（RR）" class="headerlink" title="资源记录（RR）"></a>资源记录（RR）</h2><p>DNS 为网络资源指定了一个信息元素数据库。信息元素的类型通过 DNS 记录类型列表（List of DNS reocrd types）、资源记录（Resource Record，RR）进行分类和组织。每条记录都有一个类型（名称和编号）、一个过期时间（生存时间）、一个类和特定于类型的数据。相同类型的资源记录被描述为一个资源记录集（RRset），没有特殊的排序。DNS 解析器在查询时返回整个集合，但服务器可能会执行循环排序以实现负载平衡。相比之下，域名系统安全扩展（DNSSEC) 以规范顺序处理完整的资源记录集。当通过互联网协议网络发送时，所有记录都使用 RFC 1035 中指定的通用格式：</p>
+<p>资源记录的域如下：</p>
+<table>
+<thead>
+<tr>
+<th>域</th>
+<th>描述</th>
+<th>长度（八位字节）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NAME</td>
+<td>此记录所属的节点的名称</td>
+<td>变量</td>
+</tr>
+<tr>
+<td>TYPE</td>
+<td>数字形式的 RR 类型（例如，MX RR 为 15）</td>
+<td>2</td>
+</tr>
+<tr>
+<td>CLASS</td>
+<td>CLASS代码</td>
+<td>2</td>
+</tr>
+<tr>
+<td>TTL</td>
+<td>RR 保持有效的秒数（最大值为 2^31-1，约 68 年）</td>
+<td>4</td>
+</tr>
+<tr>
+<td>RDLENGTH</td>
+<td>RDATA 字段的长度</td>
+<td>2</td>
+</tr>
+<tr>
+<td>RDATA</td>
+<td>其他 RR 特定数据</td>
+<td>变量，根据RDLENGTH</td>
+</tr>
+</tbody>
+</table>
+<p>DNS 记录类型列表中最常见的有如下类型：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>Type id</th>
+<th>定义文档</th>
+<th>描述</th>
+<th>方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>1</td>
+<td>RFC 1035</td>
+<td>地址记录</td>
+<td>返回一个 32 位IPv4地址，最常用于将主机名映射到主机的 IP 地址</td>
+</tr>
+<tr>
+<td>NS</td>
+<td>2</td>
+<td>RFC 1035</td>
+<td>名称服务器记录</td>
+<td>委托 DNS 区域（DNS zone）使用给定的权威名称服务器（Authoritative name server）</td>
+</tr>
+<tr>
+<td>CNAME</td>
+<td>5</td>
+<td>RFC 1035</td>
+<td>规范名称记录</td>
+<td>一个名称到另一个名称的别名：DNS 查找将通过使用新名称重试查找来继续</td>
+</tr>
+<tr>
+<td>MX</td>
+<td>15</td>
+<td>RFC 1035 与 RFC 7505</td>
+<td>邮件交换记录</td>
+<td>将域名映射到该域的邮件 传输代理列表（Message Transfer Agents，MTA）</td>
+</tr>
+<tr>
+<td>TXT</td>
+<td>16</td>
+<td>RFC 1035</td>
+<td>文字记录</td>
+<td>最初用于 DNS 记录中的任意人类可读文本。然而，自 1990 年代初以来，该记录更多地携带机器可读数据，例如 RFC 1464 规范声明的，OE、SPF、DKIM、DMARC、DNS-SD等</td>
+</tr>
+<tr>
+<td>AAAA</td>
+<td>28</td>
+<td>RFC 3596</td>
+<td>IPv6地址记录</td>
+<td>返回一个 128 位IPv6地址，最常用于将主机名映射到主机的 IP 地址</td>
+</tr>
+<tr>
+<td>SRV</td>
+<td>33</td>
+<td>RFC 2782</td>
+<td>服务定位器</td>
+<td>通用服务位置记录，用于较新的协议，而不是创建特定于协议的记录，例如 MX</td>
+</tr>
+</tbody>
+</table>
+<h2 id="规范名称记录（CNAME）"><a href="#规范名称记录（CNAME）" class="headerlink" title="规范名称记录（CNAME）"></a>规范名称记录（CNAME）</h2><p>规范名称记录（Canonical NAME record，CNAME）是域名系统（DNS）中的一种资源记录（RR）类型，它将一个域名（别名）映射到另一个域名（规范名称）。<br>当从一个 IP 地址运行多个服务（如 FTP 服务器 和 Web 服务器，每个都在不同的端口上运行）时，使用 CNAME 是十分方便的。例如，可以使用 CNAME 记录将 ftp.example.com 和 <a target="_blank" rel="noopener" href="http://www.example.com">www.example.com</a> 指向 example.com 的 DNS 条目，该条目又具有指向 IP 地址的 A 记录。然后，如果 IP 地址发生变化，只需在网络内的一处记录更改：即在 DNS A 记录中，例如 example.com。ftp.example.com 和 <a target="_blank" rel="noopener" href="http://www.example.com">www.example.com</a> 都属于 example.com 的别名，而 example.com 则称为 ftp.example.com 和 <a target="_blank" rel="noopener" href="http://www.example.com">www.example.com</a> 的规范名称。</p>
+<p>有两点需要注意：</p>
+<ol>
+<li>CNAME 记录必须始终指向另一个域名，而不是直接指向 IP 地址。</li>
+<li>由于效率低下，应避免指向其他 CNAME 记录的 CNAME 记录（但即使这样做了也不算是个错误）。</li>
+</ol>
+<h2 id="内容分发网络（CDN）"><a href="#内容分发网络（CDN）" class="headerlink" title="内容分发网络（CDN）"></a>内容分发网络（CDN）</h2><p>内容分发网络（Content Delivery Network or Content Distribution Network，CDN）是是一组分布式服务器，共同组成的一个对内容传输的覆盖网络（Overlay Network），用来加速用户对网络的内容访问。<br>CDN 最常见的调度方式就是 DNS 调度形式。对于 CDN 客户来说，不需要改动网站架构，只需要修改自己的 DNS 解析，设置一个 CNAME 指向 CDN 服务商即可。<br>CDN 节点通常部署在多个位置，通常在多个互联网主干上。好处包括降低带宽成本、缩短页面加载时间以及提高内容的全球可用性。对内容的请求通常通过算法定向到以某种方式优化的节点。在优化性能时，可以选择最适合向用户提供内容的位置。这可以通过选择跳数最少、距请求客户端的网络秒数最少或服务器性能（根据当前和历史）可用性最高的位置来衡量，以优化跨本地网络的交付。在优化成本时，可以选择成本最低的位置。在最佳情况下，这两个目标趋于一致，因为靠近网络边缘的最终用户的 边缘服务器 可能在性能或成本方面具有优势。</p>
+
+        
+    </section>
+    
+</article>
+
+
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

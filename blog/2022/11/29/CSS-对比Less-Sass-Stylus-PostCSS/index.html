@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        对比Less/Sass/Stylus/PostCSS | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="Less、Sass 和 Stylus 是 CSS 预处理器，PostCSS 是转换 CSS 工具的平台Less变量：$ 标识符变量，使用 &amp;#123;&amp;#125; 插值嵌套：支持 &amp;#123; &amp;#125; 大括号嵌套混入器：支持 选择器 混入 或 使用 .selector(@param) 创建纯混入器扩展 / 继承 / 运算符 / @import：支持流程：支持 if 条件判断，支持 when 递归模拟循环映射：支持 @ 声明和使用 Map特有：提供 Less.js，直接在浏" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Less"><span class="toc-text">Less</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sass"><span class="toc-text">Sass</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Stylus"><span class="toc-text">Stylus</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PostCSS"><span class="toc-text">PostCSS</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            对比Less/Sass/Stylus/PostCSS
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2022-11-29T06:50:18.000Z" itemprop="datePublished">2022-11-29</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/less/" rel="tag">less</a>, <a class="article-tag-link" href="/blog/tags/postcss/" rel="tag">postcss</a>, <a class="article-tag-link" href="/blog/tags/sass/" rel="tag">sass</a>, <a class="article-tag-link" href="/blog/tags/stylus/" rel="tag">stylus</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>Less、Sass 和 Stylus 是 CSS 预处理器，PostCSS 是转换 CSS 工具的平台</p>
+<span id="more"></span>
+<h2 id="Less"><a href="#Less" class="headerlink" title="Less"></a>Less</h2><ul>
+<li>变量：<code>$</code> 标识符变量，使用 <code>&#123;&#125;</code> 插值</li>
+<li>嵌套：支持 <code>&#123; &#125;</code> 大括号嵌套</li>
+<li>混入器：支持 选择器 混入 或 使用 <code>.selector(@param)</code> 创建纯混入器</li>
+<li>扩展 / 继承 / 运算符 / @import：支持</li>
+<li>流程：支持 if 条件判断，支持 when 递归模拟循环</li>
+<li>映射：支持 @ 声明和使用 Map</li>
+<li>特有：提供 Less.js，直接在浏览器使用 Less</li>
+</ul>
+<h2 id="Sass"><a href="#Sass" class="headerlink" title="Sass"></a>Sass</h2><ul>
+<li>变量：支持 <code>$</code> 标识符变量，使用 <code>#&#123;&#125;</code> 插值</li>
+<li>嵌套：支持 <code>&#123; &#125;</code>大括号嵌套，支持缩进嵌套</li>
+<li>混入器：<code>@mixin</code> 创建 <code>@include</code> 使用</li>
+<li>扩展 / 继承 / 运算符 / @import：支持</li>
+<li>流程：支持 if else 条件判断，支持 for while each 循环</li>
+<li>映射：支持 <code>$()</code> 声明 Map，提供 map-get(map, key) map-keys(map) map-values(map) 等一系列方法操作 Map，支持遍历 Map</li>
+<li>特有：支持 compass ，内含 自动私有前缀 等一系列有用 Sass 模块，支持压缩输出</li>
+</ul>
+<h2 id="Stylus"><a href="#Stylus" class="headerlink" title="Stylus"></a>Stylus</h2><ul>
+<li>变量：支持 <code>$</code> 标识符变量 和 赋值表达式变量，使用 <code>&#123;&#125;</code> 插值</li>
+<li>嵌套：支持 <code>&#123; &#125;</code> 大括号嵌套 和 缩进嵌套</li>
+<li>混入器：像函数一样创建和使用</li>
+<li>扩展 / 继承 / 运算符 / @import：支持</li>
+<li>流程：支持 if else unless 三元 条件判断，支持 for 循环</li>
+<li>映射：像 JS 一样创建和使用对象</li>
+<li>特有：支持中间件，自动分配函数变量，提供 JS API。支持压缩输出</li>
+</ul>
+<h2 id="PostCSS"><a href="#PostCSS" class="headerlink" title="PostCSS"></a>PostCSS</h2><ul>
+<li>接受 CSS 文件，把 CSS 规则转换为抽象语法树</li>
+<li>提供 API 供插件调用，对 CSS 处理</li>
+<li>插件：支持 Autoprefixer 自动添加私有前缀、css-modules CSS 模块 stylelint CSS 语法检查等插件，PostCSSS 是工具的工具</li>
+</ul>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        RPC | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="什么是 RPCRPC（Remote Procedure Call）— 远程过程调用，它是一种通过网络从远程计算机程序上请求服务，而不需要了解底层网络技术的 webservice 架构。比如两个不同的服务 A、B 部署在两台不同的机器上，那么服务 A 如果想要调用服务 B 中的某个方法该怎么办呢？使用 HTTP 请求当然可以，但是可能会比较慢而且一些优化做的并不好。 RPC 的出现就是为了解决这个问题。  最终解决的问题：让分布式或者微服务系统中不同服务之间可以像本地服务一样调用。  RPC" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-RPC"><span class="toc-text">什么是 RPC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RPC-%E5%8E%9F%E7%90%86"><span class="toc-text">RPC 原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8-RPC-%E6%A1%86%E6%9E%B6"><span class="toc-text">常用 RPC 框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8-RPC%EF%BC%8C%E4%B8%8D%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8-HTTP"><span class="toc-text">为什么用 RPC，不直接使用 HTTP</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            RPC
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-05-19T16:40:13.000Z" itemprop="datePublished">2021-05-20</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/HTTP/" rel="tag">HTTP</a>, <a class="article-tag-link" href="/blog/tags/RPC/" rel="tag">RPC</a>, <a class="article-tag-link" href="/blog/tags/SOA/" rel="tag">SOA</a>, <a class="article-tag-link" href="/blog/tags/webservice/" rel="tag">webservice</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="什么是-RPC"><a href="#什么是-RPC" class="headerlink" title="什么是 RPC"></a>什么是 RPC</h2><p>RPC（Remote Procedure Call）— 远程过程调用，它是一种通过网络从远程计算机程序上请求服务，而不需要了解底层网络技术的 webservice 架构。比如两个不同的服务 A、B 部署在两台不同的机器上，那么服务 A 如果想要调用服务 B 中的某个方法该怎么办呢？使用 HTTP 请求当然可以，但是可能会比较慢而且一些优化做的并不好。 RPC 的出现就是为了解决这个问题。  </p>
+<p>最终解决的问题：让分布式或者微服务系统中不同服务之间可以像本地服务一样调用。  </p>
+<span id="more"></span>
+<h2 id="RPC-原理"><a href="#RPC-原理" class="headerlink" title="RPC 原理"></a>RPC 原理</h2><p><img src="/blog/static/imgs/rpc.jpg" alt="rpc_inner"></p>
+<ol>
+<li>client 以本地调用方式调用服务；</li>
+<li>client stub 接收到调用后负责将方法、参数等组装成能够进行网络传输的消息体；</li>
+<li>client stub 找到服务地址，并将消息发送到服务端；</li>
+<li>server stub 收到消息后进行解码；</li>
+<li>server stub 根据解码结果调用本地的服务；</li>
+<li>server 执行并将结果返回给 server stub；</li>
+<li>server stub 将返回结果打包成消息并发送至 client；</li>
+<li>client stub 接收到消息，并进行解码；</li>
+<li>client 得到最终结果</li>
+</ol>
+<h2 id="常用-RPC-框架"><a href="#常用-RPC-框架" class="headerlink" title="常用 RPC 框架"></a>常用 RPC 框架</h2><ul>
+<li>Dubbo: Dubbo 是阿里巴巴公司开源的一个高性能优秀的服务框架，使得应用可通过高性能的 RPC 实现服务的输出和输入功能，可以和 Spring 框架无缝集成。目前 Dubbo 已经成为 Spring Cloud Alibaba 中的官方组件。</li>
+<li>gRPC ：gRPC 是可以在任何环境中运行的现代开源高性能 RPC 框架。它可以通过可插拔的支持来有效地连接数据中心内和跨数据中心的服务，以实现负载平衡、跟踪、运行状况检查和身份验证。它也适用于分布式计算的最后一英里，以将设备、移动应用程序和浏览器连接到后端服务。</li>
+<li>Hessian： Hessian是一个轻量级的 remoting-on-http 工具，使用简单的方法提供了 RMI 的功能。 相比 WebService，Hessian 更简单、快捷。采用的是二进制 RPC 协议，因为采用的是二进制协议，所以它很适合于发送二进制数据。</li>
+</ul>
+<h2 id="为什么用-RPC，不直接使用-HTTP"><a href="#为什么用-RPC，不直接使用-HTTP" class="headerlink" title="为什么用 RPC，不直接使用 HTTP"></a>为什么用 RPC，不直接使用 HTTP</h2><p>RPC 是 web service 的一种架构，HTTP 是指 HTTP 协议，事实上 RPC 也可以采用 HTTP 协议进行通信，例如 gRPC 就采用了 HTTP2。一般拿 RPC 和 HTTP 比较是将采用TCP（或UDP）协议的 RPC 和直接使用 HTTP 通信进行比较。  </p>
+<ul>
+<li><em>传输效率</em> RPC通常使用TCP协议，通过自定义上层协议可以让请求报文体积更小；基于 HTTP 1.1 的协议，请求可能会包含很多对业务无用的内容（毕竟HTTP是面向web应用的）</li>
+<li><em>性能消耗</em> RPC在参数序列化上可以基于序列化框架进行，效率比较高；HTTP协议，参数大部分是通过 json 来实现的，字节更多，序列化耗时更多</li>
+<li><em>跨平台</em> HTTP 协议可以运行在多种异构系统上，可移植性较好；RPC通常要求客户端和服务器为统一平台</li>
+</ul>
+<p>基于以上特点考虑，使用基于 TCP 的 RPC 主要用于业务内部的服务调用，性能消耗低，传输效率高。  </p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        CSS transform &amp; transition &amp; animation属性 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="transition 过渡transition 属性是 transition-property，transition-duration，transition-timing-function 和 transition-delay 的一个简写属性。transition 可以为一个元素在不同状态之间切换的时候定义不同的过渡效果。属性含义transition-property指定应用过渡属性的名称transition-duration以秒或毫秒为单位指定过渡动画所需的时间，" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#transition-%E8%BF%87%E6%B8%A1"><span class="toc-text">transition 过渡</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#transform-%E8%BD%AC%E5%8F%98"><span class="toc-text">transform 转变</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#animation-%E5%8A%A8%E7%94%BB"><span class="toc-text">animation 动画</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            CSS transform &amp; transition &amp; animation属性
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-16T07:39:04.000Z" itemprop="datePublished">2021-03-16</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="transition-过渡"><a href="#transition-过渡" class="headerlink" title="transition 过渡"></a>transition 过渡</h2><p>transition 属性是 transition-property，transition-duration，transition-timing-function 和 transition-delay 的一个简写属性。transition 可以为一个元素在不同状态之间切换的时候定义不同的过渡效果。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>transition-property</td>
+<td>指定应用过渡属性的名称</td>
+</tr>
+<tr>
+<td>transition-duration</td>
+<td>以秒或毫秒为单位指定过渡动画所需的时间，默认为0s</td>
+</tr>
+<tr>
+<td>transition-timing-function</td>
+<td>用来描述 <code>transition-property</code> 中间值是怎样计算的, 默认 ease, 可选 ease-in，ease-out，ease-in-out，linear，step-start，step-end，steps(4, end)，inherit，cubic-bezier(0.1, 0.7, 1.0, 0.1)</td>
+</tr>
+<tr>
+<td>transition-delay</td>
+<td>规定了在过渡效果开始作用之前需要等待的时间, 默认0s</td>
+</tr>
+</tbody>
+</table>
+<p>在符合标准的浏览器中，transition效果结束时会触发 <code>transitionend(propertyName, elapsedTime)</code> 事件</p>
+<span id="more"></span>
+<h2 id="transform-转变"><a href="#transform-转变" class="headerlink" title="transform 转变"></a>transform 转变</h2><p>transform 属性允许你旋转，缩放，倾斜或平移给定元素。可以指定为关键字值 none 或一个或多个 &lt;transform-function> 值。  </p>
+<p>&lt;transform-function> CSS数据类型用于对元素的显示做变换。通常，这种变换可以由矩阵表示，并且可以使用每个点上的矩阵乘法来确定所得到的图像。在CSS（和大部分的计算机图形学）中，原点 (0, 0) 在元素的左上角。  </p>
+<table>
+<thead>
+<tr>
+<th>transfrom-function</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>matrix(a, b, c, d, tx, ty)</code></td>
+<td>matrix() 用六个指定的值来指定一个均匀的二维（2D）变换矩阵。</td>
+</tr>
+<tr>
+<td><code>matrix3d(a1, b1, c1, d1, a2, b2, c2, d2, a3, b3, c3, d3, a4, b4, c4, d4)</code></td>
+<td>matrix3d() 用一个 4 × 4 的齐次矩阵来描述一个三维（3D）变换。</td>
+</tr>
+<tr>
+<td><code>perspective(l)</code></td>
+<td>perspective() 函数定义了 z=0 平面与用户之间的距离，以便给三维定位元素一定透视度。</td>
+</tr>
+<tr>
+<td><code>rotate(a)</code></td>
+<td>rotate() 函数定义一个旋转属性，将元素在不变形的情况下旋转到不动点周围。</td>
+</tr>
+<tr>
+<td><code>rotate3d(x, y, z, a)</code></td>
+<td>rotate3d() 函数定义一个3D旋转功能，该旋转使元素能够绕固定轴移动而不变形。</td>
+</tr>
+<tr>
+<td><code>rotateX(a)</code></td>
+<td>rotateX() 函数定义了将元素在横坐标上旋转而不使其变形的方法。</td>
+</tr>
+<tr>
+<td><code>rotateY(a)</code></td>
+<td>rotateY() 函数定义了将元素在纵坐标上旋转而不使其变形的方法。</td>
+</tr>
+<tr>
+<td><code>rotateZ(a)</code></td>
+<td>rotateZ() 函数定义了将元素在z轴上旋转而不使其变形的方法。</td>
+</tr>
+<tr>
+<td><code>scale(sx)</code>  <code>scale(sx, sy)</code></td>
+<td>scale() 函数可改变元素的大小。 它可以增大或减小元素的大小，并且缩放量由矢量定义，并且它可以使在一个方向上比另一个方向更多。</td>
+</tr>
+<tr>
+<td><code>scale3d(sx, sy, sz)</code></td>
+<td>scale3d() 函数可改变元素的大小。由于缩放的量由矢量定义，因此可以改变不同方向的尺寸。</td>
+</tr>
+<tr>
+<td><code>scaleX()</code></td>
+<td>scaleX() 函数是用一个常数因子来修改每个单元点的横坐标，在比例因子是1的情况下该函数是恒等变换。</td>
+</tr>
+<tr>
+<td><code>scaleY()</code></td>
+<td>scaleY() 函数用一个常数因子修改每个元素点的纵坐标，在比例因子是1的情况下该函数是恒等变换。</td>
+</tr>
+<tr>
+<td><code>scaleZ()</code></td>
+<td>scaleZ() 函数是用一个常数因子来修改每个单元点的z轴坐标，在比例因子是1的情况下该函数是恒等变换。</td>
+</tr>
+<tr>
+<td><code>skew(ax)</code> 或 <code>skew(ax, ay)</code></td>
+<td>skew() 函数是一种用于拉伸，或者说是平移，该函数会使得在每个方向上扭曲元素上的每个点以一定角度。</td>
+</tr>
+<tr>
+<td><code>skewX(a)</code></td>
+<td>skewX() 函数是用于水平拉伸，它将元素的每个点在水平方向上扭曲一定角度。</td>
+</tr>
+<tr>
+<td><code>skewY(a)</code></td>
+<td>skewY() 函数是用于垂直拉伸，它将元素的每个点在垂直方向上扭曲一定角度。</td>
+</tr>
+<tr>
+<td><code>translate(tx)</code> 或 <code>translate(tx, ty)</code></td>
+<td>translate() 函数用于移动元素在平面上的位置。</td>
+</tr>
+<tr>
+<td><code>translate3d(tx, ty, tz)</code></td>
+<td>translate3d() 函数用于移动元素在3D空间中的位置。</td>
+</tr>
+<tr>
+<td><code>translateX(t)</code></td>
+<td>translateX() 函数用于在平面上水平移动元素。</td>
+</tr>
+<tr>
+<td><code>translateY(t)</code></td>
+<td>translateY() 函数用于在平面上垂直移动元素。</td>
+</tr>
+<tr>
+<td><code>translateZ()</code></td>
+<td>translateZ() 函数用于3D空间的z轴方向移动元素， 这个转换的特点是通过 &lt;length> 定义了它的z轴方向移动量。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="animation-动画"><a href="#animation-动画" class="headerlink" title="animation 动画"></a>animation 动画</h2><p>animation 属性是 animation-name，animation-duration, animation-timing-function，animation-delay，animation-iteration-count，animation-direction，animation-fill-mode 和 animation-play-state 属性的一个简写属性形式。用来指定一组或多组动画，每组之间用逗号相隔。  </p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>animation-name</td>
+<td>指定应用的一系列动画，每个名称代表一个由 <code>@keyframes</code> 定义的动画序列。默认 none。</td>
+</tr>
+<tr>
+<td>animation-duration</td>
+<td>指定一个动画周期的时长。默认值为0s，表示无动画。</td>
+</tr>
+<tr>
+<td>animation-timing-function</td>
+<td>定义CSS动画在每一动画周期中执行的节奏。默认为 ease。</td>
+</tr>
+<tr>
+<td>animation-delay</td>
+<td>定义动画于何时开始，即从动画应用在元素上到动画开始的这段时间的长度。默认为0。</td>
+</tr>
+<tr>
+<td>animation-iteration-count</td>
+<td>定义动画在结束前运行的次数 可以是1次/无限循环（infinite）</td>
+</tr>
+<tr>
+<td>animation-direction</td>
+<td>指示动画是否反向播放。默认为 normal。只可以为: <br/>normal（正向） <br/> reverse（反向） <br/> alternate（交替反向） <br/> alternate-reverse（反向交替）</td>
+</tr>
+<tr>
+<td>animation-fill-mode</td>
+<td>设置CSS动画在执行之前和之后如何将样式应用于其目标。默认为none。只可以为: <br/> none（当动画未执行时，动画将不会将任何样式应用于目标，而是已经赋予给该元素的 CSS 规则来显示该元素）<br/> forwards（目标将保留由执行期间遇到的最后一个关键帧计算值）<br/>backwards（动画将在应用于目标时立即应用第一个关键帧中定义的值，并在animation-delay期间保留此值）<br/>both（动画将遵循forwards和backwards的规则，从而在两个方向上扩展动画属性）</td>
+</tr>
+<tr>
+<td>animation-play-state</td>
+<td>定义一个动画是否运行或者暂停。可以通过查询它来确定动画是否正在运行，它的值可以被设置为暂停和恢复的动画的重放。默认值 running。只可以为:<br/> running(当前动画正在运行)<br/>paused(当前动画已被停止)</td>
+</tr>
+</tbody>
+</table>
+<p>animation 属性通常需要和关键帧 <code>@keyframes</code> 配合来使用，关键帧 <code>@keyframes</code> 规则通过在动画序列中定义关键帧（或waypoints）的样式来控制CSS动画序列中的中间步骤。和 过渡 <code>transition</code> 相比，关键帧 <code>@keyframes</code> 可以控制动画序列的中间步骤。<br>要使用关键帧, 先创建一个带名称的 <code>@keyframes</code> 规则，以便后续使用 <code>animation-name</code> 属性将动画同其关键帧声明匹配。每个 <code>@keyframes</code> 规则包含多个关键帧，也就是一段样式块语句，每个关键帧有一个百分比值作为名称，代表在动画进行中，在哪个阶段触发这个帧所包含的样式。  </p>
+<p>例如：  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 如果一个关键帧规则没有指定动画的开始或结束状态，浏览器将使用元素的现有样式作为起始/结束状态。 */</span></span><br><span class="line"><span class="keyword">@keyframes</span> move &#123; <span class="comment">/* move 为关键帧名称 */</span></span><br><span class="line">  <span class="selector-tag">from</span> &#123; <span class="attribute">margin-top</span>: <span class="number">50px</span>; &#125; <span class="comment">/* from 相当于 0% */</span></span><br><span class="line">  <span class="number">50%</span>  &#123; <span class="attribute">margin-top</span>: <span class="number">150px</span> <span class="meta">!important</span>; &#125; <span class="comment">/* !important 会被忽略 */</span></span><br><span class="line">  <span class="number">50%</span>  &#123; <span class="attribute">margin-top</span>: <span class="number">200px</span>; &#125; <span class="comment">/* 如果多个关键帧使用同一个名称，以最后一次定义的为准。 */</span></span><br><span class="line">  <span class="selector-tag">to</span>   &#123; <span class="attribute">margin-top</span>: <span class="number">100px</span>; &#125; <span class="comment">/* to 相当于 100% */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 如果在关键帧的样式中使用了不能用作动画的属性，那么这些属性会被忽略掉，支持动画的属性仍然是有效的，不受波及。 */</span></span><br></pre></td></tr></table></figure>
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        Git小抄 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="什么是 GitGit 是一个免费的开源分布式版本控制系统。它被设计用来高效的控制各种各样的工程项目。Git最初在2005年由 Linus 花费了两周时间用C语言开发而成，并被用来管理 Linux kernel 的源码。Git很容易学习，所占用空间极小而且效率很高。它比同类型的版本控制工具比如Subversion(SVN)，CVS， ClearCase要更加功能强大。  什么是版本控制简单来说就是项目的历史，项目的代码从无到有，从少到多是有个过程的。在写代码的过程中我们免不了会遇到想知道项目发" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Git"><span class="toc-text">什么是 Git</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"><span class="toc-text">什么是版本控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git-%E7%9A%84%E7%89%B9%E8%89%B2"><span class="toc-text">Git 的特色</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85-Git"><span class="toc-text">如何安装 Git</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8Linux%E4%B8%8A%E5%AE%89%E8%A3%85Git"><span class="toc-text">在Linux上安装Git</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8Mac-OS-X%E4%B8%8A%E5%AE%89%E8%A3%85Git"><span class="toc-text">在Mac OS X上安装Git</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8Windows%E4%B8%8A%E5%AE%89%E8%A3%85Git"><span class="toc-text">在Windows上安装Git</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">Git 常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#git-stash-save-lt-msg"><span class="toc-text">git stash save [&lt;msg&gt;]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-stash-apply-lt-stash"><span class="toc-text">git stash apply [&lt;stash&gt;]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-stash-pop"><span class="toc-text">git stash pop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-stash-list"><span class="toc-text">git stash list</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-stash-show-lt-stash"><span class="toc-text">git stash show [&lt;stash&gt;]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-stash-drop-lt-stash"><span class="toc-text">git stash drop [&lt;stash&gt;]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-stash-clear"><span class="toc-text">git stash clear</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-stash-branch-lt-branshname-lt-stash"><span class="toc-text">git stash branch &lt;branshname&gt; [&lt;stash&gt;]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-status"><span class="toc-text">git status</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-diff"><span class="toc-text">git diff</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-diff-1"><span class="toc-text">git diff </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-add-lt-file-or-dir%E2%80%A6"><span class="toc-text">git add &lt;file.. or dir…&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-add-u"><span class="toc-text">git add -u</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-rm-lt-file-s-%E2%80%A6"><span class="toc-text">git rm &lt;file(s)…&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-mv-lt-file-s-%E2%80%A6"><span class="toc-text">git mv &lt;file(s)…&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-commit-a-m-%E2%80%98msg%E2%80%99"><span class="toc-text">git commit -a [-m ‘msg’]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-checkout-lt-file-s-%E2%80%A6-or-dir%E2%80%A6"><span class="toc-text">git checkout &lt;file(s)… or dir…&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-reset-hard"><span class="toc-text">git reset - -hard</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-reset-soft-origin-master"><span class="toc-text">git reset  - -soft origin&#x2F;master</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-checkout-b"><span class="toc-text">git checkout -b </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-merge"><span class="toc-text">git merge </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-rebase-lt-upstream"><span class="toc-text">git rebase &lt;upstream&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-cherry-pick-lt-commit"><span class="toc-text">git cherry-pick &lt;commit&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-revert-lt-commit"><span class="toc-text">git revert &lt;commit&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-clone-lt-repository"><span class="toc-text">git clone &lt;repository&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-pull-lt-remote-lt-refspec"><span class="toc-text">git pull &lt;remote&gt; &lt;refspec&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-reset-hard-lt-remote-lt-branch"><span class="toc-text">git reset - -hard &lt;remote&gt;|&lt;branch&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-clean"><span class="toc-text">git clean</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-reset-HEAD-lt-file-s-%E2%80%A6"><span class="toc-text">git reset HEAD &lt;file(s)…&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-reset-soft-HEAD"><span class="toc-text">git reset - -soft HEAD^</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-diff-cached-lt-commit"><span class="toc-text">git diff - -cached [&lt;commit&gt;]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-commit-m-%E2%80%98msg%E2%80%99"><span class="toc-text">git commit [-m ‘msg’]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-commit-amend"><span class="toc-text">git commit - -amend</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-log"><span class="toc-text">git log</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-diff-lt-commit-lt-commit"><span class="toc-text">git diff &lt;commit&gt; &lt;commit&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-branch"><span class="toc-text">git branch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-branch-d-lt-branch"><span class="toc-text">git branch -d &lt;branch&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-branch-track-lt-new-lt-remote-branch"><span class="toc-text">git branch - -track &lt;new&gt; &lt;remote&#x2F;branch&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-fetch-lt-remote-lt-refspec"><span class="toc-text">git fetch &lt;remote&gt; &lt;refspec&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-push"><span class="toc-text">git push</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-push-lt-remote-lt-branch"><span class="toc-text">git push &lt;remote&gt; &lt;branch&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-push-lt-remote-lt-branch-lt-branch"><span class="toc-text">git push &lt;remote&gt; &lt;branch&gt;:&lt;branch&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-branch-r"><span class="toc-text">git branch -r</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-push-lt-remote-lt-branch-1"><span class="toc-text">git push &lt;remote&gt;:&lt;branch&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-config-lt-options"><span class="toc-text">git config [&lt;options&gt;]</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E5%AE%83%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">其它注意事项</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            Git小抄
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-02-01T07:14:46.000Z" itemprop="datePublished">2019-02-01</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/git/" rel="tag">git</a>, <a class="article-tag-link" href="/blog/tags/tool/" rel="tag">tool</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="什么是-Git"><a href="#什么是-Git" class="headerlink" title="什么是 Git"></a>什么是 Git</h2><p><a target="_blank" rel="noopener" href="https://github.com/git/git">Git</a> 是一个免费的开源分布式版本控制系统。它被设计用来高效的控制各种各样的工程项目。<br>Git最初在2005年由 <a target="_blank" rel="noopener" href="https://github.com/torvalds">Linus</a> 花费了两周时间用C语言开发而成，并被用来管理 <a target="_blank" rel="noopener" href="https://github.com/torvalds/linux">Linux kernel</a> 的源码。<br>Git很容易学习，所占用空间极小而且效率很高。它比同类型的版本控制工具比如Subversion(SVN)，CVS， ClearCase要更加功能强大。  </p>
+<span id="more"></span>
+<h3 id="什么是版本控制"><a href="#什么是版本控制" class="headerlink" title="什么是版本控制"></a>什么是版本控制</h3><p>简单来说就是项目的历史，项目的代码从无到有，从少到多是有个过程的。在写代码的过程中我们免不了会遇到想知道项目发展过程中的许多事情，比如  </p>
+<ol>
+<li><p>谁提交了多少次代码，提交了多少行代码，谁对这个项目的贡献最大  </p>
+</li>
+<li><p>某行代码是何时由谁合并到项目中的，为什么他要这样写  </p>
+</li>
+<li><p>想要回滚当前项目到过去的某个时间段  </p>
+</li>
+<li><p>两个不同的人都修改了代码，如何能够快速的将两个人的代码diff并合并到项目中去  </p>
+</li>
+<li><p>想要维护两套代码分别开发不同的功能  </p>
+</li>
+<li><p>在每次提交代码时想要做一些验证，比如保证代码格式  </p>
+</li>
+</ol>
+<p>版本控制系统就是来控制这些事情的工具。Git也可以做到这些。  </p>
+<h3 id="Git-的特色"><a href="#Git-的特色" class="headerlink" title="Git 的特色"></a>Git 的特色</h3><p>Git与其它的版本控制系统有什么不同呢？最大的不同（除了开源）在于Git采用了分布式的版本控制。<br>在Git之前，版本控制系统都是集中式的，集中式版本控制系统的特色是最基本的版本库是存放在中央服务器的，在开发功能的时候，所有开发者都需要从中央服务器获取代码的最新版本，然后在本地加入自己的功能，最后再将代码合并到中央服务器中，合并的过程中，如果有别人在你之前合入了代码而你的代码和他的有冲突，你就要先处理这些冲突，然后合并入中央服务器。  </p>
+<p><img src="/blog/static/imgs/git/集中式版本控制系统.jpeg" alt="集中式版本控制系统">  </p>
+<p>集中式版本控制系统是可以工作的，但在某些方面也有自己的不足，比如如果中央服务器出现了问题，所有人都必须等待中央服务器可用。由于地理因素，某些开发者可能互相之间需要同步代码，而不希望和中央服务器同步（比如由于和中央服务器之间的带宽较小）。再比如开发者想要并行开发多个功能，但不想每次都需要同服务器同步获取最新代码。<br>分布式版本控制系统很好的解决了以上问题。在分布式版本控制系统中，每个版本库都是独立的。换句话说，每个版本库都可以作为“中央服务器”。这样，在开发的时候，任何两个开发者之间都可以互相推送自己的修改，而且由于记录的都是修改的操作，所以在自己本地创建“新版本库”（实际上通常是分支）来开发新功能的代价很小。  </p>
+<p><img src="/blog/static/imgs/git/分布式版本控制系统.jpeg" alt="分布式版本控制系统">  </p>
+<p>当然，实际上，采用分布式版本控制系统的项目通常也有一个版本库充当“中央服务器”的角色，而这个版本库标记这产品的正式的代码变更，每个开发者从“中央服务器”同步最新的代码相当于获取大家都认可的项目最新的代码。</p>
+<h2 id="如何安装-Git"><a href="#如何安装-Git" class="headerlink" title="如何安装 Git"></a>如何安装 Git</h2><p>下面列举了在Linux/MacOS/Windows中安装Git的方法：  </p>
+<h3 id="在Linux上安装Git"><a href="#在Linux上安装Git" class="headerlink" title="在Linux上安装Git"></a>在Linux上安装Git</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install git</span><br></pre></td></tr></table></figure>
+<h3 id="在Mac-OS-X上安装Git"><a href="#在Mac-OS-X上安装Git" class="headerlink" title="在Mac OS X上安装Git"></a>在Mac OS X上安装Git</h3><p>安装homebrew，然后通过homebrew安装Git，具体方法请参考 <a target="_blank" rel="noopener" href="http://brew.sh/">homebrew</a> 的文档。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install</span><br></pre></td></tr></table></figure>
+<h3 id="在Windows上安装Git"><a href="#在Windows上安装Git" class="headerlink" title="在Windows上安装Git"></a>在Windows上安装Git</h3><p>从Git官网直接 <a target="_blank" rel="noopener" href="https://git-scm.com/downloads">下载安装程序</a> ，然后双击安装即可。  </p>
+<h2 id="Git-常用命令"><a href="#Git-常用命令" class="headerlink" title="Git 常用命令"></a>Git 常用命令</h2><p>首先我们来了解下Git中的各个区域的含义  </p>
+<table>
+<thead>
+<tr>
+<th>区域</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>stash 存档库</td>
+<td>当你去修改别的东西的时候，隐藏（临时保存）当前的修改</td>
+</tr>
+<tr>
+<td>workspace 工作区</td>
+<td>本地检出</td>
+</tr>
+<tr>
+<td>index 暂存区（索引）</td>
+<td>索引（暂存区）保存了一份工作(树)的快照，作为下次提交的内容</td>
+</tr>
+<tr>
+<td>local repository 本地版本库</td>
+<td>.git 文件夹保存版本库需要的全部信息(Git 版本库的骨架)，一般包括分支 <strong>master</strong>, <strong>feature-x</strong>, <strong>bugfix-y</strong></td>
+</tr>
+<tr>
+<td>upstream repository 上游版本库</td>
+<td>在网络（局域或因特网）上共享给其他开发者的版本库，一般叫”origin”. 一般包括分支<strong>master</strong>, <strong>shared-feature-x</strong>, <strong>release-y</strong></td>
+</tr>
+</tbody>
+</table>
+<p>一个Git命令由 <code>git</code>开始，然后加上命令名，例如 <code>config</code>，然后加上参数，例如<code>--global user.name &quot;your name&quot;</code>，中间由空格连接。一个Git命令通常在一个区域或者两个区域之间进行了某些操作。  </p>
+<p>Git提供了很多的命令，可以自由的实现版本控制的几乎所有的要求，然而在日常工作中，最常用的几乎只有那么几个，你只需要打印出来贴在办公桌上即可，这里提供了一个 <a href="/static/docs/github-git-cheat-sheet.pdf" target="_blank" ref="noopener noreferrer">Git 命令小抄</a> 。  </p>
+<p>如果你不想手打Git命令，也有很好的界面化工具 <a target="_blank" rel="noopener" href="https://www.sourcetreeapp.com/">Sourcetree</a> 支持。  </p>
+<p>如果想要更全面的了解Git，可以查看 <a target="_blank" rel="noopener" href="https://git-scm.com/book/zh/v2">《Pro Git》</a> ，这本书由 Scott Chacon &amp; Ben Straub 编写，由Apress发布，遵循 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution Non Commercial Share Alike 3.0 license</a>。  </p>
+<p>下面列出一些常用的Git命令：  </p>
+<h3 id="git-stash-save-lt-msg"><a href="#git-stash-save-lt-msg" class="headerlink" title="git stash save [&lt;msg>]"></a>git stash save [&lt;msg>]</h3><p>所属区域： 从 <code>工作区</code> 到 <code>存档区</code><br>保存当前修改到新的存档库，并且执行<code>git reset ‑‑hard</code>来回滚。 msg是可选的用来描述存档。想快速建立存档，可以省略掉<code>save</code>和<code>msg</code>。</p>
+<h3 id="git-stash-apply-lt-stash"><a href="#git-stash-apply-lt-stash" class="headerlink" title="git stash apply [&lt;stash>]"></a>git stash apply [&lt;stash>]</h3><p>所属区域： 从 <code>存档区</code> 到 <code>工作区</code><br>从某个存档中将改变应用到工作区，默认是最近的存档。</p>
+<h3 id="git-stash-pop"><a href="#git-stash-pop" class="headerlink" title="git stash pop"></a>git stash pop</h3><p>所属区域： 从 <code>存档区</code> 到 <code>工作区</code><br>应用最后一个（或指定的）存档中的改动，然后从存档库丢弃它。</p>
+<h3 id="git-stash-list"><a href="#git-stash-list" class="headerlink" title="git stash list"></a>git stash list</h3><p>所属区域： <code>存档区</code><br>显示当前你有的所有存档。  </p>
+<h3 id="git-stash-show-lt-stash"><a href="#git-stash-show-lt-stash" class="headerlink" title="git stash show [&lt;stash>]"></a>git stash show [&lt;stash>]</h3><p>所属区域： <code>存档区</code><br>显示存档中记录的改动，对比存档生成时的原来状态；不指定stash则显示最后一个。</p>
+<h3 id="git-stash-drop-lt-stash"><a href="#git-stash-drop-lt-stash" class="headerlink" title="git stash drop [&lt;stash>]"></a>git stash drop [&lt;stash>]</h3><p>所属区域： <code>存档区</code><br>从存储区中删除单个存档；不指定stash则删除最后一个。  </p>
+<h3 id="git-stash-clear"><a href="#git-stash-clear" class="headerlink" title="git stash clear"></a>git stash clear</h3><p>所属区域： <code>存档区</code><br>清空存档库。注意相关存档会被清理，此操作<strong>不能被恢复</strong>。  </p>
+<h3 id="git-stash-branch-lt-branshname-lt-stash"><a href="#git-stash-branch-lt-branshname-lt-stash" class="headerlink" title="git stash branch &lt;branshname> [&lt;stash>]"></a>git stash branch &lt;branshname> [&lt;stash>]</h3><p>所属区域： 从 <code>存档区</code> 到 <code>本地版本库</code><br>新建并检出一个新分支branchname, 分支开始于存档建立时的源提交，应用存档的变化作为新的工作区和暂存区。如果成功并且stash是以 stash@{revision}方式给出的，则从存档库删除它。未给出则使用最后一个存档。这在当前分支运行 stash save 导致冲突时很好用，因为存档应用于它生成时的提交一定不会有冲突发生。  </p>
+<h3 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h3><p>所属区域： 在 <code>工作区</code> 与 <code>暂存区</code> 之间<br>显示状态变化，包括  </p>
+<ol>
+<li>暂存区与当前的 HEAD 提交之间(即将提交的)的状态变化</li>
+<li>工作区与暂存区(下次不会提交)的状态变化</li>
+<li>未曾被git追踪(没有历史记录)的状态变化</li>
+</ol>
+<h3 id="git-diff"><a href="#git-diff" class="headerlink" title="git diff"></a>git diff</h3><p>所属区域： 在 <code>工作区</code> 与 <code>暂存区</code> 之间<br>显示未添加到暂存区的不同。  </p>
+<h3 id="git-diff-1"><a href="#git-diff-1" class="headerlink" title="git diff "></a>git diff <commit or branch\></h3><p>所属区域： 在 <code>工作区</code> 与 <code>本地版本库</code> 之间<br>查看工作区与某一提交之间的不同。你也可以使用 HEAD 来对比上一提交，或是用分支名来和分支比较。  </p>
+<h3 id="git-add-lt-file-or-dir…"><a href="#git-add-lt-file-or-dir…" class="headerlink" title="git add &lt;file.. or dir…>"></a>git add &lt;file.. or dir…></h3><p>所属区域： 从 <code>工作区</code> 到 <code>暂存区</code><br>添加当前的新内容或是修改的文件到暂存区，作为下次提交的(部分)内容。用 <code>add --interactive</code> 来交互式操作。  </p>
+<h3 id="git-add-u"><a href="#git-add-u" class="headerlink" title="git add -u"></a>git add -u</h3><p>所属区域： 从 <code>工作区</code> 到 <code>暂存区</code><br>添加当前修改(<strong>不包括新文件</strong>)到暂存区, 这与 <code>git commit -a</code> 准备提交内容的方式一致。  </p>
+<h3 id="git-rm-lt-file-s-…"><a href="#git-rm-lt-file-s-…" class="headerlink" title="git rm &lt;file(s)…>"></a>git rm &lt;file(s)…></h3><p>所属区域： 从 <code>工作区</code> 到 <code>暂存区</code><br>从工作区和暂存区删除某个文件。  </p>
+<h3 id="git-mv-lt-file-s-…"><a href="#git-mv-lt-file-s-…" class="headerlink" title="git mv &lt;file(s)…>"></a>git mv &lt;file(s)…></h3><p>所属区域： 从 <code>工作区</code> 到 <code>暂存区</code><br>从工作区和暂存区移动文件。  </p>
+<h3 id="git-commit-a-m-‘msg’"><a href="#git-commit-a-m-‘msg’" class="headerlink" title="git commit -a [-m ‘msg’]"></a>git commit -a [-m ‘msg’]</h3><p>所属区域： 从 <code>工作区</code> 到 <code>本地版本库</code><br>提交上次提交之后的所有修改，  </p>
+<ol>
+<li>未追踪的除外(即：所有暂存区有记录的文件)；</li>
+<li>从暂存区删除已在工作区删除的文件</li>
+</ol>
+<h3 id="git-checkout-lt-file-s-…-or-dir…"><a href="#git-checkout-lt-file-s-…-or-dir…" class="headerlink" title="git checkout &lt;file(s)… or dir…>"></a>git checkout &lt;file(s)… or dir…></h3><p>所属区域： 从 <code>暂存区</code> 到 <code>工作区</code><br>更新工作区文件或文件夹，<strong>不会</strong>切换分支。  </p>
+<h3 id="git-reset-hard"><a href="#git-reset-hard" class="headerlink" title="git reset - -hard"></a>git reset - -hard</h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>工作区</code><br>恢复工作区和暂存区到上次提交的状态，<br>警告： 所有工作区修改都会被丢弃。使用这条命令来解决合并错误，如果你想从头开始的话传入 ORIG_HEAD 来撤销该次提交以来的所有改动。  </p>
+<h3 id="git-reset-soft-origin-master"><a href="#git-reset-soft-origin-master" class="headerlink" title="git reset  - -soft origin/master"></a>git reset  - -soft origin/master</h3><p>所属区域： 从 <code>上游版本库</code> 到 <code>工作区</code><br>恢复工作区和暂存区到上次提交的状态，当前所有工作区的修改都会保留成未提交的文件。  </p>
+<h3 id="git-checkout-b"><a href="#git-checkout-b" class="headerlink" title="git checkout -b "></a>git checkout -b <name of new branch\></h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>工作区</code><br>切换分支，更改工作区和暂存区为branch分支的内容，之后HEAD指向branch分支。  </p>
+<h3 id="git-merge"><a href="#git-merge" class="headerlink" title="git merge "></a>git merge <commit or branch\></h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>工作区</code><br>从branch name分支合并到当前分支，使用‑‑no-commit可以保持在(已经合并)但未提交状态。  </p>
+<h3 id="git-rebase-lt-upstream"><a href="#git-rebase-lt-upstream" class="headerlink" title="git rebase &lt;upstream>"></a>git rebase &lt;upstream></h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>工作区</code><br>变基：回滚从【当前提交和upstream分支分开处】开始直到当前提交的所有提交，将这些提交一一应用到upstream分支，结果作为upstream的新提交。</p>
+<h3 id="git-cherry-pick-lt-commit"><a href="#git-cherry-pick-lt-commit" class="headerlink" title="git cherry-pick &lt;commit>"></a>git cherry-pick &lt;commit></h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>工作区</code><br>把某个提交移动到当前分支来。  </p>
+<h3 id="git-revert-lt-commit"><a href="#git-revert-lt-commit" class="headerlink" title="git revert &lt;commit>"></a>git revert &lt;commit></h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>工作区</code><br>回滚commit指定的提交，这需要当前工作区是干净的，即相比于 HEAD 提交没有修改。  </p>
+<h3 id="git-clone-lt-repository"><a href="#git-clone-lt-repository" class="headerlink" title="git clone &lt;repository>"></a>git clone &lt;repository></h3><p>所属区域： 从 <code>上游版本库</code> 到 <code>工作区</code><br>下载repository指定的版本库，并在工作区迁出master分支的HEAD版本。  </p>
+<h3 id="git-pull-lt-remote-lt-refspec"><a href="#git-pull-lt-remote-lt-refspec" class="headerlink" title="git pull &lt;remote> &lt;refspec>"></a>git pull &lt;remote> &lt;refspec></h3><p>所属区域： 从 <code>上游版本库</code> 到 <code>工作区</code><br>从远程版本库取得修改到当前分支。 一般来说, git pull 相当于 git fetch 然后做 git merge FETCH_HEAD。  </p>
+<h3 id="git-reset-hard-lt-remote-lt-branch"><a href="#git-reset-hard-lt-remote-lt-branch" class="headerlink" title="git reset - -hard &lt;remote>|&lt;branch>"></a>git reset - -hard &lt;remote>|&lt;branch></h3><p>所属区域： 从 <code>上游版本库</code> 到 <code>工作区</code><br>重置本地版本库，让它与远程版本一致；用 reset ‑‑hard origin/master 来丢弃所有的本地改动；用这个来处理失败的合并，直接从远程开始。  </p>
+<h3 id="git-clean"><a href="#git-clean" class="headerlink" title="git clean"></a>git clean</h3><p>所属区域： 从 <code>工作区</code> 到 <code>工作区</code><br>从当前文件夹开始递归清理不受版本管理的内容。  </p>
+<h3 id="git-reset-HEAD-lt-file-s-…"><a href="#git-reset-HEAD-lt-file-s-…" class="headerlink" title="git reset HEAD &lt;file(s)…>"></a>git reset HEAD &lt;file(s)…></h3><p>所属区域： 从 <code>暂存区</code> 到 <code>暂存区</code><br>从下次提交中移除指定文件。重置暂存区记录但是不处理工作区(即: 文件改动被保留但不会被提交)，同时报告没有被更新的文件。  </p>
+<h3 id="git-reset-soft-HEAD"><a href="#git-reset-soft-HEAD" class="headerlink" title="git reset - -soft HEAD^"></a>git reset - -soft HEAD^</h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>暂存区</code><br>恢复上一次提交，保留暂存区的改动。  </p>
+<h3 id="git-diff-cached-lt-commit"><a href="#git-diff-cached-lt-commit" class="headerlink" title="git diff - -cached [&lt;commit>]"></a>git diff - -cached [&lt;commit>]</h3><p>所属区域： 在 <code>暂存区</code> 与 <code>本地版本库</code> 之间<br>查看已经暂存的内容和上次提交的区别，也可指定某一提交。  </p>
+<h3 id="git-commit-m-‘msg’"><a href="#git-commit-m-‘msg’" class="headerlink" title="git commit [-m ‘msg’]"></a>git commit [-m ‘msg’]</h3><p>所属区域： 从 <code>暂存区</code> 到 <code>本地版本库</code><br>暂存区中的当前内容连同提交信息储存为新提交。  </p>
+<h3 id="git-commit-amend"><a href="#git-commit-amend" class="headerlink" title="git commit - -amend"></a>git commit - -amend</h3><p>所属区域： 从 <code>暂存区</code> 到 <code>本地版本库</code><br>用当前暂存区的内容修改最近一次的提交，也可以拿来修改提交信息。  </p>
+<h3 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h3><p>所属区域： <code>本地版本库</code><br>显示最近的提交，新的在上边。  </p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>‑‑decorate</td>
+<td>显示分支和tag名字到对应的提交</td>
+</tr>
+<tr>
+<td>‑‑stat</td>
+<td>显示状态 (文件修改, 添加, 删除)</td>
+</tr>
+<tr>
+<td>‑‑author=author</td>
+<td>只显示某个作者</td>
+</tr>
+<tr>
+<td>‑‑after=”MMM DD YYYY”</td>
+<td>如(“Jun 20 2008”) 只显示某个日期之后的提交</td>
+</tr>
+<tr>
+<td>‑‑before=”MMM DD YYYY”</td>
+<td>只显示某个日期之前的提交</td>
+</tr>
+<tr>
+<td>‑‑merge</td>
+<td>只与当前合并冲突有关的提交</td>
+</tr>
+</tbody>
+</table>
+<h3 id="git-diff-lt-commit-lt-commit"><a href="#git-diff-lt-commit-lt-commit" class="headerlink" title="git diff &lt;commit> &lt;commit>"></a>git diff &lt;commit> &lt;commit></h3><p>所属区域： <code>本地版本库</code><br>显示两个提交之间的不同。  </p>
+<h3 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h3><p>所属区域： <code>本地版本库</code><br>显示所有（本地）存在的分支。参数 -r 显示远程追踪分支，参数 -a 显示全部。  </p>
+<h3 id="git-branch-d-lt-branch"><a href="#git-branch-d-lt-branch" class="headerlink" title="git branch -d &lt;branch>"></a>git branch -d &lt;branch></h3><p>所属区域： <code>本地版本库</code><br>删除某个分支，使用—D来强制删除。  </p>
+<h3 id="git-branch-track-lt-new-lt-remote-branch"><a href="#git-branch-track-lt-new-lt-remote-branch" class="headerlink" title="git branch - -track &lt;new> &lt;remote/branch>"></a>git branch - -track &lt;new> &lt;remote/branch></h3><p>所属区域： 从 <code>上游版本库</code> 到 <code>本地版本库</code><br>添加一个本地分支来跟踪某个远程分支。  </p>
+<h3 id="git-fetch-lt-remote-lt-refspec"><a href="#git-fetch-lt-remote-lt-refspec" class="headerlink" title="git fetch &lt;remote> &lt;refspec>"></a>git fetch &lt;remote> &lt;refspec></h3><p>所属区域： 从 <code>上游版本库</code> 到 <code>本地版本库</code><br>从远端版本库下载对象和引用(即版本信息)。  </p>
+<h3 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>上游版本库</code><br>从本地提交推送分支改变到远程，分支为所有推送过的分支。  </p>
+<h3 id="git-push-lt-remote-lt-branch"><a href="#git-push-lt-remote-lt-branch" class="headerlink" title="git push &lt;remote> &lt;branch>"></a>git push &lt;remote> &lt;branch></h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>上游版本库</code><br>向远端版本库推送新的(已存在的)分支。  </p>
+<h3 id="git-push-lt-remote-lt-branch-lt-branch"><a href="#git-push-lt-remote-lt-branch-lt-branch" class="headerlink" title="git push &lt;remote> &lt;branch>:&lt;branch>"></a>git push &lt;remote> &lt;branch>:&lt;branch></h3><p>所属区域： 从 <code>本地版本库</code> 到 <code>上游版本库</code><br>向远端版本库推送分支，但是从不同的（本地）分支名。  </p>
+<h3 id="git-branch-r"><a href="#git-branch-r" class="headerlink" title="git branch -r"></a>git branch -r</h3><p>所属区域： <code>上游版本库</code><br>显示远程端分支。  </p>
+<h3 id="git-push-lt-remote-lt-branch-1"><a href="#git-push-lt-remote-lt-branch-1" class="headerlink" title="git push &lt;remote>:&lt;branch>"></a>git push &lt;remote>:&lt;branch></h3><p>所属区域： <code>上游版本库</code><br>删除一个远程分支，通过向远程分支推送空内容。  </p>
+<h3 id="git-config-lt-options"><a href="#git-config-lt-options" class="headerlink" title="git config [&lt;options>]"></a>git config [&lt;options>]</h3><p>Git 配置相关信息</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>- -global</td>
+<td>使用全局配置文件</td>
+</tr>
+<tr>
+<td>- -system</td>
+<td>使用系统配置文件</td>
+</tr>
+<tr>
+<td>- -local</td>
+<td>使用版本库配置文件</td>
+</tr>
+<tr>
+<td>-f, - -file &lt;file></td>
+<td>使用给定路径的配置文件</td>
+</tr>
+<tr>
+<td>- -get</td>
+<td>获取Git配置的值</td>
+</tr>
+<tr>
+<td>-l, - -list</td>
+<td>列出所有的配置</td>
+</tr>
+</tbody>
+</table>
+<p>可以通过 <code>git config alias.&lt;command alias&gt; &lt;command&gt;</code> 设置别名  </p>
+<h2 id="其它注意事项"><a href="#其它注意事项" class="headerlink" title="其它注意事项"></a>其它注意事项</h2><p>平常我会使用 SourceTree 来省却自己手打git命令的烦恼，但有时在提交到 Github 的时候，会在 Github 的 commit history 里看到如下一句  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mangon authored and Xiang committed 16 minutes ago</span><br></pre></td></tr></table></figure>
+<p>其实在SourceTree 的提交历史中也能看到类似如下信息  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">fix: fix desc error</span><br><span class="line">提交：</span><br><span class="line">1bcf9d0d3c9df73e52b38a71402d4b3943698287 [1bcf9d0]</span><br><span class="line">父级：</span><br><span class="line">371e1e0379</span><br><span class="line">作者：</span><br><span class="line">Mangon &lt;*************@***.com&gt;</span><br><span class="line">日期：</span><br><span class="line">2019年2月14日 GMT+8 下午1:57:33</span><br><span class="line">提交者：</span><br><span class="line">Xiang &lt;**********@*****.com&gt;</span><br><span class="line">提交日期：</span><br><span class="line">2019年2月14日 GMT+8 下午2:06:47</span><br><span class="line">标签：</span><br><span class="line">HEAD -&gt; develop origin/develop</span><br></pre></td></tr></table></figure>
+<p>显然是作者与提交者不一致导致的。经查阅，Git中一个commit有作者和提交者的差别。作者（author）指的是实际作出修改的人，提交者(committer)指的是最后将此工作成果提交到仓库的人。所以，当你为某个项目发布补丁，然后某个核心成员将你的补丁并入项目时，你就是作者，而那个核心成员就是提交者。  </p>
+<p>在SourceTree中，可以在提交时 commit message 输入框左上方改变自己的 Author 属性，在当前项目窗口的右上角设置里选择高级，然后修改用户信息“全名”及“电子邮件地址”来改变 committer 属性。  </p>
+<p>将两者改为一致的自己想要用的Github账户名就可以保证在Github提交历史中显示正确的名字。  </p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

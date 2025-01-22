@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        标签: MobX | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="Mangon&#39;s Technology Blog" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+
+        
+            <div class="author-meta">
+                
+                <div class="author-avatar">
+                    <a href="/blog/">
+                        <img src="/blog/images/avatar.jpeg" title="Mangon">
+                    </a>
+                </div>
+                
+                <div class="author-name">Mangon</div>
+                <div class="author-work">前端开发工程师</div>
+                <div class="author-location">
+                    <i class="icon-location vm"></i>
+                    <span class="vm">中国北京</span>
+                </div>
+                
+                <div class="author-thread-wrap">
+                    <div class="author-threads clearfix">
+                        
+                            <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
+                        
+                        
+                        
+                            <a class="thread-item" href="https://mangon.cn/blog/atom.xml" target="_blank" rel="external noopener noreferrer"><i class="icon-favorite"></i></a>
+                        
+                        
+                            <a class="thread-item" href="https://mangon.cn/resume" target="_blank" rel="external noopener noreferrer"><i class="icon-circle-more"></i></a>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2023/09/21/React-MobX%E5%B0%8F%E6%8A%84/">MobX小抄</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2023-09-21T08:53:10.000Z" itemprop="datePublished">2023-09-21</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/MobX/" rel="tag">MobX</a>, <a class="article-tag-link" href="/blog/tags/react/" rel="tag">react</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>MobX 是一款简单可扩展的状态管理库。它通过运用透明的函数式响应编程（Transparent Functional Reactive Programming，TFRP）使状态管理变得简单和可扩展。</p>
+<h2 id="MobX-应用示例"><a href="#MobX-应用示例" class="headerlink" title="MobX 应用示例"></a>MobX 应用示例</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">ReactDOM</span> <span class="keyword">from</span> <span class="string">&#x27;react-dom&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; makeAutoObservable &#125; <span class="keyword">from</span> <span class="string">&#x27;mobx&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; observer &#125; <span class="keyword">from</span> <span class="string">&#x27;mobx-react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对应用状态进行建模。</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Timer</span> &#123;</span><br><span class="line">  secondsPassed = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">makeAutoObservable</span>(<span class="variable language_">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">increase</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">secondsPassed</span> += <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">reset</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">secondsPassed</span> = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 生成应用状态实例</span></span><br><span class="line"><span class="keyword">const</span> myTimer = <span class="keyword">new</span> <span class="title class_">Timer</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 构建一个使用 observable 状态的“用户界面”。</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">TimerView</span> = <span class="title function_">observer</span>(<span class="function">(<span class="params">&#123; timer &#125;</span>) =&gt;</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> timer.reset()&#125;&gt;已过秒数：&#123;timer.secondsPassed&#125;<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">));</span><br><span class="line"></span><br><span class="line"><span class="title class_">ReactDOM</span>.<span class="title function_">render</span>(<span class="language-xml"><span class="tag">&lt;<span class="name">TimerView</span> <span class="attr">timer</span>=<span class="string">&#123;myTimer&#125;</span> /&gt;</span></span>, <span class="variable language_">document</span>.<span class="property">body</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 每秒更新一次‘已过秒数：X’中的文本。</span></span><br><span class="line"><span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  myTimer.<span class="title function_">increase</span>();</span><br><span class="line">&#125;, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+<p>围绕 React 组件 <code>TimerView</code> 的 <code>observer</code> 包装会自动侦测到依赖于 observable <code>timer.secondsPassed</code> 的渲染——即使这种依赖关系没有被明确定义出来。 响应性系统会负责在未来恰好那个字段被更新的时候将组件重新渲染。<br>每个事件（<code>onClick</code> 或 <code>setInterval</code>）都会调用一个用来更新 observable 状态 <code>myTimer.secondsPassed</code> 的 action（<code>myTimer.increase</code> 或 <code>myTimer.reset</code>）。Observable 状态的变更会被精确地传送到 <code>TimerView</code> 中所有依赖于它们的计算和副作用里。</p>
+<p>状态流转概念图如下所示：</p>
+<p><img src="/blog/static/imgs/mobx/mobxflow.png" alt="mobx_inner"></p>
+<h2 id="MobX-应用方式"><a href="#MobX-应用方式" class="headerlink" title="MobX 应用方式"></a>MobX 应用方式</h2><p>MobX 有两种 React 绑定方式，其中 <code>mobx-react-lite</code> 仅支持函数组件，<code>mobx-react</code> 还支持基于类的组件。可以使用 Yarn、NPM、CDN 集成 MobX 到项目中：</p>
+<ul>
+<li>Yarn: <code>yarn add mobx</code></li>
+<li>NPM: <code>npm install --save mobx</code></li>
+<li>CDN: https://cdnjs.com/libraries/mobx 或者 https://unpkg.com/mobx/dist/mobx.umd.production.min.js</li>
+</ul>
+<p>因为使用到了类属性特性，在与 Typescript 或 Babel 一起使用时且计划使用类时，需要转换类字段。</p>
+<ul>
+<li>Babel: 版本&gt;7.12 使用 <code>@babel/plugin-proposal-class-properties</code> 插件，配置 <code>[&quot;@babel/plugin-proposal-class-properties&quot;, &#123; &quot;loose&quot;: false &#125;]</code></li>
+<li>Typescript: 在 tsconfig.json 中启用编译器选项 <code>&quot;useDefineForClassFields&quot;: true</code></li>
+</ul>
+<p>MobX 使用到了 Proxy 特性，如果在不支持 Proxy 特性的运行时上使用 MobX ，需要明确启用降级方案：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; configure &#125; <span class="keyword">from</span> <span class="string">&#x27;mobx&#x27;</span>;</span><br><span class="line"><span class="title function_">configure</span>(&#123; <span class="attr">useProxies</span>: <span class="string">&#x27;never&#x27;</span> &#125;); <span class="comment">// Or &quot;ifavailable&quot;.</span></span><br></pre></td></tr></table></figure>
+<p>在 MobX6 中，为了与标准 Javascript 兼容，放弃了装饰器语法，如果需要使用 <code>@observable</code> 等装饰器，需要明确启用同时使用 Typescript 或 Babel 进行转译：</p>
+<ul>
+<li>Typescript：在 tsconfig.json 中启用编译器选项 <code>&quot;experimentalDecorators&quot;: true</code> 和 <code>&quot;useDefineForClassFields&quot;: true</code>。</li>
+<li>Babel: 使用 <code>@babel/plugin-proposal-class-properties</code> 和 <code>@babel/plugin-proposal-decorators</code> 插件，配置：</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;plugins&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">[</span><span class="string">&quot;@babel/plugin-proposal-decorators&quot;</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;legacy&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span> <span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">[</span><span class="string">&quot;@babel/plugin-proposal-class-properties&quot;</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;loose&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span> <span class="punctuation">&#125;</span><span class="punctuation">]</span></span><br><span class="line">    <span class="comment">// 与MobX 4/5不同的是, &quot;loose&quot; 必须为 false!    ^</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="MobX-概念"><a href="#MobX-概念" class="headerlink" title="MobX 概念"></a>MobX 概念</h2><p>MobX区分了应用程序中的以下三个概念：</p>
+<ul>
+<li>State(状态)</li>
+<li>Actions(动作)</li>
+<li>Derivations(派生)</li>
+</ul>
+<p>State(状态): 是驱动你的应用程序的数据。通常来说，状态有领域 <em>特定状态</em> 和 <em>视图状态</em>。State 可以使用任何数据结构，但是需要被标记为 <code>observable</code> 从而使 MobX 可跟踪它。<br>Action(动作) : 是任意可以改变 State(状态) 的代码，比如用户事件处理、后端推送数据处理、调度器事件处理等等。<br>Derivation(派生): 任何 来源是 State(状态) 并且不需要进一步交互的东西都是 Derivation(派生)。<br>Mobx 区分了两种 Derivation :</p>
+<ul>
+<li>Computed values：总是可以通过纯函数从当前的可观测 State 中派生</li>
+<li>Reactions：当 State 改变时需要自动运行的副作用 (命令式编程和响应式编程之间的桥梁)</li>
+</ul>
+<h2 id="MobX-数据流向"><a href="#MobX-数据流向" class="headerlink" title="MobX 数据流向"></a>MobX 数据流向</h2><p>Mobx 使用单向数据流，利用 action 改变 state ，进而更新所有受影响的 view:</p>
+<p><img src="/blog/static/imgs/mobx/mobx.png" alt="mobx_inner"></p>
+<ol>
+<li>所有的 derivations 将在 state 改变时自动且原子化地更新。因此不能观察中间值。</li>
+<li>所有的 derivations 默认将会同步更新，这意味着 action 可以在 state 改变之后安全的直接获得 computed value。</li>
+<li>computed value 的更新是惰性的，任何 computed value 在需要他们的副作用发生之前都是不激活的。</li>
+<li>所有的 computed value 都应是纯函数，他们不应该修改 state。</li>
+</ol>
+<h2 id="MobX核心"><a href="#MobX核心" class="headerlink" title="MobX核心"></a>MobX核心</h2><h3 id="创建可观察-observable-state"><a href="#创建可观察-observable-state" class="headerlink" title="创建可观察(observable) state"></a>创建可观察(observable) state</h3><h4 id="makeObservable"><a href="#makeObservable" class="headerlink" title="makeObservable"></a>makeObservable</h4><p>用法： <code>makeObservable(target, annotations?, options?)</code></p>
+<p><code>makeObservable</code> 为每个属性指定一个注解:</p>
+<ul>
+<li><code>observable</code> 定义一个存储 state 的可追踪字段。</li>
+<li><code>action</code> 将一个方法标记为可以修改 state 的 action。</li>
+<li><code>computed</code> 标记一个可以由 state 派生出新的值并且缓存其输出的 getter。</li>
+<li><code>flow</code> 创建一个 flow 管理异步进程。</li>
+<li><code>override</code> 用于子类覆盖继承的 <code>action</code>，<code>flow</code>，<code>computed</code>，<code>action.bound</code></li>
+<li><code>autoAction</code> 不应被显式调用，但 <code>makeAutoObservable</code> 内部会对其进行调用，以便根据调用上下文将方法标识为 action 或者派生值。</li>
+</ul>
+<p>一般情况下，<code>makeObservable</code> 是在类的构造函数中调用的，并且它的第一个参数是 <code>this</code> 。</p>
+<p>所有带注解 的字段都是 不可配置的。<br>所有的不可观察（无状态）的字段（<code>action</code>, <code>flow</code>）都是 不可写的。</p>
+<h4 id="makeAutoObservable"><a href="#makeAutoObservable" class="headerlink" title="makeAutoObservable"></a>makeAutoObservable</h4><p>用法：<code>makeAutoObservable(target, overrides?, options?)</code></p>
+<p><code>makeAutoObservable</code> 就像是加强版的 <code>makeObservable</code>，在默认情况下它将推断所有的属性。<code>makeAutoObservable</code> 不能被用于带有 super 的类或 子类。</p>
+<p>推断规则：</p>
+<ul>
+<li>所有 _自有_ 属性都成为 <code>observable</code>。</li>
+<li>所有 <code>get</code>ters 都成为 <code>computed</code>。</li>
+<li>所有 <code>set</code>ters 都成为 <code>action</code>。</li>
+<li>所有 <em>prototype 中的 functions</em> 都成为 <code>autoAction</code>。</li>
+<li>所有 <em>prototype 中的 generator functions</em> 都成为 <code>flow</code>。（需要注意，generators 函数在某些编译器配置中无法被检测到，如果 <code>flow</code> 没有正常运行，请务必明确地指定 <code>flow</code> 注解。）</li>
+<li>在 <code>overrides</code> 参数中标记为 <code>false</code> 的成员将不会被添加注解。例如，将其用于像标识符这样的只读字段。</li>
+</ul>
+<h4 id="observable"><a href="#observable" class="headerlink" title="observable"></a>observable</h4><p>用法：<code>observable(source, overrides?, options?)</code></p>
+<p><code>observable</code> 注解可以作为一个函数进行调用，从而一次性将整个对象变成可观察的，之后被添加到这个对象中的属性也将被侦测并使其转化为可观察对象。</p>
+<h3 id="使用-actions-更新-state"><a href="#使用-actions-更新-state" class="headerlink" title="使用 actions 更新 state"></a>使用 actions 更新 state</h3><h4 id="action"><a href="#action" class="headerlink" title="action"></a>action</h4><p>用法：</p>
+<ul>
+<li><code>action</code> （注解）</li>
+<li><code>action(fn)</code></li>
+<li><code>action(name, fn)</code></li>
+</ul>
+<p>action 注解表示了一段修改 state 的代码。<br>Actions 可以帮助你更好的组织你的代码并提供以下性能优势：</p>
+<ol>
+<li>它们在 <code>transactions</code> 内部运行。任何可观察对象在最外层的 action 完成之前都不会被更新，这一点保证了在 action 完成之前，action 执行期间生成的中间值或不完整的值对应用程序的其余部分都是不可见的。</li>
+<li>默认情况下，不允许在 actions 之外改变 state。这有助于在代码中清楚地对状态更新发生的位置进行定位。</li>
+</ol>
+<p>action 注解应该仅用于会修改 state 的函数。带有 action 注解的成员是不可枚举的。</p>
+<h4 id="action-bound"><a href="#action-bound" class="headerlink" title="action.bound"></a>action.bound</h4><p>用法： <code>action.bound</code> （注解）</p>
+<p><code>action.bound</code> 注解可用于将方法自动绑定到正确的实例，这样 <code>this</code> 会始终被正确绑定在函数内部。</p>
+<h4 id="runInAction"><a href="#runInAction" class="headerlink" title="runInAction"></a>runInAction</h4><p>用法：<code>runInAction(fn)</code></p>
+<p>使用这个工具函数来创建一个会被立即调用的临时 action。</p>
+<h4 id="flow"><a href="#flow" class="headerlink" title="flow"></a>flow</h4><p>用法：</p>
+<ul>
+<li><code>flow</code> （注解）</li>
+<li><code>flow(function* (args) &#123; &#125;)</code></li>
+</ul>
+<p><code>flow</code> 包装器是一个可选的 <code>async</code> / <code>await</code> 替代方案，它让 MobX action 使用起来更加容易。</p>
+<p><code>flow</code> 将一个 generator 函数 作为唯一输入。 在 generator 内部，你可以使用 yield 串联 Promise（使用 <code>yield somePromise</code> 代替 <code>await somePromise</code>）。 <code>flow</code> 机制将会确保 generator 在 Promise resolve 之后继续运行或者抛出错误。</p>
+<p>带有 flow 注解的成员是不可枚举的。 <code>flow</code> 的返回值是一个 Promise，在 generator 函数运行完成时它将会被 resolve。 返回的 Promise 中还有一个 <code>cancel()</code> 方法，该方法可以打断正在运行的 generator 并取消它。 所有 <code>try</code> / <code>finally</code> 语句仍然会被运行。</p>
+<h4 id="flow-bound"><a href="#flow-bound" class="headerlink" title="flow.bound"></a>flow.bound</h4><p>用法： <code>flow.bound</code> （注解）</p>
+<p><code>flow.bound</code> 注解可用于将方法自动绑定到正确的实例，这样 <code>this</code> 会始终被正确绑定在函数内部。</p>
+<h3 id="通过-computeds-派生信息"><a href="#通过-computeds-派生信息" class="headerlink" title="通过 computeds 派生信息"></a>通过 computeds 派生信息</h3><h4 id="computed"><a href="#computed" class="headerlink" title="computed"></a>computed</h4><p>用法：</p>
+<ul>
+<li><code>computed</code> （注解）</li>
+<li><code>computed(options)</code> （注解）</li>
+<li><code>computed(fn, options?)</code></li>
+</ul>
+<p>computed 可以用来从其他可观察对象中派生信息。</p>
+<p>使用 computed value 时，需遵循以下规则：</p>
+<ol>
+<li>它们不应该有副作用或者更新其他可观察对象</li>
+<li>避免创建和返回新的可观察对象</li>
+<li>它们不应该依赖非可观察对象的值</li>
+</ol>
+<h3 id="使用-reactions-处理副作用"><a href="#使用-reactions-处理副作用" class="headerlink" title="使用 reactions 处理副作用"></a>使用 reactions 处理副作用</h3><h4 id="autorun"><a href="#autorun" class="headerlink" title="autorun"></a>autorun</h4><p><code>autorun</code> 函数接受一个函数作为参数，每当该函数所观察的值发生变化时，它都应该运行。<br><code>autorun</code> 通过在响应式上下文运行 <code>effect</code> 来工作。在给定的函数执行期间，MobX 会持续跟踪被 effect 直接或间接读取过的所有可观察对象和计算值。 一旦函数执行完毕，MobX 将收集并订阅所有被读取过的可观察对象，并等待其中任意一个再次发生改变。 一旦有改变发生，<code>autorun</code> 将会再次触发，重复整个过程。</p>
+<p><img src="/blog/static/imgs/mobx/autorun.png" alt="mobx_autorun_inner"></p>
+<h4 id="reaction"><a href="#reaction" class="headerlink" title="reaction"></a>reaction</h4><p><code>reaction</code> 类似于 autorun，但可以让你更加精细地控制要跟踪的可观察对象。 它接受两个函数作为参数：第一个，data 函数，其是被跟踪的函数并且其返回值将会作为第二个函数，effect 函数，的输入。 重要的是要注意，副作用只会对 data 函数中被访问过的数据做出反应，这些数据可能少于 effect 函数中实际使用的数据。<br>一般的模式是在 <em>data</em> 函数中返回你在副作用中需要的所有数据， 并以这种方式更精确地控制副作用触发的时机。 与 <code>autorun</code> 不同，副作用在初始化时不会自动运行，而只会在 data 表达式首次返回新值之后运行。</p>
+<h4 id="when"><a href="#when" class="headerlink" title="when"></a>when</h4><p><code>when</code> 会观察并运行给定的 <em>predicate</em> 函数，直到其返回 <code>true</code>。 一旦 predicate 返回了 <code>true</code>，给定的 effect 函数就会执行并且自动执行器函数将会被清理掉。<br>如果你没有传入 <code>effect</code> 函数，<code>when</code> 函数返回一个 <code>Promise</code> 类型的 disposer，并允许你手动取消。</p>
+<p>使用 reactive context 需要遵守一些规则：</p>
+<ol>
+<li>默认情况下，如果可观察对象发生了改变，受其影响的 reactions 会立即（同步）运行。然而，它们直到当前最外层的 (trans)action 执行结束后才会运行。</li>
+<li>autorun 只会跟踪给定函数在同步执行过程中所读取的可观察对象，不会跟踪异步发生的变化。</li>
+<li>autorun 不会跟踪被其调用的 action 所读取的可观察对象，因为 action 始终不会被追踪。</li>
+<li>reactions 总是会返回一个 disposer 函数，一旦不再需要这些方法中的副作用时，需要调用它们所返回的 disposer 函数。 否则可能导致内存泄漏。</li>
+</ol>
+<p>使用 <code>mobx-react</code> 等库时，绑定中的 observer 等方式会间接创建 reaction，无需手动创建。在手动创建 reaction 之前，需要检查是否符合以下原则：</p>
+<ol>
+<li>只有在引起副作用的一方与副作用之间没有直接关系的情况下才使用 reaction</li>
+<li>reactions 不应该更新其他可观察对象</li>
+<li>reactions 应该是独立的</li>
+</ol>
+<h2 id="MobX-和-Redux-的区别"><a href="#MobX-和-Redux-的区别" class="headerlink" title="MobX 和 Redux 的区别"></a>MobX 和 Redux 的区别</h2><p>参见 <a href="/blog/2022/11/25/React-Redux小抄/#Redux-和-MobX-的区别">Redux 和 MobX 的区别</a></p>
+
+        
+    </section>
+    
+</article>
+
+
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

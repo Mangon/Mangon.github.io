@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        jQuery 常用方法 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="jQuery 是一个高效、精简并且功能丰富的 JavaScript 工具库。它提供的 API 易于使用且兼容众多浏览器，这让诸如 HTML 文档遍历和操作、事件处理、动画和 Ajax 操作更加简单。  jQuery 使用 $ 符号作为 jQuery 的简写。如果你使用其它框架也使用 $ 符号作为简写，有可能导致脚本停止运行。为了防止这种情况，你可以使用jQuery noConflict()方法释放对 $ 标识符的控制并返回对 jQuery 的引用。  jQuery 核心函数函数描述" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery-%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0"><span class="toc-text">jQuery 核心函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery-%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-text">jQuery 选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery-%E4%BA%8B%E4%BB%B6%E5%87%BD%E6%95%B0"><span class="toc-text">jQuery 事件函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery-%E6%95%88%E6%9E%9C%E5%87%BD%E6%95%B0"><span class="toc-text">jQuery 效果函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery-%E9%81%8D%E5%8E%86%E5%87%BD%E6%95%B0"><span class="toc-text">jQuery 遍历函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery-%E6%96%87%E6%A1%A3%E6%93%8D%E4%BD%9C"><span class="toc-text">jQuery 文档操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery-%E5%B1%9E%E6%80%A7%E6%93%8D%E4%BD%9C"><span class="toc-text">jQuery 属性操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery-css-%E6%93%8D%E4%BD%9C%E5%87%BD%E6%95%B0"><span class="toc-text">jQuery css 操作函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery-%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E5%87%BD%E6%95%B0"><span class="toc-text">jQuery 数据操作函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery-AJAX"><span class="toc-text">jQuery AJAX</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-AJAX%EF%BC%9F"><span class="toc-text">什么是 AJAX？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jQuery-AJAX%E6%96%B9%E6%B3%95"><span class="toc-text">jQuery AJAX方法</span></a></li></ol></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            jQuery 常用方法
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-03T11:30:44.000Z" itemprop="datePublished">2018-09-03</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/jQuery/" rel="tag">jQuery</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>jQuery 是一个高效、精简并且功能丰富的 JavaScript 工具库。它提供的 API 易于使用且兼容众多浏览器，这让诸如 HTML 文档遍历和操作、事件处理、动画和 Ajax 操作更加简单。  </p>
+<p>jQuery 使用 $ 符号作为 jQuery 的简写。如果你使用其它框架也使用 $ 符号作为简写，有可能导致脚本停止运行。为了防止这种情况，你可以使用jQuery noConflict()方法释放对 $ 标识符的控制并返回对 jQuery 的引用。  </p>
+<span id="more"></span>
+<h2 id="jQuery-核心函数"><a href="#jQuery-核心函数" class="headerlink" title="jQuery 核心函数"></a>jQuery 核心函数</h2><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>jQuery()</td>
+<td>接受一个字符串，其中包含了用于匹配元素集合的 css 选择器。</td>
+</tr>
+<tr>
+<td>jQuery.noConflict()</td>
+<td>运行这个函数将变量 $ 的控制权让渡给第一个实现它的那个库。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="jQuery-选择器"><a href="#jQuery-选择器" class="headerlink" title="jQuery 选择器"></a>jQuery 选择器</h2><p>jQuery 使用 css 选择器来选取 HTML 元素。<br>jQuery 使用 XPath 表达式来选择带有给定属性的元素。<br>jQuery css 选择器可用于改变 HTML 元素的 css 属性。  </p>
+<table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>实例</th>
+<th>选取</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*</td>
+<td>$(“*”)</td>
+<td>所有元素</td>
+</tr>
+<tr>
+<td>#id</td>
+<td>$(“#lastname”)</td>
+<td>id=”lastname” 的元素</td>
+</tr>
+<tr>
+<td>.class</td>
+<td>$(“.intro”)</td>
+<td>所有 class=”intro” 的元素</td>
+</tr>
+<tr>
+<td>element</td>
+<td>$(“p”)</td>
+<td>所有 &lt;p> 元素</td>
+</tr>
+<tr>
+<td>.class.class</td>
+<td>$(“.intro.demo”)</td>
+<td>所有 class=”intro” 且 class=”demo” 的元素</td>
+</tr>
+<tr>
+<td>:first</td>
+<td>$(“p:first”)</td>
+<td>第一个 &lt;p> 元素</td>
+</tr>
+<tr>
+<td>:last</td>
+<td>$(“p:last”)</td>
+<td>最后一个 &lt;p> 元素</td>
+</tr>
+<tr>
+<td>:even</td>
+<td>$(“tr:even”)</td>
+<td>所有偶数 &lt;tr> 元素</td>
+</tr>
+<tr>
+<td>:odd</td>
+<td>$(“tr:odd”)</td>
+<td>所有奇数 &lt;tr> 元素</td>
+</tr>
+<tr>
+<td>:eq(index)</td>
+<td>$(“ul li:eq(3)”)</td>
+<td>列表中的第四个元素（index 从 0 开始）</td>
+</tr>
+<tr>
+<td>:gt(no)</td>
+<td>$(“ul li:gt(3)”)</td>
+<td>列出 index 大于 3 的元素</td>
+</tr>
+<tr>
+<td>:lt(no)</td>
+<td>$(“ul li:lt(3)”)</td>
+<td>列出 index 小于 3 的元素</td>
+</tr>
+<tr>
+<td>:not(selector)</td>
+<td>$(“input:not(:empty)”)</td>
+<td>所有不为空的 input 元素</td>
+</tr>
+<tr>
+<td>:header</td>
+<td>$(“:header”)</td>
+<td>所有标题元素 &lt;h1> - &lt;h6></td>
+</tr>
+<tr>
+<td>:animated</td>
+<td>$(“:animated”)</td>
+<td>所有动画元素</td>
+</tr>
+<tr>
+<td>:contains(text)</td>
+<td>$(“:contains(‘javascript’)”)</td>
+<td>包含指定字符串的所有元素</td>
+</tr>
+<tr>
+<td>:empty</td>
+<td>$(“:empty”)</td>
+<td>无子（元素）节点的所有元素</td>
+</tr>
+<tr>
+<td>:hidden</td>
+<td>$(“p:hidden”)</td>
+<td>所有隐藏的 &lt;p> 元素</td>
+</tr>
+<tr>
+<td>:visible</td>
+<td>$(“table:visible”)</td>
+<td>所有可见的表格</td>
+</tr>
+<tr>
+<td>s1,s2,s3</td>
+<td>$(“th,td,.intro”)</td>
+<td>所有带有匹配选择的元素</td>
+</tr>
+<tr>
+<td>[attribute]</td>
+<td>$(“[href]”)</td>
+<td>所有带有 href 属性的元素</td>
+</tr>
+<tr>
+<td>[attribute=value]</td>
+<td>$(“[href=’#’]”)</td>
+<td>所有 href 属性的值等于 “#” 的元素</td>
+</tr>
+<tr>
+<td>[attribute!=value]</td>
+<td>$(“[href!=’#’]”)</td>
+<td>所有 href 属性的值不等于 “#” 的元素</td>
+</tr>
+<tr>
+<td>[attribute$=value]</td>
+<td>$(“[href$=’.jpg’]”)</td>
+<td>所有 href 属性的值包含以 “.jpg” 结尾的元素</td>
+</tr>
+<tr>
+<td>:input</td>
+<td>$(“:input”)</td>
+<td>所有 &lt;input> 元素</td>
+</tr>
+<tr>
+<td>:text</td>
+<td>$(“:text”)</td>
+<td>所有 type=”text” 的 &lt;input> 元素</td>
+</tr>
+<tr>
+<td>:password</td>
+<td>$(“:password”)</td>
+<td>所有 type=”password” 的 &lt;input> 元素</td>
+</tr>
+<tr>
+<td>:radio</td>
+<td>$(“:radio”)</td>
+<td>所有 type=”radio” 的 &lt;input> 元素</td>
+</tr>
+<tr>
+<td>:checkbox</td>
+<td>$(“:checkbox”)</td>
+<td>所有 type=”checkbox” 的 &lt;input> 元素</td>
+</tr>
+<tr>
+<td>:submit</td>
+<td>$(“:submit”)</td>
+<td>所有 type=”submit” 的 &lt;input> 元素</td>
+</tr>
+<tr>
+<td>:reset</td>
+<td>$(“:reset”)</td>
+<td>所有 type=”reset” 的 &lt;input> 元素</td>
+</tr>
+<tr>
+<td>:button</td>
+<td>$(“:button”)</td>
+<td>所有 type=”button” 的 &lt;input> 元素</td>
+</tr>
+<tr>
+<td>:image</td>
+<td>$(“:image”)</td>
+<td>所有 type=”image” 的 &lt;input> 元素</td>
+</tr>
+<tr>
+<td>:file</td>
+<td>$(“:file”)</td>
+<td>所有 type=”file” 的 &lt;input> 元素</td>
+</tr>
+<tr>
+<td>:enabled</td>
+<td>$(“:enabled”)</td>
+<td>所有激活的 input 元素</td>
+</tr>
+<tr>
+<td>:disabled</td>
+<td>$(“:disabled”)</td>
+<td>所有禁用的 input 元素</td>
+</tr>
+<tr>
+<td>:selected</td>
+<td>$(“:selected”)</td>
+<td>所有被选取的 input 元素</td>
+</tr>
+<tr>
+<td>:checked</td>
+<td>$(“:checked”)</td>
+<td>所有被选中的 input 元素</td>
+</tr>
+</tbody>
+</table>
+<h2 id="jQuery-事件函数"><a href="#jQuery-事件函数" class="headerlink" title="jQuery 事件函数"></a>jQuery 事件函数</h2><p>事件处理程序指的是当 HTML 中发生某些事件时所调用的方法。术语由事件“触发”（或“激发”）经常会被使用。  </p>
+<p>例如：  </p>
+<p><code>$(&quot;button&quot;).click(function() &#123;..some code... &#125; )</code></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bind()</td>
+<td>向匹配元素附加一个或更多事件处理器</td>
+</tr>
+<tr>
+<td>blur()</td>
+<td>触发、或将函数绑定到指定元素的 blur 事件</td>
+</tr>
+<tr>
+<td>change()</td>
+<td>触发、或将函数绑定到指定元素的 change 事件</td>
+</tr>
+<tr>
+<td>click()</td>
+<td>触发、或将函数绑定到指定元素的 click 事件</td>
+</tr>
+<tr>
+<td>dblclick()</td>
+<td>触发、或将函数绑定到指定元素的 double click 事件</td>
+</tr>
+<tr>
+<td>delegate()</td>
+<td>向匹配元素的当前或未来的子元素附加一个或多个事件处理器</td>
+</tr>
+<tr>
+<td>die()</td>
+<td>移除所有通过 live() 函数添加的事件处理程序。</td>
+</tr>
+<tr>
+<td>error()</td>
+<td>触发、或将函数绑定到指定元素的 error 事件</td>
+</tr>
+<tr>
+<td>event.isDefaultPrevented()</td>
+<td>返回 event 对象上是否调用了 event.preventDefault()。</td>
+</tr>
+<tr>
+<td>event.pageX</td>
+<td>相对于文档左边缘的鼠标位置。</td>
+</tr>
+<tr>
+<td>event.pageY</td>
+<td>相对于文档上边缘的鼠标位置。</td>
+</tr>
+<tr>
+<td>event.preventDefault()</td>
+<td>阻止事件的默认动作。</td>
+</tr>
+<tr>
+<td>event.result</td>
+<td>包含由被指定事件触发的事件处理器返回的最后一个值。</td>
+</tr>
+<tr>
+<td>event.target</td>
+<td>触发该事件的 DOM 元素。</td>
+</tr>
+<tr>
+<td>event.timeStamp</td>
+<td>该属性返回从 1970 年 1 月 1 日到事件发生时的毫秒数。</td>
+</tr>
+<tr>
+<td>event.type</td>
+<td>描述事件的类型。</td>
+</tr>
+<tr>
+<td>event.which</td>
+<td>指示按了哪个键或按钮。</td>
+</tr>
+<tr>
+<td>focus()</td>
+<td>触发、或将函数绑定到指定元素的 focus 事件</td>
+</tr>
+<tr>
+<td>keydown()</td>
+<td>触发、或将函数绑定到指定元素的 key down 事件</td>
+</tr>
+<tr>
+<td>keypress()</td>
+<td>触发、或将函数绑定到指定元素的 key press 事件</td>
+</tr>
+<tr>
+<td>keyup()</td>
+<td>触发、或将函数绑定到指定元素的 key up 事件</td>
+</tr>
+<tr>
+<td>live()</td>
+<td>为当前或未来的匹配元素添加一个或多个事件处理器</td>
+</tr>
+<tr>
+<td>load()</td>
+<td>触发、或将函数绑定到指定元素的 load 事件</td>
+</tr>
+<tr>
+<td>mousedown()</td>
+<td>触发、或将函数绑定到指定元素的 mouse down 事件</td>
+</tr>
+<tr>
+<td>mouseenter()</td>
+<td>触发、或将函数绑定到指定元素的 mouse enter 事件</td>
+</tr>
+<tr>
+<td>mouseleave()</td>
+<td>触发、或将函数绑定到指定元素的 mouse leave 事件</td>
+</tr>
+<tr>
+<td>mousemove()</td>
+<td>触发、或将函数绑定到指定元素的 mouse move 事件</td>
+</tr>
+<tr>
+<td>mouseout()</td>
+<td>触发、或将函数绑定到指定元素的 mouse out 事件</td>
+</tr>
+<tr>
+<td>mouseover()</td>
+<td>触发、或将函数绑定到指定元素的 mouse over 事件</td>
+</tr>
+<tr>
+<td>mouseup()</td>
+<td>触发、或将函数绑定到指定元素的 mouse up 事件</td>
+</tr>
+<tr>
+<td>one()</td>
+<td>向匹配元素添加事件处理器。每个元素只能触发一次该处理器。</td>
+</tr>
+<tr>
+<td>ready()</td>
+<td>文档就绪事件（当 HTML 文档就绪可用时）</td>
+</tr>
+<tr>
+<td>resize()</td>
+<td>触发、或将函数绑定到指定元素的 resize 事件</td>
+</tr>
+<tr>
+<td>scroll()</td>
+<td>触发、或将函数绑定到指定元素的 scroll 事件</td>
+</tr>
+<tr>
+<td>select()</td>
+<td>触发、或将函数绑定到指定元素的 select 事件</td>
+</tr>
+<tr>
+<td>submit()</td>
+<td>触发、或将函数绑定到指定元素的 submit 事件</td>
+</tr>
+<tr>
+<td>toggle()</td>
+<td>绑定两个或多个事件处理器函数，当发生轮流的 click 事件时执行。</td>
+</tr>
+<tr>
+<td>trigger()</td>
+<td>所有匹配元素的指定事件</td>
+</tr>
+<tr>
+<td>triggerHandler()</td>
+<td>第一个被匹配元素的指定事件</td>
+</tr>
+<tr>
+<td>unbind()</td>
+<td>从匹配元素移除一个被添加的事件处理器</td>
+</tr>
+<tr>
+<td>undelegate()</td>
+<td>从匹配元素移除一个被添加的事件处理器，现在或将来</td>
+</tr>
+<tr>
+<td>unload()</td>
+<td>触发、或将函数绑定到指定元素的 unload 事件</td>
+</tr>
+</tbody>
+</table>
+<h2 id="jQuery-效果函数"><a href="#jQuery-效果函数" class="headerlink" title="jQuery 效果函数"></a>jQuery 效果函数</h2><p>将 CSS 动画效果封装成 Javascript 函数。  </p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>animate()</td>
+<td>对被选元素应用“自定义”的动画</td>
+</tr>
+<tr>
+<td>clearQueue()</td>
+<td>对被选元素移除所有排队的函数（仍未运行的）</td>
+</tr>
+<tr>
+<td>delay()</td>
+<td>对被选元素的所有排队函数（仍未运行）设置延迟</td>
+</tr>
+<tr>
+<td>dequeue()</td>
+<td>运行被选元素的下一个排队函数</td>
+</tr>
+<tr>
+<td>fadeIn()</td>
+<td>逐渐改变被选元素的不透明度，从隐藏到可见</td>
+</tr>
+<tr>
+<td>fadeOut()</td>
+<td>逐渐改变被选元素的不透明度，从可见到隐藏</td>
+</tr>
+<tr>
+<td>fadeTo()</td>
+<td>把被选元素逐渐改变至给定的不透明度</td>
+</tr>
+<tr>
+<td>hide()</td>
+<td>隐藏被选的元素</td>
+</tr>
+<tr>
+<td>queue()</td>
+<td>显示被选元素的排队函数</td>
+</tr>
+<tr>
+<td>show()</td>
+<td>显示被选的元素</td>
+</tr>
+<tr>
+<td>slideDown()</td>
+<td>通过调整高度来滑动显示被选元素</td>
+</tr>
+<tr>
+<td>slideToggle()</td>
+<td>对被选元素进行滑动隐藏和滑动显示的切换</td>
+</tr>
+<tr>
+<td>slideUp()</td>
+<td>通过调整高度来滑动隐藏被选元素</td>
+</tr>
+<tr>
+<td>stop()</td>
+<td>停止在被选元素上运行动画</td>
+</tr>
+<tr>
+<td>toggle()</td>
+<td>对被选元素进行隐藏和显示的切换</td>
+</tr>
+</tbody>
+</table>
+<h2 id="jQuery-遍历函数"><a href="#jQuery-遍历函数" class="headerlink" title="jQuery 遍历函数"></a>jQuery 遍历函数</h2><p>jQuery 遍历，意为“移动”，用于根据其相对于其他元素的关系来“查找”（或选取）HTML 元素。以某项选择开始，并沿着这个选择移动，直到抵达您期望的元素为止。  </p>
+<p>下图展示了一个家族树。通过 jQuery 遍历，您能够从被选（当前的）元素开始，轻松地在家族树中向上移动（祖先），向下移动（子孙），水平移动（同胞）。这种移动被称为对 DOM 进行遍历。  </p>
+<p><img src="/blog/static/imgs/dom_tree.gif" alt="dom_tree_inner"></p>
+<ul>
+<li>&lt;div> 元素是 &lt;ul> 的父元素，同时是其中所有内容的祖先。</li>
+<li>&lt;ul> 元素是 &lt;li> 元素的父元素，同时是 &lt;div> 的子元素</li>
+<li>左边的 &lt;li> 元素是 &lt;span> 的父元素，&lt;ul> 的子元素，同时是 &lt;div> 的后代。</li>
+<li>&lt;span> 元素是 &lt;li> 的子元素，同时是 &lt;ul> 和 &lt;div> 的后代。</li>
+<li>两个 &lt;li> 元素是同胞（拥有相同的父元素）。</li>
+<li>右边的 &lt;li> 元素是 &lt;b> 的父元素，&lt;ul> 的子元素，同时是 &lt;div> 的后代。</li>
+<li>&lt;b> 元素是右边的 &lt;li> 的子元素，同时是 &lt;ul> 和 &lt;div> 的后代。</li>
+</ul>
+<p><font color='red'>提示：</font>祖先是父、祖父、曾祖父等等。后代是子、孙、曾孙等等。同胞拥有相同的父。  </p>
+<p>jQuery 遍历函数包括了用于筛选、查找和串联元素的方法。  </p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.add()</td>
+<td>将元素添加到匹配元素的集合中。</td>
+</tr>
+<tr>
+<td>.andSelf()</td>
+<td>把堆栈中之前的元素集添加到当前集合中。</td>
+</tr>
+<tr>
+<td>.children()</td>
+<td>获得匹配元素集合中每个元素的所有子元素。</td>
+</tr>
+<tr>
+<td>.closest()</td>
+<td>从元素本身开始，逐级向上级元素匹配，并返回最先匹配的祖先元素。</td>
+</tr>
+<tr>
+<td>.contents()</td>
+<td>获得匹配元素集合中每个元素的子元素，包括文本和注释节点。</td>
+</tr>
+<tr>
+<td>.each()</td>
+<td>对 jQuery 对象进行迭代，为每个匹配元素执行函数。</td>
+</tr>
+<tr>
+<td>.end()</td>
+<td>结束当前链中最近的一次筛选操作，并将匹配元素集合返回到前一次的状态。</td>
+</tr>
+<tr>
+<td>.eq()</td>
+<td>将匹配元素集合缩减为位于指定索引的新元素。</td>
+</tr>
+<tr>
+<td>.filter()</td>
+<td>将匹配元素集合缩减为匹配选择器或匹配函数返回值的新元素。</td>
+</tr>
+<tr>
+<td>.find()</td>
+<td>获得当前匹配元素集合中每个元素的后代，由选择器进行筛选。</td>
+</tr>
+<tr>
+<td>.first()</td>
+<td>将匹配元素集合缩减为集合中的第一个元素。</td>
+</tr>
+<tr>
+<td>.has()</td>
+<td>将匹配元素集合缩减为包含特定元素的后代的集合。</td>
+</tr>
+<tr>
+<td>.is()</td>
+<td>根据选择器检查当前匹配元素集合，如果存在至少一个匹配元素，则返回 true。</td>
+</tr>
+<tr>
+<td>.last()</td>
+<td>将匹配元素集合缩减为集合中的最后一个元素。</td>
+</tr>
+<tr>
+<td>.map()</td>
+<td>把当前匹配集合中的每个元素传递给函数，产生包含返回值的新 jQuery 对象。</td>
+</tr>
+<tr>
+<td>.next()</td>
+<td>获得匹配元素集合中每个元素紧邻的同辈元素。</td>
+</tr>
+<tr>
+<td>.nextAll()</td>
+<td>获得匹配元素集合中每个元素之后的所有同辈元素，由选择器进行筛选（可选）。</td>
+</tr>
+<tr>
+<td>.nextUntil()</td>
+<td>获得每个元素之后所有的同辈元素，直到遇到匹配选择器的元素为止。</td>
+</tr>
+<tr>
+<td>.not()</td>
+<td>从匹配元素集合中删除元素。</td>
+</tr>
+<tr>
+<td>.offsetParent()</td>
+<td>获得用于定位的第一个父元素。</td>
+</tr>
+<tr>
+<td>.parent()</td>
+<td>获得当前匹配元素集合中每个元素的父元素，由选择器筛选（可选）。</td>
+</tr>
+<tr>
+<td>.parents()</td>
+<td>获得当前匹配元素集合中每个元素的祖先元素，由选择器筛选（可选）。</td>
+</tr>
+<tr>
+<td>.parentsUntil()</td>
+<td>获得当前匹配元素集合中每个元素的祖先元素，直到遇到匹配选择器的元素为止。</td>
+</tr>
+<tr>
+<td>.prev()</td>
+<td>获得匹配元素集合中每个元素紧邻的前一个同辈元素，由选择器筛选（可选）。</td>
+</tr>
+<tr>
+<td>.prevAll()</td>
+<td>获得匹配元素集合中每个元素之前的所有同辈元素，由选择器进行筛选（可选）。</td>
+</tr>
+<tr>
+<td>.prevUntil()</td>
+<td>获得每个元素之前所有的同辈元素，直到遇到匹配选择器的元素为止。</td>
+</tr>
+<tr>
+<td>.siblings()</td>
+<td>获得匹配元素集合中所有元素的同辈元素，由选择器筛选（可选）。</td>
+</tr>
+<tr>
+<td>.slice()</td>
+<td>将匹配元素集合缩减为指定范围的子集。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="jQuery-文档操作"><a href="#jQuery-文档操作" class="headerlink" title="jQuery 文档操作"></a>jQuery 文档操作</h2><p>对HTML元素进行操作。  </p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>after()</td>
+<td>在匹配的元素之后插入内容。</td>
+</tr>
+<tr>
+<td>append()</td>
+<td>向匹配元素集合中的每个元素结尾插入由参数指定的内容。</td>
+</tr>
+<tr>
+<td>appendTo()</td>
+<td>向目标结尾插入匹配元素集合中的每个元素。</td>
+</tr>
+<tr>
+<td>attr()</td>
+<td>设置或返回匹配元素的属性和值。</td>
+</tr>
+<tr>
+<td>before()</td>
+<td>在每个匹配的元素之前插入内容。</td>
+</tr>
+<tr>
+<td>clone()</td>
+<td>创建匹配元素集合的副本。</td>
+</tr>
+<tr>
+<td>detach()</td>
+<td>从 DOM 中移除匹配元素集合。</td>
+</tr>
+<tr>
+<td>empty()</td>
+<td>删除匹配的元素集合中所有的子节点。</td>
+</tr>
+<tr>
+<td>html()</td>
+<td>设置或返回匹配的元素集合中的 HTML 内容。</td>
+</tr>
+<tr>
+<td>insertAfter()</td>
+<td>把匹配的元素插入到另一个指定的元素集合的后面。</td>
+</tr>
+<tr>
+<td>insertBefore()</td>
+<td>把匹配的元素插入到另一个指定的元素集合的前面。</td>
+</tr>
+<tr>
+<td>prepend()</td>
+<td>向匹配元素集合中的每个元素开头插入由参数指定的内容。</td>
+</tr>
+<tr>
+<td>prependTo()</td>
+<td>向目标开头插入匹配元素集合中的每个元素。</td>
+</tr>
+<tr>
+<td>remove()</td>
+<td>移除所有匹配的元素。</td>
+</tr>
+<tr>
+<td>replaceAll()</td>
+<td>用匹配的元素替换所有匹配到的元素。</td>
+</tr>
+<tr>
+<td>replaceWith()</td>
+<td>用新内容替换匹配的元素。</td>
+</tr>
+<tr>
+<td>text()</td>
+<td>设置或返回匹配元素的内容。</td>
+</tr>
+<tr>
+<td>unwrap()</td>
+<td>移除并替换指定元素的父元素。</td>
+</tr>
+<tr>
+<td>wrap()</td>
+<td>把匹配的元素用指定的内容或元素包裹起来。</td>
+</tr>
+<tr>
+<td>wrapAll()</td>
+<td>把所有匹配的元素用指定的内容或元素包裹起来。</td>
+</tr>
+<tr>
+<td>wrapinner()</td>
+<td>将每一个匹配的元素的子内容用指定的内容或元素包裹起来。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="jQuery-属性操作"><a href="#jQuery-属性操作" class="headerlink" title="jQuery 属性操作"></a>jQuery 属性操作</h2><p>下面列出的这些方法获得或设置元素的 DOM 属性。  </p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>addClass()</td>
+<td>向匹配的元素添加指定的类名。</td>
+</tr>
+<tr>
+<td>attr()</td>
+<td>设置或返回匹配元素的属性和值。</td>
+</tr>
+<tr>
+<td>hasClass()</td>
+<td>检查匹配的元素是否拥有指定的类。</td>
+</tr>
+<tr>
+<td>html()</td>
+<td>设置或返回匹配的元素集合中的 HTML 内容。</td>
+</tr>
+<tr>
+<td>removeAttr()</td>
+<td>从所有匹配的元素中移除指定的属性。</td>
+</tr>
+<tr>
+<td>removeClass()</td>
+<td>从所有匹配的元素中删除全部或者指定的类。</td>
+</tr>
+<tr>
+<td>toggleClass()</td>
+<td>从匹配的元素中添加或删除一个类。</td>
+</tr>
+<tr>
+<td>val()</td>
+<td>设置或返回匹配元素的值。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="jQuery-css-操作函数"><a href="#jQuery-css-操作函数" class="headerlink" title="jQuery css 操作函数"></a>jQuery css 操作函数</h2><p>下面列出的这些方法设置或返回元素的 css 相关属性。  </p>
+<table>
+<thead>
+<tr>
+<th>css 属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>css()</td>
+<td>设置或返回匹配元素的样式属性。</td>
+</tr>
+<tr>
+<td>height()</td>
+<td>设置或返回匹配元素的高度。</td>
+</tr>
+<tr>
+<td>offset()</td>
+<td>返回第一个匹配元素相对于文档的位置。</td>
+</tr>
+<tr>
+<td>offsetParent()</td>
+<td>返回最近的定位祖先元素。</td>
+</tr>
+<tr>
+<td>position()</td>
+<td>返回第一个匹配元素相对于父元素的位置。</td>
+</tr>
+<tr>
+<td>scrollLeft()</td>
+<td>设置或返回匹配元素相对滚动条左侧的偏移。</td>
+</tr>
+<tr>
+<td>scrollTop()</td>
+<td>设置或返回匹配元素相对滚动条顶部的偏移。</td>
+</tr>
+<tr>
+<td>width()</td>
+<td>设置或返回匹配元素的宽度。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="jQuery-数据操作函数"><a href="#jQuery-数据操作函数" class="headerlink" title="jQuery 数据操作函数"></a>jQuery 数据操作函数</h2><p>这些方法允许我们将指定的 DOM 元素与任意数据相关联。  </p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.clearQueue()</td>
+<td>从队列中删除所有未运行的项目。</td>
+</tr>
+<tr>
+<td>.data()</td>
+<td>存储与匹配元素相关的任意数据。</td>
+</tr>
+<tr>
+<td>jQuery.data()</td>
+<td>存储与指定元素相关的任意数据。</td>
+</tr>
+<tr>
+<td>.dequeue()</td>
+<td>从队列最前端移除一个队列函数，并执行它。</td>
+</tr>
+<tr>
+<td>jQuery.dequeue()</td>
+<td>从队列最前端移除一个队列函数，并执行它。</td>
+</tr>
+<tr>
+<td>jQuery.hasData()</td>
+<td>存储与匹配元素相关的任意数据。</td>
+</tr>
+<tr>
+<td>.queue()</td>
+<td>显示或操作匹配元素所执行函数的队列。</td>
+</tr>
+<tr>
+<td>jQuery.queue()</td>
+<td>显示或操作匹配元素所执行函数的队列。</td>
+</tr>
+<tr>
+<td>.removeData()</td>
+<td>移除之前存放的数据。</td>
+</tr>
+<tr>
+<td>jQuery.removeData()</td>
+<td>移除之前存放的数据。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="jQuery-AJAX"><a href="#jQuery-AJAX" class="headerlink" title="jQuery AJAX"></a>jQuery AJAX</h2><h3 id="什么是-AJAX？"><a href="#什么是-AJAX？" class="headerlink" title="什么是 AJAX？"></a>什么是 AJAX？</h3><p>AJAX = 异步 JavaScript 和 XML（Asynchronous JavaScript and XML）。  </p>
+<p>简短地说，在不重载整个网页的情况下，AJAX 通过后台加载数据，并在网页上进行显示。  </p>
+<h3 id="jQuery-AJAX方法"><a href="#jQuery-AJAX方法" class="headerlink" title="jQuery AJAX方法"></a>jQuery AJAX方法</h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>jQuery.ajax()</td>
+<td>执行异步 HTTP (Ajax) 请求。</td>
+</tr>
+<tr>
+<td>.ajaxComplete()</td>
+<td>当 Ajax 请求完成时注册要调用的处理程序。这是一个 Ajax 事件。</td>
+</tr>
+<tr>
+<td>.ajaxError()</td>
+<td>当 Ajax 请求完成且出现错误时注册要调用的处理程序。这是一个 Ajax 事件。</td>
+</tr>
+<tr>
+<td>.ajaxSend()</td>
+<td>在 Ajax 请求发送之前显示一条消息。</td>
+</tr>
+<tr>
+<td>jQuery.ajaxSetup()</td>
+<td>设置将来的 Ajax 请求的默认值。</td>
+</tr>
+<tr>
+<td>.ajaxStart()</td>
+<td>当首个 Ajax 请求完成开始时注册要调用的处理程序。这是一个 Ajax 事件。</td>
+</tr>
+<tr>
+<td>.ajaxStop()</td>
+<td>当所有 Ajax 请求完成时注册要调用的处理程序。这是一个 Ajax 事件。</td>
+</tr>
+<tr>
+<td>.ajaxSuccess()</td>
+<td>当 Ajax 请求成功完成时显示一条消息。</td>
+</tr>
+<tr>
+<td>jQuery.get()</td>
+<td>使用 HTTP GET 请求从服务器加载数据。</td>
+</tr>
+<tr>
+<td>jQuery.getJSON()</td>
+<td>使用 HTTP GET 请求从服务器加载 JSON 编码数据。</td>
+</tr>
+<tr>
+<td>jQuery.getScript()</td>
+<td>使用 HTTP GET 请求从服务器加载 JavaScript 文件，然后执行该文件。</td>
+</tr>
+<tr>
+<td>.load()</td>
+<td>从服务器加载数据，然后把返回到 HTML 放入匹配元素。</td>
+</tr>
+<tr>
+<td>jQuery.param()</td>
+<td>创建数组或对象的序列化表示，适合在 URL 查询字符串或 Ajax 请求中使用。</td>
+</tr>
+<tr>
+<td>jQuery.post()</td>
+<td>使用 HTTP POST 请求从服务器加载数据。</td>
+</tr>
+<tr>
+<td>.serialize()</td>
+<td>将表单内容序列化为字符串。</td>
+</tr>
+<tr>
+<td>.serializeArray()</td>
+<td>序列化表单元素，返回 JSON 数据结构数据。</td>
+</tr>
+</tbody>
+</table>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        小技巧 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="本篇主要记录一些小技巧或者开发过程中遇到的小问题和解决方案。这些问题实在太小了而且大部分可能和代码没有关系，不好每次都单独列一篇文章，所以放到一起了。在eclipse中设置字体在eclipse中设置 Windows-&amp;gt;Preferences-&amp;gt;General-&amp;gt;Appearance-&amp;gt;Color and Fonts-&amp;gt;Basic-&amp;gt;Text Font-&amp;gt;Edit-&amp;gt;脚本(R) 选择 中欧字符 后中文字体的显示能够更好看些。处理 nginx +" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8eclipse%E4%B8%AD%E8%AE%BE%E7%BD%AE%E5%AD%97%E4%BD%93"><span class="toc-text">在eclipse中设置字体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%84%E7%90%86-nginx-php-%E9%81%87%E5%88%B0%E5%90%8E%E7%AB%AF%E8%BF%94%E5%9B%9E413%E9%94%99%E8%AF%AF"><span class="toc-text">处理 nginx + php 遇到后端返回413错误</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5-%E5%AF%BC%E5%87%BA-csv%E6%96%87%E4%BB%B6%E5%88%B0mysql"><span class="toc-text">导入&#x2F;导出 csv文件到mysql</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5"><span class="toc-text">导入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%87%BA"><span class="toc-text">导出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%87%BAcsv%E6%96%87%E4%BB%B6%E5%88%B0mysql%E6%8A%A5%E9%94%99"><span class="toc-text">导出csv文件到mysql报错</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Error-1148"><span class="toc-text">Error 1148</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Error-1290"><span class="toc-text">Error 1290</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8mysql%E6%8A%A5%E9%94%99error-11"><span class="toc-text">启动mysql报错error: 11</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%84%E7%90%86-mongoose-%E4%B8%AD-bson-MODULE-NOT-FOUND-%E7%9B%B8%E5%85%B3%E6%8A%A5%E9%94%99"><span class="toc-text">处理 mongoose 中 bson MODULE_NOT_FOUND 相关报错</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python-%E6%8A%A5%E9%94%99-%E2%80%98ascii%E2%80%99-codec-can%E2%80%99t-encode-characters-in-position-0-8%EF%BC%9Aordinal-not-in-range-128"><span class="toc-text">Python 报错 ‘ascii’ codec can’t encode characters in position 0-8：ordinal not in range(128)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8nvm%E7%9A%84%E5%89%8D%E7%BD%AE%E8%84%9A%E6%9C%AC"><span class="toc-text">使用nvm的前置脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%90%AF%E7%94%A8httpserver"><span class="toc-text">快速启用httpserver</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8-mongodb-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%8D%E5%8A%A1"><span class="toc-text">启动 mongodb 数据库服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8-redis-%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">启动 redis 数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E4%B8%BA%E5%A4%A7%E5%86%99%E5%AD%97%E7%AC%A6%EF%BC%8C%E5%9C%A8%E9%80%89%E4%B8%AD%E5%A4%8D%E5%88%B6%E5%90%8E%E5%8F%91%E7%8E%B0%E5%8E%9F%E6%96%87%E4%B8%BA%E5%8C%85%E5%90%AB%E5%A4%A7%E5%B0%8F%E5%86%99%E7%9A%84%E5%AD%97%E7%AC%A6"><span class="toc-text">显示为大写字符，在选中复制后发现原文为包含大小写的字符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6tooltip"><span class="toc-text">字符tooltip</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#node%E5%86%85%E9%83%A8%E6%A8%A1%E5%9D%97"><span class="toc-text">node内部模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#process-env-npm-lifecycle-event"><span class="toc-text">process.env.npm_lifecycle_event</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#error-0308010C-digital-envelope-routines-unsupported"><span class="toc-text">error:0308010C:digital envelope routines::unsupported</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E5%BC%B9%E7%AA%97%E4%B8%AD%E4%BD%BF%E7%94%A8-beautiful-react-dnd-%E6%97%B6%E6%8B%96%E6%8B%BD%E5%85%83%E7%B4%A0%E7%9A%84%E4%BD%8D%E7%BD%AE%E6%97%B6%E6%9C%89%E4%B8%8D%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%81%8F%E7%A7%BB"><span class="toc-text">在弹窗中使用 beautiful-react-dnd 时拖拽元素的位置时有不正确的偏移</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C-npm-publish-%E6%97%B6%E6%9C%AA%E5%8F%91%E5%B8%83%E5%88%B0%E6%9C%9F%E5%BE%85%E7%9A%84%E6%BA%90"><span class="toc-text">执行 npm publish 时未发布到期待的源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#globalThis-is-not-defined"><span class="toc-text">globalThis is not defined</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#unable-to-write-symref-for-HEAD-Permission-denied"><span class="toc-text">unable to write symref for HEAD: Permission denied</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            小技巧
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-06-19T08:08:39.000Z" itemprop="datePublished">2019-06-19</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/tips/" rel="tag">tips</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>本篇主要记录一些小技巧或者开发过程中遇到的小问题和解决方案。这些问题实在太小了而且大部分可能和代码没有关系，不好每次都单独列一篇文章，所以放到一起了。</p>
+<span id="more"></span>
+<h2 id="在eclipse中设置字体"><a href="#在eclipse中设置字体" class="headerlink" title="在eclipse中设置字体"></a>在eclipse中设置字体</h2><p>在eclipse中设置 Windows-&gt;Preferences-&gt;General-&gt;Appearance-&gt;Color and Fonts-&gt;Basic-&gt;Text Font-&gt;Edit-&gt;脚本(R) 选择 <code>中欧字符</code> 后中文字体的显示能够更好看些。</p>
+<h2 id="处理-nginx-php-遇到后端返回413错误"><a href="#处理-nginx-php-遇到后端返回413错误" class="headerlink" title="处理 nginx + php 遇到后端返回413错误"></a>处理 nginx + php 遇到后端返回413错误</h2><p>php 默认上传文件大小限制为 2M，如果超出 2M 你需要修改 php 配置文件 php.ini 里面的参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">post_max_size = 128M ## （表单提交的最大限制，此项不是限制上传单个文件的大小，而是针对整个表单提交的数据进行限制）</span><br><span class="line">upload_max_filesize = 128M ## （上传的单个文件的最大限制）</span><br></pre></td></tr></table></figure>
+<p>需要保证 post_max_size &gt;= upload_max_filesize ，也就是前者不小于后者。修改之后一定要重启 php-fpm (service php-fpm restart)。</p>
+<p>除了修改 php 配置，你也需要修改nginx配置文件 nginx.conf<br>打开 nginx 配置文件 nginx.conf，找到 http{} 段，在其中添加一行配置：<br>client_max_body_size 128m; 其中 128m 可以根据需要上传文件大小自行设定。<br>修改之后一定要重新载入 nginx （service nginx reload）。</p>
+<h2 id="导入-导出-csv文件到mysql"><a href="#导入-导出-csv文件到mysql" class="headerlink" title="导入/导出 csv文件到mysql"></a>导入/导出 csv文件到mysql</h2><h3 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h3><p>需要表存在且字段与csv文件中的相同</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">LOAD DATA <span class="keyword">LOCAL</span> INFILE <span class="string">&#x27;$&#123;csv文件路径&#125;&#x27;</span></span><br><span class="line"><span class="keyword">INTO</span> <span class="keyword">TABLE</span> $&#123;数据库表名&#125;</span><br><span class="line"><span class="type">CHARACTER</span> <span class="keyword">SET</span>  utf8</span><br><span class="line">FIELDS</span><br><span class="line">    TERMINATED <span class="keyword">BY</span> <span class="string">&#x27;,&#x27;</span></span><br><span class="line">    ENCLOSED <span class="keyword">BY</span> <span class="string">&#x27;&quot;&#x27;</span></span><br><span class="line">LINES</span><br><span class="line">    TERMINATED <span class="keyword">BY</span> <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">IGNORE <span class="number">1</span> <span class="keyword">ROWS</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">LOCK TABLES $&#123;数据库表名&#125; read;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> $&#123;数据库表名&#125; <span class="keyword">INTO</span> OUTFILE <span class="string">&#x27;$&#123;csv文件路径&#125;&#x27;</span> </span><br><span class="line">FIELDS</span><br><span class="line">    TERMINATED <span class="keyword">BY</span> <span class="string">&#x27;,&#x27;</span></span><br><span class="line">    OPTIONALLY ENCLOSED <span class="keyword">BY</span> <span class="string">&#x27;&quot;&#x27;</span></span><br><span class="line">LINES</span><br><span class="line">    TERMINATED <span class="keyword">BY</span> <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">UNLOCK TABLES;</span><br></pre></td></tr></table></figure>
+<h2 id="导出csv文件到mysql报错"><a href="#导出csv文件到mysql报错" class="headerlink" title="导出csv文件到mysql报错"></a>导出csv文件到mysql报错</h2><h3 id="Error-1148"><a href="#Error-1148" class="headerlink" title="Error 1148"></a>Error 1148</h3><p>如果在执行语句时报错 <code>Error 1148 MySQL The used command is not allowed with this MySQL version</code> 可能是因为MySQL的安全策略阻止读取本地文件，可以通过以下方法解决：</p>
+<ol>
+<li>Use –local-infile=1 argument on the mysql commandline:</li>
+</ol>
+<p>When you start MySQL on the terminal, include –local-infile=1 argument, Something like this:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql <span class="comment">--local-infile=1 -uroot -p</span></span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span>LOAD DATA <span class="keyword">LOCAL</span> INFILE <span class="string">&#x27;/tmp/foo.txt&#x27;</span> <span class="keyword">INTO</span> <span class="keyword">TABLE</span> foo</span><br><span class="line">COLUMNS TERMINATED <span class="keyword">BY</span> <span class="string">&#x27;\t&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>Then the command is permitted:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Query OK, <span class="number">3</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br><span class="line">Records: <span class="number">3</span>  Deleted: <span class="number">0</span>  Skipped: <span class="number">0</span>  Warnings: <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>Or send the parameter into the mysql daemon:</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld --local-infile=1</span><br></pre></td></tr></table></figure>
+<ol>
+<li>Or set it in the my.cnf file (This is a security risk):</li>
+</ol>
+<p>Find your mysql my.cnf file and edit it as root.</p>
+<p>Add the local-infile line under the mysqld and mysql designators:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">local-infile</span><br><span class="line"></span><br><span class="line">[mysql]</span><br><span class="line">local-infile</span><br></pre></td></tr></table></figure>
+<p>Save the file, restart mysql. Try it again.</p>
+<ol>
+<li>The main reason why we are using the LOCAL keyword is explained in the MySQL manual. On the other hand, you do not need the FILE privilege to load local files. So if you in fact do have file access to the server then try to skip using the word “LOCAL” in SQL query, and instead copy the file to the server and the directory mysql/data/[tablename].</li>
+</ol>
+<h3 id="Error-1290"><a href="#Error-1290" class="headerlink" title="Error 1290"></a>Error 1290</h3><p>如果在执行语句时报错 <code>[Error Code] 1290 - The MySQL server is running with the --secure-file-priv option</code> 说明参数secure-file-priv 可能有问题</p>
+<p>执行以下语句</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> VARIABLES <span class="keyword">LIKE</span> &quot;secure_file_priv&quot;;</span><br></pre></td></tr></table></figure>
+<p>可以看到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">secure_file_prive=null   -- 限制mysqld 不允许导入导出</span><br><span class="line">secure_file_priv=/tmp/   -- 限制mysqld的导入导出只能发生在/tmp/目录下</span><br><span class="line">secure_file_priv=&#x27;&#x27;     -- 不对mysqld 的导入/导出做限制</span><br></pre></td></tr></table></figure>
+<p>可以在 my.ini（windows） 或 /etc/my.cnf(linux) 文件中的[mysqld]节点添加secure_file_priv=’’，然后重启mysql服务</p>
+<h2 id="启动mysql报错error-11"><a href="#启动mysql报错error-11" class="headerlink" title="启动mysql报错error: 11"></a>启动mysql报错error: 11</h2><p>如果在启动mysql时遇到了 <code>[ERROR] InnoDB: Unable to lock ./ibdata1, error: 11</code><br>说明 ibdata1 文件被其他的进程占用 或者 磁盘空间目录不足，有以下解决方案：</p>
+<ol>
+<li>查看磁盘空间情况</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br></pre></td></tr></table></figure>
+<ol>
+<li>查看系统 mysql 相关进程</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -eaf | grep mysql</span><br><span class="line">kill -9 78806</span><br></pre></td></tr></table></figure>
+<p>如果语句执行正常但是返回 <code>0 row(s) affected</code> ，查看一下csv中的字段是否是否与表中的字段一致，区分大小写；查看一下csv文件的分隔符的设置是否正确。</p>
+<h2 id="处理-mongoose-中-bson-MODULE-NOT-FOUND-相关报错"><a href="#处理-mongoose-中-bson-MODULE-NOT-FOUND-相关报错" class="headerlink" title="处理 mongoose 中 bson MODULE_NOT_FOUND 相关报错"></a>处理 mongoose 中 bson MODULE_NOT_FOUND 相关报错</h2><p>node.js 在使用 mongoose时报错 <code>[Error: Cannot find module &#39;../build/Release/bson&#39;] code: &#39;MODULE_NOT_FOUND&#39;</code></p>
+<p>参见 https://github.com/Automattic/mongoose/issues/3436</p>
+<p>应该是mongoose版本问题，理论上升级到最新版本可以解决，也可以按照以下步骤解决</p>
+<ol>
+<li>更改 bson 引用<br>找到 module mongodb ..node_modules\mongodb\node_modules\bson\ext\index.js<br>改变bson引用的路径</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bson = <span class="built_in">require</span>(<span class="string">&#x27;../build/Release/bson&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>改为</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bson = <span class="built_in">require</span>(<span class="string">&#x27;../browser_build/bson&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bson = require(&#x27;bson&#x27;);</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>更改mongoose版本<br>将原有的mongoose升级为 <code>&quot;mongoose &quot;: &quot;~3.8.23&quot;</code></li>
+</ol>
+<h2 id="Python-报错-‘ascii’-codec-can’t-encode-characters-in-position-0-8：ordinal-not-in-range-128"><a href="#Python-报错-‘ascii’-codec-can’t-encode-characters-in-position-0-8：ordinal-not-in-range-128" class="headerlink" title="Python 报错 ‘ascii’ codec can’t encode characters in position 0-8：ordinal not in range(128)"></a>Python 报错 ‘ascii’ codec can’t encode characters in position 0-8：ordinal not in range(128)</h2><ol>
+<li>第一步，别忘了给文件顶部加上</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>重新载入SYS模块并设置uft-8</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">reload(sys)</span><br><span class="line">sys.setdefaultencoding(<span class="string">&#x27;utf-8&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="使用nvm的前置脚本"><a href="#使用nvm的前置脚本" class="headerlink" title="使用nvm的前置脚本"></a>使用nvm的前置脚本</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export NVM_DIR=&quot;$HOME/.nvm&quot;</span><br><span class="line">[ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; \. &quot;$NVM_DIR/nvm.sh&quot;  # This loads nvm</span><br></pre></td></tr></table></figure>
+<h2 id="快速启用httpserver"><a href="#快速启用httpserver" class="headerlink" title="快速启用httpserver"></a>快速启用httpserver</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m SimpleHTTPServer 8080</span><br></pre></td></tr></table></figure>
+<h2 id="启动-mongodb-数据库服务"><a href="#启动-mongodb-数据库服务" class="headerlink" title="启动 mongodb 数据库服务"></a>启动 mongodb 数据库服务</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongod --dbpath=/users/</span><br></pre></td></tr></table></figure>
+<h2 id="启动-redis-数据库"><a href="#启动-redis-数据库" class="headerlink" title="启动 redis 数据库"></a>启动 redis 数据库</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server</span><br></pre></td></tr></table></figure>
+<h2 id="显示为大写字符，在选中复制后发现原文为包含大小写的字符"><a href="#显示为大写字符，在选中复制后发现原文为包含大小写的字符" class="headerlink" title="显示为大写字符，在选中复制后发现原文为包含大小写的字符"></a>显示为大写字符，在选中复制后发现原文为包含大小写的字符</h2><p>如下所示：</p>
+<div><style>@font-face {font-family:Bebas Neue;font-style: normal;font-weight: 400;font-display: swap;src: url(https://fonts.gstatic.com/s/bebasneue/v14/JTUSjIg69CK48gW7PXoo9Wdhyzbi.woff2) format(woff2);unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;}@font-face {font-family:Bebas Neue;font-style: normal;font-weight: 400;font-display: swap;src: url(https://fonts.gstatic.com/s/bebasneue/v14/JTUSjIg69CK48gW7PXoo9Wlhyw.woff2) format(woff2);unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}</style><div style="font-family: 'Bebas Neue', 'IBM Plex Mono', monospace;">Nullish Coalescing</div></div>
+
+<p>原因是采用了 Bebas Nene 这款字体，这款字体对小写字符也显示成大写的样式。</p>
+<h2 id="字符tooltip"><a href="#字符tooltip" class="headerlink" title="字符tooltip"></a>字符tooltip</h2><p><span title="显示的内容" style="background: lightyellow" >鼠标hover会显示tooltip</span></p>
+<p>只需要设置下DOM元素的 <code>title</code> 属性</p>
+<h2 id="node内部模块"><a href="#node内部模块" class="headerlink" title="node内部模块"></a>node内部模块</h2><p>从 Node.js 12.2.0 版本开始，支持使用 <code>const fs = require(&#39;node:fs&#39;);</code> 的写法。这种写法被称为 “内部模块”（Internal Modules）。</p>
+<p>内部模块的目的是为了解决在 Node.js 中使用内置模块时可能出现的命名冲突问题。在旧的写法 <code>const fs = require(&#39;fs&#39;);</code> 中，如果你在项目中有一个名为 fs.js 的文件，那么 <code>require(&#39;fs&#39;)</code> 将会加载你的 fs.js 文件而不是 Node.js 的内置 fs 模块。</p>
+<p>通过使用 <code>require(&#39;node:fs&#39;)</code>，你可以明确地指定要加载的是 Node.js 的内置 fs 模块，避免了命名冲突的问题。</p>
+<p>需要注意的是，内部模块的写法只适用于 Node.js，不适用于浏览器端的 JavaScript。在浏览器端，仍然需要使用 <code>require(&#39;fs&#39;)</code> 的写法来加载模块。</p>
+<h2 id="process-env-npm-lifecycle-event"><a href="#process-env-npm-lifecycle-event" class="headerlink" title="process.env.npm_lifecycle_event"></a>process.env.npm_lifecycle_event</h2><p>在 package.json 的 script 中书写了一个命令 “custom-command” 在 env.js 中通过”require(‘child_process’).execSync(‘npx another-command’)“ 执行了另外的命令。Nodejs 14 中 process.env.npm_lifecycle_event 会返回 custom-command 但在 Nodejs 16 中 process.env.npm_lifecycle_event 会返回 npx。</p>
+<p>在 Node.js 14 中，process.env.npm_lifecycle_event 返回 “custom-command”，因为它只关注 npm 生命周期事件的名称。但在 Node.js 16 中，process.env.npm_lifecycle_event 返回 “npx”，因为它将整个命令行作为一个事件处理。</p>
+<p>这个更改是为了提供更准确的事件处理信息，以便开发者能够更好地理解正在执行的命令。通过返回整个命令行，开发者可以知道是通过 npx 工具执行了哪个命令。</p>
+<p>如果需要在 Node.js 16 中获取 “custom-command”，可以不调用 npx 直接执行 another-command 或者可以通过在 env.js 中传递参数的方式来实现。在 package.json 的 script 中，可以使用 – 来传递参数，然后在 env.js 中通过 process.argv 来获取这些参数。</p>
+<figure class="highlight json"><figcaption><span>package.json</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;custom-command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node env.js --custom-command&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><figcaption><span>env.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> args = process.<span class="property">argv</span>.<span class="title function_">slice</span>(<span class="number">2</span>);</span><br><span class="line"><span class="keyword">const</span> customCommand = args[<span class="number">0</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(customCommand); <span class="comment">// 输出 &quot;custom-command&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="error-0308010C-digital-envelope-routines-unsupported"><a href="#error-0308010C-digital-envelope-routines-unsupported" class="headerlink" title="error:0308010C:digital envelope routines::unsupported"></a>error:0308010C:digital envelope routines::unsupported</h2><p>运行 &gt;17 的 Nodejs 脚本时报错“error:0308010C:digital envelope routines::unsupported”，<br>因为高版本的 Nodejs crypto 模块 使用了 OpenSSL3.0，OpenSSL3.0 对允许的算法和密钥大小进行了限制，使用不允许的算法是会抛出 “error:0308010C:digital envelope routines::unsupported” 的错误，报错如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">ERROR <span class="keyword">in</span> ./src/epmp-apps/epm_p/taskCenter/main/index.js</span><br><span class="line">Module build failed (from ./node_modules/thread-loader/dist/cjs.js):</span><br><span class="line">Thread Loader (Worker 2)</span><br><span class="line">error:0308010C:digital envelope routines::unsupported</span><br><span class="line">    at PoolWorker.fromErrorObj (D:\workspace\EPM_Front\node_modules\thread-loader\dist\WorkerPool.js:346:12)</span><br><span class="line">    at D:\workspace\EPM_Front\node_modules\thread-loader\dist\WorkerPool.js:219:29</span><br><span class="line">    at new Hash (node:internal/crypto/hash:69:19)</span><br><span class="line">    at Object.createHash (node:crypto:133:10)</span><br><span class="line">    at filename (D:\workspace\EPM_Front\node_modules\.store\babel-loader@8.2.2\node_modules\babel-loader\lib\cache.js:94:23)</span><br><span class="line">    at D:\workspace\EPM_Front\node_modules\.store\babel-loader@8.2.2\node_modules\babel-loader\lib\cache.js:120:39</span><br><span class="line">    at Generator.next (&lt;anonymous&gt;)</span><br><span class="line">    at asyncGeneratorStep (D:\workspace\EPM_Front\node_modules\.store\babel-loader@8.2.2\node_modules\babel-loader\lib\cache.js:3:103)</span><br><span class="line">    at _next (D:\workspace\EPM_Front\node_modules\.store\babel-loader@8.2.2\node_modules\babel-loader\lib\cache.js:5:194)</span><br><span class="line">    at D:\workspace\EPM_Front\node_modules\.store\babel-loader@8.2.2\node_modules\babel-loader\lib\cache.js:5:364</span><br><span class="line">    at new Promise (&lt;anonymous&gt;)</span><br><span class="line">    at D:\workspace\EPM_Front\node_modules\.store\babel-loader@8.2.2\node_modules\babel-loader\lib\cache.js:5:97</span><br></pre></td></tr></table></figure>
+<p>可以直接在nodejs中运行相应的脚本查看对应报错：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="built_in">require</span>(<span class="string">&#x27;cryto&#x27;</span>).<span class="title function_">createHash</span>(<span class="string">&#x27;md4&#x27;</span>);</span><br><span class="line"><span class="title class_">Uncaught</span> <span class="title class_">Error</span>: <span class="attr">error</span>:0308010<span class="attr">C</span>:digital envelope <span class="attr">routines</span>::unsupported</span><br><span class="line">    at <span class="keyword">new</span> <span class="title class_">Hash</span> (<span class="attr">node</span>:internal/crypto/<span class="attr">hash</span>:<span class="number">69</span>:<span class="number">19</span>)</span><br><span class="line">    at <span class="title class_">Object</span>.<span class="property">createHash</span> (<span class="attr">node</span>:<span class="attr">crypto</span>:<span class="number">133</span>:<span class="number">10</span>) &#123;</span><br><span class="line">  <span class="attr">opensslErrorStack</span>: [ <span class="string">&#x27;error:03000086:digital envelope routines::initialization error&#x27;</span> ],</span><br><span class="line">  <span class="attr">library</span>: <span class="string">&#x27;digital envelope routines&#x27;</span>,</span><br><span class="line">  <span class="attr">reason</span>: <span class="string">&#x27;unsupported&#x27;</span>,</span><br><span class="line">  <span class="attr">code</span>: <span class="string">&#x27;ERR_OSSL_EVP_UNSUPPORTED&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>OpenSSL 是一个强大的开源安全套接字层密码库，它提供了功能丰富的安全工具包用来处理对称与非对称加密算法、数字证书编解码等。Nodejs 的 crypto 模块就是用了 OpenSSL 的能力进行加解密的。Nodejs 从 17版本开始用了 OpenSSL3.0，OpenSSL 3.0 中提供了5个 Provider（表示算法实现的容器），其中：</p>
+<ul>
+<li>default: 默认，提供了所有标准的内置算法，如果没明确指定则将使用默认算法容器；</li>
+<li>legacy: 遗留，意不常用或者被反对使用的算法，正常情况下不可用，除非现实的指定使用 legacy 容器;</li>
+</ul>
+<p>许多流行的库使用到了 <code>crypto.createHash(&quot;md4&quot;)</code> 来创建哈希串，所以在高版本 Nodejs 中执行会报错。</p>
+<p>已知的库包括：<br><a href="mailto:babel-loader@8.2.4">babel-loader@8.2.4</a> 解决了该问题 Use md5 hashing for OpenSSL 3 by @pathmapper in #924<br><a href="mailto:webpack@4.47.0">webpack@4.47.0</a> 解决了该问题 [Security] - Add support for md4 in Node &gt;=18. by @iclanton in #17628<br><a href="mailto:webpack@5.61.0">webpack@5.61.0</a> 解决了该问题 use a wasm md4 implementation for node 17 support<br>@<a href="mailto:vue/cli-service@5.0.1">vue/cli-service@5.0.1</a> 支持了 <a href="mailto:webpack@5.61.0">webpack@5.61.0</a><br><a href="mailto:react-scripts@5.0.0">react-scripts@5.0.0</a> 支持了 <a href="mailto:webpack@5.61.0">webpack@5.61.0</a></p>
+<p>如果遇到该问题我们可以：</p>
+<ol>
+<li>升级项目中所有依赖的库到解决该问题的版本</li>
+<li>提供 legacy 容器环境，即执行脚本之前先执行 <code>cross-env NODE_OPTIONS=--openssl-legacy-provider</code>（安装 cross-env 以支持跨环境脚本）设置环境变量或者在系统环境变量中添加变量名为 <code>NODE_OPTIONS</code> 值为 <code>--openssl-legacy-provider</code> 的环境变量</li>
+<li>降级 Nodejs 版本，降级到 Nodejs 16，在脚本中进行Nodejs版本检查，不符合要求时进行升级</li>
+</ol>
+<h2 id="在弹窗中使用-beautiful-react-dnd-时拖拽元素的位置时有不正确的偏移"><a href="#在弹窗中使用-beautiful-react-dnd-时拖拽元素的位置时有不正确的偏移" class="headerlink" title="在弹窗中使用 beautiful-react-dnd 时拖拽元素的位置时有不正确的偏移"></a>在弹窗中使用 beautiful-react-dnd 时拖拽元素的位置时有不正确的偏移</h2><p>原因是父元素弹窗使用了 transform 进行定位，而 beautiful-react-dnd 在定位元素时使用了 <code>position: fixed</code>，参见 MDN 对 fixed 属性的解释：</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>元素会被移出正常文档流，并不为元素预留空间，而是通过指定元素相对于屏幕视口（viewport）的位置来指定元素位置。元素的位置在屏幕滚动时不会改变。打印时，元素会出现在的每页的固定位置。fixed 属性会创建新的层叠上下文。当元素祖先的 <code>transform</code>、<code>perspective</code>、<code>filter</code> 或 <code>backdrop-filter</code> 属性非 none 时，容器由视口改为该祖先。</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>所以拖拽元素的 top,left 等属性的定位从浏览器改为了弹窗元素，但 beautiful-react-dnd 仍旧是以浏览器计算的，所以会出现问题，解决方案参见 https://github.com/atlassian/react-beautiful-dnd/issues/485#issuecomment-754398585 将拖动元素的 left 和 top 属性强制改为 auto。但是如果拖动的元素在可滚动的元素内时，一旦发生了滚动，此时位置又会出现错乱。解决办法为使用 <code>React.createPortal()</code> 将拖拽元素脱离文档流进行渲染。参见 https://github.com/atlassian/react-beautiful-dnd/blob/master/stories/src/portal/portal-app.jsx</p>
+<h2 id="执行-npm-publish-时未发布到期待的源"><a href="#执行-npm-publish-时未发布到期待的源" class="headerlink" title="执行 npm publish 时未发布到期待的源"></a>执行 npm publish 时未发布到期待的源</h2><p>执行 <code>npm config set registry https://registry.npmjs.com/</code> 也不行，<br>在发布的目录新建 <code>.npmrc</code> 添加 <code>registry=https://registry.npmjs.com/</code> 然后执行 <code>npm publish</code> 也不行，<br>执行 <code>npm publish --registry=https://registry.npmjs.com/</code> 也不行。</p>
+<p>最终执行 <code>npm config ls</code> 发现端倪，原来在 npm 用户配置中设置了针对于某个 scope 的 registry，而这个配置项的生效优先级更高，删除该项配置后即可正确发布到期待的源。</p>
+<p>执行 <code>npm config ls</code> 的结果如下：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">PS</span> D:\workspace\SEM\epm<span class="literal">-extend-core</span>&gt; npm config <span class="built_in">ls</span></span><br><span class="line">; <span class="string">&quot;global&quot;</span> config from D:\software\nodejs\etc\npmrc</span><br><span class="line"></span><br><span class="line">strict<span class="literal">-peer-dependencies</span> = false</span><br><span class="line"></span><br><span class="line">; <span class="string">&quot;user&quot;</span> config from C:\Users\Administrator\.npmrc</span><br><span class="line"></span><br><span class="line">@epmkit:registry = <span class="string">&quot;https://repo.yyrd.com/artifactory/api/npm/ynpm-all/&quot;</span></span><br><span class="line">//registry.npmjs.com/:_authToken = (protected)</span><br><span class="line">//registry.npmjs.org/:_authToken = (protected)</span><br><span class="line"></span><br><span class="line">; <span class="string">&quot;project&quot;</span> config from D:\workspace\SEM\epm<span class="literal">-extend-core</span>\.npmrc</span><br><span class="line"></span><br><span class="line">registry = <span class="string">&quot;https://registry.npmjs.org/&quot;</span></span><br><span class="line"></span><br><span class="line">; node bin location = D:\software\nodejs\node.exe</span><br><span class="line">; node version = v16.<span class="number">19.0</span></span><br><span class="line">; npm local prefix = D:\workspace\SEM\epm<span class="literal">-extend-core</span></span><br><span class="line">; npm version = <span class="number">8.19</span>.<span class="number">3</span></span><br><span class="line">; cwd = D:\workspace\SEM\epm<span class="literal">-extend-core</span></span><br><span class="line">; HOME = C:\Users\Administrator</span><br><span class="line">; Run `npm config <span class="built_in">ls</span> <span class="literal">-l</span>` to show all defaults.</span><br></pre></td></tr></table></figure>
+<p>也可以仅执行 <code>npm config get userconfig</code> 或者 <code>npm config get globalconfig</code> 获取配置文件的位置</p>
+<h2 id="globalThis-is-not-defined"><a href="#globalThis-is-not-defined" class="headerlink" title="globalThis is not defined"></a>globalThis is not defined</h2><p>globalThis 是 ES2020 引入的特性，globalThis 提供了一个标准的方式来获取不同环境下的全局 this 对象。例如在 Web 中，可以通过 window、self 或者 frames 取到全局对象，在 Web Workers 中，使用 self 。在 Node.js 中，使用 global。在某些环境中会报错 “globalThis is not defined” 通常是环境中没有 globalThis 变量。</p>
+<ol>
+<li>在严格模式中</li>
+<li>在模块环境下</li>
+<li>环境不支持 通常是兼容性问题，例如在 Chrome &lt; 71 的浏览器中并未支持 globalThis</li>
+</ol>
+<h2 id="unable-to-write-symref-for-HEAD-Permission-denied"><a href="#unable-to-write-symref-for-HEAD-Permission-denied" class="headerlink" title="unable to write symref for HEAD: Permission denied"></a>unable to write symref for HEAD: Permission denied</h2><p>在切换分支时报如此错误，通常是执行 git 命令的用户没有相应的权限</p>
+<ol>
+<li>以管理员权限执行 git 命令或打开执行 git 命令的软件（例如SourceTree）</li>
+<li>打开文件夹属性-安全，赋予用户相应的权限</li>
+</ol>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

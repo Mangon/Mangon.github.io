@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        目录: others | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="Mangon&#39;s Technology Blog" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+
+        
+            <div class="author-meta">
+                
+                <div class="author-avatar">
+                    <a href="/blog/">
+                        <img src="/blog/images/avatar.jpeg" title="Mangon">
+                    </a>
+                </div>
+                
+                <div class="author-name">Mangon</div>
+                <div class="author-work">前端开发工程师</div>
+                <div class="author-location">
+                    <i class="icon-location vm"></i>
+                    <span class="vm">中国北京</span>
+                </div>
+                
+                <div class="author-thread-wrap">
+                    <div class="author-threads clearfix">
+                        
+                            <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
+                        
+                        
+                        
+                            <a class="thread-item" href="https://mangon.cn/blog/atom.xml" target="_blank" rel="external noopener noreferrer"><i class="icon-favorite"></i></a>
+                        
+                        
+                            <a class="thread-item" href="https://mangon.cn/resume" target="_blank" rel="external noopener noreferrer"><i class="icon-circle-more"></i></a>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2019/08/21/HACK-Python%E7%88%AC%E8%99%ABScrapy/">Python爬虫Scrapy</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-08-21T07:16:45.000Z" itemprop="datePublished">2019-08-21</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/crawler/" rel="tag">crawler</a>, <a class="article-tag-link" href="/blog/tags/python/" rel="tag">python</a>, <a class="article-tag-link" href="/blog/tags/scrapy/" rel="tag">scrapy</a>, <a class="article-tag-link" href="/blog/tags/spider/" rel="tag">spider</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="Scrapy简介"><a href="#Scrapy简介" class="headerlink" title="Scrapy简介"></a>Scrapy简介</h2><p><a target="_blank" rel="noopener" href="https://scrapy.org/">Scrapy</a> 是一个开源的Python网络爬虫框架。源码在github上开源，<a target="_blank" rel="noopener" href="https://github.com/scrapy/scrapy">地址</a>。Scrapy简单易学而且非常好用，支持配置、代理分布式爬取、容易扩展而且官方也很活跃。截止目前（2019年8月21日）最新版本为 v1.7.3 。  </p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2019/08/21/HACK-Python%E7%88%AC%E8%99%ABScrapy/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2019/06/19/TIPS-%E5%BC%80%E5%8F%91%E5%B0%8F%E6%8A%80%E5%B7%A7/">小技巧</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-06-19T08:08:39.000Z" itemprop="datePublished">2019-06-19</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/tips/" rel="tag">tips</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>本篇主要记录一些小技巧或者开发过程中遇到的小问题和解决方案。这些问题实在太小了而且大部分可能和代码没有关系，不好每次都单独列一篇文章，所以放到一起了。</p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2019/06/19/TIPS-%E5%BC%80%E5%8F%91%E5%B0%8F%E6%8A%80%E5%B7%A7/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2019/02/01/FE-Git%E5%B0%8F%E6%8A%84/">Git小抄</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-02-01T07:14:46.000Z" itemprop="datePublished">2019-02-01</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/git/" rel="tag">git</a>, <a class="article-tag-link" href="/blog/tags/tool/" rel="tag">tool</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="什么是-Git"><a href="#什么是-Git" class="headerlink" title="什么是 Git"></a>什么是 Git</h2><p><a target="_blank" rel="noopener" href="https://github.com/git/git">Git</a> 是一个免费的开源分布式版本控制系统。它被设计用来高效的控制各种各样的工程项目。<br>Git最初在2005年由 <a target="_blank" rel="noopener" href="https://github.com/torvalds">Linus</a> 花费了两周时间用C语言开发而成，并被用来管理 <a target="_blank" rel="noopener" href="https://github.com/torvalds/linux">Linux kernel</a> 的源码。<br>Git很容易学习，所占用空间极小而且效率很高。它比同类型的版本控制工具比如Subversion(SVN)，CVS， ClearCase要更加功能强大。  </p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2019/02/01/FE-Git%E5%B0%8F%E6%8A%84/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2019/01/04/TIPS-%E5%9C%A8%E7%BA%BF%E7%BB%98%E5%9B%BE%E5%B0%8F%E5%B7%A5%E5%85%B7/">在线绘图小工具</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-01-04T10:49:24.000Z" itemprop="datePublished">2019-01-04</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/tool/" rel="tag">tool</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <section><br>    <div class="paint-area"><br>        <p>移动端无法使用</p><br>        <canvas></canvas><br>    </div><br>    <script type="text/javascript" src="/blog/static/js/painter.js"></script><br></section>
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/11/30/TIPS-Mac-%E4%B8%8BEclipse%E5%BF%AB%E6%8D%B7%E9%94%AE/">Mac下Eclipse快捷键</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-11-30T10:29:17.000Z" itemprop="datePublished">2018-11-30</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/eclipse/" rel="tag">eclipse</a>, <a class="article-tag-link" href="/blog/tags/tips/" rel="tag">tips</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="快捷操作"><a href="#快捷操作" class="headerlink" title="快捷操作"></a>快捷操作</h2><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>快捷键</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>全选</td>
+<td>command A</td>
+</tr>
+<tr>
+<td>复制</td>
+<td>command C</td>
+</tr>
+<tr>
+<td>粘贴</td>
+<td>command V</td>
+</tr>
+<tr>
+<td>查找</td>
+<td>command F</td>
+</tr>
+<tr>
+<td>回退</td>
+<td>command Z</td>
+</tr>
+<tr>
+<td>剪切</td>
+<td>command X</td>
+</tr>
+<tr>
+<td>退出</td>
+<td>command Q</td>
+</tr>
+<tr>
+<td>删除当前行</td>
+<td>command D</td>
+</tr>
+<tr>
+<td>放大字体</td>
+<td>command +</td>
+</tr>
+<tr>
+<td>缩小字体</td>
+<td>command -</td>
+</tr>
+<tr>
+<td>注释/反注释</td>
+<td>command /</td>
+</tr>
+<tr>
+<td>打开preference</td>
+<td>command ,</td>
+</tr>
+<tr>
+<td>代码补全提示</td>
+<td>option /</td>
+</tr>
+<tr>
+<td>最大化/还原</td>
+<td>control M</td>
+</tr>
+<tr>
+<td>格式化代码</td>
+<td>command shift F</td>
+</tr>
+<tr>
+<td>自动导入包</td>
+<td>command shift O</td>
+</tr>
+</tbody>
+</table>
+<h2 id="便利设置"><a href="#便利设置" class="headerlink" title="便利设置"></a>便利设置</h2><p>Preference -&gt; General -&gt; Editors -&gt; Text Editors</p>
+<p><input type="checkbox" checked></input> Show line numbers<br><input type="checkbox" checked></input> Show white space charactors</p>
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/28/TIPS-%E6%B8%85%E9%99%A4%E7%BD%91%E7%AB%99%E4%B8%AD%E7%9A%84%E6%97%A0%E6%95%88%E9%93%BE%E6%8E%A5/">清除网站中的无效链接</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-28T08:32:55.000Z" itemprop="datePublished">2018-09-28</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/tips/" rel="tag">tips</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>网站上有大量的无效链接（返回404或域名不存在）会使网站的总体质量下降，所以清除网站中的无效链接也是提升网站质量，优化用户体验的一种方法。  </p>
+<p>通常而言，链接有链接向外部的也有在网站内部跳转的链接，链接向外部的网站尽量希望链接到一些稳定的网站，有些地址是很容易被移除的，比如链接到文章或评论的，链接到个人网站的，链接到下载页的。时常注意一些大的域名变动，比如有些产品可能已经下线或更换地址，如果自己的网站中有引用，也需要同步的改变。链接到内部的网站时可以做一次引用记录，当记录的链接修改时同步修改所有的地方。  </p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2018/09/28/TIPS-%E6%B8%85%E9%99%A4%E7%BD%91%E7%AB%99%E4%B8%AD%E7%9A%84%E6%97%A0%E6%95%88%E9%93%BE%E6%8E%A5/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/27/FE-Charles%E5%B0%8F%E6%8A%84/">Charles小抄</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-27T06:34:26.000Z" itemprop="datePublished">2018-09-27</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/charles/" rel="tag">charles</a>, <a class="article-tag-link" href="/blog/tags/proxy/" rel="tag">proxy</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>在前端开发过程中我们常常要用到代理工具来处理一些诸如改变请求参数，代理请求地址，以及抓包的问题。目前最流行的代理工具有两种 <a target="_blank" rel="noopener" href="https://www.telerik.com/fiddler">Fiddler</a> &amp; <a target="_blank" rel="noopener" href="https://www.charlesproxy.com/">Charles</a>。Fiddler是免费的，一直以来只提供了Windows版本，2016年10月之后也提供了Mac OSX版本，不过需要安装跨平台方案Mono。Charles是付费的，20$/license，不过Charles是java swing编写的，网上可以找到很多破解的方案，这里不再赘述。Charles的好处在于功能齐全，界面简单，提供了几乎所有可以用到的代理功能，在MacOS下十分好用，2018年3月之后甚至提供了IOS的版本。下面主要来讲一下Charles的使用。</p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2018/09/27/FE-Charles%E5%B0%8F%E6%8A%84/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/15/Hexo-%E4%B9%9F%E8%83%BD%E6%9E%84%E5%BB%BASPA/">Hexo也能构建SPA</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-15T08:45:26.000Z" itemprop="datePublished">2018-09-15</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/Hexo/" rel="tag">Hexo</a>, <a class="article-tag-link" href="/blog/tags/SPA/" rel="tag">SPA</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="SPA"><a href="#SPA" class="headerlink" title="SPA"></a>SPA</h2><p>单页Web应用（single page web application，SPA），就是只有一张Web页面的应用，是加载单个HTML页面并在用户与应用程序交互时动态更新该页面的Web应用程序。<br>单页面应用的好处是不必使得用户在加载新页面时感觉到闪烁刷新的效果，有更好的用户体验。当然，单页面应用也有其问题，例如首屏渲染问题以及SEO问题，但如果构建的是类似于应用型的web页面的话，SPA的好处是远远大于其弊端的。  </p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2018/09/15/Hexo-%E4%B9%9F%E8%83%BD%E6%9E%84%E5%BB%BASPA/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/12/TIPS-querySelectorAll%E4%B8%80%E4%B8%AA%E5%B0%8F%E5%9D%91/">querySelectorAll一个小坑</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-12T08:44:45.000Z" itemprop="datePublished">2018-09-12</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/tips/" rel="tag">tips</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>首先查看一下querySelectorAll的文档：  </p>
+<h2 id="querySelectorAll"><a href="#querySelectorAll" class="headerlink" title="querySelectorAll"></a>querySelectorAll</h2><p>返回与指定的选择器组匹配的文档中的元素列表 (使用深度优先的先序遍历文档的节点)。返回的对象是 <code>NodeList</code> 。  </p>
+<p>用法：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> elementList = <span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(selectors);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>elementList 是一个静态的 NodeList 类型的对象.</li>
+<li>selectors 是一个由逗号连接的包含一个或多个CSS选择器的字符串.</li>
+<li>如果 selectors参数中包含 <code>CSS伪元素</code>,则返回一个空的elementList.</li>
+<li>如果指定的选择器不合法,则抛出一个<code>SYNTAX_ERR</code> 异常.</li>
+</ul>
+            
+            <p class="article-more-link">
+                <a href="/blog/2018/09/12/TIPS-querySelectorAll%E4%B8%80%E4%B8%AA%E5%B0%8F%E5%9D%91/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/04/Hexo-%E6%B7%BB%E5%8A%A0%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/">Hexo 添加站内搜索功能</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-04T09:28:50.000Z" itemprop="datePublished">2018-09-04</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/Hexo/" rel="tag">Hexo</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>搜索功能的实现最主要是生成一份关键字到站内链接的索引，当用户输入关键字后能够根据索引展示相应的链接。<br>通常，搜索引擎公司（例如Google，百度）会有自己的爬虫，当你将自己的网站地址提交给他们后，他们会用爬虫定期分析你的网站结构，然后生成索引文件并加入自己的索引库中。这样当终端用户输入和你的网站匹配的关键词后，你的网站内的链接就会在结果中显示出来。<br>站内搜索一般就不需要爬虫了，因为，其实最重要的是索引文件，只要你的网站更新的时候同时更新索引文件即可。  </p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2018/09/04/Hexo-%E6%B7%BB%E5%8A%A0%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/02/TIPS-Visual-Studio-Code-%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/">Visual Studio Code 常用快捷键</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-02T15:14:07.000Z" itemprop="datePublished">2018-09-02</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/VScode/" rel="tag">VScode</a>, <a class="article-tag-link" href="/blog/tags/tips/" rel="tag">tips</a>, <a class="article-tag-link" href="/blog/tags/tool/" rel="tag">tool</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>以下的Ctrl键指的是Windows系统下的Ctrl键，在Mac上对应Command键。  </p>
+<h2 id="主命令框"><a href="#主命令框" class="headerlink" title="主命令框"></a>主命令框</h2><p>F1 或 Ctrl+Shift+P: 打开命令面板。在打开的输入框内，可以输入任何命令，例如：  </p>
+<ol>
+<li>按一下 Backspace 会进入到 Ctrl+P 模式</li>
+<li>在 Ctrl+P 下输入 &gt; 可以进入 Ctrl+Shift+P 模式</li>
+</ol>
+<p>在 Ctrl+P 窗口下还可以:</p>
+<ol>
+<li>直接输入文件名，跳转到文件</li>
+<li>? 列出当前可执行的动作</li>
+<li>! 显示 Errors或 Warnings，也可以 Ctrl+Shift+M</li>
+<li>: 跳转到行数，也可以 Ctrl+G 直接进入</li>
+<li>@ 跳转到 symbol（搜索变量或者函数），也可以 Ctrl+Shift+O 直接进入</li>
+<li>@ 根据分类跳转 symbol，查找属性或函数，也可以 Ctrl+Shift+O 后输入:进入</li>
+<li># 根据名字查找 symbol，也可以 Ctrl+T</li>
+</ol>
+            
+            <p class="article-more-link">
+                <a href="/blog/2018/09/02/TIPS-Visual-Studio-Code-%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/08/24/Hexo-%E4%BD%BF%E7%94%A8Hexo%E5%8F%91%E5%B8%83%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%88%B0GithubPages/">使用Hexo发布个人博客到Github Pages</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-08-24T05:11:29.000Z" itemprop="datePublished">2018-08-24</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/Hexo/" rel="tag">Hexo</a>, <a class="article-tag-link" href="/blog/tags/blog/" rel="tag">blog</a>, <a class="article-tag-link" href="/blog/tags/github/" rel="tag">github</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p><a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。Github Pages 是由 Github 提供的一个免费的静态文件部署服务，使用者可以直接将 Github 仓库的静态文件直接发布到 Github 服务器上。本篇讲述如何将 Hexo 博客发布到 Github Pages。</p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2018/08/24/Hexo-%E4%BD%BF%E7%94%A8Hexo%E5%8F%91%E5%B8%83%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%88%B0GithubPages/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/07/13/FE-%E5%89%8D%E7%AB%AF%E7%AE%80%E5%8D%95%E9%9D%A2%E8%AF%95%E9%A2%98/">前端简单面试题</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-07-12T19:37:10.000Z" itemprop="datePublished">2018-07-13</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/algorithm/" rel="tag">algorithm</a>, <a class="article-tag-link" href="/blog/tags/interview/" rel="tag">interview</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>该文章用来记录一些常见的前端简单面试题，这些题目部分是因为比较细碎，部分是比较偏门（对某个不常用功能的深入知识），部分是因为还没来得及，所以没有单独列出文章来讲述。  </p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2018/07/13/FE-%E5%89%8D%E7%AB%AF%E7%AE%80%E5%8D%95%E9%9D%A2%E8%AF%95%E9%A2%98/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        XSS攻击 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="XSS, 即为（Cross Site Scripting）, 中文名为跨站脚本, 是发生在目标用户的浏览器层面上的攻击方式，当渲染DOM树的过程成发生了不在预期内执行的JS代码时，就发生了XSS攻击。  XSS攻击方式反射型 XSS反射型XSS，也叫非持久型XSS，是指发生请求时，XSS代码出现在请求URL中，作为参数提交到服务器，服务器解析并响应。响应结果中包含XSS代码，最后浏览器解析并执行。  从概念上可以看出，反射型XSS代码是首先出现在URL中的，然后需要服务端解析，最后需要浏览" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#XSS%E6%94%BB%E5%87%BB%E6%96%B9%E5%BC%8F"><span class="toc-text">XSS攻击方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E5%9E%8B-XSS"><span class="toc-text">反射型 XSS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%9E%8B-XSS"><span class="toc-text">存储型 XSS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM-XSS"><span class="toc-text">DOM XSS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XSS%E5%8D%B1%E5%AE%B3"><span class="toc-text">XSS危害</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XSS%E9%98%B2%E5%BE%A1"><span class="toc-text">XSS防御</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9cookie%E7%9A%84%E4%BF%9D%E6%8A%A4"><span class="toc-text">对cookie的保护</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E6%95%B0%E6%8D%AE%E7%9A%84%E5%A4%84%E7%90%86"><span class="toc-text">对用户输入数据的处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE-CSP"><span class="toc-text">设置 CSP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE-X-XSS-Protection"><span class="toc-text">设置 X-XSS-Protection</span></a></li></ol></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            XSS攻击
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-09T15:17:07.000Z" itemprop="datePublished">2018-09-09</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/XSS/" rel="tag">XSS</a>, <a class="article-tag-link" href="/blog/tags/security/" rel="tag">security</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>XSS, 即为（Cross Site Scripting）, 中文名为跨站脚本, 是发生在目标用户的浏览器层面上的攻击方式，当渲染DOM树的过程成发生了不在预期内执行的JS代码时，就发生了XSS攻击。  </p>
+<span id="more"></span>
+<h2 id="XSS攻击方式"><a href="#XSS攻击方式" class="headerlink" title="XSS攻击方式"></a>XSS攻击方式</h2><h3 id="反射型-XSS"><a href="#反射型-XSS" class="headerlink" title="反射型 XSS"></a>反射型 XSS</h3><p>反射型XSS，也叫非持久型XSS，是指发生请求时，XSS代码出现在请求URL中，作为参数提交到服务器，服务器解析并响应。响应结果中包含XSS代码，最后浏览器解析并执行。  </p>
+<p>从概念上可以看出，反射型XSS代码是首先出现在URL中的，然后需要服务端解析，最后需要浏览器解析之后XSS代码才能够攻击。  </p>
+<p>例如：<br>使用express起一个web服务器，然后设置一下请求接口。通过ajax的GET请求将参数发往服务器，服务器解析成json后响应。将返回的数据解析后显示到页面上。（没有对返回的数据进行解码和过滤等操作。）  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">&quot;txt&quot;</span> <span class="attr">id</span>=<span class="string">&quot;txt&quot;</span> <span class="attr">cols</span>=<span class="string">&quot;80&quot;</span> <span class="attr">rows</span>=<span class="string">&quot;10&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">id</span>=<span class="string">&quot;test&quot;</span>&gt;</span>测试<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//客户端代码</span></span><br><span class="line"><span class="keyword">var</span> test = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#test&#x27;</span>)</span><br><span class="line">test.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> url = <span class="string">`/test?test=<span class="subst">$&#123;txt.value&#125;</span>`</span>   <span class="comment">// 1. 发送一个GET请求</span></span><br><span class="line">  <span class="keyword">var</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>()</span><br><span class="line">  xhr.<span class="property">onreadystatechange</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (xhr.<span class="property">readyState</span> === <span class="number">4</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> ((xhr.<span class="property">status</span> &gt;= <span class="number">200</span> &amp;&amp; xhr.<span class="property">status</span> &lt; <span class="number">300</span>) || xhr.<span class="property">status</span> === <span class="number">304</span>) &#123;</span><br><span class="line">        <span class="comment">// 3. 客户端解析JSON，并执行</span></span><br><span class="line">        <span class="keyword">var</span> str = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(xhr.<span class="property">responseText</span>).<span class="property">test</span></span><br><span class="line">        <span class="keyword">var</span> node = <span class="string">`<span class="subst">$&#123;str&#125;</span>`</span></span><br><span class="line">        <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">insertAdjacentHTML</span>(<span class="string">&#x27;beforeend&#x27;</span>, node)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;error&#x27;</span>, xhr.<span class="property">responseText</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  xhr.<span class="title function_">open</span>(<span class="string">&#x27;GET&#x27;</span>, url, <span class="literal">true</span>)</span><br><span class="line">  xhr.<span class="title function_">send</span>(<span class="literal">null</span>)</span><br><span class="line">&#125;, <span class="literal">false</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//服务器代码</span></span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> router = express.<span class="title class_">Router</span>();</span><br><span class="line"></span><br><span class="line">router.<span class="title function_">get</span>(<span class="string">&#x27;/test&#x27;</span>, <span class="keyword">function</span> (<span class="params">req, res, next</span>) &#123;</span><br><span class="line"> <span class="comment">// 2. 服务端解析成JSON后响应</span></span><br><span class="line">  res.<span class="title function_">json</span>(&#123;</span><br><span class="line">    <span class="attr">test</span>: req.<span class="property">query</span>.<span class="property">test</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>现在我们通过给textarea添加一段有攻击目的的img标签，<br><code>&lt;img src=&quot;null&quot; onerror=&#39;alert(document.cookie)&#39; /&gt;</code></p>
+<p>现在，我们点击&lt;测试&gt;按钮，一个XSS攻击就发生了。  </p>
+<p>实际上，我们只是模拟攻击，通过alert获取到了个人的cookie信息。但是如果是黑客的话，他们会注入一段第三方的js代码，然后将获取到的cookie信息存到他们的服务器上。这样的话黑客们就有机会拿到我们的身份认证做一些违法的事情了。  </p>
+<h3 id="存储型-XSS"><a href="#存储型-XSS" class="headerlink" title="存储型 XSS"></a>存储型 XSS</h3><p>存储型XSS，也叫持久型XSS，主要是将XSS代码发送到服务器并存储在服务器中（不管是数据库、内存还是文件系统等），在用户下次请求页面的时候服务器返回XSS代码并在浏览器中运行。<br>最典型的就是留言板XSS。用户提交了一条包含XSS代码的留言到数据库。当目标用户查询留言时，那些留言的内容会从服务器解析之后加载出来。浏览器发现有XSS代码，就当做正常的HTML和JS解析执行。XSS攻击就发生了。  </p>
+<h3 id="DOM-XSS"><a href="#DOM-XSS" class="headerlink" title="DOM XSS"></a>DOM XSS</h3><p>DOM XSS代码不需要服务器端的解析响应的直接参与，通常是通过浏览器端解析用户输入的内容并直接在页面执行导致的。</p>
+<p>例如：  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span>(<span class="string">&quot;var x = &#x27;&quot;</span> + location.<span class="property">hash</span> + <span class="string">&quot;&#x27;&quot;</span>);</span><br><span class="line"><span class="comment">// url为</span></span><br><span class="line"><span class="string">`https://www.examle.com/index.html#&#x27;;alert(document.cookie);`</span></span><br></pre></td></tr></table></figure>
+<p>以下 API 均需要注意：  </p>
+<p>动态改变 DOM 的 API:  </p>
+<ul>
+<li>innerHTML/outerHTML</li>
+<li>appendChild/replaceChild/insertBefore</li>
+<li>setAttribute</li>
+<li>document.write/document.writeln</li>
+</ul>
+<p>动态代码执行：  </p>
+<ul>
+<li>document.execCommand</li>
+<li>eval</li>
+<li>setTimeout/setInterval</li>
+<li>new Function()</li>
+</ul>
+<p>用户输入来源：  </p>
+<ul>
+<li>location.href</li>
+<li>location.hash</li>
+<li>document.URL</li>
+<li>document.cookie</li>
+<li>localStorage</li>
+<li>sessionStorage</li>
+<li>indexedDB</li>
+<li>window.opener</li>
+</ul>
+<h2 id="XSS危害"><a href="#XSS危害" class="headerlink" title="XSS危害"></a>XSS危害</h2><ol>
+<li>通过 document.cookie 盗取 cookie</li>
+<li>使用 JS 或 CSS 破坏页面正常的结构、样式与功能，篡改页面</li>
+<li>流量劫持（通过 window.location.href 跳转到其他页面）</li>
+<li>Dos攻击：利用合理的客户端请求来占用过多的服务器资源，从而使合法用户无法得到服务器响应</li>
+<li>利用iframe、frame、XMLHttpRequest等方式，以（被攻击）用户的身份执行一些提交行为，或执行一些一般的如发微博、加好友、发私信等操作</li>
+<li>利用可被攻击的域受到其他域信任的特点，以受信任来源的身份请求一些平时不允许的操作，如进行不当的投票活动</li>
+</ol>
+<h2 id="XSS防御"><a href="#XSS防御" class="headerlink" title="XSS防御"></a>XSS防御</h2><p>从以上的XSS攻击样例可以看出，我们不能原样地将用户输入的数据直接存到服务器，需要对数据进行一些处理。以上的代码出现的一些问题如下</p>
+<ul>
+<li>没有过滤危险的DOM节点。如具有执行脚本能力的script, 具有显示广告和色情图片的img, 具有改变样式的link, style, 具有内嵌页面的iframe, frame等元素节点。</li>
+<li>没有过滤危险的属性节点。如事件, style, src, href等</li>
+<li>没有对 cookie 设置 httpOnly 。</li>
+</ul>
+<p>解决方法如下:  </p>
+<h3 id="对cookie的保护"><a href="#对cookie的保护" class="headerlink" title="对cookie的保护"></a>对cookie的保护</h3><p>对重要的 cookie 设置 httpOnly , 防止客户端通过 document.cookie 读取 cookie 。</p>
+<h3 id="对用户输入数据的处理"><a href="#对用户输入数据的处理" class="headerlink" title="对用户输入数据的处理"></a>对用户输入数据的处理</h3><ul>
+<li>编码：不能对用户输入的内容都保持原样，对用户输入的数据进行字符实体编码。</li>
+<li>解码：原样显示内容的时候解码。</li>
+<li>过滤：把输入的一些不合法的字符过滤掉，从而保证安全性。如移除用户上传的DOM属性，如 onerror ，移除用户上传的 style、iframe、script 节点等。</li>
+</ul>
+<h3 id="设置-CSP"><a href="#设置-CSP" class="headerlink" title="设置 CSP"></a>设置 CSP</h3><p>CSP （Content-Security-Policy）内容安全策略，是一个额外的安全层，通过指定有效域——即浏览器认可的可执行脚本的有效来源——使服务器管理者有能力减少或消除XSS攻击所依赖的载体。</p>
+<h3 id="设置-X-XSS-Protection"><a href="#设置-X-XSS-Protection" class="headerlink" title="设置 X-XSS-Protection"></a>设置 X-XSS-Protection</h3><p>HTTP X-XSS-Protection 响应头是 Internet Explorer，Chrome 和 Safari 的一个特性，当检测到跨站脚本攻击（XSS）时，浏览器将停止加载页面。</p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

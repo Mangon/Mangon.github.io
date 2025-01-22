@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        运维危险命令合集 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="命令作用类型危险级别rm -rfrm 命令用于在 Linux 系统下删除文件文件夹 -r 参数用于递归删除文件夹 -f 参数用于强制删除(不经过询问)恶意删除中rm -rf /递归强制删除根目录下的所有文件与文件夹恶意删除高rm -rf *递归强制删除当前目录的所有文件恶意删除高rm -rf .递归强制删除当前目录的所有文件夹恶意删除中mv / /dev/null该命令会将文件夹移动到 /dev/null 下，在 Linux" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <div class="author-meta">
+                
+                <div class="author-avatar">
+                    <a href="/blog/">
+                        <img src="/blog/images/avatar.jpeg" title="Mangon">
+                    </a>
+                </div>
+                
+                <div class="author-name">Mangon</div>
+                <div class="author-work">前端开发工程师</div>
+                <div class="author-location">
+                    <i class="icon-location vm"></i>
+                    <span class="vm">中国北京</span>
+                </div>
+                
+                <div class="author-thread-wrap">
+                    <div class="author-threads clearfix">
+                        
+                            <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
+                        
+                        
+                        
+                            <a class="thread-item" href="https://mangon.cn/blog/atom.xml" target="_blank" rel="external noopener noreferrer"><i class="icon-favorite"></i></a>
+                        
+                        
+                            <a class="thread-item" href="https://mangon.cn/resume" target="_blank" rel="external noopener noreferrer"><i class="icon-circle-more"></i></a>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            运维危险命令合集
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-12-24T03:30:35.000Z" itemprop="datePublished">2021-12-24</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/security/" rel="tag">security</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+<th>类型</th>
+<th>危险级别</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rm -rf</code></td>
+<td><code>rm</code> 命令用于在 Linux 系统下删除文件文件夹 <code>-r</code> 参数用于递归删除文件夹 <code>-f</code> 参数用于强制删除(不经过询问)</td>
+<td>恶意删除</td>
+<td>中</td>
+</tr>
+<tr>
+<td><code>rm -rf /</code></td>
+<td>递归强制删除根目录下的所有文件与文件夹</td>
+<td>恶意删除</td>
+<td>高</td>
+</tr>
+<tr>
+<td><code>rm -rf *</code></td>
+<td>递归强制删除当前目录的所有文件</td>
+<td>恶意删除</td>
+<td>高</td>
+</tr>
+<tr>
+<td><code>rm -rf .</code></td>
+<td>递归强制删除当前目录的所有文件夹</td>
+<td>恶意删除</td>
+<td>中</td>
+</tr>
+<tr>
+<td><code>mv / /dev/null</code></td>
+<td>该命令会将文件夹移动到 /dev/null 下，在 Linux 系统中 /dev/null 是一个特殊的文件，所有写入他的数据都会被清除，然后返回操作成功</td>
+<td>恶意删除</td>
+<td>低</td>
+</tr>
+<tr>
+<td><code>:()&#123;:｜:&amp;&#125;;:</code></td>
+<td>fork 炸弹，具体操作是通过定义一个名为 ‘:‘ 的函数，它会调用自己两次，一次在前台另一次运行在后台，它会反复的执行下去直到系统崩溃</td>
+<td>资源耗尽</td>
+<td>高</td>
+</tr>
+<tr>
+<td><code>echo &quot; &quot; &gt; /dev/sda</code></td>
+<td>/dev 目录下存放的是设备的文件描述符。直接往设备描述符中写入数据，将破坏整个设备</td>
+<td>直接操作设备文件描述符</td>
+<td>高</td>
+</tr>
+<tr>
+<td><code>mkfs.ext3 /dev/sda</code></td>
+<td>把硬盘格式化成ext3文件系统，在执行这个命令后你的块设备（硬盘驱动器）会被格式化，直接让你的系统达到不可恢复的阶段</td>
+<td>直接操作设备文件描述符</td>
+<td>高</td>
+</tr>
+<tr>
+<td><code>fdisk /dev/sda</code></td>
+<td>重建分区</td>
+<td>直接操作设备文件描述符</td>
+<td>高</td>
+</tr>
+<tr>
+<td><code>dd if=/dev/zero of=/dev/sda</code> <code>dd if=/dev/random of=/dev/sda</code></td>
+<td>直接写入数据到磁盘设备文件描述符</td>
+<td>直接操作设备文件描述符</td>
+<td>高</td>
+</tr>
+<tr>
+<td><code>&gt; file</code></td>
+<td>该命令常用来清空文件内容或记录命令输出，用户可能真正想用的是 <code>&gt;&gt;</code>，即累加新的输出到文件，而不是刷新那个文件</td>
+<td>恶意命令执行</td>
+<td>低</td>
+</tr>
+<tr>
+<td><code>export HISTCONTROL = ignorespace</code></td>
+<td>在命令前面插入空格，这条命令会被 shell 忽略，也就意味着它不会出现在历史记录中。但是这种方法有个前提，只有在你的环境变量 HISTCONTROL 设置为 “ignorespace” 或者 “ignoreboth” 才会起作用。在大多数情况下，这个是默认值，我们无需设置这个环境变量。</td>
+<td>隐藏命令</td>
+<td>低</td>
+</tr>
+<tr>
+<td><code>ln -s /dev/null ~/.bash_history</code></td>
+<td>history 记录存放在 <code>~/.bash_history</code> 文件中，把写入 <code>~/.bash_history</code> 使用软连接转移写入到其他的地方可以隐藏命令历史</td>
+<td>隐藏命令</td>
+<td>低</td>
+</tr>
+<tr>
+<td><code>^foo^bar</code></td>
+<td>该命令用来编辑先前运行的命令而无需重打整个命令，如果用户没有彻底检查命令，可能调用不符合预期的命令</td>
+<td>隐式调用</td>
+<td>低</td>
+</tr>
+</tbody>
+</table>
+<span id="more"></span>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>名称</th>
+<th>正则表达式</th>
+<th>威胁等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>反弹shell</td>
+<td>反弹shell</td>
+<td><code>exec\s*\d*&lt;&gt;\s*/dev/tcp/(.*)/(.*)</code></td>
+<td>高危</td>
+</tr>
+<tr>
+<td>反弹shell</td>
+<td>利用bash反弹shell</td>
+<td><code>bash\s+-i\s*&gt;&amp;\s+\/dev\/tcp\/\d+\.\d+\.\d+\.\d+\/\d+</code></td>
+<td>高危</td>
+</tr>
+<tr>
+<td>agent威胁操作</td>
+<td>杀掉agent进程</td>
+<td><code>pkill\s+titanagent</code></td>
+<td>高危</td>
+</tr>
+<tr>
+<td>agent威胁操作</td>
+<td>删除agent配置</td>
+<td><code>\s*rm\s+-\w+\s+\/etc\/titan</code></td>
+<td>高危</td>
+</tr>
+<tr>
+<td>端口转发</td>
+<td>portmap端口转发</td>
+<td><code>portmap\s+\-m</code></td>
+<td>高危</td>
+</tr>
+<tr>
+<td>代理</td>
+<td>利用代理软件lcx</td>
+<td><code>lcx(\.exe)*\s\-(slave｜listen)</code></td>
+<td>高危</td>
+</tr>
+<tr>
+<td>代理</td>
+<td>rcsocks执行socks反向代理</td>
+<td><code>rcsocks\s+-\w</code></td>
+<td>高危</td>
+</tr>
+<tr>
+<td>代理</td>
+<td>使用ssocks建立socks反向代理</td>
+<td><code>rssocks\s*-vv</code></td>
+<td>高危</td>
+</tr>
+<tr>
+<td>代理</td>
+<td>rssocks创建socks反向代理</td>
+<td><code>^rssocks&lt;&gt;-vv</code></td>
+<td>高危</td>
+</tr>
+<tr>
+<td>代理</td>
+<td>利用$IFS绕过，执行rssocks</td>
+<td><code>rssocks\$IFS-vv</code></td>
+<td>高危</td>
+</tr>
+<tr>
+<td>代理</td>
+<td>利用{}绕过，rssocks执行socks反向代理</td>
+<td><code>\&#123;rssocks,-vv\&#125;</code></td>
+<td>高危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>清除替换系统安全日志</td>
+<td><code>(ca｜ech)[t｜o]*(.*)\w+\s*(?=\&gt;)&gt;(?&lt;=&gt;)\s*[\w/]+secure\b</code></td>
+<td>高危</td>
+</tr>
+<tr>
+<td>后门</td>
+<td>设置ssh任意密码登录后门</td>
+<td><code>ln\s*\-sf\s*/usr/sbin/sshd\s(.*)</code></td>
+<td>高危</td>
+</tr>
+<tr>
+<td>后门</td>
+<td>替换ssh密钥</td>
+<td><code>^echo\s+[&#39;｜&quot;]ssh-rsa\s+((.｜\n)*)[&#39;｜&quot;]\s*&gt;&gt;\.ssh\/authorized_keys</code></td>
+<td>高危</td>
+</tr>
+<tr>
+<td>后门</td>
+<td>创建任意密码登录后门</td>
+<td><code>ln\s+-\w+\s+(\/\w+)+\/sshd\s+(\/\w+)+\/su;(\/\w+)\/su\s+-\w+=\d+</code></td>
+<td>高危</td>
+</tr>
+<tr>
+<td>后门</td>
+<td>使用curl安装后门的连贯操作</td>
+<td><code>curl\s*http.*&gt;.*;.*chmod\s*777\s*(.*)\s*;\s*</code></td>
+<td>高危</td>
+</tr>
+<tr>
+<td>后门</td>
+<td>使用wget安装后门的连贯操作</td>
+<td><code>wget\s*http.*-O.*;.*chmod\s*777\s*(.*)\s*;\s*</code></td>
+<td>高危</td>
+</tr>
+<tr>
+<td>可疑命令</td>
+<td>使用 hydra 进行密码爆破</td>
+<td><code>hydra\s(.*)</code></td>
+<td>高危</td>
+</tr>
+<tr>
+<td>可疑命令</td>
+<td>利用变量绕过执行系统命令</td>
+<td><code>^\w+=\$[&#39;｜&quot;]\\x20.+[&#39;｜&quot;]\&amp;\&amp;.+\$\w+</code></td>
+<td>高危</td>
+</tr>
+<tr>
+<td>可疑命令</td>
+<td>vigr修改shadow文件</td>
+<td><code>^(vigr｜\/usr\/sbin\/vigr)\s+-s</code></td>
+<td>高危</td>
+</tr>
+<tr>
+<td>可疑命令</td>
+<td>vipw修改shadow文件</td>
+<td><code>^(vipw｜\/usr\/sbin\/vipw)\s+-+s</code></td>
+<td>高危</td>
+</tr>
+<tr>
+<td>代理</td>
+<td>使用代理软件ngrok</td>
+<td><code>ngrok\s+-(domain｜config)</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>代理</td>
+<td>使用代理软件frp</td>
+<td><code>frp[cs]\s+-c\s+\w+\.ini</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>代理</td>
+<td>使用代理软件tgcd</td>
+<td><code>tgcd\s+-[CLF]</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>代理</td>
+<td>使用代理软件iox</td>
+<td><code>iox\s+(fwd｜proxy)</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>代理</td>
+<td>使用代理软件natbypass</td>
+<td><code>nb\s+-(listen｜tran｜slave)</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>代理</td>
+<td>使用http代理转发</td>
+<td><code>python\s+reGeorgSocksProxy\.py</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>代理</td>
+<td>利用{}绕过，执行rssocks</td>
+<td><code>\&#123;\s*rssocks\s*,\s*\-vv\s*\&#125;</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>agent威胁操作</td>
+<td>卸载agent</td>
+<td><code>\/titan\/agent\/install.sh\s+(disclean｜uninstall)</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>后门</td>
+<td>ssh软连接后门准备工作，复制pam.d下的文件</td>
+<td><code>^cp\s*\/etc\/pam.d/\w+\s+\/\w+(.*)</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>后门</td>
+<td>ssh软连接后门安装</td>
+<td><code>ln\s*-sf\s*\/usr\/sbin\/sshd\s*\/\w+\/\w+\s*;\s*\/\w+\/\w+\s*-[o｜O][p｜P][o｜O][r｜R][t｜T]\s*=\s*[0-9]*</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>后门</td>
+<td>替换ssh密钥</td>
+<td><code>^echo\s+[&#39;｜&quot;]ssh-rsa\s+((.｜\n)*)[&#39;｜&quot;]\s*&gt;&gt;\.ssh\/authorized_keys</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>arp 欺骗</td>
+<td>使用 arp-dsniff 进行 arp 欺骗</td>
+<td><code>dsniff\s*</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>arp 欺骗</td>
+<td>使用 ettercap 进行 arp 欺骗</td>
+<td><code>^ettercap\s*</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>arp 欺骗</td>
+<td>使用 arpsniffer 进行 arp 欺骗</td>
+<td><code>arpsniffer\s(.*)</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>arp 欺骗</td>
+<td>使用 arpspoof 进行 arp 欺骗</td>
+<td><code>arpspoof\s*</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>设置操作命令不记录进日志a</td>
+<td><code>HISTFILESIZE\s*=\s*[0-9]</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>设置操作命令不记录进日志b</td>
+<td><code>HISTFILESIZE\s*=\s*10</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>设置操作命令不记录进日志c</td>
+<td><code>HISTSIZE\s*=\s*[0-9]</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>设置操作命令不记录进日志d</td>
+<td><code>^history\s*-c</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>设置操作命令不记录进日志e</td>
+<td><code>HISTSIZE\s*=\s*10</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>设置操作命令不记录进日志f</td>
+<td><code>unset(\s*HIST[A-Z]+)+</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>查看或修改历史记录</td>
+<td><code>(cat｜vim｜vi｜nano)\s+.*\.\w+_history</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>清除系统中 wtmp 记录</td>
+<td><code>wtmpclean\s(.*)</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>清除替换用户登录信息</td>
+<td><code>(ca｜ech)[t｜o]*(.*)\w+\s*(?=\&gt;)&gt;(?&lt;=&gt;)\s*[\w/]+lastlog\b</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>清理bash历史记录日志</td>
+<td><code>cat\s*\/dev\/null\s*\&gt;\s*([~\/a-zA-Z0-9\.])+\.bash_history</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>清除替换web日志</td>
+<td><code>(ca｜ech)[t｜o]*(.*)\w+\s*(?=\&gt;)&gt;(?&lt;=&gt;)\s*[\w/]+access_log\b</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>设置操作命令不记录进日志</td>
+<td><code>set\s*\+o\s*history</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>清除历史记录</td>
+<td><code>history\s*-c\s*</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>清除替换utmp日志</td>
+<td><code>(ca｜ech)[t｜o]*(.*)\w+\s*(?=\&gt;)&gt;(?&lt;=&gt;)\s*[\w/]+utmp\b</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>清除替换messages日志系统</td>
+<td><code>(ca｜ech)[t｜o]*(.*)\w+\s*(?=\&gt;)&gt;(?&lt;=&gt;)\s*[\w/]+messages\b</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>利用{}绕过,设置操作命令不记录进日志</td>
+<td><code>\&#123;\s*export\s*,\s*HISTSIZE=0\s*\&#125;</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>清除替换记录日志</td>
+<td><code>(ca｜ech)[t｜o]*(.*)\w+\s*(?=\&gt;)&gt;(?&lt;=&gt;)\s*[\w/]+wtmp\b</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>设置操作命令不记录进日志</td>
+<td><code>export\$IFSHISTFILE\s*=\s*\/dev\/null</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>利用{}绕过,不记录历史</td>
+<td><code>\&#123;\s*unset\s*,\s*HIST[A-Z]+\s*\&#125;</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>使用logtamper修改linux日志</td>
+<td><code>logtamper-static\s(.*)</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>清除替换记录错误的登录信息</td>
+<td><code>(ca｜ech)[t｜o]*(.*)\w+\s*(?=\&gt;)&gt;(?&lt;=&gt;)\s*[\w/]+btmp\b</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>利用{}绕过,查看或修改历史文件</td>
+<td><code>\&#123;(vi｜vim｜cat),(\/.+\/)*\.bash_history\&#125;</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>设置操作命令不记录进日志</td>
+<td><code>export\s*HISTSIZE=0</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>清除替换记录web错误日志</td>
+<td><code>(ca｜ech)[t｜o]*(.*)\w+\s*(?=\&gt;)&gt;(?&lt;=&gt;)\s*[\w/]+error_log\b</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>设置操作命令不记录进日志</td>
+<td><code>export\s*HISTFILE=\/dev\/null</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>利用$IFS绕过查看或修改mysql历史记录</td>
+<td><code>(vim｜cat｜vi)\$IFS.+\.mysql_history</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>清除替换登录认证日志</td>
+<td><code>(ca｜ech)[t｜o]*(.*)\w+\s*(?=\&gt;)&gt;(?&lt;=&gt;)\s*[\w/]+auth.log\b</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>利用{}绕过,设置操作命令不记录进日志</td>
+<td><code>^\&#123;export,HISTFILE\s*=\s*\/dev\/null\&#125;</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>可疑命令</td>
+<td>nmap端口扫描</td>
+<td><code>^\s*nmap\s(.*)</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>可疑命令</td>
+<td>查看或修改host key</td>
+<td><code>(cat｜vim｜vi)\s*(.)*known_hosts</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>可疑命令</td>
+<td>查看etc目录下的passwd文件</td>
+<td><code>^\s*&lt;\/etc\/passwd\s+grep\s+([a-z]｜[A-Z]｜[0-9]｜\:｜\/)+$</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>可疑命令</td>
+<td>查看系统数据库passwd相关记录</td>
+<td><code>getent\s*password\s*\S*</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>可疑命令</td>
+<td>使用python执行切换shell</td>
+<td><code>pty\.spawn\((&#39;｜&quot;)\/bin\/(bash｜sh)(&#39;｜&quot;)\)</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>可疑命令</td>
+<td>vigr修改密码文件</td>
+<td><code>^(vigr｜\/usr\/sbin\/vigr)\s+-p</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>可疑命令</td>
+<td>vipw修改密码文件</td>
+<td><code>^(vipw｜\/usr\/sbin\/vipw)\s+-p</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>可疑命令</td>
+<td>查看etc目录下shadow文件</td>
+<td><code>^\s*&lt;\/etc\/shadow\s+grep\s+([a-z]｜[A-Z]｜[0-9]｜\:｜\/)+$</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>可疑命令</td>
+<td>从github下载或提交代码</td>
+<td><code>^git((?!clone｜commit).)*github.*</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>明文登录</td>
+<td>MongoDB明文密码登录</td>
+<td>命中示例：<code>mongo 127.0.0.1:27017/admin -u superuser -p pwd</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>明文登录</td>
+<td>MySQL明文密码登录</td>
+<td>命中示例：<code>mysql -P 3306 -u root -p 123456</code></td>
+<td>中危</td>
+</tr>
+<tr>
+<td>代理</td>
+<td>利用{}绕过,rssocks执行socks反向代理</td>
+<td><code>\&#123;rssocks,-vv\&#125;</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>后门</td>
+<td>ln软连接sshd任意密码登录后门</td>
+<td><code>ln\s*-sf\s*\/usr\/sbin\/sshd.*?(su｜chsh｜chfn);.*?-[oO][pP][oO][rR][tT]=</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>反弹shell</td>
+<td>ncat反弹shell</td>
+<td><code>ncat\s+--ssl.*?\/bin\/bash</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>反弹shell</td>
+<td>exec重定向反弹shell</td>
+<td><code>\bexec\s*\d+&lt;&gt;\/dev\/(｜udp).*?while\s*read\s*.*?done</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>反弹shell</td>
+<td>node反弹shell</td>
+<td><code>node.*?-e.*?.*?require\([&#39;&quot;]child_process[&#39;&quot;]\)\.spawn.*?(bash｜sh).*?connect.*?pipe</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>反弹shell</td>
+<td>telnet双端口反弹shell</td>
+<td><code>telnet\s+\d+\.\d+\.\d+\.\d+.*?bash.*?telnet\s+\d+\.\d+\.\d+\.\d+</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>反弹shell</td>
+<td>python反弹shell.b</td>
+<td><code>import\s+pty.*?\.spawn\(.*?\).*?&lt;&gt;/dev/(tcp｜udp)/.*?/\d+.*?&gt;.*?</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>反弹shell</td>
+<td>Ruby反弹shell.a</td>
+<td><code>ruby(\s+｜\$IFS)-rsocket(\s+｜\$IFS)-ropenssl(\s+｜\$IFS)-e\s*[&#39;｜&quot;]?.*?=OpenSSL::SSL::SSLSocket.new\(TCPSocket.new\(</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>反弹shell</td>
+<td>nc反弹shell</td>
+<td><code>cat\s+.*?\｜.*?\s+bash\s+.*?\｜.*?\s+nc\s+.*?</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>反弹shell</td>
+<td>Ruby反弹shell.b</td>
+<td><code>ruby(\s+｜\$IFS)-rsocket(\s+｜\$IFS)-e\s*[&#39;｜&quot;]?.*?=TCPSocket\.((new.*?｜O.popen)｜(open.*?\.to_i;exec))</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>反弹shell</td>
+<td>socat反弹shell</td>
+<td><code>socat\s*exec:[&#39;｜&quot;]?bash(\s-li)?[&#39;｜&quot;]?.*?\d&#123;1,3&#125;\.\d&#123;1,3&#125;\.\d&#123;1,3&#125;\.\d&#123;1,3&#125;:\d&#123;1,5&#125;</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>反弹shell</td>
+<td>php反弹fsockopen</td>
+<td><code>php\s*-r\s*[&#39;｜&quot;]?.*?fsockopen\(.*?\);.*?((exec｜proc_open｜shell_exec｜system｜popen)\(.*?\);｜.*?(bash｜sh｜dash｜tcsh｜csh｜ksh｜zsh))</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>反弹shell</td>
+<td>rm/mkfifo/sh/nc反弹shell</td>
+<td><code>rm.*?;mkfifo.*?;cat.*?\｜.*?(sh｜bash).*?\｜nc</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>反弹shell</td>
+<td>socket/tchsh反弹shell</td>
+<td><code>echo\s[&quot;&#39;].*?\[socket.*?while.*?puts.*?flush.*[&#39;&quot;]\s*\｜\s*tclsh</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>反弹shell</td>
+<td>awk反弹shell</td>
+<td><code>g?awk\s+[&#39;&quot;]BEGIN\s*\&#123;.*?\/inet\/tcp\/0\/\d+\.\d+\.\d+\.\d+\/\d+.*?(for｜while).*?getline.*?while.*?getline</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>反弹shell</td>
+<td>perl反弹shell</td>
+<td><code>[&#39;&quot;].*?IO::Socket::(SSL｜INET).*?\d+\.\d+\.\d+\.\d+:\d+.*?((while.*?sysread.*?syswrite)｜(fdopen.*?fdopen.*?system\$_\s+while))</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>反弹shell</td>
+<td>python反弹shell.a</td>
+<td><code>import.*?socket.*?socket\(.*?\).*?connect\(.*?\).*?((Popen\(.*?PIPE.*?\))｜(os\.dup2.*?(call｜pty\.spawn)\())</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>反弹shell</td>
+<td>lua反弹shell</td>
+<td><code>use .*?Socket.*?socket\(.*?SOCK_STREAM.*?connect.*?open.*?exec.*?(sh｜bash)</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>反弹shell</td>
+<td>mkfifo/openssl反弹shell</td>
+<td><code>mkfifo\s+\/.*?;\s*\/bin\/sh.*?\｜\s*openssl\s+s_client.*?&gt;</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>反弹shell</td>
+<td>bash反弹shell</td>
+<td><code>.*?(bash｜sh｜dash｜tcsh｜csh｜ksh｜zsh).*?\/dev\/(tcp｜udp)\/\d+\.\d+\.\d+\.\d+\/\d+\s+0(&lt;｜&gt;)&amp;</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>反弹shell</td>
+<td>exec反弹shell</td>
+<td><code>exec\s*\d*&lt;&gt;\s*/dev/(tcp｜upd)/(.*)/(.*)</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>反弹shell</td>
+<td>php_socket反弹shell</td>
+<td><code>php\s+-r\s*[&quot;&#39;].*?stream_socket_client\(.*?STREAM_CLIENT_CONNECT.*?while.*?exec</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>查看或修改mysql历史记录</td>
+<td><code>(cat｜vim｜vi)\s*(.)*\.mysql_history</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>清理痕迹</td>
+<td>利用{},查看或修改mysql历史记录</td>
+<td><code>\&#123;\s*(vim｜vi｜cat)\s*,\s*.+\.mysql_histroy\&#125;</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>可疑命令</td>
+<td>增加uid为0的系统账号</td>
+<td><code>useradd\s*-o\s*-u\s*0\s*</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>可疑命令</td>
+<td>python/base64执行</td>
+<td><code>python.*?-c.*?exec.*?base64</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>可疑命令</td>
+<td>sudo提权漏洞利用</td>
+<td><code>sudo\s*-u#(4294967295｜-1)\s*.*</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>可疑命令</td>
+<td>使用netcat工具</td>
+<td><code>netcat\s(.*)</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>可疑命令</td>
+<td>利用{}绕过执行netcat</td>
+<td><code>\&#123;\s*netcat\s*,\s*.+\&#125;</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>可疑命令</td>
+<td>vigr修改组文件</td>
+<td><code>^(vigr｜\/usr\/sbin\/vigr)\s+-g</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>可疑命令</td>
+<td>vipw修改组文件</td>
+<td><code>^(vipw｜\/usr\/sbin\/vipw)\s+-g</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>可疑命令</td>
+<td>修改权限，利用$IFS绕过</td>
+<td><code>chmod(\$IFS([0-9a-zA-Z\.\&#39;])+)+</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>可疑命令</td>
+<td>切换shell.a</td>
+<td><code>^ +\.\/(｜z｜da｜tc｜c｜k)sh$</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>可疑命令</td>
+<td>切换shell.b</td>
+<td><code>^\s*\/bin\/(｜z｜da｜tc｜c｜k)sh$</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>可疑命令</td>
+<td>ncat测试端口连通性</td>
+<td><code>ncat\s+\d+\.\d+\.\d+\.\d+\s+\d+</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>可疑命令</td>
+<td>查看/etc/passwd用户数</td>
+<td><code>wc\s+-l\s+\&lt;\s+\/etc\/passwd</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>可疑命令</td>
+<td>wipe删除文件或目录</td>
+<td><code>wipe\s(.*)</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>可疑命令</td>
+<td>查看/etc/shadow</td>
+<td><code>^\s*&lt;\/etc\/shadow\s+grep\s+([a-z]｜[A-Z]｜[0-9]｜\:｜\/)+$</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>可疑命令</td>
+<td>查看内核版本</td>
+<td><code>ls\s+\/boot(\/)*\s*$</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>可疑命令</td>
+<td>nc规则</td>
+<td><code>^nc(\s+-\w+)+</code></td>
+<td>低危</td>
+</tr>
+<tr>
+<td>可疑命令</td>
+<td>使用ettercap嗅探</td>
+<td><code>ettercap\s+\-\w\s+\-\w\s+arp</code></td>
+<td>低危</td>
+</tr>
+</tbody>
+</table>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        sourcemap的作用和原理 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="什么是SourcemapSourcemap 本质上是一个信息文件，里面储存着代码转换前后的对应位置信息。它记录了转换压缩后的代码所对应的转换前的源代码位置，是源代码和生产环境代码的映射。 Sourcemap 解决了在打包过程中，代码经过压缩，去空格以及 babel 编译转化后，由于源代码与生产环境代码之间差异性过大，造成无法debug的问题。  在生产环境文件中，会有一行底部注释 其中 sourceMappingURL 指向 sourcemap 文件地址，形如：  1//# sourceMa" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFSourcemap"><span class="toc-text">什么是Sourcemap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sourcemap%E4%BD%9C%E7%94%A8"><span class="toc-text">Sourcemap作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sourcemap%E7%9A%84%E7%94%A8%E6%B3%95"><span class="toc-text">Sourcemap的用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sourcemap%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-text">Sourcemap的原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mappings-%E6%98%AF%E5%A6%82%E4%BD%95%E8%AE%B0%E5%BD%95%E6%98%A0%E5%B0%84%E7%9A%84"><span class="toc-text">mappings 是如何记录映射的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9-mappings-%E7%9A%84%E4%BC%98%E5%8C%96"><span class="toc-text">对 mappings 的优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8-webpack-%E4%B8%AD%E4%BD%BF%E7%94%A8-Sourcemap"><span class="toc-text">在 webpack 中使用 Sourcemap</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            sourcemap的作用和原理
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-04-23T17:29:35.000Z" itemprop="datePublished">2021-04-24</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/sourcemap/" rel="tag">sourcemap</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="什么是Sourcemap"><a href="#什么是Sourcemap" class="headerlink" title="什么是Sourcemap"></a>什么是Sourcemap</h2><p>Sourcemap 本质上是一个信息文件，里面储存着代码转换前后的对应位置信息。它记录了转换压缩后的代码所对应的转换前的源代码位置，是源代码和生产环境代码的映射。 Sourcemap 解决了在打包过程中，代码经过压缩，去空格以及 babel 编译转化后，由于源代码与生产环境代码之间差异性过大，造成无法debug的问题。  </p>
+<p>在生产环境文件中，会有一行底部注释 其中 <code>sourceMappingURL</code> 指向 sourcemap 文件地址，形如：  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//# sourceMappingURL=http://example.com/path/to/your/sourcemap.map</span></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h2 id="Sourcemap作用"><a href="#Sourcemap作用" class="headerlink" title="Sourcemap作用"></a>Sourcemap作用</h2><p>Sourcemap 构建了处理前以及处理后的代码之间的一座桥梁，方便定位生产环境中出现 bug 的位置。因为现在的前端开发都是模块化、组件化的方式，在上线前对 js 和 css 文件进行合并压缩容易造成混淆。如果对这样的线上代码进行调试，肯定不切实际，Sourcemap 的作用就是能够让浏览器的调试面版将生成后的代码映射到源码文件当中，开发者可以在源码文件中 debug，这样就会让调试轻松、简单很多。</p>
+<h2 id="Sourcemap的用法"><a href="#Sourcemap的用法" class="headerlink" title="Sourcemap的用法"></a>Sourcemap的用法</h2><p>为了调试工作能够使用 Sourcemap，你必须：</p>
+<ol>
+<li>生产一个 Sourcemap 文件</li>
+<li>在转换后的文件末尾加入一个注释，以 <code>#</code> 开始，声明参数 <code>sourceMappingURL</code> 指向 Sourcemap 文件所在位置。</li>
+</ol>
+<p>这样，浏览器的开发者工具就会在 debug 时解析 sourcemap 文件定位源代码中变量的位置</p>
+<h2 id="Sourcemap的原理"><a href="#Sourcemap的原理" class="headerlink" title="Sourcemap的原理"></a>Sourcemap的原理</h2><p>为了更清晰的描述 sourcemap 的生成，我们用一个最简单的 case 来编译并生成 sourcemap：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// input</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">example</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;example&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// output</span></span><br><span class="line"><span class="meta">&quot;use strict&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> example = <span class="keyword">function</span> <span class="title function_">example</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;example&quot;</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>利用 babel 将上述代码转为 es5 的同时，我们可以得到一份 sourcemap：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="number">3</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;sources&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;src/example.js&quot;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;names&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;example&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;console&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;log&quot;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;mappings&quot;</span><span class="punctuation">:</span> <span class="string">&quot;;;AAAA,IAAMA,OAAO,GAAG,SAAVA,OAAU,GAAM;AACpBC,EAAAA,OAAO,CAACC,GAAR,CAAY,SAAZ;AACD,CAFD&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;sourcesContent&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;const example = () =&gt; &#123;\n  console.log(\&quot;example\&quot;);\n&#125;;\n&quot;</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>可以看到其有多个属性，分别代表着：</p>
+<ul>
+<li>version: source map 的版本号。</li>
+<li>sources: 转换前的文件。该项是一个数组，可能存在多个文件合并成一个文件。</li>
+<li>names: 转换前的所有变量名和属性名。</li>
+<li>mappings: 记录位置信息的字符串。</li>
+<li>sourceContent: 原始内容。</li>
+</ul>
+<p>其中最重要的，便是记录着原始代码和编译后代码映射关系的 mappings 字段。</p>
+<h3 id="mappings-是如何记录映射的"><a href="#mappings-是如何记录映射的" class="headerlink" title="mappings 是如何记录映射的"></a>mappings 是如何记录映射的</h3><p>可以花两分钟简单思考一下，如果是你来设计 sourcemap，你会如何记录一份原始代码到编译后代码的映射？很简单，我将编译后的每一个单词，对应的原始位置都记录下来就可以了，需要注意的是，由于存在多个文件编译成一个文件的情况，所以我们需要记录下原始文件名：</p>
+<table>
+<thead>
+<tr>
+<th>编译后的位置（行/列）</th>
+<th>编译后单词</th>
+<th>原始文件名</th>
+<th>原始位置（行/列）</th>
+<th>原始单词</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0, 0</td>
+<td>var</td>
+<td>src/example.js</td>
+<td>0, 0</td>
+<td>const</td>
+</tr>
+<tr>
+<td>0, 4</td>
+<td>example</td>
+<td>src/example.js</td>
+<td>0, 6</td>
+<td>example</td>
+</tr>
+<tr>
+<td>0, 11</td>
+<td>=</td>
+<td>src/example.js</td>
+<td>0, 13</td>
+<td>=</td>
+</tr>
+<tr>
+<td>0, 14</td>
+<td>function</td>
+<td>src/example.js</td>
+<td>0, 16</td>
+<td>(</td>
+</tr>
+<tr>
+<td>0, 23</td>
+<td>example</td>
+<td>src/example.js</td>
+<td>0, 6</td>
+<td>example</td>
+</tr>
+<tr>
+<td>0, 30</td>
+<td>(</td>
+<td>src/example.js</td>
+<td>0, 16</td>
+<td>(</td>
+</tr>
+<tr>
+<td>0, 33</td>
+<td>{</td>
+<td>src/example.js</td>
+<td>0, 22</td>
+<td>{</td>
+</tr>
+</tbody>
+</table>
+<p>到这里，我们已经将第一行代码的原始信息记录下来了，可以表示为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0|0|src/example.js|0|0, 0|4|src/example.js|0|6, 0|11|src/example.js|0|13, 0|14|src/example.js|0|16, 0|23|src/example.js|0|16, 0|30|src/example.js|0|16, 0|33|src/example.js|0|22</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>同样的，第二行代码与第三行代码的映射关系可以用相同的方式记录下来。当我们完成了映射关系的记录后，便需要考虑一个现实问题：只有 23 个字符的原始信息，我们需要用 150 个字符来记录其映射关系。有没有什么办法，可以用更少的字符记录呢？</p>
+<p>现在，我们对照 sourcemap 的做法，将上面的信息进行逐层的优化：</p>
+<h3 id="对-mappings-的优化"><a href="#对-mappings-的优化" class="headerlink" title="对 mappings 的优化"></a>对 mappings 的优化</h3><ol>
+<li>省去输出文件中的行号，改用 ; 来标识换行</li>
+</ol>
+<p>利用; 来标识换行，我们可以将上述的编码节省为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0|src/example.js|0|0, 4|src/example.js|0|6, 11|src/example.js|0|13, 14|src/example.js|0|16, 23|src/example.js|0|16, 30|src/example.js|0|16, 33|src/example.js|0|22;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>用索引标识变量名</li>
+</ol>
+<p>前面我们提到 sourcemap 中的 names 数组，在 sourcemap 中，它会将变量名在 names 数组中的索引也记录下来，所以编码会变成如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0|src/example.js|0|0, 4|src/example.js|0|6|0, 11|src/example.js|0|13, 14|src/example.js|0|16, 23|src/example.js|0|16|0, 30|src/example.js|0|16, 33|src/example.js|0|22;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>用索引来代替文件名</li>
+</ol>
+<p>使用 sources 属性记录下来的原始文件数组，在记录原始信息时用索引代替，如 src/example.js 在 sources 中的索引为 0，所以可以进一步简化为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0|0|0|0, 4|0|0|6|0, 11|0|0|13, 14|0|0|16, 23|0|0|16|0, 30|0|0|16, 33|0|0|22;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>用相对位置来代替绝对位置</li>
+</ol>
+<p>当文件内容巨大时，上面精简后的代码也有可能某些数字会随着增加而变得很长，如果一行的位置记录了某个位置，那么根据这一位置进行相对定位是可以到达一行内的任意位置。如：</p>
+<table>
+<thead>
+<tr>
+<th>编译后的位置（列）</th>
+<th>编译后单词</th>
+<th>原始文件名</th>
+<th>原始位置（行/列）</th>
+<th>原始单词</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>var</td>
+<td>src/example.js</td>
+<td>0, 0</td>
+<td>const</td>
+</tr>
+<tr>
+<td>4（上一个位置+4）</td>
+<td>example</td>
+<td>src/example.js</td>
+<td>0, 6</td>
+<td>example</td>
+</tr>
+<tr>
+<td>7（上一个位置+7）</td>
+<td>=</td>
+<td>src/example.js</td>
+<td>0, 7</td>
+<td>=</td>
+</tr>
+<tr>
+<td>3（上一个位置+10）</td>
+<td>function</td>
+<td>src/example.js</td>
+<td>0, 3</td>
+<td>(</td>
+</tr>
+<tr>
+<td>9（上一个位置+9）</td>
+<td>example</td>
+<td>src/example.js</td>
+<td>0, -10</td>
+<td>example</td>
+</tr>
+<tr>
+<td>7（上一个位置+7）</td>
+<td>(</td>
+<td>src/example.js</td>
+<td>0, 10</td>
+<td>(</td>
+</tr>
+<tr>
+<td>3（上一个位置+3）</td>
+<td>{</td>
+<td>src/example.js</td>
+<td>0, 6</td>
+<td>{</td>
+</tr>
+</tbody>
+</table>
+<p>所以我们的 mappings 继续被简化为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0|0|0|0, 4|0|0|6|0, 7|0|0|7, 3|0|0|3, 10|0|10, 9|0|0|-10, 7|0|0|10, 3|0|0|6;</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>VLQ 编码</li>
+</ol>
+<p>如果我们可以想办法去掉每个单词之间的分隔符（在我们的例子中是 | )，我们可以进一步省下大量的字符。当然，限制我们去掉这个分隔符的问题是，我们无法在没有分隔符的帮助下区分 10010 是 10|0|10 还是 100|1|0，但我们可以设计一套方法，让我们能够在去掉分隔符的情况下依然能够正确的分组。sourcemap 使用了这一套方法：</p>
+<p>在二进制中，使用 6 个字节比特来记录一个数字，用其中一个字节来标识它是否结束（下方 C），再用一位标识正负（下方 S），剩下还有四位用来表示数值。用这样 6 个字节来表示我们需要的数字。</p>
+<table>
+<thead>
+<tr>
+<th>B5</th>
+<th>B4</th>
+<th>B3</th>
+<th>B2</th>
+<th>B1</th>
+<th>B0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C</td>
+<td>value</td>
+<td>value</td>
+<td>value</td>
+<td>value</td>
+<td>S</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>十进制</th>
+<th>二进制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4</td>
+<td>100</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>6</td>
+<td>110</td>
+</tr>
+</tbody>
+</table>
+<p>任意数字中，第一组的第一个比特就已经明确标明该数字的正负，所以后续比特不需要再标识，也就是说，第一组有 4 个比特来表示数值，后续每一组都有 5 个 比特来表示数值（每组依然有一个比特标识是否结束） 我们用上述的简化过的 mappings 的第二项 4|0|0|6|0 为例：</p>
+<p>所以它们应该被编码为：</p>
+<table>
+<thead>
+<tr>
+<th>4</th>
+<th>B5</th>
+<th>B4</th>
+<th>B3</th>
+<th>B2</th>
+<th>B1</th>
+<th>B0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>0</th>
+<th>B5</th>
+<th>B4</th>
+<th>B3</th>
+<th>B2</th>
+<th>B1</th>
+<th>B0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>6</th>
+<th>B5</th>
+<th>B4</th>
+<th>B3</th>
+<th>B2</th>
+<th>B1</th>
+<th>B0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>注：如果是一个分组无法表达的数字，则会用第二个分组来容纳剩余部分，这里举个例子：23 的二进制为 10111，由于一个分组无法容纳，那么将 10111 分为两组，第一组是最后面的四位，既 10111，第二组是剩下的 10111，那么它最终会被编码为：101110 000001。</p>
+</blockquote>
+<p>所以 4|0|0|6|0 最终被转化为 001000 000000 000000 001100 000000，随后再进行 base64 编码得到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">001000 000000 000000 001100 000000</span><br><span class="line">I      A      A      M      A</span><br></pre></td></tr></table></figure>
+<p>之所以要用 6 个比特为一组记录一个数字，正是因为每一个 base64 编码最多可以表示二进制 6 位，所以通过这样的编码，我们将 4|0|0|6|0 转化为了 IAAMA。至此，我们便了解了 sourcemap 的原理和生成方式。</p>
+<h2 id="在-webpack-中使用-Sourcemap"><a href="#在-webpack-中使用-Sourcemap" class="headerlink" title="在 webpack 中使用 Sourcemap"></a>在 webpack 中使用 Sourcemap</h2><p>可以在 webpack 配置文件中添加 <code>devtool</code> 参数用来说明 Sroucemap 的处理方式。常见的有以下几种：  </p>
+<table>
+<thead>
+<tr>
+<th>devtool取值</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>source-map</td>
+<td>产生一个单独的source-map文件，功能最完全，但会减慢打包速度</td>
+</tr>
+<tr>
+<td>inline (如 inline-source-map）</td>
+<td>该模式不会生成一份独立的.map 文件，而是用 base64 编码将 sourcemap 进行编码后附在编译后代码的末处。缺点是这样会使得编译后代码的体积变得庞大，其他方面则和 source-map 模式一样。</td>
+</tr>
+<tr>
+<td>eval</td>
+<td>源码以字符的形式被 eval(…) 来调用，不会生成 sourceMap 信息，只会通过一个附着在各个模块后的 sourceURL 来存储原始文件的位置，同时，我们只能在控制台中看到经过 webpack 处理的编译后代码，所以它并不能反映真实的行号</td>
+</tr>
+<tr>
+<td>eval-source-map</td>
+<td>使用eval打包源文件模块，直接在源文件中写入干净完整的source-map，不影响构建速度，但影响执行速度和安全，<em>建议开发环境中使用，生产阶段不要使用</em></td>
+</tr>
+<tr>
+<td>cheap-source-map</td>
+<td>生成的 sourcemap 只有行信息，不会记录列信息。cheap-source-map 记录下的是与被 loader 转化后的代码之间的映射</td>
+</tr>
+<tr>
+<td>cheap-module-source-map</td>
+<td>和 cheap-source-map 类似，但使用 cheap-module-source-map 可以记录下 loader 转译前的信息</td>
+</tr>
+<tr>
+<td>cheap-module-eval-source-map</td>
+<td>不会产生单独的map文件，（与eval-source-map类似）但开发者工具就只能看到行，无法对应到具体的列（符号），对调试不便</td>
+</tr>
+<tr>
+<td>nosources</td>
+<td>在这个模式下，会生成不包含 sourcecontent 的 sourcemap，具体表现为有错误堆栈信息但没有具体的内容</td>
+</tr>
+<tr>
+<td>hidden</td>
+<td>在这个模式下，会生成 sourcemap，但是不会将 sourcemapURL 信息附着在编译后代码中</td>
+</tr>
+</tbody>
+</table>
+<p>此外还有一些模式的组合，具体可以是”^(inline-|hidden-|eval-)?(nosources-)?(cheap-(module-)?)?source-map$”</p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

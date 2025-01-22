@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        React组件 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="什么是 React 组件React 组件允许用户将 UI 拆分成独立可复用的代码片段，并对每个片段进行独立构思。React 组件从概念上类似于 JavaScript 函数，接受任意的入参 Props，返回用于描述页面展示内容的 React 元素。React 组件分类按定义分类类组件，使用 ES6 的 class 定义，维护 state，有生命周期函数组件，使用普通函数定义，可以通过 hooks 维护状态和副作用按状态分有状态组件，组件返回结果，受时间、空间或上下文影响无状" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-React-%E7%BB%84%E4%BB%B6"><span class="toc-text">什么是 React 组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React-%E7%BB%84%E4%BB%B6%E5%88%86%E7%B1%BB"><span class="toc-text">React 组件分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E7%BB%84%E4%BB%B6%E5%92%8C%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">类组件和函数组件的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%97%E6%8E%A7%E7%BB%84%E4%BB%B6%E5%92%8C%E9%9D%9E%E5%8F%97%E6%8E%A7%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">受控组件和非受控组件的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6"><span class="toc-text">什么是高阶组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Pure-Component"><span class="toc-text">什么是 Pure Component</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%95%E7%A4%BA%E7%BB%84%E4%BB%B6%E5%92%8C%E5%AE%B9%E5%99%A8%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">展示组件和容器组件的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%8A%AB%E6%8C%81-React-%E7%BB%84%E4%BB%B6%E6%8F%90%E9%AB%98%E7%BB%84%E4%BB%B6%E5%A4%8D%E7%94%A8%E5%BA%A6"><span class="toc-text">如何劫持 React 组件提高组件复用度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA-React-%E7%BB%84%E4%BB%B6"><span class="toc-text">如何设计一个 React 组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React-%E7%BB%84%E4%BB%B6%E4%B8%8E-Web-Components-%E5%85%B1%E5%AD%98%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-text">React 组件与 Web Components 共存的最佳实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React-Suspence-%E7%BB%84%E4%BB%B6%E5%92%8C-React-lazy-%E5%87%BD%E6%95%B0%E6%9C%89%E4%BB%80%E4%B9%88%E4%BD%9C%E7%94%A8%EF%BC%9F"><span class="toc-text">React.Suspence 组件和 React.lazy 函数有什么作用？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%93%E6%B8%B2%E6%9F%93%E8%BF%87%E7%A8%8B%EF%BC%8C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%EF%BC%8C%E6%88%96%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%AD%E6%8A%9B%E5%87%BA%E9%94%99%E8%AF%AF%E6%97%B6%EF%BC%8C%E4%BC%9A%E8%B0%83%E7%94%A8%E5%93%AA%E4%B8%AAAPI%EF%BC%9F"><span class="toc-text">当渲染过程，生命周期，或子组件的构造函数中抛出错误时，会调用哪个API？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%88%97%E8%A1%A8%E4%B8%AD%E9%9C%80%E8%A6%81%E6%9C%89%E4%B8%8D%E9%87%8D%E5%A4%8D%E7%9A%84key%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%E9%87%8D%E5%A4%8D%E7%9A%84-key-%E6%9B%B4%E6%96%B0%E6%97%B6%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">为什么列表中需要有不重复的key，如果有重复的 key 更新时会发生什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88"><span class="toc-text">React 性能优化方案</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            React组件
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2022-11-24T06:23:12.000Z" itemprop="datePublished">2022-11-24</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/react/" rel="tag">react</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="什么是-React-组件"><a href="#什么是-React-组件" class="headerlink" title="什么是 React 组件"></a>什么是 React 组件</h2><p>React 组件允许用户将 UI 拆分成独立可复用的代码片段，并对每个片段进行独立构思。React 组件从概念上类似于 JavaScript 函数，接受任意的入参 Props，返回用于描述页面展示内容的 React 元素。</p>
+<span id="more"></span>
+<h2 id="React-组件分类"><a href="#React-组件分类" class="headerlink" title="React 组件分类"></a>React 组件分类</h2><ul>
+<li><p>按定义分类</p>
+<ul>
+<li>类组件，使用 ES6 的 class 定义，维护 state，有生命周期</li>
+<li>函数组件，使用普通函数定义，可以通过 hooks 维护状态和副作用</li>
+</ul>
+</li>
+<li><p>按状态分</p>
+<ul>
+<li>有状态组件，组件返回结果，受时间、空间或上下文影响</li>
+<li>无状态组件，通常是纯展示 UI 组件，容易复用</li>
+</ul>
+</li>
+<li><p>按定位分</p>
+<ul>
+<li>展示型组件，接收 props，负责 UI 展示</li>
+<li>容器组件，管理 states，负责数据获取和组件间通信，多用于状态提升</li>
+</ul>
+</li>
+<li><p>按 React 内置类型分类</p>
+<ul>
+<li>有状态组件<ul>
+<li>ClassComponent，由 class 创建</li>
+<li>ContextProvider，由 createContext 创建</li>
+</ul>
+</li>
+<li>无状态组件<ul>
+<li>IndeterminateComponent，FunctionCompoent 挂载前的初始类型</li>
+<li>FunctionComponent，即函数组件</li>
+<li>ForwardRef，由 React.forwardRef 创建，接收 ref 并转发给子组件</li>
+<li>MemoComponent，由 React.memo 创建，条件渲染子组件</li>
+<li>SimpleMemoCompoent，由 React.memo 创建且不指定条件</li>
+</ul>
+</li>
+<li>FiberNode<ul>
+<li>HostRoot，由 ReactDOM.render 创建</li>
+<li>HostPortal，由 React.createPortal 创建，多用于模态框</li>
+<li>HostComponent，对应元素节点</li>
+<li>HostText，对应文本节点</li>
+</ul>
+</li>
+<li>内置类型<ul>
+<li>Fragment，分组子列表，无需向 DOM 添加额外节点，可用短语法&lt;&gt;</li>
+<li>Profiler，测量 React 应用多久渲染一次以及渲染一次的“代价”</li>
+<li>StrictMode，严格模式，用来突出显示应用程序中潜在问题的工具</li>
+<li>Suspense，等待目标代码加载，并且可以指定一个加载界面，在用户等待时显示</li>
+<li>PureCompoent，浅层对比 prop 和 state 实现</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="类组件和函数组件的区别"><a href="#类组件和函数组件的区别" class="headerlink" title="类组件和函数组件的区别"></a>类组件和函数组件的区别</h2><table>
+<thead>
+<tr>
+<th>说明</th>
+<th>类组件</th>
+<th>函数组件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>回调钩子</td>
+<td>生命周期</td>
+<td>useEffect / useLayoutEffect</td>
+</tr>
+<tr>
+<td>this</td>
+<td>有，事件处理函数需绑定 this</td>
+<td>无</td>
+</tr>
+<tr>
+<td>state</td>
+<td>有，this.setState 更新</td>
+<td>无，useState / useReducer 引入</td>
+</tr>
+<tr>
+<td>实例化</td>
+<td>是</td>
+<td>否</td>
+</tr>
+<tr>
+<td>性能</td>
+<td>现代浏览器中，闭包和类的原始性能只有在极端场景才会有明显差别</td>
+<td>使用 Hooks 某些情况更加高效,避免了 class 需要的额外成本，如创建类实例和在构造函数绑定事件处理器的成本,符合语言习惯的代码不需要很深的组件库嵌套</td>
+</tr>
+</tbody>
+</table>
+<h2 id="受控组件和非受控组件的区别"><a href="#受控组件和非受控组件的区别" class="headerlink" title="受控组件和非受控组件的区别"></a>受控组件和非受控组件的区别</h2><ul>
+<li>受控组件<ul>
+<li>React 的 state 是表单元素的“唯一数据源”，控制用户输入过程中表单发生的操作</li>
+<li>表单元素的 value 跟随 state 变化，默认值由 defaultValue 设置</li>
+<li>表单元素需要被 React 组件包裹</li>
+<li>每种数据变化都需要编写事件处理函数</li>
+<li>不支持 value 只读的表单元素，如 <code>&lt;input type=&quot;file&quot; /&gt;</code> 的 value 由用户设置</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">MyInput</span>(<span class="params">props</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> [username, setUsername] = <span class="title function_">useState</span>(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> handleChange = <span class="title function_">useCallback</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">setUsername</span>(e.<span class="property">target</span>.<span class="property">value</span>);</span><br><span class="line">    &#125;, []);</span><br><span class="line">    <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&#123;username&#125;</span> <span class="attr">onChange</span>=<span class="string">&#123;handleChange&#125;</span> /&gt;</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>非受控组件<ul>
+<li>表单数据交由 DOM 节点处理</li>
+<li>使用 ref 从 DOM 节点获取表单数据</li>
+<li>表单元素无需被 React 组件包裹</li>
+<li>只关心业务需要的数据变化，减少代码量</li>
+<li>集成 React 和非 React 代码，不推荐使用</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">MyInput</span>(<span class="params">props</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;defaultName&#125; = props;</span><br><span class="line">    <span class="keyword">const</span> inputRef = <span class="title class_">React</span>.<span class="title function_">createRef</span>();</span><br><span class="line">    <span class="keyword">const</span> handleChange = <span class="title function_">useCallback</span>(<span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(inputRef.<span class="property">current</span>.<span class="property">value</span>);</span><br><span class="line">        e.<span class="property">preventDefault</span>;</span><br><span class="line">    &#125;, []);</span><br><span class="line">    <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">defaultValue</span>=<span class="string">&#123;defaultName&#125;</span> <span class="attr">ref</span>=<span class="string">&#123;inputRef&#125;</span> <span class="attr">onChange</span>=<span class="string">&#123;handleChange&#125;/</span>&gt;</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="什么是高阶组件"><a href="#什么是高阶组件" class="headerlink" title="什么是高阶组件"></a>什么是高阶组件</h2><ul>
+<li>高阶组件（Higher-Order Components，HoC）是<em>参数为组件</em>，<em>返回值为新组件</em>的函数，某种角度上就是高阶函数</li>
+<li>高阶组件是 React 中复用组件逻辑的一种高级技巧</li>
+<li>高阶组件不是 React API 的一部分，它是一种基于 React 的组合特性而形成的设计模式</li>
+</ul>
+<h2 id="什么是-Pure-Component"><a href="#什么是-Pure-Component" class="headerlink" title="什么是 Pure Component"></a>什么是 Pure Component</h2><p><code>React.PureComponent</code> 与 <code>React.Component</code> 相似，区别是 <code>React.PureComponent</code> 并未直接实现 <code>shouldComponentUpdate</code>，它是以浅层对比 prop 和 state 方式实现了 <code>shouldComponentUpdate</code>：<code>React.PureComponent</code> 无法检查对象的深层差别， prop 和 state 使用深层数据结构时，调用 <code>forceUpdate()</code> 来确保组件正确更新，使用 immutable 对象 加速嵌套数据的比较。</p>
+<h2 id="展示组件和容器组件的区别"><a href="#展示组件和容器组件的区别" class="headerlink" title="展示组件和容器组件的区别"></a>展示组件和容器组件的区别</h2><p>React 组件按照用途可以分为展示组件和容器组件。<br>React 推荐所有新组件，无论是展示组件，还是容器组件，都采用函数组件 + Hook 方式编写</p>
+<ul>
+<li>展示组件<ul>
+<li>关心页面 UI，有自己的 HTML 标签和样式</li>
+<li>如果有状态，仅与 UI 相关。与其他组件、store 无关</li>
+<li>不关心数据源，通过 props 获取数据，并执行回调</li>
+</ul>
+</li>
+<li>容器组件<ul>
+<li>关心功能实现，无自己的 HTML 标签和样式</li>
+<li>有状态。包含请求数据源等副作用。状态提升时，维护多个子组件的状态</li>
+<li>可以由第三方库生成，如 react-redux 的 <code>connect()</code> 和 Relay 的 <code>createFragmentContainer</code></li>
+</ul>
+</li>
+</ul>
+<p>React 分离展示组件和容器组件的优势：</p>
+<ul>
+<li>关注点分离，便于维护</li>
+<li>提高展示组件的复用度，便于调整 UI</li>
+<li>便于通过如 <code>this.props.children</code> 传递组件本身，减少相同 props 层层传递</li>
+</ul>
+<h2 id="如何劫持-React-组件提高组件复用度"><a href="#如何劫持-React-组件提高组件复用度" class="headerlink" title="如何劫持 React 组件提高组件复用度"></a>如何劫持 React 组件提高组件复用度</h2><p>劫持 React 组件又被称为<em>渲染劫持</em>，即将已有组件包装，注入新属性和功能，输出高阶组件，来实现组件复用。<br>劫持需要遵守高阶组件的约定：</p>
+<ul>
+<li>不要改变原始组件，仅组合组件</li>
+<li>保持组件的接口与已有组件相似，透传与自身无关的 props 给已有组件</li>
+<li>最大化可组合性，确保函数签名类型一致，输入函数，返回函数，输入组件，返回组件</li>
+<li>包装显示名称便于调试，如 <code>withSubscription(CommentList)</code></li>
+</ul>
+<h2 id="如何设计一个-React-组件"><a href="#如何设计一个-React-组件" class="headerlink" title="如何设计一个 React 组件"></a>如何设计一个 React 组件</h2><ul>
+<li>将设计好的 UI 划分为组件层级<ul>
+<li>根据单一功能原则分离 UI 与数据源的结构一一对应</li>
+<li>明确组件的包含关系</li>
+</ul>
+</li>
+<li>用 React 创建一个静态版本<ul>
+<li>将静态数据通过 props 父组件到子组件单向传递</li>
+<li>构建应用<ul>
+<li>简单应用，自上而下，从高层组件到低层组件构建</li>
+<li>大型应用，自下而上，从低层组件到高层组件构建，同时为低层组件编写测试</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>确定 UI state 的最小（且完整）表示<ul>
+<li>排除通过 props 传递来的数据</li>
+<li>排除不随时间变化的数据</li>
+<li>排除可以由其他 state 或 props 计算得出的数据</li>
+</ul>
+</li>
+<li>确定 state 放置位置<ul>
+<li>找出根据 state 渲染的所有组件</li>
+<li>找出这些组件的共同上级组件</li>
+<li>state 应该放置在共同上级组件或者更高层级的组件中</li>
+</ul>
+</li>
+<li>添加反向数据流<ul>
+<li>state 只能由拥有它们的组件更改</li>
+<li>在该组件添加修改 state 的回调函数</li>
+<li>将该回调函数通过 props 传递给子组件，在子组件中，如事件处理函数中调用</li>
+</ul>
+</li>
+</ul>
+<h2 id="React-组件与-Web-Components-共存的最佳实践"><a href="#React-组件与-Web-Components-共存的最佳实践" class="headerlink" title="React 组件与 Web Components 共存的最佳实践"></a>React 组件与 Web Components 共存的最佳实践</h2><ul>
+<li>访问 Web Components 的命令式 API：使用 ref 与 DOM 节点进行交互</li>
+<li>引入第三方 Web Components：编写 React 组件包装该 Web Components</li>
+<li>Web Components 触发事件：React 组件中手动添加事件处理器来处理事件</li>
+</ul>
+<h2 id="React-Suspence-组件和-React-lazy-函数有什么作用？"><a href="#React-Suspence-组件和-React-lazy-函数有什么作用？" class="headerlink" title="React.Suspence 组件和 React.lazy 函数有什么作用？"></a>React.Suspence 组件和 React.lazy 函数有什么作用？</h2><p>React.Suspense 可以指定加载指示器，以防其组件树中的某些子组件尚未具备渲染条件。它的 fallback 属性接受任何在组件加载过程中你想展示的 React 元素（通常为 loading 指示器）。</p>
+<p>React.lazy 函数能让你像渲染常规组件一样处理动态引入的组件，即懒加载。React.lazy 接受一个函数，这个函数需要动态调用 import()。它必须返回一个 Promise，该 Promise 需要 resolve 一个 default export 的 React 组件。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 该组件是动态加载的</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">OtherComponent</span> = <span class="title class_">React</span>.<span class="title function_">lazy</span>(<span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;./OtherComponent&#x27;</span>));</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">MyComponent</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="comment">// 显示 &lt;Spinner&gt; 组件直至 OtherComponent 加载完成</span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">React.Suspense</span> <span class="attr">fallback</span>=<span class="string">&#123;</span>&lt;<span class="attr">Spinner</span> /&gt;</span>&#125;&gt;</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">OtherComponent</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">React.Suspense</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>React.Suspense 组件和 React.lazy 函数通常配合使用来实现动态引入（懒加载）和优雅降级（loading 指示器）。</p>
+<h2 id="当渲染过程，生命周期，或子组件的构造函数中抛出错误时，会调用哪个API？"><a href="#当渲染过程，生命周期，或子组件的构造函数中抛出错误时，会调用哪个API？" class="headerlink" title="当渲染过程，生命周期，或子组件的构造函数中抛出错误时，会调用哪个API？"></a>当渲染过程，生命周期，或子组件的构造函数中抛出错误时，会调用哪个API？</h2><p><code>static getDerivedStateFromError(error)</code><br><code>componentDidCatch(error, info)</code></p>
+<p><code>static getDerivedStateFromError()</code> 此生命周期会在后代组件抛出错误后被调用。 它将抛出的错误作为参数，并返回一个值以更新 state 来处理降级渲染。</p>
+<p><code>componentDidCatch()</code> 此生命周期在后代组件抛出错误后被调用。 它接收两个参数：error —— 抛出的错误。info —— 带有 componentStack key 的对象，其中包含有关组件引发错误的栈信息。它应该用于记录错误之类的情况。</p>
+<p>Error boundaries 是 React 提供的用来处理错误的方案。Error boundaries 是 React 组件，它会在其子组件树中的任何位置捕获 JavaScript 错误，并记录这些错误，展示降级 UI 而不是崩溃的组件树。Error boundaries 组件会捕获在渲染期间，在生命周期方法以及其整个树的构造函数中发生的错误。如果 class 组件定义了生命周期方法 <code>static getDerivedStateFromError()</code> 或 <code>componentDidCatch()</code> 中的任何一个（或两者），它就成为了 Error boundaries。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ErrorBoundary</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>(props);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">state</span> = &#123; <span class="attr">hasError</span>: <span class="literal">false</span> &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> <span class="title function_">getDerivedStateFromError</span>(<span class="params">error</span>) &#123;</span><br><span class="line">    <span class="comment">// 更新 state 使下一次渲染可以显降级 UI</span></span><br><span class="line">    <span class="keyword">return</span> &#123; <span class="attr">hasError</span>: <span class="literal">true</span> &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">hasError</span>) &#123;</span><br><span class="line">      <span class="comment">// 你可以渲染任何自定义的降级  UI</span></span><br><span class="line">      <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Something went wrong.<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">props</span>.<span class="property">children</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="为什么列表中需要有不重复的key，如果有重复的-key-更新时会发生什么？"><a href="#为什么列表中需要有不重复的key，如果有重复的-key-更新时会发生什么？" class="headerlink" title="为什么列表中需要有不重复的key，如果有重复的 key 更新时会发生什么？"></a>为什么列表中需要有不重复的key，如果有重复的 key 更新时会发生什么？</h2><p>在一个组件中渲染列表时，需要给每个列表元素分配一个 key 属性，key 帮助 React 识别哪些元素改变了，比如被添加或删除。不指定显式的 key 值时，React 将默认使用索引作为列表项目的 key 值。</p>
+<p>当递归 DOM 节点的子元素时，React 会同时遍历两个子元素的列表；当产生差异时，生成一个 mutation。当从头部插入式，React 无法意识到是从头部插入，而是会逐个更新，这会带来性能问题。新增 key 之后，使得更新的效率提高了。</p>
+<h2 id="React-性能优化方案"><a href="#React-性能优化方案" class="headerlink" title="React 性能优化方案"></a>React 性能优化方案</h2><ol>
+<li>使用生产版本 React</li>
+<li>使用 TerserPlugin 来对代码进行压缩</li>
+<li>使用开发者工具中的分析器对组件进行分析</li>
+<li>虚拟化长列表</li>
+<li>避免调停，通过覆盖生命周期方法 shouldComponentUpdate 来进行提速</li>
+<li>使用 React.PureComponent 对煎蛋 props 和 state 进行浅比较</li>
+<li>使用不可变对象，例如使用 <code>Object.assign</code> 来更新对象</li>
+</ol>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

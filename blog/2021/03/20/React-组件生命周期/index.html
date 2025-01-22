@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        React 组件生命周期 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="组件状态Mounting：已插入真实 DOMUpdating：正在被重新渲染Unmounting：已移出真实 DOM组件生命周期钩子componentWillMount 在渲染前调用,在客户端也在服务端。componentDidMount 在第一次渲染后调用，只在客户端。之后组件已经生成了对应的DOM结构，可以通过this.getDOMNode()来进行访问。 如果你想和其他JavaScript框架一起使用，可以在这个方法中调用setTimeout, setInterval或者" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E7%8A%B6%E6%80%81"><span class="toc-text">组件状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90"><span class="toc-text">组件生命周期钩子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E6%95%B0%E6%8D%AE%E8%AF%B7%E6%B1%82%E5%BA%94%E5%9C%A8%E5%93%AA%E4%BA%9B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%87%8C%E8%B0%83%E7%94%A8"><span class="toc-text">异步数据请求应在哪些生命周期里调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8-React-Hook-%E4%BB%A3%E6%9B%BF%E6%8B%A5%E6%9C%89%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%9A%84%E7%B1%BB%E7%BB%84%E4%BB%B6"><span class="toc-text">为什么要用 React Hook 代替拥有生命周期的类组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E7%BB%84%E4%BB%B6%E7%9A%84%E5%BC%8A%E7%AB%AF"><span class="toc-text">类组件的弊端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#React-Hook-%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">React Hook 解决的问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#useEffect-useLayoutEffect-%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%9A%84%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB"><span class="toc-text">useEffect useLayoutEffect 与生命周期的对应关系</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            React 组件生命周期
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-19T17:03:54.000Z" itemprop="datePublished">2021-03-20</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/react/" rel="tag">react</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="组件状态"><a href="#组件状态" class="headerlink" title="组件状态"></a>组件状态</h2><ul>
+<li>Mounting：已插入真实 DOM</li>
+<li>Updating：正在被重新渲染</li>
+<li>Unmounting：已移出真实 DOM</li>
+</ul>
+<span id="more"></span>
+<h2 id="组件生命周期钩子"><a href="#组件生命周期钩子" class="headerlink" title="组件生命周期钩子"></a>组件生命周期钩子</h2><ul>
+<li><p><code>componentWillMount</code> 在渲染前调用,在客户端也在服务端。</p>
+</li>
+<li><p><code>componentDidMount</code> 在第一次渲染后调用，只在客户端。之后组件已经生成了对应的DOM结构，可以通过this.getDOMNode()来进行访问。 如果你想和其他JavaScript框架一起使用，可以在这个方法中调用setTimeout, setInterval或者发送AJAX请求等操作(防止异部操作阻塞UI)。</p>
+</li>
+<li><p><code>componentWillReceiveProps</code> 在组件接收到一个新的 prop (更新后)时被调用。这个方法在初始化render时不会被调用。</p>
+</li>
+<li><p><code>shouldComponentUpdate</code> 返回一个布尔值。在组件接收到新的props或者state时被调用。在初始化时或者使用forceUpdate时不被调用。<br>可以在你确认不需要更新组件时使用。</p>
+</li>
+<li><p><code>componentWillUpdate</code> 在组件接收到新的props或者state但还没有render时被调用。在初始化时不会被调用。</p>
+</li>
+<li><p><code>componentDidUpdate</code> 在组件完成更新后立即调用。在初始化时不会被调用。</p>
+</li>
+<li><p><code>componentWillUnmount</code> 在组件从 DOM 中移除的时候立刻被调用。</p>
+</li>
+</ul>
+<h2 id="异步数据请求应在哪些生命周期里调用"><a href="#异步数据请求应在哪些生命周期里调用" class="headerlink" title="异步数据请求应在哪些生命周期里调用"></a>异步数据请求应在哪些生命周期里调用</h2><ul>
+<li>通过网络请求获取数据或订阅数据更新 - <code>componentDidMount()</code><ul>
+<li>首次挂载时执行</li>
+<li>不会重复请求或订阅数据更新</li>
+<li>无需条件不容易触发重复渲染</li>
+</ul>
+</li>
+<li>有条件地通过网络请求数据 - <code>componentDidUpdate(prevProps, prevState, snapshot)</code><ul>
+<li>可对比更新前后的 props 或 states</li>
+<li>可以设置条件当且仅当条件满足时，通过网络请求数据，避免触发重复渲染</li>
+</ul>
+</li>
+<li>取消网络请求或者清除在 <code>componentDidMount()</code> 中创建的订阅 - <code>componentWillUnmount()</code></li>
+</ul>
+<h2 id="为什么要用-React-Hook-代替拥有生命周期的类组件"><a href="#为什么要用-React-Hook-代替拥有生命周期的类组件" class="headerlink" title="为什么要用 React Hook 代替拥有生命周期的类组件"></a>为什么要用 React Hook 代替拥有生命周期的类组件</h2><p>React Hook 是 React 16.8 的新增特性，开发者可以在不编写 Class 的情况下使用 State 以及其他的 React 特性，React Hook 使得相似功能的代码在物理上可以更接近方便代码理解，同时更利于代码复用。</p>
+<h3 id="类组件的弊端"><a href="#类组件的弊端" class="headerlink" title="类组件的弊端"></a>类组件的弊端</h3><ul>
+<li>组件之间复用状态逻辑很难<ul>
+<li>React 没有提供将可复用性行为“附加”到组件的途径</li>
+<li>使用 render props 和 高阶组件<ul>
+<li>需要重新组织组件结构，使得代码难以理解</li>
+<li>形成“嵌套地域”，难以调试和维护</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>复杂组件变得难以理解<ul>
+<li>组件被状态逻辑和副作用充斥</li>
+<li>不相关逻辑被放在同一生命周期，相关逻辑被分散在不同生命周期<ul>
+<li>componentDidMount/componentDidUpdate 获取数据</li>
+<li>componentDidMount 可能还包含事件监听，需在 componentWillUnmount 清除</li>
+</ul>
+</li>
+<li>大量的状态逻辑，许多人使用状态管理库，组件复用和调试都比较困难</li>
+</ul>
+</li>
+<li>难以理解的类组件<ul>
+<li>大量的 this 绑定，较高学习成本，区分函数组件和类组件的使用场景</li>
+<li>类组件会无意中鼓励开发者使用一些让 Prepack 等组件预编译优化措施无效的方案</li>
+<li>类组件不能被很好的压缩，热重载不稳定，实例化类组件有轻微额外性能消耗</li>
+</ul>
+</li>
+<li>有限的是否渲染控制<ul>
+<li>使用 PureComponent 执行一层浅比较 props 或 state，值变化时渲染</li>
+<li>使用 shouldComponentUpdate 函数<ul>
+<li>手动比较前后 props 或 state，返回 true 渲染，false 不渲染</li>
+<li>若 state 为对象，使用不可变对象，简化并加速比较</li>
+</ul>
+</li>
+<li>在 setState 前设置判断条件，满足条件后再 setState</li>
+</ul>
+</li>
+</ul>
+<h3 id="React-Hook-解决的问题"><a href="#React-Hook-解决的问题" class="headerlink" title="React Hook 解决的问题"></a>React Hook 解决的问题</h3><ul>
+<li>提高组件复用<ul>
+<li>Hook 在无需修改组件结构的情况下，复用状态逻辑，共享 Hook 变得更便捷</li>
+</ul>
+</li>
+<li>简化组件<ul>
+<li>Hook 将组件中相互关联的部分拆分成更小的函数（比如设置订阅或请求数据）</li>
+<li>非按照生命周期划分，可以使用 Reducer 来管理组件内部状态，使其更加可预测</li>
+</ul>
+</li>
+<li>函数组件代替类组件<ul>
+<li>Hook 在不使用类组件的情况下使用 State 以及其他的 React 特性</li>
+<li>Hook 改造类组件为函数组件，容易理解 this 和学习，便于预编译等优化措施</li>
+<li>Hook 拥抱函数式声明式编程，而无需学习复杂的函数式或响应式编程技术</li>
+</ul>
+</li>
+<li>丰富的更细粒度的是否渲染控制<ul>
+<li>使用 React.memo 比较 props 再渲染组件<ul>
+<li>不使用第二参数时，一层浅比较 props，变化时渲染</li>
+<li>使用第二参数时，手动比较前后的 props，返回 false 渲染，true 不渲染</li>
+</ul>
+</li>
+<li>使用 useMemo 指定依赖，细粒度渲染组件<ul>
+<li>使用第二参数，传入依赖数组，当数组中的值发生变化时，更新返回值</li>
+<li>通常包裹函数式组件的返回值，指定依赖的 props 或 state 的具体值</li>
+<li>包裹任意需要复杂计算的函数，指定依赖的变量。能在同一组件中部分和多次使用</li>
+</ul>
+</li>
+<li>使用 useCallback 避免函数重复创建引起渲染<ul>
+<li>当函数式组件重新更新时，内部声明的函数可能会被重复创建<ul>
+<li>将这些函数作为 props 传入的子组件会重复渲染</li>
+<li>使用 useCallback 包裹函数，传入空数组，总是返回相同函数来避免重复创建引起的渲染</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="useEffect-useLayoutEffect-与生命周期的对应关系"><a href="#useEffect-useLayoutEffect-与生命周期的对应关系" class="headerlink" title="useEffect useLayoutEffect 与生命周期的对应关系"></a>useEffect useLayoutEffect 与生命周期的对应关系</h2><ul>
+<li>useLayoutEffect<ul>
+<li>执行时机是组件挂载或更新之后，浏览器执行绘制之前<ul>
+<li>与 componentDidMount + componentDidUpdate 一致</li>
+</ul>
+</li>
+<li>支持返回清除函数，函数执行时机是组件卸载之前<ul>
+<li>与 componentWillUnmout 一致</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>useEffect<ul>
+<li>执行时机是组件挂载或更新之后，浏览器完成布局和绘制之后，在一个延迟事件中被调用<ul>
+<li>与 componentDidMount + componentDidUpdate 不同</li>
+</ul>
+</li>
+<li>支持返回清除函数，函数执行时机是组件卸载之前<ul>
+<li>与 componentWillUnmout 一致</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>两者都适用于在函数组件主体内，即 React 渲染阶段改变 DOM，添加订阅，设置定时器，记录日志以及执行其他包含副作用的操作。优先使用 useEffect 避免阻塞视觉更新，只在需要读取 DOM 布局，在浏览器绘制前，同步触发重渲染的场景使用 useLayoutEffect 。</p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

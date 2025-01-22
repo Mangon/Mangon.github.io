@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        标签: security | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="Mangon&#39;s Technology Blog" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+
+        
+            <div class="author-meta">
+                
+                <div class="author-avatar">
+                    <a href="/blog/">
+                        <img src="/blog/images/avatar.jpeg" title="Mangon">
+                    </a>
+                </div>
+                
+                <div class="author-name">Mangon</div>
+                <div class="author-work">前端开发工程师</div>
+                <div class="author-location">
+                    <i class="icon-location vm"></i>
+                    <span class="vm">中国北京</span>
+                </div>
+                
+                <div class="author-thread-wrap">
+                    <div class="author-threads clearfix">
+                        
+                            <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
+                        
+                        
+                        
+                            <a class="thread-item" href="https://mangon.cn/blog/atom.xml" target="_blank" rel="external noopener noreferrer"><i class="icon-favorite"></i></a>
+                        
+                        
+                            <a class="thread-item" href="https://mangon.cn/resume" target="_blank" rel="external noopener noreferrer"><i class="icon-circle-more"></i></a>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2022/01/13/FE-web-%E5%AE%89%E5%85%A8/">web 安全</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2022-01-13T06:44:34.000Z" itemprop="datePublished">2022-01-13</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/security/" rel="tag">security</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="供应链攻击（Supply-Chain-Attack）"><a href="#供应链攻击（Supply-Chain-Attack）" class="headerlink" title="供应链攻击（Supply Chain Attack）"></a>供应链攻击（Supply Chain Attack）</h2><p>供应链攻击是一种针对供应链中的组织或产品的网络攻击形式。它利用供应链中的弱点或恶意行为，以获取未经授权的访问权限、窃取敏感信息、传播恶意软件或破坏目标组织的安全。</p>
+<h3 id="软件源安全"><a href="#软件源安全" class="headerlink" title="软件源安全"></a>软件源安全</h3><p>软件源安全是指在开发过程中或工作过程中使用的软件应该是安全的，需保证不会对开发或工作的环境造成破坏，不会对项目的开发造成风险。</p>
+<p>解决方案：</p>
+<ul>
+<li>成立软件管理委员会统一负责软件（包括开发软件）的评估、评级与分发。</li>
+<li>软件管理委员会提供统一安装渠道（白名单机制），对待安装软件分级，分为“安全，警告，禁止”三个级别，对安全的软件提供统一获取渠道和标准化安装步骤（安全的商业软件提供授权获取通道），警告的软件由安装者自行保证（通常为暂未进行评估的软件或者竞品软件），对禁止的软件禁止安装并说明原因且提供推荐替代方案。如果同一个软件的不同版本安全级别可能不同，则当成两个软件对待。</li>
+<li>如果使用者对未列在软件列表中的软件有需求可提供工单，由专人（软件管理委员会）对待安装软件进行评估和评级。</li>
+<li>对已安装软件进行定期扫描，对不符合要求的软件进行告警提示，责令限期卸载。</li>
+</ul>
+            
+            <p class="article-more-link">
+                <a href="/blog/2022/01/13/FE-web-%E5%AE%89%E5%85%A8/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/12/31/HTTP-%E5%86%85%E5%AE%B9%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5/">浏览器内容安全策略CSP</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-12-31T02:53:48.000Z" itemprop="datePublished">2021-12-31</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSP/" rel="tag">CSP</a>, <a class="article-tag-link" href="/blog/tags/security/" rel="tag">security</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>内容安全策略 (Content Security Policy) 是一个额外的安全层，用于检测并削弱某些特定类型的攻击(尤其是XSS攻击)。</p>
+<p>CSP通过指定浏览器认可的可执行脚本的有效来源使服务器管理者有能力减少或消除XSS攻击所依赖的载体。一个兼容CSP的浏览器将会仅执行从白名单域获取到的脚本文件，忽略所有的其他脚本 (包括内联脚本和HTML的事件处理属性)。</p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2021/12/31/HTTP-%E5%86%85%E5%AE%B9%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/12/30/HTTP-%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5%E4%B8%8E%E8%B7%A8%E5%9F%9F/">浏览器同源策略与跨域</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-12-30T08:53:52.000Z" itemprop="datePublished">2021-12-30</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CORS/" rel="tag">CORS</a>, <a class="article-tag-link" href="/blog/tags/browser/" rel="tag">browser</a>, <a class="article-tag-link" href="/blog/tags/same-origin/" rel="tag">same-origin</a>, <a class="article-tag-link" href="/blog/tags/security/" rel="tag">security</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>浏览器的同源策略（Same-origin policy）是一个重要的基础安全策略，它用于限制一个源（origin）的文档或者它加载的脚本如何能与另一个源的资源进行交互。如果从 <code>http://example.com/doc.html</code> 检索到的文档尝试访问从 <code>https://example.com/target.html</code> 检索到的文档的 DOM ，则用户代理将不允许访问。它能帮助阻隔恶意文档，减少可能的攻击行为。</p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2021/12/30/HTTP-%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5%E4%B8%8E%E8%B7%A8%E5%9F%9F/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/12/24/CS-%E8%BF%90%E7%BB%B4%E5%8D%B1%E9%99%A9%E5%91%BD%E4%BB%A4%E5%90%88%E9%9B%86/">运维危险命令合集</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-12-24T03:30:35.000Z" itemprop="datePublished">2021-12-24</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/security/" rel="tag">security</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+<th>类型</th>
+<th>危险级别</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rm -rf</code></td>
+<td><code>rm</code> 命令用于在 Linux 系统下删除文件文件夹 <code>-r</code> 参数用于递归删除文件夹 <code>-f</code> 参数用于强制删除(不经过询问)</td>
+<td>恶意删除</td>
+<td>中</td>
+</tr>
+<tr>
+<td><code>rm -rf /</code></td>
+<td>递归强制删除根目录下的所有文件与文件夹</td>
+<td>恶意删除</td>
+<td>高</td>
+</tr>
+<tr>
+<td><code>rm -rf *</code></td>
+<td>递归强制删除当前目录的所有文件</td>
+<td>恶意删除</td>
+<td>高</td>
+</tr>
+<tr>
+<td><code>rm -rf .</code></td>
+<td>递归强制删除当前目录的所有文件夹</td>
+<td>恶意删除</td>
+<td>中</td>
+</tr>
+<tr>
+<td><code>mv / /dev/null</code></td>
+<td>该命令会将文件夹移动到 /dev/null 下，在 Linux 系统中 /dev/null 是一个特殊的文件，所有写入他的数据都会被清除，然后返回操作成功</td>
+<td>恶意删除</td>
+<td>低</td>
+</tr>
+<tr>
+<td><code>:()&#123;:｜:&amp;&#125;;:</code></td>
+<td>fork 炸弹，具体操作是通过定义一个名为 ‘:‘ 的函数，它会调用自己两次，一次在前台另一次运行在后台，它会反复的执行下去直到系统崩溃</td>
+<td>资源耗尽</td>
+<td>高</td>
+</tr>
+<tr>
+<td><code>echo &quot; &quot; &gt; /dev/sda</code></td>
+<td>/dev 目录下存放的是设备的文件描述符。直接往设备描述符中写入数据，将破坏整个设备</td>
+<td>直接操作设备文件描述符</td>
+<td>高</td>
+</tr>
+<tr>
+<td><code>mkfs.ext3 /dev/sda</code></td>
+<td>把硬盘格式化成ext3文件系统，在执行这个命令后你的块设备（硬盘驱动器）会被格式化，直接让你的系统达到不可恢复的阶段</td>
+<td>直接操作设备文件描述符</td>
+<td>高</td>
+</tr>
+<tr>
+<td><code>fdisk /dev/sda</code></td>
+<td>重建分区</td>
+<td>直接操作设备文件描述符</td>
+<td>高</td>
+</tr>
+<tr>
+<td><code>dd if=/dev/zero of=/dev/sda</code> <code>dd if=/dev/random of=/dev/sda</code></td>
+<td>直接写入数据到磁盘设备文件描述符</td>
+<td>直接操作设备文件描述符</td>
+<td>高</td>
+</tr>
+<tr>
+<td><code>&gt; file</code></td>
+<td>该命令常用来清空文件内容或记录命令输出，用户可能真正想用的是 <code>&gt;&gt;</code>，即累加新的输出到文件，而不是刷新那个文件</td>
+<td>恶意命令执行</td>
+<td>低</td>
+</tr>
+<tr>
+<td><code>export HISTCONTROL = ignorespace</code></td>
+<td>在命令前面插入空格，这条命令会被 shell 忽略，也就意味着它不会出现在历史记录中。但是这种方法有个前提，只有在你的环境变量 HISTCONTROL 设置为 “ignorespace” 或者 “ignoreboth” 才会起作用。在大多数情况下，这个是默认值，我们无需设置这个环境变量。</td>
+<td>隐藏命令</td>
+<td>低</td>
+</tr>
+<tr>
+<td><code>ln -s /dev/null ~/.bash_history</code></td>
+<td>history 记录存放在 <code>~/.bash_history</code> 文件中，把写入 <code>~/.bash_history</code> 使用软连接转移写入到其他的地方可以隐藏命令历史</td>
+<td>隐藏命令</td>
+<td>低</td>
+</tr>
+<tr>
+<td><code>^foo^bar</code></td>
+<td>该命令用来编辑先前运行的命令而无需重打整个命令，如果用户没有彻底检查命令，可能调用不符合预期的命令</td>
+<td>隐式调用</td>
+<td>低</td>
+</tr>
+</tbody>
+</table>
+            
+            <p class="article-more-link">
+                <a href="/blog/2021/12/24/CS-%E8%BF%90%E7%BB%B4%E5%8D%B1%E9%99%A9%E5%91%BD%E4%BB%A4%E5%90%88%E9%9B%86/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/12/02/HACK-%E6%AD%A3%E5%BC%8F%E7%8E%AF%E5%A2%83%E7%A6%81%E7%94%A8%E8%B0%83%E8%AF%95-%E6%97%A0%E9%99%90debug/">正式环境禁用调试-无限debug</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-12-02T02:15:12.000Z" itemprop="datePublished">2021-12-02</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/debugger/" rel="tag">debugger</a>, <a class="article-tag-link" href="/blog/tags/security/" rel="tag">security</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>前端的代码包括js文件、html文件和css文件都是需要发送给浏览器客户端的，在一定程度上，我们的代码是完全“开源”给了用户，但难免有恶意用户通过调试我们的代码发现系统的漏洞，从而对我们的网站进行攻击，或者盗用我们的代码，与我们进行竞争。这时就需要采取一定的手段，禁止恶意用户盗取代码的行为，或者加大恶意用户使用调试我们代码的成本。现如今，已经有多种成熟的方案可以达到这些目的，比如压缩代码、混淆代码、控制流平坦化等。<br>这里我们提一种禁止开发者工具调试的方法，基本原理就是让开发者工具一直处于断点调试的状态，从而无法查看真正的代码。</p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2021/12/02/HACK-%E6%AD%A3%E5%BC%8F%E7%8E%AF%E5%A2%83%E7%A6%81%E7%94%A8%E8%B0%83%E8%AF%95-%E6%97%A0%E9%99%90debug/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/17/HACK-DDOS%E6%94%BB%E5%87%BB/">DDoS攻击</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-17T11:42:50.000Z" itemprop="datePublished">2018-09-17</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/DDoS/" rel="tag">DDoS</a>, <a class="article-tag-link" href="/blog/tags/security/" rel="tag">security</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>分布式拒绝服务(DDoS:Distributed Denial of Service)攻击指借助于客户/服务器技术，将多个计算机联合起来作为攻击平台，对一个或多个目标发动 DoS 攻击，从而成倍地提高拒绝服务攻击威力的一种攻击方式。</p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2018/09/17/HACK-DDOS%E6%94%BB%E5%87%BB/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/10/HACK-CSRF%E6%94%BB%E5%87%BB/">CSRF攻击</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-10T11:18:43.000Z" itemprop="datePublished">2018-09-10</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSRF/" rel="tag">CSRF</a>, <a class="article-tag-link" href="/blog/tags/security/" rel="tag">security</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>CSRF（Cross-site request forgery）跨站请求伪造，也被称为 One Click Attack 或者 Session Riding ，通常缩写为 CSRF 或者 XSRF ，是一种通过伪造用户请求破坏网站的攻击方式。  </p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2018/09/10/HACK-CSRF%E6%94%BB%E5%87%BB/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/09/HACK-XSS%E6%94%BB%E5%87%BB/">XSS攻击</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-09T15:17:07.000Z" itemprop="datePublished">2018-09-09</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/XSS/" rel="tag">XSS</a>, <a class="article-tag-link" href="/blog/tags/security/" rel="tag">security</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>XSS, 即为（Cross Site Scripting）, 中文名为跨站脚本, 是发生在目标用户的浏览器层面上的攻击方式，当渲染DOM树的过程成发生了不在预期内执行的JS代码时，就发生了XSS攻击。  </p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2018/09/09/HACK-XSS%E6%94%BB%E5%87%BB/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        performance.timing各个参数含义 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="performance.timingwindow.performance.timing 是W3C规范提供的接口，可以通过它获取到用户访问一个页面的每个阶段的精确时间(timestamp), 从而对性能进行分析  timing含义navigationStart同一个浏览器上一个文档卸载(unload)结束时的时间戳。如果没有上一个文档，这个值会和 fetchStart 相同redirectStart第一个HTTP重定向开始时的时间戳。如果没有重定向，或者上次重定向" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#performance-timing"><span class="toc-text">performance.timing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="toc-text">性能指标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E7%BB%9F%E8%AE%A1"><span class="toc-text">性能统计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#performance-mark-amp-performance-measure"><span class="toc-text">performance.mark &amp; performance.measure</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%9F%E5%BC%83%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-text">废弃的属性</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            performance.timing各个参数含义
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-05-14T04:15:42.000Z" itemprop="datePublished">2021-05-14</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/Web-API/" rel="tag">Web API</a>, <a class="article-tag-link" href="/blog/tags/performance/" rel="tag">performance</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="performance-timing"><a href="#performance-timing" class="headerlink" title="performance.timing"></a>performance.timing</h2><p>window.performance.timing 是W3C规范提供的接口，可以通过它获取到用户访问一个页面的每个阶段的精确时间(timestamp), 从而对性能进行分析  </p>
+<p><img src="/blog/static/imgs/timing.png" alt="timer_inner"></p>
+<span id="more"></span>
+<table>
+<thead>
+<tr>
+<th>timing</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>navigationStart</td>
+<td>同一个浏览器上一个文档卸载(unload)结束时的时间戳。如果没有上一个文档，这个值会和 fetchStart 相同</td>
+</tr>
+<tr>
+<td>redirectStart</td>
+<td>第一个HTTP重定向开始时的时间戳。如果没有重定向，或者上次重定向不是同源的，这个值会返回0</td>
+</tr>
+<tr>
+<td>unloadEventStart</td>
+<td>上一个文档 unload 事件抛出时的时间戳。如果没有上一个网页，或者之前的网页跳转不是属于同一个域内，则返回值为0</td>
+</tr>
+<tr>
+<td>unloadEventEnd</td>
+<td>上一个网页 unload 事件结束时的时间戳。如果没有前一个网页，或者之前的网页跳转不是属于同一个域内，则返回值为0</td>
+</tr>
+<tr>
+<td>redirectEnd</td>
+<td>最后一个HTTP重定向完成时的时间戳。如果没有重定向，或者上次重定向不是同源的，这个值会返回0</td>
+</tr>
+<tr>
+<td>fetchStart</td>
+<td>浏览器准备好使用HTTP请求来获取(fetch)文档的时间戳。这个时间点会在检查任何应用缓存之前</td>
+</tr>
+<tr>
+<td>domainLookupStart</td>
+<td>DNS 域名查询开始的时间戳。如果使用持久连接（persistent connection），或者这个信息存储到了缓存或者本地资源上，这个值将和 fetchStart 一致</td>
+</tr>
+<tr>
+<td>domainLookupEnd</td>
+<td>DNS 域名查询完成的时间戳。如果使用持久连接（persistent connection），或者这个信息存储到了缓存或者本地资源上，这个值将和 fetchStart 一致</td>
+</tr>
+<tr>
+<td>connectStart</td>
+<td>HTTP请求开始向服务器发送时的时间戳。如果使用持久连接（persistent connection），则返回值等同于 fetchStart 属性的值</td>
+</tr>
+<tr>
+<td>connectEnd</td>
+<td>浏览器与服务器之间的连接建立时的时间戳。如果建立的是持久连接，则返回值等同于 fetchStart 属性的值</td>
+</tr>
+<tr>
+<td>secureConnectionStart</td>
+<td>浏览器与服务器开始安全链接的握手时的时间戳。如果当前网页不要求安全连接，则返回0</td>
+</tr>
+<tr>
+<td>requestStart</td>
+<td>浏览器向服务器发出HTTP请求时（或开始读取本地缓存时）的时间戳</td>
+</tr>
+<tr>
+<td>responseStart</td>
+<td>浏览器从服务器收到（或从本地缓存读取）第一个字节时的时间戳。如果传输层在开始请求之后失败并且连接被重开，该属性将会被设置成新的请求相对应的发起时间</td>
+</tr>
+<tr>
+<td>responseEnd</td>
+<td>浏览器从服务器收到（或从本地缓存读取，或从本地资源读取）最后一个字节时（如果在此之前HTTP连接已经关闭，则返回关闭时）的时间戳</td>
+</tr>
+<tr>
+<td>domLoading</td>
+<td>当前网页DOM结构开始解析时（即Document.readyState属性变为 ‘loading’ 、相应的 readystatechange 事件触发时）的时间戳</td>
+</tr>
+<tr>
+<td>domInteractive</td>
+<td>当前网页DOM结构结束解析、开始加载内嵌资源时（即Document.readyState属性变为 ‘interactive’ 、相应的readystatechange 事件触发时）的时间戳</td>
+</tr>
+<tr>
+<td>domContentLoadedEventStart</td>
+<td>当解析器发送 DOMContentLoaded 事件，即所有需要被执行的脚本已经被解析时的时间戳</td>
+</tr>
+<tr>
+<td>domContentLoadedEventEnd</td>
+<td>当所有需要立即执行的脚本已经被执行（不论执行顺序）时的时间戳</td>
+</tr>
+<tr>
+<td>domComplete</td>
+<td>当前文档解析完成，即 Document.readyState 变为 ‘complete’且相对应的 readystatechange 被触发时的时间戳</td>
+</tr>
+<tr>
+<td>loadEventStart</td>
+<td>该文档下，load 事件被发送时的时间戳。如果这个事件还未被发送，它的值将会是0</td>
+</tr>
+<tr>
+<td>loadEventEnd</td>
+<td>当 load 事件结束，即加载事件完成时的时间戳。如果这个事件还未被发送，或者尚未完成，它的值将会是0</td>
+</tr>
+</tbody>
+</table>
+<h2 id="性能指标"><a href="#性能指标" class="headerlink" title="性能指标"></a>性能指标</h2><p>DNS解析耗时: domainLookupEnd - domainLookupStart<br>TCP连接耗时: connectEnd - connectStart<br>SSL安全连接耗时: connectEnd - secureConnectionStart<br>网络请求耗时(TTFB): responseStart - requestStart<br>数据传输耗时: responseEnd - responseStart<br>DOM解析耗时: domInteractive - responseEnd<br>资源加载耗时: loadEventStart - domContentLoadedEventEnd<br>首包时间: responseStart - domainLookupStart<br>首次渲染时间 / 白屏时间: responseEnd - fetchStart<br>首次可交互时间: domInteractive - fetchStart<br>DOM Ready时间: domContentLoadEventEnd - fetchStart<br>页面完全加载时间: loadEventStart - fetchStart</p>
+<h2 id="性能统计"><a href="#性能统计" class="headerlink" title="性能统计"></a>性能统计</h2><p>利用 performance.timing 可以获取到每个阶段的耗时数据，但是不同的人在不同的环境、不同的时间访问同一页面时，统计到的时间是不同的，单次的数据并不能反映页面全局的表现，要想知道该页面的整体性能，需要对统计到的所有数据做一个处理，使得我们对页面的每次变更有一个直观的认识，为用户页面性能调优提供依据。  </p>
+<ol>
+<li>平均值统计法</li>
+</ol>
+<p>收集到一段时间区间中所有用户访问应用的性能数据，将这些数据做均值处理，最终给到这个时间区间的平均耗时数据。<br>这种统计方法简单粗暴，其中长尾数据（可能占比较少但性能十分差的数据）很大程度上会影响均值的大小，导致给出的均值无法很好的表现性能情况；同时性能数据分布情况不清楚，无法制定优化方案。  </p>
+<ol start="2">
+<li>百分位数统计法</li>
+</ol>
+<p>将数据从小到大排列，处于第n%个数据称为n分位数, 表示n%的性能数据均小于等于该值，那剩下的(1-n%)的数据均大于该值。<br>线上通常 n 取 80 或者 90，代表了 80%/90% （大部分）的用户的性能数据好于我们的基准值的一个情况。与平均值统计方法不同，百分位数统计法会给到几个主要的百分位数的性能数据值，但对于整体的样本情况没有直观的认识。  </p>
+<ol start="3">
+<li>样本分布统计法</li>
+</ol>
+<p>将性能样本数据进行分桶统计，为了防止桶的个数太多，并且不给实时统计带来很大压力，可以使用不均匀的桶进行统计。对于性能数据，大家会非常关注10s内的样本分布情况，对于10s之后的数据桶可以粗放设置。<br>通过样本分布统计法，可以给用户提供非常直观的样本性能分布情况。通过分布直方图可以很直观的知道页面在指定时间区间内的样本占比。  </p>
+<h2 id="performance-mark-amp-performance-measure"><a href="#performance-mark-amp-performance-measure" class="headerlink" title="performance.mark &amp; performance.measure"></a>performance.mark &amp; performance.measure</h2><ul>
+<li>mark() 方法在浏览器的性能入口缓冲区（performance entry buffer）中使用给定名称添加一个时间戳  </li>
+<li>clearMarks() 这个方法可以从浏览器的性能入口缓冲区 (performance entry buffer) 中移除声明的标记。如果调用这个方法时没有传递参数， 则所有带有 entry type 这类标记的 performance entries 将从 performance entry 缓存区中被移除  </li>
+<li>measure() 方法在浏览器性能入口缓冲区中创建了一个已命名的时间戳来记录两个特殊标志位（通常称为开始标志和结束标志）。 被命名的时间戳称为测量（measure）</li>
+<li>clearMeasures() 方法可以从浏览器的性能入口缓冲区中移除声明的measure。如果这个方法被调用时没有传入参数，则所有 entry type 标记值为 measure 的性能实体将被从性能入口缓冲区中移除</li>
+<li>getEntries() 对于给定的 filter ，此方法返回 PerformanceEntry 对象数组</li>
+</ul>
+<p>可以结合 mark &amp; measure 方法获取程序运行过程中的差值，进而进行性能监控与分析。  </p>
+<h2 id="废弃的属性"><a href="#废弃的属性" class="headerlink" title="废弃的属性"></a>废弃的属性</h2><p>performance.timing 属性在 <a target="_blank" rel="noopener" href="https://w3c.github.io/navigation-timing/#obsolete">Navigation Timing Level 2 specification</a> 中已经被废弃，推荐使用 PerformanceNavigationTiming 来获取浏览器相关的时间节点  </p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

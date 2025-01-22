@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        标签: tips | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="Mangon&#39;s Technology Blog" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+
+        
+            <div class="author-meta">
+                
+                <div class="author-avatar">
+                    <a href="/blog/">
+                        <img src="/blog/images/avatar.jpeg" title="Mangon">
+                    </a>
+                </div>
+                
+                <div class="author-name">Mangon</div>
+                <div class="author-work">前端开发工程师</div>
+                <div class="author-location">
+                    <i class="icon-location vm"></i>
+                    <span class="vm">中国北京</span>
+                </div>
+                
+                <div class="author-thread-wrap">
+                    <div class="author-threads clearfix">
+                        
+                            <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
+                        
+                        
+                        
+                            <a class="thread-item" href="https://mangon.cn/blog/atom.xml" target="_blank" rel="external noopener noreferrer"><i class="icon-favorite"></i></a>
+                        
+                        
+                            <a class="thread-item" href="https://mangon.cn/resume" target="_blank" rel="external noopener noreferrer"><i class="icon-circle-more"></i></a>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2022/08/30/TIPS-%E7%BB%93%E5%90%88%E9%99%84%E5%8A%A0%E7%AC%A6%E5%8F%B7/">结合附加符号</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2022-08-30T08:20:53.000Z" itemprop="datePublished">2022-08-30</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/encode/" rel="tag">encode</a>, <a class="article-tag-link" href="/blog/tags/tips/" rel="tag">tips</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p><a target="_blank" rel="noopener" href="https://unicode-table.com/cn/blocks/combining-diacritical-marks/">结合附加符号</a>（combining diacritical marks）是指一类比较特殊的字符，这些字符一般不会单独存在，而是结合其他字符一同出现来表达不同的含义。汉语环境下，比较典型的例子就是汉语拼音的声调。</p>
+<p>结合附加符号的 Unicode 范围是 0300-036F，字符数量总共有 112 个。其中，汉语声调字符包括：</p>
+<table>
+<thead>
+<tr>
+<th>名字</th>
+<th>样式</th>
+<th>Unicode编号</th>
+<th>HTML实体代码</th>
+<th>汉语声调</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>组合用长音符</td>
+<td>̄</td>
+<td>U+0304</td>
+<td><code>&amp;#772;</code></td>
+<td>阴平</td>
+</tr>
+<tr>
+<td>组合用锐音符</td>
+<td>́</td>
+<td>U+0301</td>
+<td><code>&amp;#769;</code></td>
+<td>阳平</td>
+</tr>
+<tr>
+<td>组合用抑扬符</td>
+<td>̌</td>
+<td>U+030C</td>
+<td><code>&amp;#780;</code></td>
+<td>上声</td>
+</tr>
+<tr>
+<td>组合用抑音符</td>
+<td>̀</td>
+<td>U+0300</td>
+<td><code>&amp;#768;</code></td>
+<td>去声</td>
+</tr>
+</tbody>
+</table>
+<p>Javascript 中使用 <code>String.fromCharCode()</code> 可以返回由指定的 UTF-16 代码单元序列创建的字符串。例如，<code>String.fromCharCode(98, 97, 768, 32, 98, 97)</code> 返回  <code>bà ba</code>，而 <code>bà ba</code> 的长度为 6。</p>
+<p>结合附加符号有一个特点是可以附加在前一个字符上，这就导致前一个字符的实际显示高度可能会变化，例如：</p>
+<p><img src="/blog/static/imgs/cdm.png" alt="cdm_inner"></p>
+<p>考虑到这种情况，在渲染文本的时候，如果文本有可能含有结合附加符号最好限制一下行高度和文本渲染区域的高度，防止影响区域外的内容。</p>
+
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2022/07/05/TIPS-git%E4%BB%A3%E7%A0%81%E7%BB%9F%E8%AE%A1/">git 仓库代码统计</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2022-07-05T03:30:43.000Z" itemprop="datePublished">2022-07-05</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/git/" rel="tag">git</a>, <a class="article-tag-link" href="/blog/tags/javascript/" rel="tag">javascript</a>, <a class="article-tag-link" href="/blog/tags/tips/" rel="tag">tips</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>代码统计一般是对某一个或者多个代码仓库的开发人员在某段时间内或所有历史时间段内进行代码提交次数、代码提交行数等进行统计，以反映人员对代码仓库的贡献量的一种手段。<br>通过 git 进行代码管理的项目，通常使用 <code>git log</code> 命令的输出进行统计。</p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2022/07/05/TIPS-git%E4%BB%A3%E7%A0%81%E7%BB%9F%E8%AE%A1/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2022/06/10/TIPS-%E5%88%86%E8%BE%A8%E7%8E%87-%E5%B1%8F%E5%B9%95%E6%AF%94%E4%BE%8B%E4%B8%8E%E8%AE%BE%E5%A4%87%E5%83%8F%E7%B4%A0%E6%AF%94/">分辨率，屏幕比例与设备像素比</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2022-06-10T07:47:50.000Z" itemprop="datePublished">2022-06-10</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/tips/" rel="tag">tips</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>首先需要理解一些屏幕分辨率相关的概念:</p>
+<h2 id="屏幕分辨率与PPI"><a href="#屏幕分辨率与PPI" class="headerlink" title="屏幕分辨率与PPI"></a>屏幕分辨率与PPI</h2><h3 id="屏幕分辨率（Screen-Resolution）"><a href="#屏幕分辨率（Screen-Resolution）" class="headerlink" title="屏幕分辨率（Screen Resolution）"></a>屏幕分辨率（Screen Resolution）</h3><p>屏幕上面的像素点数，以 水平像素数 * 垂直像素数 来表示，分辨率越高，像素数越多，图像越细腻。分辨率的单位为px（像素），例如 1920 * 1080 分辨率，指的是水平像素为 1920 像素，垂直像素为 1080 像素。</p>
+<h3 id="DPI（每英寸点数-Dots-Per-Inch）"><a href="#DPI（每英寸点数-Dots-Per-Inch）" class="headerlink" title="DPI（每英寸点数 Dots Per Inch）"></a>DPI（每英寸点数 Dots Per Inch）</h3><p>DPI（Dots Per Inch，每英寸点数）是一个量度单位，用于点阵数码影像，指每一英寸长度中，取样、可显示或输出点的数目。</p>
+<h3 id="PPI（每英寸像素数-Pixels-Per-Inch）"><a href="#PPI（每英寸像素数-Pixels-Per-Inch）" class="headerlink" title="PPI（每英寸像素数 Pixels Per Inch）"></a>PPI（每英寸像素数 Pixels Per Inch）</h3><p>PPI（Pixels Per Inch，每英寸像素数）所表示的是每英寸对角线上所拥有的像素数目。假设 X 代表长度像素数；Y 代表宽度像素数；Z 代表屏幕大小（屏幕对角线长度单位是英寸），那么 PPI=√（X^2+Y^2）/ Z。PPI 越高，人视觉上看到的屏幕就越清晰。当屏幕的 PPI 达到一定数值时，人眼就几乎分辨不出颗粒感了。</p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2022/06/10/TIPS-%E5%88%86%E8%BE%A8%E7%8E%87-%E5%B1%8F%E5%B9%95%E6%AF%94%E4%BE%8B%E4%B8%8E%E8%AE%BE%E5%A4%87%E5%83%8F%E7%B4%A0%E6%AF%94/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2021/09/13/TIPS-%E5%B0%8F%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%96%B9%E6%A1%88/">小文件下载方案</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-09-13T07:22:35.000Z" itemprop="datePublished">2021-09-13</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/tips/" rel="tag">tips</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>我们需要一个模板文件供用户进行下载，这个文件是csv类型的，大小很小，一开始是想要放到CDN上，上传COS，然后生成a链接下载，地址是这样的 <code>https://xxx.myqcloud.com/csv/xxx.csv</code>。  </p>
+<p>这里有一个问题，在 Safari 浏览器中直接打开了该文件而不是下载，原因是 http header 当中的 <code>Content-Disposition</code> 没有设置成 <code>attachement;filename=&quot;xxx.csv&quot;</code>，所以浏览器就会按照 <code>Content-Type: text/csv</code> 来进行解析，不同浏览器对该类型返回解析方法不一样， Safari 会打开(以 <code>Content-Disposition: inline</code> 形式)，而 Chrome 等其它浏览器会下载。  </p>
+<p>为了解决这个问题，最后采取了 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/Data_URIs">Data URLs</a> 的方案。首先，执行 <code>uuencode -m xxx.csv</code> 进行 base64 位编码生成 csv 文件的 Data URL，然后将下载地址替换为该 Data URL 。  </p>
+<p>或者如果需要下载的csv为字符串文本的话，可以使用 js <code>window.btoa()</code> 方法创建一个 base64 编码的字符串。但是 <code>window.btoa()</code> 方法只支持 Latin1 字符，遇到不支持的字符会报错 <code>Uncaught DOMException: Failed to execute &#39;btoa&#39; on &#39;Window&#39;: The string to be encoded contains characters outside of the Latin1 range.</code> 所以需要先通过 <code>encodeURLCompnentd</code> 编码一下。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">`data:text/csv;base64,77u/<span class="subst">$&#123;<span class="variable language_">window</span>.btoa(<span class="built_in">unescape</span>(<span class="built_in">encodeURIComponent</span>(<span class="string">&#x27;字符串&#x27;</span>)))&#125;</span>`</span></span><br></pre></td></tr></table></figure>
+<p><a target="_blank" download="测试.csv" rel="noreferrer noopener"
+href="data:text/csv;base64,5a2X56ym5Liy">点击下载</a></p>
+<p><code>77u/</code> 是 UTF-8 的 BOM（0xEF 0xBB 0xBF）经过 base64 编码过的代码，如果不添加的话在 Micro Excel 中会显示为乱码。</p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2021/09/13/TIPS-%E5%B0%8F%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%96%B9%E6%A1%88/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2019/06/19/TIPS-%E5%BC%80%E5%8F%91%E5%B0%8F%E6%8A%80%E5%B7%A7/">小技巧</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-06-19T08:08:39.000Z" itemprop="datePublished">2019-06-19</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/tips/" rel="tag">tips</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>本篇主要记录一些小技巧或者开发过程中遇到的小问题和解决方案。这些问题实在太小了而且大部分可能和代码没有关系，不好每次都单独列一篇文章，所以放到一起了。</p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2019/06/19/TIPS-%E5%BC%80%E5%8F%91%E5%B0%8F%E6%8A%80%E5%B7%A7/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/11/30/TIPS-Mac-%E4%B8%8BEclipse%E5%BF%AB%E6%8D%B7%E9%94%AE/">Mac下Eclipse快捷键</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-11-30T10:29:17.000Z" itemprop="datePublished">2018-11-30</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/eclipse/" rel="tag">eclipse</a>, <a class="article-tag-link" href="/blog/tags/tips/" rel="tag">tips</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="快捷操作"><a href="#快捷操作" class="headerlink" title="快捷操作"></a>快捷操作</h2><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>快捷键</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>全选</td>
+<td>command A</td>
+</tr>
+<tr>
+<td>复制</td>
+<td>command C</td>
+</tr>
+<tr>
+<td>粘贴</td>
+<td>command V</td>
+</tr>
+<tr>
+<td>查找</td>
+<td>command F</td>
+</tr>
+<tr>
+<td>回退</td>
+<td>command Z</td>
+</tr>
+<tr>
+<td>剪切</td>
+<td>command X</td>
+</tr>
+<tr>
+<td>退出</td>
+<td>command Q</td>
+</tr>
+<tr>
+<td>删除当前行</td>
+<td>command D</td>
+</tr>
+<tr>
+<td>放大字体</td>
+<td>command +</td>
+</tr>
+<tr>
+<td>缩小字体</td>
+<td>command -</td>
+</tr>
+<tr>
+<td>注释/反注释</td>
+<td>command /</td>
+</tr>
+<tr>
+<td>打开preference</td>
+<td>command ,</td>
+</tr>
+<tr>
+<td>代码补全提示</td>
+<td>option /</td>
+</tr>
+<tr>
+<td>最大化/还原</td>
+<td>control M</td>
+</tr>
+<tr>
+<td>格式化代码</td>
+<td>command shift F</td>
+</tr>
+<tr>
+<td>自动导入包</td>
+<td>command shift O</td>
+</tr>
+</tbody>
+</table>
+<h2 id="便利设置"><a href="#便利设置" class="headerlink" title="便利设置"></a>便利设置</h2><p>Preference -&gt; General -&gt; Editors -&gt; Text Editors</p>
+<p><input type="checkbox" checked></input> Show line numbers<br><input type="checkbox" checked></input> Show white space charactors</p>
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/28/TIPS-%E6%B8%85%E9%99%A4%E7%BD%91%E7%AB%99%E4%B8%AD%E7%9A%84%E6%97%A0%E6%95%88%E9%93%BE%E6%8E%A5/">清除网站中的无效链接</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-28T08:32:55.000Z" itemprop="datePublished">2018-09-28</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/tips/" rel="tag">tips</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>网站上有大量的无效链接（返回404或域名不存在）会使网站的总体质量下降，所以清除网站中的无效链接也是提升网站质量，优化用户体验的一种方法。  </p>
+<p>通常而言，链接有链接向外部的也有在网站内部跳转的链接，链接向外部的网站尽量希望链接到一些稳定的网站，有些地址是很容易被移除的，比如链接到文章或评论的，链接到个人网站的，链接到下载页的。时常注意一些大的域名变动，比如有些产品可能已经下线或更换地址，如果自己的网站中有引用，也需要同步的改变。链接到内部的网站时可以做一次引用记录，当记录的链接修改时同步修改所有的地方。  </p>
+            
+            <p class="article-more-link">
+                <a href="/blog/2018/09/28/TIPS-%E6%B8%85%E9%99%A4%E7%BD%91%E7%AB%99%E4%B8%AD%E7%9A%84%E6%97%A0%E6%95%88%E9%93%BE%E6%8E%A5/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/25/TIPS-%E5%A4%B1%E6%95%88%E9%93%BE%E6%8E%A5%E6%9B%BF%E6%8D%A2%E6%96%B9%E6%A1%88/">失效链接替换方案</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-25T08:05:17.000Z" itemprop="datePublished">2018-09-25</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/javascript/" rel="tag">javascript</a>, <a class="article-tag-link" href="/blog/tags/tips/" rel="tag">tips</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>有些时候，尤其在文档型的网站中，页面链接经常变化调整。通常的做法即搜索网站中的所有相应页面进行url替换，但是即使这样做了，还是有一定风险，用户可能已经收藏了链接，在用户点击收藏链接跳转的时候，会发现页面不存在。这时，我们可以通过设置404页面来引导用户跳转到其它的可能符合用户期望的页面（比如主页）。同样的，如果其它网站引用了该失效链接，同时不希望此网站的引用失效（或者没有修改此网站的权限），就只能在落地页网站做一下兼容，在跳转的时候重新定向一下，具体代码如下：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">!<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> path = location.<span class="property">pathname</span> + location.<span class="property">hash</span>;</span><br><span class="line">    <span class="keyword">var</span> urlMap = &#123;</span><br><span class="line">        <span class="string">&#x27;xxx&#x27;</span>: <span class="string">&#x27;xxxx&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;xxx/media#live-player&#x27;</span>: <span class="string">&#x27;xxx/media_live-player/&#x27;</span></span><br><span class="line">    &#125;;</span><br><span class="line">    urlMap[path] &amp;&amp; location.<span class="title function_">replace</span>(urlMap[path]);</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
+<p>这是一种治标不治本的改动，最好的改动还是移除失效的链接。  </p>
+
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/12/TIPS-querySelectorAll%E4%B8%80%E4%B8%AA%E5%B0%8F%E5%9D%91/">querySelectorAll一个小坑</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-12T08:44:45.000Z" itemprop="datePublished">2018-09-12</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/tips/" rel="tag">tips</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>首先查看一下querySelectorAll的文档：  </p>
+<h2 id="querySelectorAll"><a href="#querySelectorAll" class="headerlink" title="querySelectorAll"></a>querySelectorAll</h2><p>返回与指定的选择器组匹配的文档中的元素列表 (使用深度优先的先序遍历文档的节点)。返回的对象是 <code>NodeList</code> 。  </p>
+<p>用法：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> elementList = <span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(selectors);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>elementList 是一个静态的 NodeList 类型的对象.</li>
+<li>selectors 是一个由逗号连接的包含一个或多个CSS选择器的字符串.</li>
+<li>如果 selectors参数中包含 <code>CSS伪元素</code>,则返回一个空的elementList.</li>
+<li>如果指定的选择器不合法,则抛出一个<code>SYNTAX_ERR</code> 异常.</li>
+</ul>
+            
+            <p class="article-more-link">
+                <a href="/blog/2018/09/12/TIPS-querySelectorAll%E4%B8%80%E4%B8%AA%E5%B0%8F%E5%9D%91/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2018/09/02/TIPS-Visual-Studio-Code-%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/">Visual Studio Code 常用快捷键</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-02T15:14:07.000Z" itemprop="datePublished">2018-09-02</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/VScode/" rel="tag">VScode</a>, <a class="article-tag-link" href="/blog/tags/tips/" rel="tag">tips</a>, <a class="article-tag-link" href="/blog/tags/tool/" rel="tag">tool</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>以下的Ctrl键指的是Windows系统下的Ctrl键，在Mac上对应Command键。  </p>
+<h2 id="主命令框"><a href="#主命令框" class="headerlink" title="主命令框"></a>主命令框</h2><p>F1 或 Ctrl+Shift+P: 打开命令面板。在打开的输入框内，可以输入任何命令，例如：  </p>
+<ol>
+<li>按一下 Backspace 会进入到 Ctrl+P 模式</li>
+<li>在 Ctrl+P 下输入 &gt; 可以进入 Ctrl+Shift+P 模式</li>
+</ol>
+<p>在 Ctrl+P 窗口下还可以:</p>
+<ol>
+<li>直接输入文件名，跳转到文件</li>
+<li>? 列出当前可执行的动作</li>
+<li>! 显示 Errors或 Warnings，也可以 Ctrl+Shift+M</li>
+<li>: 跳转到行数，也可以 Ctrl+G 直接进入</li>
+<li>@ 跳转到 symbol（搜索变量或者函数），也可以 Ctrl+Shift+O 直接进入</li>
+<li>@ 根据分类跳转 symbol，查找属性或函数，也可以 Ctrl+Shift+O 后输入:进入</li>
+<li># 根据名字查找 symbol，也可以 Ctrl+T</li>
+</ol>
+            
+            <p class="article-more-link">
+                <a href="/blog/2018/09/02/TIPS-Visual-Studio-Code-%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/#more">
+                    <span class="vm">阅读更多</span>
+                    <i class="icon-arrow-double-right vm"></i>    
+                </a>
+            </p>
+            
+        
+    </section>
+    
+</article>
+
+
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

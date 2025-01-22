@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        webpack小抄 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="什么是 webpackwebpack 是一个用于现代 JavaScript 应用程序的静态模块绑定器。当webpack处理你的应用程序时，它会在内部构建一个依赖关系图，映射项目所需的每个模块，并生成一个或多个包（bundles）。  webpack 可以转换打包多种类型的文件、模块、资源，包括 ES Modules 、CommonJS 和 AMD 模块， 也可以将 TypeScript 转换为 JavaScript，将 Handlebars 字符串转换为函数，将图片转换为 Base64，你也可" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-webpack"><span class="toc-text">什么是 webpack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack%E5%8F%AF%E4%BB%A5%E5%81%9A%E4%BB%80%E4%B9%88"><span class="toc-text">webpack可以做什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86"><span class="toc-text">资源管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E7%AE%A1%E7%90%86"><span class="toc-text">输出管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%8F%91"><span class="toc-text">开发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%88%86%E5%89%B2"><span class="toc-text">代码分割</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98"><span class="toc-text">缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">环境变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack%E7%9A%84%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE"><span class="toc-text">webpack的核心配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mode"><span class="toc-text">Mode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Entry"><span class="toc-text">Entry</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output"><span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Module-Loaders"><span class="toc-text">Module Loaders</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Resolve"><span class="toc-text">Resolve</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Plugins"><span class="toc-text">Plugins</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DevServer"><span class="toc-text">DevServer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Externals"><span class="toc-text">Externals</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack%E5%AE%89%E8%A3%85"><span class="toc-text">webpack安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E5%90%88%E4%BD%BF%E7%94%A8%E7%9A%84npm%E5%8C%85"><span class="toc-text">配合使用的npm包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%AA%E4%BA%9B%E6%96%B9%E6%B3%95%E5%8F%AF%E4%BB%A5%E7%BC%A9%E5%87%8Fwebpack%E7%BC%96%E8%AF%91%E6%97%B6%E9%97%B4"><span class="toc-text">哪些方法可以缩减webpack编译时间?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#loader-%E5%92%8C-plugin-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">loader 和 plugin 的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-text">webpack 生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AAloader"><span class="toc-text">如何编写一个loader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%87%AA%E5%AE%9A%E4%B9%89plugin"><span class="toc-text">如何自定义plugin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack-Tree-shaking%E5%8E%9F%E7%90%86"><span class="toc-text">webpack Tree-shaking原理</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            webpack小抄
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-01-19T07:02:30.000Z" itemprop="datePublished">2021-01-19</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/tool/" rel="tag">tool</a>, <a class="article-tag-link" href="/blog/tags/webpack/" rel="tag">webpack</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="什么是-webpack"><a href="#什么是-webpack" class="headerlink" title="什么是 webpack"></a>什么是 webpack</h2><p><a target="_blank" rel="noopener" href="https://webpack.js.org/">webpack</a> 是一个用于现代 JavaScript 应用程序的静态模块绑定器。当webpack处理你的应用程序时，它会在内部构建一个依赖关系图，映射项目所需的每个模块，并生成一个或多个包（bundles）。  </p>
+<p>webpack 可以转换打包多种类型的文件、模块、资源，包括 ES Modules 、CommonJS 和 AMD 模块， 也可以将 TypeScript 转换为 JavaScript，将 Handlebars 字符串转换为函数，将图片转换为 Base64，你也可以自己编写插件（plugins）来实现将任何你的应用程序需要的资源进行转换与打包。  </p>
+<p>webpack 支持所有兼容 ES5 的浏览器。webpack 需要 Promise 来 import() 和 require.ensure() ，在更老旧的浏览器中使用 webpack 时，需要使用 polyfill。  </p>
+<p>当前（2021年1月19日）最新版本的 webpack 是 v5.15.0， 以下内容默认适用于该版本， 另外 webpack5 运行时需要 Nodejs 版本在 10.13.0 以上。  </p>
+<p>(2021年12月2日)做了部分更新，当前最新版本的 webpack 是 v5.64.4。</p>
+<span id="more"></span>
+<h2 id="webpack可以做什么"><a href="#webpack可以做什么" class="headerlink" title="webpack可以做什么"></a>webpack可以做什么</h2><h3 id="资源管理"><a href="#资源管理" class="headerlink" title="资源管理"></a>资源管理</h3><p>将各种类型的文件/模块作为资源进行统一的处理，webpack 通过 资源视图 和 loader 来实现对项目资源的管理。</p>
+<h3 id="输出管理"><a href="#输出管理" class="headerlink" title="输出管理"></a>输出管理</h3><p>通过丰富的插件，webpack 可以在打包过程中进行一系列的处理，同时支持多个入口和输出。</p>
+<h3 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h3><p>区分 开发 模式和 生产 模式，可以对开发模式进行更有利于 debug 的编译(source map)，热更新等。提供了 webpack-dev-server 本地简易服务器进行开发调试。 </p>
+<h3 id="代码分割"><a href="#代码分割" class="headerlink" title="代码分割"></a>代码分割</h3><p>支持将代码拆分为不同的包，然后可以按需或并行加载。它可以用来拆分更小的包和控制资源负载优先级，如果使用正确，会对负载时间产生重大影响。</p>
+<p>多种方法可以实现代码分割，包括</p>
+<ol>
+<li>使用 SplitChunksPlugin 插件将公用依赖导出到特定包</li>
+<li>使用 mini-css-extract-plugin 来将 CSS 从主应用中拆分出来</li>
+<li>使用动态 import</li>
+<li>使用 预获取/预加载 (prefetch/preload)</li>
+<li>包解析<ol>
+<li>使用官方提供的 <code>webpack --profile --json &gt; stats.json</code> 生成分析的JSON文件</li>
+<li>webpack-chart</li>
+<li>webpack-visualizer</li>
+<li>webpack-bundle-analyzer</li>
+<li>webpack bundle optimize helper</li>
+<li>bundle-stats</li>
+</ol>
+</li>
+</ol>
+<h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><p>浏览器使用缓存来避免无用的请求以及让资源加载更快，webpack 可以根据文件内容在输出文件名中添加 hash 串来控制浏览器的缓存更新策略。通常，可以将 node_modules 中的依赖打包为 vendors.js 然后固定 MODULE id，这样 vendors.[conenthash].js 便不会一直更新。</p>
+<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p>通过设置 <code>--env</code> 参数设置环境变量，在不同的环境下执行不同的编译方案。</p>
+<h2 id="webpack的核心配置"><a href="#webpack的核心配置" class="headerlink" title="webpack的核心配置"></a>webpack的核心配置</h2><h3 id="Mode"><a href="#Mode" class="headerlink" title="Mode"></a>Mode</h3><p>通过将 mode 参数设置为 development 、 production 或 none，可以启用与每个环境相对应的 webpack 内置优化。默认值为 production 。</p>
+<h3 id="Entry"><a href="#Entry" class="headerlink" title="Entry"></a>Entry</h3><p>entry 指示 webpack 应该使用哪个模块来开始构建其内部依赖关系图。 webpack 将找出 entry 所依赖的其他模块和库（直接和间接）。</p>
+<p>默认情况下，其值为 <code>./src/index.js</code>，但可以通过在 webpack 配置中设置 entry 属性来指定不同的（或多个入口点）。例如：</p>
+<figure class="highlight js"><figcaption><span>webpack.config.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">entry</span>: <span class="string">&#x27;./path/to/my/entry/file.js&#x27;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>output 属性告诉 webpack 在何处导出它创建的包以及如何命名这些文件。对于主输出文件，默认为 <code>./dist/main.js</code> ，对于任何其他生成的文件，默认为<code>./dist</code> 文件夹。</p>
+<p>可以通过在配置中指定输出字段来配置流程的这一部分：</p>
+<figure class="highlight js"><figcaption><span>webpack.config.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">entry</span>: <span class="string">&#x27;./path/to/my/entry/file.js&#x27;</span>,</span><br><span class="line">  <span class="attr">output</span>: &#123;</span><br><span class="line">    <span class="attr">path</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;dist&#x27;</span>),</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&#x27;my-first-webpack.bundle.js&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Module-Loaders"><a href="#Module-Loaders" class="headerlink" title="Module Loaders"></a>Module Loaders</h3><p>默认情况下， webpack 只理解 JavaScript 和 JSON 文件。Loaders 允许 webpack 处理其他类型的文件，并将它们转换为有效的模块，这些模块可以被应用程序使用并添加到依赖关系图中。  </p>
+<p>Loaders 是按照规则（rules）进行的，module 的 rules 是一个数组，其中每个 rule 在配置中有两个重要属性，test 属性标识应转换的文件，use 属性指示应该使用哪个加载程序进行转换。  </p>
+<p>Loaders可以是链式的，在链中的每个loader都会按照反向的顺序被执行。  </p>
+<figure class="highlight js"><figcaption><span>webpack.config.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">output</span>: &#123;</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&#x27;my-first-webpack.bundle.js&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">module</span>: &#123;</span><br><span class="line">    <span class="attr">rules</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        <span class="attr">use</span>: [<span class="string">&#x27;style-loader&#x27;</span>, <span class="string">&#x27;css-loader&#x27;</span>]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>常用 loaders :</p>
+<table>
+<thead>
+<tr>
+<th>loader名字</th>
+<th>作用</th>
+<th>文件扩展名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>style-loader</td>
+<td>将 CSS 注入 DOM</td>
+<td>.css</td>
+</tr>
+<tr>
+<td>css-loader</td>
+<td>css-loader 将会像 <code>import/require()</code> 那样解析 <code>@import</code> 和 <code>url()</code></td>
+<td>.css</td>
+</tr>
+<tr>
+<td>postcss-loader</td>
+<td>用于对css文件进行预处理，比如添加前缀</td>
+<td>.css</td>
+</tr>
+<tr>
+<td>file-loader</td>
+<td>file-loader 将文件的 <code>import/require()</code> 解析为 url，并将文件发送到输出目录，在 webpack5 中使用自带的 asset/resource 来代替</td>
+<td>.png .jpg .jpeg .gif</td>
+</tr>
+<tr>
+<td>url-loader</td>
+<td>将文件转换为 base64 url ，在 webpack5 中使用自带的 asset/resource 来代替</td>
+<td>.png .jpg .gif</td>
+</tr>
+<tr>
+<td>raw-loader</td>
+<td>允许导入文件作为字符串，在 webpack5 中使用自带的 asset/resource 来代替</td>
+<td>.txt</td>
+</tr>
+<tr>
+<td>csv-loader</td>
+<td>允许导入csv文件作为字符串</td>
+<td>.csv</td>
+</tr>
+<tr>
+<td>xml-loader</td>
+<td>允许导入xml文件作为字符串</td>
+<td>.xml</td>
+</tr>
+<tr>
+<td>less-loader</td>
+<td>将 less 文件编译为 css</td>
+<td>.less</td>
+</tr>
+<tr>
+<td>sass-loader</td>
+<td>将 sass 文件编译为 css</td>
+<td>.sass</td>
+</tr>
+<tr>
+<td>stylus-loader</td>
+<td>将 styl 文件编译为 css</td>
+<td>.styl</td>
+</tr>
+<tr>
+<td>markdown-loader</td>
+<td>将 md 文件编译为 html</td>
+<td>.md</td>
+</tr>
+<tr>
+<td>babel-loader</td>
+<td>用于对js文件进行预处理，例如将js文件中的语法进行兼容</td>
+<td>.js</td>
+</tr>
+<tr>
+<td>ts-loader</td>
+<td>将ts文件编译为js</td>
+<td>.ts tsx</td>
+</tr>
+<tr>
+<td>html-loader</td>
+<td>将html文档以字符串形式导出</td>
+<td>.html</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Resolve"><a href="#Resolve" class="headerlink" title="Resolve"></a>Resolve</h3><p>Resolve 决定了当导入一个模块时，模块应当如何被解析，最常用的用法是定义 import 模块的别名。</p>
+<figure class="highlight js"><figcaption><span>webpack.config.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">resolve</span>: &#123;</span><br><span class="line">    <span class="comment">// 解析模块请求的选项</span></span><br><span class="line">    <span class="attr">modules</span>: [</span><br><span class="line">      <span class="string">&quot;node_modules&quot;</span>,</span><br><span class="line">      path.<span class="title function_">resolve</span>(__dirname, <span class="string">&quot;app&quot;</span>)</span><br><span class="line">    ],</span><br><span class="line">    <span class="comment">// 用于查找模块的目录</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">extensions</span>: [<span class="string">&quot;.js&quot;</span>, <span class="string">&quot;.json&quot;</span>, <span class="string">&quot;.jsx&quot;</span>, <span class="string">&quot;.css&quot;</span>],</span><br><span class="line">    <span class="comment">// 使用的扩展名</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">alias</span>: &#123;</span><br><span class="line">      <span class="comment">// 模块别名列表</span></span><br><span class="line"></span><br><span class="line">      <span class="string">&quot;module&quot;</span>: <span class="string">&quot;new-module&quot;</span>,</span><br><span class="line">      <span class="comment">// 起别名：&quot;module&quot; -&gt; &quot;new-module&quot; 和 &quot;module/path/file&quot; -&gt; &quot;new-module/path/file&quot;</span></span><br><span class="line"></span><br><span class="line">      <span class="string">&quot;only-module$&quot;</span>: <span class="string">&quot;new-module&quot;</span>,</span><br><span class="line">      <span class="comment">// 起别名 &quot;only-module&quot; -&gt; &quot;new-module&quot;，但不匹配 &quot;only-module/path/file&quot; -&gt; &quot;new-module/path/file&quot;</span></span><br><span class="line"></span><br><span class="line">      <span class="string">&quot;module&quot;</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&quot;app/third/module.js&quot;</span>),</span><br><span class="line">      <span class="comment">// 起别名 &quot;module&quot; -&gt; &quot;./app/third/module.js&quot; 和 &quot;module/file&quot; 会导致错误</span></span><br><span class="line">      <span class="comment">// 模块别名相对于当前上下文导入</span></span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Plugins"><a href="#Plugins" class="headerlink" title="Plugins"></a>Plugins</h3><p>Loaders 用于转换某些类型的模块，但可以利用 plugins 执行更广泛的任务，如包优化、资源管理和环境变量的注入。<br>为了使用 plugin ，你需要先引入它并将其添加到配置文件的 plugins 数组中。大多数插件都可以通过选项进行定制。由于可以在配置中多次使用插件以实现不同的目的，因此需要通过使用 New 操作符调用插件来创建插件的实例。</p>
+<figure class="highlight js"><figcaption><span>webpack.config.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">HtmlWebpackPlugin</span> = <span class="built_in">require</span>(<span class="string">&#x27;html-webpack-plugin&#x27;</span>); <span class="comment">// 通过 npm 引入的 plugin</span></span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">&#x27;webpack&#x27;</span>); <span class="comment">// 使用 webpack 自带的 plugin</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">module</span>: &#123;</span><br><span class="line">    <span class="attr">rules</span>: [</span><br><span class="line">      &#123; <span class="attr">test</span>: <span class="regexp">/\.txt$/</span>, <span class="attr">use</span>: <span class="string">&#x27;raw-loader&#x27;</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">HtmlWebpackPlugin</span>(&#123; <span class="attr">template</span>: <span class="string">&#x27;./src/index.html&#x27;</span> &#125;),</span><br><span class="line">    <span class="keyword">new</span> webpack.<span class="title class_">DefinePlugin</span>(&#123;</span><br><span class="line">        <span class="string">&#x27;process.env.NODE_ENV&#x27;</span>: <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(process.<span class="property">env</span>.<span class="property">NODE_ENV</span>),</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>常用 plugins :</p>
+<table>
+<thead>
+<tr>
+<th>plugin 名字</th>
+<th>作用</th>
+<th>包</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>webpack.BannerPlugin</td>
+<td>在每个生成的块的顶部添加一些信息，比如版权信息</td>
+</tr>
+<tr>
+<td>CleanWebpackPlugin</td>
+<td>编译前自动清除输出目录</td>
+<td>clean-webpack-plugin</td>
+</tr>
+<tr>
+<td>webpack.optimize.CommonsChunkPlugin</td>
+<td>提取块之间共享的公共模块</td>
+</tr>
+<tr>
+<td>CompressionWebpackPlugin</td>
+<td>准备资源的压缩版本，为其提供内容编码</td>
+<td>compression-webpack-plugin</td>
+</tr>
+<tr>
+<td>webpack.ContextReplacementPlugin</td>
+<td>重写require表达式的推断上下文</td>
+</tr>
+<tr>
+<td>CopyWebpackPlugin</td>
+<td>将单个文件或整个目录复制到生成目录</td>
+<td>copy-webpack-plugin</td>
+</tr>
+<tr>
+<td>webpack.DefinePlugin</td>
+<td>允许在编译时配置全局常量</td>
+</tr>
+<tr>
+<td>webpack.DllPlugin</td>
+<td>拆分捆绑包以显著缩短构建时间</td>
+</tr>
+<tr>
+<td>webpack.EnvironmentPlugin</td>
+<td>使用 DefinePlugin 的 process.env 更便捷的方法</td>
+</tr>
+<tr>
+<td>EslintWebpackPlugin</td>
+<td>ESLint 的 webpack插件</td>
+<td>eslint-webpack-plugin</td>
+</tr>
+<tr>
+<td>webpack.HotModuleReplacementPlugin</td>
+<td>允许热替换(HMR)</td>
+</tr>
+<tr>
+<td>HtmlWebpackPlugin</td>
+<td>为包创建HTML</td>
+<td>html-webpack-plugin</td>
+</tr>
+<tr>
+<td>webpack.IgnorePlugin</td>
+<td>从包中排除某些模块</td>
+</tr>
+<tr>
+<td>webpack.optimize.LimitChunkCountPlugin</td>
+<td>设置分块的最小/最大限制以更好地控制分块</td>
+</tr>
+<tr>
+<td>webpack.optimize.MinChunkSizePlugin</td>
+<td>保持块大小高于指定的限制</td>
+</tr>
+<tr>
+<td>MiniCssExtractPlugin</td>
+<td>为每个需要CSS的JS文件创建一个CSS文件</td>
+<td>mini-css-extract-plugin</td>
+</tr>
+<tr>
+<td>webpack.NoEmitOnErrorsPlugin</td>
+<td>出现编译错误时不再抛出</td>
+</tr>
+<tr>
+<td>webpack.NormalModuleReplacementPlugin</td>
+<td>替换与 regexp 匹配的资源</td>
+</tr>
+<tr>
+<td>NpmInstallWebpackPlugin</td>
+<td>开发时自动安装缺失的依赖</td>
+<td>npm-install-webpack-plugin</td>
+</tr>
+<tr>
+<td>OccurrenceOrderPlugin</td>
+<td>通过模块调用次数给模块分配ids，常用的ids就会分配更短的id，使ids可预测，减小文件大小</td>
+</tr>
+<tr>
+<td>webpack.ProgressPlugin</td>
+<td>汇报编译进度</td>
+<td></td>
+</tr>
+<tr>
+<td>webpack.ProvidePlugin</td>
+<td>使用模块而不必使用import/require</td>
+</tr>
+<tr>
+<td>webpack.SourceMapDevToolPlugin</td>
+<td>支持对源映射进行更细粒度的控制</td>
+</tr>
+<tr>
+<td>webpack.EvalSourceMapDevToolPlugin</td>
+<td>支持对eval源映射进行更细粒度的控制</td>
+</tr>
+<tr>
+<td>TerserPlugin</td>
+<td>使用 Terser 压缩混淆项目中的JS</td>
+<td>terser-webpack-plugin</td>
+</tr>
+<tr>
+<td>UglifyJsPlugin</td>
+<td>js压缩插件</td>
+<td>uglifyjs-webpack-plugin</td>
+</tr>
+<tr>
+<td>WebpackBarPlugin</td>
+<td>优化webpack加载命令行界面为进度条格式</td>
+<td>progress-bar-webpack-plugin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="DevServer"><a href="#DevServer" class="headerlink" title="DevServer"></a>DevServer</h3><p>DevServer 用来配置和 webpack-dev-server 相关的选项。</p>
+<h3 id="Externals"><a href="#Externals" class="headerlink" title="Externals"></a>Externals</h3><p>Externals 用来防止将某些 import 的包打包到 bundle 中，而是在运行时再去从外部获取这些扩展依赖。</p>
+<h2 id="webpack安装"><a href="#webpack安装" class="headerlink" title="webpack安装"></a>webpack安装</h2><p>使用npm/yarn安装</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev webpack</span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line">yarn add webpack --dev</span><br><span class="line"><span class="comment">// webpack4以上的版本需要同时安装webpack-cli</span></span><br><span class="line">npm install --save-dev webpack-cli</span><br></pre></td></tr></table></figure>
+<p>添加 build 脚本到 package.json 中</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;build&quot;</span><span class="punctuation">:</span> <span class="string">&quot;webpack --config webpack.config.js&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="配合使用的npm包"><a href="#配合使用的npm包" class="headerlink" title="配合使用的npm包"></a>配合使用的npm包</h2><p>webpack webpack包<br>webpack-cli webpack工具包，从webpack4开始需要安装该包<br>webpack-bundle-analyzer webpack打包文件分析工具<br>webpack-dev-server webpack开发服务器<br>webpack-merge webpack配置文件合并工具，可以将两个配置文件合并为一个</p>
+<h2 id="哪些方法可以缩减webpack编译时间"><a href="#哪些方法可以缩减webpack编译时间" class="headerlink" title="哪些方法可以缩减webpack编译时间?"></a>哪些方法可以缩减webpack编译时间?</h2><p>详见 <a target="_blank" rel="noopener" href="https://webpack.js.org/guides/build-performance/">build performance</a><br>以下提供了一些常见的方法</p>
+<ol>
+<li>将加载程序应用到所需的最小模块数 <code>module.rules[n].include</code></li>
+<li>每个额外的加载程序/插件都有一个启动时间。尽量少用工具。</li>
+<li>使用 DllPlugin 将更改较少的代码移动到单独的编译中</li>
+<li>开发时在内存中编译 使用 <code>webpack-dev-server</code></li>
+<li>了解 devtool 选项的区别，大部分情况下使用 <code>eval-cheap-module-source-map</code></li>
+<li>开发时避免使用生产环境工具 例如 [contenthash]、TerserPlugin、AggressiveSplittingPlugin</li>
+<li>勿使用 Node.js 8.9.10-9.11.1版本，这些版本的 Map Set 实现有<a target="_blank" rel="noopener" href="https://github.com/nodejs/node/issues/19769">性能问题</a></li>
+<li>使用多线程编译 parallel-webpack &amp; cache-loader</li>
+</ol>
+<p>##　webpack编译流程</p>
+<ol>
+<li>初始化参数: 从配置文件 webpack.config.js 和 cli args 参数中读取参数 options 并进行合并</li>
+<li>开始编译: 根据输入参数初始化 Compiler 对象，加载配置的插件 plugin，调用插件的的 apply 方法，执行 Compiler 对象的 run 方法开始执行编译(实例化 Compilation 对象)</li>
+<li>确认入口: 根据配置中的 entry 找出所有的入口文件</li>
+<li>编译模块: 从入口文件开始解析，调用配置的 loader 对不同类型的模块进行载入，递归这个过程直到所有的入口文件都经过处理，得到所有模块的依赖关系 Module Chain</li>
+<li>输出资源: 根据入口和模块之间的依赖关系，组装成一个个包含多个模块的 chunk, 每个 chunk 生成一个资源列表 chunk assets, 之后会把多个 chunk 合并转换成单独的文件 bundle 加入到输出列表</li>
+<li>输出完成: 根据 output 配置确定输出的路径和文件名，把文件内容写入到文件系统中</li>
+</ol>
+<h2 id="loader-和-plugin-的区别"><a href="#loader-和-plugin-的区别" class="headerlink" title="loader 和 plugin 的区别"></a>loader 和 plugin 的区别</h2><ol>
+<li>loader 是资源加载器，通过链式调用，loader 赋予了 webpack 加载不同类型资源的能力，例如解析 Less文件、解析图片资源等。</li>
+<li>plugin 是插件，通过在 webpack 编译过程中预先设置钩子函数，plugin 可以在 webpack 编译过程中实现各种各样的功能，例如打包优化、资源管理、环境变量注入等。</li>
+</ol>
+<h2 id="webpack-生命周期"><a href="#webpack-生命周期" class="headerlink" title="webpack 生命周期"></a>webpack 生命周期</h2><ol>
+<li>environment</li>
+<li>afterEnvironment</li>
+<li>entryOption</li>
+<li>afterPlugins</li>
+<li>afterResolvers</li>
+<li>initalize</li>
+<li>beforeRun</li>
+<li>run</li>
+<li>normalModuleFactory</li>
+<li>contextModuleFactory</li>
+<li>beforeComlile</li>
+<li>compile</li>
+<li>thisCompilation</li>
+<li>compilation</li>
+<li>make</li>
+<li>finishMake</li>
+<li>afterCompile</li>
+<li>shouldEmit</li>
+<li>emit</li>
+<li>afterEmit</li>
+<li>done</li>
+<li>afterDone</li>
+</ol>
+<h2 id="如何编写一个loader"><a href="#如何编写一个loader" class="headerlink" title="如何编写一个loader"></a>如何编写一个loader</h2><p>loader 是导出为一个函数的 node 模块。该函数在 loader 转换资源的时候调用。给定的函数将调用 Loader API，并通过 this 上下文访问。</p>
+<ol>
+<li>一个 loader 只能传入一个参数,一个包含资源文件内容的字符串。</li>
+<li>loader 会返回一个或者两个值,第一个值的类型是 string 或者 Buffer 类型的数据,第二个可选值是 SourceMap。</li>
+<li>如果是单个处理结果，可以在 <em>同步模式</em> 中直接 <code>return</code>。如果有多个处理结果，则必须调用 <code>this.callback()</code>。</li>
+<li>在 <em>异步模式</em> 中，必须调用 <code>this.async()</code> 来告知 loader runner 等待异步结果，它会返回 <code>callback</code> 回调函数。随后 loader 必须返回 undefined 并且调用该回调函数。</li>
+<li>loader 可以提供 pitch 方法来在 pitching 阶段执行一些操作，在 pitch 方法中返回数据可以跳过之后的 loader。</li>
+<li>loader 函数中的 this 可以访问 loader 上下文中的方法和属性</li>
+</ol>
+<figure class="highlight js"><figcaption><span>loader.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> path <span class="keyword">from</span> <span class="string">&#x27;path&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 一个函数</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> (<span class="params">source</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> callback = <span class="variable language_">this</span>.<span class="title function_">async</span>();</span><br><span class="line">  <span class="keyword">var</span> headerPath = path.<span class="title function_">resolve</span>(<span class="string">&#x27;header.js&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">this</span>.<span class="title function_">addDependency</span>(headerPath);</span><br><span class="line"></span><br><span class="line">  fs.<span class="title function_">readFile</span>(headerPath, <span class="string">&#x27;utf-8&#x27;</span>, <span class="keyword">function</span> (<span class="params">err, header</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (err) <span class="keyword">return</span> <span class="title function_">callback</span>(err);</span><br><span class="line">    <span class="title function_">callback</span>(<span class="literal">null</span>, header + <span class="string">&#x27;\n&#x27;</span> + source);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="如何自定义plugin"><a href="#如何自定义plugin" class="headerlink" title="如何自定义plugin"></a>如何自定义plugin</h2><p>plugin 向第三方开发者提供了 webpack 引擎中完整的能力。使用阶段式的构建回调，开发者可以在 webpack 构建流程中引入自定义的行为。</p>
+<p>webpack 插件由以下组成：</p>
+<ol>
+<li>一个 JavaScript 命名函数或 JavaScript 类。</li>
+<li>在插件函数的 prototype 上定义一个 apply 方法。</li>
+<li>指定一个绑定到 webpack 自身的事件钩子。</li>
+<li>处理 webpack 内部实例的特定数据。</li>
+<li>功能完成后调用 webpack 提供的回调。</li>
+</ol>
+<figure class="highlight js"><figcaption><span>MyExampleWebpackPlugin.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一个 JavaScript 类</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">MyExampleWebpackPlugin</span> &#123;</span><br><span class="line">  <span class="comment">// 在插件函数的 prototype 上定义一个 `apply` 方法，以 compiler 为参数。</span></span><br><span class="line">  <span class="title function_">apply</span>(<span class="params">compiler</span>) &#123;</span><br><span class="line">    <span class="comment">// 指定一个挂载到 webpack 自身的事件钩子。</span></span><br><span class="line">    compiler.<span class="property">hooks</span>.<span class="property">emit</span>.<span class="title function_">tapAsync</span>(</span><br><span class="line">      <span class="string">&#x27;MyExampleWebpackPlugin&#x27;</span>,</span><br><span class="line">      <span class="function">(<span class="params">compilation, callback</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;这是一个示例插件！&#x27;</span>);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(</span><br><span class="line">          <span class="string">&#x27;这里表示了资源的单次构建的 `compilation` 对象：&#x27;</span>,</span><br><span class="line">          compilation</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 用 webpack 提供的插件 API 处理构建过程</span></span><br><span class="line">        compilation.<span class="title function_">addModule</span>(<span class="comment">/* ... */</span>);</span><br><span class="line"></span><br><span class="line">        <span class="title function_">callback</span>();</span><br><span class="line">      &#125;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="webpack-Tree-shaking原理"><a href="#webpack-Tree-shaking原理" class="headerlink" title="webpack Tree-shaking原理"></a>webpack Tree-shaking原理</h2><ol>
+<li>Tree-shaking 是一种通过清除多余代码的方式来优化项目打包体积的技术。</li>
+<li>Tree-shaking 利用了 ES6 模块的特点，ES6 的模块加载是静态的，因此整个依赖树可以在编译时被静态的推导出解析语法树（AST），从而在编译时删除未使用的部分</li>
+<li>webpack2 开始就已经支持 Tree-shaking 的特性，webpack4 中 mode 设置为 production 时默认开启 Tree-shaking</li>
+<li>确保没有把 compiler 将 ES6 模块语法转换为 CommonJS 模块。这一块很重要，在你使用 babel-loader 或者 ts-loader 编译代码时，一定要保留 import 和 export。</li>
+<li>如果打包的代码有副作用（Side Effects），并且需要导出，可以通过 package.json 的 sideEffect 属性来声明</li>
+</ol>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

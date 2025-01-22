@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        Charles小抄 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="在前端开发过程中我们常常要用到代理工具来处理一些诸如改变请求参数，代理请求地址，以及抓包的问题。目前最流行的代理工具有两种 Fiddler &amp;amp; Charles。Fiddler是免费的，一直以来只提供了Windows版本，2016年10月之后也提供了Mac OSX版本，不过需要安装跨平台方案Mono。Charles是付费的，20$/license，不过Charles是java swing编写的，网上可以找到很多破解的方案，这里不再赘述。Charles的好处在于功能齐全，界面简单，提供了几乎" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Charles%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">Charles是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Charles%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD"><span class="toc-text">Charles主要功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Charles-%E5%AE%89%E8%A3%85"><span class="toc-text">Charles 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Charles%E9%85%8D%E7%BD%AE"><span class="toc-text">Charles配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Charles-%E7%94%A8%E6%B3%95"><span class="toc-text">Charles 用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E8%AF%B7%E6%B1%82%E5%86%85%E5%AE%B9%EF%BC%88%E6%8A%93%E5%8C%85%EF%BC%89"><span class="toc-text">查看请求内容（抓包）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%90%86%E8%AF%B7%E6%B1%82"><span class="toc-text">代理请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8BHTTPS"><span class="toc-text">查看HTTPS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%AA%E6%B5%81"><span class="toc-text">截流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E5%AE%83"><span class="toc-text">其它</span></a></li></ol></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            Charles小抄
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-27T06:34:26.000Z" itemprop="datePublished">2018-09-27</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/charles/" rel="tag">charles</a>, <a class="article-tag-link" href="/blog/tags/proxy/" rel="tag">proxy</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>在前端开发过程中我们常常要用到代理工具来处理一些诸如改变请求参数，代理请求地址，以及抓包的问题。目前最流行的代理工具有两种 <a target="_blank" rel="noopener" href="https://www.telerik.com/fiddler">Fiddler</a> &amp; <a target="_blank" rel="noopener" href="https://www.charlesproxy.com/">Charles</a>。Fiddler是免费的，一直以来只提供了Windows版本，2016年10月之后也提供了Mac OSX版本，不过需要安装跨平台方案Mono。Charles是付费的，20$/license，不过Charles是java swing编写的，网上可以找到很多破解的方案，这里不再赘述。Charles的好处在于功能齐全，界面简单，提供了几乎所有可以用到的代理功能，在MacOS下十分好用，2018年3月之后甚至提供了IOS的版本。下面主要来讲一下Charles的使用。</p>
+<span id="more"></span>
+<h2 id="Charles是什么"><a href="#Charles是什么" class="headerlink" title="Charles是什么"></a>Charles是什么</h2><p>Charles是一个提供了HTTP代理/HTTP监控/反向代理的工具，通过这个工具，开发者可以查看本机与网络之间的所有HTTP以及SSL/HTTPS通信，包括请求与返回以及HTTP头部信息（包含cookie和缓存信息）。</p>
+<div><style type="text/css">img {box-shadow:none !important;</style><img src="/blog/static/imgs/charles-macosx.png" alt="charles-macosx"></div>
+
+<h2 id="Charles主要功能"><a href="#Charles主要功能" class="headerlink" title="Charles主要功能"></a>Charles主要功能</h2><p>Charles主要功能如下：  </p>
+<ol>
+<li>记录了本机与网络之间的所有通信流量</li>
+<li>展示了所有的请求，返回数据，cookie和头部信息的内容</li>
+<li>支持SSL和HTTPS</li>
+<li>模拟慢网速环境</li>
+<li>下载静态资源</li>
+<li>请求高度可配置</li>
+</ol>
+<h2 id="Charles-安装"><a href="#Charles-安装" class="headerlink" title="Charles 安装"></a>Charles 安装</h2><p>点击<a target="_blank" rel="noopener" href="https://www.charlesproxy.com/download/">这里</a>可以跳转到下载页面。<br>截止北京时间2018年9月27日16:09 最新的版本为4.2.7  </p>
+<p>Charles提供了以下版本</p>
+<ul>
+<li><p>Windows</p>
+<blockquote>
+<p>Windows 64 bit (msi, 64.7 MB)<br>Windows 32 bit (msi, 63.9 MB)</p>
+</blockquote>
+</li>
+<li><p>macOS</p>
+<blockquote>
+<p>macOS (dmg, 58 MB) (兼容 macOS 10.7 - 10.13)</p>
+</blockquote>
+</li>
+<li><p>Linux</p>
+<blockquote>
+<p>Linux 64 bit (tar.gz, 56.1 MB)<br>Linux 32 bit (tar.gz, 55.6 MB)</p>
+</blockquote>
+</li>
+</ul>
+<p>Firefox浏览器下还提供了一个add-on来支持Charles.</p>
+<h2 id="Charles配置"><a href="#Charles配置" class="headerlink" title="Charles配置"></a>Charles配置</h2><p>在Windows及 MacOS系统中，只要赋予权限Charles会自动将自己配置为代理服务器，不过还有一些比较通用的设置，以MacOS为例  </p>
+<ul>
+<li>打开 Charles &gt; Preference &gt; Startup ，关掉Start throttling，Check for updates。  </li>
+<li>点击 Proxy &gt; Mac OS X Proxy 启用系统代理。  </li>
+</ul>
+<p>在IOS中需要自己在wifi配置中手动设置。配置步骤如下：  </p>
+<ol>
+<li>打开 设置 &gt; Wifi ，找到自己连接的网络然后打开</li>
+<li>滑动到 HTTP代理设置，选择 手动 ，输入运行Charles server的IP与端口号（通常是8888）。</li>
+</ol>
+<h2 id="Charles-用法"><a href="#Charles-用法" class="headerlink" title="Charles 用法"></a>Charles 用法</h2><p>以Charles 3.9.1为例，Charles的常用功能如下：  </p>
+<h3 id="查看请求内容（抓包）"><a href="#查看请求内容（抓包）" class="headerlink" title="查看请求内容（抓包）"></a>查看请求内容（抓包）</h3><p>首先点击 File &gt; New 或者 菜单栏的New Session创建一个session，然后点击 Proxy &gt; Start Recording 开始记录请求。 在浏览器中发送请求，就可以在Charles中查看请求的相关信息。Charles支持以结构化（Structure）或者序列（Sequence）的方式展示请求，结构化展示会把同地址端口的请求汇总，序列化则会按照请求顺序展示请求。<br>可以在Proxy &gt; Recording Setting设置记录的相关信息  </p>
+<p>支持：</p>
+<ol>
+<li>限制请求数量与大小</li>
+<li>仅记录固定地址列表</li>
+<li>记录时排除某些地址</li>
+</ol>
+<p>记录的信息是存储在内存中的，所以如果不需要记录的请求最好能够过滤掉，记录的数据过多时Charles也会提醒并关闭记录。记录的数据可以通过 File &gt; Export 导出，也可以通过 File &gt; Save as 保存为Charles可识别的.chls文件。</p>
+<h3 id="代理请求"><a href="#代理请求" class="headerlink" title="代理请求"></a>代理请求</h3><p>打开 Tools &gt; Map Remote/Map Local &gt; Enable Map Remote/Enable Map Local ，点击 Add 可以添加新的代理映射<br>代理的作用是将请求的地址转向一个新的网络地址/本地地址，有些情况下可以用到  </p>
+<ol>
+<li>在生产环境测试时发现了问题，可以将请求的资源映射到本地资源，然后通过修改本地的代码预览修改后的效果。</li>
+<li>可以配置生产环境，测试环境，开发环境的地址，通过在 Map remote 中切换环境地址来切换环境而不用修改访问的地址。</li>
+<li>某些已发布的客户端请求的地址时固定的，可以通过 Map remote 来修改请求的地址。</li>
+</ol>
+<h3 id="查看HTTPS"><a href="#查看HTTPS" class="headerlink" title="查看HTTPS"></a>查看HTTPS</h3><p>通常情况下HTTPS请求是加密并无法被查看的，但是通过替换正常证书为Charles颁发的证书可以做到查看HTTPS请求。<br>打开 Proxy &gt; Proxy Settings &gt; SSL &gt; Enable SSL proxying ，点击Add添加地址，通常端口号为443(HTTPS的端口号)。<br>然后打开网址，以Chrome为例，需要点击 高级 &gt; 允许 来访问地址，这时就可以在Charles中查看HTTPS请求内容。<br>通过将Charles证书添加到“受信任的证书”可以避免浏览器的不信任阻塞。<br>如何将Charles证书添加到“受信任的证书”的方法根据操作系统及浏览器的不同而不同。<br>Windows/IE</p>
+<blockquote>
+<p>Help &gt; SSL Proxying &gt; Install Charles Root Certificate &gt; Install Certificate</p>
+</blockquote>
+<p>MacOS</p>
+<blockquote>
+<p>Help &gt; SSL Proxying &gt; Install Charles Root Certificate 打开钥匙串，搜索 Charles Proxy，双击打开，然后将 信任 &gt; 使用此证书时 下拉框选择为“始终信任”<br>根据官网文档，如上步骤操作就行了，实际上因为Charles certficate 采用的SHA1加密算法，仍旧会被Chrome提示不安全，Safari不再提示不安全</p>
+</blockquote>
+<h3 id="截流"><a href="#截流" class="headerlink" title="截流"></a>截流</h3><p>打开 Proxy &gt; Throttle Settings &gt; Enable Throttling ，可以模仿弱网环境下的请求。  </p>
+<p>支持：  </p>
+<ol>
+<li>对指定host截流</li>
+<li>限制上传下载带宽，利用率，往返延迟，最大传输单元（MTU）</li>
+</ol>
+<h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><p>Charles还提供了其它的一些功能：  </p>
+<ol>
+<li>请求内容的结构化展示</li>
+<li>请求的断点与内容修改/重写</li>
+<li>反向代理，将请求向本机的资源转发到远端的 web server 上</li>
+<li>TCP/UDP 端口转发</li>
+<li>IP访问控制</li>
+<li>外部 HTTP/HTTPS/SOCKS 代理服务器连接</li>
+<li>Charles web化管理</li>
+<li>SSL连接</li>
+<li>no cache连接，包括特定地址的 no cache 连接</li>
+<li>block cookie连接，包括特定地址的 block cookie 连接</li>
+<li>DNS欺骗</li>
+<li>发布Gist</li>
+</ol>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

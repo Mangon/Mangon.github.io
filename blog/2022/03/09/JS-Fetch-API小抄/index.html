@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        Fetch API小抄 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="Fetch API 提供了一个 window.fetch() 接口来获取资源（包括网络资源）。Fetch API 可以用来替代 XMLHttpRequest ，可以在 Web Workers 中使用( WorkerGlobalScope.fetch() )。Fetch API 用法语法：1const fetchResponsePromise = fetch(resource [, init])resource 参数fetch() 方法接受一个必填参数 resource ，即要获取的资源（" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Fetch-API-%E7%94%A8%E6%B3%95"><span class="toc-text">Fetch API 用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#resource-%E5%8F%82%E6%95%B0"><span class="toc-text">resource 参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#init-%E5%8F%82%E6%95%B0"><span class="toc-text">init 参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Headers-%E5%AF%B9%E8%B1%A1"><span class="toc-text">Headers 对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Response-%E5%AF%B9%E8%B1%A1"><span class="toc-text">Response 对象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AbortController-%E9%98%BB%E6%AD%A2%E8%AF%B7%E6%B1%82"><span class="toc-text">AbortController 阻止请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8E-XMLHttpRequest-%E5%B7%AE%E5%BC%82"><span class="toc-text">与 XMLHttpRequest 差异</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8E-jQuery-ajax-%E5%B7%AE%E5%BC%82"><span class="toc-text">与 jQuery.ajax 差异</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            Fetch API小抄
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2022-03-09T03:23:35.000Z" itemprop="datePublished">2022-03-09</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/HTTP/" rel="tag">HTTP</a>, <a class="article-tag-link" href="/blog/tags/Web-API/" rel="tag">Web API</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>Fetch API 提供了一个 <code>window.fetch()</code> 接口来获取资源（包括网络资源）。Fetch API 可以用来替代 XMLHttpRequest ，可以在 Web Workers 中使用( <code>WorkerGlobalScope.fetch()</code> )。</p>
+<span id="more"></span>
+<h2 id="Fetch-API-用法"><a href="#Fetch-API-用法" class="headerlink" title="Fetch API 用法"></a>Fetch API 用法</h2><p>语法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fetchResponsePromise = <span class="title function_">fetch</span>(resource [, init])</span><br></pre></td></tr></table></figure>
+<h3 id="resource-参数"><a href="#resource-参数" class="headerlink" title="resource 参数"></a>resource 参数</h3><p><code>fetch()</code> 方法接受一个必填参数 <code>resource</code> ，即要获取的资源（可以是一个字符类型的资源地址，包括 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/URL">URL 对象</a>，或者是一个 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Request">Request 对象</a>）。它返回一个 Promise ，resolve 为对该请求的 Response ，只要服务器返回带 headers 响应——即使服务器响应的是 HTTP 错误状态（比如404 或 500）。如果遇到网络错误（比如权限或者其他问题）则会 reject 并传回 TypeError 。如果被中断，则会 reject 传回 AbortError。</p>
+<p><code>fetch()</code> 方法获取资源的权限由 内容安全策略（Content Security Policy) 的 connect-src 指令控制。</p>
+<p><code>fetch()</code> 的一般用法如下：</p>
+<figure class="highlight js"><figcaption><span>Promise用法</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(url, &#123;</span><br><span class="line">  <span class="attr">method</span>: <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">  <span class="attr">headers</span>: &#123;</span><br><span class="line">    <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">body</span>: <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(data)</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> res.<span class="title function_">json</span>();</span><br><span class="line">&#125;, <span class="function"><span class="params">err</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(err)).<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(data);</span><br><span class="line">&#125;, <span class="function"><span class="params">err</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(err));</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><figcaption><span>async/await用法</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">getRequestData</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> res = <span class="keyword">await</span> <span class="title function_">fetch</span>(url, &#123;</span><br><span class="line">      <span class="attr">method</span>: <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">      <span class="attr">headers</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">body</span>: <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(data)</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">let</span> data = <span class="keyword">await</span> res.<span class="title function_">json</span>();</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data);</span><br><span class="line">  &#125; <span class="keyword">catch</span>(err) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(err);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="init-参数"><a href="#init-参数" class="headerlink" title="init 参数"></a>init 参数</h3><p><code>fetch()</code> 方法第二个参数为可选的 <code>init</code> 参数，作为请求的额外参数。</p>
+<p>init 选项类似一个 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Request">Request 对象</a>，你可以直接使用 Request 构造器创建一个 request。它包括以下选项：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">method</span>: <span class="string">&#x27;POST&#x27;</span>, <span class="comment">// 请求使用的方法，如 GET, POST, PUT, DELETE 等等.</span></span><br><span class="line">    <span class="attr">headers</span>: &#123; <span class="comment">// 请求的头信息，可以是一个 Headers 对象或包含 ByteString 值的对象字面量</span></span><br><span class="line">      <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span>, <span class="comment">// &#x27;Content-Type&#x27;: &#x27;application/x-www-form-urlencoded&#x27;,</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">body</span>: <span class="literal">undefined</span>, <span class="comment">// 请求的 body 信息：可能是一个 Blob、BufferSource、FormData、URLSearchParams、USVString 或者 ReadableStream 对象。GET 和 HEAD 请求没有 body。</span></span><br><span class="line">    <span class="attr">mode</span>: <span class="string">&#x27;cors&#x27;</span>, <span class="comment">// 请求的模式，如 no-cors（请求方法只限于 GET、POST 和 HEAD，并且只能使用有限的几个简单标头，不能添加跨域的复杂标头，相当于提交表单所能发出的请求）, cors（默认值，允许跨域请求）, same-origin（只允许同源请求）</span></span><br><span class="line">    <span class="attr">cache</span>: <span class="string">&#x27;no-cache&#x27;</span>, <span class="comment">// 请求对 cache 的处理模式，如 default（默认值，先在缓存里面寻找匹配的请求）, no-store（直接请求远程服务器，并且不更新缓存）, reload（直接请求远程服务器，并且更新缓存）, no-cache（将服务器资源跟本地缓存进行比较，有新的版本才使用服务器资源，否则使用缓存）, force-cache（缓存优先，只有不存在缓存的情况下，才请求远程服务器）, only-if-cached（只检查缓存，如果缓存里面不存在，将返回504错误）</span></span><br><span class="line">    <span class="attr">credentials</span>: <span class="string">&#x27;same-origin&#x27;</span>, <span class="comment">// 请求跨域是否带认证信息（cookes 和 HTTP authentication 字段），如 include（一律包括认证信息）, same-origin（默认值，同源带认证信息）, omit（删掉所有认证信息）</span></span><br><span class="line">    <span class="attr">redirect</span>: <span class="string">&#x27;follow&#x27;</span>, <span class="comment">// 请求对重定向的处理模式，如 manual（手动处理）, follow（默认值，fetch跟随浏览器对HTTP请求的处理自动重定向）, error（如果产生重定向将自动终止并且抛出一个错误）</span></span><br><span class="line">    <span class="attr">referrer</span>: <span class="string">&#x27;about:client&#x27;</span>, <span class="comment">// 请求的referrer地址，可以是一个 同源URL 或者 about:client 或留空</span></span><br><span class="line">    <span class="attr">referrerPolicy</span>: <span class="string">&#x27;no-referrer&#x27;</span>, <span class="comment">// 指定了 HTTP 的 referer 策略，如 no-referrer（不发送Referer标头）, no-referrer-when-downgrade（默认值，总是发送Referer标头，除非从 HTTPS 页面请求 HTTP 资源时不发送）, origin（Referer标头只包含域名，不包含完整的路径）, origin-when-cross-origin（同源请求Referer标头包含完整的路径，跨域请求只包含域名）, same-origin（跨域请求不发送Referer，同源请求发送）, strict-origin（Referer标头只包含域名，HTTPS 页面请求 HTTP 资源时不发送Referer标头）, strict-origin-when-cross-origin（同源请求时Referer标头包含完整路径，跨域请求时只包含域名，HTTPS 页面请求 HTTP 资源时不发送该标头）, unsafe-url（不管什么情况，总是发送Referer标头）</span></span><br><span class="line">    <span class="attr">integrity</span>: <span class="string">&#x27;sha256-BpfBw7ivV8q2jLiT13fxDYAe2tJllusRSZ273h2nFSE=&#x27;</span>, <span class="comment">// 请求的子资源完整性（SRI）值</span></span><br><span class="line">    <span class="attr">keepalive</span>: <span class="literal">null</span>, <span class="comment">// 用于允许请求保活，一个典型场景是用户离开页面的行为统计。带 keepalive 的 Fetch 请求是为了替代 Navigator.sendBeacon()</span></span><br><span class="line">    <span class="attr">signal</span>: <span class="literal">null</span>, <span class="comment">// 一个 AbortSignal 实例，用来通过 AbortController 中止 fetch 请求</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Headers-对象"><a href="#Headers-对象" class="headerlink" title="Headers 对象"></a>Headers 对象</h3><p>init 选项的 headers 可以是一个 Http headers 健值对，也可以为一个 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Headers">Headers 对象</a>。<br>Fetch API 的 Headers 接口允许对 HTTP 请求和响应头执行各种操作，出于安全考虑，<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/Forbidden_header_name">某些 headers 字段</a> 只能由用户代理（浏览器）控制，可以操作的 header 必须是 <a target="_blank" rel="noopener" href="https://fetch.spec.whatwg.org/#concept-header-name">有效的 HTTP headers 字段</a>。<br>一个 Headers 对象也有一个关联的 guard ，它具有不可变的值，<code>request</code>，<code>request-no-cors</code>，<code>response</code> 或 <code>none</code> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> myHeaders = <span class="keyword">new</span> <span class="title class_">Headers</span>(&#123;</span><br><span class="line">  <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;text/plain&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;Cache-Control&#x27;</span>: <span class="string">&#x27;no-cache&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;X-Requested-With&#x27;</span>: <span class="string">&#x27;XMLHttpRequest&#x27;</span></span><br><span class="line">&#125;);</span><br><span class="line">myHeaders.<span class="title function_">append</span>(<span class="string">&#x27;X-Customer-Header&#x27;</span>, <span class="string">&#x27;abcd&#x27;</span>); <span class="comment">// 给现有的 header 添加一个值, 或者添加一个未存在的 header 并赋值</span></span><br><span class="line"><span class="keyword">let</span> customerHeader = myHeaders.<span class="title function_">get</span>(<span class="string">&#x27;X-Customer-Header&#x27;</span>); <span class="comment">// 以 ByteString 的形式从 Headers 对象中返回指定 header 的全部值</span></span><br><span class="line">myHeaders.<span class="title function_">set</span>(<span class="string">&#x27;X-Customer-Header&#x27;</span>, <span class="string">&#x27;efgh&#x27;</span>); <span class="comment">// 替换现有的 header 的值, 或者添加一个未存在的 header 并赋值</span></span><br><span class="line"><span class="keyword">let</span> isCustomerHeaderExisted = myHeaders.<span class="title function_">has</span>(<span class="string">&#x27;X-Customer-Header&#x27;</span>); <span class="comment">// 以 布尔值 的形式从 Headers 对象中返回是否存在指定的 header</span></span><br><span class="line">myHeaders.<span class="title function_">delete</span>(<span class="string">&#x27;X-Customer-Header&#x27;</span>); <span class="comment">// 从 Headers 对象中删除指定 header</span></span><br><span class="line">myHeaders.<span class="title function_">entries</span>(); <span class="comment">// 以 迭代器 的形式返回 Headers 对象中所有的键值对</span></span><br><span class="line">myHeaders.<span class="title function_">keys</span>(); <span class="comment">// 以 迭代器 的形式返回 Headers 对象中所有存在的 header 名</span></span><br><span class="line">myHeaders.<span class="title function_">values</span>(); <span class="comment">// 以 迭代器 的形式返回 Headers 对象中所有存在的 header 值</span></span><br></pre></td></tr></table></figure>
+<h3 id="Response-对象"><a href="#Response-对象" class="headerlink" title="Response 对象"></a>Response 对象</h3><p>Fetch API 的 Response 接口呈现了对一次请求的响应数据。<code>fetch()</code> 方法在网络返回后会 resolve 一个 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Response">Response 对象</a>。</p>
+<p>Response 对象 有以下的属性和方法(Response 实现了 Body 接口，所以也可访问 Body 的属性和方法)</p>
+<table>
+<thead>
+<tr>
+<th>属性/方法</th>
+<th>是否只读</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Response.headers</td>
+<td>只读</td>
+<td>包含此 Response 所关联的 Headers 对象。</td>
+</tr>
+<tr>
+<td>Response.ok</td>
+<td>只读</td>
+<td>包含了一个布尔值，标示该 Response 成功（HTTP 状态码的范围在 200-299）。</td>
+</tr>
+<tr>
+<td>Response.redirected</td>
+<td>只读</td>
+<td>表示该 Response 是否来自一个重定向，如果是的话，它的 URL 列表将会有多个条目。</td>
+</tr>
+<tr>
+<td>Response.status</td>
+<td>只读</td>
+<td>包含 Response 的状态码 （例如 200 表示成功）。</td>
+</tr>
+<tr>
+<td>Response.statusText</td>
+<td>只读</td>
+<td>包含了与该 Response 状态码一致的状态信息（例如，OK对应 200）。</td>
+</tr>
+<tr>
+<td>Response.type</td>
+<td>只读</td>
+<td>包含 Response 的类型（例如，basic、cors）。</td>
+</tr>
+<tr>
+<td>Response.url</td>
+<td>只读</td>
+<td>包含 Response 的URL。</td>
+</tr>
+<tr>
+<td>Response.useFinalURL</td>
+<td></td>
+<td>包含了一个布尔值，来标示这是否是该 Response 的最终 URL。</td>
+</tr>
+<tr>
+<td>Body.body</td>
+<td>只读</td>
+<td>一个简单的 getter，用于暴露一个 ReadableStream 类型的 body 内容。</td>
+</tr>
+<tr>
+<td>Body.bodyUsed</td>
+<td>只读</td>
+<td>包含了一个布尔值来标示该 Response 是否读取过 Body。</td>
+</tr>
+<tr>
+<td>Response.clone()</td>
+<td></td>
+<td>创建一个 Response 对象的克隆。</td>
+</tr>
+<tr>
+<td>Response.error()</td>
+<td></td>
+<td>返回一个绑定了网络错误的新的 Response 对象。</td>
+</tr>
+<tr>
+<td>Response.edirect()</td>
+<td></td>
+<td>用另一个 URL 创建一个新的 Response。</td>
+</tr>
+<tr>
+<td>Body.arrayBuffer()</td>
+<td></td>
+<td>读取 Response 对象并且将它设置为已读，并返回一个被解析为 ArrayBuffer 格式的 Promise 对象。</td>
+</tr>
+<tr>
+<td>Body.blob()</td>
+<td></td>
+<td>读取 Response 对象并且将它设置为已读，并返回一个被解析为 Blob 格式的 Promise 对象。</td>
+</tr>
+<tr>
+<td>Body.formData()</td>
+<td></td>
+<td>读取 Response 对象并且将它设置为已读，并返回一个被解析为 FormData 格式的 Promise 对象。</td>
+</tr>
+<tr>
+<td>Body.text()</td>
+<td></td>
+<td>读取 Response 对象并且将它设置为已读，并返回一个被解析为 USVString 格式的 Promise 对象。</td>
+</tr>
+<tr>
+<td>Body.json()</td>
+<td></td>
+<td>读取 Response 对象并且将它设置为已读，并返回一个被解析为 JSON 格式的 Promise 对象。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="AbortController-阻止请求"><a href="#AbortController-阻止请求" class="headerlink" title="AbortController 阻止请求"></a>AbortController 阻止请求</h2><p>fetch()请求发送以后，如果中途想要取消，需要使用 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/AbortController">AbortController 对象</a>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> controller = <span class="keyword">new</span> <span class="title class_">AbortController</span>();</span><br><span class="line"><span class="keyword">let</span> signal = controller.<span class="property">signal</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> downloadBtn = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.download&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> abortBtn = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.abort&#x27;</span>);</span><br><span class="line"></span><br><span class="line">downloadBtn.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, fetchVideo);</span><br><span class="line"></span><br><span class="line">abortBtn.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  controller.<span class="title function_">abort</span>();</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Download aborted&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fetchVideo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  <span class="title function_">fetch</span>(url, &#123;signal&#125;).<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params">response</span>) &#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">  &#125;).<span class="title function_">catch</span>(<span class="keyword">function</span>(<span class="params">e</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(e);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="与-XMLHttpRequest-差异"><a href="#与-XMLHttpRequest-差异" class="headerlink" title="与 XMLHttpRequest 差异"></a>与 XMLHttpRequest 差异</h2><ol>
+<li><code>fetch()</code> 使用 Promise，而 XMLHttpRequest 使用回调函数</li>
+<li><code>fetch()</code> 采用模块化设计，API 分散在多个对象上（Response 对象、Request 对象、Headers 对象）</li>
+<li><code>fetch()</code> 通过数据流（Stream 对象）处理数据，可以分块读取，有利于提高网站性能表现，减少内存占用，对于请求大文件或者网速慢的场景相当有用。XMLHttpRequest 对象不支持数据流，所有的数据必须放在缓存里，不支持分块读取，必须等待全部拿到后，再一次性访问</li>
+</ol>
+<h2 id="与-jQuery-ajax-差异"><a href="#与-jQuery-ajax-差异" class="headerlink" title="与 jQuery.ajax 差异"></a>与 jQuery.ajax 差异</h2><ol>
+<li>当接收到一个代表错误的 HTTP 状态码时，从 <code>fetch()</code> 返回的 Promise 不会被标记为 reject，即使响应的 HTTP 状态码是 404 或 500。相反，它会将 Promise 状态标记为 resolve （如果响应的 HTTP 状态码不在 200 - 299 的范围内，则设置 resolve 返回值的 ok 属性为 false ），仅当网络故障时或请求被阻止时，才会标记为 reject。</li>
+<li><code>fetch()</code> 不会发送跨域 cookies，除非你使用了 credentials 的初始化选项。<ol>
+<li>自2018 年 8 月以后，默认的 credentials 政策变更为 same-origin。Firefox 也在 61.0b13 版本中进行了修改。</li>
+<li>如果你打算支持浏览器的旧版本，请确保在所有可能受 Cookie/用户 登录状态影响的api请求上包含<code>credentials: &#39;same-origin&#39;</code> 初始化选项。</li>
+</ol>
+</li>
+</ol>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

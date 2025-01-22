@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        script 标签中的 async/defer | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="HTML &amp;lt;script&amp;gt; 元素用于嵌入或引用可执行脚本。script 元素的属性script 有以下常见属性：  src这个属性定义引用外部脚本的 URI，这可以用来代替直接在文档中嵌入脚本。指定了 src 属性的 script 元素标签内不应该再有嵌入的脚本。type该属性定义 script 元素包含或 src 引用的脚本语言类型。属性的值为 MIME 类型; 支持的 MIME 类型包括 text/javascript, text/ecmascript, app" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#script-%E5%85%83%E7%B4%A0%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-text">script 元素的属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3-async-defer-%E5%92%8C%E9%BB%98%E8%AE%A4%E7%9A%84%E8%84%9A%E6%9C%AC%E5%8A%A0%E8%BD%BD%E6%89%A7%E8%A1%8C%E8%A1%8C%E4%B8%BA"><span class="toc-text">如何理解 async &#x2F; defer 和默认的脚本加载执行行为</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#script%E5%85%83%E7%B4%A0%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-text">script元素最佳实践</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            script 标签中的 async/defer
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2022-05-17T06:33:42.000Z" itemprop="datePublished">2022-05-17</time>
+</span>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>HTML <code>&lt;script&gt;</code> 元素用于嵌入或引用可执行脚本。</p>
+<h2 id="script-元素的属性"><a href="#script-元素的属性" class="headerlink" title="script 元素的属性"></a>script 元素的属性</h2><p>script 有以下常见属性：  </p>
+<ul>
+<li>src</li>
+</ul>
+<p>这个属性定义引用外部脚本的 URI，这可以用来代替直接在文档中嵌入脚本。指定了 src 属性的 script 元素标签内不应该再有嵌入的脚本。</p>
+<ul>
+<li>type</li>
+</ul>
+<p>该属性定义 script 元素包含或 src 引用的脚本语言类型。属性的值为 MIME 类型; 支持的 MIME 类型包括 <code>text/javascript</code>, <code>text/ecmascript</code>, <code>application/javascript</code>, 和 <code>application/ecmascript</code> 。如果没有定义这个属性，脚本会被视作 JavaScript。</p>
+<p>如果 type 属性为 module ，代码会被当作 JavaScript 模块（模块脚本）。</p>
+<ul>
+<li>async（异步）</li>
+</ul>
+<p>对于普通脚本，如果存在 async 属性，那么普通脚本会被并行请求，并尽快解析和执行。<br>对于模块脚本，如果存在 async 属性，那么脚本及其所有依赖都会在延缓队列中执行，因此它们会被并行请求，并尽快解析和执行。<br>该属性能够消除解析阻塞的 Javascript。解析阻塞的 Javascript 会导致浏览器必须加载并且执行脚本，之后才能继续解析。defer 在这一点上也有类似的作用。</p>
+<ul>
+<li>defer（推迟）</li>
+</ul>
+<p>这个布尔属性被设定用来通知浏览器该脚本将在文档完成解析后，触发 DOMContentLoaded 事件前执行。<br>有 defer 属性的脚本会阻止 DOMContentLoaded 事件，直到脚本被加载并且解析完成。<br>如果缺少 src 属性（即内嵌脚本），该属性不应被使用，因为这种情况下它不起作用。<br>defer 属性对模块脚本没有作用 —— 他们默认 defer。</p>
+<h2 id="如何理解-async-defer-和默认的脚本加载执行行为"><a href="#如何理解-async-defer-和默认的脚本加载执行行为" class="headerlink" title="如何理解 async / defer 和默认的脚本加载执行行为"></a>如何理解 async / defer 和默认的脚本加载执行行为</h2><p>如下图所示：<br><img src="/blog/static/imgs/script.png" alt="script_inner"></p>
+<ol>
+<li>当没有 defer 或 async 的时候，浏览器会立即 <em>加载</em> 并 <em>执行</em> 指定的脚本，也就是说不会再解析 script 元素之后的文档元素，读到该脚本就 <em>加载</em> 并 <em>执行</em> 。<em>执行</em> 之后才会去解析该 script 元素之后的文档元素。</li>
+<li>async 脚本将在不阻止解析页面的情况下 <em>下载</em> 脚本，并在脚本完成 <em>下载</em> 后立即 <em>执行</em> 它。也就是说，浏览器会开启新的线程加载 async 脚本，同时在原有线程中解析文档元素。我们无法保证 async 脚本将以任何特定顺序运行，只是 async 的脚本不会阻止页面文档元素的解析。所以 async 最好是当脚本在页面中相互独立运行的并且不依赖页面上的其他脚本时使用。比如 Google Analytics、百度统计 等就适合此种情况。</li>
+<li>defer 脚本将在不阻止解析页面的情况下 <em>下载</em> 脚本，但只会在文档元素解析结束后，DOMContentLoaded 事件 之前按照defer 出现的顺序 <em>执行</em>，</li>
+<li>同时使用 defer 和 async ，如果浏览器两个属性都支持，则会忽视 defer 属性，按照 async 的方式执行</li>
+</ol>
+<h2 id="script元素最佳实践"><a href="#script元素最佳实践" class="headerlink" title="script元素最佳实践"></a>script元素最佳实践</h2><ol>
+<li>将 stylesheet 元素放到 head 中，避免加载 css 文件后引起重绘。</li>
+<li>将 script 元素放到 body 的最后，这样不会因为下载 js 文件阻塞页面的渲染</li>
+<li>对 Google Analytics、百度统计 等与页面元素无关的第三方的 script 元素 添加 async，不阻塞页面的解析</li>
+<li>对于 应用脚本 如果放到了 head 中，可以按照脚本依赖顺序添加 defer，避免因为下载 js 文件阻塞页面的渲染</li>
+</ol>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        正式环境禁用调试-无限debug | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="前端的代码包括js文件、html文件和css文件都是需要发送给浏览器客户端的，在一定程度上，我们的代码是完全“开源”给了用户，但难免有恶意用户通过调试我们的代码发现系统的漏洞，从而对我们的网站进行攻击，或者盗用我们的代码，与我们进行竞争。这时就需要采取一定的手段，禁止恶意用户盗取代码的行为，或者加大恶意用户使用调试我们代码的成本。现如今，已经有多种成熟的方案可以达到这些目的，比如压缩代码、混淆代码、控制流平坦化等。这里我们提一种禁止开发者工具调试的方法，基本原理就是让开发者工具一直处于断点调试的" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <div class="author-meta">
+                
+                <div class="author-avatar">
+                    <a href="/blog/">
+                        <img src="/blog/images/avatar.jpeg" title="Mangon">
+                    </a>
+                </div>
+                
+                <div class="author-name">Mangon</div>
+                <div class="author-work">前端开发工程师</div>
+                <div class="author-location">
+                    <i class="icon-location vm"></i>
+                    <span class="vm">中国北京</span>
+                </div>
+                
+                <div class="author-thread-wrap">
+                    <div class="author-threads clearfix">
+                        
+                            <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
+                        
+                        
+                        
+                            <a class="thread-item" href="https://mangon.cn/blog/atom.xml" target="_blank" rel="external noopener noreferrer"><i class="icon-favorite"></i></a>
+                        
+                        
+                            <a class="thread-item" href="https://mangon.cn/resume" target="_blank" rel="external noopener noreferrer"><i class="icon-circle-more"></i></a>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            正式环境禁用调试-无限debug
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-12-02T02:15:12.000Z" itemprop="datePublished">2021-12-02</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/debugger/" rel="tag">debugger</a>, <a class="article-tag-link" href="/blog/tags/security/" rel="tag">security</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>前端的代码包括js文件、html文件和css文件都是需要发送给浏览器客户端的，在一定程度上，我们的代码是完全“开源”给了用户，但难免有恶意用户通过调试我们的代码发现系统的漏洞，从而对我们的网站进行攻击，或者盗用我们的代码，与我们进行竞争。这时就需要采取一定的手段，禁止恶意用户盗取代码的行为，或者加大恶意用户使用调试我们代码的成本。现如今，已经有多种成熟的方案可以达到这些目的，比如压缩代码、混淆代码、控制流平坦化等。<br>这里我们提一种禁止开发者工具调试的方法，基本原理就是让开发者工具一直处于断点调试的状态，从而无法查看真正的代码。</p>
+<span id="more"></span>
+<p>说到调试，首先我们能想到一个关键字 <code>debugger</code> ，这个关键字能让页面在打开开发者工具后自动添加断点，在不打开开发者工具时对用户完全无感知。它本意是为了方便调试，这里，我们使用它来达到一直断点的目的。</p>
+<p>（以下代码均以 macOS 10.15.7 系统 Chrome 96.0.4664.55 浏览器执行结果为准）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">debugger</span></span><br></pre></td></tr></table></figure>
+<p>在代码中添加 <code>debugger</code> 可以让调试中断，但是只能中断一次，用户只要按 F8 或者 Command + \ 继续执行脚本，就可以跳过。为了能不停的 debug 我们需要和定时器 <code>setInterval</code> 结合来使用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">setInterval</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="keyword">debugger</span>&#125;, <span class="number">100</span>);</span><br></pre></td></tr></table></figure>
+<p>这样，用户在打开网页之后就会不停的 debug 。但是，我们总要把上述代码添加到我们自己的代码中去，因为执行到断点时会显示当前脚本所在文件，所以我们的代码还是展示在了用户面前，为了避免这个问题我们可以使用 <code>Function</code> 构造一个新函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">setInterval</span>(<span class="keyword">new</span> <span class="title class_">Function</span>(<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;debugger&#x27;</span>), <span class="number">100</span>);</span><br></pre></td></tr></table></figure>
+<p>这样，在执行到断点的时候，开发者工具就会打开一个名为类似 VM5419 的文件执行断点</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span> <span class="title function_">anonymous</span>(<span class="params"></span></span><br><span class="line"><span class="params"></span>) &#123;</span><br><span class="line"><span class="keyword">debugger</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>但是，有经验的开发者仍旧可以跳过这个断点，只需要在 <code>debugger</code> 所在的行左边点击右键，然后选择“一律不在此处暂停”即可。为了避免这个问题，我们需要每次执行断点时，都创建一个新的匿名函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">setInterval</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="keyword">new</span> <span class="title class_">Function</span>(<span class="string">&#x27;&#x27;</span>,<span class="string">&#x27;debugger&#x27;</span>)()&#125;, <span class="number">100</span>);</span><br></pre></td></tr></table></figure>
+<p>这样，每次执行断点都会在一个新的匿名函数中，用户就无法通过禁用单次断点来调试我们的代码了。如果用户还是想查看代码，可以通过按 Command + F8 禁用断点来查看。但禁用了断点的话，用户同时也无法调试代码了。你可能想到，即使这样，用户还是可以通过在代码中进行字符串查找，查找 <code>debugger</code> 关键字，然后通过代理将该行代码删除后再进行调试。这里我们就需要让用户找不到 <code>debugger</code> 关键字，方法有很多种，比如改变编码形式，进行字符串拼接等，这里我们以采用 base64 编码的形式为例。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span>(<span class="title function_">atob</span>(<span class="string">&#x27;c2V0SW50ZXJ2YWwoZnVuY3Rpb24oKXtuZXcgRnVuY3Rpb24oIiIsImRlYnVnZ2VyIikoKX0sIDEwMCk=&#x27;</span>));</span><br></pre></td></tr></table></figure>
+<p>结合 webpack UglifyJS Tensor 等工具，对代码进行拆分，压缩，混淆，监听鼠标键盘按键，对敏感操作（右键 f12 复制）进行一些过滤，重写 <code>console</code> 等日志打印方法，同时加上 无限debugger，可以成倍的加大破解代码的成本，没有能力和耐心的黑客恐怕要知难而退了。</p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        Javascript中call,apply,bind的作用&amp;模拟实现 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="call,apply,bind的作用都是Function的原型方法Function.prototype.bind()bind() 方法创建一个新的函数，在 bind() 被调用时，这个新函数的 this 被指定为 bind() 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。Function.prototype.apply()apply() 方法调用一个具有给定this值的函数，以及作为一个数组（或类似数组对象）提供的参数。Function.prototype.call()" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#call-apply-bind%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">call,apply,bind的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#call-%E7%9A%84%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0"><span class="toc-text">call 的模拟实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#apply-%E7%9A%84%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0"><span class="toc-text">apply 的模拟实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bind-%E7%9A%84%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0"><span class="toc-text">bind 的模拟实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#es5-shim"><span class="toc-text">es5-shim</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            Javascript中call,apply,bind的作用&amp;模拟实现
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2020-03-31T05:01:10.000Z" itemprop="datePublished">2020-03-31</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/bind/" rel="tag">bind</a>, <a class="article-tag-link" href="/blog/tags/javascript/" rel="tag">javascript</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="call-apply-bind的作用"><a href="#call-apply-bind的作用" class="headerlink" title="call,apply,bind的作用"></a>call,apply,bind的作用</h2><p>都是Function的原型方法</p>
+<p><strong>Function.prototype.bind()</strong></p>
+<p>bind() 方法创建一个新的函数，在 bind() 被调用时，这个新函数的 this 被指定为 bind() 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。</p>
+<p><strong>Function.prototype.apply()</strong></p>
+<p>apply() 方法调用一个具有给定this值的函数，以及作为一个数组（或类似数组对象）提供的参数。</p>
+<p><strong>Function.prototype.call()</strong></p>
+<p>call() 方法使用一个指定的 this 值和单独给出的一个或多个参数来调用一个函数。</p>
+<p>call() 方法的语法和作用与 apply() 方法类似，只有一个区别，就是 call() 方法接受的是一个参数列表，而 apply() 方法接受的是一个包含多个参数的数组。</p>
+<p>bind() 方法和call方法的不同之处在于，bind() 方法返回一个新的函数，而call方法会直接调用此函数。</p>
+<span id="more"></span>
+<h2 id="call-的模拟实现"><a href="#call-的模拟实现" class="headerlink" title="call 的模拟实现"></a>call 的模拟实现</h2><p><strong>Function.prototype.call()</strong></p>
+<p>call() 方法使用一个指定的 this 值和单独给出的一个或多个参数来调用一个函数。  </p>
+<p>我们所要做的和注意的有以下几点：  </p>
+<ol>
+<li>call 函数是 Function 的一个原型方法</li>
+<li>call 改变了原函数 this 的指向，this 变成了给定的第一个参数</li>
+<li>call 函数的第一个参数应该是对象或者能转换成对象</li>
+<li>该函数执行了，并返回了结果</li>
+<li>给出多个参数时，从第二个参数到最后一个参数作为函数的实参进行调用</li>
+<li>call 的第一个参数可以传 null/undefined，当为 null/undefined 的时候，视为指向全局对象</li>
+</ol>
+<p>实际实现如下：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Function</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">call</span> = <span class="keyword">function</span>(<span class="params">context</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> context = <span class="title class_">Object</span>(context) || <span class="variable language_">window</span>; <span class="comment">// 1 当context为 字符串、数字或布尔值时进行转换 2 传null/undefined时指向window</span></span><br><span class="line">    <span class="keyword">var</span> id = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (context[<span class="string">&#x27;_fn&#x27;</span> + id]) &#123;</span><br><span class="line">        id++;</span><br><span class="line">    &#125;</span><br><span class="line">    context[<span class="string">&#x27;_fn&#x27;</span> + id] = <span class="variable language_">this</span>; <span class="comment">// 为 context 添加新方法，避免context已有同名方法需要找到不重复的函数名</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> args = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>, len = <span class="variable language_">arguments</span>.<span class="property">length</span>; i &lt; len; i++) &#123;</span><br><span class="line">        args.<span class="title function_">push</span>(<span class="string">&#x27;arguments[&#x27;</span> + i + <span class="string">&#x27;]&#x27;</span>);</span><br><span class="line">    &#125; <span class="comment">// 拼接从第二个参数到最后一个参数</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> result = <span class="built_in">eval</span>(<span class="string">&#x27;context._fn&#x27;</span> + id + <span class="string">&#x27;(&#x27;</span> + args + <span class="string">&#x27;)&#x27;</span>); <span class="comment">// 调用eval执行函数，args 会自动调用 toString()转换为字符串</span></span><br><span class="line">    <span class="keyword">delete</span> context[<span class="string">&#x27;_fn&#x27;</span> + id]; <span class="comment">// 删除添加的属性</span></span><br><span class="line">    <span class="keyword">return</span> result; <span class="comment">// 返回函数执行结果</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="apply-的模拟实现"><a href="#apply-的模拟实现" class="headerlink" title="apply 的模拟实现"></a>apply 的模拟实现</h2><p><strong>Function.prototype.apply()</strong></p>
+<p>apply() 方法调用一个具有给定this值的函数，以及作为一个数组（或类似数组对象）提供的参数。  </p>
+<p>apply的模拟实现和call类似，需要注意的是apply的第二个参数是一个数组（或类似数组对象）。  </p>
+<p>实际实现如下：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Function</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">apply</span> = <span class="keyword">function</span>(<span class="params">context, arr</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> context = <span class="title class_">Object</span>(context) || <span class="variable language_">window</span>;</span><br><span class="line">    <span class="keyword">var</span> id = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (context[<span class="string">&#x27;_fn&#x27;</span> + id]) &#123;</span><br><span class="line">        id++;</span><br><span class="line">    &#125;</span><br><span class="line">    context[<span class="string">&#x27;_fn&#x27;</span> + id] = <span class="variable language_">this</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> result;</span><br><span class="line">    <span class="keyword">if</span> (!arr) &#123;</span><br><span class="line">        result = context[<span class="string">&#x27;_fn&#x27;</span> + id]();</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> arr !== <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="title class_">TypeError</span>(<span class="string">&#x27;CreateListFromArrayLike called on non-object&#x27;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> args = [];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, len = arr.<span class="property">length</span>; i &lt; len; i++) &#123;</span><br><span class="line">           args.<span class="title function_">push</span>(<span class="string">&#x27;arr[&#x27;</span> + i + <span class="string">&#x27;]&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        result = <span class="built_in">eval</span>(<span class="string">&#x27;context._fn&#x27;</span> + id + <span class="string">&#x27;(&#x27;</span> + args + <span class="string">&#x27;)&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span> context[<span class="string">&#x27;_fn&#x27;</span> + id];</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="bind-的模拟实现"><a href="#bind-的模拟实现" class="headerlink" title="bind 的模拟实现"></a>bind 的模拟实现</h2><p><strong>Function.prototype.bind()</strong></p>
+<p>bind() 方法创建一个新的函数，在 bind() 被调用时，这个新函数的 this 被指定为 bind() 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。</p>
+<p>我们所要做的和注意的有以下几点：  </p>
+<ol>
+<li>bind 函数是 Function 的一个原型方法</li>
+<li>直接调用时 bind 改变了 this 的指向，this 变成了给定的第一个参数</li>
+<li>bind 函数的第一个参数应该是对象或者能转换成对象</li>
+<li>bind 函数返回的是一个函数而不是函数执行的结果</li>
+<li>给出多个参数时，从第二个参数到最后一个参数作为函数的实参进行调用</li>
+<li>bind 返回的函数在调用时，可以继续添加参数</li>
+<li>当 bind 返回的函数作为构造函数的时候，bind 时指定的 this 值会失效，但传入的参数依然生效。</li>
+</ol>
+<p>实际实现如下：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Function</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">bind</span> = <span class="title class_">Function</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">bind</span> || <span class="keyword">function</span> (<span class="params">context</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="variable language_">this</span> !== <span class="string">&quot;function&quot;</span>) &#123; <span class="comment">// </span></span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&quot;Function.prototype.bind - what is trying to be bound is not callable&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> self = <span class="variable language_">this</span>;</span><br><span class="line">    <span class="keyword">var</span> slice = <span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">slice</span>;</span><br><span class="line">    <span class="keyword">var</span> args = slice.<span class="title function_">call</span>(<span class="variable language_">arguments</span>, <span class="number">1</span>); <span class="comment">// 获取bind函数从第二个参数到最后一个参数</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> fNOP = <span class="keyword">function</span> (<span class="params"></span>) &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> fBound = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> bindArgs = slice.<span class="title function_">call</span>(<span class="variable language_">arguments</span>); <span class="comment">// 这个时候的 arguments 是指 fBound 函数传入的参数</span></span><br><span class="line">        <span class="keyword">return</span> self.<span class="title function_">apply</span>(<span class="variable language_">this</span> <span class="keyword">instanceof</span> fBound ? <span class="variable language_">this</span> : context, args.<span class="title function_">concat</span>(bindArgs)); <span class="comment">// 当作为构造函数时，this 指向实例，此时结果为 true，将绑定函数的 this 指向该实例，可以让实例获得来自绑定函数的值</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fNOP.<span class="property"><span class="keyword">prototype</span></span> = <span class="variable language_">this</span>.<span class="property"><span class="keyword">prototype</span></span>;</span><br><span class="line">    fBound.<span class="property"><span class="keyword">prototype</span></span> = <span class="keyword">new</span> <span class="title function_">fNOP</span>(); <span class="comment">// 修改返回函数的 prototype 为绑定函数的 prototype，实例就可以继承绑定函数的原型中的值</span></span><br><span class="line">    <span class="keyword">return</span> fBound;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="es5-shim"><a href="#es5-shim" class="headerlink" title="es5-shim"></a>es5-shim</h2><p>完整的模拟实现参考 <a target="_blank" rel="noopener" href="https://github.com/es-shims/es5-shim">es5-shim</a> </p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

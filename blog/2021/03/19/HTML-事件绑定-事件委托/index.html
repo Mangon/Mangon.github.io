@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        HTML 事件绑定&amp;事件委托 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="如何给一个元素绑定事件，分别有几种方式？各有什么好处？监听方法绑定方式事件冒泡 事件捕获js事件流是先由 window-&amp;gt;document-&amp;gt;body-&amp;gt;div-&amp;gt;(text) 触发一遍捕获 capture ，再由（text）-&amp;gt;div-&amp;gt;body-&amp;gt;document-&amp;gt;window触发一遍冒泡bubblingelement.addEventListener(type, listener, useCapture);type:事件类型liste" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E7%BB%99%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6%EF%BC%8C%E5%88%86%E5%88%AB%E6%9C%89%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9F%E5%90%84%E6%9C%89%E4%BB%80%E4%B9%88%E5%A5%BD%E5%A4%84%EF%BC%9F"><span class="toc-text">如何给一个元素绑定事件，分别有几种方式？各有什么好处？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98%EF%BC%88%E4%BA%8B%E4%BB%B6%E4%BB%A3%E7%90%86%EF%BC%89"><span class="toc-text">实现一个事件委托（事件代理）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#event-%E4%B8%AD%E7%9A%84-target-%E5%92%8C-currentTarget-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-text">event 中的 target 和 currentTarget 有什么区别？</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            HTML 事件绑定&amp;事件委托
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-03-19T07:45:56.000Z" itemprop="datePublished">2021-03-19</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/HTML/" rel="tag">HTML</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="如何给一个元素绑定事件，分别有几种方式？各有什么好处？"><a href="#如何给一个元素绑定事件，分别有几种方式？各有什么好处？" class="headerlink" title="如何给一个元素绑定事件，分别有几种方式？各有什么好处？"></a>如何给一个元素绑定事件，分别有几种方式？各有什么好处？</h2><ol>
+<li>监听方法绑定方式<br>事件冒泡 事件捕获<br>js事件流是先由 window-&gt;document-&gt;body-&gt;div-&gt;(text) 触发一遍捕获 capture ，<br>再由（text）-&gt;div-&gt;body-&gt;document-&gt;window触发一遍冒泡bubbling</li>
+</ol>
+<p>element.addEventListener(type, listener, useCapture);<br>type:事件类型<br>listener:监听方法<br>useCapture:是否捕获，默认false，即在冒泡时触发</p>
+<p>listener的入参event可以获取到event.target event.currentTarget<br>其中，target是真正发生事件的DOM元素，而currentTarget是当前事件发生在哪个DOM元素上。</p>
+<span id="more"></span>
+<p>优点：</p>
+<ul>
+<li>同时支持捕获和冒泡</li>
+<li>可以同时绑定多个事件</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>旧的IE不支持，需要用attachEvent替代 element.attachEvent(‘onclick’, function(){})</li>
+<li>IE只支持冒泡</li>
+<li>在IE中，this指向window对象而不是当前元素，获取event需要获取window.event</li>
+</ul>
+<ol start="2">
+<li>直接绑定事件方式<br>target.onclick = function(){}<br>缺点：</li>
+</ol>
+<ul>
+<li>只会在事件冒泡中运行，</li>
+<li>一个元素一次只能绑定一个事件处理函数，</li>
+<li>新绑定的事件处理函数会覆盖旧的</li>
+<li>事件对象参数（event）仅非IE浏览器可用</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>在不同浏览器中表现一致</li>
+<li>this指向当前元素</li>
+</ul>
+<ol start="3">
+<li>直接在元素里使用事件属性<div onclick="func"/>
+
+</li>
+</ol>
+<h2 id="实现一个事件委托（事件代理）"><a href="#实现一个事件委托（事件代理）" class="headerlink" title="实现一个事件委托（事件代理）"></a>实现一个事件委托（事件代理）</h2><p>事件委托就是利用事件冒泡，只指定一个事件处理程序，就可以管理某一类型的所有事件。在JavaScript中，添加到页面上的事件处理程序数量将直接关系到页面的整体运行性能，因为需要不断的与dom节点进行交互，访问dom的次数越多，引起浏览器重绘与重排的次数也就越多，就会延长整个页面的交互就绪时间，这就是为什么性能优化的主要思想之一就是减少DOM操作的原因；如果要用事件委托，就会将所有的操作放到js程序里面，与dom的操作就只需要交互一次，这样就能大大的减少与dom的交互次数，提高性能。  </p>
+<p>事件委托示例：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">&quot;ul1&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;li1&quot;</span>&gt;</span>111<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;li2&quot;</span>&gt;</span>222<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;li3&quot;</span>&gt;</span>333<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;li4&quot;</span>&gt;</span>444<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 非事件委托</span></span></span><br><span class="line"><span class="language-javascript"><span class="variable language_">window</span>.<span class="property">onload</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> oUl = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;ul1&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> aLi = oUl.<span class="title function_">getElementsByTagName</span>(<span class="string">&#x27;li&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;aLi.<span class="property">length</span>;i++)&#123;</span></span><br><span class="line"><span class="language-javascript">        aLi[i].<span class="property">onclick</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="comment">// do something</span></span></span><br><span class="line"><span class="language-javascript">            ...</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 事件委托</span></span></span><br><span class="line"><span class="language-javascript"><span class="variable language_">window</span>.<span class="property">onload</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> oUl = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;ul1&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">    oUl.<span class="property">onclick</span> = <span class="keyword">function</span>(<span class="params">ev</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> ev = ev || <span class="variable language_">window</span>.<span class="property">event</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> target = ev.<span class="property">target</span> || ev.<span class="property">srcElement</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">if</span>(target.<span class="property">nodeName</span>.<span class="title function_">toLowerCase</span>() == <span class="string">&#x27;li&#x27;</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">switch</span>(target.<span class="property">id</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="keyword">case</span> <span class="string">&#x27;li1&#x27;</span>:</span></span><br><span class="line"><span class="language-javascript">                    <span class="comment">// do something</span></span></span><br><span class="line"><span class="language-javascript">                    <span class="keyword">break</span>;</span></span><br><span class="line"><span class="language-javascript">                    ...</span></span><br><span class="line"><span class="language-javascript">            &#125;</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="event-中的-target-和-currentTarget-有什么区别？"><a href="#event-中的-target-和-currentTarget-有什么区别？" class="headerlink" title="event 中的 target 和 currentTarget 有什么区别？"></a>event 中的 target 和 currentTarget 有什么区别？</h2><p>currentTarget当前所绑定事件的元素</p>
+<p>target当前被点击的元素</p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

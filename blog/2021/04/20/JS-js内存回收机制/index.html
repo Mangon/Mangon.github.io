@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        js内存回收机制（垃圾处理机制） | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="js内存管理机制JavaScript是在创建变量（对象，字符串等）时自动进行了分配内存，并且在不使用它们时“自动”释放。 释放的过程称为垃圾回收。  js存储JavaScript中基础类型是保存在栈(stack)中的，会自动进行回收；而复合类型是保存在堆(dump)中的，通过 GC 操作进行空间释放。值的初始化JavaScript 在定义变量时就完成了内存分配。  12345678910111213141516171819var n = 123; // 给数值变量分配内存 存在栈中var" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#js%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E6%9C%BA%E5%88%B6"><span class="toc-text">js内存管理机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js%E5%AD%98%E5%82%A8"><span class="toc-text">js存储</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%80%BC%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">值的初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E5%88%86%E9%85%8D%E5%86%85%E5%AD%98"><span class="toc-text">通过函数调用分配内存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%80%BC"><span class="toc-text">使用值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%93%E5%86%85%E5%AD%98%E4%B8%8D%E5%86%8D%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8%E6%97%B6%E9%87%8A%E6%94%BE"><span class="toc-text">当内存不再需要使用时释放</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="toc-text">垃圾回收</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0%E5%99%A8%E7%AE%97%E6%B3%95"><span class="toc-text">引用计数器算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E8%AE%B0-%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95"><span class="toc-text">标记-清除算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E7%9A%84%E5%87%A0%E7%A7%8D%E6%83%85%E5%86%B5"><span class="toc-text">js内存溢出的几种情况</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            js内存回收机制（垃圾处理机制）
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-04-20T04:48:35.000Z" itemprop="datePublished">2021-04-20</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/javascript/" rel="tag">javascript</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="js内存管理机制"><a href="#js内存管理机制" class="headerlink" title="js内存管理机制"></a>js内存管理机制</h2><p>JavaScript是在创建变量（对象，字符串等）时自动进行了分配内存，并且在不使用它们时“自动”释放。 释放的过程称为垃圾回收。  </p>
+<span id="more"></span>
+<h2 id="js存储"><a href="#js存储" class="headerlink" title="js存储"></a>js存储</h2><p>JavaScript中基础类型是保存在栈(stack)中的，会自动进行回收；而复合类型是保存在堆(dump)中的，通过 GC 操作进行空间释放。</p>
+<h2 id="值的初始化"><a href="#值的初始化" class="headerlink" title="值的初始化"></a>值的初始化</h2><p>JavaScript 在定义变量时就完成了内存分配。  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> n = <span class="number">123</span>; <span class="comment">// 给数值变量分配内存 存在栈中</span></span><br><span class="line"><span class="keyword">var</span> s = <span class="string">&quot;azerty&quot;</span>; <span class="comment">// 给字符串分配内存 存在栈中</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> o = &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">b</span>: <span class="literal">null</span></span><br><span class="line">&#125;; <span class="comment">// 给对象及其包含的值分配内存 指针存在栈中 值存在堆中</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 给数组及其包含的值分配内存（就像对象一样）</span></span><br><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>, <span class="literal">null</span>, <span class="string">&quot;abra&quot;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">f</span>(<span class="params">a</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> a + <span class="number">2</span>;</span><br><span class="line">&#125; <span class="comment">// 给函数（可调用的对象）分配内存</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数表达式也能分配一个对象</span></span><br><span class="line">someElement.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  someElement.<span class="property">style</span>.<span class="property">backgroundColor</span> = <span class="string">&#x27;blue&#x27;</span>;</span><br><span class="line">&#125;, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="通过函数调用分配内存"><a href="#通过函数调用分配内存" class="headerlink" title="通过函数调用分配内存"></a>通过函数调用分配内存</h2><p>有些函数调用结果是分配对象内存：  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> d = <span class="keyword">new</span> <span class="title class_">Date</span>(); <span class="comment">// 分配一个 Date 对象</span></span><br><span class="line"><span class="keyword">var</span> e = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>); <span class="comment">// 分配一个 DOM 元素</span></span><br></pre></td></tr></table></figure>
+<p>有些方法分配新变量或者新对象：  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="string">&quot;azerty&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> s2 = s.<span class="title function_">substr</span>(<span class="number">0</span>, <span class="number">3</span>); <span class="comment">// s2 是一个新的字符串</span></span><br><span class="line"><span class="comment">// 因为字符串是不变量，</span></span><br><span class="line"><span class="comment">// JavaScript 可能决定不分配内存，</span></span><br><span class="line"><span class="comment">// 只是存储了 [0-3] 的范围。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = [<span class="string">&quot;ouais ouais&quot;</span>, <span class="string">&quot;nan nan&quot;</span>];</span><br><span class="line"><span class="keyword">var</span> a2 = [<span class="string">&quot;generation&quot;</span>, <span class="string">&quot;nan nan&quot;</span>];</span><br><span class="line"><span class="keyword">var</span> a3 = a.<span class="title function_">concat</span>(a2);</span><br><span class="line"><span class="comment">// 新数组有四个元素，是 a 连接 a2 的结果</span></span><br></pre></td></tr></table></figure>
+<h2 id="使用值"><a href="#使用值" class="headerlink" title="使用值"></a>使用值</h2><p>使用值的过程实际上是对分配内存进行读取与写入的操作。读取与写入可能是写入一个变量或者一个对象的属性值，甚至传递函数的参数。  </p>
+<h2 id="当内存不再需要使用时释放"><a href="#当内存不再需要使用时释放" class="headerlink" title="当内存不再需要使用时释放"></a>当内存不再需要使用时释放</h2><p>高级语言解释器嵌入了“垃圾回收器”，它的主要工作是跟踪内存的分配和使用，以便当分配的内存不再使用时，自动释放它。  </p>
+<h2 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h2><p>垃圾回收算法主要依赖于引用的概念。在内存管理的环境中，一个对象如果有访问另一个对象的权限（隐式或者显式），叫做一个对象引用另一个对象。  </p>
+<h3 id="引用计数器算法"><a href="#引用计数器算法" class="headerlink" title="引用计数器算法"></a>引用计数器算法</h3><p>引用计数器是最初级的垃圾收集算法。此算法把“对象是否不再需要”简化定义为“对象有没有其他对象引用到它”。如果没有引用指向该对象（零引用），对象将被垃圾回收机制回收。该算法有个限制：无法处理循环引用的事例。  </p>
+<h3 id="标记-清除算法"><a href="#标记-清除算法" class="headerlink" title="标记-清除算法"></a>标记-清除算法</h3><p>这个算法把“对象是否不再需要”简化定义为“对象是否可以获得”。这个算法假定设置一个叫做根（root）的对象（在 Javascript 里，根是全局对象）。垃圾回收器将定期从根开始，找所有从根开始引用的对象，然后找这些对象引用的对象……从根开始，垃圾回收器将找到所有可以获得的对象和收集所有不能获得的对象。</p>
+<p>从2012年起，所有现代浏览器都使用了标记-清除垃圾回收算法。所有对JavaScript垃圾回收算法的改进都是基于标记-清除算法的改进，并没有改进标记-清除算法本身和它对“对象是否不再需要”的简化定义。  </p>
+<h2 id="js内存溢出的几种情况"><a href="#js内存溢出的几种情况" class="headerlink" title="js内存溢出的几种情况"></a>js内存溢出的几种情况</h2><ol>
+<li>给DOM对象添加的属性是一个对象的引用  </li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="title class_">MyObject</span> = &#123;&#125;;</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;myDiv&#x27;</span>).<span class="property">myProp</span> = <span class="title class_">MyObject</span>;</span><br></pre></td></tr></table></figure>
+<p>解决方法：<br>在window.onunload事件中写上:  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;myDiv&#x27;</span>).<span class="property">myProp</span> = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>DOM对象与JS对象相互引用  </li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Encapsulator</span>(<span class="params">element</span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">elementReference</span> = element;</span><br><span class="line">  element.<span class="property">myProp</span> = <span class="variable language_">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">new</span>  <span class="title class_">Encapsulator</span>(<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;myDiv&#x27;</span>));</span><br></pre></td></tr></table></figure>
+<p>解决方法：<br>在onunload事件中写上:  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;myDiv&#x27;</span>).<span class="property">myProp</span> = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>给DOM对象用addEventListener绑定事件</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">doClick</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">element.<span class="title function_">addEventListener</span>(<span class="string">&quot;onclick&quot;</span>, doClick);</span><br></pre></td></tr></table></figure>
+<p>解决方法：<br>在onunload事件中写上:  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">element.<span class="title function_">removeEventListener</span>(<span class="string">&#x27;onclick&#x27;</span>, doClick);</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>从外到内执行 appendChild 这时即使调用 removeChild 也无法释放</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> parentDiv =  <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;div&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> childDiv = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;div&quot;</span>);</span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(parentDiv);</span><br><span class="line">parentDiv.<span class="title function_">appendChild</span>(childDiv);</span><br></pre></td></tr></table></figure>
+<p>解决方法：<br>从内到外执行appendChild:  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> parentDiv =  <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;div&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> childDiv = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;div&quot;</span>);</span><br><span class="line">parentDiv.<span class="title function_">appendChild</span>(childDiv);</span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(parentDiv);</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>反复重写同一个属性会造成内存大量占用</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; <span class="number">5000</span>; i++) &#123;</span><br><span class="line">  hostElement.<span class="property">text</span> = <span class="string">&quot;asdfasdfasdf&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

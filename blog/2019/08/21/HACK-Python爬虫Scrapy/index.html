@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        Python爬虫Scrapy | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="Scrapy简介Scrapy 是一个开源的Python网络爬虫框架。源码在github上开源，地址。Scrapy简单易学而且非常好用，支持配置、代理分布式爬取、容易扩展而且官方也很活跃。截止目前（2019年8月21日）最新版本为 v1.7.3 。  Scrapy 安装你需要先安装Python，Scrapy需要 Python 2.7 或者 Python 3.5+ ，通常MacOS会自带Python，其它系统需要自己安装，Python安装不再赘述。  Scrapy由纯Python语言实现，但是" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Scrapy%E7%AE%80%E4%BB%8B"><span class="toc-text">Scrapy简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scrapy-%E5%AE%89%E8%A3%85"><span class="toc-text">Scrapy 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scrapy%E9%A1%B9%E7%9B%AE%E5%88%9B%E5%BB%BA"><span class="toc-text">Scrapy项目创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#settings-%E4%BF%AE%E6%94%B9"><span class="toc-text">settings 修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-shell-%E5%91%BD%E4%BB%A4%E5%88%86%E6%9E%90%E5%BE%85%E7%88%AC%E5%8F%96%E7%BD%91%E7%AB%99"><span class="toc-text">使用 shell 命令分析待爬取网站</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scrapy-Items"><span class="toc-text">Scrapy Items</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scrapy-Item-Pipeline"><span class="toc-text">Scrapy Item Pipeline</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E7%88%AC%E8%99%AB"><span class="toc-text">运行爬虫</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            Python爬虫Scrapy
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-08-21T07:16:45.000Z" itemprop="datePublished">2019-08-21</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/crawler/" rel="tag">crawler</a>, <a class="article-tag-link" href="/blog/tags/python/" rel="tag">python</a>, <a class="article-tag-link" href="/blog/tags/scrapy/" rel="tag">scrapy</a>, <a class="article-tag-link" href="/blog/tags/spider/" rel="tag">spider</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="Scrapy简介"><a href="#Scrapy简介" class="headerlink" title="Scrapy简介"></a>Scrapy简介</h2><p><a target="_blank" rel="noopener" href="https://scrapy.org/">Scrapy</a> 是一个开源的Python网络爬虫框架。源码在github上开源，<a target="_blank" rel="noopener" href="https://github.com/scrapy/scrapy">地址</a>。Scrapy简单易学而且非常好用，支持配置、代理分布式爬取、容易扩展而且官方也很活跃。截止目前（2019年8月21日）最新版本为 v1.7.3 。  </p>
+<span id="more"></span>
+<h2 id="Scrapy-安装"><a href="#Scrapy-安装" class="headerlink" title="Scrapy 安装"></a>Scrapy 安装</h2><p>你需要先安装Python，Scrapy需要 Python 2.7 或者 Python 3.5+ ，通常MacOS会自带Python，其它系统需要自己安装，Python安装不再赘述。  </p>
+<p>Scrapy由纯Python语言实现，但是需要依赖一些Python包，包括  </p>
+<ul>
+<li><a href="lxml.de">lxml</a>：一种高效的XML和HTML解析器，</li>
+<li><a target="_blank" rel="noopener" href="https://pypi.python.org/pypi/parsel">parsel</a>：一个HTML / XML数据提取库，基于上面的lxml，</li>
+<li><a target="_blank" rel="noopener" href="https://pypi.org/project/w3lib/">w3lib</a>：一种处理URL和网页编码多功能辅助</li>
+<li><a target="_blank" rel="noopener" href="https://twistedmatrix.com/trac/">twisted</a>：一个异步网络框架</li>
+<li><a target="_blank" rel="noopener" href="https://cryptography.io">cryptography</a> and <a target="_blank" rel="noopener" href="https://pypi.org/project/pyOpenSSL/">pyOpenSSL</a>：处理各种网络级安全需求</li>
+</ul>
+<p>由于包依赖版本问题，建议首先安装 <a target="_blank" rel="noopener" href="https://virtualenv.pypa.io">virtualenv</a> ，这是一个独立Python运行环境包。</p>
+<ol>
+<li>全局安装 virtualenv</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pip install virtualenv</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建独立Python运行环境</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ virtualenv ENV</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>安装Scrapy</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install scrapy</span><br></pre></td></tr></table></figure>
+<p><strong> 在不同的平台上的安装步骤不尽相同，某些平台需要安装平台依赖包，具体请 <a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/intro/install.html#intro-install-platform-notes">查看</a> </strong> </p>
+<h2 id="Scrapy项目创建"><a href="#Scrapy项目创建" class="headerlink" title="Scrapy项目创建"></a>Scrapy项目创建</h2><ol>
+<li>创建项目&amp;生成爬虫</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ scrapy startproject [PROJECT_NAME]</span><br><span class="line">$ cd [PROJECT_NAME]</span><br><span class="line">$ scrapy genspider [SPIDER_NAME] [START_SITE_NAME]</span><br></pre></td></tr></table></figure>
+<p>[PROJECT_NAME] 是待创建的爬虫项目名<br>[SPIDER_NAME] 是爬虫名<br>[SITE_NAME] 是待爬取的初始站点地址</p>
+<p>例如我们创建了一个名为 tutorial 的项目，并添加爬虫 top  </p>
+<p>项目目录如下  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">tutorial/</span><br><span class="line">|___scrapy.cfg            # 配置文件</span><br><span class="line">|___tutorial/             # 项目的 Python 模块，代码存在这里</span><br><span class="line">    |___ __init__.py</span><br><span class="line">    |___items.py          # 项目 items 定义文件</span><br><span class="line">    |___middlewares.py    # 项目 middlewares 文件</span><br><span class="line">    |___pipelines.py      # 项目 pipelines 文件</span><br><span class="line">    |___settings.py       # 项目 settings 文件</span><br><span class="line">    |___spiders/          # 爬虫文件目录</span><br><span class="line">        |___ __init__.py</span><br><span class="line">        |___top.py        # 爬虫文件</span><br></pre></td></tr></table></figure>
+<p>打开 top.py 可以看到 Scrapy 爬虫文件结构  </p>
+<ul>
+<li><strong>name</strong> 爬虫名  </li>
+<li><strong>allowed_domains</strong> 是允许爬取的域名  </li>
+<li><strong>start_urls</strong> 开始爬取的链接  </li>
+<li><strong>start_requests()</strong> 开始爬取的链接方法，需要返回 Requests 对象的遍历器或者 Reqeusts 数组  </li>
+<li><strong>parse()</strong> 爬取后的处理方法  </li>
+</ul>
+<h2 id="settings-修改"><a href="#settings-修改" class="headerlink" title="settings 修改"></a>settings 修改</h2><p>可以在 settings.py 文件中看到常用设置: </p>
+<ul>
+<li><strong>USER_AGENT</strong> request的 <code>user-agent</code> header 中的 user-agent 参数  </li>
+<li><strong>ROBOTSTXT_OBEY</strong> 是否遵守robots.txt协议，默认 <code>True</code>  </li>
+<li><strong>CONCURRENT_REQUESTS</strong> 最大并发请求数量  </li>
+<li><strong>DEFAULT_REQUEST_HEADERS</strong> 覆盖默认请求header 参数</li>
+<li><strong>SPIDER_MIDDLEWARES</strong> 爬虫中间件  </li>
+<li><strong>DOWNLOADER_MIDDLEWARES</strong> 下载中间件  </li>
+<li><strong>ITEM_PIPELINES</strong> 设置pipeline调用顺序  </li>
+</ul>
+<h2 id="使用-shell-命令分析待爬取网站"><a href="#使用-shell-命令分析待爬取网站" class="headerlink" title="使用 shell 命令分析待爬取网站"></a>使用 shell 命令分析待爬取网站</h2><p>shell命令是Scrapy提供的交互式页面分析工具，类似于一个debug工具，你可以先使用shell分析待爬取的页面然后再执行爬虫。  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy shell [SITE_NAME]</span><br></pre></td></tr></table></figure>
+<p>shell命令将会采用settings里的配置来请求地址 [SITE_NAME] ，以下列出一些常用分析命令  </p>
+<ul>
+<li><strong>scrapy</strong> scrapy模块，包括scrapy.Request, scrapy.Selector等  </li>
+<li><strong>crawler</strong> scrapy.crawler.Crawler object  </li>
+<li><strong>response</strong> 返回的响应object</li>
+<li><strong>request</strong> 请求的object</li>
+<li><strong>settings</strong> 请求的设置</li>
+<li><strong>view(response)</strong> 在浏览器中查看获取到页面  </li>
+<li><strong>fetch(url[, redicrect=True])</strong> 重新获取url内容并更新当前object</li>
+<li><strong>fetch(req)</strong> 获取一个 scrapy.Request 并更新当前object</li>
+</ul>
+<p><code>view(response)</code> 可以在浏览器中查看页面结构。<br>如果返回的结构和我们期待的有所不同，可以通过 <code>request.replace()</code> 进行修改，例如修改请求方法 <code>request.replace(method=&#39;POST&#39;)</code><br><code>fetch(req)</code> 常用在对request或settings进行了修改然后重新请求。<br><code>response</code> 是返回的响应体，这通常是我们需要分析的东西，如果分析的是html，首先最好先执行 <code>view(response)</code> 在浏览器中查看页面结构，找到我们需要获取的 文本/链接 位置。<br>然后使用 xpath选择器 或者 css选择器 定位我们需要获取的 文本/链接 位置。<br>例如采用 css选择器 且我们需要获取页面中的所有链接，则可以执行<br> <code>response.css(&#39;a::attr(href).getall()&#39;)</code><br>如果获取title文本则可以执行<br> <code>response.css(&#39;title::text&#39;).get(default=&#39;&#39;)</code><br><code>fetch(url)</code> 常用来获取下一个待分析的链接<br>这样就构成了一个完整闭环  </p>
+<p>另外我们也可以通过<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from pprint import pprint</span><br><span class="line">pprint(response.headers)</span><br></pre></td></tr></table></figure><br>来打印相应object  </p>
+<h2 id="Scrapy-Items"><a href="#Scrapy-Items" class="headerlink" title="Scrapy Items"></a>Scrapy Items</h2><p>通常我们需要爬取的都是结构化的数据，在 Scrapy 中被称为 Item，在 items.py 中我们需要定义需要爬取的字段，类似 Python dict</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name = scrapy.Field()</span><br></pre></td></tr></table></figure>
+<h2 id="Scrapy-Item-Pipeline"><a href="#Scrapy-Item-Pipeline" class="headerlink" title="Scrapy Item Pipeline"></a>Scrapy Item Pipeline</h2><p>Scrapy支持pipeline来对爬取到的数据进行类似于管道一样的一系列操作。<br>管道类一般用来进行以下几类操作：  </p>
+<ul>
+<li>清洗 HTML 数据</li>
+<li>验证爬取到的数据（检查items包括特定的field）</li>
+<li>检查重复数据</li>
+<li>将爬取到的数据存储于数据库中</li>
+</ul>
+<p>包括以下几分方法</p>
+<p><code>process_item(self, item, spider)</code></p>
+<p>处理item，需要返回处理后的 data dict</p>
+<p><code>open_spider(self, spider)</code></p>
+<p>spider开始时触发的钩子</p>
+<p><code>close_spider(self, spider)</code></p>
+<p>spider结束时触发的钩子</p>
+<p><code>from_crawler(cls, crawler)</code></p>
+<p>类方法，可以通过 crawler.settings 获取 settings.py 里的配置信息</p>
+<h2 id="运行爬虫"><a href="#运行爬虫" class="headerlink" title="运行爬虫"></a>运行爬虫</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ scrapy crawl [SPIDER_NAME] [-o [FILE_NAME]]</span><br></pre></td></tr></table></figure>
+<p>可以添加 <code>-o</code> 参数来输出为不同的文件例如 xml, csv, json 文件<br>爬取后的文件默认放到项目根目录下  </p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

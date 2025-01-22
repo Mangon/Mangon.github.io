@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        标签: nginx | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="Mangon&#39;s Technology Blog" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+
+        
+            <div class="author-meta">
+                
+                <div class="author-avatar">
+                    <a href="/blog/">
+                        <img src="/blog/images/avatar.jpeg" title="Mangon">
+                    </a>
+                </div>
+                
+                <div class="author-name">Mangon</div>
+                <div class="author-work">前端开发工程师</div>
+                <div class="author-location">
+                    <i class="icon-location vm"></i>
+                    <span class="vm">中国北京</span>
+                </div>
+                
+                <div class="author-thread-wrap">
+                    <div class="author-threads clearfix">
+                        
+                            <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
+                        
+                        
+                        
+                            <a class="thread-item" href="https://mangon.cn/blog/atom.xml" target="_blank" rel="external noopener noreferrer"><i class="icon-favorite"></i></a>
+                        
+                        
+                            <a class="thread-item" href="https://mangon.cn/resume" target="_blank" rel="external noopener noreferrer"><i class="icon-circle-more"></i></a>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2022/08/25/CS-nginx%E5%B0%8F%E6%8A%84/">nginx小抄</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2022-08-25T03:43:34.000Z" itemprop="datePublished">2022-08-25</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/nginx/" rel="tag">nginx</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="nginx-介绍"><a href="#nginx-介绍" class="headerlink" title="nginx 介绍"></a>nginx 介绍</h2><p>nginx [engine x] 是一款 HTTP 和反向代理服务器、邮件代理服务器和通用 TCP/UDP 代理服务器，最初由 Igor Sysoev 编写。根据 Netcraft 提供的数据，截止2022年7月，nginx 服务或者代理了 21.55% 最繁忙的站点，包括 Dropbox、Netflix、Yandex 等知名网站和应用。nginx 的源代码和文档以 2-clause BSD 许可分发，对开发者十分友好。</p>
+<p>nginx 最常用的功能之一是作为 HTTP 服务器使用，nginx 可以提供的 HTTP 服务器功能包括：</p>
+<ol>
+<li>提供静态文件路由、文件描述符缓存</li>
+<li>带缓存的加速反向代理、负载均衡和容错</li>
+<li>模块化结构。支持包括 gzipping 、XSLT 、SSI 和 图像转换 过滤</li>
+<li>SSL 和 TLS 支持</li>
+<li>支持 HTTP/2</li>
+<li>基于名称和基于 IP 的虚拟服务器</li>
+<li>基于 客户端IP地址、 密码（HTTP基本认证）和 子请求结果 的访问控制</li>
+<li>验证 HTTP referer</li>
+<li>限制 来自一个地址 的同时连接 或 请求的数量</li>
+<li>基于IP的地理定位</li>
+<li>A/B 测试<br>…</li>
+</ol>
+<p>可以看到 nginx 是十分强大的，支持 HTTP 服务器的几乎所有功能，而且 nginx 的配置也十分简单灵活，支持的操作系统亦十分广泛，包括 FreeBSD、Linux、Solaris、macOS、Windows Server 等常见的服务器系统都支持。</p>
+<p>nginx 有一个主进程和几个工作进程。主进程的主要目的是读取和评估配置，并维护工作进程。工作进程对请求进行实际处理。nginx 采用基于事件的模型和依赖于操作系统的机制来有效地在工作进程之间分配请求。工作进程的数量在配置文件中定义，并且可以针对给定的配置进行固定或自动调整为可用 CPU 内核的数量。</p>
+<p>nginx 及其模块的工作方式在配置文件中确定。默认情况下，配置文件被命名为 nginx.conf 并放置在目录 <code>/usr/local/nginx/conf</code>、 <code>/etc/nginx</code> 或 <code>/usr/local/etc/nginx</code> 中。</p>
+<h2 id="nginx-安装"><a href="#nginx-安装" class="headerlink" title="nginx 安装"></a>nginx 安装</h2><p>nginx 的安装过程如下，以 macOS 为例：</p>
+<ol>
+<li>通过 Homebrew 安装</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install nginx</span><br></pre></td></tr></table></figure>
+<p>nginx 默认被安装在 <code>/usr/local/Cellar/nginx/</code><br>conf文件默认被安装在 <code>/usr/local/etc/nginx/nginx.conf</code></p>
+<ol start="2">
+<li>将 nginx 命令添加到系统环境变量 Path 中</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=&quot;$PATH:/usr/local/Cellar/nginx/1.23.1/bin&quot;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>开启 nginx</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>访问 Web 页面</li>
+</ol>
+<p>nginx 默认开启 8080 端口的 http 服务，可以通过 <code>http://localhost:8080</code> 访问 nginx 的默认页面。默认页面的位置在 <code>/usr/local/Cellar/nginx/1.23.1/html/index.html</code>。</p>
+<ol start="5">
+<li>查看 nginx 日志</li>
+</ol>
+<p>日志存放在 <code>/usr/local/var/log/nginx/*.log</code>，其中 access.log 是访问日志，error.log 是错误日志。</p>
+<h2 id="nginx-命令"><a href="#nginx-命令" class="headerlink" title="nginx 命令"></a>nginx 命令</h2><p>要启动 nginx，直接运行 nginx 可执行文件即可，nginx 一旦启动，就可以通过 -s 参数调用可执行文件来控制它。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s [signal]</span><br></pre></td></tr></table></figure>
+<p>signal 包括：</p>
+<ul>
+<li>stop 快速关闭</li>
+<li>quit 优雅的关闭</li>
+<li>reload 重载配置文件</li>
+<li>reopen 重新打开日志文件</li>
+</ul>
+<p>执行 <code>ps -ax | grep nginx</code> 可以查看所有正在运行的 nginx 进程的列表。</p>
+<p>nginx 的主进程 ID 默认记录在 <code>/usr/local/nginx/logs/nginx.pid</code> 中</p>
+<h2 id="nginx-配置"><a href="#nginx-配置" class="headerlink" title="nginx 配置"></a>nginx 配置</h2><p>nginx.conf 配置文件的结构如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">events &#123;</span><br><span class="line">    worker_connections 1024;</span><br><span class="line">&#125;</span><br><span class="line">http &#123;</span><br><span class="line">    include mime.types;</span><br><span class="line">    default_type application/octet-stream;</span><br><span class="line">    # access_log logs/access.log main;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line">    server &#123;</span><br><span class="line">        listen       8080 backlog=4096;</span><br><span class="line">        server_name  localhost;</span><br><span class="line"></span><br><span class="line">        #charset koi8-r;</span><br><span class="line"></span><br><span class="line">        #access_log  logs/host.access.log  main;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            root   html;</span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line">        #...</span><br><span class="line">    &#125;</span><br><span class="line">    include servers/*;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>nginx 配置由模块（moudle）组成，这些模块由配置文件中指定的指令（directive）控制。指令分为 <em>简单指令</em> 和 <em>块指令</em> 。一个简单的指令由 <em>名称</em> 和 <em>参数</em> 组成，由空格分隔并以分号结尾。块指令与简单指令具有相同的结构，但它不是以分号结尾，而是以一组由大括号包围的附加指令。如果块指令可以在大括号内包含其他指令，则称为上下文（context）（例如： events、 http、 server 和 location）。<br>放置在任何上下文之外的配置文件中的指令被认为是在 主上下文（main context） 中。例如，<code>events</code> 和 <code>http</code> 指令包括在 主上下文 中，<code>server</code> 指令在 <code>http</code> 中，而 <code>location</code> 在 <code>server</code> 中。<code>#</code> 符号之后的是注释。</p>
+<p>nginx 处理连接的速度非常快，一般规则是当连接建立时，它被放入监听套接字的“监听”队列中。</p>
+<p>显示当前监听队列：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -Lan</span><br></pre></td></tr></table></figure>
+<p>结果类似如下：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Current listen queue sizes (qlen/incqlen/maxqlen)</span><br><span class="line">Listen         Local Address</span><br><span class="line">0/0/128        *.12345</span><br><span class="line">10/0/128        *.80</span><br><span class="line">0/0/128        *.8080</span><br></pre></td></tr></table></figure></p>
+<p>为了获得最佳性能，需要增加在操作系统和 nginx 配置中排队等待 nginx 接受的最大连接数，将 <code>net.core.somaxconn</code> 内核参数的值从其默认值 (128) 增加到一个足够高的值以应对大量流量。</p>
+<p>对于 FreeBSD，运行命令 <code>sudo sysctl kern.ipc.somaxconn=4096</code>；对于 Linux，运行命令 <code>sudo sysctl -w net.core.somaxconn=4096</code>，使用文本编辑器将 <code>net.core.somaxconn = 4096</code> 添加到 <code>/etc/sysctl.conf</code> 。同时，将 listen 指令的 backlog 参数改为匹配的最大连接数。</p>
+<h2 id="nginx-功能"><a href="#nginx-功能" class="headerlink" title="nginx 功能"></a>nginx 功能</h2><h3 id="静态资源访问"><a href="#静态资源访问" class="headerlink" title="静态资源访问"></a>静态资源访问</h3><p>nginx 最主要的一个功能是提供静态内容的访问。nginx 通过 <em>指令匹配</em> 来指定返回的内容，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    server &#123;</span><br><span class="line">        location / &#123;</span><br><span class="line">            root /data/www;</span><br><span class="line">            index index.html index.htm;</span><br><span class="line">            try_files $uri $uri/ $uri.html /index.html =404;</span><br><span class="line">        &#125;</span><br><span class="line">        location ~ \.(gif|jpg|png|jpeg|svg)$ &#123;</span><br><span class="line">            root /data/images;</span><br><span class="line">            valid_referers none blocked server_names *.example.com ~\.google\.;</span><br><span class="line">            if ($invalid_referer) &#123;</span><br><span class="line">                rewrite ^/ http://www.example.com/403.html break;</span><br><span class="line">                # return 403;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        location /directory/ &#123;</span><br><span class="line">            root /data/directory;</span><br><span class="line">            autoindex on;</span><br><span class="line">        &#125;</span><br><span class="line">        location /mp3 &#123;</span><br><span class="line">            sendfile on;</span><br><span class="line">            sendfile_max_chunk 1m;</span><br><span class="line">        &#125;</span><br><span class="line">        location /wrong/url &#123;</span><br><span class="line">            return 404;</span><br><span class="line">        &#125;</span><br><span class="line">        location /permanently/moved/url &#123;</span><br><span class="line">            return 301 http://www.example.com/moved/here;</span><br><span class="line">        &#125;</span><br><span class="line">        location /old/path.html &#123;</span><br><span class="line">            error_page 404 =301 http://www.example.com/new/path.html;</span><br><span class="line">        &#125;</span><br><span class="line">        error_page 404 /404.html;</span><br><span class="line">        error_page 500 502 503 504 /50x.html;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第一个 location 块指令指定 <code>/</code> 前缀 与来自请求的 URI 相匹配。如果匹配上了，那么 URI 将添加到 <code>root</code> 指令中指定的路径，即 <code>/data/www</code>，以形成本地文件系统上请求文件的路径。例如，URI 请求了 <code>/index.html</code>，与 <code>/</code> 匹配，那么就会返回本地的 <code>/data/www/index.html</code> 资源。如果有多个匹配的 location 块，nginx 会选择具有最长前缀的块。上面的第一个 location 块提供了最短的前缀，长度为 1，因此只有当所有其他 location 块都无法提供匹配时，才会使用这个块。<br>第二个 location 块指令以 <code>~</code> 开始是一个正则表达式匹配。它可以匹配所有 以 .gif，.jpg 或 .png 结尾的 URI。</p>
+<p><code>location</code> 指令支持 前缀字符串（路径名）和 正则表达式 两种匹配方式。前缀字符串匹配必须以前缀字符串开头，正则表达式以 <code>~</code> 或者 <code>~*</code> （表示不区分大小写）开头。nginx 对正则表达式使用 Perl 语法。如果请求以斜线结尾，nginx 会将其视为对目录的请求，并尝试在目录中查找索引文件。</p>
+<p><code>root</code> 指令指定将用于搜索文件的根目录。</p>
+<p><code>index</code> 指令定义索引文件的名称（默认值为 index.html ），可以在指令中列出多个文件，nginx 以指定的顺序搜索文件并返回它找到的第一个。</p>
+<p><code>valid_referers</code> 指令用于根据请求 <code>Referer</code> 的内容对请求进行限制，通常用来进行静态资源的防盗链。参数 <code>none</code> 表示 <code>Referer</code> 不存在（从浏览器地址栏直接打开链接时的情况）；参数 <code>blocked</code> 表示 <code>Referer</code> 在请求头中存在，但是被防火墙或代理服务器删除了（例如值是字符串但并不是以 <code>http://</code> 或 <code>https://</code> 开头）；参数 <code>server_names</code> 表示 <code>Referer</code> 应当包含列出的服务器之一，列出的服务器地址支持以 * 通配符来匹配，或者以 <code>~</code> 开头的正则表达式。当匹配不通过时，<code>$invalid_referer</code> 变量的值将为 1，可以通过该字段来进行之后的处理。</p>
+<p><code>autoindex</code> 指令表明 nginx 配置为返回自动生成的目录列表。</p>
+<p><code>try_files</code> 指令用于检查指定的文件或目录是否存在，nginx 会进行内部重定向，否则会返回指定的状态码。</p>
+<p>默认情况下，nginx 自己处理文件传输，并在发送之前将文件复制到缓冲区中。<code>sendfile</code> 指令消除了将数据复制到缓冲区的步骤，并允许将数据从一个文件描述符直接复制到另一个文件描述符。<code>sendfile_max_chunk</code> 指令来限制在单个 <code>sendfile()</code> 调用中传输的数据量，防止一个快速连接完全占用工作进程。</p>
+<p><code>return</code> 指令用于返回特定的响应码。对于某些响应码，例如 301 重定向响应，可以通过额外的参数来指定重定向的地址。</p>
+<p><code>rewrite</code> 指令用于重定向。当指定的正则表达式与请求 URI 匹配时，URL 将按照 <code>rewrite</code> 指定的字符串进行更改。第一个参数为 URI 需要匹配的正则表达式，第二个参数为替换的字符串，第三个参数为可选的标志参数，可以为 <code>last</code> 表示停止当前 <code>redirect</code> 指令的匹配，开始新的 <code>location</code> 匹配； <code>break</code> 表示停止当前的 <code>redirect</code> 指令的匹配，在此位置继续对请求进行进一步处理； <code>redirect</code> 表示返回 302 响应码； <code>permanent</code> 表示返回 301 响应码。</p>
+<p><code>error_page</code> 指令用于对特定的响应码返回相应的内容。</p>
+<h3 id="代理请求（请求转发）"><a href="#代理请求（请求转发）" class="headerlink" title="代理请求（请求转发）"></a>代理请求（请求转发）</h3><p>nginx 的常见用途之一是将其设置为请求代理，这意味着 nginx 服务器接收请求，将请求传递给代理服务器，然后 nginx 服务器从代理服务器接受响应，并将响应发送给客户端。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 8080;</span><br><span class="line">    root /data/up1;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>请注意，该 root 指令放置在 server 上下文中，这样，当 location 块没有提供自己的 root 指令时就会直接使用 server 上下文中的 root。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://localhost:8080;</span><br><span class="line">        proxy_redirect off;</span><br><span class="line">        proxy_set_header Host $host;</span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">        proxy_set_header Accept-Encoding &quot;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    location /some/path1/ &#123;</span><br><span class="line">        proxy_buffers 16 4k;</span><br><span class="line">        proxy_buffer_size 2k;</span><br><span class="line">        proxy_pass http://localhost:8000;</span><br><span class="line">        proxy_bind $server_addr;</span><br><span class="line">    &#125;</span><br><span class="line">    location /some/path2/ &#123;</span><br><span class="line">        proxy_buffering off;</span><br><span class="line">        proxy_pass http://localhost:8000;</span><br><span class="line">        proxy_bind 127.0.0.1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 location 块中添加 <code>proxy_pass</code> 指令，就可以将请求转发到对应的地址。如上，就是将 <code>http://localhost:80</code> 的请求转发到了 <code>http://localhost:8080</code> 上。</p>
+<p>nginx 也支持将请求传递给非 HTTP 代理服务器，<code>**_pass</code> 应使用适当的指令：</p>
+<ul>
+<li><code>fastcgi_pass</code> 将请求传递给 FastCGI 服务器</li>
+<li><code>uwsgi_pass</code> 将请求传递给 uwsgi 服务器</li>
+<li><code>scgi_pass</code> 将请求传递给 SCGI 服务器</li>
+<li><code>memcached_pa​​ss</code> 将请求传递给了一个 memcached 服务器</li>
+</ul>
+<p>在代理请求时，默认情况下，nginx 会重新定义代理请求中的两个 header 字段，“Host” 和 “Connection”，并消除值为空字符串的 header 字段。“Host” 设置为 <code>$proxy_host</code> 变量，“Connection” 设置为 close。</p>
+<p><code>proxy_set_header</code> 指令可以更改默认的 header 设置以及修改其他 header 字段。要防止标头字段被传递到代理服务器，可以将其设置为空字符串。</p>
+<p><code>proxy_buffering</code> 用于启用和禁用缓冲。默认情况下，nginx 缓冲来自代理服务器的响应，这有助于优化慢速客户端的性能。<code>proxy_buffers</code> 指令控制为请求分配的缓冲区的数量和大小。来自代理服务器的响应的第一部分存储在单独的缓冲区中，其大小由<code>proxy_buffer_size</code> 指令设置。</p>
+<p><code>proxy_bind</code> 指令用于指定代理服务器的 IP 地址。IP 地址也可以用变量指定，<code>$server_addr</code> 变量传递接受请求的服务器的 IP 地址</p>
+<h3 id="负载均衡（反向代理）"><a href="#负载均衡（反向代理）" class="headerlink" title="负载均衡（反向代理）"></a>负载均衡（反向代理）</h3><p>使用 nginx 可以将 HTTP 流量负载均衡到一组服务器上。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    upstream backend &#123;</span><br><span class="line">        zone backend 32k;</span><br><span class="line">        hash $request_uri consistent; # least_conn ip_hash</span><br><span class="line">        server backend1.example.com weight=5;</span><br><span class="line">        server backend2.example.com max_fails=3 fail_timeout=30s;</span><br><span class="line">        server backend3.example.com down;</span><br><span class="line">        server 192.0.0.1 backup;</span><br><span class="line">    &#125;</span><br><span class="line">    server &#123;</span><br><span class="line">        location / &#123;</span><br><span class="line">            proxy_pass http://backend;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>upstream</code> 指令定义了一组服务器，其中 <code>server</code> 指令指项了每一个具体的服务器。如上，定义了一个名为 backend 的服务器组，这个组由三个服务器组成，两台主服务器，一台备份服务器，通过 <code>proxy_pass</code> 指令，可以将请求传递到 backend 组中。</p>
+<p>nginx 支持四种负载均衡方法：</p>
+<ol>
+<li>Round Robin – 请求在服务器之间均匀分布，并考虑服务器权重。默认采用此种方法。</li>
+<li>Least Connections – 向具有最少活动连接数的服务器发送请求，再次考虑服务器权重。指令为 <code>least_conn</code> 。</li>
+<li>IP Hash – 请求发送到的服务器由客户端 IP 地址确定。在这种情况下，使用 IPv4 地址的前三个八位字节或整个 IPv6 地址来计算哈希值。该方法保证来自同一地址的请求到达同一服务器，除非它不可用。指令为 <code>ip_hash</code> 。</li>
+<li>Generic Hash - 请求发送到的服务器由用户定义的键确定，该键可以是文本字符串、变量或组合。指令为 <code>hash</code> 。例如，哈希密钥可能是配对的源 IP 地址和端口，或者是例子中的 URI。可选的 <code>consistent</code> 参数标志启用 <a target="_blank" rel="noopener" href="https://www.last.fm/user/RJ/journal/2007/04/10/rz_libketama_-_a_consistent_hashing_algo_for_memcache_clients">ketama</a> 一致哈希算法进行负载均衡。</li>
+</ol>
+<p><code>weight</code> 参数代表了服务器的权重，nginx 默认采用 <em>轮询调度</em>（Round Robin）方法根据权重在组中的服务器之间分配请求。<code>weight</code> 的默认值为1，值越高请求占比越多。</p>
+<p><code>backup</code> 参数表示该服务器为备份服务器，除非其他服务器均不可用，否则不会接收请求。</p>
+<p><code>down</code> 参数 表示暂时从负载均衡轮换中删除该服务器。</p>
+<p><code>zone</code> 指令表示将 <code>upstream</code> 的配置保存在所有工作进程（work process）共享的内存区域中。例子中的 32k 表示分配的内存大小。</p>
+<p><code>max_fails</code> 参数设置在将服务器标记为不可用之前需要发生的失败尝试次数（默认为 1 次尝试）。</p>
+<p><code>fail_timeout</code> 参数设置将服务器标记为不可用的时间（默认为 10 秒）。</p>
+<h3 id="压缩和解压"><a href="#压缩和解压" class="headerlink" title="压缩和解压"></a>压缩和解压</h3><p>压缩响应通常会显着减小传输数据的大小。但是，由于压缩发生在运行时，它也会增加相当大的处理开销，从而对性能产生负面影响。nginx 支持在向客户端发送响应之前执行压缩。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    gzip on;</span><br><span class="line">    gzip_types      text/plain application/xml;</span><br><span class="line">    gzip_proxied    no-cache no-store private expired auth;</span><br><span class="line">    gzip_min_length 1000;</span><br><span class="line">    gunzip on;</span><br><span class="line">    gzip_static on;</span><br><span class="line">    #...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>gzip</code> 指令指定参数 <code>on</code> 即开启压缩。默认情况下，nginx 仅压缩 MIME 类型为 text/html 的响应。</p>
+<p><code>gzip_types</code> 指令指定除了 text/html 外还需要压缩的类型。</p>
+<p><code>gzip_min_length</code> 指令指定要压缩的响应的最小长度，默认为 20 字节。</p>
+<p><code>gzip_proxied</code> 指令指定来自代理服务器的请求如何进行压缩。默认情况下，nginx 不会压缩对代理请求（来自代理服务器的请求）的响应。</p>
+<p><code>gunzip</code> 指令用于在 http 客户端不支持 gzip 解压时即时解压缩。 <code>gunzip</code> 指令包含在 ngx_http_gunzip_module 中，默认情况下可能不包含在 nginx 的开源构建中，需要额外的构建参数 <code>--with-http_gunzip_module</code>。</p>
+<p><code>gzip_static</code> 指令用于将文件的压缩版本而不是常规版本发送到客户端。开启后，当请求 /path/to/file 文件时，nginx 尝试查找并发送文件 /path/to/file.gz。如果文件不存在，或者客户端不支持 gzip，nginx 会发送文件的未压缩版本。<code>gzip_static</code> 指令包含在 ngx_http_gzip_static_module 中，默认情况下可能不包含在 nginx 的开源构建中，需要额外的构建参数 <code>--with-http_gzip_static_module</code>。</p>
+<h3 id="https-支持"><a href="#https-支持" class="headerlink" title="https 支持"></a>https 支持</h3><p>nginx 支持通过添加 HTTPS 服务器的相关配置将 SSL 流量转换为非加密的流量，减轻上游 Web 和应用程序服务器的负载。</p>
+<p>要设置 HTTPS 服务器，需要在 nginx.conf 文件中将 <code>ssl</code> 参数包含到 server 块指令中的 listen 指令中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    ssl_session_cache   shared:SSL:10m;</span><br><span class="line">    ssl_session_timeout 10m;</span><br><span class="line">    server &#123;</span><br><span class="line">        listen              443 ssl;</span><br><span class="line">        server_name         www.example.com;</span><br><span class="line">        ssl_certificate     www.example.com.crt;</span><br><span class="line">        ssl_certificate_key www.example.com.key;</span><br><span class="line">        ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">        ssl_ciphers         HIGH:!aNULL:!MD5;</span><br><span class="line">        #...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>ssl_certificate</code> 指令指定了服务器证书的位置。</p>
+<p><code>ssl_certificate_key</code> 指令指定了私钥的位置。私钥应存储在访问受限的文件，但 nginx 主进程必须能够读取此文件。</p>
+<p><code>ssl_protocols</code> 和 <code>ssl_ciphers</code> 指令可用于要求客户端在建立连接时仅使用 SSL/TLS 的指定版本和密码。</p>
+<blockquote>
+<p>由于历史原因，nginx 默认 采用<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">ssl_ciphers         HIGH:!aNULL:!MD5;</span><br></pre></td></tr></table></figure><br>以下是TLS/SSL协议中的主要漏洞，它们都会影响协议的旧版本（TLSv1.2及更早版本），所以目前为止，考虑客户端兼容情况，建议仅支持 TLSv1.2 及以上版本。<br>POODLE（Padding Oracle On Downgraded Legacy Encryption）(<a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2014-3566">CVE-2014-3566</a>)<br>BEAST（Browser Exploit Against SSL/TLS ）(<a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2011-3389">CVE-2011-3389</a>)<br>CRIME (Compression Ratio Info-leak Made Easy) (<a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2012-4929">CVE-2012-4929</a>)<br>BREACH（Browser Reconnaissance and Exfiltration via Adaptive Compression of Hypertext） (<a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2013-3587">CVE-2013-3587</a>)<br>Heartbleed (<a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2014-0160">CVE-2014-0160</a>)</p>
+</blockquote>
+<p>nginx 是通过 OpenSSL 来支持 https 的，所以 <code>TLSv1.2</code> 参数需要 OpenSSL 1.0.1 以上版本。</p>
+<p>SSL 操作会消耗额外的 CPU 资源，其中最占用 CPU 的操作是 SSL 握手。</p>
+<p><code>ssl_session_cache</code> 指令配置将会话存储在工作进程之间共享的 SSL 会话缓存中。1M 字节的缓存可以包含 4000 个会话，默认缓存超时时间为5分钟。</p>
+<p><code>ssl_session_timeout</code> 指令可以修改 SSL 缓存超时时间。</p>
+<h2 id="nginx-常用指令说明"><a href="#nginx-常用指令说明" class="headerlink" title="nginx 常用指令说明"></a>nginx 常用指令说明</h2><p>nginx 指令目录参见 <a target="_blank" rel="noopener" href="https://nginx.org/en/docs/dirindex.html">dirindex</a> 。</p>
+<ul>
+<li>woker_processes</li>
+</ul>
+<p>worker 角色的工作进程的个数，master 进程是接收并分配请求给 worker 处理。这个数值简单一点可以设置为 cpu 的核数，例如 4核 cpu 设置为 <code>woker_processes 4;</code> 。如果开启了 ssl 和 gzip 更应该设置成与逻辑 CPU 数量一样甚至为2倍，可以减少 I/O 操作。如果nginx服务器还有其它服务，可以考虑适当减少。</p>
+<ul>
+<li>worker_cpu_affinity</li>
+</ul>
+<p>在高并发情况下，通过设置 cpu 粘性来降低由于多 CPU 核切换造成的寄存器等现场重建带来的性能损耗。例如，4核 cpu 可以设置 <code>worker_cpu_affinity 0001 0010 0100 1000;</code>。</p>
+<ul>
+<li>events.worker_connections</li>
+</ul>
+<p>每一个 worker 进程能并发处理（发起）的最大连接数（包含与客户端或后端被代理服务器间等所有连接数）。</p>
+<ul>
+<li>events.use</li>
+</ul>
+<p>事件模型。在 Linux 操作系统下，nginx 默认使用 epoll 事件模型，得益于此，nginx 在 Linux 操作系统下效率相当高。同时 nginx 在 OpenBSD 或 FreeBSD 操作系统上采用类似于 epoll 的高效事件模型 kqueue。在操作系统不支持这些高效模型时使用 select。</p>
+<ul>
+<li>http.sendfile</li>
+</ul>
+<p>开启高效文件传输模式，sendfile 指令指定 nginx 是否调用 sendfile 函数来输出文件，减少用户空间到内核空间的上下文切换。对于普通应用设为 on，如果用来进行下载等应用磁盘IO重负载应用，可设置为 off，以平衡磁盘与网络 I/O 处理速度，降低系统的负载。</p>
+<ul>
+<li>http.keepalive</li>
+</ul>
+<p>长连接超时时间，单位是秒。长连接请求大量小文件的时候，可以减少重建连接的开销。如果设置时间过长，用户又多，长时间保持连接会占用大量资源。</p>
+<ul>
+<li>http.send_timeout</li>
+</ul>
+<p>用于指定响应客户端的超时时间。这个超时仅限于两个连接活动之间的时间，如果超过这个时间，客户端没有任何活动，nginx 将会关闭连接。</p>
+<ul>
+<li>http.client_max_body_size</li>
+</ul>
+<p>允许客户端请求的最大单文件字节数。</p>
+<ul>
+<li>http.client_body_buffer_size</li>
+</ul>
+<p>缓冲区代理缓冲用户端请求的最大字节数。</p>
+<ul>
+<li>http.server.listen</li>
+</ul>
+<p>http服务器的监听端口。默认80，小于1024的要以root启动。</p>
+<ul>
+<li>http.server.server_name</li>
+</ul>
+<p>服务器名，如 <code>localhost</code>、<code>www.example.com</code>，可以通过正则匹配。</p>
+<ul>
+<li>http.upstream</li>
+</ul>
+<p>设置服务器上游模块。通过调度算法来实现客户端IP到后端服务器的负载均衡。</p>
+<ul>
+<li>http.server.location</li>
+</ul>
+<p>通过 前缀字符串（路径名）和 正则表达式 两种匹配方式匹配 URI 以进行配置。</p>
+<ul>
+<li>http.server.location.root</li>
+</ul>
+<p>定义服务器的默认网站根目录位置。</p>
+<ul>
+<li>http.server.location.index</li>
+</ul>
+<p>定义目录路径下默认访问的文件名。</p>
+<ul>
+<li>http.server.location.proxy_pass</li>
+</ul>
+<p>请求转向 <code>http.upstream</code> 预先定义的服务器列表（即反向代理）或者 代理服务器。</p>
+<ul>
+<li>http.server.location.proxy_set_header</li>
+</ul>
+<p>在代理请求过程中重写 header 字段。</p>
+<ul>
+<li>http.server.location.allow</li>
+</ul>
+<p>访问控制，允许特定 ip 段进行访问。</p>
+<ul>
+<li>http.server.location.deny</li>
+</ul>
+<p>访问控制，禁止特定 ip 段进行访问。</p>
+<ul>
+<li>http.server.location.autoindex</li>
+</ul>
+<p>列出整个目录。默认 <code>off</code>。</p>
+<ul>
+<li>http.server.location.autoindex_exact_size</li>
+</ul>
+<p>列出整个目录时是否显示文件的确切大小。默认为 <code>on</code>。</p>
+<ul>
+<li>http.server.location.autoindex_localtime</li>
+</ul>
+<p>列出整个目录时是否显示本地时间。默认为 <code>off</code>，显示 GMT 时间。开启时显示为文件的服务器时间。</p>
+
+        
+    </section>
+    
+</article>
+
+
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

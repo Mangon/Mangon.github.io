@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        React组件的状态state与属性props | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="什么是 React 的状态（state）React 的状态 state 是一个对象类组件中，状态通过 this.state 创建，通过 this.setState 合并更改，异步更新React Hook 中，状态通过 this.useState 或 this.useReducer 使用React 将组件看做状态机，状态改变触发渲染React 建议减少有状态的组件，提高组件复用度，利于维护只将无法从 props 传递，无法从其他数据计算，并且随时间可能变化的数据作为 state多" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-React-%E7%9A%84%E7%8A%B6%E6%80%81%EF%BC%88state%EF%BC%89"><span class="toc-text">什么是 React 的状态（state）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-React-%E7%9A%84%E7%8A%B6%E6%80%81%E6%8F%90%E5%8D%87"><span class="toc-text">什么是 React 的状态提升</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%EF%BC%88state%EF%BC%89%E5%92%8C%E5%B1%9E%E6%80%A7%EF%BC%88props%EF%BC%89%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">状态（state）和属性（props）的区别是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#setState-%E5%92%8C-replaceState-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">setState 和 replaceState 的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96-setState%EF%BC%8C%E5%87%8F%E5%B0%91%E4%B8%8D%E5%BF%85%E8%A6%81%E6%9B%B4%E6%96%B0"><span class="toc-text">如何优化 setState，减少不必要更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%93-state-%E5%80%BC%E4%B8%BA-Object-%E6%97%B6%EF%BC%8C%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96"><span class="toc-text">当 state 值为 Object 时，如何优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-React-%E7%9A%84%E5%B1%9E%E6%80%A7%EF%BC%88props%EF%BC%89"><span class="toc-text">什么是 React 的属性（props）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E7%9B%B4%E6%8E%A5%E4%BF%AE%E6%94%B9%E5%B1%9E%E6%80%A7%EF%BC%88props%EF%BC%89"><span class="toc-text">为什么不能直接修改属性（props）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E5%B1%9E%E6%80%A7%EF%BC%88props%EF%BC%89%E4%BC%A0%E9%80%92%E7%BB%84%E4%BB%B6%E6%9C%AC%E8%BA%AB%E7%9A%84%E6%96%B9%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="toc-text">通过属性（props）传递组件本身的方法有哪些</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-key-%E5%B1%9E%E6%80%A7%E6%9C%89%E5%93%AA%E4%BA%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">使用 key 属性有哪些注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%9C%A8-React-%E4%B8%AD%E8%BF%9B%E8%A1%8C%E9%9D%99%E6%80%81%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%9F%A5"><span class="toc-text">如何在 React 中进行静态类型检查</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React-%E6%98%AF%E5%90%A6%E6%94%AF%E6%8C%81%E5%8E%9F%E7%94%9F-HTML-%E5%B1%9E%E6%80%A7"><span class="toc-text">React 是否支持原生 HTML 属性</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            React组件的状态state与属性props
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2022-11-24T06:47:12.000Z" itemprop="datePublished">2022-11-24</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/react/" rel="tag">react</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="什么是-React-的状态（state）"><a href="#什么是-React-的状态（state）" class="headerlink" title="什么是 React 的状态（state）"></a>什么是 React 的状态（state）</h2><ul>
+<li>React 的状态 state 是一个对象<ul>
+<li>类组件中，状态通过 <code>this.state</code> 创建，通过 <code>this.setState</code> 合并更改，异步更新</li>
+<li>React Hook 中，状态通过 <code>this.useState</code> 或 <code>this.useReducer</code> 使用</li>
+</ul>
+</li>
+<li>React 将组件看做状态机，状态改变触发渲染</li>
+<li>React 建议减少有状态的组件，提高组件复用度，利于维护<ul>
+<li>只将无法从 props 传递，无法从其他数据计算，并且随时间可能变化的数据作为 state</li>
+<li>多个组件 state 的数据源相同，应将状态提升到父组件或容器组件</li>
+<li>避免使用 context，仅在 React 的状态管理无法满足需求时使用 Redux</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+<h2 id="什么是-React-的状态提升"><a href="#什么是-React-的状态提升" class="headerlink" title="什么是 React 的状态提升"></a>什么是 React 的状态提升</h2><ul>
+<li>React 中，任何可变数据应当只有一个相对应的唯一“数据源”</li>
+<li>多个组件反映相同的变化数据时，共享状态提升到最近的共同父组件<ul>
+<li>state 应首先添加到需要渲染数据的组件</li>
+<li>其他组件也需要这个 state，将它提升至这些组件的最近共同父组件</li>
+</ul>
+</li>
+<li>state 只能由拥有它们的组件修改，bug 排查范围被大大缩减</li>
+</ul>
+<h2 id="状态（state）和属性（props）的区别是什么"><a href="#状态（state）和属性（props）的区别是什么" class="headerlink" title="状态（state）和属性（props）的区别是什么"></a>状态（state）和属性（props）的区别是什么</h2><ul>
+<li><p>相同点</p>
+<ul>
+<li>state 和 props 都是原生的 JavaScript 对象，在 React 中代表了组件的数据来源</li>
+<li>state 和 props 的变化都会触发生命周期钩子 componentWillUpdate、useEffect / useLayoutEffect、和渲染</li>
+<li>同样的 state/props 渲染结果相同</li>
+<li>state 和 props 都可以在组件内部设置默认值</li>
+</ul>
+</li>
+<li><p>不同点</p>
+<ul>
+<li>获取<ul>
+<li>state 由当前组件声明</li>
+<li>props 由父组件传入</li>
+</ul>
+</li>
+<li>更新<ul>
+<li>state<ul>
+<li>由所在组件通过 useState / useReducer 或 setState 方法更新</li>
+<li>由子组件通过传入的 props 中的回调函数间接更新</li>
+</ul>
+</li>
+<li>props 不允许修改</li>
+</ul>
+</li>
+<li>数据<ul>
+<li>state 通常存储组件相关的可变数据，避免多层嵌套或使用不可变对象便于优化渲染</li>
+<li>props 除数据外，还多用于回调函数，组件（children），路由（history）的传递</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="setState-和-replaceState-的区别"><a href="#setState-和-replaceState-的区别" class="headerlink" title="setState 和 replaceState 的区别"></a>setState 和 replaceState 的区别</h2><ul>
+<li>setState 会合并当前状态与之前状态</li>
+<li>replaceState 会丢弃之前状态，用新状态替代</li>
+<li>replaceState 等同于先在 setState 中将状态设置为 false / null，再设置新状态</li>
+</ul>
+<h2 id="如何优化-setState，减少不必要更新"><a href="#如何优化-setState，减少不必要更新" class="headerlink" title="如何优化 setState，减少不必要更新"></a>如何优化 setState，减少不必要更新</h2><ul>
+<li>通过 <code>setState(updater, [callback])</code> 的用法，第一参数使用带有形式参数的函数</li>
+<li>通过 updater 函数 <code>(state, props) =&gt; stateChange</code> 的第一参数，接受原来的 state 状态值</li>
+<li>对比新旧状态值<ul>
+<li>相同，返回 null，不渲染</li>
+<li>不同，返回新状态值，触发异步合并渲染</li>
+</ul>
+</li>
+</ul>
+<p>示例代码:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">getData = <span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; time &#125; = data</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setState</span>(<span class="function"><span class="params">state</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> state.<span class="property">time</span> === time ?  <span class="literal">null</span> : &#123; time &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="当-state-值为-Object-时，如何优化"><a href="#当-state-值为-Object-时，如何优化" class="headerlink" title="当 state 值为 Object 时，如何优化"></a>当 state 值为 Object 时，如何优化</h2><ul>
+<li>避免使用 Object 作为 state 值，使用 PureComponent 的浅比较的自动优化失效</li>
+<li>必需使用 Object 作为 state 值<ul>
+<li>避免嵌套过多层级</li>
+<li>设置更新 state 的前置条件或使用 shouldComponentUpdate 手动优化</li>
+</ul>
+</li>
+<li>已经使用 Object 作为 state 值，并且嵌套层级过多<ul>
+<li>拆分 state 到子组件</li>
+<li>使用不可变对象 Immutable，只要 state 更新，返回对象新引用，重新渲染修改节点</li>
+</ul>
+</li>
+</ul>
+<h2 id="什么是-React-的属性（props）"><a href="#什么是-React-的属性（props）" class="headerlink" title="什么是 React 的属性（props）"></a>什么是 React 的属性（props）</h2><ul>
+<li>属性是组件的入参，用法同 HTML 自定义属性，可将任意类型数据从父组件传给子组件</li>
+<li>属性的改变可以触发组件的生命周期流程和渲染</li>
+<li>建议从组件自身的角度，不依赖于调用中间的上下文命名 props</li>
+<li>属性具有只读性，所有 React 组件必须像纯函数一样保护它们的 props 不被更改</li>
+<li>请避免使用匿名函数作为属性值，避免引起重复渲染</li>
+<li>具有 render prop 的组件接受一个返回 React 元素的函数，并在组件内部通过调用此函数来实现自己的渲染逻辑</li>
+</ul>
+<h2 id="为什么不能直接修改属性（props）"><a href="#为什么不能直接修改属性（props）" class="headerlink" title="为什么不能直接修改属性（props）"></a>为什么不能直接修改属性（props）</h2><ul>
+<li>React 仅支持单向数据流，数据通过 props 由外向内传递</li>
+<li>从 state 派生数据或 UI 只能影响“低于”它们的组件，设计简单高效，便于调试</li>
+<li>所有 React 组件必须像纯函数一样保护它们的 props 不被更改，保证组件没有副作用</li>
+</ul>
+<h2 id="通过属性（props）传递组件本身的方法有哪些"><a href="#通过属性（props）传递组件本身的方法有哪些" class="headerlink" title="通过属性（props）传递组件本身的方法有哪些"></a>通过属性（props）传递组件本身的方法有哪些</h2><ul>
+<li>props.children<ul>
+<li>子组件可以获取父组件开始标签和结束标签之间的内容</li>
+</ul>
+</li>
+<li>render props<ul>
+<li>向子组件传入函数，返回组件需要渲染什么内容</li>
+<li>直接在父组件的标签之间，调用函数返回组件</li>
+<li>避免使用匿名函数返回组件，避免重复渲染</li>
+</ul>
+</li>
+</ul>
+<h2 id="使用-key-属性有哪些注意事项"><a href="#使用-key-属性有哪些注意事项" class="headerlink" title="使用 key 属性有哪些注意事项"></a>使用 key 属性有哪些注意事项</h2><ul>
+<li>key 用来帮助 React 识别数组列表中哪些元素改变了，从而更好的更新元素</li>
+<li>key 在数组列表及兄弟节点之间必须唯一</li>
+<li>不建议使用索引作为 key 值，如果不显示指定 key 值，默认使用索引作为 key 值</li>
+<li>key 只有放在就近的数组上下文中才有意义</li>
+<li>key 不会传递给子组件，需要使用 key 属性的值，需使用其他属性显式传递</li>
+</ul>
+<h2 id="如何在-React-中进行静态类型检查"><a href="#如何在-React-中进行静态类型检查" class="headerlink" title="如何在 React 中进行静态类型检查"></a>如何在 React 中进行静态类型检查</h2><ul>
+<li>React.PropTypes 或 prop-types 库<ul>
+<li>提供一系列验证器，确保组件接收到的数据类型有效</li>
+<li>PropTypes 仅在开发模下进行检查并在控制台显示警告</li>
+<li>通过特定的 defaultProps 属性来定义 props 的默认值</li>
+</ul>
+</li>
+<li>Flow<ul>
+<li>Flow 是一个针对 JavaScript 代码的静态类型检测器</li>
+<li>由 Facebook 开发，经常与 React 一起使用</li>
+<li>Flow 通过特殊类型语法为变量、函数以及 React 组件提供注解</li>
+<li>Flow 添加方法<ul>
+<li>将 Flow 添加到项目依赖</li>
+<li>确保编译后的代码已经去除 Flow 语法</li>
+<li>添加类型注解并且运行 Flow 来检查</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>TypeScript<ul>
+<li>TypeScript 是微软开发的编程语言，它是 JavaScript 的类型超集，包含独立编译器</li>
+<li>强类型语言，构建时可以发现 bug 和错误</li>
+<li>TypeScript 添加方法<ul>
+<li>将 TypeScript 添加到项目依赖</li>
+<li>配置 TypeScript 编译选项</li>
+<li>使用正确的文件扩展名，React 的 JSX 使用.tsx作为扩展名</li>
+<li>为已经使用的库添加定义，现实其他包的错误和提示</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="React-是否支持原生-HTML-属性"><a href="#React-是否支持原生-HTML-属性" class="headerlink" title="React 是否支持原生 HTML 属性"></a>React 是否支持原生 HTML 属性</h2><ul>
+<li>任何标准和自定义的 DOM 属性都是完全支持的</li>
+<li>React 为 DOM 提供了一套以 JavaScript 为中心的 API<ul>
+<li>标准 DOM 属性采用小驼峰命名</li>
+<li>自定义属性全部小写</li>
+</ul>
+</li>
+<li>React 与 HTML 之间部分属性存在差异<ul>
+<li>checked<ul>
+<li>受控组件 checked</li>
+<li>非受控组件用 defaultChecked 设置组件首次挂载时是否被选中</li>
+</ul>
+</li>
+<li>className<ul>
+<li>用于指定 DOM 节点和 SVG 元素的 class</li>
+<li>React 中，使用 Web Components，使用 class 属性代替</li>
+</ul>
+</li>
+<li>dangerouslySetInnerHTML<ul>
+<li>React 为浏览器 DOM 提供 innerHTML 的替换方案</li>
+<li>需要向该属性传入 key 为 __html 的对象，用来警示跨站脚本（XSS）攻击风险</li>
+</ul>
+</li>
+<li>htmlFor<ul>
+<li>for 是 JavaScript 关键字，React 元素使用 htmlFor 代替</li>
+</ul>
+</li>
+<li>onChange<ul>
+<li>onChange 事件与预期行为一致：表单字段变化时，事件都会被触发</li>
+<li>与浏览器已有的默认行为不一致：<ul>
+<li>用户更改 <code>&lt;input&gt;</code>，<code>&lt;select&gt;</code> 和 <code>&lt;textarea&gt;</code> 元素的值并提交更改时 change 事件在这些元素上触发</li>
+<li>与 input 事件不一样，change 事件不是每次元素的 value 改变时都会被触发</li>
+</ul>
+</li>
+<li>React 依靠该事件实时处理用户输入</li>
+</ul>
+</li>
+<li>selected<ul>
+<li>将 <code>&lt;option&gt;</code> 标记为已选中状态，请在 select 的 value 中引用该选项的值</li>
+</ul>
+</li>
+<li>style<ul>
+<li>接受小驼峰命名属性的 JavaScript 对象，而不是 CSS 字符串</li>
+<li>与 JavaScript 属性一致，同时会更高效，且能预防跨站脚本（XSS）的安全漏洞</li>
+<li>样式不会自动补齐浏览器私有前缀，除 ms 外，浏览器引擎前缀都应以大写字母开头</li>
+<li>React 自动添加 “px” 后缀到内联样式为数字的属性，本来没有单位的属性 zoom,order,flex 不会转换像素字符串</li>
+<li>需使用 “px” 以外单位，请将值设为数字与所需单位组成的字符串</li>
+</ul>
+</li>
+<li>suppressContentEditableWaring<ul>
+<li>禁止拥有子节点的元素比标记为 contentEditable 时 React 发出警告</li>
+</ul>
+</li>
+<li>suprressHydrationWarning<ul>
+<li>禁止 React 服务端渲染与客户端渲染不同内容时发出警告</li>
+<li>只会对元素一级深度有效，应急方案使用，不过过度使用</li>
+</ul>
+</li>
+<li>value<ul>
+<li><code>&lt;input&gt;</code>，<code>&lt;select&gt;</code>，<code>&lt;textarea&gt;</code> 组件支持 value 属性</li>
+<li>非受控组件使用 dafaultValue 属性设置组件第一次挂载时的 value</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

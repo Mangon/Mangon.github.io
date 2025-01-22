@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        input输入框的autocomplete属性 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="在开发过程中遇到了一个兼容性相关的问题，具体为在Firefox浏览器中，浏览器自带的账号密码自动补全功能显示异常将输入框挡住了，如下。操作系统: macOS 10.15.7浏览器: Firefox 91.0.2 (64 位)原因为 Firefox 浏览器在 input 没有添加 autocomplete 属性的情况下也会调用自动补全的特性，由于该输入框的高度可能会变化，Firefox 的自动补全下拉框没有动态计算输入框位置导致位置异常。比较有意思的事，似乎夜间模式并不会有这个问题，第一次" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#autocomplete-%E5%B1%9E%E6%80%A7"><span class="toc-text">autocomplete 属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#best-practice"><span class="toc-text">best practice</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E8%AE%B0%E5%BD%95%E7%9A%84%E8%BF%87%E5%8E%BB%E5%80%BC"><span class="toc-text">删除记录的过去值</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            input输入框的autocomplete属性
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-11-23T09:19:43.000Z" itemprop="datePublished">2021-11-23</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/HTML/" rel="tag">HTML</a>, <a class="article-tag-link" href="/blog/tags/autocomplete/" rel="tag">autocomplete</a>, <a class="article-tag-link" href="/blog/tags/input/" rel="tag">input</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>在开发过程中遇到了一个兼容性相关的问题，具体为在Firefox浏览器中，浏览器自带的账号密码自动补全功能显示异常将输入框挡住了，如下。</p>
+<p><img src="/blog/static/imgs/input_error.png" alt="input_error"></p>
+<p>操作系统: macOS 10.15.7<br>浏览器: Firefox 91.0.2 (64 位)</p>
+<span id="more"></span>
+<p>原因为 Firefox 浏览器在 input 没有添加 autocomplete 属性的情况下也会调用自动补全的特性，由于该输入框的高度可能会变化，Firefox 的自动补全下拉框没有动态计算输入框位置导致位置异常。比较有意思的事，似乎夜间模式并不会有这个问题，第一次想要复现这个问题的时候因为是6pm之后我甚至都没有复现。最终，通过为该输入框加入 <code>autoComplete=&quot;new-password&quot;</code> 属性以禁用自动补全功能来解决该问题。  </p>
+<h2 id="autocomplete-属性"><a href="#autocomplete-属性" class="headerlink" title="autocomplete 属性"></a>autocomplete 属性</h2><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Attributes/autocomplete">autocomplete</a> 属性可用于以文本或数字值作为输入的 <code>&lt;input&gt;</code> 元素 ， <code>&lt;textarea&gt;</code> 元素， <code>&lt;select&gt;</code> 元素和 <code>&lt;form&gt;</code> 元素，用以告知浏览器该字段的期望类型并要求浏览器提供关于字段中所期望的信息类型的自动补全。建议值的来源由浏览器决定。 通常，值来自用户输入的过去值，但它们也可能来自预先配置的值。</p>
+<p>为了提供自动完成功能，可能需要 <code>&lt;input&gt;/&lt;select&gt;/&lt;textarea&gt;</code> 元素同时具有以下条件:</p>
+<ol>
+<li>具有 name 和/或 id 属性</li>
+<li>成为 <code>&lt;form&gt;</code> 的后代</li>
+<li>form 需要含有 <code>type=&quot;submit&quot;</code> 的按钮</li>
+</ol>
+<p>autoComplete 的值有很多种，其中，理论上设置 <code>autoComplete=&quot;off&quot;</code> 可以禁止浏览器为此字段自动输入或选择一个值。但实际上，在大多数现代浏览器中， autocomplete 设置为 “off” 不会阻止密码管理器询问用户是否要保存用户名和密码信息，或者自动在网站的登录表单中填写这些值。 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion#the_autocomplete_attribute_and_login_fields">该文章</a> 解释了原因并给出了取消自动补全的方案（即设置 <code>autoComplete=&quot;new-password&quot;</code>）。</p>
+<h2 id="best-practice"><a href="#best-practice" class="headerlink" title="best practice"></a>best practice</h2><p>最佳实践是，最好在每个 input 输入框上都添加 <code>name</code> 和 <code>autocomplete</code> 属性以避免自动补全的问题，其中 name 标志含义，autocompelte 用来告知浏览器自动补全的类型（或禁止自动补全）。以下列出一些常用的 autocomplete 值供参考： </p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>该字段期望该值是一个人的全名(姓名)</td>
+</tr>
+<tr>
+<td>email</td>
+<td>电子邮件地址</td>
+</tr>
+<tr>
+<td>username</td>
+<td>用户名或帐户名</td>
+</tr>
+<tr>
+<td>new-password</td>
+<td>新密码。 创建新帐户或更改密码时，应将其用于“输入新密码”或“确认新密码”字段。实际上会禁止自动补全，但如果是 <code>type=&quot;password&quot;</code> 类型的输入框，浏览器仍可能会给出建议的值</td>
+</tr>
+<tr>
+<td>one-time-code</td>
+<td>用于验证用户身份的一次性代码，比如短信验证码，邮箱验证码</td>
+</tr>
+<tr>
+<td>tel</td>
+<td>完整的电话号码，包括国家/地区代码</td>
+</tr>
+<tr>
+<td>url</td>
+<td>URL，例如主页或公司网站地址</td>
+</tr>
+</tbody>
+</table>
+<h2 id="删除记录的过去值"><a href="#删除记录的过去值" class="headerlink" title="删除记录的过去值"></a>删除记录的过去值</h2><p>当你输入一个错误的账号而且不小心提交了，虽然提交不会成功，但这个账号也会被浏览器记录下来，在下一次输入的时候显示在自动补全列表中。你可以使用以下方法删除这些值（在 macOS chrome96.0 中测试过是有效的，不一定对所有浏览器有效）。<br>首先用鼠标指针 hover 到你想删除的值。然后，如果使用的是 Windows 操作系统中可以用 shift + delete 键删除该值。在 macOS 操作系统中 可以使用 fn + shift + backspace 键删除该值。</p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

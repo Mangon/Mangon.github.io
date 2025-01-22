@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        Javascript引擎介绍 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="Javascript历史ECMAScript 最初是由网景的 Brendan Eich 开发的一种脚本语言的标准化规范；一开始命名为Mocha，后来改名为LiveScript，最后重命名为JavaScript。1995年12月，Sun 与 Netscape 联合发表了JavaScript。1996年11月，网景公司将 JavaScript 提交给欧洲计算机制造商协会进行标准化。ECMA-262的第一个版本于1997年6月被Ecma组织采纳。ECMA Script是ECMA-262标准化的脚本语言" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Javascript%E5%8E%86%E5%8F%B2"><span class="toc-text">Javascript历史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ChakraCore"><span class="toc-text">ChakraCore</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScriptCore"><span class="toc-text">JavaScriptCore</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#v8"><span class="toc-text">v8</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SpiderMonkey"><span class="toc-text">SpiderMonkey</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rhino"><span class="toc-text">Rhino</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nashorn"><span class="toc-text">Nashorn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JerryScript"><span class="toc-text">JerryScript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#KJS"><span class="toc-text">KJS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Narcissus"><span class="toc-text">Narcissus</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tamarin"><span class="toc-text">Tamarin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QuickJS"><span class="toc-text">QuickJS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hermes"><span class="toc-text">Hermes</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            Javascript引擎介绍
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2020-05-12T06:40:22.000Z" itemprop="datePublished">2020-05-12</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/javascript/" rel="tag">javascript</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="Javascript历史"><a href="#Javascript历史" class="headerlink" title="Javascript历史"></a>Javascript历史</h2><p>ECMAScript 最初是由网景的 Brendan Eich 开发的一种脚本语言的标准化规范；一开始命名为Mocha，后来改名为LiveScript，最后重命名为JavaScript。1995年12月，Sun 与 Netscape 联合发表了JavaScript。1996年11月，网景公司将 JavaScript 提交给欧洲计算机制造商协会进行标准化。ECMA-262的第一个版本于1997年6月被Ecma组织采纳。ECMA Script是ECMA-262标准化的脚本语言的名称。尽管JavaScript和JScript与ECMAScript兼容，但包含超出ECMA Script的功能。  </p>
+<span id="more"></span>
+<p>ECMAScript是一种可以在宿主环境中执行计算并能操作可计算对象的基于对象的程序设计语言。ECMAScript最先被设计成一种Web脚本语言，用来支持Web页面的动态表现以及为基于Web的客户机—服务器架构提供服务器端的计算能力。但作为一种脚本语言， ECMAScript具备同其他脚本语言一样的性质，即“用来操纵、定制一个已存在系统所提供的功能，以及对其进行自动化”。  </p>
+<p>1999年12月，ECMAScript 3.0版发布，成为JavaScript的通行标准，得到了广泛支持。<br>2009年12月，ECMAScript 5.0版正式发布。<br>2015年6月17日，ECMAScript 6发布正式版本，即ECMAScript 2015。</p>
+<p>ECMA的第39号技术专家委员会（Technical Committee 39，简称TC39）负责制订ECMAScript标准，成员包括Microsoft、Mozilla、Google等公司。</p>
+<p>Javascript 语言规范 <a target="_blank" rel="noopener" href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMA-262</a>。</p>
+<p>理论上，实现了上述规范能够提供执行 JavaScript 代码的运行环境都可以称为 Javascript 引擎，下面我们来了解下比较流行的 Javascript 引擎。  </p>
+<table>
+<thead>
+<tr>
+<th>公司</th>
+<th>浏览器</th>
+<th>浏览器内核</th>
+<th>js 引擎</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.microsoft.com/">Microsoft</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/download/internet-explorer.aspx">Internet Exporler(IE)</a> -&gt; <a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/edge">Edge</a></td>
+<td>Trident(MSHTML，IE11-)-&gt;EdgeHTML/MSHTML(Edge)-&gt;Blink（基于WebKit）</td>
+<td>JScript（IE3.0-IE8.0） -&gt; <a target="_blank" rel="noopener" href="https://github.com/chakra-core/ChakraCore">ChakraCore</a>（IE9+之后）-&gt; v8</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.google.com/">Google</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.google.com/intl/zh-CN/chrome/">Chrome</a>/<a target="_blank" rel="noopener" href="https://github.com/chromium/chromium">Chromium</a></td>
+<td>WebKit-&gt;Blink（28.0.1469.0+，基于Webkit）</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/v8/v8">v8</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.apple.com/">Apple</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.apple.com.cn/safari/">Safari</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/WebKit/WebKit">WebKit</a></td>
+<td><a target="_blank" rel="noopener" href="https://trac.webkit.org/wiki/JavaScriptCore">JavaScriptCore</a>-&gt;SquirrelFish（Nitro）</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.mozilla.org/">Mozilla</a></td>
+<td><a target="_blank" rel="noopener" href="http://www.firefox.com.cn/">Firefox</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/mozilla/gecko-dev">Gecko</a></td>
+<td>SpiderMonkey（1.0-3.0）-&gt; TraceMonkey（3.5-3.6）-&gt; JägerMonkey（4.0-）-&gt; IonMonkey (18.0+) -&gt; OdinMonkey（22.0+）</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.opera.com/">Opera</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.opera.com/zh-cn">Opera</a></td>
+<td>Elektra(4-6)-&gt;Presto(7.0-12.18)-&gt;WebKit-&gt;Blink（基于Webkit）</td>
+<td>Linear A（4.0-6.1）-&gt; Linear B（7.0-9.2）-&gt; Futhark（9.5-10.2）-&gt; Carakan（10.5-）-&gt; V8</td>
+</tr>
+</tbody>
+</table>
+<p>其他js引擎还有：<br>Tamarin，由 Adobe Labs 编写，被用于 Flash Player 9</p>
+<h2 id="ChakraCore"><a href="#ChakraCore" class="headerlink" title="ChakraCore"></a>ChakraCore</h2><p><a target="_blank" rel="noopener" href="https://github.com/Microsoft/ChakraCore">ChakraCore</a> 是 Micosoft Edge 所使用的Javascript引擎。支持JIT，垃圾回收机制。</p>
+<h2 id="JavaScriptCore"><a href="#JavaScriptCore" class="headerlink" title="JavaScriptCore"></a>JavaScriptCore</h2><p>Apple 开发的开源 JavaScript 引擎，<a target="_blank" rel="noopener" href="https://github.com/WebKit/webkit/tree/master/Source/JavaScriptCore">JavaScriptCore</a> 引擎是 WebKit 中默认的引擎。2008 年重写了，叫做 SquirrelFish，后来是 SquirrelFish Extreme，又叫 Nitro。它主要是将源代码翻译成抽象语法树，之后是平台无关的字节码，在最初的版本中，字节码会被 JavaScriptCore 引擎解释执行。在后面的版本中，逐渐加入了JIT编译器，将热点函数生成本地代码。</p>
+<h2 id="v8"><a href="#v8" class="headerlink" title="v8"></a>v8</h2><p>Google 开发的开源 JavaScript 引擎，以高性能著称。 <a target="_blank" rel="noopener" href="https://github.com/v8/v8">v8</a>最开始是一帮语言方面的专家设计出来的，之后被 Google 收购，成为了 JavaScript 引擎和众多相关技术的引领者。为了达到高性能的 JavaScript 代码执行效率从而获得更好的网页浏览效果，V8 采用直接将 JavaScript 编译成本地代码的方式。V8 支持众多的操作系统，包括但是不限于 Windows、Linux、Android、Mac OS X 等。同时它也是能够支持众多的硬件架构，例如 IA32、X64、ARM、MIPS 等。</p>
+<h2 id="SpiderMonkey"><a href="#SpiderMonkey" class="headerlink" title="SpiderMonkey"></a>SpiderMonkey</h2><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Mozilla/Projects/SpiderMonkey/Releases">SpiderMonkey</a> 是 Mozilla 使用 C/C++ 编写的 JavaScript 引擎。它被用于包括 Firefox 在内的多个 Mozilla 产品中，使用的是 MPL 2 授权协议。</p>
+<h2 id="Rhino"><a href="#Rhino" class="headerlink" title="Rhino"></a>Rhino</h2><p><a target="_blank" rel="noopener" href="https://github.com/mozilla/rhino">Rhino</a> 是一个完全使用Java语言编写的开源JavaScript实现，由 Mozilla 开发。Rhino 通常用于在 Java 程序中，为最终用户提供脚本化能力。它被作为J2SE 6上的默认Java脚本化引擎。</p>
+<h2 id="Nashorn"><a href="#Nashorn" class="headerlink" title="Nashorn"></a>Nashorn</h2><p>从 JDK 1.8 开始，<a target="_blank" rel="noopener" href="https://github.com/openjdk/nashorn">Nashorn</a> 取代 Rhino(JDK 1.6, JDK1.7) 成为 Java 的嵌入式 JavaScript 引擎。Nashorn 完全支持 ECMAScript 5.1 规范以及一些扩展。它使用基于 JSR 292 的新语言特性，其中包含在 JDK 7 中引入的 invokedynamic，将 JavaScript 编译成 Java 字节码。从 Java15 开始，Nashorn 已经不被默认包含在 JDK 中。</p>
+<h2 id="JerryScript"><a href="#JerryScript" class="headerlink" title="JerryScript"></a>JerryScript</h2><p><a target="_blank" rel="noopener" href="https://github.com/jerryscript-project/jerryscript">JerryScript</a> 是三星推出的适用于嵌入式设备的小型 Javascript 引擎。</p>
+<h2 id="KJS"><a href="#KJS" class="headerlink" title="KJS"></a>KJS</h2><p><a target="_blank" rel="noopener" href="https://kde.org/">KDE</a> 下的 <a target="_blank" rel="noopener" href="https://github.com/KDE/konqueror">Konqueror</a> 浏览器采用了 <a target="_blank" rel="noopener" href="https://github.com/KDE/kjs">KJS</a>作为js引擎</p>
+<h2 id="Narcissus"><a href="#Narcissus" class="headerlink" title="Narcissus"></a>Narcissus</h2><p><a target="_blank" rel="noopener" href="https://github.com/mozilla/narcissus">Narcissus</a> 是一款用纯 Javascript 编写的 js 引擎，被用作 Javascript 新功能快速原型的一个测试平台。已停止更新。</p>
+<h2 id="Tamarin"><a href="#Tamarin" class="headerlink" title="Tamarin"></a>Tamarin</h2><p>在 2006 年 11 月 7 日，Adobe Systems 宣布将 ActionScript Virtual Machine 的代码捐献给 Mozilla Foundation。因此，Mozilla 启动了一个新的开放源码项目 <a target="_blank" rel="noopener" href="https://github.com/Mangon/tamarin-redux">Tamarin</a>。Adobe 和 Mozilla 希望以此促进这种创建 Web 应用程序的标准化语言的推广。Tamarin 项目的目标是实现一个高性能的开放源码的 ECMAScript 第四版（ES4）语言规范实现。已停止更新。</p>
+<h2 id="QuickJS"><a href="#QuickJS" class="headerlink" title="QuickJS"></a>QuickJS</h2><p><a target="_blank" rel="noopener" href="https://github.com/bellard/quickjs">QuickJS</a> 是一款小型嵌入式 Javascript 引擎，使用C编写，只有 210KB，支持大部分 ES2020 语法。</p>
+<h2 id="Hermes"><a href="#Hermes" class="headerlink" title="Hermes"></a>Hermes</h2><p><a target="_blank" rel="noopener" href="https://github.com/facebook/hermes">Hermes</a> 是一款对 RN 应用快速启动进行了优化的 Javascript 引擎，由 facebook 支持。</p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

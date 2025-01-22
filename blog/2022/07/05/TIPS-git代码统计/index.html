@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        git 仓库代码统计 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="代码统计一般是对某一个或者多个代码仓库的开发人员在某段时间内或所有历史时间段内进行代码提交次数、代码提交行数等进行统计，以反映人员对代码仓库的贡献量的一种手段。通过 git 进行代码管理的项目，通常使用 git log 命令的输出进行统计。git log可以使用 git --help log 查看 git log 的完整用法。git log 常见参数说明：不带参数列出所有的历史记录，最近的排在最上方，显示提交对象的哈希字符串、作者、修订日期和提交说明。如果记录过多，可以按照 Page U" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#git-log"><span class="toc-text">git log</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%B8%A6%E5%8F%82%E6%95%B0"><span class="toc-text">不带参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E5%8F%82%E6%95%B0"><span class="toc-text">显示参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AD%9B%E9%80%89%E5%8F%82%E6%95%B0"><span class="toc-text">筛选参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%9F%E8%AE%A1%E4%BB%A3%E7%A0%81%E8%A1%8C%E6%95%B0"><span class="toc-text">统计代码行数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%9F%E8%AE%A1%E6%8F%90%E4%BA%A4%E6%AC%A1%E6%95%B0"><span class="toc-text">统计提交次数</span></a></li></ol></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            git 仓库代码统计
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2022-07-05T03:30:43.000Z" itemprop="datePublished">2022-07-05</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/git/" rel="tag">git</a>, <a class="article-tag-link" href="/blog/tags/javascript/" rel="tag">javascript</a>, <a class="article-tag-link" href="/blog/tags/tips/" rel="tag">tips</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>代码统计一般是对某一个或者多个代码仓库的开发人员在某段时间内或所有历史时间段内进行代码提交次数、代码提交行数等进行统计，以反映人员对代码仓库的贡献量的一种手段。<br>通过 git 进行代码管理的项目，通常使用 <code>git log</code> 命令的输出进行统计。</p>
+<span id="more"></span>
+<h2 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h2><p>可以使用 <code>git --help log</code> 查看 <code>git log</code> 的完整用法。</p>
+<p><code>git log</code> 常见参数说明：</p>
+<h3 id="不带参数"><a href="#不带参数" class="headerlink" title="不带参数"></a>不带参数</h3><p>列出所有的历史记录，最近的排在最上方，显示提交对象的哈希字符串、作者、修订日期和提交说明。<br>如果记录过多，可以按照 Page Up/Page Down 键来控制滑动翻阅，按 q 键可以退出。</p>
+<p><img src="/blog/static/imgs/git/shortcut3.png" alt="shortcut_inner"></p>
+<h3 id="显示参数"><a href="#显示参数" class="headerlink" title="显示参数"></a>显示参数</h3><p><code>-p</code> 展开每次提交的内容差异<br><code>--stat</code> 显示每次更新的文件修改统计信息，列出具体的文件列表<br><code>--shortstat</code> 统计每个 commit 的文件修改行数，包括增加、删除，但不列出文件列表<br><code>--numstat</code> 统计每个 commit 的文件修改行数，包括增加、删除，并列出文件列表<br><code>--name-only</code> 仅在提交信息后显示已修改的文件清单<br><code>--name-status</code> 显示新增、删除、修改的文件清单<br><code>--abbrev-commit</code> commit 显示为短 id 形式，仅展示前7个字符<br><code>--relative-date</code> 使用相对较短的时间显示（例如，显示为“2 weeks ago”）<br><code>--graph</code> 显示 ASCII 图形表示的分支合并历史<br><code>--pretty</code> 使用其他格式显示历史提交信息。可用的选项包括 <code>oneline</code> <code>short</code> <code>medium</code> <code>full</code> <code>fuller</code> <code>email</code> <code>raw</code> 和 <code>format:&lt;string&gt;</code>，例如：<code>git --pretty=format:</code> 可以定制要显示的记录格式，这样输出便于后期提取分析<br>例如 <code>git log --pretty-format: &quot;%h - %an, %ar : %s</code> 显示为：</p>
+<p><img src="/blog/static/imgs/git/shortcut1.png" alt="shortcut_inner"></p>
+<p>下面列出了常用的格式占位符的写法及其代表的意义：</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%H</td>
+<td>提交对象(commit)的完整哈希字符串</td>
+</tr>
+<tr>
+<td>%h</td>
+<td>提交对象的简短哈希字符串</td>
+</tr>
+<tr>
+<td>%T</td>
+<td>树对象(tree)的完整哈希字符串</td>
+</tr>
+<tr>
+<td>%t</td>
+<td>树对象的简短哈希字符串</td>
+</tr>
+<tr>
+<td>%P</td>
+<td>父对象(parent)的完整哈希字符串</td>
+</tr>
+<tr>
+<td>%p</td>
+<td>父对象的简短哈希字符串</td>
+</tr>
+<tr>
+<td>%an</td>
+<td>作者(author)的名字</td>
+</tr>
+<tr>
+<td>%ae</td>
+<td>作者的电子邮件地址</td>
+</tr>
+<tr>
+<td>%ad</td>
+<td>作者修订日期，可以用 <code>-date=</code> 选项定制日期格式</td>
+</tr>
+<tr>
+<td>%ar</td>
+<td>作者修订日期，按照多久之前的方式显示</td>
+</tr>
+<tr>
+<td>%cn</td>
+<td>提交者(committer)的名字</td>
+</tr>
+<tr>
+<td>%ce</td>
+<td>提交者的电子邮件地址</td>
+</tr>
+<tr>
+<td>%cd</td>
+<td>提交日期</td>
+</tr>
+<tr>
+<td>%cr</td>
+<td>提交日期，按照多久之前的方式显示</td>
+</tr>
+<tr>
+<td>%s</td>
+<td>提交说明</td>
+</tr>
+</tbody>
+</table>
+<p>format 参数支持通过以 <code>%C</code> 开头来控制显示的颜色和字体，例如： <code>git log --pretty=format:&quot;%Cred%h%Creset -%C(yellow)%d%Cblue %s %Cgreen(%cd) %C(bold blue)&lt;%an&gt;&quot;</code> 显示为：</p>
+<p><img src="/blog/static/imgs/git/shortcut2.png" alt="shortcut_inner"></p>
+<h3 id="筛选参数"><a href="#筛选参数" class="headerlink" title="筛选参数"></a>筛选参数</h3><p>按数量：<br><code>-&#123;n&#125;</code> 仅展示最近 n 次 commit 的更新， 例如 <code>git log -2</code> 显示最近2次的 commit 。<br>按作者：<br><code>--author</code> 指定作者，不需要精确匹配，只需要包含即可。可以使用正则表达式。包含电子邮箱的匹配。<br>按日期：<br><code>--after=</code> 标志指定日期之后，同 <code>--until</code><br><code>--before=</code> 标志指定日期之前，同 <code>--since</code><br>按 commit 描述：<br><code>--grep=&lt;string&gt;</code> 可以传入 <code>-i</code> 忽略大小写。同时使用 <code>--author</code> 和 <code>--grep</code> 时，必须附加 <code>--all-match</code> 来表示全匹配<br>按文件：<br><code>-- &lt;filepath&gt;</code> 例如 <code>git log -- ./src/utils/</code> 只展示 <code>./src/utils/</code> 路径下的变更<br>按分支：<br><code>&lt;branchname&gt;</code> 例如 <code>git log origin/master</code><br>按范围：<br><code>&lt;since&gt;...&lt;until&gt;</code> 例如 <code>git log master...feature</code> 展示 feature 分支到 master 分支的变化，包含了所有在 feautre 分支但不在 master 分支的 commit<br>过滤掉 merge commit<br><code>--no-merges</code> 过滤掉 merge commit<br>按标签tag：<br><code>&lt;tagname&gt;</code> 例如 <code>git log v1.0</code> 查询标签 v1.0 之前的 commit，<code>git log v1.0..</code> 查询标签 v1.0 之后的 commit<br>按 commit：<br><code>&lt;commit&gt;</code> 查看 commit 之前的记录，包括 commit<br><code>&lt;commit1&gt; &lt;commit2&gt;</code> 查看 commit1 与 commit2 之间的记录，不包括 commit1<br><code>&lt;commit1&gt;...&lt;commit2&gt;</code> 查看 commit1 与 commit2 之间的记录，包括 commit1<br>commit 表示一次提交的哈希字符串或简短哈希字符串，<code>HEAD</code> 表示最后一次提交，<code>HEAD^</code> 表示最后一次提交的父提交，相当于 <code>HEAD~1</code>，也就是倒数第二次的提交，<code>HEAD~2</code> 表示倒数第三次提交</p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="统计代码行数"><a href="#统计代码行数" class="headerlink" title="统计代码行数"></a>统计代码行数</h3><p>根据用户名统计每个作者的增删代码行数</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git log --format=&#x27;%an&#x27; | sort -u | while read name; </span><br><span class="line">do echo -en &quot;$name\t&quot;; </span><br><span class="line">git log --author=&quot;$name&quot; --numstat | awk &#x27;&#123; add += $1; subs += $2; loc += $1 - $2 &#125; END &#123; printf &quot;added lines: %s, removed lines: %s, total lines: %s\n&quot;, add, subs, loc &#125;&#x27; -; </span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<p><em>根据电子邮箱统计每个作者的增删代码行数</em></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git log --format=&#x27;%an&#x27; | sort -u | while read name;</span><br><span class="line">do echo -en &quot;$name\t&quot;;</span><br><span class="line">git log --author=&quot;$name&quot; --numstat | awk &#x27;&#123; add += $1; subs += $2; loc += $1 - $2 &#125; END &#123; printf &quot;added lines: %s, removed lines: %s, total lines: %s\n&quot;, add, subs, loc &#125;&#x27; -;</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<p>根据用户名统计每个作者在 <code>startTime</code> 到 <code>endTime</code> 时间之内的增删代码行数（可以统计最近半年、最近一年的数据）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git log  --format=&#x27;%an&#x27; | sort -u | while read name;</span><br><span class="line">do echo -en &quot;$name\t&quot;;</span><br><span class="line">git log --author=&quot;$name&quot; --since=$&#123;startTime&#125; --until=$&#123;endTime&#125; --numstat | awk &#x27;&#123; add += $1; subs += $2; loc += $1 - $2 &#125; END &#123; printf &quot;added lines: %s, removed lines: %s, total lines: %s\n&quot;, add, subs, loc &#125;&#x27; -;</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<p>查看总共的代码增删行数</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --numstat | awk &#x27;&#123; add += $1; subs += $2; loc += $1 - $2 &#125; END &#123; printf &quot;added lines: %s, removed lines: %s, total lines: %s\n&quot;, add, subs, loc &#125;&#x27;</span><br></pre></td></tr></table></figure>
+<p>查看作者用户名为 <code>username</code> 总共的代码增删行数</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --author=&quot;$&#123;username&#125;&quot; --numstat | awk &#x27;&#123; add += $1; subs += $2; loc += $1 - $2 &#125; END &#123; printf &quot;added lines: %s, removed lines: %s, total lines: %s\n&quot;, add, subs, loc &#125;&#x27;</span><br></pre></td></tr></table></figure>
+<h3 id="统计提交次数"><a href="#统计提交次数" class="headerlink" title="统计提交次数"></a>统计提交次数</h3><p>查看所有作者用户名数量</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --pretty=&#x27;%an&#x27; | sort -u | wc -l</span><br></pre></td></tr></table></figure>
+<p>查看总提交次数统计</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --oneline | wc -l</span><br></pre></td></tr></table></figure>
+<p>查看作者所有提交次数排名</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --pretty=&#x27;%an&#x27; | sort | uniq -c | sort -k1 -n -r</span><br></pre></td></tr></table></figure>
+<p><em>根据电子邮箱查看作者所有提交次数排名</em></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --pretty=&#x27;%ae&#x27; | sort | uniq -c | sort -k1 -n -r</span><br></pre></td></tr></table></figure>
+<p>查看仓库提交次数排名前5</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --pretty=&#x27;%an&#x27; | sort | uniq -c | sort -k1 -n -r | head -n 5</span><br></pre></td></tr></table></figure>
+<p>查看用户 <code>username</code> 从 <code>startTime</code> 时间开始的提交（不包含 merge commit）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --author=$&#123;username&#125; --since=&quot;$&#123;startTime&#125;&quot; --no-merges | grep -e &#x27;commit [a-zA-Z0-9]*&#x27;</span><br></pre></td></tr></table></figure>
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

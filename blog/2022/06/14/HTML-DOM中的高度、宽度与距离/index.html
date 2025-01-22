@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        DOM中的高度、宽度与距离 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="HTMLElement/Element 属性offsetHTMLElement.offsetWidth 属性表示元素的布局宽度。该属性包括元素的内容宽度（content-width）、竖直方向滚动条宽度（scrollbar-width）（如果存在的话）、水平方向的内边距（padding-left padding-right）以及水平方向的边框（border-left-width border-right-width）。HTMLElement.offsetHeight 属性表示元素的布局高度。该" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTMLElement-Element-%E5%B1%9E%E6%80%A7"><span class="toc-text">HTMLElement&#x2F;Element 属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#offset"><span class="toc-text">offset</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#client"><span class="toc-text">client</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#scroll"><span class="toc-text">scroll</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#style-%E5%B1%9E%E6%80%A7"><span class="toc-text">style 属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#getBoundingClientRect-%E6%96%B9%E6%B3%95"><span class="toc-text">getBoundingClientRect 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#getClientRects-%E6%96%B9%E6%B3%95"><span class="toc-text">getClientRects 方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#window-%E5%B1%9E%E6%80%A7"><span class="toc-text">window 属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#screen-%E5%B1%9E%E6%80%A7"><span class="toc-text">screen 属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#document-%E5%B1%9E%E6%80%A7"><span class="toc-text">document 属性</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            DOM中的高度、宽度与距离
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2022-06-14T02:25:26.000Z" itemprop="datePublished">2022-06-14</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/HTML/" rel="tag">HTML</a>, <a class="article-tag-link" href="/blog/tags/Web-API/" rel="tag">Web API</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="HTMLElement-Element-属性"><a href="#HTMLElement-Element-属性" class="headerlink" title="HTMLElement/Element 属性"></a>HTMLElement/Element 属性</h2><h3 id="offset"><a href="#offset" class="headerlink" title="offset"></a>offset</h3><p><code>HTMLElement.offsetWidth</code> 属性表示元素的布局宽度。该属性包括元素的内容宽度（content-width）、竖直方向滚动条宽度（scrollbar-width）（如果存在的话）、水平方向的内边距（padding-left padding-right）以及水平方向的边框（border-left-width border-right-width）。</p>
+<p><code>HTMLElement.offsetHeight</code> 属性表示元素的布局高度。该属性包括元素的内容高度（content-height）、水平方向滚动条高度（scrollbar-height）（如果存在的话）、竖直方向的内边距（padding-top padding-bottom）以及竖直方向的边框（border-top-width border-bottom-width）。</p>
+<p>offsetWidth = 水平方向content-width + 左右padding + 左右border + 竖直方向滚动条scrollbar-width（如果存在的话）<br>offsetHeight = 竖直方向content-height + 上下padding + 上下border + 水平方向滚动条scrollbar-height（如果存在的话）</p>
+<p><img src="/blog/static/imgs/dom/offset.png" alt="offset_inner"></p>
+<p><em>offsetWidth 和 offsetHeight 可以理解为一个 边框盒（border box） 的 width 和 height。</em></p>
+<p><code>HTMLElement.offsetTop</code> 属性表示元素的左上角相对于其 offsetParent 元素的顶部边框的距离。<br><code>HTMLElement.offsetLeft</code> 属性表示元素左上角相对于其 offsetParent 元素的左边框的距离。</p>
+<p><code>HTMLElement.offsetParent</code> 返回一个指向最近的（指包含层级上的最近）包含该元素的定位元素或者最近的 <code>table,td,th,body</code> 元素。当元素的 <code>style.display</code> 设置为 “none” 时，或者该元素的 <code>style.position</code> 被设为 “fixed” 时，<code>offsetParent</code> 返回 <code>null</code>。</p>
+<h3 id="client"><a href="#client" class="headerlink" title="client"></a>client</h3><p><code>Element.clientWidth</code> 属性表示元素的内部宽度。该属性包括元素的内容宽度（content-width）和内边距（padding），但不包括竖直方向滚动条宽度（scrollbar-width）（如果存在的话），边框（border）和外边距（margin）。</p>
+<p><code>Element.clientHeight</code> 属性表示元素的内部高度。该属性包括元素的内容宽度（content-width）和内边距（padding），但不包括水平方向滚动条高度（scrollbar-height）（如果存在的话），边框（border）和外边距（margin）。</p>
+<p>clientWidth = 水平方向content-width + 左右padding<br>clientHeight = 竖直方向content-height + 上下padding</p>
+<p><img src="/blog/static/imgs/dom/client.png" alt="client_inner"></p>
+<p><em>offsetWidth 和 offsetHeight 可以理解为一个 内边距盒（padding box） 的 width 和 height。</em><br><em>padding-box 并不是一个标准的盒模型选项，这里只是为了方便理解</em></p>
+<p><code>Element.clientTop</code> 属性表示元素顶部边框的宽度。该属性仅包括元素的顶部边框宽度<br>（border-top-width）。</p>
+<p><code>Element.clientLeft</code> 属性表示元素的左边框宽度。该属性包括元素的左边框 （border-left-width），如果元素的文本方向是从右向左（RTL, right-to-left），并且由于内容溢出导致左边出现了一个垂直滚动条，则该属性包括滚动条的宽度。</p>
+<h3 id="scroll"><a href="#scroll" class="headerlink" title="scroll"></a>scroll</h3><p><code>Element.scrollWidth</code> 属性表示元素在不使用滚动条的情况下适合视口中的所有内容所需的最小宽度。scrollWidth 的测量方式与 clientWidth 相同：包含元素的内边距（padding），但不包括边框（border），外边距（margin）或垂直滚动条（如果存在）。scrollWidth 也包括伪元素的宽度，例如 ::before 或 ::after 。如果元素的内容可以正常展示而不需要水平滚动条，则其 scrollWidth 等于 clientWidth 。</p>
+<p><code>Element.scrollHeight</code> 属性表示元素在不使用滚动条的情况下为了适应视口中所用内容所需的最小高度。scrollHeight 的测量方式与 clientHeight 相同：包括元素的内边距（padding），但不包括元素的边框（border）和外边距（margin）。scrollHeight 也包括 ::before 和 ::after 这样的伪元素的高度。 如果元素的内容不需要垂直滚动条就可以正常展示，则其 scrollHeight 等于 clientHeight。</p>
+<p><img src="/blog/static/imgs/dom/scrollheight.png" alt="scroll-height_inner"></p>
+<p><code>Element.scrollTop</code> 属性可以获取或<em>设置</em>（和前面的属性不同，scrollTop 是一个可读写的属性）元素的顶部到可视内容顶部的距离。如果一个元素的内容没有产生垂直方向的滚动条，那么它的 scrollTop 值为 0 。</p>
+<p><code>Element.scrollLeft</code> 属性可以获取或<em>设置</em>元素的左边到可视内容左边的距离。如果一个元素的内容没有产生水平方向的滚动条，那么它的 scrollLeft 值为 0 。</p>
+<h3 id="style-属性"><a href="#style-属性" class="headerlink" title="style 属性"></a>style 属性</h3><p>通过 <code>HTMLElement.style</code> 可以获取或<em>设置</em>元素的样式属性。但大部分时候，样式并不是直接存在于元素上而是通过继承等原因体现到的。我们可以通过 <code>window.getComputedStyle(element, [pseudoElt])</code> 获取到已经解析的 CSS 样式，该方法返回一个 <code>CSSStyleDeclaration</code> 对象，当元素的样式更改时，它会自动更新。</p>
+<p><code>HTMLElement.style.&#123;top|left|right|bottom&#125;</code> 属性定义了定位元素的外边距边界与其包含块边界或正常位置之间的距离，非定位元素设置此属性无效。</p>
+<p>以 top 为例，top 的效果取决于元素的 position 属性：</p>
+<ul>
+<li>当 position 设置为 absolute 或 fixed 时，top 属性指定了定位元素上外边距边界与其包含块上边界之间的偏移。</li>
+<li>当 position 设置为 relative 时，top 属性指定了元素的上边界离开其正常位置的偏移。</li>
+<li>当 position 设置为 sticky 时，如果元素在 viewport 里面，top 属性的效果和  position 为 relative 等同；如果元素在 viewport 外面，top 属性的效果和 position 为 fixed 等同。</li>
+<li>当 position 设置为 static 时，top 属性无效。</li>
+</ul>
+<p><code>HTMLElement.style.margin&#123;Left|Top|Right|Bottom&#125;</code> 属性定义了元素的外边距<br><code>HTMLElement.style.padding&#123;Left|Top|Right|Bottom&#125;</code> 属性定义了元素的内边距<br><code>HTMLElement.style.border&#123;Left|Top|Right|Bottom&#125;Width</code> 属性定义了元素边框的宽度</p>
+<h3 id="getBoundingClientRect-方法"><a href="#getBoundingClientRect-方法" class="headerlink" title="getBoundingClientRect 方法"></a>getBoundingClientRect 方法</h3><p><code>Element.getBoundingClientRect()</code> 方法返回一个 <code>DOMRect</code> 对象，其提供了元素的大小及其相对于视口的位置。值得注意的是，以上像 <code>offsetWidth</code> 等只读属性返回的都是四舍五入（round）之后的整数数值，<code>getBoundingClientRect</code> 可以返回精确的小数数值。</p>
+<p>该方法返回的 <code>DOMRect</code> 对象中的 <code>width</code> 和 <code>height</code> 属性是包含了 <code>padding</code> 和 <code>border-width</code> 的，而不仅仅是内容部分的宽度和高度。在 <code>content-box</code> 模型中，这两个属性值分别与元素的 width/height + padding + border-width 相等。而如果是 border-box，两个属性则直接与元素的 width 或 height 相等。</p>
+<p><img src="/blog/static/imgs/dom/element-box-diagram.png" alt="element-box_inner"></p>
+<h3 id="getClientRects-方法"><a href="#getClientRects-方法" class="headerlink" title="getClientRects 方法"></a>getClientRects 方法</h3><p><code>Element.getClientRects()</code> 方法返回一个 <code>DOMRect</code> 集合，其包括元素内所有<br>边框盒（border box）的边界矩形（bounding rectangles）。大多数元素只有一个边框盒（border box），但是诸如一个多行的内联元素（例如多行的 span 元素）每行都有一个边框盒（border box）。</p>
+<h2 id="window-属性"><a href="#window-属性" class="headerlink" title="window 属性"></a>window 属性</h2><p><code>window.innerWidth</code> 属性表示以像素为单位的窗口的视口（viewport）宽度。如果垂直滚动条存在，则这个属性将包括它的宽度。</p>
+<p><code>window.innerHeight</code> 属性表示以像素为单位的窗口的视口（viewport）高度。如果水平滚动条存在，则这个属性将包括它的高度。</p>
+<p><code>window.outerWidth</code> 属性表示整个浏览器外部窗口的宽度。包括侧边栏（如果存在）、窗口镶边和调整窗口大小的边框。</p>
+<p><code>window.outerHeight</code> 属性表示整个浏览器外部窗口的高度。包括工具栏（如果存在）、窗口镶边和调整窗口大小的边框。</p>
+<p><img src="/blog/static/imgs/dom/inner-outer.png" alt="inner-outer_inner"></p>
+<p>一个显著的区分 inner 和 outer 的例子就是打开浏览器的 开发者工具，outerHeight 将会计算上开发者工具的高度，而 innerHeight 不会。</p>
+<h3 id="screen-属性"><a href="#screen-属性" class="headerlink" title="screen 属性"></a>screen 属性</h3><p><code>window.screen.width</code> 属性表示屏幕的宽度。</p>
+<p><code>window.screen.height</code> 属性表示屏幕的高度。</p>
+<p><code>window.screen.availWidth</code> 属性表示浏览器窗口在屏幕上可占用的最大宽度。</p>
+<p><code>window.screen.availHeight</code> 属性表示浏览器窗口在屏幕上可占用的最大高度。小工具（Widgets），如任务栏或其他特殊的程序窗口，可能会减少浏览器窗口和其他应用程序能够利用的空间。</p>
+<h2 id="document-属性"><a href="#document-属性" class="headerlink" title="document 属性"></a>document 属性</h2><p><code>document.documentElement</code> 返回的是整个 html 文档<br><code>document.body</code> 返回的是 body 元素</p>
+<p>html 文档 与 body 元素都是有效的 HTMLElement ， 所以，他们的属性也符合对应属性的定义：</p>
+<p><code>document.documentElement.clientWidth</code> 浏览器窗口可视区宽度（不包括浏览器控制台、菜单栏、工具栏、滚动条）<br><code>document.documentElement.clientHeight</code> 浏览器窗口可视区高度（不包括浏览器控制台、菜单栏、工具栏、滚动条）</p>
+<p><code>document.documentElement.offsetHeight</code> 获取整个文档的高度（包含 body 的 margin ）<br><code>document.documentElement.offsetWidth</code> 获取整个文档的宽度（包含 body 的 margin ）</p>
+<p><code>document.documentElement.scrollTop</code> 返回文档的滚动 top 方向的距离（当窗口发生滚动时值改变）<br><code>document.documentElement.scrollLeft</code> 返回文档的滚动 left 方向的距离（当窗口发生滚动时值改变）</p>
+<p><code>document.body.offsetHeight</code> 获取整个 body 的高度（不包含 body 的 margin ）<br><code>document.body.offsetWidth</code> 获取整个 body 的宽度（不包含 body 的 margin ）</p>
+<p><img src="/blog/static/imgs/dom/distance.webp" alt="distance_inner"></p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

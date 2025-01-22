@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        认证、授权与单点登录 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="认证与授权认证（Authentication）即确认该用户的身份是他所声明的那个人授权（Authorization）即根据用户身份授予他访问特定资源的权限也就是说，当用户登录应用系统时，系统需要先认证用户身份，然后依据用户身份再进行授权。认证与授权需要联合使用，才能让用户真正登入并使用应用系统。单系统登录相对于单点登录（SSO），单系统登录是指单个应用系统的登录/注销机制。HTTP 无状态协议web 应用一般采用 B/S 架构，使用 HTTP 作为通信协议。HTTP 是无状态协议，" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A4%E8%AF%81%E4%B8%8E%E6%8E%88%E6%9D%83"><span class="toc-text">认证与授权</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E7%B3%BB%E7%BB%9F%E7%99%BB%E5%BD%95"><span class="toc-text">单系统登录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP-%E6%97%A0%E7%8A%B6%E6%80%81%E5%8D%8F%E8%AE%AE"><span class="toc-text">HTTP 无状态协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%9A%E8%AF%9D%E6%9C%BA%E5%88%B6"><span class="toc-text">会话机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%99%BB%E5%BD%95%E7%8A%B6%E6%80%81"><span class="toc-text">登录状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Basic-%E8%AE%A4%E8%AF%81"><span class="toc-text">Basic 认证</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95"><span class="toc-text">单点登录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%99%BB%E5%BD%95"><span class="toc-text">登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E9%94%80"><span class="toc-text">注销</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2"><span class="toc-text">部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-text">实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%E5%8D%8F%E8%AE%AE"><span class="toc-text">常见单点登录协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CAS"><span class="toc-text">CAS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OAuth"><span class="toc-text">OAuth</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OIDC"><span class="toc-text">OIDC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SAML"><span class="toc-text">SAML</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kerberos"><span class="toc-text">Kerberos</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%8D%8F%E8%AE%AE"><span class="toc-text">其他协议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E5%AF%B9%E6%AF%94"><span class="toc-text">协议对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E4%B8%8E%E8%AE%A4%E8%AF%81%E6%8E%88%E6%9D%83%E7%9B%B8%E5%85%B3%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E6%9C%AF%E8%AF%AD"><span class="toc-text">其他与认证授权相关的概念与术语</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            认证、授权与单点登录
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2022-06-24T09:41:02.000Z" itemprop="datePublished">2022-06-24</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/HTTP/" rel="tag">HTTP</a>, <a class="article-tag-link" href="/blog/tags/SSO/" rel="tag">SSO</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="认证与授权"><a href="#认证与授权" class="headerlink" title="认证与授权"></a>认证与授权</h2><ul>
+<li>认证（Authentication）即确认该用户的身份是他所声明的那个人</li>
+<li>授权（Authorization）即根据用户身份授予他访问特定资源的权限</li>
+</ul>
+<p>也就是说，当用户登录应用系统时，系统需要先认证用户身份，然后依据用户身份再进行授权。认证与授权需要联合使用，才能让用户真正登入并使用应用系统。</p>
+<span id="more"></span>
+<h2 id="单系统登录"><a href="#单系统登录" class="headerlink" title="单系统登录"></a>单系统登录</h2><p>相对于单点登录（SSO），单系统登录是指单个应用系统的登录/注销机制。</p>
+<h3 id="HTTP-无状态协议"><a href="#HTTP-无状态协议" class="headerlink" title="HTTP 无状态协议"></a>HTTP 无状态协议</h3><p>web 应用一般采用 B/S 架构，使用 HTTP 作为通信协议。HTTP 是无状态协议，浏览器的每一次请求，服务器会独立处理，不与之前或之后的请求产生关联。但这也同时意味着，任何用户都能通过浏览器访问服务器资源，如果想保护服务器的某些资源，必须限制浏览器请求；要限制浏览器请求，必须鉴别浏览器请求，响应合法请求，忽略非法请求；要鉴别浏览器请求，必须清楚浏览器请求状态。既然 HTTP 协议无状态，就需要服务器和浏览器之间共同维护一个状态，这就是会话机制。</p>
+<p><img src="/blog/static/imgs/sso/login_http.png" alt="login_http_inner"></p>
+<h3 id="会话机制"><a href="#会话机制" class="headerlink" title="会话机制"></a>会话机制</h3><p>浏览器第一次请求服务器，服务器创建一个会话（session），并将会话的 id 作为响应的一部分发送给浏览器，浏览器存储会话 id ，并在后续第二次和第三次请求中带上会话 id，服务器取得请求中的会话 id 就知道是否是同一个用户。</p>
+<p><img src="/blog/static/imgs/sso/login_session.png" alt="login_session_inner"></p>
+<p>web 应用一般通过 cookie 来实现会话机制，在浏览器第一次访问服务器时生成带 sessionid（在 tomcat 服务器中默认是 JSESSIONID） 的 cookie，并随请求返回到浏览器端，之后，浏览器会在每次发送 http 请求时自动附带 cookie 信息。</p>
+<p><img src="/blog/static/imgs/sso/login_session_cookie.png" alt="login_session_cookie_inner"></p>
+<h3 id="登录状态"><a href="#登录状态" class="headerlink" title="登录状态"></a>登录状态</h3><p>有了会话机制，再加上认证机制，我们就可以识别出浏览器每次访问时的 <em>登录状态</em>。首先，我们要求浏览器第一次请求服务器需要输入 <em>用户名</em> 与 <em>密码</em> 验证身份，然后服务器拿到用户名与密码去数据库进行比对，正确的话说明当前持有这个会话的用户是合法用户，应该将这个会话标记为 <em>已登录</em> 的状态，并保存到会话对象（通常在内存数据库中，例如 Redis ）中，同时将会话 id 返回给浏览器。当下一次浏览器访问时会带上会话 id ，服务器就可以在会话对象中查看是否是 <em>已登录</em> 状态。</p>
+<p><img src="/blog/static/imgs/sso/login.png" alt="login_inner"></p>
+<h3 id="Basic-认证"><a href="#Basic-认证" class="headerlink" title="Basic 认证"></a>Basic 认证</h3><p>HTTP 提供了一个基础的用于权限控制和认证的通用框架，即 HTTP Basic 认证（HTTP Basic authentication）。<a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc7617">RFC 7617</a> 定义了 HTTP Basic 认证的框架规则。服务器可以用来针对客户端的请求发送质询信息（challenge），客户端则可以用来提供身份验证凭证。</p>
+<p>HTTP Basic 认证 的工作流程如下：</p>
+<ol>
+<li>客户端发起资源请求。</li>
+<li>服务器端向客户端返回 401（Unauthorized，未被授权的）状态码，并在 <code>WWW-Authenticate</code> 首部提供如何进行验证的信息，其中至少包含有一种质询方式。</li>
+<li>有意向证明自己身份的客户端可以在新的请求中添加 <code>Authorization</code> 首部字段进行验证，字段值为身份验证凭证信息。通常客户端会弹出一个密码框让用户填写，然后发送包含有恰当的 <code>Authorization</code> 首部的请求。客户端使用 utf-8 编码用户名和密码，并进行 base64 编码返回给服务器端。</li>
+<li>当服务器端收到一个合法认证信息时，若该认证不能获取请求资源的权限，服务器端会返回 403（Forbidden，拒绝访问）状态码，说明用户权限不够。</li>
+</ol>
+<p><img src="/blog/static/imgs/sso/basic.png" alt="basic_inner"></p>
+<p>在上图所示的基本身份验证过程中，信息交换须通过 HTTPS(TLS) 连接来保证安全。</p>
+<p><code>WWW-Authenticate</code> 首部的格式如下：<br><code>WWW-Authenticate: &lt;type&gt; realm=&lt;realm&gt;</code></p>
+<p><code>Authorization</code> 首部的格式如下：<br><code>Authorization: &lt;type&gt; &lt;credentials&gt;</code></p>
+<ul>
+<li><code>type</code> 代表了认证的方式，对于 Basic 认证，<code>type</code> 为 <code>Basic</code>。</li>
+<li><code>realm</code> 用来描述进行保护的区域，或者指代保护的范围。它可以是类似于 “访问xxx平台” 的消息，这样用户就可以知道他们正在试图访问哪一空间。</li>
+<li><code>credentials</code> 代表了用户凭证，对于 Baisc 认证，用冒号将用户名和密码进行拼接（如：<code>username:password</code>），然后用 base64 方式编码。</li>
+</ul>
+<p>Basic 认证足够简单，但是有许多的问题：</p>
+<ol>
+<li>由于用户名与密码是是以明文的形式在网络中进行传输的（尽管采用了 base64 编码，但是 base64 算法是可逆的），所以 Basic 认证方案并不安全。Basic 认证方案应与 HTTPS/TLS 协议搭配使用。</li>
+<li>即使密码被强加密，第三方仍可通过加密后的用户名和密码进行重放攻击。</li>
+<li>如果想再进行一次 BASIC 认证时，一般的浏览器却无法实现认证注销操作。</li>
+<li>登录界面无法定制，依赖客户端实现，通常浏览器会弹出密码框让用户填写。</li>
+<li>不支持双因子认证，容易被破解。</li>
+<li>有些客户端支持避免弹出登录框，可以使用包含用户名和密码的经过编码的 URL（例如：<code>https://username:password@www.example.com/</code>），十分不安全。</li>
+</ol>
+<h2 id="单点登录"><a href="#单点登录" class="headerlink" title="单点登录"></a>单点登录</h2><p>如今，web 应用早已从久远的单系统发展成为由多系统组成的应用群，面对如此众多的系统，用户难道要一个一个登录，然后一个一个注销吗？虽然单系统的登录解决方案很完美，但对于多系统应用群已经不再适用了，为什么呢？单系统登录解决方案的核心是 cookie，cookie 携带会话 id 在浏览器与服务器之间维护会话状态。但 cookie 是有限制的，这个限制就是 cookie 的作用域（通常对应网站的域名，参见 <a href="/blog/2021/12/29/HTTP-Cookie/#Cookie-作用域">Cookie-作用域</a> ），浏览器发送 http 请求时会自动携带与该域匹配的 cookie ，而不是所有 cookie 。</p>
+<p><img src="/blog/static/imgs/sso/login_domain.png" alt="login_domain_inner"></p>
+<p>既然这样，为什么不将 web 应用群中所有子系统的域名统一在一个顶级域名下？例如 “*.baidu.com” ，可以将它们的 cookie 域设置为 “baidu.com” 。</p>
+<p>这种做法理论上是可以的，甚至早期很多多系统登录就采用这种同域名共享 cookie 的方式。然而，可行并不代表好，共享 cookie 的方式存在众多局限。首先，应用群域名得统一；其次，应用群各系统使用的技术（至少是 web 服务器）要相同，不然 cookie 的 key 值（在 tomcat 服务器中为 JSESSIONID ）不同，无法维持会话，共享 cookie 的方式是无法实现跨语言技术平台登录的，比如 Java、PHP、.NET 系统之间；第三，cookie 共享要求顶级域名和子域名之间互相信任，在现实 web 系统设计中中有诸多限制，并不是十分安全。</p>
+<p>因此，我们需要一种全新的登录方式来实现多系统应用群的登录，这就是单点登录。</p>
+<p>单点登录（ Single Sign On，简称 SSO ）是指通过一次认证鉴权可以登录多个系统的一种认证授权方式。</p>
+<h3 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h3><p>相比于单系统登录，SSO 需要一个独立的认证中心，只有认证中心能接受用户的用户名密码等安全信息，其他系统不提供登录入口，只接受认证中心的间接授权。间接授权通过令牌实现，SSO 认证中心验证用户的用户名密码没问题，创建授权令牌，在接下来的跳转过程中，授权令牌作为参数发送给各个子系统，子系统拿到令牌，即得到了授权，可以借此创建局部会话，局部会话登录方式与单系统的登录方式相同。这个过程，也就是单点登录的原理，用下图说明:</p>
+<p><img src="/blog/static/imgs/sso/sso.png" alt="sso_inner"></p>
+<p>下面对上图简要描述：</p>
+<ul>
+<li>用户访问系统1的受保护资源，系统1发现用户未登录，跳转至sso认证中心，并将自己的地址作为参数</li>
+<li>sso认证中心发现用户未登录，将用户引导至登录页面</li>
+<li>用户输入用户名密码提交登录申请</li>
+<li>sso认证中心校验用户信息，创建用户与sso认证中心之间的会话，称为全局会话，同时创建授权令牌</li>
+<li>sso认证中心带着令牌跳转会最初的请求地址（系统1）</li>
+<li>系统1拿到令牌，去sso认证中心校验令牌是否有效</li>
+<li>sso认证中心校验令牌，返回有效，注册系统1</li>
+<li>系统1使用该令牌创建与用户的会话，称为局部会话，返回受保护资源</li>
+<li>用户访问系统2的受保护资源</li>
+<li>系统2发现用户未登录，跳转至sso认证中心，并将自己的地址作为参数</li>
+<li>sso认证中心发现用户已登录，跳转回系统2的地址，并附上令牌</li>
+<li>系统2拿到令牌，去sso认证中心校验令牌是否有效</li>
+<li>sso认证中心校验令牌，返回有效，注册系统2</li>
+<li>系统2使用该令牌创建与用户的局部会话，返回受保护资源</li>
+</ul>
+<p>用户登录成功之后，会与sso认证中心及各个子系统建立会话，用户与sso认证中心建立的会话称为全局会话，用户与各个子系统建立的会话称为局部会话，局部会话建立之后，用户访问子系统受保护资源将不再通过sso认证中心，全局会话与局部会话有如下约束关系:</p>
+<ul>
+<li>局部会话存在，全局会话一定存在</li>
+<li>全局会话存在，局部会话不一定存在</li>
+<li>全局会话销毁，局部会话必须销毁</li>
+</ul>
+<h3 id="注销"><a href="#注销" class="headerlink" title="注销"></a>注销</h3><p>单点登录自然也要单点注销，在一个子系统中注销，所有子系统的会话都将被销毁，用下面的图来说明:</p>
+<p><img src="/blog/static/imgs/sso/sso_logout.png" alt="sso_logout_inner"></p>
+<p>sso认证中心一直监听全局会话的状态，一旦全局会话销毁，监听器将通知所有注册系统执行注销操作</p>
+<p>下面对上图简要说明：</p>
+<ul>
+<li>用户向系统1发起注销请求</li>
+<li>系统1根据用户与系统1建立的会话id拿到令牌，向sso认证中心发起注销请求</li>
+<li>sso认证中心校验令牌有效，销毁全局会话，同时取出所有用此令牌注册的系统地址</li>
+<li>sso认证中心向所有注册系统发起注销请求</li>
+<li>各注册系统接收sso认证中心的注销请求，销毁局部会话</li>
+<li>sso认证中心引导用户至登录页面</li>
+</ul>
+<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><p>单点登录涉及sso认证中心与众子系统，子系统与sso认证中心需要通信以交换令牌、校验令牌及发起注销请求，因而子系统必须集成sso的客户端，sso认证中心则是sso服务端，整个单点登录过程实质是sso客户端与服务端通信的过程，用下图描述</p>
+<p><img src="/blog/static/imgs/sso/sso_server.png" alt="sso_server_inner"></p>
+<p>sso认证中心与sso客户端通信方式有多种，这里以简单好用的 httpClient 为例，实际上 web service、rpc、restful api 都可以</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>sso采用 C/S 架构，我们先看 sso-client 与 sso-server 要实现的功能(以下 sso-server 即指sso认证中心）</p>
+<p>　sso-client</p>
+<ul>
+<li>拦截子系统未登录用户请求，跳转至sso认证中心</li>
+<li>接收并存储sso认证中心发送的令牌</li>
+<li>与sso-server通信，校验令牌的有效性</li>
+<li>建立局部会话</li>
+<li>拦截用户注销请求，向sso认证中心发送注销请求</li>
+<li>接收sso认证中心发出的注销请求，销毁局部会话</li>
+</ul>
+<p>　sso-server</p>
+<ul>
+<li>验证用户的登录信息</li>
+<li>创建全局会话</li>
+<li>创建授权令牌</li>
+<li>与sso-client通信发送令牌</li>
+<li>校验sso-client令牌有效性</li>
+<li>系统注册</li>
+<li>接收sso-client注销请求，注销所有会话</li>
+</ul>
+<ol>
+<li><p>sso-client拦截未登录请求</p>
+<p>java 拦截请求的方式有 servlet、filter、listener 三种方式，我们采用 filter 。在sso-client中新建 <code>LoginFilter.java</code> 类并实现 <code>Filter</code> 接口，在 <code>doFilter()</code> 方法中加入对未登录用户的拦截</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doFilter</span><span class="params">(ServletRequest request, ServletResponse response, FilterChain chain)</span> <span class="keyword">throws</span> IOException, ServletException &#123;</span><br><span class="line">    <span class="type">HttpServletRequest</span> <span class="variable">req</span> <span class="operator">=</span> (HttpServletRequest) request;</span><br><span class="line">    <span class="type">HttpServletResponse</span> <span class="variable">res</span> <span class="operator">=</span> (HttpServletResponse) response;</span><br><span class="line">    <span class="type">HttpSession</span> <span class="variable">session</span> <span class="operator">=</span> req.getSession();</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">if</span> (session.getAttribute(<span class="string">&quot;isLogin&quot;</span>)) &#123;</span><br><span class="line">        chain.doFilter(request, response);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//跳转至sso认证中心</span></span><br><span class="line">    res.sendRedirect(<span class="string">&quot;sso-server-url-with-system-url&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>sso-server拦截未登录请求</p>
+<p>拦截从sso-client跳转至sso认证中心的未登录请求，跳转至登录页面，这个过程与sso-client完全一样</p>
+</li>
+<li><p>sso-server验证用户登录信息</p>
+<p>用户在登录页面输入用户名密码，请求登录，sso认证中心校验用户信息，校验成功，将会话状态标记为“已登录”</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/login&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">login</span><span class="params">(String username, String password, HttpServletRequest req)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.checkLoginInfo(username, password);</span><br><span class="line">    req.getSession().setAttribute(<span class="string">&quot;isLogin&quot;</span>, <span class="literal">true</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>sso-server创建授权令牌</p>
+<p>授权令牌是一串随机字符，以什么样的方式生成都没有关系，只要不重复、不易伪造即可，下面是一个例子:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">token</span> <span class="operator">=</span> UUID.randomUUID().toString();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>sso-client取得令牌并校验</p>
+<p>sso认证中心登录后，跳转回子系统并附上令牌，子系统（sso-client）取得令牌，然后去sso认证中心校验，在 <code>LoginFilter.java</code> 的 <code>doFilter()</code> 中添加几行</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 请求附带token参数</span></span><br><span class="line"><span class="type">String</span> <span class="variable">token</span> <span class="operator">=</span> req.getParameter(<span class="string">&quot;token&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> (token != <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="comment">// 去sso认证中心校验token</span></span><br><span class="line">    <span class="type">boolean</span> <span class="variable">verifyResult</span> <span class="operator">=</span> <span class="built_in">this</span>.verify(<span class="string">&quot;sso-server-verify-url&quot;</span>, token);</span><br><span class="line">    <span class="keyword">if</span> (!verifyResult) &#123;</span><br><span class="line">        res.sendRedirect(<span class="string">&quot;sso-server-url&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    chain.doFilter(request, response);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>verify()</code> 方法使用 httpClient 实现，这里仅简略介绍， httpClient 详细使用方法请参考官方文档</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">HttpPost</span> <span class="variable">httpPost</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HttpPost</span>(<span class="string">&quot;sso-server-verify-url-with-token&quot;</span>);</span><br><span class="line"><span class="type">HttpResponse</span> <span class="variable">httpResponse</span> <span class="operator">=</span> httpClient.execute(httpPost);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>sso-server接收并处理校验令牌请求</p>
+<p>用户在sso认证中心登录成功后，sso-server创建授权令牌并存储该令牌，所以，sso-server对令牌的校验就是去查找这个令牌是否存在以及是否过期，令牌校验成功后sso-server将发送校验请求的系统注册到sso认证中心。</p>
+<p>令牌与注册系统地址通常存储在key-value数据库（如 redis ）中，redis 可以为 key 设置有效时间也就是令牌的有效期。redis 运行在内存中，速度非常快，正好 sso-server 不需要持久化任何数据。</p>
+<p>令牌与注册系统地址可以用下图描述的结构存储在redis中，可能你会问，为什么要存储这些系统的地址？如果不存储，注销的时候就麻烦了，用户向sso认证中心提交注销请求，sso认证中心注销全局会话，但不知道哪些系统用此全局会话建立了自己的局部会话，也不知道要向哪些子系统发送注销请求注销局部会话。</p>
+<p><img src="/blog/static/imgs/sso/sso_redis.png" alt="sso_redis_inner"></p>
+</li>
+<li><p>sso-client校验令牌成功创建局部会话</p>
+<p>令牌校验成功后，sso-client将当前局部会话标记为“已登录”，修改 <code>LoginFilter.java</code>，添加几行</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (verifyResult) &#123;</span><br><span class="line">    session.setAttribute(<span class="string">&quot;isLogin&quot;</span>, <span class="literal">true</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>sso-client还需将当前会话 id 与令牌绑定，表示这个会话的登录状态与令牌相关，此关系可以用 java 的 hashmap 保存，保存的数据用来处理sso认证中心发来的注销请求</p>
+</li>
+<li><p>注销过程</p>
+<p>用户向子系统发送带有“logout”参数的请求（注销请求），sso-client拦截器拦截该请求，向sso认证中心发起注销请求</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">logout</span> <span class="operator">=</span> req.getParameter(<span class="string">&quot;logout&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> (logout != <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="built_in">this</span>.ssoServer.logout(token);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>sso认证中心也用同样的方式识别出sso-client的请求是注销请求（带有“logout”参数），sso认证中心注销全局会话</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/logout&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">logout</span><span class="params">(HttpServletRequest req)</span> &#123;</span><br><span class="line">    <span class="type">HttpSession</span> <span class="variable">session</span> <span class="operator">=</span> req.getSession();</span><br><span class="line">    <span class="keyword">if</span> (session != <span class="literal">null</span>) &#123;</span><br><span class="line">        session.invalidate(); <span class="comment">//触发LogoutListener</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;redirect:/&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>sso认证中心有一个全局会话的监听器，一旦全局会话注销，将通知所有注册系统注销</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LogoutListener</span> <span class="keyword">implements</span> <span class="title class_">HttpSessionListener</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sessionCreated</span><span class="params">(HttpSessionEvent event)</span> &#123;&#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sessionDestroyed</span><span class="params">(HttpSessionEvent event)</span> &#123;</span><br><span class="line">        <span class="comment">//通过httpClient向所有注册系统发送注销请求</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="常见单点登录协议"><a href="#常见单点登录协议" class="headerlink" title="常见单点登录协议"></a>常见单点登录协议</h2><p>单点登录实现中，sso-client 与 sso-server 系统之间的协议对接是非常重要的一环，一般涉及的标准协议类型有 CAS、OAuth、OIDC、SAML 与 Kerberos。</p>
+<h3 id="CAS"><a href="#CAS" class="headerlink" title="CAS"></a>CAS</h3><p><a target="_blank" rel="noopener" href="https://apereo.github.io/cas/6.2.x/protocol/CAS-Protocol-Specification.html">Central Authentication Service</a> 简称 CAS ，是一种常见的 B/S 架构的 SSO 协议。和其他任何 SSO 协议一样，用户仅需登录一次，访问其他应用则无需再次登录。</p>
+<p>CAS 认证流程包括三部分的参与者：</p>
+<ul>
+<li>Client: 通常为使用浏览器的用户</li>
+<li>CAS Client: 实现CAS协议的web应用</li>
+<li>CAS Server: 作为统一认证的CAS服务器</li>
+</ul>
+<p>认证流程为：</p>
+<p><img src="/blog/static/imgs/sso/cas.png" alt="cas_inner"></p>
+<ol>
+<li>Client (终端用户)在浏览器里请求访问 Web 应用 example ；</li>
+<li>浏览器发起一个 GET 请求访问 example 应用的主页 https://www.example.com；</li>
+<li>应用 example 发现当前用户处于未登录状态，重定向（ Redirect ）用户至 CAS 服务器进行认证；</li>
+<li>用户请求 CAS 服务器；</li>
+<li>CAS 发现当前用户在 CAS 服务器中处于未登录状态, 要求用户必须得先登录；</li>
+<li>CAS 服务器返回登录页面至浏览器；</li>
+<li>用户在登录界面中输入用户名和密码（或者其他认证方式）；</li>
+<li>用户把用户名和密码通过 POST 请求提交至 CAS 服务器；</li>
+<li>CAS 对用户身份进行认证，若用户名和密码正确，则生成 SSO 会话, 且把会话 ID 通过 Cookie 的方式返回至用户的浏览器端（此时，用户在 CAS 服务端处于登录状态）；</li>
+<li>CAS 服务器同时也会把用户重定向至 CAS Client , 且同时发送一个 Service Ticket ；</li>
+<li>CAS Client 收到这个 Service Ticket 以后，请求 CAS Server 对该 ticket 进行校验；</li>
+<li>CAS Server 把校验结果返回给 CAS Client , 校验结果包括该 ticket 是否合法，以及该 ticket 中包含对用户信息；</li>
+<li>至此，CAS Client 根据 Service Ticket 得知当前登录用户的身份，CAS Client 处于登录态。</li>
+</ol>
+<p>经过上述流程以后，CAS Server 和 CAS Client 都处于登录态，当用户如果访问另外一个 CAS Client 2 的时候，用户不需要再次认证，即会跳过5、6、7、8、9这几步，从而达到 SSO 的效果。</p>
+<h3 id="OAuth"><a href="#OAuth" class="headerlink" title="OAuth"></a>OAuth</h3><p><a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc6749">Open Authorization</a>，简称 OAuth ，一般指的是 OAuth2 协议。</p>
+<p>OAuth2 解决的主要场景是: 第三方应用如何被授权访问资源服务器。整个流程参与者包括几个组成部分:</p>
+<ul>
+<li>Resource Owner: 资源拥有者，通常为终端用户</li>
+<li>Resource Server: 资源提供者</li>
+<li>Authorization Server: 授权服务器</li>
+<li>Client: 请求访问服务器的应用</li>
+</ul>
+<p>抽象的授权流程大致为:</p>
+<p><img src="/blog/static/imgs/sso/oauth2.0.png" alt="oauth2_inner"></p>
+<p>假定一个在线音乐服务，用户 zhangsan 想通过某音视频播放软件来播放在线音乐, 但是在播放音乐之前，该音视频软件必须得通过 OAuth server 认证授权，得到 zhangsan 的同意之后才能访问在线音乐。</p>
+<p>在这个场景中，zhangsan 为 Resource Owner, 在线音乐服务为 Resource Server , 某音视频播放软件为 Client，OAuth server 作为 Authorization Server。</p>
+<p>授权流程如下：</p>
+<ol>
+<li>音视频软件向 zhangsan 发起授权请求，请求 zhangsan 同意访问在线音乐服务；</li>
+<li>根据不同的授权模式， zhangsan 同意该授权，且返回一个”授权”给音视频服务；</li>
+<li>音视频服务携带 zhangsan 的授权，请求 OAuth Server 颁发一个 Access Token, 用于访问在线音乐；</li>
+<li>OAuth Server 校验音视频服务自身的合法性之后，颁发 Access Token；</li>
+<li>音视频服务携带 Access Token, 代表 zhangsan 请求访问在线音乐；</li>
+<li>在线音乐服务校验完 Access Token 以后，提供音乐服务. 播放器开始播放音乐。</li>
+</ol>
+<p>上述是一个抽象的授权流程，而在具体实现中，在前三步中会有几个变种，即不同的授权模式，常见的授权模式包括:</p>
+<ul>
+<li>Authorization Code Grant: 认证码授权，最为常用，相对更安全<br><img src="/blog/static/imgs/sso/oauth_acg.png" alt="oauth_acg_inner"></li>
+<li>Implicit Grant: 隐式授权，适用于SPA应用，不推荐，被<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc7636">PKCE</a>模式所替代<br><img src="/blog/static/imgs/sso/oauth_ig.png" alt="oauth_ig_inner"></li>
+<li>Resource Owner Password Credentials Grant: 资源拥有者密码授权，需要把用户的用户名和密码暴露给Client，只有在 Authorization Server 完全信任 Client 时才能采用，不推荐<br><img src="/blog/static/imgs/sso/oauth_ropcg.png" alt="oauth_ropcg_inner"></li>
+<li>Client Credential Grant：客户端认证授权，没有用户概念，适用于服务端与服务端的调用<br><img src="/blog/static/imgs/sso/oauth_ccg.png" alt="oauth_ccg_inner"></li>
+</ul>
+<h3 id="OIDC"><a href="#OIDC" class="headerlink" title="OIDC"></a>OIDC</h3><p><a target="_blank" rel="noopener" href="https://openid.net/specs/openid-connect-core-1_0.html">OpenID Connect</a> 简称 OIDC，是基于 OAuth2 扩展出来的一个协议。OAuth2 只定义了授权（Authorization）场景，OIDC 额外定义了认证（Authentication）的场景。</p>
+<p>相比 OAuth2，OIDC 引入了 ID Token 等和 UserInfo 相关的概念：</p>
+<ul>
+<li>OAuth2 协议，只是定义了 Access Token/Refresh Token，但这两个 token 是指为了保护 Resource Server，并没有 Resource Owner 的身份信息；</li>
+<li>OIDC 引入了 ID Token 的概念，用这个 token 来表示这是 Resource Owner 的身份信息：<ul>
+<li>标准化 ID Token 的格式，即 <a href="/blog/2021/05/17/FE-JWT-JSON-WEB-TOKEN/">JWT</a></li>
+<li>标准化 ID Token 的内容，即 <a target="_blank" rel="noopener" href="https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims">Standard Claims</a></li>
+</ul>
+</li>
+<li>OIDC 引入了关于如何获取详细的 UserInfo Endpoint ；</li>
+<li>OIDC 定义了类似于 SAML Metadata 的 <a target="_blank" rel="noopener" href="https://openid.net/specs/openid-connect-discovery-1_0.html">Discovery接口</a>，俗称 Well-known 接，使客户端可以动态的获取 OIDC 服务相关的元数据描述信息</li>
+</ul>
+<p>OIDC 协议的登录授权流程和 OAuth2 基本类似, 整个流程的参与者也类似，只不过换了个术语：</p>
+<ul>
+<li>OpenID Provider：简称 OP，负责认证和授权</li>
+<li>Relying Party：简称 RP，类似 OAuth2 中的 Client</li>
+<li>End User: 终端用户</li>
+</ul>
+<p><img src="/blog/static/imgs/sso/oidc.png" alt="oidc_inner"></p>
+<p>认证与授权流程如下：</p>
+<ol>
+<li>RP 发送一个认证请求给 OP；</li>
+<li>OP 对 EU 进行身份认证，然后提供授权；</li>
+<li>OP 把 ID Token 和 Access Token （需要的话）返回给 RP；</li>
+<li>RP 使用 Access Token 发送一个请求 UserInfo EndPoint；</li>
+<li>UserInfo EndPoint 返回 EU 的 Claims。</li>
+</ol>
+<p>OIDC 的授权模式有以下三种：</p>
+<ol>
+<li>Authorization Code Flow：使用 OAuth2 的授权码来换取 Id Token 和 Access Token 。</li>
+<li>Implicit Flow：使用 OAuth2 的 Implicit 流程获取 Id Token 和 Access Token 。</li>
+<li>Hybrid Flow：混合 Authorization Code Flow + Implici Flow 。</li>
+</ol>
+<p>OIDC 并不包含 OAuth2 中的 Resource Owner Password Credentials Grant 模式 和 Client Credential Grant 模式，主要是因为 Resource Owner Password Credentials Grant 模式中，用户名和密码完全提供给了 Client(Relying Party) 不需要 ID Token 进行认证，而 Client Credential Grant 模式中没有 User 的角色，所以不需要认证。</p>
+<h3 id="SAML"><a href="#SAML" class="headerlink" title="SAML"></a>SAML</h3><p>Security Assertion Markup Language，简称 SAML，是一个基于 XML 的、用于实现不同业务实体（即系统或服务）之间，交换安全信息（例如认证信息、授权信息、主体属性信息等）的标准协议。SAML 标准定义了身份提供者（Identity Provider）和服务提供者（Service Provider）之间，如何通过 SAML 规范，采用加密和签名的方式来建立互信，从而交换用户身份信息。SAML 协议于2002年由 OASIS （结构化信息标准促进组织，Organization for the Advancement of Structured Information Standards) 组织提出，已经经历了 1.0，1.1，2.0 三个版本，在早期 B/S 架构的企业级应用中非常流行。</p>
+<p>SAML 流程的参与者包括：</p>
+<ul>
+<li>Asserting Party，即断言签发方，是签发断言的业务系统</li>
+<li>Relying Party，即断言依赖方，是消费断言的业务系统</li>
+<li>User，即用户，一般通过 Web 浏览器与两个业务系统进行交互</li>
+</ul>
+<p>SAML 协议可以应用于多种不同的业务场景，在一些业务场景中，SAML 会定义不同的角色，各个业务系统在不同的场景中可以扮演不同的角色。以 Web 单点登录场景为例，在该场景下，SAML 协议中定义了 IdP（Identity Provider）和 SP（Service Provider）两种角色。</p>
+<p>下面是大致的认证流程(SP Initiated)：</p>
+<p><img src="/blog/static/imgs/sso/saml.png" alt="saml_inner"></p>
+<ol>
+<li>End User 从浏览器中请求访问某 SP：https://www.example.com ；</li>
+<li>https://www.example.com 发现用户未登录，则发起 SAML 的 AuthNRequest 请求至 IdP, 用户浏览器跳转至 IdP 页面；</li>
+<li>IdP 发现用户处于未登录状态，重定向用户至 IdP 的登录界面，请求用户进行身份验证</li>
+<li>用户在登录页面中进行身份认证, 通常情况下需要校验用户名和密码；</li>
+<li>IdP 校验用户身份，若成功，则把包含着用户身份信息的校验结果，以 SAML Response 的形式，签名/加密发送给 SP；</li>
+<li>SP 拿到用户身份信息以后，进行签名验证/解密，拿到明文的用户身份信息，此时 SP 处于登录状态，可以对用户提供服务。</li>
+</ol>
+<p>可以看到，在整个流程中，IdP 是负责颁发用户身份，SP 负责信任 IdP 颁发的用户身份, SP 和 IdP 之间的信任关系是需要提前建立的，即 SP 和 IdP 需要提前把双方的信息预先配置到对方，通过证书信任的方式来建立互信。</p>
+<h3 id="Kerberos"><a href="#Kerberos" class="headerlink" title="Kerberos"></a>Kerberos</h3><p><a target="_blank" rel="noopener" href="https://www.rfc-editor.org/rfc/rfc4120.html">Kerberos</a> 身份验证协议起源于麻省理工学院，是由“Athena”项目的工程师开发的。第一个公开发行的版本是于1980年末发布的 Kerberos 版本4。在被广泛的使用后，协议的开发者于1993年发布了 Kerberos 第五版本。Kerberos V5 现在成为 IETF 的标准，Windows Server 2003 中 Kerberos V5 的实现严格的遵循了<a target="_blank" rel="noopener" href="https://www.rfc-editor.org/rfc/rfc1510.html">RFC 1510</a>定义的标准，另外，Kerberos 消息中的安全令牌（security tokens）的格式和机制遵循 <a target="_blank" rel="noopener" href="https://www.rfc-editor.org/rfc/rfc1964">RFC 1964</a> 定义的标准。Kerberos 仅包含认证部分，不包括授权部分。</p>
+<p>Kerberos 并不是一个 Web SSO 协议，它主要被应用于客户端与服务器认证。Windows2000 和后续的操作系统都默认 Kerberos 为其默认认证方法，苹果的 Mac OS X 也使用了 Kerberos 的客户和服务器版本，Red Hat Enterprise Linux4 和后续的操作系统使用了 Kerberos 的客户端和服务器版本。</p>
+<p>Kerberos 认证流程的参与者主要包括：</p>
+<ul>
+<li>AS（Authentication Server）= 认证服务器</li>
+<li>KDC（Key Distribution Center）= 密钥分发中心</li>
+<li>TGT（Ticket Granting Ticket）= 票据授权票据，票据的票据</li>
+<li>TGS（Ticket Granting Server）= 票据授权服务器</li>
+<li>SS（Service Server）= 特定服务提供端</li>
+</ul>
+<h3 id="其他协议"><a href="#其他协议" class="headerlink" title="其他协议"></a>其他协议</h3><p>其他 SSO 相关协议还包括 OpenID、LID(Light-Weight Identity) 、Yadis、I-name、WS-Federation 等。</p>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/OpenID">OpenID</a> 最初是由大型社区 LiveJournal (建立于开源软件基础之上)的创办人 Brad Fitzpatrick 在2005年6月27日开发推出的一套身份识别系统，它采用分布式认证系统用于用户留言身份认证。</p>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Light-weight_Identity">Light weight Identity</a> （LID）或 Light Identity Management（LIdM）是一种用于在线数字身份的身份管理系统，部分由 NetMesh 开发。它于2005年初首次发布，是最初的基于 URL 的身份系统，随后被 OpenID 采用。LID 使用 URL 验证用户身份，并被几种开源协议采用，如 OpenID 、 Yadis 和 PGP/GPG 。</p>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Yadis">Yadis</a> 是一种用于发现连接到 YadisID 的 OpenID 、 OAuth 和 XDI 等服务的通信协议。虽然 Yadis 旨在发现数字身份服务，但并不限于这些服务，可以很容易地包括其他服务。</p>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/I-name">I-name</a> 是 XRI 的一种形式，XRI 是一种针对数字标识符的 OASIS 开放标准，旨在跨域和应用程序共享资源和数据。</p>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/WS-Federation">WS-Federation</a>，全称 Web Services Federation，简称 WS-Fed，属于 Web Services Security 框架的一部分，是由 <a target="_blank" rel="noopener" href="https://www.oasis-open.org">OASIS</a> 发布的标准协议，其主要贡献者是 Microsoft 和 IBM。WS-Fed 1.1 版本发布于2003年，最新的1.2版本标准发布于2009年。WS-Federation 标准基于 SOAP，定义了允许不同安全领域来协商 <em>身份</em>、<em>身份属性</em> 和 <em>认证</em> 信息的机制，主要应用在企业服务。</p>
+<h2 id="协议对比"><a href="#协议对比" class="headerlink" title="协议对比"></a>协议对比</h2><p>上面简单介绍了主流的几种 SSO 协议，本质上它们大同小异，都是基于中心信任的机制，服务提供者和身份提供者之间通过互信来交换用户信息，只是每个协议信息交换的细节不同，或者概念上有些不同。</p>
+<p>以下列举了常用 Web SSO 协议的比较：</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>CAS</th>
+<th>OAuth</th>
+<th>OIDC</th>
+<th>SAML</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>支持认证(Authentication)</td>
+<td>是</td>
+<td>否</td>
+<td>是</td>
+<td>是</td>
+</tr>
+<tr>
+<td>支持授权(Authorization)</td>
+<td>否</td>
+<td>是</td>
+<td>是</td>
+<td>否</td>
+</tr>
+<tr>
+<td>协议最新版本</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>1.0</td>
+<td>2.0</td>
+</tr>
+<tr>
+<td>传输方式</td>
+<td>HTTP</td>
+<td>HTTP</td>
+<td>HTTP</td>
+<td>HTTP</td>
+</tr>
+<tr>
+<td>票据格式</td>
+<td>Service ticket，Proxy ticket <br/> 没有标准格式</td>
+<td>Access Token，Refresh Token <br/> 没有标准格式</td>
+<td>Access Token，Refresh Token，ID Token <br/> Access Token，Refresh Token 没有标准格式，ID Token采用 JWT 格式</td>
+<td>Assertion，AuthNRequest，基于XML协议</td>
+</tr>
+<tr>
+<td>主要应用场景</td>
+<td>B/S架构，浏览器单点登录</td>
+<td>B/S架构，浏览器单点登录，PKCE模式可用来实现移动端单点登录</td>
+<td>B/S架构，浏览器单点登录</td>
+<td>B/S架构，浏览器单点登录</td>
+</tr>
+<tr>
+<td>优势</td>
+<td>协议简单</td>
+<td>1.协议简单，解决场景较多 <br/> 2.成熟度高，社区支持广泛</td>
+<td>基于 OAuth2，完全兼容 OAuth2</td>
+<td>协议功能强大，涵盖场景多</td>
+</tr>
+<tr>
+<td>劣势</td>
+<td>场景单一</td>
+<td>1.各厂商实现细节有差异 <br/> 2.只定义了授权，未定义认证</td>
+<td></td>
+<td>1.协议过于庞大，可选实现过多 <br/> 2.基于XML的签名&amp;加密，技术复杂度更高</td>
+</tr>
+<tr>
+<td>实践</td>
+<td>玉符IDaaS</td>
+<td>微信、企业微信、钉钉、QQ、玉符IDaaS</td>
+<td>腾讯云IDaaS、玉符IDaaS</td>
+<td>阿里云IDaaS、腾讯云IDaaS、玉符IDaaS</td>
+</tr>
+</tbody>
+</table>
+<h2 id="其他与认证授权相关的概念与术语"><a href="#其他与认证授权相关的概念与术语" class="headerlink" title="其他与认证授权相关的概念与术语"></a>其他与认证授权相关的概念与术语</h2><table>
+<thead>
+<tr>
+<th>简称</th>
+<th>全称</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AAA</td>
+<td>Authentication, Authorization &amp; Accounting</td>
+<td>AAA是认证（Authentication）、授权（Authorization）和账号（Accounting）的简称，是网络安全中进行访问控制的一种安全管理机制，提供认证、授权和账号管理三种安全服务</td>
+</tr>
+<tr>
+<td>4A</td>
+<td>Authentication, Authorization, Account &amp; Audit</td>
+<td>认证、授权、账号与审计</td>
+</tr>
+<tr>
+<td>IAM</td>
+<td>Identity and Access Management</td>
+<td>身份识别与访问管理</td>
+</tr>
+<tr>
+<td>KMS</td>
+<td>Key Management Service</td>
+<td>密钥管理服务</td>
+</tr>
+<tr>
+<td>IdP</td>
+<td>Identity Provider</td>
+<td>身份提供商，是一种存储和管理用户数字身份的服务</td>
+</tr>
+<tr>
+<td>DaaS</td>
+<td>Directory as a Service</td>
+<td>目录即服务</td>
+</tr>
+<tr>
+<td>IDaaS</td>
+<td>Identity as a Service</td>
+<td>身份即服务</td>
+</tr>
+<tr>
+<td>PAM</td>
+<td>Pluggable Authentication Modules</td>
+<td>可插拔认证模块，是由 Sun 公司提出的一种认证机制，通过提供一些动态链接库和一套统一的API，将系统提供的服务和该服务的认证方式分开，使得系统管理员可以灵活地根据需要给不同的服务配置不同的认证方式而无需更改服务程序，同时也便于向系统中添加新的认证手段</td>
+</tr>
+<tr>
+<td>SASL</td>
+<td>Simple Authentication and Security Layer</td>
+<td>简单验证和安全层</td>
+</tr>
+<tr>
+<td>GSS-API</td>
+<td>The Generic Security Services Application Program Interface</td>
+<td>通用安全服务应用程序接口</td>
+</tr>
+<tr>
+<td>LDAP</td>
+<td>Lightweight Directory Access Protocol</td>
+<td>轻型目录访问协议</td>
+</tr>
+<tr>
+<td>openLDAP</td>
+<td>openLDAP</td>
+<td>一个开源的LDAP服务器实现</td>
+</tr>
+<tr>
+<td>AD</td>
+<td>Active Directory</td>
+<td>Microsoft 公司提供的LDAP实现</td>
+</tr>
+<tr>
+<td>RADIUS</td>
+<td>Remote Authentication Dial In User Service</td>
+<td>远程用户拨号认证系统，是应用最广泛的AAA协议，由<a target="_blank" rel="noopener" href="https://www.rfc-editor.org/rfc/rfc2865.html">RFC2865</a>，<a target="_blank" rel="noopener" href="https://www.rfc-editor.org/rfc/rfc2866.html">RFC2866</a>定义</td>
+</tr>
+</tbody>
+</table>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

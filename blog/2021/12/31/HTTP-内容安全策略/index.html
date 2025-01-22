@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        浏览器内容安全策略CSP | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="内容安全策略 (Content Security Policy) 是一个额外的安全层，用于检测并削弱某些特定类型的攻击(尤其是XSS攻击)。CSP通过指定浏览器认可的可执行脚本的有效来源使服务器管理者有能力减少或消除XSS攻击所依赖的载体。一个兼容CSP的浏览器将会仅执行从白名单域获取到的脚本文件，忽略所有的其他脚本 (包括内联脚本和HTML的事件处理属性)。CSP 使用方法有两种方法可以应用此策略：配置服务器返回  Content-Security-Policy  HTTP头部12C" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSP-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">CSP 使用方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSP-%E6%8C%87%E4%BB%A4"><span class="toc-text">CSP 指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CSP-%E6%8C%87%E4%BB%A4%E5%8F%AF%E5%8F%96%E7%9A%84key"><span class="toc-text">CSP 指令可取的key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSP-%E6%8C%87%E4%BB%A4%E5%8F%AF%E5%8F%96%E7%9A%84value"><span class="toc-text">CSP 指令可取的value</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%AD%96%E7%95%A5"><span class="toc-text">常见策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-text">参考资料</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            浏览器内容安全策略CSP
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-12-31T02:53:48.000Z" itemprop="datePublished">2021-12-31</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSP/" rel="tag">CSP</a>, <a class="article-tag-link" href="/blog/tags/security/" rel="tag">security</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>内容安全策略 (Content Security Policy) 是一个额外的安全层，用于检测并削弱某些特定类型的攻击(尤其是XSS攻击)。</p>
+<p>CSP通过指定浏览器认可的可执行脚本的有效来源使服务器管理者有能力减少或消除XSS攻击所依赖的载体。一个兼容CSP的浏览器将会仅执行从白名单域获取到的脚本文件，忽略所有的其他脚本 (包括内联脚本和HTML的事件处理属性)。</p>
+<span id="more"></span>
+<h2 id="CSP-使用方法"><a href="#CSP-使用方法" class="headerlink" title="CSP 使用方法"></a>CSP 使用方法</h2><p>有两种方法可以应用此策略：</p>
+<ol>
+<li>配置服务器返回  <code>Content-Security-Policy</code>  HTTP头部<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Content-Security-Policy</span><span class="punctuation">: </span>&lt;policy-directive&gt;; [&lt;policy-directive&gt;;]</span><br><span class="line"><span class="attribute">Content-Security-Policy-Report-Only</span><span class="punctuation">: </span>report-uri URI; [&lt;policy-directive&gt;;]</span><br></pre></td></tr></table></figure>
+Content-Security-Policy-Report-Only 表明对于每个企图违反内容安全策略的内容发送违规报告，发送地址为 report-uri 指定的地址。  </li>
+</ol>
+<p>违例报告包含以下内容：  </p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>document-uri</td>
+<td>发生违规的文档的URI</td>
+</tr>
+<tr>
+<td>referrer</td>
+<td>违规发生处的文档引用（地址）</td>
+</tr>
+<tr>
+<td>blocked-uri</td>
+<td>被CSP阻止的资源URI。如果被阻止的URI来自不同的源而非文档URI，那么被阻止的资源URI会被删减，仅保留协议，主机和端口号</td>
+</tr>
+<tr>
+<td>violated-directive</td>
+<td>违反的策略名称</td>
+</tr>
+<tr>
+<td>original-policy</td>
+<td>在 Content-Security-Policy HTTP 头部中指明的原始策略</td>
+</tr>
+</tbody>
+</table>
+<ol start="2">
+<li>在文档的 <code>&lt;meta&gt;</code>  元素里配置该策略<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;Content-Security-Policy&quot;</span> <span class="attr">content</span>=<span class="string">&quot;default-src &#x27;self&#x27;; img-src https://*; child-src &#x27;none&#x27;;&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>如果 HTTP 头与 Meta 定义同时存在，则优先采用 HTTP 中的定义。  </p>
+<h2 id="CSP-指令"><a href="#CSP-指令" class="headerlink" title="CSP 指令"></a>CSP 指令</h2><p>内容安全策略可以配置多个，一个策略由一系列策略指令所组成，每个策略指令都描述了一个针对某个特定类型资源以及生效范围的策略。</p>
+<p>策略指令分为五种：获取指令（Fetch directives）、文档指令（Document directives）、导航指令（Navigation directives）、报告指令（Reporting directives）、其它指令（Other directives）</p>
+<h3 id="CSP-指令可取的key"><a href="#CSP-指令可取的key" class="headerlink" title="CSP 指令可取的key"></a>CSP 指令可取的key</h3><table>
+<thead>
+<tr>
+<th>获取指令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>child-src</td>
+<td>为 web workers 和其他内嵌浏览器内容（例如用 <code>&lt;frame&gt;</code> 和 <code>&lt;iframe&gt;</code> 加载到页面的内容）定义合法的源地址，相当于 frame-src 和 worker-src</td>
+</tr>
+<tr>
+<td>connect-src</td>
+<td>限制能通过脚本接口加载的URL</td>
+</tr>
+<tr>
+<td>default-src</td>
+<td>为其他取指令提供备用服务</td>
+</tr>
+<tr>
+<td>font-src</td>
+<td>设置允许通过@font-face加载的字体源地址</td>
+</tr>
+<tr>
+<td>frame-src</td>
+<td>设置允许通过类似 <code>&lt;frame&gt;</code> 和 <code>&lt;iframe&gt;</code> 标签加载的内嵌内容的源地址</td>
+</tr>
+<tr>
+<td>img-src</td>
+<td>限制图片和图标的源地址</td>
+</tr>
+<tr>
+<td>manifest-src</td>
+<td>限制应用声明文件的源地址</td>
+</tr>
+<tr>
+<td>media-src</td>
+<td>限制通过 <code>&lt;audio&gt;</code> 、 <code>&lt;video&gt;</code> 或 <code>&lt;track&gt;</code> 标签加载的媒体文件的源地址</td>
+</tr>
+<tr>
+<td>object-src</td>
+<td>限制 <code>&lt;object&gt;</code>、<code>&lt;embed&gt;</code>、<code>&lt;applet&gt;</code> 标签的源地址</td>
+</tr>
+<tr>
+<td>prefetch-src</td>
+<td>指定预加载或预渲染的允许源地址</td>
+</tr>
+<tr>
+<td>script-src</td>
+<td>限制JavaScript的源地址</td>
+</tr>
+<tr>
+<td>style-src</td>
+<td>限制层叠样式表文件源</td>
+</tr>
+<tr>
+<td>webrtc-src</td>
+<td>指定WebRTC连接的合法源地址</td>
+</tr>
+<tr>
+<td>worker-src</td>
+<td>限制 Worker、SharedWorker 或者 ServiceWorker 脚本源</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>文档指令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>base-uri</td>
+<td>限制在DOM中 <code>&lt;base&gt;</code> 元素可以使用的URL</td>
+</tr>
+<tr>
+<td>plugin-types</td>
+<td>通过限制可以加载的资源类型来限制哪些插件可以被嵌入到文档中</td>
+</tr>
+<tr>
+<td>sandbox</td>
+<td>类似 <code>&lt;iframe&gt;</code> sandbox 属性，为请求的资源启用沙盒</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>导航指令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>form-action</td>
+<td>限制能被用来作为给定上下文的表单提交的目标 URL</td>
+</tr>
+<tr>
+<td>frame-ancestors</td>
+<td>指定可能嵌入页面的有效父项 <code>&lt;frame&gt;</code>, <code>&lt;iframe&gt;</code>, <code>&lt;object&gt;</code>, <code>&lt;embed&gt;</code>, <code>&lt;applet&gt;</code></td>
+</tr>
+<tr>
+<td>navigation-to</td>
+<td>限制文档可以通过以下任何方式访问URL (a, form, window.location, window.open, etc.)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>报告指令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>report-uri</td>
+<td>当出现可能违反CSP的操作时，让客户端提交报告。这些违规报告会以JSON文件的格式通过POST请求发送到指定的URI</td>
+</tr>
+<tr>
+<td>report-to</td>
+<td>触发 SecurityPolicyViolationEvent</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>其它指令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>block-all-mixed-content</td>
+<td>当使用HTTPS加载页面时阻止使用HTTP加载任何资源</td>
+</tr>
+<tr>
+<td>require-sri-for</td>
+<td>需要使用 SRI 作用于页面上的脚本或样式</td>
+</tr>
+<tr>
+<td>upgrade-insecure-requests</td>
+<td>让浏览器把一个网站所有的不安全 URL（通过 HTTP 访问）当做已经被安全的 URL 链接（通过 HTTPS 访问）替代</td>
+</tr>
+</tbody>
+</table>
+<h3 id="CSP-指令可取的value"><a href="#CSP-指令可取的value" class="headerlink" title="CSP 指令可取的value"></a>CSP 指令可取的value</h3><table>
+<thead>
+<tr>
+<th>指令值</th>
+<th>指令值示例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*</td>
+<td>img-src *</td>
+<td>允许任何内容</td>
+</tr>
+<tr>
+<td>‘none’</td>
+<td>img-src ‘none’</td>
+<td>不允许任何内容</td>
+</tr>
+<tr>
+<td>‘self’</td>
+<td>img-src ‘self’</td>
+<td>允许来自相同源内容（相同协议、域名和端口）</td>
+</tr>
+<tr>
+<td>data:</td>
+<td>img-src data:</td>
+<td>允许 data: 协议</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://www.example.com">www.example.com</a></td>
+<td>img-src img.example.com</td>
+<td>允许加载指定域名的资源</td>
+</tr>
+<tr>
+<td>*.example.com</td>
+<td>img-src *.example.com</td>
+<td>允许加载 example.com 任何子域的资源</td>
+</tr>
+<tr>
+<td>‘unsafe-inline’</td>
+<td>script-src ‘unsafe-inline’</td>
+<td>允许加载 inline 资源</td>
+</tr>
+<tr>
+<td>‘unsafe-eval’</td>
+<td>script-src ‘unsafe-eval’</td>
+<td>允许加载动态 js 代码（eval）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="常见策略"><a href="#常见策略" class="headerlink" title="常见策略"></a>常见策略</h2><p>允许加载同源的图片、脚本、AJAX和CSS资源，并阻止加载其他任何资源</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; img-src &#x27;self&#x27;; style-src &#x27;self&#x27;;</span><br></pre></td></tr></table></figure>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Security-Policy">MDN docs Content-Security-Policy</a><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP">MDN docs CSP</a><br><a target="_blank" rel="noopener" href="https://www.w3.org/TR/CSP1/">w3 CSP1</a><br><a target="_blank" rel="noopener" href="https://www.w3.org/TR/CSP2/">w3 CSP2</a><br><a target="_blank" rel="noopener" href="https://w3c.github.io/webappsec-upgrade-insecure-requests/">w3 github Upgrade Insecure Requests</a><br><a target="_blank" rel="noopener" href="https://w3c.github.io/webappsec-subresource-integrity/">w3 github Subresource Integrity</a><br><a target="_blank" rel="noopener" href="https://w3c.github.io/webappsec-mixed-content/">w3 github Mixed Content</a><br><a target="_blank" rel="noopener" href="https://w3c.github.io/webappsec-csp/">w3 github CSP3</a></p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

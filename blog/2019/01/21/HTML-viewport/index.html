@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        viewport | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="viewport来源通常为了使得网页能够成为响应式的，我们需要在head内声名有关viewport的meta。它长这样  1&amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width,initial-scale=1,user-scalable=no&amp;quot;/&amp;gt;viewport的设计是由于pc互联网向移动互联网的过渡。在过去，多数文档被设计用来在pc上进行阅读，而pc的设备通常比较宽，同样的网页不进行任何改变" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#viewport%E6%9D%A5%E6%BA%90"><span class="toc-text">viewport来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#viewport%E5%8F%96%E5%80%BC"><span class="toc-text">viewport取值</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            viewport
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-01-21T11:53:30.000Z" itemprop="datePublished">2019-01-21</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/HTML/" rel="tag">HTML</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="viewport来源"><a href="#viewport来源" class="headerlink" title="viewport来源"></a>viewport来源</h2><p>通常为了使得网页能够成为响应式的，我们需要在head内声名有关viewport的meta。<br>它长这样  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width,initial-scale=1,user-scalable=no&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>viewport的设计是由于pc互联网向移动互联网的过渡。在过去，多数文档被设计用来在pc上进行阅读，而pc的设备通常比较宽，同样的网页不进行任何改变放到移动端的话，内容就会变得无法辨认。</p>
+<span id="more"></span>
+<p>例如，新浪网在移动端的显示：<br><img src="/blog/static/imgs/viewport/web_page.png" alt="新浪网桌面版在移动端的显示"></p>
+<p>为了避免这个问题，浏览器通常使用一个固定的初始区域宽度来模拟桌面浏览器窗口大小（通常980px-1024px)。而移动端的宽度是小于这个值的，于是内容便看起来像自动放大了一般，同样的，移动端当前的屏幕也只会显示文档的一部分。<br><img src="/blog/static/imgs/viewport/layout_viewport.png" alt="布局视口"><br><img src="/blog/static/imgs/viewport/visual_viewport.png" alt="视觉视口"></p>
+<p><code>document.documentElement.clientWidth/Height</code> 返回的即是当前布局视口的尺寸<br><code>window.innerWidth/Height</code> 返回的即是当前视觉视口的尺寸  </p>
+<p>由上述描述所知，其实视觉视口的大小和文档缩放程度是逆相关的：放得越大，视觉视口越小  </p>
+<p>浏览器对viewport也有默认布局视口宽度  </p>
+<table>
+<thead>
+<tr>
+<th>iPhone</th>
+<th>iPad</th>
+<th>Android Samsung</th>
+<th>Chrome</th>
+<th>Opera</th>
+<th>BlackBerry</th>
+<th>IE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>980</td>
+<td>980</td>
+<td>980</td>
+<td>980</td>
+<td>980</td>
+<td>1024</td>
+<td>1024</td>
+</tr>
+</tbody>
+</table>
+<p>即使如此，对于一个用户而言，还是不甚理想，在狭窄的屏幕上更适合一个狭窄的网站而不是需要用户来缩放的桌面网站。于是Safari引入了meta标签viewport以及理想视口的概念，其它浏览器厂商也纷纷跟进。  </p>
+<p>只有当网站是为移动端准备的时候才应该使用理想视口。<br>只有主动地往页面里添加meta视口标签时理想视口才会生效。<br>如果没有meta视口标签声明，那么布局视口将会维持它的默认宽度，理想视口只有当显式地使用它的时候才会产生影响。<br>理想视口只和设备有关，由浏览器定义，因此同一设备上的不同浏览器拥有不同的理想视口。<br>以下代码告之浏览器，布局视口的宽度应该与理想视口的宽度一致：  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;device&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>screen.width/height</code> 返回的是理想视口的尺寸  </p>
+<h2 id="viewport取值"><a href="#viewport取值" class="headerlink" title="viewport取值"></a>viewport取值</h2><table>
+<thead>
+<tr>
+<th>值</th>
+<th>可能值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>width</td>
+<td>一个正整数或者字符串 device-width</td>
+<td>以pixels（像素）为单位， 定义viewport（视口）的宽度。</td>
+</tr>
+<tr>
+<td>height</td>
+<td>一个正整数或者字符串 device-height</td>
+<td>以pixels（像素）为单位， 定义viewport（视口）的高度。</td>
+</tr>
+<tr>
+<td>initial-scale</td>
+<td>一个0.0 到10.0之间的正数</td>
+<td>定义设备宽度（纵向模式下的设备宽度或横向模式下的设备高度）与视口大小之间的缩放比率。</td>
+</tr>
+<tr>
+<td>maximum-scale</td>
+<td>一个0.0 到10.0之间的正数</td>
+<td>定义缩放的最大值；它必须大于或等于minimum-scale的值，不然会导致不确定的行为发生。</td>
+</tr>
+<tr>
+<td>minimum-scale</td>
+<td>一个0.0 到10.0之间的正数</td>
+<td>定义缩放的最小值；它必须小于或等于maximum-scale的值，不然会导致不确定的行为发生。</td>
+</tr>
+<tr>
+<td>user-scalable</td>
+<td>一个布尔值（yes 或者no）</td>
+<td>如果设置为 no，用户将不能放大或缩小网页。默认值为 yes。</td>
+</tr>
+</tbody>
+</table>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

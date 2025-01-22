@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        CSS继承性 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="css属性继承性css样式继承指的是，特定的css属性可以向下传递到后代元素。可继承的css属性有继承性的属性有以下几类：“font”字体系列属性包括 font、font-family、font-weight、font-size、font-style、font-variant、font-stretch、font-size-adjust“text”文本系列属性包括 text-indent、text-align、line-height、word-spacing、letter-sp" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#css%E5%B1%9E%E6%80%A7%E7%BB%A7%E6%89%BF%E6%80%A7"><span class="toc-text">css属性继承性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E7%BB%A7%E6%89%BF%E7%9A%84css%E5%B1%9E%E6%80%A7"><span class="toc-text">可继承的css属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF%E5%B1%9E%E6%80%A7%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-text">继承属性的优先级</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            CSS继承性
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-06-13T15:45:06.000Z" itemprop="datePublished">2021-06-13</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="css属性继承性"><a href="#css属性继承性" class="headerlink" title="css属性继承性"></a>css属性继承性</h2><p>css样式继承指的是，特定的css属性可以向下传递到后代元素。</p>
+<span id="more"></span>
+<h2 id="可继承的css属性"><a href="#可继承的css属性" class="headerlink" title="可继承的css属性"></a>可继承的css属性</h2><p>有继承性的属性有以下几类：</p>
+<ol>
+<li>“font”字体系列属性</li>
+</ol>
+<p>包括 <code>font</code>、<code>font-family</code>、<code>font-weight</code>、<code>font-size</code>、<code>font-style</code>、<code>font-variant</code>、<code>font-stretch</code>、<code>font-size-adjust</code></p>
+<ol start="2">
+<li>“text”文本系列属性</li>
+</ol>
+<p>包括 <code>text-indent</code>、<code>text-align</code>、<code>line-height</code>、<code>word-spacing</code>、<code>letter-spacing</code>、<code>text-transform</code>、<code>direction</code>、<code>color</code></p>
+<ol start="3">
+<li>元素可见性</li>
+</ol>
+<p><code>visibility</code>、<code>opacity</code></p>
+<ol start="4">
+<li>“display:table”表格布局属性</li>
+</ol>
+<p><code>caption-side</code>、<code>border-collapse</code>、<code>border-spacing</code>、<code>empty-cells</code>、<code>table-layout</code></p>
+<ol start="5">
+<li>“display:list-item”列表布局属性</li>
+</ol>
+<p><code>list-style-type</code>、<code>list-style-image</code>、<code>list-style-position</code>、<code>list-style</code></p>
+<ol start="6">
+<li>生成内容属性</li>
+</ol>
+<p><code>quotes</code></p>
+<ol start="7">
+<li>光标属性</li>
+</ol>
+<p><code>cursor</code></p>
+<ol start="8">
+<li>页面样式属性</li>
+</ol>
+<p><code>page</code>、<code>page-break-inside</code>、<code>windows</code>、<code>orphans</code></p>
+<ol start="9">
+<li>声音样式属性</li>
+</ol>
+<p><code>speak</code>、<code>speak-punctuation</code>、<code>speak-numeral</code>、<code>speak-header</code>、<code>speech-rate</code>、<code>volume</code>、<code>voice-family</code>、<code>pitch</code>、<code>pitch-range</code>、<code>stress</code>、<code>richness</code>、<code>azimuth</code>、<code>elevation</code></p>
+<h2 id="继承属性的优先级"><a href="#继承属性的优先级" class="headerlink" title="继承属性的优先级"></a>继承属性的优先级</h2><p>在计算继承属性时需要考虑以下特殊情况：</p>
+<ol>
+<li><p>a 标签的字体颜色（color）不能被继承</p>
+</li>
+<li><p>h1-h6 标签字体的大小（font-size）不能被继承</p>
+</li>
+<li><p>strong 标签的字体粗细（font-weight）不能被继承</p>
+</li>
+<li><p>s, strike, del, u, ins 标签的文本装饰（text-decoration）不能被继承</p>
+</li>
+</ol>
+<p>因为这些属性是有浏览器默认样式的，也就是说继承属性的优先级不如浏览器默认样式（user agent stylesheet）优先级高</p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

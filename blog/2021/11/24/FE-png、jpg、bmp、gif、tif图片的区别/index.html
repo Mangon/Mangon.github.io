@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        png、jpg、bmp、gif、tif图片的区别 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="BMPBMP（Bitmap）位图，是 Windows 操作系统中的标准图像文件格式，可以分成两类：设备相关位图（DDB）和设备无关位图（DIB）。它采用位映射存储格式，除了图像深度可选以外，不采用其他任何压缩，因此，BMP文件所占用的空间很大。BMP文件的图像深度可选1bit、4bit、8bit及24bit。BMP文件存储数据时，图像的扫描方式是按从左到右、从下到上的顺序。由于BMP文件格式是 Windows 环境中交换与图有关的数据的一种标准，因此在 Windows 环境中运行的图形图像软件都" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#BMP"><span class="toc-text">BMP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TIFF"><span class="toc-text">TIFF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GIF"><span class="toc-text">GIF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JPEG"><span class="toc-text">JPEG</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EXIF"><span class="toc-text">EXIF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PNG"><span class="toc-text">PNG</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PSD"><span class="toc-text">PSD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ICO"><span class="toc-text">ICO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SVG"><span class="toc-text">SVG</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web%E5%B8%B8%E8%A7%81%E5%9B%BE%E7%89%87%E6%A0%BC%E5%BC%8F%E6%AF%94%E8%BE%83"><span class="toc-text">web常见图片格式比较</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#jpg-jpeg"><span class="toc-text">jpg&#x2F;jpeg</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gif"><span class="toc-text">gif</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#png"><span class="toc-text">png</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#svg"><span class="toc-text">svg</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ico"><span class="toc-text">ico</span></a></li></ol></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            png、jpg、bmp、gif、tif图片的区别
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-11-24T07:52:13.000Z" itemprop="datePublished">2021-11-24</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>, <a class="article-tag-link" href="/blog/tags/HTML/" rel="tag">HTML</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="BMP"><a href="#BMP" class="headerlink" title="BMP"></a>BMP</h2><p>BMP（Bitmap）位图，是 Windows 操作系统中的标准图像文件格式，可以分成两类：设备相关位图（DDB）和设备无关位图（DIB）。它采用位映射存储格式，除了图像深度可选以外，不采用其他任何压缩，因此，BMP文件所占用的空间很大。BMP文件的图像深度可选1bit、4bit、8bit及24bit。BMP文件存储数据时，图像的扫描方式是按从左到右、从下到上的顺序。由于BMP文件格式是 Windows 环境中交换与图有关的数据的一种标准，因此在 Windows 环境中运行的图形图像软件都支持BMP图像格式。</p>
+<span id="more"></span>
+<h2 id="TIFF"><a href="#TIFF" class="headerlink" title="TIFF"></a>TIFF</h2><p>TIFF（Tagged Image File Format）标签图像文件格式，是一种灵活的位图格式，主要用来存储包括照片和艺术图在内的图像。它最初由 Aldus 公司与 Microsoft 公司一起为 PostScript 打印开发。TIFF格式在业界得到了广泛的支持，如 Adobe 公司的 Photoshop、The GIMP Team 的 GIMP、Ulead PhotoImpact 和 Paint Shop Pro 等图像处理应用、QuarkXPress 和 Adobe InDesign 这样的桌面印刷和页面排版应用，扫描、传真、文字处理、光学字符识别和其它一些应用等都支持这种格式。</p>
+<h2 id="GIF"><a href="#GIF" class="headerlink" title="GIF"></a>GIF</h2><p>GIF（Graphics Interchange Format）图像交换格式，是 CompuServe 公司在 1987年开发的图像文件格式。GIF文件的数据，是一种基于 LZW（Lempel-Zev-Welch） 算法的连续色调的无损压缩格式。其压缩率一般在50%左右，它不属于任何应用程序。GIF图像文件的数据是经过压缩的，而且是采用了可变长度等压缩算法。所以GIF的图像深度从lbit到8bit，也即GIF最多支持256种色彩的图像。GIF格式的另一个特点是其在一个GIF文件中可以存多幅彩色图像，如果把存于一个文件中的多幅图像数据逐幅读出并显示到屏幕上，就可构成一种最简单的动画。目前几乎所有相关软件都支持它，公共领域有大量的软件在使用GIF图像文件。</p>
+<p>它有以下几个特点：<br>（1）GIF只支持256色以内的图像，不支持Alpha通道；<br>（2）GIF采用无损压缩存储，在不影响图像质量的情况下，可以生成很小的文件；<br>（3）它支持透明色，可以使图像浮现在背景之上；<br>（4）GIF文件可以制作动画，这是它最突出的一个特点。</p>
+<h2 id="JPEG"><a href="#JPEG" class="headerlink" title="JPEG"></a>JPEG</h2><p>JPEG（Joint Photographic Experts Group）联合图片专家组，文件后辍名为“．jpg”或“．jpeg”，是一个国际图像压缩标准。它采用有损压缩方式去除冗余的图像数据，在获得极高的压缩率的同时能展现十分丰富生动的图像。而且 JPEG是一种很灵活的格式，具有调节图像质量的功能，允许用不同的压缩比例对文件进行压缩，支持多种压缩级别，压缩比率通常在 10：1 到 40：1 之间，压缩比越大，品质就越低；相反地，压缩比越小，品质就越好。JPEG格式压缩的主要是高频信息，对色彩的信息保留较好，适合应用于互联网，可减少图像的传输时间，可以支持24bit真彩色，也普遍应用于需要连续色调的图像。</p>
+<p>JPEG2000 作为 JPEG 的升级版，其压缩率比 JPEG 高约30%左右，同时支持有损和无损压缩。JPEG2000格式有一个极其重要的特征在于它能实现渐进传输，即先传输图像的轮廓，然后逐步传输数据，不断提高图像质量，让图像由朦胧到清晰显示。此外，JPEG2000 还支持所谓的”感兴趣区域” 特性，可以任意指定影像上感兴趣区域的压缩质量，还可以选择指定的部分先解压缩。</p>
+<h2 id="EXIF"><a href="#EXIF" class="headerlink" title="EXIF"></a>EXIF</h2><p>EXIF（EXchangeable Image File format）可交换的图像文件格式，是于1994年富士公司提倡的数码相机图像文件格式，其实与JPEG格式相同，区别是除保存图像数据外，还能够存储摄影日期、使用光圈、快门、闪光灯数据等曝光资料和附带信息以及小尺寸图像。</p>
+<h2 id="PNG"><a href="#PNG" class="headerlink" title="PNG"></a>PNG</h2><p>PNG（Portable Network Graphics）便携式网络图形，是 Macromedia 公司出品的 Fireworks 的专业格式，这个格式使用于网络图形，支持背景透明，缺点是不支持动画效果。PNG使用从LZ77派生的无损数据压缩算法，能够提供长度比GIF小30%的无损压缩图像文件。它同时提供 24 位和 48 位真彩色图像支持以及其他诸多技术性支持。PNG用来存储灰度图像时，灰度图像的深度可多达16位，存储彩色图像时，彩色图像的深度可多达48位，并且还可存储多达16位的α通道数据。</p>
+<p>在PNG的基础上另有发展出支持动画的 APNG 和 MNG 格式，但普及度不高。</p>
+<h2 id="PSD"><a href="#PSD" class="headerlink" title="PSD"></a>PSD</h2><p>PSD（PhotoShop Document），PhotoShop文档，是 Photoshop 图像处理软件的专用文件格式，文件扩展名是“．psd”，可以支持图层、通道、蒙板和不同色彩模式的各种图像特征，是一种非压缩的原始文件保存格式。扫描仪不能直接生成该种格式的文件。PSD文件有时容量会很大，但由于可以保留所有原始信息，在图像处理中对于尚未制作完成的图像，选用 PSD 格式保存是最佳的选择。</p>
+<h2 id="ICO"><a href="#ICO" class="headerlink" title="ICO"></a>ICO</h2><p>ICO（Icon）图标，是 Windows 系统使用的图标文件格式。这种文件格式广泛存在于 Windows 系统中的 dll 、exe 文件中。浏览器的标签图标也经常使用这类文件。</p>
+<h2 id="SVG"><a href="#SVG" class="headerlink" title="SVG"></a>SVG</h2><p>SVG（Scalable Vector Graphics）可缩放矢量图形，是基于XML（标准通用标记语言的子集）的，由万维网联盟进行开发的一种开放标准的矢量图形语言。可任意放大图形显示，边缘清晰，文字在SVG图像中保留可编辑和可搜寻的状态，没有字体的限制，生成的文件很小，下载很快，十分适合用于设计高分辨率的Web图形页面。</p>
+<h2 id="web常见图片格式比较"><a href="#web常见图片格式比较" class="headerlink" title="web常见图片格式比较"></a>web常见图片格式比较</h2><h3 id="jpg-jpeg"><a href="#jpg-jpeg" class="headerlink" title="jpg/jpeg"></a>jpg/jpeg</h3><p><em>大图片，banner</em></p>
+<ol>
+<li>采用离散余弦变换/离散小波变换进行有损压缩，压缩比灵活</li>
+<li>支持24bit彩色</li>
+<li>支持从模糊到清晰渐进式加载（基于DCT的累进编码模式/JPEG2000）</li>
+<li>不支持透明色</li>
+</ol>
+<h3 id="gif"><a href="#gif" class="headerlink" title="gif"></a>gif</h3><p><em>动画图片，小图片，打点的图片</em></p>
+<ol>
+<li>采用LZW压缩算法</li>
+<li>不支持24bit彩色模式，位深为1-8bit，最多存储256色，适合展示灰度图像或色彩较少的图片</li>
+<li>支持单色透明（GIF89a）</li>
+<li>支持动画（GIF89a）</li>
+<li>Compu Serve 公司拥有版权</li>
+</ol>
+<h3 id="png"><a href="#png" class="headerlink" title="png"></a>png</h3><p><em>需要透明效果的图片</em></p>
+<ol>
+<li>采用从LZ77派生的无损数据压缩算法，压缩比高，文件体积小</li>
+<li>有PNG8、PNG24、PNG32三种形式，PNG8支持256色，PNG24、PNG32支持24bit彩色</li>
+<li>支持透明/半透明效果（PNG8支持索引透明和alpha透明，PNG32支持256级透明）</li>
+<li>IE6等旧浏览器不支持</li>
+</ol>
+<h3 id="svg"><a href="#svg" class="headerlink" title="svg"></a>svg</h3><p><em>图标形按钮</em></p>
+<ol>
+<li>基于 XML（Extensible Markup Language），使用代码来描绘图像，文件体积小</li>
+<li>可缩放，不会牺牲图像质量</li>
+<li>可编辑，文本可搜索</li>
+<li>IE9等旧浏览器不支持</li>
+<li>加载较慢</li>
+<li>仅可用来描述二维矢量及矢量/栅格图形</li>
+</ol>
+<h3 id="ico"><a href="#ico" class="headerlink" title="ico"></a>ico</h3><p><em>favicon图片</em></p>
+<ol>
+<li>有一套标准的大小和属性格式，且通常是正方形的，小尺寸的</li>
+<li>支持透明</li>
+</ol>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

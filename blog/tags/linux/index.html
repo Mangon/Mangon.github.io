@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        标签: linux | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="Mangon&#39;s Technology Blog" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+
+        
+            <div class="author-meta">
+                
+                <div class="author-avatar">
+                    <a href="/blog/">
+                        <img src="/blog/images/avatar.jpeg" title="Mangon">
+                    </a>
+                </div>
+                
+                <div class="author-name">Mangon</div>
+                <div class="author-work">前端开发工程师</div>
+                <div class="author-location">
+                    <i class="icon-location vm"></i>
+                    <span class="vm">中国北京</span>
+                </div>
+                
+                <div class="author-thread-wrap">
+                    <div class="author-threads clearfix">
+                        
+                            <a class="thread-item" href="https://github.com/mangon" target="_blank" rel="external noopener noreferrer"><i class="icon-github"></i></a>
+                        
+                        
+                        
+                            <a class="thread-item" href="https://mangon.cn/blog/atom.xml" target="_blank" rel="external noopener noreferrer"><i class="icon-favorite"></i></a>
+                        
+                        
+                            <a class="thread-item" href="https://mangon.cn/resume" target="_blank" rel="external noopener noreferrer"><i class="icon-circle-more"></i></a>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            <a href="/blog/2025/01/20/CS-linux%E7%B3%BB%E7%BB%9F%E4%B8%8B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">linux系统下常用命令</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2025-01-20T09:17:59.000Z" itemprop="datePublished">2025-01-20</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/linux/" rel="tag">linux</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="alias"><a href="#alias" class="headerlink" title="alias"></a>alias</h2><p><code>alias</code> 命令用于为命令创建别名，以便简化输入和提高效率。</p>
+<h3 id="用法示例"><a href="#用法示例" class="headerlink" title="用法示例"></a>用法示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> ll=<span class="string">&#x27;ls -la&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>这个命令会创建一个别名 <code>ll</code>，用于执行 <code>ls -la</code> 命令。</p>
+<h3 id="常见用法"><a href="#常见用法" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li>创建简单别名：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> gs=<span class="string">&#x27;git status&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>这个命令会创建一个别名 <code>gs</code>，用于快速查看 Git 状态。</p>
+<ul>
+<li>创建带参数的别名：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> <span class="built_in">rm</span>=<span class="string">&#x27;rm -i&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>这个命令会创建一个别名 <code>rm</code>，在删除文件时提示确认。</p>
+<ul>
+<li>查看当前所有别名：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span></span><br></pre></td></tr></table></figure>
+<p>这个命令会列出当前会话中所有已定义的别名。</p>
+<ul>
+<li>删除别名：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">unalias</span> ll</span><br></pre></td></tr></table></figure>
+<p>这个命令会删除别名 <code>ll</code>。</p>
+<ul>
+<li>将别名永久保存：<br>可以将别名添加到用户的 <code>~/.bashrc</code> 或 <code>~/.bash_aliases</code> 文件中，以便在每次登录时自动加载。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;alias ll=&#x27;ls -la&#x27;&quot;</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建复杂的别名（使用函数）：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> mygrep=<span class="string">&#x27;grep --color=auto&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>这个命令会创建一个别名 <code>mygrep</code>，在使用 <code>grep</code> 时自动启用颜色高亮。</p>
+<ul>
+<li>使用别名时显示帮助信息：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> h=<span class="string">&#x27;history&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>这个命令会创建一个别名 <code>h</code>，用于快速查看命令历史。</p>
+<h2 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h2><p><code>awk</code> 是一个强大的文本处理工具，主要用于模式扫描和处理。它可以从文本文件中提取和处理数据。</p>
+<h3 id="用法示例-1"><a href="#用法示例-1" class="headerlink" title="用法示例"></a>用法示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk <span class="string">&#x27;&#123;print $1&#125;&#x27;</span> filename.txt</span><br></pre></td></tr></table></figure>
+<p>这个命令会打印 <code>filename.txt</code> 文件中每一行的第一个字段。</p>
+<h3 id="常见用法-1"><a href="#常见用法-1" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li>统计文件中的行数：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk <span class="string">&#x27;END &#123;print NR&#125;&#x27;</span> filename.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>计算某一列的总和：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk <span class="string">&#x27;&#123;sum += $1&#125; END &#123;print sum&#125;&#x27;</span> filename.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>过滤特定模式的行：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk <span class="string">&#x27;/pattern/&#x27;</span> filename.txt</span><br></pre></td></tr></table></figure>
+<h2 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h2><p><code>cat</code> 命令用于连接文件并打印到标准输出，常用于查看文件内容。</p>
+<h3 id="用法示例-2"><a href="#用法示例-2" class="headerlink" title="用法示例"></a>用法示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> filename.txt</span><br></pre></td></tr></table></figure>
+<p>这个命令会打印 <code>filename.txt</code> 文件的所有内容。</p>
+<h3 id="常见用法-2"><a href="#常见用法-2" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li>查看多个文件的内容：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> file1.txt file2.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将文件内容输出到另一个文件：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> filename.txt &gt; newfile.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>追加文件内容到另一个文件：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> filename.txt &gt;&gt; existingfile.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>显示行号：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> -n filename.txt</span><br></pre></td></tr></table></figure>
+<h2 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h2><p><code>cd</code> 命令用于更改当前工作目录。</p>
+<h3 id="用法示例-3"><a href="#用法示例-3" class="headerlink" title="用法示例"></a>用法示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /path/to/directory</span><br></pre></td></tr></table></figure>
+<p>这个命令会将当前工作目录更改为指定的目录。</p>
+<h3 id="常见用法-3"><a href="#常见用法-3" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li>返回上一级目录：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ..</span><br></pre></td></tr></table></figure>
+<ul>
+<li>返回用户主目录：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br></pre></td></tr></table></figure>
+<ul>
+<li>切换到上一次访问的目录：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> -</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用相对路径切换目录：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> subdirectory/</span><br></pre></td></tr></table></figure>
+<p>这个命令会切换到当前目录下的 <code>subdirectory</code> 目录。</p>
+<ul>
+<li>切换到多个目录（使用 <code>pushd</code> 和 <code>popd</code>）：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pushd</span> /path/to/directory</span><br><span class="line"><span class="comment"># ... 在新目录中工作 ...</span></span><br><span class="line"><span class="built_in">popd</span></span><br></pre></td></tr></table></figure>
+<p>这个命令会将当前目录推入目录栈并切换到指定目录，<code>popd</code> 则会返回到之前的目录。</p>
+<h2 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a>chmod</h2><p><code>chmod</code> 命令用于更改文件或目录的权限。</p>
+<h3 id="用法示例-4"><a href="#用法示例-4" class="headerlink" title="用法示例"></a>用法示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> 755 filename.txt</span><br></pre></td></tr></table></figure>
+<p>这个命令会将 <code>filename.txt</code> 的权限更改为可读、可写和可执行（所有者），可读和可执行（组和其他用户）。</p>
+<h3 id="常见用法-4"><a href="#常见用法-4" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li>递归更改目录及其内容的权限：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> -R 755 directory_name</span><br></pre></td></tr></table></figure>
+<ul>
+<li>仅添加执行权限：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x filename.sh</span><br></pre></td></tr></table></figure>
+<ul>
+<li>仅移除写权限：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> -w filename.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>设置特定权限（如只读）：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> 444 filename.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用符号模式更改权限：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> u+x filename.txt  <span class="comment"># 为文件所有者添加执行权限</span></span><br><span class="line"><span class="built_in">chmod</span> g-w filename.txt  <span class="comment"># 从组中移除写权限</span></span><br><span class="line"><span class="built_in">chmod</span> o=r filename.txt  <span class="comment"># 设置其他用户为只读权限</span></span><br></pre></td></tr></table></figure>
+<h2 id="chown"><a href="#chown" class="headerlink" title="chown"></a>chown</h2><p><code>chown</code> 命令用于更改文件或目录的所有者和所属组。</p>
+<h3 id="用法示例-5"><a href="#用法示例-5" class="headerlink" title="用法示例"></a>用法示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chown</span> user:group filename.txt</span><br></pre></td></tr></table></figure>
+<p>这个命令会将 <code>filename.txt</code> 的所有者更改为 <code>user</code>，所属组更改为 <code>group</code>。</p>
+<h3 id="常见用法-5"><a href="#常见用法-5" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li>仅更改文件的所有者：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chown</span> user filename.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>仅更改文件的所属组：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chown</span> :group filename.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>递归更改目录及其内容的所有者和所属组：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chown</span> -R user:group directory_name</span><br></pre></td></tr></table></figure>
+<ul>
+<li>显示当前文件的所有者和所属组：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> -l filename.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>更改多个文件的所有者：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chown</span> user1:usergroup file1.txt file2.txt</span><br></pre></td></tr></table></figure>
+<h2 id="cp"><a href="#cp" class="headerlink" title="cp"></a>cp</h2><p><code>cp</code> 命令用于复制文件和目录。</p>
+<h3 id="用法示例-6"><a href="#用法示例-6" class="headerlink" title="用法示例"></a>用法示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> source.txt destination.txt</span><br></pre></td></tr></table></figure>
+<p>这个命令会将 <code>source.txt</code> 文件复制到 <code>destination.txt</code>。</p>
+<h3 id="常见用法-6"><a href="#常见用法-6" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li>复制文件到另一个目录：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> filename.txt /path/to/directory/</span><br></pre></td></tr></table></figure>
+<ul>
+<li>复制目录及其内容（使用 <code>-r</code> 选项）：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> -r sourcedir/ targetdir/</span><br></pre></td></tr></table></figure>
+<ul>
+<li>复制并重命名文件：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> filename.txt newname.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>交互式复制（在覆盖文件前提示确认）：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> -i filename.txt destination.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>复制文件并保留文件属性：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> -p filename.txt destination.txt</span><br></pre></td></tr></table></figure>
+<h2 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h2><p><code>curl</code> 是一个用于在命令行中进行数据传输的工具，支持多种协议，包括 HTTP、HTTPS、FTP 等。</p>
+<h3 id="用法示例-7"><a href="#用法示例-7" class="headerlink" title="用法示例"></a>用法示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http://example.com</span><br></pre></td></tr></table></figure>
+<p>这个命令会从 <code>http://example.com</code> 下载内容并打印到标准输出。</p>
+<h3 id="常见用法-7"><a href="#常见用法-7" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li>下载文件：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -O http://example.com/file.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>发送 POST 请求：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST -d <span class="string">&quot;param1=value1&amp;param2=value2&quot;</span> http://example.com/api</span><br></pre></td></tr></table></figure>
+<ul>
+<li>添加请求头：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -H <span class="string">&quot;Authorization: Bearer TOKEN&quot;</span> http://example.com/api</span><br></pre></td></tr></table></figure>
+<ul>
+<li>显示请求和响应的详细信息：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -v http://example.com</span><br></pre></td></tr></table></figure>
+<ul>
+<li>保存输出到文件：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o output.txt http://example.com</span><br></pre></td></tr></table></figure>
+<h2 id="df"><a href="#df" class="headerlink" title="df"></a>df</h2><p><code>df</code> 命令用于显示文件系统的磁盘空间使用情况。</p>
+<h3 id="用法示例-8"><a href="#用法示例-8" class="headerlink" title="用法示例"></a>用法示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">df</span></span><br></pre></td></tr></table></figure>
+<p>这个命令会显示所有挂载的文件系统的磁盘使用情况。</p>
+<h3 id="常见用法-8"><a href="#常见用法-8" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li>以人类可读的格式显示（例如，KB、MB、GB）：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">df</span> -h</span><br></pre></td></tr></table></figure>
+<ul>
+<li>显示特定文件系统的信息：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">df</span> /path/to/directory</span><br></pre></td></tr></table></figure>
+<ul>
+<li>显示所有文件系统，包括虚拟文件系统：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">df</span> -a</span><br></pre></td></tr></table></figure>
+<ul>
+<li>显示 inode 使用情况：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">df</span> -i</span><br></pre></td></tr></table></figure>
+<p>这个命令会显示每个文件系统的 inode 使用情况。</p>
+<h2 id="du"><a href="#du" class="headerlink" title="du"></a>du</h2><p><code>du</code> 命令用于显示目录或文件的磁盘使用情况。</p>
+<h3 id="用法示例-9"><a href="#用法示例-9" class="headerlink" title="用法示例"></a>用法示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">du</span> /path/to/directory</span><br></pre></td></tr></table></figure>
+<p>这个命令会显示指定目录及其子目录的磁盘使用情况。</p>
+<h3 id="常见用法-9"><a href="#常见用法-9" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li>显示指定目录的总大小：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">du</span> -sh /path/to/directory</span><br></pre></td></tr></table></figure>
+<p>这个命令会以人类可读的格式（如 KB、MB、GB）显示指定目录的总大小。</p>
+<ul>
+<li>显示每个子目录的大小：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">du</span> -h /path/to/directory</span><br></pre></td></tr></table></figure>
+<p>这个命令会以人类可读的格式显示指定目录下每个子目录的大小。</p>
+<ul>
+<li>递归显示所有子目录的大小：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">du</span> -ah /path/to/directory</span><br></pre></td></tr></table></figure>
+<p>这个命令会显示指定目录及其所有子目录和文件的大小。</p>
+<ul>
+<li>按大小排序显示：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">du</span> -sh /path/to/directory/* | <span class="built_in">sort</span> -h</span><br></pre></td></tr></table></figure>
+<p>这个命令会显示指定目录下每个文件和子目录的大小，并按大小排序。</p>
+<ul>
+<li>显示特定深度的目录大小：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">du</span> -h --max-depth=1 /path/to/directory</span><br></pre></td></tr></table></figure>
+<p>这个命令会显示指定目录下的每个子目录的大小，但只显示到第一层深度。</p>
+<ul>
+<li>显示文件系统的使用情况：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">du</span> -x /path/to/directory</span><br></pre></td></tr></table></figure>
+<p>这个命令会限制 <code>du</code> 只计算指定目录所在的文件系统的大小。</p>
+<h2 id="echo"><a href="#echo" class="headerlink" title="echo"></a>echo</h2><p><code>echo</code> 命令用于在终端输出文本或变量的值。</p>
+<h3 id="用法示例-10"><a href="#用法示例-10" class="headerlink" title="用法示例"></a>用法示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Hello, World!&quot;</span></span><br></pre></td></tr></table></figure>
+<p>这个命令会在终端打印 <code>Hello, World!</code>。</p>
+<h3 id="常见用法-10"><a href="#常见用法-10" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li>输出变量的值：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name=<span class="string">&quot;Alice&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Hello, <span class="variable">$name</span>!&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>输出带有换行符的文本：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;Line 1\nLine 2&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>不输出换行符：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> -n <span class="string">&quot;This is on the same line.&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>输出带有特殊字符的文本：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;This is a dollar sign: \$&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><p><code>find</code> 命令用于在目录中查找文件和目录，支持多种搜索条件。</p>
+<h3 id="用法示例-11"><a href="#用法示例-11" class="headerlink" title="用法示例"></a>用法示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /path/to/directory -name <span class="string">&quot;filename.txt&quot;</span></span><br></pre></td></tr></table></figure>
+<p>这个命令会在指定目录中查找名为 <code>filename.txt</code> 的文件。</p>
+<h3 id="常见用法-11"><a href="#常见用法-11" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li>查找特定类型的文件：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /path/to/directory -<span class="built_in">type</span> f -name <span class="string">&quot;*.txt&quot;</span></span><br></pre></td></tr></table></figure>
+<p>这个命令会查找所有以 <code>.txt</code> 结尾的文件。</p>
+<ul>
+<li>按文件大小查找：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /path/to/directory -size +10M</span><br></pre></td></tr></table></figure>
+<p>这个命令会查找大于 10MB 的文件。</p>
+<ul>
+<li>按修改时间查找：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /path/to/directory -mtime -7</span><br></pre></td></tr></table></figure>
+<p>这个命令会查找最近 7 天内修改过的文件。</p>
+<ul>
+<li>查找并执行命令：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /path/to/directory -name <span class="string">&quot;*.log&quot;</span> -<span class="built_in">exec</span> <span class="built_in">rm</span> &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+<p>这个命令会查找所有 <code>.log</code> 文件并删除它们。</p>
+<ul>
+<li>查找并显示详细信息：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /path/to/directory -name <span class="string">&quot;*.txt&quot;</span> -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
+<p>这个命令会查找所有 <code>.txt</code> 文件并打印其路径。</p>
+<ul>
+<li>查找空文件：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /path/to/directory -<span class="built_in">type</span> f -empty</span><br></pre></td></tr></table></figure>
+<p>这个命令会查找所有空文件。</p>
+<ul>
+<li>查找特定用户的文件：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /path/to/directory -user username</span><br></pre></td></tr></table></figure>
+<p>这个命令会查找属于指定用户的文件。</p>
+<h2 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h2><p><code>grep</code> 命令用于在文件中搜索指定的模式，并打印匹配的行。</p>
+<h3 id="用法示例-12"><a href="#用法示例-12" class="headerlink" title="用法示例"></a>用法示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep <span class="string">&quot;pattern&quot;</span> filename.txt</span><br></pre></td></tr></table></figure>
+<p>这个命令会在 <code>filename.txt</code> 文件中搜索包含 <code>pattern</code> 的行并打印出来。</p>
+<h3 id="常见用法-12"><a href="#常见用法-12" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li>忽略大小写搜索：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -i <span class="string">&quot;pattern&quot;</span> filename.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>显示行号：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -n <span class="string">&quot;pattern&quot;</span> filename.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>递归搜索目录中的文件：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -r <span class="string">&quot;pattern&quot;</span> /path/to/directory/</span><br></pre></td></tr></table></figure>
+<ul>
+<li>只显示匹配的部分：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -o <span class="string">&quot;pattern&quot;</span> filename.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>反向匹配（显示不包含模式的行）：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -v <span class="string">&quot;pattern&quot;</span> filename.txt</span><br></pre></td></tr></table></figure>
+<h2 id="head"><a href="#head" class="headerlink" title="head"></a>head</h2><p><code>head</code> 命令用于显示文件的开头部分，默认情况下显示前 10 行。</p>
+<h3 id="用法示例-13"><a href="#用法示例-13" class="headerlink" title="用法示例"></a>用法示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">head</span> filename.txt</span><br></pre></td></tr></table></figure>
+<p>这个命令会打印 <code>filename.txt</code> 文件的前 10 行。</p>
+<h3 id="常见用法-13"><a href="#常见用法-13" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li>显示指定行数的开头部分：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">head</span> -n 5 filename.txt</span><br></pre></td></tr></table></figure>
+<p>这个命令会打印 <code>filename.txt</code> 文件的前 5 行。</p>
+<ul>
+<li>显示多个文件的开头部分：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">head</span> file1.txt file2.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>显示文件的字节数：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">head</span> -c 20 filename.txt</span><br></pre></td></tr></table></figure>
+<p>这个命令会打印 <code>filename.txt</code> 文件的前 20 个字节。</p>
+<h2 id="history"><a href="#history" class="headerlink" title="history"></a>history</h2><p><code>history</code> 命令用于显示用户在当前会话中输入的命令历史记录。</p>
+<h3 id="用法示例-14"><a href="#用法示例-14" class="headerlink" title="用法示例"></a>用法示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">history</span></span><br></pre></td></tr></table></figure>
+<p>这个命令会列出当前用户在终端中输入的所有命令。</p>
+<h3 id="常见用法-14"><a href="#常见用法-14" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li>显示最近的命令数量：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">history</span> 10</span><br></pre></td></tr></table></figure>
+<p>这个命令会显示最近输入的 10 条命令。</p>
+<ul>
+<li>重新执行某条命令：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!n</span><br></pre></td></tr></table></figure>
+<p>其中 <code>n</code> 是命令在历史记录中的编号。例如，<code>!5</code> 会重新执行历史记录中编号为 5 的命令。</p>
+<ul>
+<li>清空命令历史：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">history</span> -c</span><br></pre></td></tr></table></figure>
+<p>这个命令会清空当前会话的命令历史记录。</p>
+<ul>
+<li>将历史记录保存到文件：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">history</span> &gt; history.txt</span><br></pre></td></tr></table></figure>
+<p>这个命令会将当前会话的命令历史保存到 <code>history.txt</code> 文件中。</p>
+<ul>
+<li>使用 <code>grep</code> 搜索历史记录：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">history</span> | grep <span class="string">&quot;pattern&quot;</span></span><br></pre></td></tr></table></figure>
+<p>这个命令会在历史记录中搜索包含 <code>pattern</code> 的命令。</p>
+<ul>
+<li>在命令行中使用上一个命令：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!!</span><br></pre></td></tr></table></figure>
+<p>这个命令会重新执行上一个输入的命令。</p>
+<h2 id="kill-killall"><a href="#kill-killall" class="headerlink" title="kill/killall"></a>kill/killall</h2><p><code>kill</code> 命令用于向进程发送信号，通常用于终止进程。</p>
+<h3 id="用法示例-15"><a href="#用法示例-15" class="headerlink" title="用法示例"></a>用法示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> PID</span><br></pre></td></tr></table></figure>
+<p>这个命令会向指定的进程 ID（PID）发送终止信号。</p>
+<h3 id="常见用法-15"><a href="#常见用法-15" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li>强制终止进程：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> -9 PID</span><br></pre></td></tr></table></figure>
+<p>这个命令会强制终止指定的进程。</p>
+<ul>
+<li>发送其他信号（如停止进程）：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> -STOP PID</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看所有进程并找到 PID：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep process_name</span><br></pre></td></tr></table></figure>
+<ul>
+<li>终止所有匹配的进程：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">killall process_name</span><br></pre></td></tr></table></figure>
+<h2 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h2><p><code>ls</code> 命令用于列出目录中的文件和子目录。</p>
+<h3 id="用法示例-16"><a href="#用法示例-16" class="headerlink" title="用法示例"></a>用法示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span></span><br></pre></td></tr></table></figure>
+<p>这个命令会列出当前目录中的所有文件和子目录。</p>
+<h3 id="常见用法-16"><a href="#常见用法-16" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li>列出详细信息（包括权限、所有者、大小等）：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> -l</span><br></pre></td></tr></table></figure>
+<ul>
+<li>列出所有文件，包括隐藏文件（以点开头的文件）：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> -a</span><br></pre></td></tr></table></figure>
+<ul>
+<li>以人类可读的格式显示文件大小：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> -lh</span><br></pre></td></tr></table></figure>
+<ul>
+<li>按时间排序列出文件：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> -lt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>递归列出所有子目录中的文件：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> -R</span><br></pre></td></tr></table></figure>
+<ul>
+<li>列出特定类型的文件（例如，只列出目录）：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> -d */</span><br></pre></td></tr></table></figure>
+<h2 id="man"><a href="#man" class="headerlink" title="man"></a>man</h2><p><code>man</code> 命令用于查看其他命令的手册页，提供命令的详细信息和用法。</p>
+<h3 id="用法示例-17"><a href="#用法示例-17" class="headerlink" title="用法示例"></a>用法示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man command_name</span><br></pre></td></tr></table></figure>
+<p>这个命令会显示 <code>command_name</code> 的手册页。</p>
+<h3 id="常见用法-17"><a href="#常见用法-17" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li>查看特定命令的手册页：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man <span class="built_in">ls</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>搜索手册页中的关键字：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man -k keyword</span><br></pre></td></tr></table></figure>
+<p>这个命令会列出所有包含 <code>keyword</code> 的手册页。</p>
+<ul>
+<li>查看手册页的特定部分（例如，用户命令、系统调用等）：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">man 1 command_name  <span class="comment"># 用户命令</span></span><br><span class="line">man 2 command_name  <span class="comment"># 系统调用</span></span><br><span class="line">man 3 command_name  <span class="comment"># 库函数</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>在手册页中向上或向下滚动：<br>使用 <code>↑</code> 和 <code>↓</code> 键进行滚动，使用 <code>q</code> 键退出手册页。</p>
+</li>
+<li><p>查看手册页的帮助信息：</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man man</span><br></pre></td></tr></table></figure>
+<p>这个命令会显示 <code>man</code> 命令本身的手册页。</p>
+<h2 id="mv"><a href="#mv" class="headerlink" title="mv"></a>mv</h2><p><code>mv</code> 命令用于移动或重命名文件和目录。</p>
+<h3 id="用法示例-18"><a href="#用法示例-18" class="headerlink" title="用法示例"></a>用法示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mv</span> oldname.txt newname.txt</span><br></pre></td></tr></table></figure>
+<p>这个命令会将 <code>oldname.txt</code> 文件重命名为 <code>newname.txt</code>。</p>
+<h3 id="常见用法-18"><a href="#常见用法-18" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li>移动文件到另一个目录：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mv</span> filename.txt /path/to/directory/</span><br></pre></td></tr></table></figure>
+<ul>
+<li>移动并重命名文件：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mv</span> filename.txt /path/to/directory/newname.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>交互式移动（在覆盖文件前提示确认）：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mv</span> -i filename.txt /path/to/directory/</span><br></pre></td></tr></table></figure>
+<ul>
+<li>强制移动（不提示确认）：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mv</span> -f filename.txt /path/to/directory/</span><br></pre></td></tr></table></figure>
+<h2 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h2><p><code>ps</code> 命令用于显示当前运行的进程信息。</p>
+<h3 id="用法示例-19"><a href="#用法示例-19" class="headerlink" title="用法示例"></a>用法示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps</span><br></pre></td></tr></table></figure>
+<p>这个命令会列出当前用户的所有进程。</p>
+<h3 id="常见用法-19"><a href="#常见用法-19" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li>显示所有进程，包括其他用户的进程：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -e</span><br></pre></td></tr></table></figure>
+<ul>
+<li>显示详细信息：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -f</span><br></pre></td></tr></table></figure>
+<ul>
+<li>显示进程树：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ejH</span><br></pre></td></tr></table></figure>
+<ul>
+<li>显示特定用户的进程：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -u username</span><br></pre></td></tr></table></figure>
+<ul>
+<li>显示与特定命令相关的进程：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -C command_name</span><br></pre></td></tr></table></figure>
+<h2 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h2><p><code>pwd</code> 命令用于显示当前工作目录的完整路径。</p>
+<h3 id="用法示例-20"><a href="#用法示例-20" class="headerlink" title="用法示例"></a>用法示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pwd</span></span><br></pre></td></tr></table></figure>
+<p>这个命令会打印当前工作目录的绝对路径。</p>
+<h3 id="常见用法-20"><a href="#常见用法-20" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li>在脚本中使用 <code>pwd</code> 获取当前目录：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">current_dir=$(<span class="built_in">pwd</span>)</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;当前目录是: <span class="variable">$current_dir</span>&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>与其他命令结合使用：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /path/to/directory &amp;&amp; <span class="built_in">pwd</span></span><br></pre></td></tr></table></figure>
+<p>这个命令会切换到指定目录并显示该目录的路径。</p>
+<h2 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h2><p><code>rm</code> 命令用于删除文件和目录。</p>
+<h3 id="用法示例-21"><a href="#用法示例-21" class="headerlink" title="用法示例"></a>用法示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rm</span> filename.txt</span><br></pre></td></tr></table></figure>
+<p>这个命令会删除 <code>filename.txt</code> 文件。</p>
+<h3 id="常见用法-21"><a href="#常见用法-21" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li>删除多个文件：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rm</span> file1.txt file2.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>递归删除目录及其内容（使用 <code>-r</code> 选项）：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rm</span> -r directory_name</span><br></pre></td></tr></table></figure>
+<ul>
+<li>强制删除文件（不提示确认）：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rm</span> -f filename.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>交互式删除（在删除前提示确认）：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rm</span> -i filename.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>删除空目录：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rmdir</span> directory_name</span><br></pre></td></tr></table></figure>
+<h2 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h2><p><code>scp</code> 命令用于在本地和远程主机之间安全地复制文件。</p>
+<h3 id="用法示例-22"><a href="#用法示例-22" class="headerlink" title="用法示例"></a>用法示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp localfile.txt user@remotehost:/path/to/destination</span><br></pre></td></tr></table></figure>
+<p>这个命令会将本地的 <code>localfile.txt</code> 文件复制到远程主机的指定路径。</p>
+<h3 id="常见用法-22"><a href="#常见用法-22" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li>从远程主机复制文件到本地：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp user@remotehost:/path/to/remotefile.txt /local/path</span><br></pre></td></tr></table></figure>
+<ul>
+<li>递归复制整个目录：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -r localdir user@remotehost:/path/to/destination</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用特定端口进行连接：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -P 2222 localfile.txt user@remotehost:/path/to/destination</span><br></pre></td></tr></table></figure>
+<ul>
+<li>复制文件并保留文件属性：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -p localfile.txt user@remotehost:/path/to/destination</span><br></pre></td></tr></table></figure>
+<ul>
+<li>显示详细的传输过程：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -v localfile.txt user@remotehost:/path/to/destination</span><br></pre></td></tr></table></figure>
+<h2 id="sed"><a href="#sed" class="headerlink" title="sed"></a>sed</h2><p><code>sed</code> 是一个流编辑器，用于对文本进行基本的转换和处理。</p>
+<h3 id="用法示例-23"><a href="#用法示例-23" class="headerlink" title="用法示例"></a>用法示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed <span class="string">&#x27;s/old/new/&#x27;</span> filename.txt</span><br></pre></td></tr></table></figure>
+<p>这个命令会将 <code>filename.txt</code> 文件中每一行的第一个 <code>old</code> 替换为 <code>new</code>。</p>
+<h3 id="常见用法-23"><a href="#常见用法-23" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li>替换文件中的所有匹配项：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed <span class="string">&#x27;s/old/new/g&#x27;</span> filename.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在特定行进行替换：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed <span class="string">&#x27;2s/old/new/&#x27;</span> filename.txt</span><br></pre></td></tr></table></figure>
+<p>这个命令会在第二行中将 <code>old</code> 替换为 <code>new</code>。</p>
+<ul>
+<li>删除特定行：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed <span class="string">&#x27;3d&#x27;</span> filename.txt</span><br></pre></td></tr></table></figure>
+<p>这个命令会删除 <code>filename.txt</code> 文件的第三行。</p>
+<ul>
+<li>直接修改文件（使用 <code>-i</code> 选项）：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i <span class="string">&#x27;s/old/new/g&#x27;</span> filename.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>显示行号：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed = filename.txt | sed <span class="string">&#x27;N;s/\n/ /&#x27;</span></span><br></pre></td></tr></table></figure>
+<h2 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h2><p><code>ssh</code> 命令用于安全地远程登录到另一台计算机。</p>
+<h3 id="用法示例-24"><a href="#用法示例-24" class="headerlink" title="用法示例"></a>用法示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh user@remotehost</span><br></pre></td></tr></table></figure>
+<p>这个命令会以 <code>user</code> 用户身份登录到 <code>remotehost</code>。</p>
+<h3 id="常见用法-24"><a href="#常见用法-24" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li>使用特定端口进行连接：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -p 2222 user@remotehost</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在登录时执行命令：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh user@remotehost <span class="string">&#x27;command_to_run&#x27;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用密钥文件进行身份验证：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -i /path/to/private_key user@remotehost</span><br></pre></td></tr></table></figure>
+<ul>
+<li>进行端口转发：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -L local_port:remotehost:remote_port user@remotehost</span><br></pre></td></tr></table></figure>
+<ul>
+<li>复制文件到远程主机（使用 <code>scp</code>）：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp localfile.txt user@remotehost:/path/to/destination</span><br></pre></td></tr></table></figure>
+<h2 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h2><p><code>tail</code> 命令用于显示文件的结尾部分，默认情况下显示最后 10 行。</p>
+<h3 id="用法示例-25"><a href="#用法示例-25" class="headerlink" title="用法示例"></a>用法示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">tail</span> filename.txt</span><br></pre></td></tr></table></figure>
+<p>这个命令会打印 <code>filename.txt</code> 文件的最后 10 行。</p>
+<h3 id="常见用法-25"><a href="#常见用法-25" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li>显示指定行数的结尾部分：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">tail</span> -n 5 filename.txt</span><br></pre></td></tr></table></figure>
+<p>这个命令会打印 <code>filename.txt</code> 文件的最后 5 行。</p>
+<ul>
+<li>实时查看文件的新增内容（类似于日志文件）：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">tail</span> -f filename.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>显示多个文件的结尾部分：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">tail</span> file1.txt file2.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>显示文件的字节数：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">tail</span> -c 20 filename.txt</span><br></pre></td></tr></table></figure>
+<p>这个命令会打印 <code>filename.txt</code> 文件的最后 20 个字节。</p>
+<h2 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h2><p><code>tar</code> 命令用于打包和压缩文件，常用于备份和传输文件。</p>
+<h3 id="用法示例-26"><a href="#用法示例-26" class="headerlink" title="用法示例"></a>用法示例</h3><ul>
+<li>创建一个 tar 包：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -cvf archive.tar /path/to/directory</span><br></pre></td></tr></table></figure>
+<p>这个命令会将指定目录打包成 <code>archive.tar</code> 文件。</p>
+<h3 id="常见用法-26"><a href="#常见用法-26" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li>创建一个压缩的 tar.gz 包：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -czvf archive.tar.gz /path/to/directory</span><br></pre></td></tr></table></figure>
+<p>这个命令会将指定目录打包并压缩成 <code>archive.tar.gz</code> 文件。</p>
+<ul>
+<li>解压 tar 包：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf archive.tar</span><br></pre></td></tr></table></figure>
+<p>这个命令会解压 <code>archive.tar</code> 文件。</p>
+<ul>
+<li>解压 tar.gz 包：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xzvf archive.tar.gz</span><br></pre></td></tr></table></figure>
+<p>这个命令会解压 <code>archive.tar.gz</code> 文件。</p>
+<ul>
+<li>查看 tar 包内容：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -tvf archive.tar</span><br></pre></td></tr></table></figure>
+<p>这个命令会列出 <code>archive.tar</code> 文件中的内容。</p>
+<h2 id="top"><a href="#top" class="headerlink" title="top"></a>top</h2><p><code>top</code> 命令用于实时显示系统中正在运行的进程和系统资源的使用情况。</p>
+<h3 id="用法示例-27"><a href="#用法示例-27" class="headerlink" title="用法示例"></a>用法示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top</span><br></pre></td></tr></table></figure>
+<p>这个命令会打开一个动态更新的界面，显示当前系统的进程信息和资源使用情况。</p>
+<h3 id="常见用法-27"><a href="#常见用法-27" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li><p>显示进程的详细信息：<br>在 <code>top</code> 界面中，可以按 <code>Shift + M</code> 按内存使用量排序，按 <code>Shift + P</code> 按 CPU 使用量排序。</p>
+</li>
+<li><p>结束进程：<br>在 <code>top</code> 界面中，按 <code>k</code> 键，然后输入要结束的进程 ID（PID），最后按 <code>Enter</code>。</p>
+</li>
+<li><p>刷新间隔：<br>在 <code>top</code> 界面中，按 <code>d</code> 键可以设置刷新间隔（以秒为单位）。</p>
+</li>
+<li><p>显示帮助信息：<br>在 <code>top</code> 界面中，按 <code>h</code> 键可以查看帮助信息。</p>
+</li>
+<li><p>退出 <code>top</code>：<br>在 <code>top</code> 界面中，按 <code>q</code> 键可以退出。</p>
+</li>
+</ul>
+<h2 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h2><p><code>touch</code> 命令用于创建空文件或更新文件的时间戳。</p>
+<h3 id="用法示例-28"><a href="#用法示例-28" class="headerlink" title="用法示例"></a>用法示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">touch</span> filename.txt</span><br></pre></td></tr></table></figure>
+<p>这个命令会创建一个名为 <code>filename.txt</code> 的空文件，如果文件已存在，则更新其最后修改时间。</p>
+<h3 id="常见用法-28"><a href="#常见用法-28" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li>创建多个空文件：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">touch</span> file1.txt file2.txt file3.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>更新文件的时间戳：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">touch</span> existingfile.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建带有特定时间戳的文件：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">touch</span> -t 202301010101 filename.txt</span><br></pre></td></tr></table></figure>
+<p>这个命令会将 <code>filename.txt</code> 的时间戳设置为 2023 年 1 月 1 日 01:01。</p>
+<ul>
+<li>使用当前时间戳创建文件：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">touch</span> -a filename.txt</span><br></pre></td></tr></table></figure>
+<p>这个命令会更新 <code>filename.txt</code> 的访问时间为当前时间。</p>
+<h2 id="vi"><a href="#vi" class="headerlink" title="vi"></a>vi</h2><p><code>vi</code> 是一个强大的文本编辑器，广泛用于 Unix 和 Linux 系统中。</p>
+<h3 id="用法示例-29"><a href="#用法示例-29" class="headerlink" title="用法示例"></a>用法示例</h3><p>打开文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi filename.txt</span><br></pre></td></tr></table></figure>
+<p>这个命令会打开 <code>filename.txt</code> 文件进行编辑。</p>
+<h3 id="常见用法-29"><a href="#常见用法-29" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li><p>进入插入模式：<br>在命令模式下，按 <code>i</code> 进入插入模式，可以开始编辑文本。</p>
+</li>
+<li><p>保存并退出：<br>在命令模式下，输入 <code>:wq</code> 保存文件并退出 <code>vi</code>。</p>
+</li>
+<li><p>仅保存：<br>在命令模式下，输入 <code>:w</code> 仅保存文件而不退出。</p>
+</li>
+<li><p>退出不保存：<br>在命令模式下，输入 <code>:q!</code> 强制退出而不保存更改。</p>
+</li>
+<li><p>删除行：<br>在命令模式下，输入 <code>dd</code> 删除当前行。</p>
+</li>
+<li><p>撤销操作：<br>在命令模式下，输入 <code>u</code> 撤销上一步操作。</p>
+</li>
+<li><p>查找文本：<br>在命令模式下，输入 <code>/pattern</code> 查找指定的 <code>pattern</code>。</p>
+</li>
+<li><p>替换文本：<br>在命令模式下，输入 <code>:%s/old/new/g</code> 将文件中的所有 <code>old</code> 替换为 <code>new</code>。</p>
+</li>
+</ul>
+<h2 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h2><p><code>vim</code> 是 <code>vi</code> 的增强版，提供了更多功能和更好的用户体验。</p>
+<h3 id="用法示例-30"><a href="#用法示例-30" class="headerlink" title="用法示例"></a>用法示例</h3><p>打开文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim filename.txt</span><br></pre></td></tr></table></figure>
+<p>这个命令会打开 <code>filename.txt</code> 文件进行编辑。</p>
+<h3 id="常见用法-30"><a href="#常见用法-30" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li><p>进入插入模式：<br>在命令模式下，按 <code>i</code> 进入插入模式，可以开始编辑文本。</p>
+</li>
+<li><p>保存并退出：<br>在命令模式下，输入 <code>:wq</code> 保存文件并退出 <code>vim</code>。</p>
+</li>
+<li><p>仅保存：<br>在命令模式下，输入 <code>:w</code> 仅保存文件而不退出。</p>
+</li>
+<li><p>退出不保存：<br>在命令模式下，输入 <code>:q!</code> 强制退出而不保存更改。</p>
+</li>
+<li><p>删除行：<br>在命令模式下，输入 <code>dd</code> 删除当前行。</p>
+</li>
+<li><p>撤销操作：<br>在命令模式下，输入 <code>u</code> 撤销上一步操作。</p>
+</li>
+<li><p>查找文本：<br>在命令模式下，输入 <code>/pattern</code> 查找指定的 <code>pattern</code>。</p>
+</li>
+<li><p>替换文本：<br>在命令模式下，输入 <code>:%s/old/new/g</code> 将文件中的所有 <code>old</code> 替换为 <code>new</code>。</p>
+</li>
+<li><p>显示行号：<br>在命令模式下，输入 <code>:set number</code> 显示行号。</p>
+</li>
+<li><p>语法高亮：<br>在命令模式下，输入 <code>:syntax on</code> 启用语法高亮。</p>
+</li>
+</ul>
+<h2 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h2><p><code>wget</code> 是一个用于从网络下载文件的命令行工具，支持 HTTP、HTTPS 和 FTP 协议。</p>
+<h3 id="用法示例-31"><a href="#用法示例-31" class="headerlink" title="用法示例"></a>用法示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://example.com/file.txt</span><br></pre></td></tr></table></figure>
+<p>这个命令会从指定的 URL 下载 <code>file.txt</code> 文件。</p>
+<h3 id="常见用法-31"><a href="#常见用法-31" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li>下载文件并指定输出文件名：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O newname.txt http://example.com/file.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>递归下载整个网站：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -r http://example.com</span><br></pre></td></tr></table></figure>
+<ul>
+<li>限制下载速度：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget --limit-rate=200k http://example.com/file.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>继续未完成的下载：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -c http://example.com/file.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>下载时不显示进度条：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -q http://example.com/file.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>下载多个文件：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -i filelist.txt</span><br></pre></td></tr></table></figure>
+<p>这个命令会从 <code>filelist.txt</code> 文件中读取 URL 并下载。</p>
+<h2 id="xargs"><a href="#xargs" class="headerlink" title="xargs"></a>xargs</h2><p><code>xargs</code> 命令用于将标准输入的数据转换为命令行参数，常用于处理大量数据。</p>
+<h3 id="用法示例-32"><a href="#用法示例-32" class="headerlink" title="用法示例"></a>用法示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;file1.txt file2.txt file3.txt&quot;</span> | xargs <span class="built_in">rm</span></span><br></pre></td></tr></table></figure>
+<p>这个命令会删除 <code>file1.txt</code>、<code>file2.txt</code> 和 <code>file3.txt</code> 文件。</p>
+<h3 id="常见用法-32"><a href="#常见用法-32" class="headerlink" title="常见用法"></a>常见用法</h3><ul>
+<li>从文件中读取参数：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xargs -a filelist.txt <span class="built_in">rm</span></span><br></pre></td></tr></table></figure>
+<p>这个命令会从 <code>filelist.txt</code> 文件中读取文件名并删除它们。</p>
+<ul>
+<li>限制每次执行的命令参数数量：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -name <span class="string">&quot;*.txt&quot;</span> | xargs -n 2 <span class="built_in">rm</span></span><br></pre></td></tr></table></figure>
+<p>这个命令会每次删除两个 <code>.txt</code> 文件。</p>
+<ul>
+<li>使用自定义分隔符：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;file1.txt,file2.txt,file3.txt&quot;</span> | xargs -d <span class="string">&#x27;,&#x27;</span> <span class="built_in">rm</span></span><br></pre></td></tr></table></figure>
+<p>这个命令会使用逗号作为分隔符来删除文件。</p>
+<ul>
+<li>与其他命令结合使用：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -name <span class="string">&quot;*.log&quot;</span> | xargs grep <span class="string">&quot;error&quot;</span></span><br></pre></td></tr></table></figure>
+<p>这个命令会在所有 <code>.log</code> 文件中搜索包含 “error” 的行。</p>
+
+        
+    </section>
+    
+</article>
+
+
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        JSBridge | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="什么是JSBridge在 JavaScript 代码中提供调用 Native 功能的接口，让混合开发中的前端部分可以方便地使用 Native 的功能（例如：地址位置、摄像头）。  它的核心是构建 Native 和非 Native 间消息通信的通道，而且这个通信的通道是双向的。  JSBridge 的实现原理JavaScript 是运行在一个单独的 JS Context 中（例如，WebView 的 Webkit 引擎、JSCore）。由于这些 Context 与 Native 原生运行环境" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFJSBridge"><span class="toc-text">什么是JSBridge</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSBridge-%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-text">JSBridge 的实现原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Native%E8%B0%83%E7%94%A8js%E6%96%B9%E6%B3%95"><span class="toc-text">Native调用js方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#js%E8%B0%83%E7%94%A8Native%E6%96%B9%E6%B3%95"><span class="toc-text">js调用Native方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E5%85%A5API"><span class="toc-text">注入API</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8B%A6%E6%88%AA-URI-SCHEME"><span class="toc-text">拦截 URI SCHEME</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSBridge-%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0"><span class="toc-text">JSBridge 接口实现</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            JSBridge
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-04-20T06:46:56.000Z" itemprop="datePublished">2021-04-20</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/javascript/" rel="tag">javascript</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <h2 id="什么是JSBridge"><a href="#什么是JSBridge" class="headerlink" title="什么是JSBridge"></a>什么是JSBridge</h2><p>在 JavaScript 代码中提供调用 Native 功能的接口，让混合开发中的前端部分可以方便地使用 Native 的功能（例如：地址位置、摄像头）。  </p>
+<p>它的核心是构建 Native 和非 Native 间消息通信的通道，而且这个通信的通道是双向的。  </p>
+<span id="more"></span>
+<h2 id="JSBridge-的实现原理"><a href="#JSBridge-的实现原理" class="headerlink" title="JSBridge 的实现原理"></a>JSBridge 的实现原理</h2><p>JavaScript 是运行在一个单独的 JS Context 中（例如，WebView 的 Webkit 引擎、JSCore）。由于这些 Context 与 Native 原生运行环境的天然隔离，我们必须通过一定的方法来实现 Native 和 JS Context 的双向通信。主要包括：   </p>
+<ol>
+<li>Native 调用 js 方法</li>
+<li>js 调用 Native 方法</li>
+</ol>
+<h3 id="Native调用js方法"><a href="#Native调用js方法" class="headerlink" title="Native调用js方法"></a>Native调用js方法</h3><p>Native =&gt; JS</p>
+<p>iOS</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webview.stringByEvaluatingJavaScriptFromString(<span class="string">&quot;Math.random()&quot;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[webView stringByEvaluatingJavaScriptFromString:@&quot;Math.random();&quot;];</span><br></pre></td></tr></table></figure>
+<p>Android<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mWebView.evaluateJavascript(<span class="string">&quot;javascript: Math.random();&quot;</span>, <span class="keyword">new</span> <span class="title class_">ValueCallback</span>() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onReceiveValue</span><span class="params">(String value)</span> &#123;</span><br><span class="line">            <span class="comment">//这里的value即为对应JS方法的返回值</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>JS =&gt; Native</p>
+<p>对于 Webview 中发起的网络请求，Native 都有能力去捕获/截取/干预。所以 JSBridge 的核心就是设计一套uri方案，让 Native 可以识别，从而做出响应，执行对应的操作。  </p>
+<h3 id="js调用Native方法"><a href="#js调用Native方法" class="headerlink" title="js调用Native方法"></a>js调用Native方法</h3><p>JavaScript 调用 Native 的方式主要有两种，可以通过 <em>注入API</em> 和 <em>拦截URL SCHEME</em> 的方式来实现。</p>
+<h4 id="注入API"><a href="#注入API" class="headerlink" title="注入API"></a>注入API</h4><p>注入 API 方式的主要原理是，通过 WebView 提供的接口，向 JavaScript 的 Context（window）中注入对象或者方法，让 JavaScript 调用时，直接执行相应的 Native 代码逻辑，达到 JavaScript 调用 Native 的目的。  </p>
+<p>对于 iOS 的 UIWebView，实例如下：  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">JSContext *context = [uiWebView valueForKeyPath:@&quot;documentView.webView.mainFrame.javaScriptContext&quot;];</span><br><span class="line"></span><br><span class="line">context[@&quot;postBridgeMessage&quot;] = ^(NSArray&lt;NSArray *&gt; *calls) &#123;</span><br><span class="line">    // Native 逻辑</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//前端调用方式：</span><br><span class="line">window.postBridgeMessage(message);</span><br></pre></td></tr></table></figure>
+<p>对于 iOS 的 WKWebView 可以用以下方式：  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">@interface WKWebVIewVC ()&lt;WKScriptMessageHandler&gt;</span><br><span class="line"></span><br><span class="line">@implementation WKWebVIewVC</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line"></span><br><span class="line">    WKWebViewConfiguration* configuration = [[WKWebViewConfiguration alloc] init];</span><br><span class="line">    configuration.userContentController = [[WKUserContentController alloc] init];</span><br><span class="line">    WKUserContentController *userCC = configuration.userContentController;</span><br><span class="line">    // 注入对象，前端调用其方法时，Native 可以捕获到</span><br><span class="line">    [userCC addScriptMessageHandler:self name:@&quot;nativeBridge&quot;];</span><br><span class="line"></span><br><span class="line">    WKWebView wkWebView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:configuration];</span><br><span class="line"></span><br><span class="line">    // 显示 WebView</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message &#123;</span><br><span class="line">    if ([message.name isEqualToString:@&quot;nativeBridge&quot;]) &#123;</span><br><span class="line">        NSLog(@&quot;前端传递的数据 %@: &quot;,message.body);</span><br><span class="line">        // Native 逻辑</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 前端调用方式：</span><br><span class="line">window.webkit.messageHandlers.nativeBridge.postMessage(message);</span><br></pre></td></tr></table></figure>
+<p>Android 可以通过 <code>addJavascriptInterface</code> 方法 将 Native 的一个对象注入到页面中，供JS调用。  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">/** </span><br><span class="line">* 添加javascriptInterface </span><br><span class="line">* 第一个参数：这里需要一个与js映射的java对象 </span><br><span class="line">* 第二个参数：该java对象被映射为js对象后在js里面的对象名，在js中要调用该对象的方法就是通过这个来调用 </span><br><span class="line">*/  </span><br><span class="line"> webView.addJavascriptInterface(new JSInterface(), &quot;android&quot;);</span><br><span class="line"></span><br><span class="line"> private final class JSInterface&#123;  </span><br><span class="line">    /** </span><br><span class="line">     * 注意这里的@JavascriptInterface注解， target是4.2以上都需要添加这个注解，否则无法调用 </span><br><span class="line">     * @param text </span><br><span class="line">     */  </span><br><span class="line">    @JavascriptInterface  </span><br><span class="line">    public void showToast(String text)&#123;  </span><br><span class="line">         Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">// 前端调用方式：</span><br><span class="line">android.showToast(&#x27;toast&#x27;);</span><br></pre></td></tr></table></figure>
+<h4 id="拦截-URI-SCHEME"><a href="#拦截-URI-SCHEME" class="headerlink" title="拦截 URI SCHEME"></a>拦截 URI SCHEME</h4><p>URI SCHEME 是一种 uri 的链接，是为了方便app直接互相调用设计的，形式和普通的 uri 近似，主要区别是 protocol 和 host 是自定义的。<br>拦截 URI SCHEME 的主要流程是：Web 端通过某种方式（例如 iframe.src）发送 URI Scheme 请求，之后 Native 拦截到请求并根据 URI SCHEME（包括所带的参数）进行相关操作。  </p>
+<p>在时间过程中，这种方式有一定的缺陷：  </p>
+<ul>
+<li>使用 iframe.src 发送 URL SCHEME 会有 url 长度的隐患。  </li>
+<li>创建请求，需要一定的耗时，比注入 API 的方式调用同样的功能，耗时会较长。</li>
+</ul>
+<h2 id="JSBridge-接口实现"><a href="#JSBridge-接口实现" class="headerlink" title="JSBridge 接口实现"></a>JSBridge 接口实现</h2><p>从上面的剖析中，可以得知，JSBridge 的接口主要功能有两个：调用 Native（给 Native 发消息） 和 接被 Native 调用（接收 Native 消息）。因此，JSBridge 可以设计如下：  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">JSBridge</span> = &#123;</span><br><span class="line">    <span class="comment">// 调用 Native</span></span><br><span class="line">    <span class="attr">invoke</span>: <span class="keyword">function</span>(<span class="params">bridgeName, data</span>) &#123;</span><br><span class="line">        <span class="comment">// 判断环境，获取不同的 nativeBridge</span></span><br><span class="line">        nativeBridge.<span class="title function_">postMessage</span>(&#123;</span><br><span class="line">            <span class="attr">bridgeName</span>: bridgeName,</span><br><span class="line">            <span class="attr">data</span>: data || &#123;&#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">receiveMessage</span>: <span class="keyword">function</span>(<span class="params">msg</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> bridgeName = msg.<span class="property">bridgeName</span>,</span><br><span class="line">            data = msg.<span class="property">data</span> || &#123;&#125;;</span><br><span class="line">        <span class="comment">// 具体逻辑</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>对于JSBridge的回调，和jsonp类似，url 参数里会有 callback 参数，其值是 当前页面唯一 的，而同时以此参数值为 key 将回调函数存到 window 上，随后，服务器返回 script 中，也会以此参数值作为句柄，调用相应的回调函数。</p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>
