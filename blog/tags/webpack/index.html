@@ -116,6 +116,67 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/blog/2025/07/24/FE-%E6%A8%A1%E5%9D%97%E8%81%94%E9%82%A6Module-Federation/">模块联邦 Module Federation</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2025-07-24T08:09:59.000Z" itemprop="datePublished">2025-07-24</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/webpack/" rel="tag">webpack</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>模块联邦（Module Federation）是 Webpack 5 引入的核心功能，旨在实现多个独立构建的前端应用在运行时动态共享代码、依赖或组件，支持微前端架构和跨项目模块复用。</p>
+<h2 id="‌模块联邦的核心概念‌"><a href="#‌模块联邦的核心概念‌" class="headerlink" title="‌模块联邦的核心概念‌"></a>‌模块联邦的核心概念‌</h2><p>模块联邦通过去中心化的设计，允许不同应用在运行时直接共享模块，无需重复打包或依赖 NPM 安装。其核心特点包括：</p>
+<ol>
+<li><p>‌独立构建与部署‌：每个应用（容器或远程）可单独开发、部署，通过暴露（exposes）和引用（remotes）机制实现模块共享。‌‌‌‌</p>
+</li>
+<li><p>运行时动态加载‌：模块按需异步加载，减少初始包体积，提升性能。‌‌</p>
+</li>
+<li><p>‌依赖共享‌：通过 shared 配置（如React、ReactDOM）避免重复加载，确保单例模式。‌‌‌‌</p>
+</li>
+</ol>
+<h2 id="‌典型应用场景‌"><a href="#‌典型应用场景‌" class="headerlink" title="‌典型应用场景‌"></a>‌典型应用场景‌</h2><ol>
+<li><p>‌微前端架构‌：将多个子应用集成到宿主容器中，实现技术栈解耦和独立部署。‌‌</p>
+</li>
+<li><p>‌跨项目组件复用‌：通用组件（如按钮、表单）可被多个项目动态引用，减少重复开发。‌‌</p>
+</li>
+<li><p>依赖优化‌：共享第三方库（如 Lodash ）以降低整体打包体积。‌‌</p>
+</li>
+</ol>
+<h2 id="实现步骤与配置"><a href="#实现步骤与配置" class="headerlink" title="实现步骤与配置"></a>实现步骤与配置</h2><ol>
+<li>使用 <code>ModuleFederationPlugin</code> 声明远程模块入口（<code>remotes</code>）和共享依赖（<code>shared</code>）。‌‌</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; <span class="title class_">ModuleFederationPlugin</span> &#125; = <span class="built_in">require</span>(<span class="string">&#x27;webpack&#x27;</span>).<span class="property">container</span>;</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">ModuleFederationPlugin</span>(&#123;</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&#x27;container&#x27;</span>,</span><br><span class="line">      <span class="attr">remotes</span>: &#123; <span class="attr">app1</span>: <span class="string">&#x27;app1@http://example.com/remoteEntry.js&#x27;</span> &#125;,</span><br><span class="line">      <span class="attr">shared</span>: &#123; <span class="attr">react</span>: &#123; <span class="attr">singleton</span>: <span class="literal">true</span> &#125; &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>远程应用配置通过 exposes 暴露模块，并配置共享依赖</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">ModuleFederationPlugin</span>(&#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;app1&#x27;</span>,</span><br><span class="line">  <span class="attr">filename</span>: <span class="string">&#x27;remoteEntry.js&#x27;</span>,</span><br><span class="line">  <span class="attr">exposes</span>: &#123; <span class="string">&#x27;./Button&#x27;</span>: <span class="string">&#x27;./src/Button&#x27;</span> &#125;,</span><br><span class="line">  <span class="attr">shared</span>: &#123; <span class="attr">react</span>: &#123; <span class="attr">singleton</span>: <span class="literal">true</span> &#125; &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+        
+    </section>
+    
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/blog/2021/01/19/FE-webpack%E5%B0%8F%E6%8A%84/">webpack小抄</a>
         </h1>
         

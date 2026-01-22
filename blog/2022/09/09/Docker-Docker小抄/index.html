@@ -15,7 +15,7 @@
     <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
     
     
-    <meta name="description" content="Docker 是什么Docker 是一个开源的应用容器平台（PaaS），基于 Go 语言开发并遵从 Apache2.0 协议开源。Docker 可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何的宿主机器上。容器使用沙箱的机制，容器之间互相隔离，而且容器性能开销极低，并且可以在不同宿主环境之间互相迁移。Docker 的优势在于：更高效的利用系统资源更快的启用时间一致的运行环境持续交付和部署更轻松的迁移更轻松地维护和扩展Docker 原理Dock" />
+    <meta name="description" content="Docker 是什么Docker 是一个开源的应用容器平台（PaaS），基于 Go 语言开发，并遵从 Apache2.0 协议开源。Docker 可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何的宿主机器上。容器使用沙箱的机制，容器之间互相隔离，而且容器性能开销极低，并且可以在不同宿主环境之间互相迁移。Docker 的优势在于：更高效的利用系统资源更快的启用时间一致的运行环境持续交付和部署更轻松的迁移更轻松地维护和扩展Docker 原理Doc" />
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
@@ -110,7 +110,7 @@
     
     <section class="article-body markdown-body">
         
-            <h2 id="Docker-是什么"><a href="#Docker-是什么" class="headerlink" title="Docker 是什么"></a>Docker 是什么</h2><p>Docker 是一个开源的应用容器平台（PaaS），基于 Go 语言开发并遵从 Apache2.0 协议开源。Docker 可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何的宿主机器上。容器使用沙箱的机制，容器之间互相隔离，而且容器性能开销极低，并且可以在不同宿主环境之间互相迁移。</p>
+            <h2 id="Docker-是什么"><a href="#Docker-是什么" class="headerlink" title="Docker 是什么"></a>Docker 是什么</h2><p>Docker 是一个开源的应用容器平台（PaaS），基于 Go 语言开发，并遵从 Apache2.0 协议开源。Docker 可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何的宿主机器上。容器使用沙箱的机制，容器之间互相隔离，而且容器性能开销极低，并且可以在不同宿主环境之间互相迁移。</p>
 <p>Docker 的优势在于：</p>
 <ul>
 <li>更高效的利用系统资源</li>
@@ -145,8 +145,8 @@
 <!-- ![docker_structure_inner](/blog/static/imgs/docker_structure.png) -->
 <p><img src="/blog/static/imgs/docker_architecture.svg" alt="docker_architecture_inner"><br>Docker 的一些基本概念：</p>
 <ul>
-<li>Docker 守护进程（Docker deamon, dockerd）： Docker 守护进程（dockerd）侦听 Docker API 请求并管理 Docker 对象，如镜像、容器、网络和 volumes。守护进程还可以与其他守护进程通信以管理 Docker 服务。</li>
-<li>Docker 客户端（docker）： Docker 客户端（docker）是许多 Docker 用户与 Docker 交互的主要方式。当 Docker 用户使用诸如 <code>docker run</code> 之类的命令时，客户端将这些命令发送到 dockerd，dockerd 执行这些命令。Docker 命令使用 docker API 。Docker 客户端可以与多个守护进程通信。</li>
+<li>Docker 守护进程（Docker daemon, dockerd）： Docker 守护进程（dockerd）侦听 Docker API 请求并管理 Docker 对象，如镜像、容器、网络和 volumes。守护进程还可以与其他守护进程通信以管理 Docker 服务。</li>
+<li>Docker 客户端（docker）： Docker 客户端（docker）是许多 Docker 用户与 Docker 交互的主要方式。当 Docker 用户使用诸如 <code>docker run</code> 之类的命令时，客户端将这些命令发送到 dockerd，dockerd 执行这些命令。Docker 命令使用 Docker API 。Docker 客户端可以与多个守护进程通信。</li>
 <li>Docker 对象（Docker objects）： Docker 对象是在使用 Docker 过程中控制与管理的一些对象。<ul>
 <li>镜像（Docker images）： 镜像是一个只读的模板，包含创建 Docker 容器的说明。通常，一个镜像基于另一个镜像，并带有一些额外的定制内容。例如，Docker 用户可以构建一个基于 ubuntu 镜像的镜像，但是安装有 Apache web 服务器和应用程序，以及运行应用程序所需要的配置详细信息。Docker 用户可以创建自己的镜像，也可以只使用其他人创建并在 Docker registry 中发布的镜像。</li>
 <li>容器（Docker containers）： 容器是镜像的可运行实例。Docker 用户可以使用 Docker API 或者 CLI 管理容器。默认情况下，容器与其他容器及其主机相对良好地隔离。Docker 用户可以控制容器的网络、存储或其他底层子系统与其他容器或主机的隔离程度。容器由其映像以及创建或启动时提供给它的任何配置选项定义。移除容器后，未存储在持久存储中的对其状态的任何更改都将消失。</li>
@@ -155,7 +155,7 @@
 </li>
 <li>Docker 桌面端（Docker Desktop）： Docker Desktop 是一款适用于 Mac、Windows 或 Linux 环境的易于安装的应用程序，使 Docker 用户能够构建和共享容器化应用程序和微服务。Docker 桌面端包括 Docker 守护进程（dockerd）、Docker 客户端（docker）、Docker Compose、Docker Content Trust、Kubernetes 和凭证助手（Credential Helper）。</li>
 <li>Docker 仓库（Docker repository）： Docker 仓库可看成一个 Docker 镜像的控制中心。每个仓库可以包含多个标签（Tag）；每个标签对应一个镜像。通常，一个仓库会包含同一个软件不同版本的镜像，而标签就常用于对应该软件的各个版本。我们可以通过 <code>&lt;仓库名&gt;:&lt;标签&gt;</code> 的格式来指定具体是这个软件哪个版本的镜像。如果不给出标签，将以 <code>latest</code> 作为默认标签。</li>
-<li>Docker registry： Docker registry 是 Docker 镜像存储的地方，Docker 用户可以在  Docker registry 获取和发布镜像。默认是 <a target="_blank" rel="noopener" href="https://hub.docker.com">Docker Hub</a>。</li>
+<li>Docker registry： Docker registry 是 Docker 镜像存储的地方，Docker 用户可以在 Docker registry 获取和发布镜像。默认是 <a target="_blank" rel="noopener" href="https://hub.docker.com">Docker Hub</a>。</li>
 <li>主机（Docker Host）： 一个物理主机或者虚拟机，用于运行 Docker 守护进程和容器。</li>
 <li>Docker Compose：Docker Compose 是用于定义和运行多容器 Docker 应用程序的工具。通过 Compose，可以使用 YML 文件来配置应用程序需要的所有服务。然后，使用一个命令，就可以从 YML 文件配置中创建并启动所有服务。</li>
 <li>Dockerfile 文件： Dockerfile 是一个基于文本的指令脚本，它使用简单的语法定义创建镜像并运行镜像所需的步骤。Dockerfile 中的每个指令在镜像中创建一个层（layer）。更改 Dockerfile 并重建镜像时，仅重建已更改的层。</li>
@@ -206,7 +206,7 @@
 </tr>
 </tbody>
 </table>
-<p>我们可以看到，Docker 的技术优势体现在 <em>效率</em> 、 <em>性能</em> 和 <em>资源消耗</em> 上，在 <em>安全性</em> 和 <em>隔离级别</em> 上与虚拟机相比较弱。</p>
+<p>我们可以看到，Docker 的技术优势体现在 _效率_ 、 _性能_ 和 <em>资源消耗</em> 上，在 <em>安全性</em> 和 <em>隔离级别</em> 上与虚拟机相比较弱。</p>
 <h2 id="Docker-开始教程"><a href="#Docker-开始教程" class="headerlink" title="Docker 开始教程"></a>Docker 开始教程</h2><p>在开始之前，首先需要先 <a target="_blank" rel="noopener" href="https://docs.docker.com/get-started/#download-and-install-docker">下载并安装 Docker</a>。Docker 是 Docker Inc.（原 dotCloud 公司） 的产品，它包括了 Docker EE （企业版）和 Docker CE（社区版）。需要注意的是，Docker 的开源代码仓库叫做 <a target="_blank" rel="noopener" href="https://github.com/moby/moby">Moby</a>。</p>
 <h3 id="clone"><a href="#clone" class="headerlink" title="clone"></a>clone</h3><p><em>首先，克隆一个仓库</em></p>
 <p><a target="_blank" rel="noopener" href="https://github.com/docker/getting-started">Getting Started</a> 项目是一个简单的 Github 仓库，它包含了你需要编译镜像并作为容器运行的所有内容。</p>
@@ -217,7 +217,6 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd getting-started</span><br><span class="line">docker build -t docker101tutorial .</span><br></pre></td></tr></table></figure>
 <h3 id="run"><a href="#run" class="headerlink" title="run"></a>run</h3><p><em>运行你的第一个容器</em></p>
 <p>基于你上一步编译的镜像启动一个容器。运行一个容器会以它私有的资源启动应用程序，与机器的其他部分安全的隔离开来。</p>
-<p>Start a container based on the image you built in the previous step. Running a container launches your application with private resources, securely isolated from the rest of your machine.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 80:80 --name docker-tutorial docker101tutorial</span><br></pre></td></tr></table></figure>
 <p>你会发现我们使用了一些参数。这里包含了这些参数的一些信息：</p>
 <p><code>-d</code> - 以独立模式（在后台中）运行容器。<br><code>-p 80:80</code> - 将容器中的80端口与主机的80端口一一映射。打开网络浏览器并导航到 http://localhost:80 来访问教程应用。如果已经有服务监听了 80 端口，你可以指定另一个端口。例如，指定 <code>-p 3000:80</code> 然后通过 http://localhost:3000 来访问应用。<br><code>--name docker-tutorial</code> - 给容器起一个名字 docker-tutorial<br><code>docker101tutorial</code> - 指出使用的镜像。</p>
@@ -591,9 +590,7 @@
 <tr>
 <td><code>-u</code></td>
 <td><code>--user string</code></td>
-<td>用户名或者UID（格式：`&lt;name</td>
-<td>uid&gt;[:group</td>
-<td>gid]`）</td>
+<td>用户名或者UID（格式：<code>&lt;name/uid&gt;[:group/gid]</code>）</td>
 </tr>
 <tr>
 <td><code>-v</code></td>
@@ -638,9 +635,7 @@
 <tr>
 <td><code>-u</code></td>
 <td><code>--user string</code></td>
-<td>用户名或者UID（格式：`&lt;name</td>
-<td>uid&gt;[:group</td>
-<td>gid]`）</td>
+<td>用户名或者UID（格式：<code>&lt;name/uid&gt;[:group/gid]</code>）</td>
 </tr>
 <tr>
 <td><code>-w</code></td>
@@ -715,9 +710,7 @@
 <tr>
 <td><code>-u</code></td>
 <td><code>--user string</code></td>
-<td>用户名或者UID（格式：`&lt;name</td>
-<td>uid&gt;[:group</td>
-<td>gid]`）</td>
+<td>用户名或者UID（格式：<code>&lt;name/uid&gt;[:group/gid]</code>）</td>
 </tr>
 <tr>
 <td><code>-v</code></td>
@@ -921,8 +914,8 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run -dp 3000:3000 \</span><br><span class="line">  -w /app -v <span class="string">&quot;<span class="subst">$(pwd)</span>:/app&quot;</span> \</span><br><span class="line">  node:12-alpine \</span><br><span class="line">  sh -c <span class="string">&quot;yarn install &amp;&amp; yarn run dev&quot;</span></span><br></pre></td></tr></table></figure>
 <p>bind mounts 也是通过在 <code>docker create</code> 或者 <code>docker run</code> 创建容器的时候通过 <code>-v</code> 参数来指定绑定的路径，如上所示 <code>&quot;$(pwd):/app&quot;</code> 即为需要绑定挂载的主机路径。使用 bind mounts 在本地开发设置中非常常见。优点是开发机器不需要安装所有的构建工具和环境。只需一个 docker 运行命令，开发环境就可以启动了。</p>
 <h4 id="其他持久化方案"><a href="#其他持久化方案" class="headerlink" title="其他持久化方案"></a>其他持久化方案</h4><p>bind mounts 和 named volume 是 Docker 引擎附带的两种主要持久化方案。但是，还有其他 volume 驱动程序可用于支持其他用例（SFTP、Ceph、NetApp、S3等）。</p>
-<h3 id="网络管理-network"><a href="#网络管理-network" class="headerlink" title="网络管理 network"></a>网络管理 network</h3><p>默认情况下，容器之间是互相隔离无法通信的，两个相关的容器只能通过 <em>网络</em> 来进行通信。</p>
-<p>与 <em>网络</em> 相关的命令可以通过 <code>docker network COMMAND</code> 来调用，包括 <code>connect/disconnect</code> <code>create</code> <code>inspect</code> <code>ls</code> <code>prune</code> <code>rm</code></p>
+<h3 id="网络管理-network"><a href="#网络管理-network" class="headerlink" title="网络管理 network"></a>网络管理 network</h3><p>默认情况下，容器之间是互相隔离无法通信的，两个相关的容器只能通过 _网络_ 来进行通信。</p>
+<p>与 _网络_ 相关的命令可以通过 <code>docker network COMMAND</code> 来调用，包括 <code>connect/disconnect</code> <code>create</code> <code>inspect</code> <code>ls</code> <code>prune</code> <code>rm</code></p>
 <ol>
 <li><code>docker network create [OPTIONS] NETWORK</code></li>
 </ol>
@@ -1070,8 +1063,7 @@
 <tr>
 <td></td>
 <td><code>rmi string</code></td>
-<td>删除服务使用到的镜像，”local”仅仅删除没有指定tag的镜像（”local”</td>
-<td>“all”）</td>
+<td>删除服务使用到的镜像，”local”仅仅删除没有指定tag的镜像（”local”/“all”）</td>
 </tr>
 <tr>
 <td><code>-t</code></td>
@@ -1225,7 +1217,7 @@
 <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># parser directive</span></span><br><span class="line"><span class="comment"># Comment</span></span><br><span class="line">INSTRUCTION arguments</span><br></pre></td></tr></table></figure>
 <h3 id="解析指令（parser-directive）"><a href="#解析指令（parser-directive）" class="headerlink" title="解析指令（parser directive）"></a>解析指令（parser directive）</h3><p>解析器指令是可选的，并且会影响后续处理 Dockerfile 的方式。解析器指令不会将层添加到构建中，并且不会显示为构建步骤。解析器指令以<code># directive=value</code> 的方式使用。 一个指令只能使用一次。</p>
 <ul>
-<li>syntax：定义用于构建 Dockerfile 的 Dockerfile 语法的位置，仅在使用BuildKit后端时可用，在使用经典构建器后端时被忽略。</li>
+<li>syntax：定义用于构建 Dockerfile 的 Dockerfile 语法的位置，仅在使用 BuildKit 后端时可用，在使用经典构建器后端时被忽略。</li>
 <li>escape：设置用于转义 Dockerfile。 如果未指定，则默认转义字符为 <code>\</code> 。</li>
 </ul>
 <h3 id="指令（INSTRUCTION）"><a href="#指令（INSTRUCTION）" class="headerlink" title="指令（INSTRUCTION）"></a>指令（INSTRUCTION）</h3><p>Dokcer 是分层存储的，修改的时候会创建一个新的层，所以这里的每一行（每个指令）都会创建一个新的层。</p>

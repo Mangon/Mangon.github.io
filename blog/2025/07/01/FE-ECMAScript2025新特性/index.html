@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        FE-ECMAScript2025新特性 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="ECMAScript 2025（ES2025）于2025年6月正式发布，带来了一系列实用的新特性和改进。以下列举一些主要的特性：导入属性（Import Attributes）解决的问题：之前无法直接将 JSON 文件作为模块导入，需要借助 Node.js 的 require 或其他工具函数。这使得在不同环境中处理 JSON 数据缺乏统一的标准方式。现在提供了一种标准化的方式在导入模块时指定附加信息，如类型断言，确保导入的内容符合预期格式。例如可以使用 import 语句导入 JSON 文件，" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E5%B1%9E%E6%80%A7%EF%BC%88Import-Attributes%EF%BC%89"><span class="toc-text">导入属性（Import Attributes）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8%E8%BE%85%E5%8A%A9%E6%96%B9%E6%B3%95%EF%BC%88Iterator-Helpers%EF%BC%89"><span class="toc-text">迭代器辅助方法（Iterator Helpers）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Set%E9%9B%86%E5%90%88%E6%96%B9%E6%B3%95%E5%A2%9E%E5%BC%BA%EF%BC%88New-Set-Methods%EF%BC%89"><span class="toc-text">Set集合方法增强（New Set Methods）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%A2%9E%E5%BC%BA"><span class="toc-text">正则表达式增强</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Promise-try"><span class="toc-text">Promise.try()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Float16%E6%94%AF%E6%8C%81%EF%BC%88Float16Array-Math-f16round%E7%AD%89%EF%BC%89"><span class="toc-text">Float16支持（Float16Array, Math.f16round等）</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            FE-ECMAScript2025新特性
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2025-07-01T10:00:00.000Z" itemprop="datePublished">2025-07-01</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/ECMAScript/" rel="tag">ECMAScript</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>ECMAScript 2025（ES2025）于2025年6月正式发布，带来了一系列实用的新特性和改进。以下列举一些主要的特性：</p>
+<span id="more"></span>
+<h2 id="导入属性（Import-Attributes）"><a href="#导入属性（Import-Attributes）" class="headerlink" title="导入属性（Import Attributes）"></a>导入属性（Import Attributes）</h2><p>解决的问题：<br>之前无法直接将 JSON 文件作为模块导入，需要借助 Node.js 的 require 或其他工具函数。这使得在不同环境中处理 JSON 数据缺乏统一的标准方式。<br>现在提供了一种标准化的方式在导入模块时指定附加信息，如类型断言，确保导入的内容符合预期格式。<br>例如可以使用 <code>import</code> 语句导入 JSON 文件，并使用 <code>with</code> 关键字指定模块类型为 json。</p>
+<p>代码示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用 import attributes 特性导入JSON</span></span><br><span class="line"><span class="keyword">import</span> config <span class="keyword">from</span> <span class="string">&#x27;./config.json&#x27;</span> <span class="keyword">with</span> &#123; <span class="attr">type</span>: <span class="string">&#x27;json&#x27;</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 动态导入时使用属性</span></span><br><span class="line"><span class="keyword">const</span> dynamicModule = <span class="keyword">await</span> <span class="keyword">import</span>(<span class="string">&#x27;./data.json&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">with</span>: &#123; <span class="attr">type</span>: <span class="string">&#x27;json&#x27;</span> &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(config.<span class="property">environment</span>); <span class="comment">// 访问JSON内容</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(dynamicModule.<span class="property">default</span>); <span class="comment">// 访问动态导入的JSON内容</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 未来可能支持其他类型的模块</span></span><br><span class="line"><span class="comment">// import wasmModule from &#x27;./module.wasm&#x27; with &#123; type: &#x27;webassembly&#x27; &#125;;</span></span><br><span class="line"><span class="comment">// import cssModule from &#x27;./styles.css&#x27; with &#123; type: &#x27;css&#x27; &#125;;</span></span><br></pre></td></tr></table></figure>
+<h2 id="迭代器辅助方法（Iterator-Helpers）"><a href="#迭代器辅助方法（Iterator-Helpers）" class="headerlink" title="迭代器辅助方法（Iterator Helpers）"></a>迭代器辅助方法（Iterator Helpers）</h2><p>解决的问题：<br>传统上，在处理迭代器时，如果想使用 map、filter 等方法，必须先转换为数组，这会消耗大量内存。<br>现在迭代器辅助方法提供了链式操作的能力，同时保持惰性求值的优势。</p>
+<p>代码示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 旧方式 - 需要转换为数组，占用内存</span></span><br><span class="line"><span class="keyword">const</span> result1 = <span class="title class_">Array</span>.<span class="title function_">from</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])</span><br><span class="line">  .<span class="title function_">filter</span>(<span class="function"><span class="params">x</span> =&gt;</span> x % <span class="number">2</span> === <span class="number">0</span>)</span><br><span class="line">  .<span class="title function_">map</span>(<span class="function"><span class="params">x</span> =&gt;</span> x * <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 新方式 - 直接在迭代器上操作，内存友好</span></span><br><span class="line"><span class="keyword">const</span> result2 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">  .<span class="title function_">values</span>()</span><br><span class="line">  .<span class="title function_">filter</span>(<span class="function"><span class="params">x</span> =&gt;</span> x % <span class="number">2</span> === <span class="number">0</span>)</span><br><span class="line">  .<span class="title function_">map</span>(<span class="function"><span class="params">x</span> =&gt;</span> x * <span class="number">2</span>)</span><br><span class="line">  .<span class="title function_">toArray</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用其他迭代器方法</span></span><br><span class="line"><span class="keyword">const</span> filtered = [<span class="number">1</span>, <span class="string">&#x27;&#x27;</span>, <span class="number">2</span>, <span class="literal">null</span>, <span class="number">3</span>, <span class="literal">undefined</span>, <span class="number">4</span>]</span><br><span class="line">  .<span class="title function_">values</span>()</span><br><span class="line">  .<span class="title function_">filter</span>(<span class="title class_">Boolean</span>) <span class="comment">// 过滤假值</span></span><br><span class="line">  .<span class="title function_">map</span>(<span class="function"><span class="params">x</span> =&gt;</span> x * <span class="number">2</span>)</span><br><span class="line">  .<span class="title function_">take</span>(<span class="number">3</span>) <span class="comment">// 只取前3个元素</span></span><br><span class="line">  .<span class="title function_">toArray</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(filtered); <span class="comment">// [2, 6, 8]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 无限序列示例</span></span><br><span class="line"><span class="keyword">function</span>* <span class="title function_">fibonacci</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">0</span>,</span><br><span class="line">    b = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">yield</span> a;</span><br><span class="line">  <span class="keyword">yield</span> b;</span><br><span class="line">  <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    [a, b] = [b, a + b];</span><br><span class="line">    <span class="keyword">yield</span> b;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fib10 = <span class="title function_">fibonacci</span>()</span><br><span class="line">  .<span class="title function_">drop</span>(<span class="number">5</span>) <span class="comment">// 跳过前5个</span></span><br><span class="line">  .<span class="title function_">take</span>(<span class="number">10</span>) <span class="comment">// 取接下来的10个</span></span><br><span class="line">  .<span class="title function_">toArray</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(fib10); <span class="comment">// [斐波那契数列中第5到15个数]</span></span><br></pre></td></tr></table></figure>
+<h2 id="Set集合方法增强（New-Set-Methods）"><a href="#Set集合方法增强（New-Set-Methods）" class="headerlink" title="Set集合方法增强（New Set Methods）"></a>Set集合方法增强（New Set Methods）</h2><p>解决的问题：<br>之前的 Set 对象缺少集合运算方法，开发者需要自己实现并集、交集、差集等操作，代码冗长且容易出错。<br>新增了7个集合方法包括：并集 <code>union()</code>、交集 <code>intersection()</code>、差集 <code>difference()</code>、对称差集 <code>symmetricDifference()</code>、子集判断 <code>isSubsetOf()</code>、超集判断 <code>isSupersetOf()</code>、不相交判断<code>isDisjointFrom()</code>，基于哈希表实现，性能高效。</p>
+<p>代码示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> setA = <span class="keyword">new</span> <span class="title class_">Set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]);</span><br><span class="line"><span class="keyword">const</span> setB = <span class="keyword">new</span> <span class="title class_">Set</span>([<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 并集</span></span><br><span class="line"><span class="keyword">const</span> union = setA.<span class="title function_">union</span>(setB);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([...union]); <span class="comment">// [1, 2, 3, 4, 5, 6]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 交集</span></span><br><span class="line"><span class="keyword">const</span> intersection = setA.<span class="title function_">intersection</span>(setB);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([...intersection]); <span class="comment">// [3, 4]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 差集</span></span><br><span class="line"><span class="keyword">const</span> difference = setA.<span class="title function_">difference</span>(setB);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([...difference]); <span class="comment">// [1, 2]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 对称差集（异或）</span></span><br><span class="line"><span class="keyword">const</span> symmetricDiff = setA.<span class="title function_">symmetricDifference</span>(setB);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([...symmetricDiff]); <span class="comment">// [1, 2, 5, 6]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 子集判断</span></span><br><span class="line"><span class="keyword">const</span> setC = <span class="keyword">new</span> <span class="title class_">Set</span>([<span class="number">1</span>, <span class="number">2</span>]);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(setC.<span class="title function_">isSubsetOf</span>(setA)); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 超集判断</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(setA.<span class="title function_">isSupersetOf</span>(setC)); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 不相交判断</span></span><br><span class="line"><span class="keyword">const</span> setD = <span class="keyword">new</span> <span class="title class_">Set</span>([<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(setA.<span class="title function_">isDisjointFrom</span>(setD)); <span class="comment">// true (没有共同元素)</span></span><br></pre></td></tr></table></figure>
+<h2 id="正则表达式增强"><a href="#正则表达式增强" class="headerlink" title="正则表达式增强"></a>正则表达式增强</h2><p>解决的问题：<br>包括三个方面的增强：<code>RegExp.escape()</code> 防止特殊字符被误解释，重复命名捕获组，以及内联修饰符，解决了复杂正则表达式的构建和维护问题。</p>
+<p>代码示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. RegExp.escape() - 安全地将字符串转换为正则表达式片段</span></span><br><span class="line"><span class="keyword">const</span> userInput = <span class="string">&#x27;How much does it cost? $50.00!&#x27;</span>; <span class="comment">// 用户输入可能包含特殊字符</span></span><br><span class="line"><span class="keyword">const</span> escapedInput = <span class="title class_">RegExp</span>.<span class="built_in">escape</span>(userInput);</span><br><span class="line"><span class="keyword">const</span> regex1 = <span class="keyword">new</span> <span class="title class_">RegExp</span>(<span class="string">`.*<span class="subst">$&#123;escapedInput&#125;</span>.*`</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(regex1.<span class="title function_">test</span>(<span class="string">&#x27;Prefix How much does it cost? $50.00! Suffix&#x27;</span>)); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 重复命名捕获组</span></span><br><span class="line"><span class="keyword">const</span> dateRegex = <span class="regexp">/(?&lt;year&gt;\d&#123;4&#125;)-(?&lt;month&gt;\d&#123;2&#125;)|(?&lt;month&gt;\d&#123;2&#125;)-(?&lt;day&gt;\d&#123;2&#125;)/</span>;</span><br><span class="line"><span class="keyword">const</span> dateStr = <span class="string">&#x27;2025-03-15&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> match = dateStr.<span class="title function_">match</span>(dateRegex);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(match.<span class="property">groups</span>.<span class="property">year</span>); <span class="comment">// 2025</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(match.<span class="property">groups</span>.<span class="property">month</span>); <span class="comment">// 03 (第一个匹配的月份)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 内联修饰符 - 在模式内部设置标志</span></span><br><span class="line"><span class="keyword">const</span> caseInsensitiveHello = <span class="regexp">/^x(?i:hello)x$/</span>; <span class="comment">// 局部设置忽略大小写</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(caseInsensitiveHello.<span class="title function_">test</span>(<span class="string">&#x27;xHELLOx&#x27;</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(caseInsensitiveHello.<span class="title function_">test</span>(<span class="string">&#x27;xHeLLox&#x27;</span>)); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 也可以嵌套使用</span></span><br><span class="line"><span class="keyword">const</span> mixedFlags = <span class="regexp">/start(?i:case(?-i:sensitive))end/</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(mixedFlags.<span class="title function_">test</span>(<span class="string">&#x27;startCASEsensitiveend&#x27;</span>)); <span class="comment">// false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(mixedFlags.<span class="title function_">test</span>(<span class="string">&#x27;startcasesensitiveend&#x27;</span>)); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h2 id="Promise-try"><a href="#Promise-try" class="headerlink" title="Promise.try()"></a>Promise.try()</h2><p>解决的问题：<br>之前同步函数抛出的错误无法直接被 <code>Promise.catch</code> 捕获，开发者通常需要额外的 try/catch 包裹统一同步和异步错误处理。<br>现在可以使用 <code>Promise.try()</code> 当函数可能同步抛出错误或异步产生错误时，提供一致的错误处理方式。</p>
+<p>代码示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一个可能同步抛出错误也可能返回 Promise 的函数</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">riskyOperation</span>(<span class="params">value</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (value &lt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;Value cannot be negative&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (value &gt; <span class="number">100</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(value * <span class="number">2</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> value * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 旧方式 - 需要额外处理同步错误</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">handleWithTryCatch</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(<span class="title function_">riskyOperation</span>(-<span class="number">5</span>));</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 新方式 - 统一使用Promise.try</span></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">try</span>(<span class="function">() =&gt;</span> <span class="title function_">riskyOperation</span>(-<span class="number">5</span>))</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">result</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Success:&#x27;</span>, result))</span><br><span class="line">  .<span class="title function_">catch</span>(<span class="function"><span class="params">error</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Error:&#x27;</span>, error.<span class="property">message</span>));</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">try</span>(<span class="function">() =&gt;</span> <span class="title function_">riskyOperation</span>(<span class="number">150</span>)) <span class="comment">// 返回Promise</span></span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">result</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Async Success:&#x27;</span>, result))</span><br><span class="line">  .<span class="title function_">catch</span>(<span class="function"><span class="params">error</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Async Error:&#x27;</span>, error.<span class="property">message</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实际应用场景</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">validateAndProcess</span>(<span class="params">userData</span>) &#123;</span><br><span class="line">  <span class="comment">// 可能同步验证失败</span></span><br><span class="line">  <span class="keyword">if</span> (!userData.<span class="property">email</span> || !userData.<span class="property">email</span>.<span class="title function_">includes</span>(<span class="string">&#x27;@&#x27;</span>)) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;Invalid email&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 或者异步处理</span></span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">fetch</span>(<span class="string">&#x27;/api/process-user&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">method</span>: <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">    <span class="attr">body</span>: <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(userData)</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">try</span>(<span class="function">() =&gt;</span> <span class="title function_">validateAndProcess</span>(&#123; <span class="attr">email</span>: <span class="string">&#x27;invalid&#x27;</span> &#125;))</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> response.<span class="title function_">json</span>())</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(data))</span><br><span class="line">  .<span class="title function_">catch</span>(<span class="function"><span class="params">error</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;Validation or API error:&#x27;</span>, error.<span class="property">message</span>));</span><br></pre></td></tr></table></figure>
+<h2 id="Float16支持（Float16Array-Math-f16round等）"><a href="#Float16支持（Float16Array-Math-f16round等）" class="headerlink" title="Float16支持（Float16Array, Math.f16round等）"></a>Float16支持（Float16Array, Math.f16round等）</h2><p>解决的问题：<br>在图形处理、机器学习等领域，16位浮点数（半精度）比32位浮点数节省一半内存，提高了GPU操作和大数据处理的效率。</p>
+<p>代码示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建Float16数组</span></span><br><span class="line"><span class="keyword">const</span> f16Array = <span class="keyword">new</span> <span class="title class_">Float16Array</span>([<span class="number">1.5</span>, <span class="number">2.7</span>, <span class="number">3.14</span>, <span class="number">4.0</span>, <span class="number">5.5</span>]);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(f16Array[<span class="number">2</span>]); <span class="comment">// 3.140625 (由于精度限制)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用DataView进行精确读写</span></span><br><span class="line"><span class="keyword">const</span> buffer = <span class="keyword">new</span> <span class="title class_">ArrayBuffer</span>(<span class="number">16</span>);</span><br><span class="line"><span class="keyword">const</span> dataView = <span class="keyword">new</span> <span class="title class_">DataView</span>(buffer);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置和获取Float16值</span></span><br><span class="line">dataView.<span class="title function_">setFloat16</span>(<span class="number">0</span>, <span class="number">3.14159</span>, <span class="literal">true</span>); <span class="comment">// 第三个参数表示是否小端序</span></span><br><span class="line"><span class="keyword">const</span> value = dataView.<span class="title function_">getFloat16</span>(<span class="number">0</span>, <span class="literal">true</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(value); <span class="comment">// 3.140625</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 数学运算中的Float16舍入</span></span><br><span class="line"><span class="keyword">const</span> preciseValue = <span class="number">3.141592653589793</span>;</span><br><span class="line"><span class="keyword">const</span> roundedF16 = <span class="title class_">Math</span>.<span class="title function_">f16round</span>(preciseValue);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(roundedF16); <span class="comment">// 3.140625</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 在图像处理中的应用示例</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">processImageData</span>(<span class="params">imageData</span>) &#123;</span><br><span class="line">  <span class="comment">// 将RGB值存储在Float16中以节省内存</span></span><br><span class="line">  <span class="keyword">const</span> pixels = <span class="keyword">new</span> <span class="title class_">Float16Array</span>(imageData.<span class="property">length</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; imageData.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    pixels[i] = <span class="title class_">Math</span>.<span class="title function_">f16round</span>(imageData[i] / <span class="number">255</span>); <span class="comment">// 归一化到[0,1]</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> pixels;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

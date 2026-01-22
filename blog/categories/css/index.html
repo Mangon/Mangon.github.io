@@ -380,7 +380,7 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/blog/2018/09/11/CSS-%E6%88%AA%E6%96%AD/">CSS 截断</a>
+            <a href="/blog/2018/09/11/CSS-%E6%8D%A2%E8%A1%8C%E5%92%8C%E6%96%87%E6%9C%AC%E6%BA%A2%E5%87%BA/">CSS 换行和文本溢出</a>
         </h1>
         
         <div class="article-meta clearfix">
@@ -403,11 +403,18 @@
     
     <section class="article-body markdown-body">
         
-            <p>有时，我们需要对某段文字进行截断处理，多余的字符显示…  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;words&quot;</span>&gt;</span>For a long time it seemed to me that life was about to begin , real life. But, there was always some obsacle in the way, something to be gotten through first, some unfinnished business, time still to be served or a debt to be paid. Then life would begin.<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+            <p>通常一个容器有固定的宽度和高度，如果我们需要在该容器内显示超长的文本时，就需要对该段文字进行溢出处理。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;words&quot;</span>&gt;</span></span><br><span class="line">  For a long time it seemed to me that life was about to begin , real life. But, there was always some obsacle in the</span><br><span class="line">  way, something to be gotten through first, some unfinnished business, time still to be served or a debt to be paid.</span><br><span class="line">  Then life would begin.</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>默认效果</p>
+<p><div class="words">For a long time it seemed to me that life was about to begin , real life. But, there was always some obsacle in the way, something to be gotten through first, some unfinnished business, time still to be served or a debt to be paid. Then life would begin.</div></p>
+<style type="text/css">
+  .words {
+    width: 400px;
+  }
+</style>
             
             <p class="article-more-link">
-                <a href="/blog/2018/09/11/CSS-%E6%88%AA%E6%96%AD/#more">
+                <a href="/blog/2018/09/11/CSS-%E6%8D%A2%E8%A1%8C%E5%92%8C%E6%96%87%E6%9C%AC%E6%BA%A2%E5%87%BA/#more">
                     <span class="vm">阅读更多</span>
                     <i class="icon-arrow-double-right vm"></i>    
                 </a>

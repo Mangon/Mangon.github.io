@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        CSS 换行和文本溢出 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="通常一个容器有固定的宽度和高度，如果我们需要在该容器内显示超长的文本时，就需要对该段文字进行溢出处理。12345&amp;lt;div class=&amp;quot;words&amp;quot;&amp;gt;  For a long time it seemed to me that life was about to begin , real life. But, there was always some obsacle in the  way, something to be gotten through fir" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E8%A1%8C"><span class="toc-text">单行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%88%E6%9E%9C"><span class="toc-text">效果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E8%A1%8C"><span class="toc-text">多行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#webkit-%E4%BB%A3%E7%A0%81"><span class="toc-text">-webkit 代码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#display-webkit-box"><span class="toc-text">display: -webkit-box</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#line-clamp"><span class="toc-text">line-clamp</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#box-orient"><span class="toc-text">box-orient</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#webkit-%E6%95%88%E6%9E%9C"><span class="toc-text">-webkit 效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%BC%E5%AE%B9%E4%BB%A3%E7%A0%81"><span class="toc-text">兼容代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%BC%E5%AE%B9%E4%BB%A3%E7%A0%81%E6%95%88%E6%9E%9C"><span class="toc-text">兼容代码效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6"><span class="toc-text">插件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%89%E5%8F%8A%E7%9A%84-CSS-%E5%B1%9E%E6%80%A7"><span class="toc-text">涉及的 CSS 属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#overflow"><span class="toc-text">overflow</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#visible"><span class="toc-text">visible</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hidden"><span class="toc-text">hidden</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#clip"><span class="toc-text">clip</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#scroll"><span class="toc-text">scroll</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#auto"><span class="toc-text">auto</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#text-overflow"><span class="toc-text">text-overflow</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#clip-1"><span class="toc-text">clip</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ellipsis"><span class="toc-text">ellipsis</span></a></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text"></span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#white-space"><span class="toc-text">white-space</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#normal"><span class="toc-text">normal</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pre"><span class="toc-text">pre</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pre-wrap"><span class="toc-text">pre-wrap</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pre-line"><span class="toc-text">pre-line</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#overflow-wrap-word-wrap"><span class="toc-text">overflow-wrap(word-wrap)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#normal-1"><span class="toc-text">normal</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#anywhere"><span class="toc-text">anywhere</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#break-word"><span class="toc-text">break-word</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#word-break"><span class="toc-text">word-break</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#normal-2"><span class="toc-text">normal</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#break-all"><span class="toc-text">break-all</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#keep-all"><span class="toc-text">keep-all</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#auto-phrase"><span class="toc-text">auto-phrase</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#break-word-1"><span class="toc-text">break-word</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#text-wrap"><span class="toc-text">text-wrap</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#wrap"><span class="toc-text">wrap</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nowrap"><span class="toc-text">nowrap</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#balance"><span class="toc-text">balance</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pretty"><span class="toc-text">pretty</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#stable"><span class="toc-text">stable</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hyphens"><span class="toc-text">hyphens</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#none"><span class="toc-text">none</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#manual"><span class="toc-text">manual</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#auto-1"><span class="toc-text">auto</span></a></li></ol></li></ol></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            CSS 换行和文本溢出
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-09-11T11:46:53.000Z" itemprop="datePublished">2018-09-11</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/CSS/" rel="tag">CSS</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>通常一个容器有固定的宽度和高度，如果我们需要在该容器内显示超长的文本时，就需要对该段文字进行溢出处理。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;words&quot;</span>&gt;</span></span><br><span class="line">  For a long time it seemed to me that life was about to begin , real life. But, there was always some obsacle in the</span><br><span class="line">  way, something to be gotten through first, some unfinnished business, time still to be served or a debt to be paid.</span><br><span class="line">  Then life would begin.</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>默认效果</p>
+<p><div class="words">For a long time it seemed to me that life was about to begin , real life. But, there was always some obsacle in the way, something to be gotten through first, some unfinnished business, time still to be served or a debt to be paid. Then life would begin.</div></p>
+<style type="text/css">
+  .words {
+    width: 400px;
+  }
+</style>
+
+<span id="more"></span>
+<h2 id="单行"><a href="#单行" class="headerlink" title="单行"></a>单行</h2><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.words</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden; <span class="comment">/*超过部分不显示*/</span></span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis; <span class="comment">/*超过部分用点点表示*/</span></span><br><span class="line">  <span class="attribute">white-space</span>: nowrap; <span class="comment">/*不换行*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p><div class="words1">For a long time it seemed to me that life was about to begin , real life. But, there was always some obsacle in the way, something to be gotten through first, some unfinnished business, time still to be served or a debt to be paid. Then life would begin.</div></p>
+<style type="text/css">
+.words1 {
+    width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+</style>
+
+<h2 id="多行"><a href="#多行" class="headerlink" title="多行"></a>多行</h2><h3 id="webkit-代码"><a href="#webkit-代码" class="headerlink" title="-webkit 代码"></a>-webkit 代码</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webkit</span></span><br><span class="line"><span class="selector-class">.words</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-box;</span><br><span class="line">  -webkit-line-clamp: 2; <span class="comment">/*规定超过两行的部分截断*/</span></span><br><span class="line">  -webkit-box-orient: vertical;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="display-webkit-box"><a href="#display-webkit-box" class="headerlink" title="display: -webkit-box"></a>display: -webkit-box</h4><p><code>-webkit-box</code> CSS 值允许将块级内容限制为指定行数。虽然不是标准的属性，但是浏览器均支持。配合 <code>line-clamp</code> 和 <code>box-orient</code> 可以实现多行截断。<br>由于兼容性需要，在不同浏览器中需要添加前缀。例如对于 <code>line-clamp</code> 属性，Chrome 通过 <code>-webkit-line-clamp</code> 支持，Edge 通过 <code>-ms-line-clamp</code> 支持，Firefox 通过 <code>-moz-line-clamp</code> 支持。</p>
+<h4 id="line-clamp"><a href="#line-clamp" class="headerlink" title="line-clamp"></a>line-clamp</h4><p><code>line-clamp</code> CSS 属性允许将块内容的行数限制为指定值。</p>
+<h4 id="box-orient"><a href="#box-orient" class="headerlink" title="box-orient"></a>box-orient</h4><p><code>box-orient</code> CSS 属性设置元素是水平还是垂直地布置其内容。</p>
+<h3 id="webkit-效果"><a href="#webkit-效果" class="headerlink" title="-webkit 效果"></a>-webkit 效果</h3><p><div class="words2">For a long time it seemed to me that life was about to begin , real life. But, there was always some obsacle in the way, something to be gotten through first, some unfinnished business, time still to be served or a debt to be paid. Then life would begin.</div></p>
+<style type="text/css">
+.words2 {
+    width: 400px;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+</style>
+
+<h3 id="兼容代码"><a href="#兼容代码" class="headerlink" title="兼容代码"></a>兼容代码</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 兼容其它内核 <span class="attribute">padding</span>需要根据实际情况计算</span><br><span class="line"><span class="selector-class">.words</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">1.4em</span>;</span><br><span class="line">  <span class="comment">/* 高度=2倍的行高 */</span></span><br><span class="line">  <span class="attribute">height</span>: <span class="number">2.8em</span>;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.words</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">&#x27;...&#x27;</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">35px</span> <span class="number">1px</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="兼容代码效果"><a href="#兼容代码效果" class="headerlink" title="兼容代码效果"></a>兼容代码效果</h3><p><div class="words3">For a long time it seemed to me that life was about to begin , real life. But, there was always some obsacle in the way, something to be gotten through first, some unfinnished business, time still to be served or a debt to be paid. Then life would begin.</div></p>
+<style type="text/css">
+.words3 {
+    width: 400px;
+    position: relative;
+    line-height: 1.4em;
+    height: 2.8em;
+    overflow: hidden;
+}
+.words3::after {
+    content: "...";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0 35px 1px 0;
+}
+</style>
+
+<h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><p>也有一些通过js实现的截断插件，例如 <a target="_blank" rel="noopener" href="https://github.com/FrDH/jQuery.dotdotdot">jQuery.dotdotdot</a>，<a target="_blank" rel="noopener" href="https://github.com/josephschmitt/Clamp.js">Clamp.js</a></p>
+<h2 id="涉及的-CSS-属性"><a href="#涉及的-CSS-属性" class="headerlink" title="涉及的 CSS 属性"></a>涉及的 CSS 属性</h2><h3 id="overflow"><a href="#overflow" class="headerlink" title="overflow"></a>overflow</h3><p><code>overflow</code> 是一个 CSS 简写属性，用以设定当内容无法适应元素的内边距（padding box）（即溢出）时，在水平和/或垂直方向上期望的行为。<br>此属性是属性 <code>overflow-x</code> 和 <code>overflow-y</code> 的简写。<br>在使用 overflow 的各种关键字时，应注意以下细微差别：</p>
+<ol>
+<li>为 <code>overflow</code> 指定一个非 <code>visible</code>（默认值）或 clip 的值会创建一个新的块格式化上下文（Block Formatting Context，BFC）。这是出于技术原因的需要；如果一个浮动元素与一个滚动元素相交，它会在每次滚动后强制重新包裹内容，从而导致滚动体验缓慢。</li>
+<li>为了使 <code>overflow</code> 设置产生预期效果，块级元素必须具有：如果溢出发生在垂直方向，则需要设置高度（<code>height</code> 或 <code>max-height</code>）；如果溢出发生在水平方向，则需要设置宽度（<code>width</code> 或 <code>max-width</code>）；如果溢出发生在块方向，则需要设置块级尺寸（<code>block-size</code> 或 <code>max-block-size</code>）；或者，如果溢出发生在行内方向，则需要设置行内尺寸（<code>inline-size</code> 或 <code>max-inline-size</code>）或将 <code>white-space</code> 设置为 <code>nowrap</code>。</li>
+<li>当一个方向（即 <code>overflow-x</code> 或 <code>overflow-y</code>）的 <code>overflow</code> 设置为 <code>visible</code>，而另一个方向的 <code>overflow</code> 未设置为 <code>visible</code> 或 <code>clip</code> 时，<code>visible</code> 值的行为会像 <code>auto</code> 一样。</li>
+<li>当一个方向的 <code>overflow</code> 设置为 <code>clip</code>，而另一个方向的 <code>overflow</code> 未设置为 <code>visible</code> 或 <code>clip</code> 时，<code>clip</code> 值的行为会像 <code>hidden</code> 一样。</li>
+<li>JavaScript 的 <code>Element.scrollTop</code> 属性可用于在滚动容器中滚动内容，除非 <code>overflow</code> 被设置为 <code>clip</code>。</li>
+</ol>
+<h4 id="visible"><a href="#visible" class="headerlink" title="visible"></a>visible</h4><p>溢出的内容不会被裁剪，可能会在元素的内边距盒之外可见。元素盒不是一个滚动容器。这是 <code>overflow</code> 属性的默认值。</p>
+<h4 id="hidden"><a href="#hidden" class="headerlink" title="hidden"></a>hidden</h4><p>溢出的内容在元素的内边距盒处被裁剪。没有滚动条，被裁剪的内容不可见（即内容被隐藏），但内容仍然存在。浏览器不会添加滚动条，也不允许用户通过诸如触摸屏拖拽或使用鼠标滚轮等操作来查看裁剪区域外的内容。内容可以通过编程方式滚动（例如，通过链接到锚文本、通过 Tab 键聚焦到隐藏但可聚焦的元素，或者通过设置 <code>scrollLeft</code> 属性或 <code>scrollTo()</code> 方法的值），在这种情况下，元素盒是一个滚动容器。</p>
+<h4 id="clip"><a href="#clip" class="headerlink" title="clip"></a>clip</h4><p>溢出的内容在元素的溢出裁剪边缘处被裁剪，该边缘通过 <code>overflow-clip-margin</code> 属性定义。因此，内容会溢出元素的内边距盒，溢出的量为 <code>overflow-clip-margin</code> 的 <code>&lt;length&gt;</code> 值，如果未设置则为 <code>0px</code>。裁剪区域外的溢出内容不可见，浏览器不会添加滚动条，也不支持编程方式的滚动。不会创建新的格式化上下文。要建立一个格式化上下文，需将 <code>overflow: clip</code> 与 <code>display: flow-root</code> 一起使用。元素盒不是一个滚动容器。</p>
+<h4 id="scroll"><a href="#scroll" class="headerlink" title="scroll"></a>scroll</h4><p>溢出的内容在元素的内边距盒处被裁剪，并且可以使用滚动条将溢出的内容滚动到视图中。无论是否有内容溢出，浏览器都会显示滚动条，因此如果该值同时应用于水平和垂直方向，那么两个方向都会显示滚动条。因此，使用此关键字可以防止滚动条随着内容变化而出现和消失。打印机可能仍然会打印溢出的内容。元素盒是一个滚动容器。</p>
+<h4 id="auto"><a href="#auto" class="headerlink" title="auto"></a>auto</h4><p>溢出的内容在元素的内边距盒处被裁剪，并且可以使用滚动条将溢出的内容滚动到视图中。与 <code>scroll</code> 不同，浏览器仅当内容溢出时才显示滚动条。如果内容能适应元素的内边距盒，它的外观与 <code>visible</code> 相同，但仍然会建立一个新的格式化上下文。元素盒是一个滚动容器。</p>
+<h3 id="text-overflow"><a href="#text-overflow" class="headerlink" title="text-overflow"></a>text-overflow</h3><p><code>text-overflow</code> CSS 属性设置如何向用户表示被隐藏的溢出内容。它可以被剪裁、显示省略号 (…) 或显示自定义字符串。<code>text-overflow</code> 属性不会强制发生溢出。要使文本溢出其容器，必须设置其它 CSS 属性：<code>overflow</code> 和 <code>white-space</code>。<code>text-overflow</code> 属性仅影响在其行内排列方向（而不是框底部溢出的文本，例如）溢出块容器元素的内容。</p>
+<h4 id="clip-1"><a href="#clip-1" class="headerlink" title="clip"></a>clip</h4><p>此属性的默认值。此关键字值将在内容区域的限制处截断文本，因此截断可能发生在字符中间。要在字符之间进行剪裁，<a target="_blank" rel="noopener" href="https://caniuse.com/?search=text-overflow%3A+%3Cstring%3E">如果目标浏览器支持</a>，可以将 <code>text-overflow</code> 指定为空字符串：<code>text-overflow: &#39;&#39;</code>;。</p>
+<h4 id="ellipsis"><a href="#ellipsis" class="headerlink" title="ellipsis"></a>ellipsis</h4><p>此关键字值将显示一个省略号 (‘…’, U+2026 HORIZONTAL ELLIPSIS) 来表示被剪裁的文本。省略号显示在内容区域内，减少了显示的文本量。如果没有足够的空间来显示省略号，它将被剪裁。</p>
+<h4 id=""><a href="#" class="headerlink" title=""></a><string></h4><p>用于表示被剪裁文本的 <code>&lt;string&gt;</code>。该字符串显示在内容区域内，缩短了显示的文本大小。如果没有足够的空间来显示字符串本身，它将被剪裁。</p>
+<h3 id="white-space"><a href="#white-space" class="headerlink" title="white-space"></a>white-space</h3><p>white-space CSS 属性设置了元素内部空白符的处理方式。该属性指定了两件事：空白符是否以及如何合并；行是否以及如何换行。此属性是属性 <code>white-space-collapse</code> 和<br><code>text-wrap-mode</code> 的简写。</p>
+<h4 id="normal"><a href="#normal" class="headerlink" title="normal"></a>normal</h4><p>空白符序列会合并。源文件中的换行符与其它空白符的处理方式相同。必要时会断行以填充行框。等同于 <code>collapse wrap</code> 。</p>
+<h4 id="pre"><a href="#pre" class="headerlink" title="pre"></a>pre</h4><p>空白符序列会保留。只有源文件中的换行符和 <code>&lt;br&gt;</code> 元素处会断行。等同于 <code>preserve nowrap</code> 。</p>
+<h4 id="pre-wrap"><a href="#pre-wrap" class="headerlink" title="pre-wrap"></a>pre-wrap</h4><p>空白符序列会保留。在换行符、<code>&lt;br&gt;</code> 处以及必要时会断行以填充行框。等同于 <code>preserve wrap</code> 。</p>
+<h4 id="pre-line"><a href="#pre-line" class="headerlink" title="pre-line"></a>pre-line</h4><p>空白符序列会合并。在换行符、<code>&lt;br&gt;</code> 处以及必要时会断行以填充行框。等同于 <code>preserve-breaks wrap</code> 。</p>
+<h3 id="overflow-wrap-word-wrap"><a href="#overflow-wrap-word-wrap" class="headerlink" title="overflow-wrap(word-wrap)"></a>overflow-wrap(word-wrap)</h3><p><code>overflow-wrap</code> CSS 属性适用于文本，用于设置浏览器是否应在不可中断的字符串内部插入换行符，以防止文本溢出其行框。<code>word-wrap</code> 是它的别名。</p>
+<h4 id="normal-1"><a href="#normal-1" class="headerlink" title="normal"></a>normal</h4><p>行只能在正常的单词断点处（例如两个单词之间的空格）断开。</p>
+<h4 id="anywhere"><a href="#anywhere" class="headerlink" title="anywhere"></a>anywhere</h4><p>为了防止溢出，一个原本不可中断的字符字符串（例如长单词或 URL）可以在任何点处断开，如果行中没有其他可接受的断点。断点处不插入连字符。计算最小内容固有尺寸时，会考虑由单词断裂引入的软换行机会。</p>
+<h4 id="break-word"><a href="#break-word" class="headerlink" title="break-word"></a>break-word</h4><p>与 <code>anywhere</code> 值相同，允许原本不可中断的单词在行中没有其他可接受的断点时在任意点断开，但计算最小内容固有尺寸时，不考虑由单词断裂引入的软换行机会。</p>
+<h3 id="word-break"><a href="#word-break" class="headerlink" title="word-break"></a>word-break</h3><p><code>word-break</code> CSS 属性用于设置当文本溢出其内容框时，是否以及如何在单词之间插入换行符。</p>
+<h4 id="normal-2"><a href="#normal-2" class="headerlink" title="normal"></a>normal</h4><p>使用默认的断行规则。</p>
+<h4 id="break-all"><a href="#break-all" class="headerlink" title="break-all"></a>break-all</h4><p>为了防止溢出，应在任意两个字符之间插入断词（不包括中文/日文/韩文文本）。</p>
+<h4 id="keep-all"><a href="#keep-all" class="headerlink" title="keep-all"></a>keep-all</h4><p>不应为中文/日文/韩文（CJK）文本使用断词。非 CJK 文本的行为与 <code>normal</code> 相同。</p>
+<h4 id="auto-phrase"><a href="#auto-phrase" class="headerlink" title="auto-phrase"></a>auto-phrase</h4><p>与 <code>word-break: normal</code> 具有相同的效果，不同之处在于会执行语言特定分析以改进断词，避免在自然短语中间断词。</p>
+<h4 id="break-word-1"><a href="#break-word-1" class="headerlink" title="break-word"></a>break-word</h4><p>与 <code>overflow-wrap: anywhere</code> 结合 <code>word-break: normal</code> 具有相同的效果，无论 <code>overflow-wrap</code> 属性的实际值如何。</p>
+<h3 id="text-wrap"><a href="#text-wrap" class="headerlink" title="text-wrap"></a>text-wrap</h3><p><code>text-wrap</code> CSS 简写属性控制元素内文本的换行方式。此属性是属性 <code>text-wrap-mode</code> 和 <code>text-wrap-style</code> 的简写。不同的值提供：</p>
+<ul>
+<li>排版改进，例如断裂标题之间更平衡的行长</li>
+<li>一种完全关闭文本换行的方法。</li>
+</ul>
+<h4 id="wrap"><a href="#wrap" class="headerlink" title="wrap"></a>wrap</h4><p>文本在适当的字符处（例如，在像英语这种使用空格分隔符的语言中是空格）换行，以最大限度地减少溢出。这是默认值。</p>
+<h4 id="nowrap"><a href="#nowrap" class="headerlink" title="nowrap"></a>nowrap</h4><p>文本不跨行换行。它会溢出其包含元素，而不是断到新行。</p>
+<h4 id="balance"><a href="#balance" class="headerlink" title="balance"></a>balance</h4><p>文本以最佳方式平衡每行字符数的方式换行，从而提高布局质量和可读性。由于计算字符并在多行中平衡它们计算成本高昂，因此此值仅支持跨越有限行数（Chromium 为六行或更少，Firefox 为十行或更少）的文本块。</p>
+<h4 id="pretty"><a href="#pretty" class="headerlink" title="pretty"></a>pretty</h4><p>结果与 <code>wrap</code> 相同，不同之处在于浏览器将使用较慢的算法，该算法倾向于更好的布局而不是速度。这适用于正文文本，其中良好的排版优于性能（例如，当应将孤行数保持在最低限度时）。</p>
+<h4 id="stable"><a href="#stable" class="headerlink" title="stable"></a>stable</h4><p>结果与 <code>wrap</code> 相同，不同之处在于当用户编辑内容时，他们正在编辑的行之前的行保持静态，而不是整个文本块重新换行。</p>
+<h3 id="hyphens"><a href="#hyphens" class="headerlink" title="hyphens"></a>hyphens</h3><p><code>hyphens</code> CSS 属性指定当文本跨多行换行时，单词应如何进行连字符处理。它可以完全阻止连字符，在文本中手动指定位置进行连字符，或者让浏览器在适当的位置自动插入连字符。<br>连字符规则是语言特定的。在 HTML 中，语言由 <code>lang</code> 属性确定，只有当此属性存在并且有适当的连字符词典可用时，浏览器才会进行连字符处理。在 XML 中，必须使用 <code>xml:lang</code> 属性。<br>如果支持，<code>hyphenate-character</code> 可用于指定在断行末尾使用的替代连字符。<br>有两种 Unicode 字符用于手动指定文本中潜在的换行点:</p>
+<ul>
+<li><p>U+2010（连字符）<br>“硬”连字符表示一个可见的换行机会。即使该行实际上没有在该点断开，连字符仍然会渲染。</p>
+</li>
+<li><p>U+00AD (SHY)<br>一个不可见的“软”连字符。此字符不会可见地渲染；相反，它标记了一个位置，如果需要连字符，浏览器应该在该位置断开单词。在 HTML 中，使用 <code>&amp;shy;</code> 插入软连字符。</p>
+</li>
+</ul>
+<h4 id="none"><a href="#none" class="headerlink" title="none"></a>none</h4><p>单词不会在换行符处断开，即使单词内的字符建议换行点。行只会在空格处换行。</p>
+<h4 id="manual"><a href="#manual" class="headerlink" title="manual"></a>manual</h4><p>默认值。单词仅在单词内字符建议换行机会的地方进行断行。</p>
+<h4 id="auto-1"><a href="#auto-1" class="headerlink" title="auto"></a>auto</h4><p>浏览器可以自由地在适当的连字符点自动断开单词，遵循它选择的任何规则。但是，当存在建议的换行机会时，它将覆盖自动断点选择。</p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

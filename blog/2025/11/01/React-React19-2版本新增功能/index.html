@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        React19.2版本新增功能 | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="React 19.2 于2025年10月1日正式发布。该版本引入了多项新功能和显著改进，为开发者带来了更强大的工具和更好的性能优化能力。新增 React 特性&amp;lt;Activity /&amp;gt;组件&amp;lt;Activity /&amp;gt;允许你将应用程序分解为可以控制和优先处理的”活动”部分。这个组件可以作为条件渲染页面部分的替代方案：123456789// 之前&amp;#123;  isVisible &amp;amp;&amp;amp; &amp;lt;Page /&amp;gt;;&amp;#125;// 之后&amp;lt;Activit" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E-React-%E7%89%B9%E6%80%A7"><span class="toc-text">新增 React 特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-Activity-gt-%E7%BB%84%E4%BB%B6"><span class="toc-text">&lt;Activity &#x2F;&gt;组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#useEffectEvent"><span class="toc-text">useEffectEvent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cacheSignal"><span class="toc-text">cacheSignal</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E8%BF%BD%E8%B8%AA%EF%BC%88Performance-Tracks%EF%BC%89"><span class="toc-text">性能追踪（Performance Tracks）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E5%99%A8%EF%BC%88Scheduler%EF%BC%89%E8%BD%A8%E9%81%93"><span class="toc-text">调度器（Scheduler）轨道</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%EF%BC%88Components%EF%BC%89%E8%BD%A8%E9%81%93"><span class="toc-text">组件（Components）轨道</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E-React-DOM-%E7%89%B9%E6%80%A7"><span class="toc-text">新增 React DOM 特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%83%A8%E5%88%86%E9%A2%84%E6%B8%B2%E6%9F%93%EF%BC%88Partial-Pre-rendering%EF%BC%89"><span class="toc-text">部分预渲染（Partial Pre-rendering）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%80%BC%E5%BE%97%E6%B3%A8%E6%84%8F%E7%9A%84%E5%8F%98%E6%9B%B4"><span class="toc-text">值得注意的变更</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93%E4%B8%AD%E7%9A%84-Suspense-%E8%BE%B9%E7%95%8C%E6%89%B9%E5%A4%84%E7%90%86"><span class="toc-text">服务端渲染中的 Suspense 边界批处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93%EF%BC%9ANode-%E7%9A%84-Web-Streams-%E6%94%AF%E6%8C%81"><span class="toc-text">服务端渲染：Node 的 Web Streams 支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#eslint-plugin-react-hooks-v6"><span class="toc-text">eslint-plugin-react-hooks v6</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E9%BB%98%E8%AE%A4-useId-%E5%89%8D%E7%BC%80"><span class="toc-text">更新默认 useId 前缀</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            React19.2版本新增功能
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2025-11-01T10:00:00.000Z" itemprop="datePublished">2025-11-01</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/react/" rel="tag">react</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>React 19.2 于2025年10月1日正式发布。该版本引入了多项新功能和显著改进，为开发者带来了更强大的工具和更好的性能优化能力。</p>
+<span id="more"></span>
+<h2 id="新增-React-特性"><a href="#新增-React-特性" class="headerlink" title="新增 React 特性"></a>新增 React 特性</h2><h3 id="lt-Activity-gt-组件"><a href="#lt-Activity-gt-组件" class="headerlink" title="&lt;Activity /&gt;组件"></a><code>&lt;Activity /&gt;</code>组件</h3><p><code>&lt;Activity /&gt;</code>允许你将应用程序分解为可以控制和优先处理的”活动”部分。这个组件可以作为条件渲染页面部分的替代方案：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 之前</span></span><br><span class="line">&#123;</span><br><span class="line">  isVisible &amp;&amp; <span class="language-xml"><span class="tag">&lt;<span class="name">Page</span> /&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 之后</span></span><br><span class="line">&lt;<span class="title class_">Activity</span> mode=&#123;isVisible ? <span class="string">&#x27;visible&#x27;</span> : <span class="string">&#x27;hidden&#x27;</span>&#125;&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">Page</span> /&gt;</span></span></span><br><span class="line">&lt;/<span class="title class_">Activity</span>&gt;;</span><br></pre></td></tr></table></figure>
+<p>在React 19.2中，<code>&lt;Activity /&gt;</code> 支持两种模式：visible（可见）和 hidden（隐藏）：</p>
+<ul>
+<li>hidden: 隐藏子元素，卸载效果，并推迟所有更新，直到 React 没有其他工作要处理。</li>
+<li>visible: 显示子元素，挂载效果，并允许正常处理更新。</li>
+</ul>
+<p>这意味着你可以预渲染并继续渲染应用程序中隐藏的部分，而不会影响屏幕上可见内容的性能。你可以使用 <code>&lt;Activity /&gt;</code> 渲染用户可能接下来会导航到的隐藏部分，或保存用户导航离开时部分的状态。这通过在后台加载数据、CSS和图像来帮助加快导航速度，并允许返回导航保持状态，如输入字段。</p>
+<h3 id="useEffectEvent"><a href="#useEffectEvent" class="headerlink" title="useEffectEvent"></a>useEffectEvent</h3><p>useEffectEvent 是解决 useEffect 中一个常见模式的工具，用于通知应用代码来自外部系统的某些”事件”。例如，当聊天室连接时，你可能想要显示通知。</p>
+<p>传统方法的问题在于，内部”事件”使用的任何值的更改都会导致周围的 Effect 重新运行。例如，更改主题会导致聊天室重新连接。这对于与 Effect 逻辑本身相关的值（如 roomId）是有意义的，但对于 theme 则没有意义。</p>
+<p>使用 useEffectEvent ，你可以将”事件”部分的逻辑从发出它的 Effect 中分离出来：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">ChatRoom</span>(<span class="params">&#123; roomId, theme &#125;</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> onConnected = <span class="title function_">useEffectEvent</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">showNotification</span>(<span class="string">&#x27;Connected!&#x27;</span>, theme);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> connection = <span class="title function_">createConnection</span>(serverUrl, roomId);</span><br><span class="line">    connection.<span class="title function_">on</span>(<span class="string">&#x27;connected&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="title function_">onConnected</span>();</span><br><span class="line">    &#125;);</span><br><span class="line">    connection.<span class="title function_">connect</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="function">() =&gt;</span> connection.<span class="title function_">disconnect</span>();</span><br><span class="line">  &#125;, [roomId]); <span class="comment">// ✅ 所有依赖项已声明（Effect Events 不是依赖项）</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>类似于DOM事件，Effect Events 始终”看到”最新的 props 和 state。</p>
+<h3 id="cacheSignal"><a href="#cacheSignal" class="headerlink" title="cacheSignal"></a>cacheSignal</h3><p>cacheSignal 仅用于 React 服务器组件。它允许你知道 <code>cache()</code> 生命周期何时结束：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; cache, cacheSignal &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> dedupedFetch = <span class="title function_">cache</span>(fetch);</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">Component</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">await</span> <span class="title function_">dedupedFetch</span>(url, &#123; <span class="attr">signal</span>: <span class="title function_">cacheSignal</span>() &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这允许你在缓存不再使用结果时清理或中止工作，例如：</p>
+<ul>
+<li>React 已成功完成渲染</li>
+<li>渲染被中止</li>
+<li>渲染失败</li>
+</ul>
+<h3 id="性能追踪（Performance-Tracks）"><a href="#性能追踪（Performance-Tracks）" class="headerlink" title="性能追踪（Performance Tracks）"></a>性能追踪（Performance Tracks）</h3><p>React 19.2 在 Chrome DevTools 性能配置文件中添加了一组新的自定义轨道，为你的 React 应用性能提供更多信息：</p>
+<h4 id="调度器（Scheduler）轨道"><a href="#调度器（Scheduler）轨道" class="headerlink" title="调度器（Scheduler）轨道"></a>调度器（Scheduler）轨道</h4><p>显示 React 正在处理的不同优先级的工作，如针对用户交互的 “blocking” 或针对 startTransition 内更新的 “transition” 。在每个轨道内部，你将看到正在执行的工作类型，如调度更新的事件以及该更新渲染发生的时间。</p>
+<h4 id="组件（Components）轨道"><a href="#组件（Components）轨道" class="headerlink" title="组件（Components）轨道"></a>组件（Components）轨道</h4><p>显示 React 正在处理以进行渲染或运行效果的组件树。在内部，你会看到诸如 “Mount” 标签表示子项挂载或效果被挂载，或 “Blocked” 表示由于让位于 React 之外的工作而阻塞渲染。</p>
+<h2 id="新增-React-DOM-特性"><a href="#新增-React-DOM-特性" class="headerlink" title="新增 React DOM 特性"></a>新增 React DOM 特性</h2><h3 id="部分预渲染（Partial-Pre-rendering）"><a href="#部分预渲染（Partial-Pre-rendering）" class="headerlink" title="部分预渲染（Partial Pre-rendering）"></a>部分预渲染（Partial Pre-rendering）</h3><p>在 React 19.2 中，添加了一个新功能，允许提前预渲染应用程序的一部分，然后稍后恢复渲染。</p>
+<p>这个功能被称为”部分预渲染”，允许你预渲染应用程序的静态部分并从 CDN 提供服务，然后稍后恢复渲染外壳以填充动态内容。</p>
+<p>要预渲染稍后恢复的应用程序，首先使用 AbortController 调用 prerender：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; prelude, postponed &#125; = <span class="keyword">await</span> <span class="title function_">prerender</span>(<span class="language-xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span></span>, &#123;</span><br><span class="line">  <span class="attr">signal</span>: controller.<span class="property">signal</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 保存延迟状态以供后续使用</span></span><br><span class="line"><span class="keyword">await</span> <span class="title function_">savePostponedState</span>(postponed);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 发送前奏到客户端或CDN</span></span><br></pre></td></tr></table></figure>
+<p>然后，你可以将前奏返回给客户端，随后调用 resume 以”恢复”到 SSR 流：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> postponed = <span class="keyword">await</span> <span class="title function_">getPostponedState</span>(request);</span><br><span class="line"><span class="keyword">const</span> resumeStream = <span class="keyword">await</span> <span class="title function_">resume</span>(<span class="language-xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span></span>, postponed);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将流发送到客户端</span></span><br></pre></td></tr></table></figure>
+<p>或者你可以调用 resumeAndPrerender 以恢复以获取静态 HTML 进行 SSG：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> postponedState = <span class="keyword">await</span> <span class="title function_">getPostponedState</span>(request);</span><br><span class="line"><span class="keyword">const</span> &#123; prelude &#125; = <span class="keyword">await</span> <span class="title function_">resumeAndPrerender</span>(<span class="language-xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span></span>, postponedState);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将完整的HTML前奏发送到CDN</span></span><br></pre></td></tr></table></figure>
+<h2 id="值得注意的变更"><a href="#值得注意的变更" class="headerlink" title="值得注意的变更"></a>值得注意的变更</h2><h3 id="服务端渲染中的-Suspense-边界批处理"><a href="#服务端渲染中的-Suspense-边界批处理" class="headerlink" title="服务端渲染中的 Suspense 边界批处理"></a>服务端渲染中的 Suspense 边界批处理</h3><p>修复了一个行为错误，即 Suspense 边界的显示会根据它们是在客户端还是服务器端流式渲染时而有所不同。</p>
+<p>从 React 19.2 开始，React 将短暂地批处理服务器渲染的 Suspense 边界的显示，以允许更多内容一起显示，并与客户端渲染行为对齐。</p>
+<h3 id="服务端渲染：Node-的-Web-Streams-支持"><a href="#服务端渲染：Node-的-Web-Streams-支持" class="headerlink" title="服务端渲染：Node 的 Web Streams 支持"></a>服务端渲染：Node 的 Web Streams 支持</h3><p>增加了对 Node 环境 Web Streams API 的支持，使得服务端渲染更加高效。</p>
+<h3 id="eslint-plugin-react-hooks-v6"><a href="#eslint-plugin-react-hooks-v6" class="headerlink" title="eslint-plugin-react-hooks v6"></a>eslint-plugin-react-hooks v6</h3><p>更新了 React Hooks 的 ESLint 插件，以支持新的 useEffectEvent 语法，并确保不会将 Effect Events 误添加到依赖数组中。</p>
+<h3 id="更新默认-useId-前缀"><a href="#更新默认-useId-前缀" class="headerlink" title="更新默认 useId 前缀"></a>更新默认 useId 前缀</h3><p>调整了 useId 生成 ID 的默认前缀，使其更符合现代 Web 开发需求。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>React 19.2 的发布标志着 React 生态系统持续发展的又一重要里程碑。新加入的 <code>&lt;Activity /&gt;</code> 组件为应用状态管理提供了更精细的控制方式；<code>useEffectEvent</code> 解决了 Effect 依赖管理的经典问题；部分预渲染功能进一步提升了应用性能和用户体验；而性能追踪工具则为开发者提供了更深入的性能分析能力。</p>
+<p>这些改进不仅提高了 React 应用的性能和可维护性，也为未来 React 的发展奠定了基础。特别是 <code>&lt;Activity /&gt;</code> 组件的设计理念，预示着 React 在应用架构方面的新方向，未来可能会增加更多模式以满足不同场景的需求。</p>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>

@@ -123,8 +123,11 @@
 </ul>
 <p>因为使用到了类属性特性，在与 Typescript 或 Babel 一起使用时且计划使用类时，需要转换类字段。</p>
 <ul>
-<li>Babel: 版本&gt;7.12 使用 <code>@babel/plugin-proposal-class-properties</code> 插件，配置 <code>[&quot;@babel/plugin-proposal-class-properties&quot;, &#123; &quot;loose&quot;: false &#125;]</code></li>
-<li>Typescript: 在 tsconfig.json 中启用编译器选项 <code>&quot;useDefineForClassFields&quot;: true</code></li>
+<li><p>Babel: 需要使用版本&gt;7.12 同时开启以下配置</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="comment">// Babel &lt; 7.13.0</span></span><br><span class="line">  <span class="attr">&quot;plugins&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;@babel/plugin-proposal-class-properties&quot;</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;loose&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span> <span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// Babel &gt;= 7.13.0 (https://babeljs.io/docs/en/assumptions)</span></span><br><span class="line">  <span class="attr">&quot;plugins&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;@babel/plugin-proposal-class-properties&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;assumptions&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;setPublicClassFields&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Typescript: 在 tsconfig.json 中启用编译器选项 <code>&quot;useDefineForClassFields&quot;: true</code></p>
+</li>
 </ul>
 <p>MobX 使用到了 Proxy 特性，如果在不支持 Proxy 特性的运行时上使用 MobX ，需要明确启用降级方案：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; configure &#125; <span class="keyword">from</span> <span class="string">&#x27;mobx&#x27;</span>;</span><br><span class="line"><span class="title function_">configure</span>(&#123; <span class="attr">useProxies</span>: <span class="string">&#x27;never&#x27;</span> &#125;); <span class="comment">// Or &quot;ifavailable&quot;.</span></span><br></pre></td></tr></table></figure>
@@ -140,7 +143,7 @@
 <li>Actions(动作)</li>
 <li>Derivations(派生)</li>
 </ul>
-<p>State(状态): 是驱动你的应用程序的数据。通常来说，状态有领域 <em>特定状态</em> 和 <em>视图状态</em>。State 可以使用任何数据结构，但是需要被标记为 <code>observable</code> 从而使 MobX 可跟踪它。<br>Action(动作) : 是任意可以改变 State(状态) 的代码，比如用户事件处理、后端推送数据处理、调度器事件处理等等。<br>Derivation(派生): 任何 来源是 State(状态) 并且不需要进一步交互的东西都是 Derivation(派生)。<br>Mobx 区分了两种 Derivation :</p>
+<p>State(状态): 是驱动你的应用程序的数据。通常来说，状态有领域 <em>特定状态</em> 和 <em>视图状态</em>。State 可以使用任何数据结构，但是需要被标记为 <code>observable</code> 从而使 MobX 可跟踪它。<br>Action(动作) : 是任意可以改变 State(状态) 的代码，比如用户事件处理、后端推送数据处理、调度器事件处理等等。<br>Derivation(派生): 任何来源是 State(状态) 并且不需要进一步交互的东西都是 Derivation(派生)。<br>Mobx 区分了两种 Derivation :</p>
 <ul>
 <li>Computed values：总是可以通过纯函数从当前的可观测 State 中派生</li>
 <li>Reactions：当 State 改变时需要自动运行的副作用 (命令式编程和响应式编程之间的桥梁)</li>
@@ -148,10 +151,10 @@
 <h2 id="MobX-数据流向"><a href="#MobX-数据流向" class="headerlink" title="MobX 数据流向"></a>MobX 数据流向</h2><p>Mobx 使用单向数据流，利用 action 改变 state ，进而更新所有受影响的 view:</p>
 <p><img src="/blog/static/imgs/mobx/mobx.png" alt="mobx_inner"></p>
 <ol>
-<li>所有的 derivations 将在 state 改变时自动且原子化地更新。因此不能观察中间值。</li>
-<li>所有的 derivations 默认将会同步更新，这意味着 action 可以在 state 改变之后安全的直接获得 computed value。</li>
-<li>computed value 的更新是惰性的，任何 computed value 在需要他们的副作用发生之前都是不激活的。</li>
-<li>所有的 computed value 都应是纯函数，他们不应该修改 state。</li>
+<li>所有的 derivations 将在 state 改变时<em>自动且原子化地更新</em>。因此不能观察中间值。</li>
+<li>所有的 derivations 默认将会<em>同步</em>更新，这意味着 action 可以在 state 改变之后安全的直接获得 computed value。</li>
+<li>computed value 的更新是<em>惰性</em>的，任何 computed value 在需要他们的副作用发生之前都是不激活的。</li>
+<li>所有的 computed value 都应是<em>纯函数</em>，他们不应该修改 state。</li>
 </ol>
 <h2 id="MobX核心"><a href="#MobX核心" class="headerlink" title="MobX核心"></a>MobX核心</h2><h3 id="创建可观察-observable-state"><a href="#创建可观察-observable-state" class="headerlink" title="创建可观察(observable) state"></a>创建可观察(observable) state</h3><h4 id="makeObservable"><a href="#makeObservable" class="headerlink" title="makeObservable"></a>makeObservable</h4><p>用法： <code>makeObservable(target, annotations?, options?)</code></p>
 <p><code>makeObservable</code> 为每个属性指定一个注解:</p>

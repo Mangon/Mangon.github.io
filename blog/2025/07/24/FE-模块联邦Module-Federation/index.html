@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+    <title>
+        模块联邦 Module Federation | 
+        Gblog
+    </title>
+    <meta name="author" content="Mangon" />
+    <meta name="version" content="1.1.0" />
+    
+    <meta name="keywords" content="Mangon blog, 技术博客, 前端学习, 前端基础" />
+    
+    
+    <meta name="description" content="模块联邦（Module Federation）是 Webpack 5 引入的核心功能，旨在实现多个独立构建的前端应用在运行时动态共享代码、依赖或组件，支持微前端架构和跨项目模块复用。‌模块联邦的核心概念‌模块联邦通过去中心化的设计，允许不同应用在运行时直接共享模块，无需重复打包或依赖 NPM 安装。其核心特点包括：‌独立构建与部署‌：每个应用（容器或远程）可单独开发、部署，通过暴露（exposes）和引用（remotes）机制实现模块共享。‌‌‌‌运行时动态加载‌：模块按需异步加载，减" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    
+    <meta name="baidu-site-verification" content="pWri9ahJmw" />
+    
+    
+    
+    <link rel="icon" href="/blog/images/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="stylesheet" href="/blog/css/jquery.modal.min.css"></link>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/blog/atom.xml" title="Gblog" type="application/atom+xml">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+    <nav class="nav-inner">
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">主页</a>
+                </li>
+            
+        
+            
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/archives">目录</a>
+                </li>
+            
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <div class="search-box" id="search-box">
+    <form>
+        <div class="search-btn"></div>
+        <input autocomplete="off" type="text" id="search-input" name="q" results="0" placeholder="搜索"
+        />
+        <button type="reset" class="reset-search-btn"></button>
+    </form>
+</div>        
+        
+            
+        
+
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%8C%E6%A8%A1%E5%9D%97%E8%81%94%E9%82%A6%E7%9A%84%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E2%80%8C"><span class="toc-text">‌模块联邦的核心概念‌</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%8C%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E2%80%8C"><span class="toc-text">‌典型应用场景‌</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4%E4%B8%8E%E9%85%8D%E7%BD%AE"><span class="toc-text">实现步骤与配置</span></a></li></ol>
+        
+        <div id="coffee-content"></div>
+    </div>
+</aside>
+
+</header>
+
+        
+            <div data-spy="scroll" data-target="#aside-inner" id="content" class="content">
+        
+            <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            模块联邦 Module Federation
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <span class="article-date">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2025-07-24T08:09:59.000Z" itemprop="datePublished">2025-07-24</time>
+</span>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/blog/tags/webpack/" rel="tag">webpack</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+            <p>模块联邦（Module Federation）是 Webpack 5 引入的核心功能，旨在实现多个独立构建的前端应用在运行时动态共享代码、依赖或组件，支持微前端架构和跨项目模块复用。</p>
+<h2 id="‌模块联邦的核心概念‌"><a href="#‌模块联邦的核心概念‌" class="headerlink" title="‌模块联邦的核心概念‌"></a>‌模块联邦的核心概念‌</h2><p>模块联邦通过去中心化的设计，允许不同应用在运行时直接共享模块，无需重复打包或依赖 NPM 安装。其核心特点包括：</p>
+<ol>
+<li><p>‌独立构建与部署‌：每个应用（容器或远程）可单独开发、部署，通过暴露（exposes）和引用（remotes）机制实现模块共享。‌‌‌‌</p>
+</li>
+<li><p>运行时动态加载‌：模块按需异步加载，减少初始包体积，提升性能。‌‌</p>
+</li>
+<li><p>‌依赖共享‌：通过 shared 配置（如React、ReactDOM）避免重复加载，确保单例模式。‌‌‌‌</p>
+</li>
+</ol>
+<h2 id="‌典型应用场景‌"><a href="#‌典型应用场景‌" class="headerlink" title="‌典型应用场景‌"></a>‌典型应用场景‌</h2><ol>
+<li><p>‌微前端架构‌：将多个子应用集成到宿主容器中，实现技术栈解耦和独立部署。‌‌</p>
+</li>
+<li><p>‌跨项目组件复用‌：通用组件（如按钮、表单）可被多个项目动态引用，减少重复开发。‌‌</p>
+</li>
+<li><p>依赖优化‌：共享第三方库（如 Lodash ）以降低整体打包体积。‌‌</p>
+</li>
+</ol>
+<h2 id="实现步骤与配置"><a href="#实现步骤与配置" class="headerlink" title="实现步骤与配置"></a>实现步骤与配置</h2><ol>
+<li>使用 <code>ModuleFederationPlugin</code> 声明远程模块入口（<code>remotes</code>）和共享依赖（<code>shared</code>）。‌‌</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; <span class="title class_">ModuleFederationPlugin</span> &#125; = <span class="built_in">require</span>(<span class="string">&#x27;webpack&#x27;</span>).<span class="property">container</span>;</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">ModuleFederationPlugin</span>(&#123;</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&#x27;container&#x27;</span>,</span><br><span class="line">      <span class="attr">remotes</span>: &#123; <span class="attr">app1</span>: <span class="string">&#x27;app1@http://example.com/remoteEntry.js&#x27;</span> &#125;,</span><br><span class="line">      <span class="attr">shared</span>: &#123; <span class="attr">react</span>: &#123; <span class="attr">singleton</span>: <span class="literal">true</span> &#125; &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>远程应用配置通过 exposes 暴露模块，并配置共享依赖</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">ModuleFederationPlugin</span>(&#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;app1&#x27;</span>,</span><br><span class="line">  <span class="attr">filename</span>: <span class="string">&#x27;remoteEntry.js&#x27;</span>,</span><br><span class="line">  <span class="attr">exposes</span>: &#123; <span class="string">&#x27;./Button&#x27;</span>: <span class="string">&#x27;./src/Button&#x27;</span> &#125;,</span><br><span class="line">  <span class="attr">shared</span>: &#123; <span class="attr">react</span>: &#123; <span class="attr">singleton</span>: <span class="literal">true</span> &#125; &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+        
+    </section>
+    
+      <footer class="appreciate">
+    <p>觉得本文不错？可以赞赏支持我创作！</p>
+    <a id="appreciate-btn" href="#appreciate-modal" rel="modal:open" data-options='{"fadeDuration": 250,"fadeDelay": 0.80}'>
+        <button type="button" class="appreciate-btn">赞赏支持</button>
+    </a>
+</footer>
+    
+</article>
+
+
+
+
+        
+            </div>
+        
+        <article id="search-result" class="search-result content"></article>
+        <footer class="footer">
+    
+        <div class="license">
+            <p>版权声明
+                <a target="_blank" rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商用-相同方式共享4.0 (CC BY-NC-SA 4.0)</a>
+            </p>
+        </div>
+    
+</footer>
+
+
+    </main>
+
+    
+    <div id="appreciate-modal" class="modal">
+    <div class="appreciate-container">
+        <div class="appreciate-image">
+            <img src="/blog/images/zfb.png" alt="支付宝二维码"></img>
+            <p>⬆️支付宝</p>
+        </div>
+        <div class="appreciate-image">
+            <img src="/blog/images/wx.png" alt="微信二维码"></img>
+            <p>⬆️微信</p>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript" src="/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/blog/js/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/blog/js/common.js"></script>
+    <script type="text/javascript" src="/blog/js/home.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('.toc-link').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();
+                // console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');
+                // console.log(nodes.navTags.attr('class'))
+            });/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+    
+        <script type="text/javascript" src="/blog/js/search.js"></script>
+        <script type="text/javascript">
+            var search_path = "search.xml";
+            if (search_path.length == 0) {
+                search_path = "search.xml";
+            }
+            var path = "/blog/" + search_path;
+            searchFunc(path, 'search-box', 'search-result');
+        </script>
+    
+    
+        <script type="text/javascript" src="/blog/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $('#content').scrollspy({target: '#aside-inner'});
+        document.querySelector(decodeURIComponent(document.location.hash) || '#content')?.scrollIntoView();
+        </script>
+    
+    
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bd8c20273d10c04abf64252ca5fdf77b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    
+</body>
+</html>
